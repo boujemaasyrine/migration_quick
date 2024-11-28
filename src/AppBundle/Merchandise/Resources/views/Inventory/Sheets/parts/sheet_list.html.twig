@@ -1,0 +1,32 @@
+<div class="panel-body" style="padding-top: 0; padding-bottom: 0;">
+
+    <div class="row">
+        <div class="col-xs-1" style="margin-top: 15px;">
+            <a {{ securityChecker.disableBtn('add_inventory_sheet_model') }} id="sheetModelBlock" class="btn btn-add"
+                                                                             href="{{ path('api_save_inventory_sheet_model') }}">
+                {{ 'btn.add'|trans }}
+            </a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <h3>{{ 'sheet_model.list.title'|trans }} </h3>
+        <table id="sheet-model-table" class="table table-striped"
+               data-template="
+                    <a href='{{ path('export_sheet_model', {'sheetModel': '_id_'}) }}' id='print_btn' style='margin-right: 20px;' class='btn btn-print btn-icon btn-xs'> {{ 'btn.print'|trans }}</a>
+                    <a {{ securityChecker.disableBtn('edit_inventory_sheet_model') }} data-id='_id_' href='{{ path('api_save_inventory_sheet_model', {'sheetModel': '_id_' }) }}' class='btnEditSheetModel btn btn-modify btn-icon btn-xs'>{{ 'btn.edit'|trans }}</a>
+                    <button {{ securityChecker.disableBtn('delete_inventory_sheet_model') }} data-id='_id_' sheet-label='_sheet_label_' data-delete-url='{{ path('api_delete_sheet_model', {'sheetModel': '_id_' }) }}' class='removeSheetModel btn btn-delete btn-icon btn-xs'>{{ 'btn.delete'|trans }}</button>
+                   ">
+            <thead>
+            <tr>
+                <th>{{ 'sheet_model.list.code'|trans }}</th>
+                <th>{{ 'sheet_model.list.label'|trans }}</th>
+                <th>{{ 'sheet_model.list.action'|trans }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>

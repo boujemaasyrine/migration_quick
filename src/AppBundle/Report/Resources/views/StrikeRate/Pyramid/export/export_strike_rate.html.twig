@@ -1,0 +1,39 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h4>   {{ 'strike_rate.title' |trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-2 input-field">
+        <label for="startDate">{{ 'keyword.from'|trans }} :</label>
+        <span class="text-muted">
+            {{ data.startDate }}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="endDate">{{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {{ data.endDate  }}
+        </span>
+    </div>
+<div class="col-xs-2 input-field">
+   <label> {{ 'report.period_to_compare' |trans }}</label>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="startDate">{{ 'keyword.from'|trans }} :</label>
+        <span class="text-muted">
+            {{ data.compareStartDate }}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="endDate">{{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {{ data.compareEndDate }}
+        </span>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/StrikeRate/Pyramid/report_strike_rate.html.twig') }}
+{% endblock body %}

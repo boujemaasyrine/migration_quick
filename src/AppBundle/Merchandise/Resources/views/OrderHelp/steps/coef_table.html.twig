@@ -1,0 +1,137 @@
+<div class="filter-zone">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+        </div>
+        <div class="panel-body" style="padding-top: 5px;">
+            <div class="col-xs-6">
+                <select name="supplier" id="supplier" multiple="multiple">
+                    <option value=""> {{ 'filter_by_supplier'|trans() }} </option>
+                    {% for s in orderHelp.suppliers %}
+                        <option value="{{ s.supplier.id }}">{{ s.supplier.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-xs-6">
+                <select name="categories" id="categories" multiple="multiple">
+                    <option value=""> {{ 'filter_by_category'|trans() }} </option>
+                    {% for c in categories %}
+                        <option value="{{ c.id }}">
+                            {{ c.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <form id="second_step_form" method="post" action="{{ path('third_step_order_help') }}">
+            <table id="products" class="table table-striped table-hover" width="100%"
+                   ca="{{ orderHelp.ca|number_format(2,',','') }}">
+                <thead>
+                <tr>
+                    <th class="small-input">
+                        <input class="form-control" id="code-product" type="text" placeholder="Code">
+                        {{ 'product.code'|trans() }}
+                    </th>
+                    <th>
+                        <input class="form-control" id="name-product" type="text" placeholder="Nom I.Inv">
+                        {{ 'article'|trans() }} </th>
+                    <th> {{ 'u_exp_u_inv'|trans() }} </th>
+                    <th> {{ 'u_inv_u_use'|trans() }} </th>
+                    <th> {{ 'r_t'|trans() }} </th>
+                    <th width="200px"> {{ 'consumed_qty_u_exp'|trans() }} </th>
+                    <th width="200px"> {{ 'coef_euro_u_exp'|trans() }} </th>
+                    <th> {{ 'fixed'|trans() }} </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for p in orderHelp.products %}
+                    <tr supplier-id="{{ c.product.suppliers.first.id }}"
+                        cat-id="{{ p.product.productCategory.id }}">
+                        <td>{{ p.product.externalId }}</td>
+                        <td>{{ p.product.name }}</td>
+                        <td>1 {{ p.product.labelUnitExped|trans }}
+                            = {{ p.product.inventoryQty }} {{ p.product.labelUnitInventory|trans }}</td>
+                        <td>1 {{ p.product.labelUnitInventory|trans }}
+                            = {{ p.product.usageQty }} {{ p.product.labelUnitUsage|trans }}</td>
+                        <td class="btn-radio-td">
+                            {% if p.type == 'real' and p.stockFinalExist %}
+                                {% set theo = '' %}
+                                {% set real = 'checked' %}
+                            {% else %}
+                                {% set theo = 'checked' %}
+                                {% set real = '' %}
+                            {% endif %}
+
+                            <input {% if p.fixed  or false == p.stockFinalExist %} disabled {% endif %}
+                                    class="nature_radio"
+                                    target="{{ p.id }}"
+                                    type="radio" id="nature_{{ p.id }}_reel"
+                                    name="nature[{{ p.id }}]"
+                                    value="real" {{ real }}>
+                            <label for="nature_{{ p.id }}_reel"> {{ 'real_shortcut'|trans() }} </label>
+                            <input {% if p.fixed or false == p.stockFinalExist %} disabled {% endif %}
+                                    class="nature_radio" target="{{ p.id }}"
+                                    type="radio" id="nature_{{ p.id }}_theo"
+                                    name="nature[{{ p.id }}]"
+                                    value="theo" {{ theo }}> <label
+                                    for="nature_{{ p.id }}_theo"> {{ 'theo_shortcut'|trans() }} </label>
+
+
+                        </td>
+                        <td real-qty="{{ p.hebReal|number_format(2,',','') }}"
+                            theo-qty="{{ p.hebTheo|number_format(2,',','') }}"
+                            p-id="{{ p.id }}"
+                                {% if p.stockFinalExist == false %}
+                                    stock-final-exist="0"
+                                {% else %}
+                                    stock-final-exist="1"
+                                {% endif %}
+                            class="consumed-qty-class"
+                            meta="{{ p.meta }}">
+                            {% if p.type == 'real'  and p.stockFinalExist %}
+                                {{ p.hebReal|number_format(2,',','') }}
+                            {% else %}
+                                {{ p.hebTheo|number_format(2,',','') }}
+                            {% endif %}
+
+                            {% if p.stockFinalExist == false %}
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Il n'y a pas d'inventaire"
+                                      style="color:darkred; float: left; margin-right: 10px;"
+                                      class="no-inventory-exist-alert glyphicon glyphicon-warning-sign"></span>
+                            {% endif %}
+                        </td>
+                        <td class="small-input">
+                            <input class="form-control" type="text" name="product[{{ p.id }}]"
+                                   value="{{ p.coeff|number_format(2,',','') }}" p-id="{{ p.id }}">
+                        </td>
+                        <td>
+                            <input class="fixed-checkbox" {% if p.fixed %} checked {% endif %}
+                                   name="fixed[{{ p.id }}]" type="checkbox" value="{{ p.product.id }}">
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
+<hr>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <a href="{{ path('first_step_order_help') }}" class="btn white black-text pull-left">
+            <span class="glyphicon glyphicon-chevron-left"></span> {{ 'go_back_previous_step'|trans() }}
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <button id="goToStep3Btn" type="button" class="btn btn-save pull-right">
+            {{ 'save_and_go_to_next_step'|trans() }} <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+    </div>
+</div>

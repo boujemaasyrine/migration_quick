@@ -1,0 +1,199 @@
+{% extends ":supervision/default:index.html.twig" %}
+
+{% block base_heading %}
+    <div class="content-heading">
+        <a href="{{ path('restaurant_list_super') }}" class="btn btn-primary pull-right"
+           style="float: right">{{ 'go_back_restaurant_list'|trans([], 'supervision') }}</a>
+        {{ 'rapport_supervision_quick'|trans([], 'supervision') }} {% if version == "quick" %}
+            Quick
+        {% else %}
+            BK
+        {% endif %}  {{ quick.name }} ({{ quick.code }})
+        {#| Etat :    {{ 'connected'|trans([], 'supervision') }}  <span class="connected-status connected"></span>#}
+        <small>
+            {{ 'restaurant_supervision'|trans([], 'supervision') }}
+        </small>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        //Todo to move into a file
+        var downloadTable = null;
+        var uploadTable = null;
+
+        function refreshDownloadDataTable() {
+            var type = $('#download-type').val();
+            var date = $('#download-date').val();
+            var status = $('#download-status').val();
+
+            var testCallback = function (table, value, type, settings, data, dataIndex) {
+                return (value == '') || ($(table.row(dataIndex).node()).attr(type) == value);
+            };
+
+            $.fn.dataTable.ext.search.pop();
+
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    return testCallback(downloadTable, type, 'cmd', settings, data, dataIndex) &&
+                        testCallback(downloadTable, date, 'date', settings, data, dataIndex) &&
+                        testCallback(downloadTable, status, 'status', settings, data, dataIndex);
+                }
+            );
+
+            downloadTable.draw();
+        }
+
+        function refreshUploadDataTable() {
+            var type = $('#upload-type').val();
+            var date = $('#upload-date').val();
+            var status = $('#upload-status').val();
+
+            var testCallback = function (table, value, type, settings, data, dataIndex) {
+                return (value == '') || ($(table.row(dataIndex).node()).attr(type) == value);
+            };
+
+            $.fn.dataTable.ext.search.pop();
+
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    return testCallback(uploadTable, type, 'typeR', settings, data, dataIndex) &&
+                        testCallback(uploadTable, date, 'date', settings, data, dataIndex) &&
+                        testCallback(uploadTable, status, 'status', settings, data, dataIndex);
+                }
+            );
+
+            uploadTable.draw();
+        }
+
+        $(function () {
+            uploadTable = initSimpleDataTable('#upload-table', {
+                lengthChange: true,
+                processing: true,
+                serverSide: true,
+                searching: false,
+                pageLength: 10,
+                order: [[0, "desc"]],
+                lengthMenu: false,
+                columns: [
+                    {data: "date"},
+                    {
+                        data: "status",
+                        render: function (data, x, row) {
+                            return "<div class='status " + data + "'>" + row['status_translated'] + "</div>";
+                        }
+                    },
+                    {
+                        data: "type"
+                    }
+                ],
+                ajax: {
+                    url: Routing.generate("remote_historic_list_json", {restaurant: {{ quick.id }} }),
+                    data: function (d) {
+                        d.criteria = serializeArrayToObjectByKey($('#remote-filter-zone').serializeArray(), 'name');
+                        return d;
+                    }
+                    ,
+                    type: 'post'
+                }
+            });
+
+            downloadTable = initSimpleDataTable('#download-table', {
+                lengthChange: true,
+                processing: true,
+                serverSide: true,
+                searching: true,
+                pageLength: 10,
+                order: [[0, "desc"]],
+                lengthMenu: false,
+                columns: [
+                    {data: "date"},
+                    {
+                        data: "status",
+                        render: function (data, x, row) {
+                            return "<div class='status " + data + "'>" + row['status_translated'] + "</div>";
+                        }
+                    },
+                    {
+                        data: "type"
+                    },
+                    {
+                        data: "details"
+                    }
+                ],
+                columnDefs: [
+                    {
+                        targets: [-1],
+                        orderable: false
+                    }
+                ],
+                ajax: {
+                    url: Routing.generate("download_sync_list_json", {restaurant: {{ quick.id }} }),
+                    data: function (d) {
+                        d.criteria = serializeArrayToObjectByKey($('#download-filter-zone').serializeArray(), 'name');
+                        return d;
+                    }
+                    ,
+                    type: 'post'
+                }
+            });
+
+            var downloadDate = $('#download-date').pickadate('picker');
+            $('#download-date').on('change', function () {
+                downloadDate.close();
+            });
+
+            var updateDate = $('#update-date').pickadate('picker');
+            $('#update-date').on('change', function () {
+                updateDate.close();
+            });
+
+            $("#download-type, #download-date, #download-status").on('change', function () {
+                downloadTable.ajax.reload();
+            });
+
+            $("#upload-type, #upload-date, #upload-status").on('change', function () {
+                uploadTable.ajax.reload();
+            })
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/supervision_details.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#download" aria-controls="home" role="tab" data-toggle="tab">
+                        « Central &rarr; {% if version == "quick" %}
+                            Quick
+                        {% else %}
+                            BK
+                        {% endif %} {{ quick.name }}  »
+                    </a>
+                </li>
+                {#<li role="presentation">
+                    <a href="#remonte" aria-controls="home" role="tab" data-toggle="tab">
+                        « Quick {{ quick.name }} &rarr; Central »
+                    </a>
+                </li>#}
+            </ul>
+
+            <div style="border: solid 1px #DDDDDD; padding: 15px" class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="download">
+                    {% include '@Supervision/supervision/details_download.html.twig' %}
+                </div>
+                {# <div role="tabpanel" class="tab-pane" id="remonte">
+                     {% include '@Supervision/supervision/details_remonte.html.twig'  %}
+                 </div>#}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

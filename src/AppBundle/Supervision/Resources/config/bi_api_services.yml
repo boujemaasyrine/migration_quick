@@ -1,0 +1,49 @@
+services:
+    bi_api.response.service:
+        class: AppBundle\Supervision\Service\WsBiAPI\FileGenerationService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@Logger"
+            - "@service_container"
+    bi_api.parameter.service:
+        class: AppBundle\Supervision\Service\WsBiAPI\ParameterCheckService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@Logger"
+            - "@service_container"
+    bi_api.expense.service:
+        class: AppBundle\Supervision\Service\WsBiAPI\ExpenseService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "@bi_api.recipe.service"
+            - "@parameter.service"
+    bi_api.recipe.service:
+        class: AppBundle\Supervision\Service\WsBiAPI\RecipeService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "@parameter.service"
+    bi_api.inventory.service:
+        class: AppBundle\Supervision\Service\WsBiAPI\InventoryService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "@supervision.product.service"
+            - "@supervision.report.margin.foodcost.service"
+    bi_api.transfer.service:
+        class: AppBundle\Supervision\Service\WsBiAPI\TransferService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+    bi_api.loss.service:
+        class: AppBundle\Supervision\Service\WsBiAPI\LossService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "@supervision.report.margin.foodcost.service"
+
+    bi_api.ca.service:
+                class: AppBundle\Supervision\Service\WsBiAPI\CaPerTaxeAndSoldingCanalService
+                arguments:
+                    - "@doctrine.orm.entity_manager"

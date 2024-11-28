@@ -1,0 +1,51 @@
+<form action="{{ path("margin_food_cost_report") }}" id="margeFoodCostForm" method="POST">
+    <div class="row">
+        <div class="col col-lg-3 col-sm-3 col-xs-12">
+            <label class="required">
+                {{ 'report.period' |trans }}
+            </label>
+        </div>
+        <div class="col col-lg-4 col-sm-4 col-xs-12">
+            <div class="input-group">
+                <input type="text" id="begin_date" name="beginDate" required="required"
+                       class="datepicker form-control picker__input"
+                        {% if(beginDate is defined) %} value="{{ beginDate }}{% endif %}">
+                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+            </div>
+            {% if errors.firstDate is defined %}
+                <div class="alert alert-danger form-error" role="alert"><span
+                            class="glyphicon glyphicon-warning-sign"></span>
+                    {{ 'null_value' | trans([],'validation') }} <br></div>
+            {% elseif errors.compareDate is defined %}
+                <div class="alert alert-danger form-error" role="alert"><span
+                            class="glyphicon glyphicon-warning-sign"></span>
+                    {{ 'compare_date' | trans([],'validation') }} <br></div>
+            {% endif %}
+        </div>
+        <div class="col col-lg-1 col-sm-1 col-xs-12">
+            <label class="required">
+                {{ 'keyword.to' |trans }}
+            </label>
+        </div>
+        <div class="col col-lg-4 col-sm-4 col-xs-12">
+            <div class="input-group">
+                <input type="text" id="end_date" name="endDate" required="required"
+                       class="datepicker form-control picker__input"
+                        {% if(endDate is defined) %} value="{{ endDate }}{% endif %}">
+                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+            </div>
+            {% if errors.secondDate is defined %}
+                <div class="alert alert-danger form-error" role="alert"><span
+                            class="glyphicon glyphicon-warning-sign"></span>
+                    {{ 'null_value' | trans([],'validation') }} <br></div>
+            {% endif %}
+        </div>
+        {% if errors.locked is defined %}
+            <div class="col col-lg-12 col-sm-12 col-xs-12">
+                <div class="alert alert-danger form-error" role="alert"><span
+                            class="glyphicon glyphicon-warning-sign"></span>
+                    {{ 'report.process.warning' |trans }} <br></div>
+            </div>
+        {% endif %}
+    </div>
+</form>

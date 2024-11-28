@@ -1,0 +1,10 @@
+{% extends '::base_mail.html.twig' %}
+
+{% block body %}
+    Bonjour,<br>
+    <h3>Commande Préparée Non envoyée</h3>
+
+    La <a href="{{ absolute_url(path('list_pendings_commands')) }}#{{ order.id }}">commande
+    #{{ order.numOrder }}</a> est préparée mais elle n'est pas encore envoyée.
+
+{% endblock %}

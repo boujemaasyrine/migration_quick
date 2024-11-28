@@ -1,0 +1,21 @@
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'annie.collignon@quick.be','annie.collignon@quick.be','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','annie.collignon@quick.be',null,'Annie','Collignon', 34);
+
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'barbara.geldof@quick.be','barbara.geldof@quick.be','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','barbara.geldof@quick.be',null,'Barbara','Geldof', 38);
+
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'gol.oktay@quick.be','gol.oktay@quick.be','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','gol.oktay@quick.be',null,'Gol','Oktay', 37);
+
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'frank.perenzin@quick.be','frank.perenzin@quick.be','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','frank.perenzin@quick.be',null,'Frank','Perenzin', 35);
+
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'philippe.sarre@quick.be','philippe.sarre@quick.be','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','philippe.sarre@quick.be',null,'Philippe','Sarre', 36);
+
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'abdelhak.belboul@quick.fr','abdelhak.belboul@quick.fr','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','abdelhak.belboul@quick.fr',null,'Abdelhak','BELBOUL', 39);
+
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'matthieu.poirier@quick.fr','matthieu.poirier@quick.fr','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','matthieu.poirier@quick.fr',null,'Matthieu','poirier', 40);
+
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'mohamedali.zouai@talan.tn','mohamedali.zouai@talan.tn','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','mohamedali.zouai@talan.tn',null,'Mohamed Ali','Zouai');
+
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'quick.quick@quick.fr','quick.quick@quick.fr','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','quick.quick@quick.fr',null,'Quick','Quick', 33);
+
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'admin.admin@quick.fr','admin.admin@quick.fr','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','admin.admin@quick.fr',null,'Admin','SuperAdmin', 1);
+
+INSERT INTO quick_user VALUES ( (nextval('quick_user_id_seq') ) ,'toto.toto@quick.fr','toto.toto@quick.fr','a:2:{i:0;s:9:"ROLE_USER";i:1;s:12:"ROLE_CASHIER";}',NOW(),null,'employee','toto.toto@quick.fr',null,'Toto','Toto', 41);

@@ -1,0 +1,61 @@
+<div class="filter-zone">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+        </div>
+        <div class="panel-body" style="padding-top: 5px;">
+            <form id="remote-filter-zone">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <label> {{ 'label.type'|trans() }} </label>
+                        <select class="form-control" id="upload-type" name="upload-type">
+                            <option value=""> {{ 'label.type'|trans() }} </option>
+                            {% for t in uploadTypes %}
+                                <option value="{{ t }}">{{ t|trans({},'synchro_msg') }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label>{{ 'date_synchro'|trans() }}</label>
+                        <div class="input-group">
+                            <input placeholder="{{ 'date_synchro'|trans() }}" type="text"
+                                   class="form-control datepicker"
+                                   id="upload-date" name="upload-date">
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label>{{ 'status_label'|trans() }}</label>
+                        <select class="form-control" id="upload-status" name="upload-status">
+                            <option value=""> {{ 'status_label'|trans() }} </option>
+                            <option value="success"> {{ 'success'|trans({},'synchro_msg') }} </option>
+                            <option value="fail">{{ 'fail'|trans({},'synchro_msg') }}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<table id="upload-table" class="table table-hover table-striped table-bordered" style="width: 100%;">
+    <thead>
+    <tr>
+        <th> {{ 'date_synchro'|trans() }} </th>
+        <th> {{ 'status_label'|trans() }} </th>
+        <th> {{ 'label.type'|trans() }} </th>
+    </tr>
+    </thead>
+    <tbody>
+    {#{% for r in detailsUpload %}#}
+    {#<tr date="{{ r.createdAtInCentral|date('d/m/Y') }}" status="{{ r.status }}" typeR='{{ r.type }}'>#}
+    {#<td>{{ r.createdAtInCentral|date('d/m/Y H:i:s') }}</td>#}
+    {#<td>#}
+    {#<div class="status {% if r.status == 'fail' %}fail{% else %}success{% endif %}">#}
+    {#{{ r.status|trans({},'synchro_msg') }}#}
+    {#</div>#}
+    {#</td>#}
+    {#<td>{{ r.type|trans({},'synchro_msg') }}</td>#}
+    {#</tr>#}
+    {#{% endfor %}#}
+    </tbody>
+</table>

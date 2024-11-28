@@ -1,0 +1,342 @@
+{% extends ':default:index.html.twig' %}
+{% block base_heading %}{% endblock %}
+{% block base_body %}
+    <div id="body">
+        {% if raw_html is defined %}
+            {% if raw_html is iterable %}
+                {#{{ dump(raw_html) }}#}
+            {% else %}
+                {{ raw_html|raw }}
+            {% endif %}
+        {% endif %}
+        <div style="clear:both"></div>
+
+        <div class="segmented-control" style="width: 100%; color: #c8102e;max-width: 600px;">
+            <input type="radio" name="dashboard_segment" id="day_before_btn">
+            <input type="radio" name="dashboard_segment" id="today_btn" checked>
+            <input type="radio" name="dashboard_segment" id="this_week_btn">
+            <input type="radio" name="dashboard_segment" id="this_month_btn">
+
+            <label for="day_before_btn" data-value="{{ 'day_before'|trans }}"
+                   class="bold">{{ 'day_before'|trans }}</label>
+            <label for="today_btn" data-value="{{ 'today'|trans }}" class="bold">{{ 'today'|trans }}</label>
+            <label for="this_week_btn" data-value="{{ 'this_week'|trans }}" class="bold">{{ 'this_week'|trans }}</label>
+            <label for="this_month_btn" data-value="{{ 'this_month'|trans }}"
+                   class="bold">{{ 'this_month'|trans }}</label>
+        </div>
+
+        <div style="clear:both"></div>
+        {% include ':parts:flash_msg.html.twig' %}
+        <!-- START widgets box-->
+        <div class="row">
+            <div class="col-lg-2 col-md-4">
+                <!-- START widget-->
+                <div class="panel widget bg-green">
+                    <div class="row row-table dashboard-widget">
+                        <div class="col-xs-3 text-center bg-green-dark pv-lg">
+                            <em class="icon-graph fa-3x"></em>
+                        </div>
+                        <div class="col-xs-9 pv-lg" id="daily_budget_container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4">
+                <!-- START widget-->
+                <div class="panel widget bg-danger">
+                    <div class="row row-table dashboard-widget">
+                        <div class="col-xs-3 text-center bg-danger-dark pv-lg">
+                            <em class="fa fa-calculator fa-3x"></em>
+                        </div>
+                        <div class="col-xs-9 pv-lg" id="ca_brut_ttc_container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4">
+                <!-- START widget-->
+                <div class="panel widget bg-pink-light">
+                    <div class="row row-table dashboard-widget">
+                        <div class="col-xs-3 text-center bg-pink pv-lg">
+                            <em class="fa fa-calculator fa-3x"></em>
+                        </div>
+                        <div class="col-xs-9 pv-lg" id="ca_net_htva_container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4">
+                <div class="panel widget bg-green">
+                    <div class="row row-table dashboard-widget">
+                        <div class="col-xs-3 text-center bg-green-dark pv-lg">
+                            <em class="fa fa-close fa-3x"></em>
+                        </div>
+                        <div class="col-xs-9 pv-lg" id="cancels_container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <div class="panel widget bg-info">
+                    <div class="row row-table dashboard-widget">
+                        <div class="col-xs-3 text-center bg-info-dark pv-lg">
+                            <em class="fa fa-pencil fa-3x"></em>
+                        </div>
+                        <div class="col-xs-9 pv-lg" id="corrections_container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <div class="panel widget bg-inverse" style="background-color: #777">
+                    <div class="row row-table dashboard-widget">
+                        <div class="col-xs-3 text-center bg-inverse-dark pv-lg">
+                            <em class="fa  fa-ban fa-3x"></em>
+                        </div>
+                        <div class="col-xs-9 pv-lg" id="abandons_container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">
+                <div id="panelPortlet4" class="panel widget">
+                    <div class="portlet-handler ui-sortable-handle">
+                        <div class="row row-table row-flush" style="height: 10px">
+                            <div class="col-xs-2 bg-info text-center">
+                                <em class="fa fa-money fa-2x"></em>
+                            </div>
+                            <div class="col-xs-4 br" id="last_chest_count_container">
+                                <div class="panel-body text-center">
+                                    <h4 class="mt0">
+                                        {% if lastChestCount and lastChestCount.date %}
+                                            {{ lastChestCount.date|date('d/m/Y H:i:s') }}
+                                        {% else %}---{% endif %}
+                                    </h4>
+                                    <p class="mb0 text-muted">{{ 'last_chest_count'|trans }}</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-3 br">
+                                <div class="panel-body text-center" id="diff_chest_container">
+                                    <h4 class="mt0">
+                                        {% if lastChestCount %}
+                                            {% set restaurant =  restaurant_service.currentRestaurant %}
+                                            {{ lastChestCount.calculateGap(restaurant)|number_format(2, ',', '.') }}
+                                            <small>€</small>
+                                        {% else %}---{% endif %}
+                                    </h4>
+                                    <p class="mb0 text-muted">{{ 'diff_chest'|trans }}</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="panel-body text-center" id="diff_cashbox_container">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <!-- START widget-->
+                <div class="panel widget bg-purple">
+                    <div class="row row-table dashboard-widget">
+                        <div class="col-xs-3 text-center bg-purple-dark pv-lg">
+                            <em class="fa fa-pie-chart fa-3x"></em>
+                        </div>
+                        <div class="col-xs-9 pv-lg" id="tickets_count_container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <!-- START widget-->
+                <div class="panel widget bg-primary">
+                    <div class="row row-table dashboard-widget">
+                        <div class="col-xs-3 text-center bg-primary-dark pv-lg">
+                            <em class="fa fa-bar-chart fa-3x"></em>
+                        </div>
+                        <div class="col-xs-9 pv-lg" id="avg_net_ticket_container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-6">
+                <div class="panel widget bg-warning">
+                    <div class="row row-table dashboard-widget">
+                        <div class="col-xs-3 text-center bg-warning-dark pv-lg">
+                            <em class="fa fa-inbox fa-3x"></em>
+                        </div>
+                        <div class="col-xs-9 pv-lg" id="not_counted_cash_box_container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <div id="panelPortlet4" class="panel widget">
+                    <div class="portlet-handler ui-sortable-handle">
+                        <div class="row row-table row-flush" style="min-height: 79px;">
+                            <div class="col-xs-4 bg-info text-center">
+                                <em class="icon-handbag fa-2x"></em>
+                            </div>
+                            <div class="col-xs-8" id="takeout_container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div id="panelPortlet4" class="panel widget">
+                    <div class="portlet-handler ui-sortable-handle">
+                        <div class="row row-table row-flush" style="min-height: 79px;">
+                            <div class="col-xs-4 bg-info text-center">
+                                <em class="fa fa-desktop fa-2x"></em>
+                            </div>
+                            <div class="col-xs-8" id="kiosk_container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div id="panelPortlet4" class="panel widget">
+                    <div class="portlet-handler ui-sortable-handle">
+                        <div class="row row-table row-flush" style="min-height: 79px;">
+                            <div class="col-xs-4 bg-info text-center">
+                                <em class="fa fa-car fa-2x"></em>
+                            </div>
+                            <div class="col-xs-8" id="drive_container">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div id="panelPortlet4" class="panel widget">
+                    <div class="portlet-handler ui-sortable-handle">
+                        <div class="row row-table row-flush" style="min-height: 79px;">
+                            <div class="col-xs-4 bg-info text-center">
+                                <em class="fa fa-motorcycle fa-2x"></em>
+                            </div>
+                            <div class="col-xs-8" id="delivery_container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div id="panelPortlet4" class="panel widget">
+                    <div class="portlet-handler ui-sortable-handle">
+                        <div class="row row-table row-flush" style="min-height: 79px;">
+                            <div class="col-xs-4 bg-info text-center">
+                                <em class="fa fa-cart-arrow-down fa-2x"></em>
+                            </div>
+                            <div class="col-xs-8" id="e_ordering_container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12" id="div-chart">
+            <div id="panelChart1" class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        {{ 'report.sales.hour_by_hour.title'|trans }}
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="chart-bar flot-chart">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12" id="div-chart">
+            <div id="panelChart2" class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        {{ 'ca_vs_ca_n-1'|trans }}
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="chart-area flot-chart">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/General/home.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/loaders.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/segmented-controls.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/waitMe-31.10.17/waitMe.min.css') }}">
+    <style>
+        .flot-chart {
+            height: 200px;
+        }
+
+        .flot-x-axis .flot-tick-label.tickLabel {
+            transform: rotate(-90deg);
+            margin-top: 15px;
+        }
+
+        .plot-tooltip {
+            font-size: 14px !important;;
+        }
+
+        .panel-default > .panel-heading {
+            color: inherit;
+            background-color: inherit;
+            border-color: #fff;
+        }
+
+        .panel-heading {
+            font-weight: 600;
+        }
+
+        .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+            padding-right: 8px;
+            padding-left: 8px;
+        }
+
+        .widget, .panel {
+            margin-bottom: 8px;
+        }
+
+        .legend > div, .legend > table {
+            top: -35px !important;
+        }
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('plugins/Flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('plugins/Flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('plugins/Flot/jquery.flot.time.js') }}"></script>
+    <script src="{{ asset('plugins/Flot/jquery.flot.categories.js') }}"></script>
+    <script src="{{ asset('plugins/waitMe-31.10.17/waitMe.min.js') }}"></script>
+    <script src="{{ asset('assets/Flot/jquery.flot.orderBars.js') }}"></script>
+    <script src="{{ asset('assets/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
+
+    <script src="{{ asset('src/js/General/dashboard.js') }}"></script>
+
+{% endblock %}

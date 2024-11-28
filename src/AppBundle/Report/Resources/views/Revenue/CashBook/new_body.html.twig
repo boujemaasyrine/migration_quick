@@ -1,0 +1,187 @@
+<style>
+    table th, table td {
+        width: 80px;
+    !important;
+    }
+
+    thead {
+        background-color: white;
+    }
+
+    {% if download is not defined %}
+    .date-first-td {
+        background-color: #FCD29F;
+        font-weight: bold;
+    }
+
+    {% endif %}
+</style>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table cashbookReport table-striped table-bordered table-hover" cellspacing="0"
+               width="100%" style="margin-bottom: 20px" id="table">
+            <thead>
+            <tr class="mainHeader">
+                <th>
+                    {{ 'keyword.date' | trans }}
+                </th>
+                <th>
+                    {{ 'keyword_descriptions' | trans }}
+                </th>
+                <th>
+                    {{ 'keyword_recipes' | trans }} ( &euro; )
+                </th>
+                <th>
+                    {{ 'keyword_expenses' | trans }} ( &euro; )
+                </th>
+            </tr>
+            </thead>
+            <tbody class="mainTbody">
+            {% for key, line in result %}
+                {% if line.closure == true %}
+                    {% set index = 1 %}
+                    {% for expense in line.expensesBySubGroup %}
+                        <tr class="mainRow">
+                            <td {% if index == 1 %} class="date-first-td" {% endif %}>
+                                {{ key }} - {{ index }}
+                                {% if index == 1 and line.closure == false %}
+                                    <span class="glyphicon glyphicon-exclamation-sign bootstrap_tooltipped"
+                                          style="color: red;"
+                                          data-original-title="{{ 'no_closed_day' | trans }}"></span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if expense.groupExpense == constant('AppBundle\\Financial\\Entity\\Expense::GROUP_BANK_RESTAURANT_PAYMENT')
+                                    or expense.groupExpense == constant('AppBundle\\Financial\\Entity\\Expense::GROUP_BANK_E_RESTAURANT_PAYMENT') %}
+                                    {{ expense.subGroup | ticket_label }}
+                                {% elseif expense.groupExpense == constant('AppBundle\\Financial\\Entity\\Expense::GROUP_BANK_CARD_PAYMENT') %}
+                                    {{ ( 'expense.group.' ~ expense.groupExpense) | trans }} : {{ expense.subGroup | b_card_label }}
+                                {% elseif expense.groupExpense == constant('AppBundle\\Financial\\Entity\\Expense::GROUP_BANK_CASH_PAYMENT') %}
+                                    {{ 'keyword.cash' | trans }}
+                                {% elseif expense.groupExpense == constant('AppBundle\\Financial\\Entity\\Expense::GROUP_OTHERS') %}
+                                    {{ expense.subGroup | other_group_label }}
+                                {% endif %}
+                            </td>
+                            <td></td>
+                            <td>{{ expense.totalAmount | number_format(2, ',', '') }}</td>
+                        </tr>
+                        {% set index = index + 1 %}
+                    {% endfor %}
+
+                    {% if line.chestGap < 0 %}
+                        <tr class="mainRow">
+                            <td {% if index == 1 %} class="date-first-td" {% endif %}>
+                                {{ key }} - {{ index }}
+                            </td>
+                            <td {% if index == 1 %} class="date-first-td" {% endif %}>
+                                {{ 'keyword.chest_gap' | trans }}
+                            </td>
+                            <td></td>
+                            <td>
+                                {{ ( line.chestGap | abs ) | number_format(2, ',', '') }}
+                            </td>
+                        </tr>
+                        {% set index = index + 1 %}
+                    {% endif %}
+
+                    {% for recipeTicket in line.recipeByLabel %}
+                        <tr class="mainRow">
+                            <td {% if index == 1 %} class="date-first-td" {% endif %}>
+                                {{ key }} - {{ index }}
+                                {% if index == 1 and line.closure == false %}
+                                    <span class="glyphicon glyphicon-exclamation-sign bootstrap_tooltipped"
+                                          style="color: red;"
+                                          data-original-title="{{ 'no_closed_day' | trans }}"></span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ recipeTicket.label | recipe_ticket_label }}
+                            </td>
+                            <td>
+                                {{ recipeTicket.totalAmount | number_format(2, ',', '') }}
+                            </td>
+                            <td></td>
+                        </tr>
+                        {% set index = index + 1 %}
+                    {% endfor %}
+                    {% if line.chestGap > 0 %}
+                        <tr class="mainRow">
+                            <td {% if index == 1 %} class="date-first-td" {% endif %}>
+                                {{ key }} - {{ index }}
+                            </td>
+                            <td>
+                                {{ 'keyword.chest_gap' | trans }}
+                            </td>
+                            <td>
+                                {{ line.chestGap | number_format(2, ',', '') }}
+                            </td>
+                            <td></td>
+                        </tr>
+                        {% set index = index + 1 %}
+                    {% endif %}
+                    <tr class="mainRow">
+                        <td {% if index == 1 %} class="date-first-td" {% endif %}>
+                            {{ key }} - {{ index }}
+                            {% if index == 1 and line.closure == false %}
+                                <span class="glyphicon glyphicon-exclamation-sign bootstrap_tooltipped"
+                                      style="color: red;"
+                                      data-original-title="{{ 'no_closed_day' | trans }}"></span>
+                            {% endif %}
+                        </td>
+                        <td>{{ 'cash_book.daily_recipe_theo' | trans }}</td>
+                        <td>{{ line.dailyRecipe | number_format(2, ',', '') }}</td>
+                        <td></td>
+                    </tr>
+                    {% set index = index + 1 %}
+                    <tr class="mainRow">
+                        <td {% if index == 1 %} class="date-first-td" {% endif %}>
+                            {{ key }} - {{ index }}
+                            {% if index == 1 and line.closure == false %}
+                                <span class="glyphicon glyphicon-exclamation-sign bootstrap_tooltipped"
+                                      style="color: red;"
+                                      data-original-title="{{ 'no_closed_day' | trans }}"></span>
+                            {% endif %}
+                        </td>
+                        <td>{{ 'cash_book.real_cashGap' | trans }}</td>
+                        {% if line.RealCashGap >0 %}
+                            <td>{{ line.RealCashGap | number_format(2, ',', '') }}</td>
+                            <td></td>
+                        {% else %}
+                            <td></td>
+                            <td>{{ (line.RealCashGap| abs) | number_format(2, ',', '') }}</td>
+                        {% endif %}
+                    </tr>
+                    {% set index = index + 1 %}
+                    <tr class="mainRow">
+                        <td {% if index == 1 %} class="date-first-td" {% endif %}>
+                            {{ key }} - {{ index }}
+                            {% if index == 1 and line.closure == false %}
+                                <span class="glyphicon glyphicon-exclamation-sign bootstrap_tooltipped"
+                                      style="color: red;"
+                                      data-original-title="{{ 'no_closed_day' | trans }}"></span>
+                            {% endif %}
+                        </td>
+                        <td>{{ 'keyword_balancing' | trans }}</td>
+                        <td>{{ line.currentBalancing | number_format(2, ',', '') }}</td>
+                        <td></td>
+                    </tr>
+                    {% set index = index + 1 %}
+                    <tr class="mainRow">
+                        <td {% if index == 1 %} class="date-first-td" {% endif %}>
+                            {{ key }} - {{ index }}
+                            {% if index == 1 and line.closure == false %}
+                                <span class="glyphicon glyphicon-exclamation-sign bootstrap_tooltipped"
+                                      style="color: red;"
+                                      data-original-title="{{ 'no_closed_day' | trans }}"></span>
+                            {% endif %}
+                        </td>
+                        <td>{{ 'keyword_in_chest' | trans }}</td>
+                        <td>{{ line.currentChestAmount | number_format(2, ',', '') }}</td>
+                        <td></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

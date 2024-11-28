@@ -1,0 +1,159 @@
+{% extends ":supervision/default:index.html.twig" %}
+
+{% block base_heading %}
+    <div class="content-heading">
+        {{ 'historic_broadcast_all_restaurants'|trans([], 'supervision') }}
+        <small>
+            {{ 'restaurant_supervision'|trans([], 'supervision') }}
+        </small>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        function serializeDownloadFilterForm() {
+            var data = serializeArrayToObjectByKey($('#download-filter-zone').serializeArray(), 'name');
+            data['restaurant'] = $('#restaurant').val();
+            return data;
+        }
+
+        var broadCastTable = null;
+        $(function () {
+            broadCastTable = initSimpleDataTable("#broadcast-table", {
+                processing: true,
+                serverSide: true,
+                searching: true,
+                order: [[1, "desc"]],
+                columns: [
+                    {
+                        data: "quick_name",
+                        render: function (data, x, row) {
+                            return data + " (" + row['quick_code'] + ")";
+                        }
+                    },
+                    {
+                        data: "date"
+                    },
+                    {
+                        data: "status",
+                        render: function (data, x, row) {
+                            return "<div class='status " + data + "'>" + row['status_translated'] + "</div>";
+                        }
+                    },
+                    {
+                        data: "type"
+                    },
+                    {
+                        data: "details"
+                    }
+                ],
+                columnDefs: [
+                    {
+                        targets: [-1],
+                        orderable: false
+                    }
+                ],
+                ajax: {
+                    url: Routing.generate("historic_broadcast_all_restaurants"),
+                    data: function (d) {
+                        d.criteria = serializeDownloadFilterForm();
+                        return d;
+                    }
+                    ,
+                    type: 'post'
+                }
+            });
+
+            $("#restaurant, #download-type, #download-date, #download-status").on('change', function () {
+                broadCastTable.ajax.reload();
+            });
+
+            $('#restaurant').selectize({
+                plugins: ['remove_button']
+            });
+
+            $('.dataTable').closest('div').css('overflow-y', 'auto');
+
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/Supervision/supervision_details.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="download-filter-zone filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px;">
+                <form id="download-filter-zone">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label> {{ 'keywords.restaurant'|trans([], 'supervision') }} </label>
+                            <select name="restaurant" multiple="multiple" id="restaurant">
+                                <option value=""> {{ 'choose_restaurant'|trans([], 'supervision') }} </option>
+                                {% for r in restaurants %}
+                                    <option value="{{ r.id }}">{{ r.name }} ({{ r.code }})</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            <label> {{ 'label.type'|trans() }} </label>
+                            <select name="download-type" class="form-control" id="download-type">
+                                <option value=""> {{ 'label.type'|trans() }} </option>
+                                {% for t in downloadTypes %}
+                                    <option value="{{ t }}">{{ t|trans({},'synchro_msg') }} </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <label>{{ 'date_synchro'|trans() }}</label>
+                            <div class="input-group">
+                                <input name="date-synchro" placeholder="{{ 'date_synchro'|trans() }}" type="text"
+                                       class="form-control datepicker" id="download-date">
+                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <label>{{ 'status_label'|trans() }}</label>
+                            <select name="status" class="form-control" id="download-status">
+                                <option value=""> {{ 'status_label'|trans() }} </option>
+                                <option value="pending">{{ 'pending'|trans({},'synchro_msg') }}</option>
+                                <option value="executed">{{ 'executed'|trans({},'synchro_msg') }}</option>
+                                <option value="executed_success">{{ 'executed_success'|trans({},'synchro_msg') }}</option>
+                                <option value="executed_fail">{{ 'executed_fail'|trans({},'synchro_msg') }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table id="broadcast-table" class="table table-hover table-striped table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th> {{ 'keyword.restaurants'|trans([], 'supervision') }} </th>
+                    <th> {{ 'date_synchro'|trans() }} </th>
+                    <th> {{ 'status_label'|trans() }} </th>
+                    <th> {{ 'label.type'|trans() }} </th>
+                    <th> {{ 'keywords.details'|trans([], 'supervision') }} </th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

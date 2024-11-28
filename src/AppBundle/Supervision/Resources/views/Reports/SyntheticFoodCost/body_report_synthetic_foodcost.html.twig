@@ -1,0 +1,199 @@
+{% if data.result|length == 0 %}
+
+    <strong> {{ 'data_not_found'|trans({}, 'messages') }} </strong>
+
+{% else %}
+
+    <table id="table" class="table table-stripped primary-table" style="margin-top: 50px;">
+        <thead>
+        <tr>
+            <th colspan="6" style="background-color: white; border: none !important;"></th>
+            <th colspan="13" class="report-table-head" style="text-align: center;">
+                <b>{{ 'keywords.theorical' | trans({}, 'supervision') }}</b>
+            </th>
+            <th colspan="7" class="report-table-head" style="text-align: center;">
+                <b>{{ 'keywords.real' | trans({}, 'supervision') }}</b>
+            </th>
+            <th colspan="6" class="report-table-head" style="text-align: center;">
+                <b>{{ 'keywords.margin' | trans({}, 'supervision') }}</b>
+            </th>
+        </tr>
+        <tr class="report-table-second-head">
+            <th style="min-width: 20px;width: 20px;">S</th>
+            <th style="min-width: 50px;width: 50px;">{{ 'keywords.date' | trans({}, 'supervision') }}</th>
+            <th><span class='rotate-text'>{{ 'report.ca.ca_brut_ttc' | trans({}, 'supervision') }}</span></th>
+            <th><span class='rotate-text'>{{ 'report.ca.ca_net_ht' | trans({}, 'supervision') }}</span></th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.sold_pr_ht' | trans({}, 'supervision') }}</span>
+            </th>
+            <th><span class='rotate-text'>{{ 'report.food_cost.synthetic.fc_mix' | trans({}, 'supervision') }}</span>
+            </th>
+            <th><span class='rotate-text'>{{ 'report.food_cost.synthetic.ideal_fc' | trans({}, 'supervision') }}</span>
+            </th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.loss_inventory' | trans({}, 'supervision') }}</span>
+            </th>
+            <th><span class='rotate-text'>%</span></th>
+            <th><span class='rotate-text'>{{ 'report.food_cost.synthetic.loss_sold' | trans({}, 'supervision') }}</span>
+            </th>
+            <th><span class='rotate-text'>%</span></th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.known_loss' | trans({}, 'supervision') }}</span>
+            </th>
+            <th><span class='rotate-text'>%</span></th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.unknown_loss' | trans({}, 'supervision') }}</span>
+            </th>
+            <th><span class='rotate-text'>%</span></th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.total_loss' | trans({}, 'supervision') }}</span>
+            </th>
+            <th><span class='rotate-text'>%</span></th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.theorical_fc' | trans({}, 'supervision') }}</span>
+            </th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.theorical_margin' | trans({}, 'supervision') }}</span>
+            </th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.initial_stock' | trans({}, 'supervision') }}</span>
+            </th>
+            <th><span class='rotate-text'>{{ 'report.food_cost.synthetic.in' | trans({}, 'supervision') }}</span></th>
+            <th><span class='rotate-text'>{{ 'report.food_cost.synthetic.out' | trans({}, 'supervision') }}</span></th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.final_stock' | trans({}, 'supervision') }}</span>
+            </th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.real_consomation' | trans({}, 'supervision') }}</span>
+            </th>
+            <th><span class='rotate-text'>{{ 'report.food_cost.synthetic.real_fc' | trans({}, 'supervision') }}</span>
+            </th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.real_margin' | trans({}, 'supervision') }}</span>
+            </th>
+            <th><span class='rotate-text'>BR</span></th>
+            <th><span class='rotate-text'>%</span></th>
+            <th><span class='rotate-text'>Pub</span></th>
+            <th><span class='rotate-text'>%</span></th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.real_fc_net' | trans({}, 'supervision') }}</span>
+            </th>
+            <th>
+                <span class='rotate-text'>{{ 'report.food_cost.synthetic.brut_margin' | trans({}, 'supervision') }}</span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set weekCumul = 1 %}
+        {% set lastWeek = null %}
+        {% set weeks = data.weeks %}
+        {% for line in data.result %}
+
+            {% if lastWeek is null %}
+                {% set lastWeek = line.week %}
+            {% endif %}
+
+            {% if lastWeek is not null and line.week != lastWeek %}
+                {# SHOW LAST TOTAL WEEK #}
+                {% set  lastWeekTotal = data.perWeek[lastWeek] %}
+                {% set lastWeek = line.week %}
+                {% include '@Supervision/Reports/SyntheticFoodCost/synthetic_food_cost_week.html.twig' with { 'week' : lastWeekTotal } %}
+            {% endif %}
+
+            <tr>
+                {% if loop.index == weekCumul %}
+                    <td rowspan="{{ weeks[line.week] + 1 }}" class="highlight-important-td">{{ line.week }}</td>
+                    {% set weekCumul = weekCumul +  weeks[line.week] %}
+                {% endif %}
+
+                <td class="highlight-important-td">{{ line.date['date']|date('d/m') }}</td>
+                <td>{{ line.ca_brut_ttc|float_format }}</td>
+                <td>{{ line.ca_net_ht|float_format }}</td>
+                <td>{{ line.ventes_pr|float_format }}</td>
+                <td>{{ line.fc_mix|float_format }}</td>
+
+                <!-- Theorique -->
+                <td>{{ line.fc_ideal|float_format }}</td>
+                <td>{{ line.pertes_i_inv|float_format }}</td>
+                <td>{{ line.pertes_inv_pourcentage|float_format }}</td>
+                <td>{{ line.pertes_i_vtes|float_format }}</td>
+                <td>{{ line.pertes_vtes_pourcentage|float_format }}</td>
+                <td>{{ line.pertes_connues|float_format }}</td>
+                <td>{{ line.pertes_connues_pourcentage|float_format }}</td>
+                <td>{{ line.pertes_inconnues|float_format }}</td>
+                <td>{{ line.pertes_inconnues_pourcentage|float_format }}</td>
+                <td>{{ line.pertes_totales|float_format }}</td>
+                <td>{{ line.pertes_totales_pourcentage|float_format }}</td>
+                <td>{{ line.fc_theo|float_format }}</td>
+                <td>{{ line.marge_theo|float_format }}</td>
+
+                <!-- Real -->
+                <td>{{ line.initialStock|float_format }}</td>
+                <td>{{ line.entree|float_format }}</td>
+                <td>{{ line.sortie|float_format }}</td>
+                <td>{{ line.finalStock|float_format }}</td>
+                <td>{{ line.conso_real|float_format }}</td>
+                <td>{{ line.fc_real|float_format }}</td>
+                <td>{{ line.marge_real|float_format }}</td>
+
+                <!-- Marge -->
+                <td>{{ line.br|float_format }}</td>
+                <td>{{ line.br_pourcentage|float_format }}</td>
+                <td>{{ line.pr_pub|float_format }}</td>
+                <td>{{ line.discount_pourcentage|float_format }}</td>
+                <td>{{ line.fc_real_net|float_format }}</td>
+                <td>{{ line.marge_brute|float_format }}</td>
+            </tr>
+        {% endfor %}
+
+        {#show last week #}
+        {% set  lastWeekTotal = data.perWeek[lastWeek] %}
+        {% include '@Supervision/Reports/SyntheticFoodCost/synthetic_food_cost_week.html.twig' with { 'week' : lastWeekTotal } %}
+
+        <tr class="report-table-head">
+            {% set total = data.total %}
+            <td colspan="2" class="highlight-important-td">Total</td>
+            <td>{{ total.ca_brut_ttc|float_format }}</td>
+            <td>{{ total.ca_net_ht|float_format }}</td>
+            <td>{{ total.ventes_pr|float_format }}</td>
+            <td>{{ total.fc_mix|float_format }}</td>
+
+            <!-- Theorique -->
+            <td>{{ total.fc_ideal|float_format }}</td>
+            <td>{{ total.pertes_i_inv|float_format }}</td>
+            <td>{{ total.pertes_inv_pourcentage|float_format }}</td>
+            <td>{{ total.pertes_i_vtes|float_format }}</td>
+            <td>{{ total.pertes_vtes_pourcentage|float_format }}</td>
+            <td>{{ total.pertes_connues|float_format }}</td>
+            <td>{{ total.pertes_connues_pourcentage|float_format }}</td>
+            <td>{{ total.pertes_inconnues|float_format }}</td>
+            <td>{{ total.pertes_inconnues_pourcentage|float_format }}</td>
+            <td>{{ total.pertes_totales|float_format }}</td>
+            <td>{{ total.pertes_totales_pourcentage|float_format }}</td>
+            <td>{{ total.fc_theo|float_format }}</td>
+            <td>{{ total.marge_theo|float_format }}</td>
+
+            <!-- Real -->
+            <td>{{ total.initialStock|float_format }}</td>
+            <td>{{ total.entree|float_format }}</td>
+            <td>{{ total.sortie|float_format }}</td>
+            <td>{{ total.finalStock|float_format }}</td>
+            <td>{{ total.conso_real|float_format }}</td>
+            <td>{{ total.fc_real|float_format }}</td>
+            <td>{{ total.marge_real|float_format }}</td>
+
+            <!-- Marge -->
+            <td>{{ total.br|float_format }}</td>
+            <td>{{ total.br_pourcentage|float_format }}</td>
+            <td>{{ total.pr_pub|float_format }}</td>
+            <td>{{ total.discount_pourcentage|float_format }}</td>
+            <td>{{ total.fc_real_net|float_format }}</td>
+            <td>{{ total.marge_brute|float_format }}</td>
+        </tr>
+        <tr>
+            <td style="height: 40px;border: none !important;" colspan="32"></td>
+        </tr>
+
+    </table>
+
+{% endif %}

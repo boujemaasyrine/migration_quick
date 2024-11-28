@@ -1,0 +1,78 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block body %}
+    <style>
+        td, th {
+            text-align: center;
+        }
+    </style>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body" style="padding-top:0; padding-bottom:0; ">
+                <div class="row">
+                    <div class="col-xs-3">
+                        {{ form_label(inventorySheetForm.fiscalDate, 'inventory.labels.fiscal_date' ) }}
+                        : {{ inventorySheetForm.vars.value.fiscalDate|date('d/m/Y') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table id="inventorySheetFormTable" class="table table-bordered">
+            <thead>
+            <tr>
+                <th>{{ 'sheet_model.new_sheet.labels.code'|trans }}</th>
+                <th style="width: 20%;">{{ 'sheet_model.new_sheet.labels.article'|trans }}</th>
+                <th>{{ 'inventory.labels.condition'|trans }}</th>
+                <th style="width: 20%;">{{ 'inventory.labels.quantity'|trans }}</th>
+                <th>{{ 'inventory.labels.exped_unit'|trans }}</th>
+                <th style="width: 20%;">{{ 'inventory.labels.quantity'|trans }}</th>
+                <th>{{ 'inventory.labels.inventory_unit'|trans }}</th>
+                <th style="width: 20%;">{{ 'inventory.labels.quantity'|trans }}</th>
+                <th>{{ 'inventory.labels.usage_unit'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody id="containerLines">
+
+            {% for line in inventorySheetForm.lines|sort %}
+                <tr class="line">
+                    <td class="align_right">
+                        <span class="product_id"> {{ line.vars.data.product.externalId }}</span>
+                    </td>
+                    <td class="align_right">
+                        <span class="product_id"> {{ line.vars.data.product.name }}</span>
+                    </td>
+                    <td>
+                        {{ line.vars.data.product.inventoryQty }}
+                        x {{ line.vars.data.product.usageQty }}  {{ line.vars.data.product.labelUnitUsage|trans() }}
+                    </td>
+
+                    <td class="align_right">
+                        {{ line.vars.data.expedCnt }}
+                    </td>
+
+                    <td class="align_right">
+                        {{ line.vars.data.product.labelUnitExped|trans }}
+                    </td>
+
+                    <td class="align_right">
+                        {{ line.vars.data.inventoryCnt }}
+                    </td>
+                    <td class="align_right">
+                        {{ line.vars.data.product.labelUnitInventory|trans }}
+                    </td>
+
+                    <td class="align_right">
+                        {{ line.vars.data.usageCnt }}
+                    </td>
+                    <td class="align_right">
+                        {{ line.vars.data.product.labelUnitUsage|trans }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}

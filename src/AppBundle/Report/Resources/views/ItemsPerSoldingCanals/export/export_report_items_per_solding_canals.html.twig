@@ -1,0 +1,48 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h4>   {{ 'items_per_canals.title' |trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-2 input-field">
+        <label for="startDate">{{ 'keyword.from'|trans }} :</label>
+        <span class="text-muted">
+            {{ data.startDate |date('d-m-Y')}}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="endDate">{{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {{ data.endDate |date('d-m-Y') }}
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection">{{ 'keyword.from'|trans }}: </label>
+        <span class="text-muted">
+
+            {%  if data.startHour is defined and not null %}
+                {{ data.startHour }} H
+            {%  else %}
+                00 H
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'items_per_canals.to'|trans }}: </label>
+        <span class="text-muted">
+            {%  if data.endHour is defined and not null %}
+                {{ data.endHour }} H
+            {%  else %}
+                23 H
+            {% endif %}
+
+        </span>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/ItemsPerSoldingCanals/report_items_per_solding_canals.html.twig') }}
+{% endblock body %}

@@ -1,0 +1,180 @@
+<style>
+    .fixed-checkbox {
+        position: initial !important;
+        left: initial !important;
+        visibility: visible !important;
+    }
+</style>
+<div class="filter-zone">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <select name="supplier" id="supplier" multiple="multiple">
+                        <option value=""> {{ 'filter_by_supplier'|trans() }} </option>
+                        {% for s in suppliers %}
+                            <option value="{{ s.id }}">{{ s.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <select name="categories" id="categories" multiple="multiple">
+                        <option value=""> {{ 'filter_by_category'|trans() }} </option>
+                        {% for c in categories %}
+                            <option value="{{ c.id }}">
+                                {{ c.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-md-offset-3 ">
+                <table class="table table-bordered table-stripped" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center">{{ 'base_calcul'|trans }}</th>
+                        <th style="text-align: center">{{ 'coef_ca'|trans }}</th>
+                        <th style="text-align: center"> {{ 'last_update_date_label'|trans() }} </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="text-align: center">{{ base.startDate|date('d/m/Y') }}
+                            => {{ base.endDate|date('d/m/Y') }}</td>
+                        <td style="text-align: center">{{ base.ca|number_format(0,',','') }} &euro;</td>
+                        <td style="text-align: center">{{ base.updatedAt|date('d/m/Y H:i:s') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <form id="coef_form" method="post" action="{{ path('save_coef',{ 'base' : base.id }) }}">
+                    <table id="products" class="table table-striped table-hover" width="100%"
+                           ca="{{ base.ca|number_format(2,',','') }}">
+                        <thead>
+
+                        <tr>
+                            <th class="small-input">
+                                <input class="form-control" id="code-product" type="text" placeholder="Code">
+                            </th>
+                            <th>
+                                <input class="form-control" id="name-product" type="text" placeholder="Nom I.Inv">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class="small-input">
+                                {{ 'product.code'|trans() }}
+                            </th>
+                            <th>
+                                {{ 'article'|trans() }} </th>
+                            <th> {{ 'u_exp_u_inv'|trans() }} </th>
+                            <th> {{ 'u_inv_u_use'|trans() }} </th>
+                            <th> {{ 'r_t'|trans() }} </th>
+                            <th width="200px"> {{ 'consumed_qty_u_exp'|trans() }} </th>
+                            <th width="200px"> {{ 'coef_euro_u_exp'|trans() }} </th>
+                            <th> {{ 'fixed'|trans() }} </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for c in base.coefs %}
+                            <tr supplier-id="{{ c.product.suppliers.first.id }}"
+                                cat-id="{{ c.product.productCategory.id }}">
+                                <td>{{ c.product.externalId }}</td>
+                                <td>{{ c.product.name }}</td>
+                                <td>1 {{ c.product.labelUnitExped|trans }}
+                                    = {{ c.product.inventoryQty }} {{ c.product.labelUnitInventory|trans }}</td>
+                                <td>1 {{ c.product.labelUnitInventory|trans }}
+                                    = {{ c.product.usageQty }} {{ c.product.labelUnitUsage|trans }}</td>
+                                <td class="btn-radio-td">
+                                    {% if c.type == 'real' and c.stockFinalExist %}
+                                        {% set theo = '' %}
+                                        {% set real = 'checked' %}
+                                    {% else %}
+                                        {% set theo = 'checked' %}
+                                        {% set real = '' %}
+                                    {% endif %}
+
+                                    <input {% if c.fixed  or false == c.stockFinalExist %} disabled {% endif %}
+                                            class="nature_radio"
+                                            target="{{ c.id }}"
+                                            type="radio" id="nature_{{ c.id }}_reel"
+                                            name="nature[{{ c.id }}]"
+                                            value="real" {{ real }}>
+                                    <label for="nature_{{ c.id }}_reel"> {{ 'real_shortcut'|trans() }} </label>
+                                    <input {% if c.fixed or false == c.stockFinalExist %} disabled {% endif %}
+                                            class="nature_radio" target="{{ c.id }}"
+                                            type="radio" id="nature_{{ c.id }}_theo"
+                                            name="nature[{{ c.id }}]"
+                                            value="theo" {{ theo }}> <label
+                                            for="nature_{{ c.id }}_theo"> {{ 'theo_shortcut'|trans() }} </label>
+
+
+                                </td>
+                                <td real-qty="{{ c.hebReal|number_format(2,',','') }}"
+                                    theo-qty="{{ c.hebTheo|number_format(2,',','') }}"
+                                    p-id="{{ c.id }}"
+                                        {% if c.stockFinalExist == false %}
+                                            stock-final-exist="0"
+                                        {% else %}
+                                            stock-final-exist="1"
+                                        {% endif %}
+                                    class="consumed-qty-class"
+                                >
+                                    {% if c.type == 'real'  and c.stockFinalExist %}
+                                        {{ c.hebReal|number_format(2,',','') }}
+                                    {% else %}
+                                        {{ c.hebTheo|number_format(2,',','') }}
+                                    {% endif %}
+
+                                    {% if c.stockFinalExist == false %}
+                                        <span data-toggle="tooltip"
+                                              data-placement="top"
+                                              title="Il n'y a pas d'inventaire"
+                                              style="color:darkred; float: left; margin-right: 10px;"
+                                              class="no-inventory-exist-alert glyphicon glyphicon-warning-sign"></span>
+                                    {% endif %}
+                                </td>
+                                <td class="small-input">
+                                    <input type="text" class="form-control" name="product[{{ c.id }}]"
+                                           value="{{ c.coef|number_format(2,',','') }}" p-id="{{ c.id }}">
+                                </td>
+                                <td>
+                                    <input class="fixed-checkbox" {% if c.fixed %} checked {% endif %}
+                                           name="fixed[{{ c.id }}]" type="checkbox" value="{{ c.product.id }}">
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                <button id="save_coef" type="button" class="btn btn-save btn-icon pull-right">
+                    {{ 'btn.save'|trans() }} </button>
+                <a href="{{ path('coef_download',{'base': base.id}) }}" class="btn waves-effect btn-export text-black dropdown-button pull-right" style="margin-right: 10px;">
+                    <span> {{ 'btn.export'|trans() }} </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

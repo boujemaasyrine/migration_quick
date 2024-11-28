@@ -1,0 +1,41 @@
+{% spaceless %}
+    <tr class="line">
+        <td>
+            <span class="product_id" type="">_ref_product_</span>
+            <input type='hidden' id='lines__line_number__id'
+                   name='inventory_sheet[lines][_line_number_][product]' value='_id_product_'>
+        </td>
+        <td>
+            <span class="product_id">_label_product_</span>
+        </td>
+        <td>
+            <div class="col-xs-10 input-group">
+                <input type='text' class="splitted_input form-control qty-input"
+                       name='inventory_sheet[lines][_line_number_][expedCnt]' value='_exped_product_cnt_'>
+                <span class="text-muted input-group-addon"
+                      style="margin-right: 5px;">_inventory_product_exped_unit_label_</span>
+            </div>
+        </td>
+        <td>
+            <div class="col-xs-10 input-group">
+                <input type='text' class="splitted_input form-control qty-input"
+                       name='inventory_sheet[lines][_line_number_][inventoryCnt]' value='_inventory_product_cnt_'>
+                <span class="text-muted input-group-addon"
+                      style="margin-right: 5px;">_inventory_product_inventory_unit_label_ </span>
+            </div>
+        </td>
+        <td>
+            <div class="col-xs-10 input-group">
+                <input type='text' class="splitted_input form-control qty-input"
+                       name='inventory_sheet[lines][_line_number_][usageCnt]' value='_usage_product_cnt_'>
+                <span class="text-muted input-group-addon"
+                      style="margin-right: 5px;">_inventory_product_usage_unit_label_ </span>
+            </div>
+        </td>
+        <td class="actions-btn ">
+            <button type='button' class='btnRemoveLine btn btn-delete waves-effect waves-light'>
+                <span style="color: white;" class='glyphicon glyphicon-remove'></span>
+            </button>
+        </td>
+    </tr>
+{% endspaceless %}

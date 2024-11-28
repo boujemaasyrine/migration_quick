@@ -1,0 +1,91 @@
+{% extends('@General/exports/base_exports_2.html.twig') %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body, .label, .detail-body, th {
+            font-size: 1.7rem !important;
+        }
+    </style>
+{% endblock %}
+{% block reportTitle %}
+    <b style="font-size: 2.2rem !important;">{{ title }}</b>
+{% endblock %}
+
+{% block filterBlock %}
+    <br><br>
+    <div class="row detail-body">
+        <div class="col-xs-6" style=" padding-bottom: 15px">
+            <b>{{ 'keyword.from' | trans }}:</b>
+            {{ filter.startDate }}
+        </div>
+        <div class="col-xs-6" style=" padding-bottom: 15px; text-align: right">
+            <b>{{ 'label.manager' | trans }}:</b>
+            {{ filter.responsible }}
+        </div>
+        <div class="col-xs-6" style=" padding-bottom: 15px">
+            <b>{{ 'keyword.to' | trans }}:</b>
+            {{ filter.endDate }}
+        </div>
+        <div class="col-xs-6" style=" padding-bottom: 15px; text-align: right">
+            <b>{{ 'label.group' | trans }}:</b>
+            {{ filter.group }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <style>
+        .label {
+            color: #000;
+        }
+
+        .panel-heading .label {
+            font-size: 1.6rem;
+        }
+
+        .col-modal {
+            margin-bottom: 15px;
+        }
+
+        th {
+            font-size: 14px;
+        }
+    </style>
+    <br>
+    <table id="expenses_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+           width="100%">
+        <thead>
+        <tr>
+            <th>{{ 'label.reference'|trans }}</th>
+            <th>{{ 'keyword.label'|trans }}</th>
+            <th>{{ 'label.manager'|trans }}</th>
+            <th>{{ 'keyword.amount'|trans }} (&euro;)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set group = expenses.0.dataClass %}
+
+        {% for expense in expenses %}
+            {% if loop.first %}
+                <tr>
+                    <td colspan="4"><b>{{ expense.dataClass }}</b></td>
+                </tr>
+            {% endif %}
+            {% if group != expense.dataClass %}
+                <tr>
+                    <td colspan="4"><b>{{ expense.dataClass }}</b></td>
+                </tr>
+                {% set group = expense.dataClass %}
+            {% endif %}
+
+            <tr>
+                <td>{{ expense.reference }}</td>
+                <td>{{ expense.label }}</td>
+                <td>{{ expense.owner }}</td>
+                <td style="text-align: right">{{ expense.amount }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock body %}

@@ -1,0 +1,1 @@
+$(function(){function o(){loader.unblock(),apiLoader.blockApiLoader(),$.ajax({url:Routing.generate("import_recent_tickets"),success:function(){apiLoader.unblockApiLoader()}})}function t(){$('form[name="hour_by_hour_report"]').submit()}var e=$("#importRecentTickets").attr("importRecentTickets");1==e&&o(),$(document).on("click","#import-ticket-reload",function(){o(),t()})});

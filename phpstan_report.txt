@@ -1,0 +1,54 @@
+
+
+ ------ ----------------------------------------------------- 
+  Line   src\AppBundle\Administration\Entity\Parameter.php    
+ ------ ----------------------------------------------------- 
+  258    Access to an undefined property                      
+         AppBundle\Administration\Entity\Parameter::$locale.  
+ ------ ----------------------------------------------------- 
+
+ ------ ---------------------------------------------------- 
+  Line   src\AppBundle\Financial\Entity\PaymentMethod.php    
+ ------ ---------------------------------------------------- 
+  106    Access to an undefined property                     
+         AppBundle\Financial\Entity\PaymentMethod::$locale.  
+ ------ ---------------------------------------------------- 
+
+ ------ ----------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Command\SendPoCommand.php  
+ ------ ----------------------------------------------------- 
+  90     Function ftp_connect not found.                      
+  97     Function ftp_login not found.                        
+  104    Function ftp_pasv not found.                         
+  112    Function ftp_put not found.                          
+  132    Function ftp_close not found.                        
+ ------ ----------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------ 
+  Line   src\AppBundle\Merchandise\Service\DeliveryIntegrationService.php  
+ ------ ------------------------------------------------------------------ 
+  66     Function ftp_connect not found.                                   
+  70     Function ftp_login not found.                                     
+  74     Function ftp_pasv not found.                                      
+  77     Function ftp_nlist not found.                                     
+  84     Function ftp_close not found.                                     
+ ------ ------------------------------------------------------------------ 
+
+ ------ ------------------------------------------- 
+  Line   src\AppBundle\ToolBox\Utils\Utilities.php  
+ ------ ------------------------------------------- 
+  327    Function ftp_connect not found.            
+  331    Function ftp_login not found.              
+  335    Function ftp_pasv not found.               
+  338    Function ftp_nlist not found.              
+  340    Function ftp_get not found.                
+  343    Function ftp_close not found.              
+  354    Function ftp_connect not found.            
+  358    Function ftp_login not found.              
+  362    Function ftp_pasv not found.               
+  364    Function ftp_put not found.                
+  367    Function ftp_close not found.              
+ ------ ------------------------------------------- 
+
+ [ERROR] Found 23 errors                                                       
+

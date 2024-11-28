@@ -1,0 +1,86 @@
+{% extends ':supervision:base.html.twig' %}
+
+{% block logout %}
+    <!-- Logout/Profile Btn -->
+    <li>
+        <a href="{{ path('supervision_user_profile') }}"><em class="icon-user"></em> &nbsp; Profil</a>
+    </li>
+    <li>
+        <a href="{{ path('logout') }}"><em class="icon-lock"></em> &nbsp; Déconnexion</a>
+    </li>
+{% endblock %}
+
+{% block lang_btn_zone %}
+    <li class="dropdown">
+        <a href="#!" data-toggle='dropdown'>
+            <img src="{{ asset('bundles/app/images/blank.png') }}"
+                    {% if app.request.locale == 'fr' %}
+                        class="flag flag-fr" alt="{{ 'language.fr'|trans([], 'navbar_supervision') }}"
+                    {% elseif app.request.locale == 'nl' %}
+                        class="flag flag-nl" alt="{{ 'language.nl'|trans([], 'navbar_supervision') }}"
+                    {% endif %}
+            />
+        </a>
+        <ul class="dropdown-menu animated fadeIn multi-level" style="">
+            <li {% if app.request.locale == 'fr' %}class="active"{% endif %}><a href="{{ path('locale_switch', { 'locale' : 'fr' }) }}">
+                    <img src="{{ asset('src/images/blank.png') }}" class="flag flag-fr"
+                         alt="{{ 'language.fr'|trans([], 'navbar_supervision') }}"/>
+                    {{ 'language.frensh'|trans([], 'navbar_supervision') }}
+                </a>
+            </li>
+            <li {% if app.request.locale == 'nl' %}class="active"{% endif %}>
+                <a href="{{ path('locale_switch', { 'locale' : 'nl' }) }}">
+                    <img src="{{ asset('src/images/blank.png') }}" class="flag flag-nl"
+                         alt="{{ 'language.nl'|trans([], 'navbar_supervision') }}"/>
+                    {{ 'language.dutch'|trans([], 'navbar_supervision') }}
+                </a>
+            </li>
+        </ul>
+    </li>
+{% endblock %}
+
+{% block vertical_nav %}
+    <div class="vertical-nav-bar-global-container col-md-3 col-lg-2 ">
+        <div class="show-nav-bar-btn" onclick="openCloseNavBar();" style="padding: 5px;"><span
+                    class="glyphicon glyphicon-chevron-right"></span></div>
+
+        <div class="nav-bar-container">
+            <div class="hide-nav-bar-btn" onclick="openCloseNavBar();" style="padding: 5px;"><span
+                        class="glyphicon glyphicon-chevron-left"></span></div>
+            {% include ':parts:vertical_nav_bar.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block base_body %}
+    <div id="body">
+
+        {% for message in app.session.flashBag.get('success') %}
+            <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span> {{ message|trans([], 'supervision') }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.session.flashBag.get('info') %}
+            <div class="alert alert-info">
+                <span class="glyphicon glyphicon-exclamation-sign"></span> {{ message|trans([], 'supervision') }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.session.flashBag.get('warning') %}
+            <div class="alert alert-warning">
+                <span class="glyphicon glyphicon-warning-sign"></span> {{ message|trans([], 'supervision') }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.session.flashBag.get('error') %}
+            <div class="alert alert-danger">
+                <span class="glyphicon glyphicon-remove"></span> {{ message|trans([], 'supervision') }}
+            </div>
+        {% endfor %}
+
+        {% block body %}
+        {% endblock %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends('@Supervision/Reports/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h2>
+        {{ 'report.food_cost.margin.title' | trans({}, 'supervision') }}
+    </h2>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-3 input-field">
+        <label for="startDate">{{ 'keywords.from'|trans({}, 'supervision') }} </label>
+        <span class="text-muted">
+            {{ data['beginDate'] | date('d/m/Y') }}
+        </span>
+    </div>
+    <div class="col-xs-3 input-field">
+        <label for="endDate">{{ 'keywords.to'|trans({}, 'supervision') }} </label>
+        <span class="text-muted">
+            {{ data['endDate']|date('d/m/Y') }}
+        </span>
+    </div>
+    <div class="col-xs-3 input-field">
+        <label for="restaurant">{{ 'keywords.restaurant'|trans({}, 'supervision') }} </label>
+        <span class="text-muted">
+            {{ data['restaurant'].name }}
+        </span>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('@Supervision/Reports/Merchandise/MarginFoodCost/body.html.twig') }}
+{% endblock %}

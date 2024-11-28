@@ -1,0 +1,88 @@
+{% extends ":default:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .actions-btn .glyphicon {
+            font-size: 1.8em !important;
+            padding-right: 10px !important;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Administration/Cashbox/cashbox_parameter.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ ('parameters.financial_management.'~ type ~'_labels') |trans([], 'navbar') }}
+{% endblock %}
+{% block base_subtitle %}
+    {{ 'parameters.financial_management.title'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'AddLabelForm', 'novalidate' : 'novalidate'} }) }}
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    {% form_theme form.translations ':form_part:tranlsations.html.twig' %}
+                    {{ form(form.translations) }}
+                    {{ form_errors(form) }}
+                </div>
+            </div>
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-md-12 col-xs-12">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-validate btn-icon" type="button"
+                                id="btn-add">
+                            {{ 'btn.validate' | trans }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table id="labels_list_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+                   width="100%">
+                <thead>
+                <tr>
+                    <th width="40%">{{ 'keyword.label' | trans }} (FR)</th>
+                    <th width="40%">{{ 'keyword.label' | trans }} (NL)</th>
+                    <th>{{ 'label.action' | trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for p in labels %}
+                    <tr id="{{ p.id }}" data-type="{{ type }}">
+                        <td>{{ p.label }}</td>
+                        <td>{{ p.getLabelTranslation('nl') }}</td>
+                        <td class="actions-btn">
+                            <a data-tooltip="{{ 'btn.edit' | trans }}"
+                               href="{{ path('labels_config', {'type' : type,'label': p.id}) }}">
+                                <button type="button" class="btn btn-modify btn-icon btn-xs"></button>
+                            </a>
+                            <button type="button" class="btn btn-delete btn-icon btn-delete-label btn-xs">
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}

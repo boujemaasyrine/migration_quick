@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ProductCategories</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ productCategory.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ productCategory.name }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ productCategory.reference }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if productCategory.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Helpcmd</th>
+                <td>{% if productCategory.helpCmd %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Taxletter</th>
+                <td>{{ productCategory.taxLetter }}</td>
+            </tr>
+            <tr>
+                <th>Tvalux</th>
+                <td>{{ productCategory.tvaLux }}</td>
+            </tr>
+            <tr>
+                <th>Tvabel</th>
+                <td>{{ productCategory.tvaBel }}</td>
+            </tr>
+            <tr>
+                <th>Group</th>
+                <td>{{ productCategory.group }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('productcategories_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('productcategories_edit', { 'id': productCategory.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

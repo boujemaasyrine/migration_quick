@@ -1,0 +1,106 @@
+services:
+#    app.security.authentication_handler:
+#        class: AppBundle\Handler\AuthenticationHandler
+#        public: false
+#        arguments:
+#            - @router
+#            - @session
+#    app.security.checker_filter:
+#        class: AppBundle\Filter\SecurityCheckerFilter
+#        arguments: ["@security.token_storage"]
+#        tags:
+#            - { name: kernel.event_listener , event: kernel.controller, method: onKernelController }
+    config.merchandise.service:
+        class: AppBundle\Administration\Service\ConfigMerchandiseService
+        arguments: ["@doctrine.orm.entity_manager", "@translator.default"]
+    supplier.form:
+        class: AppBundle\Administration\Form\Supplier\SupplierPlanningType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: supplier_type }
+    ca_prev.service:
+        class: AppBundle\Administration\Service\CaPrevService
+        arguments: ["@doctrine.orm.entity_manager",'@restaurant.service',"@phpexcel","@translator.default","@toolbox.document.generator"]
+    paremeter.service:
+        class: AppBundle\Administration\Service\ParameterService
+        arguments: ["@doctrine.orm.entity_manager", "@translator.default",  "@toolbox.command.launcher","@restaurant.service"]
+    right.config.form:
+        class: AppBundle\Administration\Form\RightsConfig\RightConfigType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: right_config_type }
+    right.role.form:
+        class: AppBundle\Administration\Form\RightsConfig\RightsForRolesType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: right_role_type }
+    right.role.service:
+        class: AppBundle\Administration\Service\RightRoleService
+        arguments: ["@doctrine.orm.entity_manager"]
+    workflow.service:
+        class: AppBundle\Administration\Service\WorkflowService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@session"
+            - "@security.token_storage"
+            - "@router"
+            - "@request_stack"
+            - "@translator.default"
+            - "@administrative.closing.service"
+            - "@restaurant.service"
+    procedure.form.type:
+        class: AppBundle\Administration\Form\Procedure\ProcedureType
+        arguments: ["@translator.default", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name : form.type }
+
+    #twig filters
+    ticket_code:
+        class: AppBundle\Administration\Twig\CodeTicketExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
+    ticket_label:
+        class: AppBundle\Administration\Twig\TicketLabelExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
+    bank_card_label:
+        class: AppBundle\Administration\Twig\BankCardLabelExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
+    other_group_expense_label:
+        class: AppBundle\Administration\Twig\GroupOtherExpenseExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
+    recipe.label.extension:
+        class: AppBundle\Administration\Twig\RecipeLabelExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
+    currency.form.type:
+        class: AppBundle\Administration\Form\Cashbox\Parts\ForeignCurrencyContainerType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name : form.type }
+    optikitchen.service:
+        class: AppBundle\Administration\Service\OptikitchenService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@ca_prev.service"
+            - "@restaurant.service"
+            - "%report_sql_queries_dir%"
+            - "@service_container"
+
+    app.procedure.checker_filter:
+        class: AppBundle\Administration\Filter\ProcedureCheckerFilter
+        arguments:
+            - "@security.token_storage"
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "@workflow.service"
+        tags:
+            - { name: kernel.event_listener , event: kernel.request, method: onKernelRequest }

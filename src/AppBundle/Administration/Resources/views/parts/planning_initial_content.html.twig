@@ -1,0 +1,83 @@
+{% set number = 0 %}
+{% for line in form.plannings %}
+    {% if line.vars.data.originRestaurant == restaurant_service.currentRestaurant %}
+        <tr id="{{ line.vars.data.id }}">
+            <td>{{ number + 1 }}</td>
+            <td>
+                <p>
+                    {{ form_widget(line.orderDay['0']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_orderDay_0">C</label>
+                    <br/>
+                    {{ form_widget(line.deliveryDay['0']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_deliveryDay_0">L</label>
+                </p>
+            </td>
+            <td>
+                {{ form_widget(line.orderDay['1']) }}
+                <label for="supplier_planning_plannings_{{ number }}_orderDay_1">C</label>
+                <br/>
+                {{ form_widget(line.deliveryDay['1']) }}
+                <label for="supplier_planning_plannings_{{ number }}_deliveryDay_1">L</label>
+            </td>
+            <td>
+                <p>
+                    {{ form_widget(line.orderDay['2']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_orderDay_2">C</label>
+                    <br/>
+                    {{ form_widget(line.deliveryDay['2']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_deliveryDay_2">L</label>
+                </p>
+            </td>
+            <td>
+                <p>
+                    {{ form_widget(line.orderDay['3']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_orderDay_3">C</label>
+                    <br/>
+                    {{ form_widget(line.deliveryDay['3']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_deliveryDay_3">L</label>
+                </p>
+            </td>
+            <td>
+                <p>
+                    {{ form_widget(line.orderDay['4']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_orderDay_4">C</label>
+                    <br/>
+                    {{ form_widget(line.deliveryDay['4']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_deliveryDay_4">L</label>
+                </p>
+            </td>
+            <td>
+                <p>
+                    {{ form_widget(line.orderDay['5']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_orderDay_5">C</label>
+                    <br/>
+                    {{ form_widget(line.deliveryDay['5']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_deliveryDay_5">L</label>
+                </p>
+            </td>
+            <td>
+                <p>
+                    {{ form_widget(line.orderDay['6']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_orderDay_6">C</label>
+                    <br/>
+                    {{ form_widget(line.deliveryDay['6']) }}
+                    <label for="supplier_planning_plannings_{{ number }}_deliveryDay_6">L</label>
+                </p>
+            </td>
+            <td style="vertical-align: middle">
+                {{ form_widget(line.categories, { 'attr': {'class': 'selectize'}} ) }}
+                {{ form_errors(line.categories) }}
+            </td>
+            <td style="vertical-align: middle" class="delete_button">
+        <span class="tooltipped glyphicon glyphicon-trash btn-delete-planning-line"
+              data-tooltip="{{ "shortcut.deleteText"|trans }}"
+              data-position="top"></span>
+            </td>
+        </tr>
+        {% set number = number + 1 %}
+    {% endif %}
+
+{% endfor %}
+
+
+

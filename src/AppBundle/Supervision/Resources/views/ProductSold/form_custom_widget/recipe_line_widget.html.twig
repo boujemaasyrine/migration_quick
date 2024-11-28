@@ -1,0 +1,54 @@
+{% block recipe_line_widget %}
+    {% spaceless %}
+        <tr class="recipe_line_row">
+            <td>
+                <div>
+                    {{ form_widget(form.productPurchased, {
+                        "attr": {
+                            "class": "productIdInput form-control"
+                        }
+                    }) }}
+                    {{ form_errors(form.productPurchased) }}
+                    {{ form_widget(form.productPurchasedName, {
+                        "attr": {
+                            "class": "productNameInput form-control"
+                        }
+                    }) }}
+                </div>
+
+            </td>
+            <td>
+                <div class="input-group">
+                    {% if form.vars.data is not null and  form.vars.data.ProductPurchased is not null %}
+                        {{ form_widget(form.qty, { "attr": { "class": 'form-control splitted_input qty-input', 'data-usage-unit-price': form.vars.data.ProductPurchased.usageBuyingCost }}) }}
+                    {% else %}
+                        {{ form_widget(form.qty, { "attr": { "class": 'form-control splitted_input qty-input', 'data-usage-unit-price': '_usage_unit_price_' }}) }}
+                    {% endif %}
+                    {% if form.vars.data is not null and  form.vars.data.ProductPurchased is not null %}
+                        <span class="usageUnitLabel text-muted input-group-addon"
+                              style="margin-right: 5px;">{{ form.vars.data.ProductPurchased.labelUnitUsage|trans([],'supervision') }}</span>
+                    {% else %}
+                        <span class="usageUnitLabel text-muted input-group-addon"
+                              style="margin-right: 5px;">_unit_label_</span>
+                    {% endif %}
+
+                </div>
+                {{ form_errors(form.qty) }}
+            </td>
+            <td>
+                <div class="form-control disabled total-amount" disabled="true">
+                    {% if form.vars.data is not null and  form.vars.data.ProductPurchased is not null %}
+                        {{ (form.vars.data.ProductPurchased.usageBuyingCost * form.qty.vars.value )| number_format('2',',','') ~ ' €' }}
+                    {% endif %}
+                </div>
+            </td>
+            <td>
+                <button id="" type="button" class="deleteRecipeLine btn btn-delete btn-icon"></button>
+            </td>
+
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+        </tr>
+    {% endspaceless %}
+{% endblock %}

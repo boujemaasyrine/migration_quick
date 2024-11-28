@@ -1,0 +1,417 @@
+<style>
+    #chest_preview_table th, #chest_preview_table td {
+        padding: 4px;
+    }
+</style>
+{% set restaurant = restaurant_service.currentRestaurant() %}
+<div class="row" style="">
+    <div class="col-xs-12">
+        <table id="chest_preview_table" class="table-bordered">
+            <thead>
+            <tr>
+                <th class="">
+                </th>
+                <th class="">
+                    <span style=""> {{ 'chest.preview.real_counted_title'|trans() }} <i
+                                class="glyphicon glyphicon-euro"></i></span>
+                </th>
+                <th class="">
+                    <span style=""> {{ 'chest.preview.theorical'|trans() }} <i
+                                class="glyphicon glyphicon-euro"></i></span>
+                </th>
+                <th class="">
+                    <span style=""> {{ 'chest.preview.gap'|trans() }} <i class="glyphicon glyphicon-euro"></i></span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {#Tirelire#}
+            <tr class="highlight">
+                <td class="">
+                    <label> {{ 'chest.counting.total_tirelire'|trans() }} </label>:
+                </td>
+                <td class=" number_cell">
+                    <span class="text-muted bold"><span
+                                class="total total_tirelire">{{ form.vars.value.tirelire.calculateRealTotal(restaurant)|number_format(2, ',', '') }}</span></span>
+                </td>
+                <td class="number_cell">
+                    <span class="text-muted bold"><span
+                                class="th_total">{{ form.vars.value.tirelire.calculateTheoricalTotal(restaurant)|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                     <span class="text-muted bold">
+                         <span class="gap">
+                             {% if form.vars.value.tirelire.calculateGap(restaurant) %}
+                                 {{ form.vars.value.tirelire.calculateGap(restaurant)|number_format(2, ',', '') }}
+                             {% endif %}
+                         </span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="sub_label">
+                    <span style="font-style: oblique;">
+                        {{ 'chest.envelope_not_versed'|trans }}
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="">{{ form.vars.value.tirelire.calculateTotalCashNotVersedEnveloppes(restaurant)|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        {{ form.vars.value.tirelire.calculateTheoricalTotalCashNotVersedEnveloppes(restaurant)|number_format(2, ',', '') }}
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        {% if form.vars.value.tirelire.calculateGapCash() %}
+                        {{ form.vars.value.tirelire.calculateGapCash()|number_format(2, ',', '') }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr class="">
+                <td class="sub_label cell">
+                        <span style="font-style: oblique;"> {{ 'chest.counting.tirelire_enveloppes_tr'|trans() }}
+                            </span>
+                </td>
+                <td class=" number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="">{{ form.vars.value.tirelire.calculateTotalTrNotVersedEnveloppes(restaurant)|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="">{{ form.vars.value.tirelire.calculateTotalTrNotVersedEnveloppes(restaurant)|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+
+                     <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="">
+                            {% if form.vars.value.tirelire.calculateGapTr() %}
+                                {{ form.vars.value.tirelire.calculateGapTr()|number_format(2, ',', '') }}
+                            {% endif %}
+                        </span>
+                    </span>
+                </td>
+            </tr>
+
+            {#Small Chest#}
+            <tr class="highlight">
+                <td class=" cell">
+                    <label> {{ 'chest.counting.total_small_chest'|trans() }} </label>:
+                </td>
+                <td class=" number_cell">
+                <span class="text-muted bold">
+                    <span class="total total_small_chest">
+                        {{ form.vars.value.smallChest.realTotal|number_format(2, ',', '') }}
+                    </span>
+                  </span>
+                </td>
+                <td class="number_cell">
+                      <span class="text-muted bold">
+                    <span class="th_total th_total_small_chest">
+                        {{ form.vars.value.smallChest.theoricalTotal|number_format(2, ',', '') }}
+                    </span>
+                  </span>
+                </td>
+                <td class="number_cell">
+                    <span class="text-muted bold"> <span
+                                class="gap total_small_chest_gap
+                                 {% if form.vars.value.smallChest.gap > 0 %}
+                                   green-text
+                                {% else %}
+                                    red-text
+                                {% endif %}
+                                ">
+                            {% if form.vars.value.smallChest.gap != 0 %}
+                                {{ form.vars.value.smallChest.gap|number_format(2, ',', '') }}
+                            {% endif %}
+                        </span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="sub_label cell">
+                    <span style="font-style: oblique;"> {{ 'chest.counting.small_chest_cash'|trans() }} </span>
+                </td>
+                <td class=" number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold"><span
+                                class="small_chest_sub_total total_cash">{{ form.vars.value.smallChest.realCashTotal|number_format(2, ',', '') }}</span> </span>
+                </td>
+                <td class="number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="small_chest_sub_th_total">{{ form.vars.value.smallChest.theoricalCashTotal|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                        <span class="text-muted bold">
+                            <span
+                                    class="small_chest_gap
+                                     {% if form.vars.value.smallChest.cashGap > 0 %}
+                                       green-text
+                                    {% else %}
+                                        red-text
+                                    {% endif %}
+                                    ">
+                                {% if(form.vars.value.smallChest.cashGap != 0) %}
+                                    {{ form.vars.value.smallChest.cashGap|number_format(2, ',', '') }}
+                                {% endif %}
+                            </span>
+                        </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="sub_label cell">
+                    <span style="font-style: oblique;"> {{ 'chest.counting.small_chest_tr'|trans() }} </span>
+                </td>
+                <td class=" number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold"><span
+                                class="small_chest_sub_total total_tr">{{ form.vars.value.smallChest.realTrTotal|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="small_chest_sub_th_total">{{ form.vars.value.smallChest.theoricalTrTotal|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                        <span class="text-muted bold">
+                            <span
+                                    class="small_chest_gap
+                                     {% if form.vars.value.smallChest.trGap > 0 %}
+                                       green-text
+                                    {% else %}
+                                        red-text
+                                    {% endif %}
+                                    ">
+                                {% if(form.vars.value.smallChest.trGap != 0) %}
+                                    {{ form.vars.value.smallChest.trGap|number_format(2, ',', '') }}
+                                {% endif %}
+                            </span>
+                        </span>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="sub_label cell">
+                    <span style="font-style: oblique;"> {{ 'chest.counting.small_chest_tre'|trans() }} </span>
+                </td>
+                <td class=" number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="small_chest_sub_total total_tre">{{ form.vars.value.smallChest.realTreTotal|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="small_chest_sub_th_total">{{ form.vars.value.smallChest.theoricalTreTotal|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span class="text-muted bold">
+                        <span
+                                class="small_chest_gap
+                                 {% if form.vars.value.smallChest.treGap > 0 %}
+                                   green-text
+                                {% else %}
+                                    red-text
+                                {% endif %}
+                                ">
+                            {% if(form.vars.value.smallChest.treGap != 0) %}
+                                {{ form.vars.value.smallChest.treGap|number_format(2, ',', '') }}
+                            {% endif %}
+                        </span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="sub_label cell">
+                    <span style="font-style: oblique;"> {{ 'chest.counting.small_chest_cb'|trans() }} </span>
+                </td>
+                <td class=" number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold"><span
+                                class="small_chest_sub_total total_cb">{{ form.vars.value.smallChest.realCBTotal|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="small_chest_sub_th_total">{{ form.vars.value.smallChest.theoricalCBTotal|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                        <span class="text-muted bold">
+                            <span
+                                    class="small_chest_gap
+                                     {% if form.vars.value.smallChest.cBGap > 0 %}
+                                       green-text
+                                    {% else %}
+                                        red-text
+                                    {% endif %}
+                                    ">
+                                {% if(form.vars.value.smallChest.cBGap != 0) %}
+                                    {{ form.vars.value.smallChest.cBGap|number_format(2, ',', '') }}
+                                {% endif %}
+                            </span>
+                        </span>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="sub_label cell">
+                    <span style="font-style: oblique;"> {% if version=="quick" %}{{ 'chest.counting.small_chest_cq'|trans() }} {% else %} {{ 'chest.counting.small_chest_bk'|trans() }} {% endif %} </span>
+                </td>
+                <td class=" number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="small_chest_sub_total total_check_quick">{{ form.vars.value.smallChest.realCheckQuickTotal|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                     <span style="font-style: oblique;" class="text-muted bold">
+                         <span class="small_chest_sub_th_total">{{ form.vars.value.smallChest.theoricalCheckQuickTotal|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                        <span class="text-muted bold">
+                            <span
+                                    class="small_chest_gap
+                                     {% if form.vars.value.smallChest.checkQuickGap > 0 %}
+                                       green-text
+                                    {% else %}
+                                        red-text
+                                    {% endif %}
+                                    ">
+                                {% if(form.vars.value.smallChest.checkQuickGap != 0) %}
+                                    {{ form.vars.value.smallChest.checkQuickGap|number_format(2, ',', '') }}
+                                {% endif %}
+                            </span>
+                        </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="sub_label cell">
+                    <span style="font-style: oblique;"> {{ 'chest.counting.small_chest_foreign_currency'|trans() }}
+                        </span>
+                </td>
+                <td class=" number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold"><span
+                                class="small_chest_sub_total total_foreign_currency">{{ form.vars.value.smallChest.realForeignCurrencyTotal|number_format(2, ',', '') }}</span> </span>
+                </td>
+                <td class="number_cell">
+                    <span style="font-style: oblique;" class="text-muted bold">
+                        <span class="small_chest_sub_th_total">{{ form.vars.value.smallChest.theoricalForeignCurrencyTotal|number_format(2, ',', '') }}</span> </span>
+                </td>
+                <td class="number_cell">
+
+                        <span class="text-muted bold">
+                            <span
+                                    class="small_chest_gap
+                                     {% if form.vars.value.smallChest.foreignCurrencyGap > 0 %}
+                                       green-text
+                                    {% else %}
+                                        red-text
+                                    {% endif %}
+                                    ">
+                                {% if(form.vars.value.smallChest.foreignCurrencyGap != 0) %}
+                                    {{ form.vars.value.smallChest.foreignCurrencyGap|number_format(2, ',', '') }}
+                                {% endif %}
+                            </span>
+                        </span>
+
+                </td>
+            </tr>
+            {#Exchange fund#}
+            <tr class="highlight">
+                <td class=" cell">
+                    <label> {{ 'chest.counting.total_exchange_fund'|trans() }} </label>:
+                </td>
+                <td class=" number_cell">
+                    <span class="text-muted bold"> <span
+                                class="total total_exchange_fund">{{ form.vars.value.exchangeFund.calculateRealTotal()|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span class="text-muted bold"> <span
+                                class="th_total">{{ form.vars.value.exchangeFund.calculateTheoricalTotal(restaurant)|number_format(2, ',', '') }}</span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span class="text-muted bold"> <span
+                                class="gap
+                                 {% if form.vars.value.exchangeFund.calculateGap(restaurant) > 0 %}
+                                   green-text
+                                {% else %}
+                                    red-text
+                                {% endif %}
+                                ">
+                        {% if form.vars.value.exchangeFund.calculateGap(restaurant) %}
+                            {{ form.vars.value.exchangeFund.calculateGap(restaurant)|number_format(2, ',', '') }}
+                        {% endif %}
+                        </span>
+                    </span>
+                </td>
+            </tr>
+            {#Cashbox fund#}
+            <tr class="highlight">
+                <td class=" cell">
+                    <label> {{ 'chest.counting.total_cashbox_fund'|trans() }} </label>:
+                </td>
+                <td class=" number_cell">
+                    <span class="text-muted bold"><span
+                                class="total total_cashbox_fund"> {{ form.vars.value.cashboxFund.calculateRealTotal()|number_format(2, ',', '') }}</span>  </span>
+                </td>
+                <td class="number_cell">
+                    <span class="text-muted bold"><span
+                                class="th_total"> {{ form.vars.value.cashboxFund.calculateTheoricalTotal()|number_format(2, ',', '') }}</span>  </span>
+                </td>
+                <td class="number_cell">
+                     <span class="text-muted bold"><span
+                                 class="gap
+                                 {% if form.vars.value.cashboxFund.calculateGap() > 0 %}
+                                   green-text
+                                {% else %}
+                                    red-text
+                                {% endif %}
+                                 ">
+                             {% if form.vars.value.cashboxFund.calculateGap() != 0 %}
+                                 {{ form.vars.value.cashboxFund.calculateGap()|number_format(2, ',', '') }}
+                             {% endif %}
+                         </span>  </span>
+                </td>
+            </tr>
+            <tr class="highlight">
+                <td class=" cell">
+                    <label style="font-size: 1.2em !important;"> {{ 'keyword.total'|trans() }} </label>:
+                </td>
+                <td class=" number_cell">
+                <span class="text-muted bold"><span
+                            class="total_chest">{{ form.vars.value.calculateRealTotal(restaurant)|number_format(2, ',', '') }}</span>
+                </span>
+                </td>
+                <td class="number_cell">
+                <span class="text-muted bold"><span
+                            class="th_total_chest">{{ form.vars.value.calculateTheoricalTotal(restaurant)|number_format(2, ',', '') }}</span>
+                </span>
+                </td>
+                <td class="number_cell">
+                     <span class="text-muted bold"><span
+                                 class="chest_total_gap
+                                 {% if form.vars.value.calculateGap(restaurant) > 0 %}
+                                   green-text
+                                {% else %}
+                                    red-text
+                                {% endif %}
+                                 ">
+                         {% if form.vars.value.calculateGap(restaurant) != 0 %}
+                             {{ form.vars.value.calculateGap(restaurant)|number_format(2, ',', '') }}</span>
+                         {% endif %}
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

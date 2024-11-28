@@ -1,0 +1,29 @@
+.steps .step {
+  display: inline-block;
+  width: 20%;
+  padding: 25px 10px;
+  background-color: #F3F1F1;
+  color: #515253;
+  font-weight: 700;
+  margin: 5px;
+  font-size: smaller;
+  height: 80px;
+  vertical-align: middle;
+}
+.steps .step:first-child {
+  margin-left: 0px;
+}
+.steps .step .step-number {
+  font-size: larger;
+}
+.steps .step.active {
+  background-color: #A00000;
+  color: white;
+}
+.selectize-control.multi .selectize-input > div {
+  margin: 0 3px 3px 0;
+  background: #A00000;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}

@@ -1,0 +1,11 @@
+#!/command/with-contenv bash
+#################################################
+
+WEBHOME="$(webhome)"
+
+#################################################
+
+echo "🤖 Making a symbolic link for logs"
+ln -sf ${WEBHOME}/app/logs/ /var/log/symfony
+
+#################################################

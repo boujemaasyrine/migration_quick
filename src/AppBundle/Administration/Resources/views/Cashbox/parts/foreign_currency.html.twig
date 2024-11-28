@@ -1,0 +1,45 @@
+<div id="foreign_currency_container"
+     data-prototype="{{ form_widget(form.foreignCurrencyContainer.foreignCurrencyCounts.vars.prototype) | e }}"
+     style="padding: 10px;">
+    <div class="">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                {{ form_label(form.foreignCurrencyContainer.allCurrencies) }}
+                {{ form_widget(form.foreignCurrencyContainer.allCurrencies, { "attr": { "class": 'form-control sortable' } }) }}
+                {{ form_errors(form.foreignCurrencyContainer.allCurrencies) }}
+            </div>
+        </div>
+        <div class="row">
+            {% for foreign in form.foreignCurrencyContainer.foreignCurrencyCounts %}
+                <div class="foreignCurrencyRow col-sm-6 col-md-6 col-lg-4">
+                    <div class="row">
+                        {{ form_row(foreign.id) }}
+                        <div class="col-xs-5">
+                            {{ form_label(foreign.foreignCurrencyLabel) }}
+                            {{ form_widget(foreign.foreignCurrencyLabel, { "attr": { "class": 'form-control' } }) }}
+                            {{ form_errors(foreign.foreignCurrencyLabel) }}
+                        </div>
+                        <div class="col-xs-5">
+                            {{ form_label(foreign.exchangeRate) }}
+                            {{ form_widget(foreign.exchangeRate, { "attr": { "class": 'parse-float form-control' } }) }}
+                            {{ form_errors(foreign.exchangeRate) }}
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" style="line-height: 100%; margin-top: 25px"
+                                    class="removeForeignCurrencyValue btn btn-delete btn-icon"></button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-add btn-icon addForeignCurrencyValue"
+                        data-prototype='{% include("@Administration/Cashbox/parts/prototype/foreign_currency_prototype.html.twig") %}'
+                        data-count="
+                          {% if form.vars.value.foreignCurrencyContainer.foreignCurrencyCounts is defined %}
+                          {{ form.vars.value.foreignCurrencyContainer.foreignCurrencyCounts | length }}
+                          {% else %} 0 {% endif %}">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

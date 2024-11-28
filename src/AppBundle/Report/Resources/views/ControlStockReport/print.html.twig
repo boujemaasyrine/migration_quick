@@ -1,0 +1,21 @@
+{% extends '@General/exports/base_exports.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .document-header {
+            margin-bottom: 75px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block reportTitle %}
+    <h2><b>{{ 'stock_control'|trans([],'navbar') }}</b></h2>
+{% endblock %}
+
+{% block body %}
+
+
+    {% include '@Report/ControlStockReport/report_result.html.twig' with { 'data' : data , 'print' : true } %}
+
+{% endblock %}

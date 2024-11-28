@@ -1,0 +1,7 @@
+#Todo
+report:
+    generate: "Générer le rapport"
+    force_generation: "De synchronisatie van het rapport forceren"
+data_not_found: "Aucune donnée n'est trouvée"
+
+

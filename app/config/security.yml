@@ -1,0 +1,37 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    role_hierarchy:
+        ROLE_EMPLOYEE : ROLE_USER
+        ROLE_SUPERVISION: ROLE_EMPLOYEE
+        ROLE_ADMIN : ROLE_SUPERVISION
+    encoders:
+        AppBundle\Staff\Entity\Employee:
+            algorithm: plaintext
+    providers:
+        main_provider:
+            entity:
+                class: AppBundle\Staff\Entity\Employee
+        in_memory:
+            memory: ~
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js|translations)/
+            security: false
+        main:
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                success_handler: app.security.authentication_handler
+            logout:
+                path:   /logout
+                target: /
+            anonymous: true
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/reset, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/translations, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/mockups, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/supervision/ws_bi_api, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/supervision, roles: ROLE_SUPERVISION}
+        - { path: ^/, roles: ROLE_EMPLOYEE}

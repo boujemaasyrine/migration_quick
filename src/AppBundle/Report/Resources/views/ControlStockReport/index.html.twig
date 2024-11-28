@@ -1,0 +1,102 @@
+{% extends '@Merchandise/index_stock.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/ControlStockReport/control_stock_report.js') }}"></script>
+{% endblock %}
+{% block base_title %}
+    Contrôle du Stock
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'reports.merchandise_management.title'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                {{ form_start(form,{'method' : 'POST'}) }}
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label for="form_sheetModel"> {{ 'control_stock.sheet_model'|trans() }} </label>
+                        {{ form_widget(form.sheetModel,{ 'attr': { 'class' : 'form-control' } }) }}
+                        {{ form_errors(form.sheetModel) }}
+                    </div>
+                    <div class="col-xs-4">
+                        <label for="form_startDate"> {{ 'control_stock.start_date'|trans() }} </label>
+                        <div class="input-group">
+                            {{ form_widget(form.startDate,{ 'attr': { 'class' : 'datepicker form-control' } }) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(form.startDate) }}
+                    </div>
+                    <div class="col-xs-4">
+                        <label for="form_endDate">{{ 'control_stock.end_date'|trans() }}</label>
+                        <div class="input-group">
+                            {{ form_widget(form.endDate,{ 'attr': { 'class' : 'datepicker form-control' } }) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(form.endDate) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: right">
+                        <button class="btn btn-export btn-icon dropdown-button"
+                                data-activates='dropdown2'>
+                            <span class=""> {{ 'btn.export'|trans() }} </span>
+                        </button>
+                        <ul id="dropdown2" class="dropdown-content" style="">
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="export-excel-link">
+                                    <img src="{{ asset('bundles/app/images/export/xls-512.png') }}" style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_excel'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_excel'|trans() }}</span>
+                                </a></li>
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="export-rapport-link">
+                                    <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}" style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <button id="generate-btn" class="btn" type="button"> {{ 'report.generate'|trans() }} </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" id="progress" style="display: none;">
+        <div class="panel-body">
+            <div class="container-fluid" id="progress-bars-container" style="display: none">
+                <div class="row" id="report-progress">
+                    <div class="col-xs-12 progress-container">
+                        <div class="progress-hint">
+                            {{ 'progress.calcul_result'|trans() }} <span class="progress-hint-per"></span>
+                        </div>
+                        <div class="progress" style="height: 25px; background-color: #f5f5f5 !important">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                 aria-valuenow="45"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 style="width: 0%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="data-zone" {% if data is defined %}style="overflow-x: scroll;"{% endif %}>
+                {% if data is defined %}
+                    {% include 'report_result.html.twig' with {'data' : data } %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

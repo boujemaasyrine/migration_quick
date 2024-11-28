@@ -1,0 +1,22 @@
+{% extends '@Supervision/Reports/exports/base_exports.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .document-header {
+            margin-bottom: 75px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block reportTitle %}
+    {{ 'report.food_cost.synthetic.title'|trans() }} ({{ tmp.originRestaurant.code }})
+{% endblock %}
+
+
+{% block body %}
+
+    {% include '@Supervision/Reports/SyntheticFoodCost/body_report_synthetic_foodcost.html.twig'
+        with { 'data' : data , 'print' : true } %}
+
+{% endblock %}

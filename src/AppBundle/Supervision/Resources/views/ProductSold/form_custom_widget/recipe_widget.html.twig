@@ -1,0 +1,82 @@
+{% block recipe_widget %}
+    {% spaceless %}
+        <div class="panel-heading" role="tab" id="heading{{ form.vars.id }}" style="padding: 7px;cursor: pointer;">
+            <div class="panel-title category-title bootstrap_tooltipped">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ form.vars.id }}"
+                   aria-expanded="false" aria-controls="collapse" style="font-size: 0.9em; font-weight: lighter;">
+                        <span id="recipe_revenu_{{ form.vars.id }}"
+                              class="text-muted pull-right" style="font-size: 1.52em;">
+                            {% if form.vars.value is not null %}
+                                {{ form.vars.value.calculateRevenu|number_format(2, ',', '.') }} €
+                            {% else %}
+                                {{ 0|number_format(2, ',', '.') }} €
+                            {% endif %}
+                        </span>
+                    <span class="pull-right" style="font-size: 1.52em;"> {{ 'keyword.price'|trans([],'supervision') }}
+                        :  </span>
+                </a>
+            </div>
+        </div>
+        <div data-recipe-number="{{ form.vars.id }}"
+             class="recipeBlock panel-collapse collapse in "
+             role="tabpanel"
+             aria-labelledby="heading">
+            <div class="panel-body"
+                 style="overflow-x: hidden;width: 100%;">
+                <div class="row">
+                    {#{{ form_widget(form.id) }}#}
+                    {#{{ form_row(form.soldingCanal) }}#}
+                    {#<div class="col-xs-2 col-xs-offset-6">#}
+                    {#<button id="" type="submit"#}
+                    {#class="pull-right deleteRecipe small-btn btn btn-delete white-text waves-effect waves-light">#}
+                    {#<i class="glyphicon glyphicon-minus"></i>#}
+                    {#</button>#}
+                    {#</div>#}
+                    <div class="col-xs-12">
+                        <div class="" style="display: none;">
+                            {{ form_label(form.recipeLines) }}
+                        </div>
+                        {{ form_errors(form.recipeLines) }}
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th width="50%">
+                                        {{ 'product_sold.labels.purchased_product'|trans([],'supervision') }}
+                                    </th>
+                                    <th width="35%">
+                                        {{ 'product_sold.labels.qty'|trans([],'supervision') }}
+                                    </th>
+                                    <th width="15%">
+                                        {{ 'keywords.amount'|trans([],'supervision') }}
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody id="{{ form.vars.id }}_recipeLines" data-count="{{ form.recipeLines|length }}">
+                                {% for recipeLine in form.recipeLines %}
+                                    {#<div class="hidden">#}
+                                    {#{{ form_label(recipeLine) }}#}
+                                    {#</div>#}
+                                    {{ form_widget(recipeLine, {"attr": { 'class' : 'form-control'}}) }}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <button id="" data-recipe-number="{{ form.vars.id }}" type="button"
+                                data-prototype='{{ form_row(form.recipeLines.vars.prototype) }}'
+                                class="addNewRecipeLine btn btn-add white-text waves-effect waves-light">
+                            {{ 'product_sold.btns.add_recipe_line'|trans([],'supervision') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden">
+            {{ form_rest(form) }}
+        </div>
+
+    {% endspaceless %}
+{% endblock %}

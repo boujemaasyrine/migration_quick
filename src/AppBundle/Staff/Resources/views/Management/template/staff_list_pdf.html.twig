@@ -1,0 +1,53 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h2>
+        {{ 'staff.list.title' | trans }}
+    </h2>
+{% endblock %}
+
+{% block filterBlock %}
+    {% if kwRole!='' %}
+        <div class="row">
+            <div class="col-xs-12 input-field">
+                <label>{{ 'label.role' | trans }} </label>
+                <span class="text-muted">
+                {{ kwRole }}
+            </span>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+{% block body %}
+    <style>
+        .table th:first-child {
+            width: 30%;
+        }
+
+    </style>
+    <table class="table table-bordered table-hover" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>{{ 'user.social_security'|trans }}</th>
+            <th>{{ 'user.first_name'|trans }}</th>
+            <th>{{ 'user.username'|trans }}</th>
+            <th>{{ 'label.mail'|trans }}</th>
+            <th>{{ 'label.role'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for e in staffList %}
+            <tr>
+                <td>{{ e.socialSecurity }}</td>
+                <td>{{ e.firstName }}</td>
+                <td>{{ e.username }}</td>
+                <td>{{ e.email }}</td>
+                <td>{{ e.role }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

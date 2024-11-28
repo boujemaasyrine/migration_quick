@@ -1,0 +1,33 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h2>
+        {{ 'report.sales.hour_by_hour_employee.title' | trans }}
+    </h2>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="row">
+        <div class="col-xs-2 input-field">
+            <span class="text-muted">
+               <label for="startDate"> {{ 'keyword.from'|trans() }}: </label>
+                {{ from }}
+            </span>
+        </div>
+        <div class="col-xs-2 input-field">
+            <span class="text-muted">
+               <label for="endDate"> {{ 'keyword.to'|trans() }}: </label>
+                {{ to }}
+            </span>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    {% if scheduleType == 0 %}
+        {{ include('@Report/SalesManagement/HourByHourEmployee/body_report_hour_by_hour_employee.html.twig') }}
+    {% else %}
+        {{ include('@Report/SalesManagement/HourByHourEmployee/body_report_hour_by_Quart_hour_employee.html.twig') }}
+    {% endif %}
+{% endblock %}

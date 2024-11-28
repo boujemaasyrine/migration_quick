@@ -1,0 +1,33 @@
+{{ form_start(form,{ 'attr' : { 'id' : 'foodCostSynthForm' } }) }}
+<div class="row">
+    <div class="col-xs-12 col-sm-4">
+        <label class="required"
+               for="{{ form.beginDate.vars.id }}">{{ "control_stock.start_date"|trans({}, 'supervision') }}</label>
+        <div class="input-group">
+            {{ form_widget(form.beginDate,{'attr' : { 'class' : 'datepicker form-control' }}) }}
+            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+        </div>
+        {{ form_errors(form.beginDate) }}
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <label class="required"
+               for="{{ form.endDate.vars.id }}">{{ "control_stock.end_date"|trans({}, 'supervision') }}</label>
+        <div class="input-group">
+            {{ form_widget(form.endDate,{'attr' : { 'class' : 'datepicker form-control' }}) }}
+            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+        </div>
+        {{ form_errors(form.endDate) }}
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <label class="required">{{ "keyword.restaurants"|trans({}, 'supervision') }}</label>
+        {{ form_widget(form.restaurant,{ 'attr': { 'class' : 'form-control' } }) }}
+    </div>
+    {% if lock is defined and lock == true %}
+        <div class="col col-lg-12 col-sm-12 col-xs-12">
+            <div class="alert alert-danger form-error" role="alert"><span
+                        class="glyphicon glyphicon-warning-sign"></span>
+                {{ 'report.process.warning' |trans({}, 'messages') }} <br></div>
+        </div>
+    {% endif %}
+</div>
+{{ form_end(form) }}

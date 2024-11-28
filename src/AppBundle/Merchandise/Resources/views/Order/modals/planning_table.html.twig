@@ -1,0 +1,53 @@
+<table id="planning-table" class="table table-stripped table-hover" style="width : 100% ;">
+    <thead>
+    <tr>
+        <th>{{ "planning.supplier"|trans }}</th>
+        <th>{{ "days.monday"|trans }}</th>
+        <th>{{ "days.tuesday"|trans }}</th>
+        <th>{{ "days.wednesday"|trans }}</th>
+        <th>{{ "days.thursday"|trans }}</th>
+        <th>{{ "days.friday"|trans }}</th>
+        <th>{{ "days.saturday"|trans }}</th>
+        <th>{{ "days.sunday"|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for s in suppliers %}
+        <tr>
+            <td>{{ s.name|upper }}</td>
+            {% for i in 1..7 %}
+                <td>
+                    {% for p in s.plannings %}
+                        {% if p.originRestaurant ==  restaurant_service.currentRestaurant %}
+                            {% set categories = [] %}
+                            {% if p.categories|length == 0 %}
+                                {% set categories = categories|merge(['Toutes les catégories']) %}
+                            {% else %}
+                                {% for c in p.categories %}
+                                    {% set categories = categories|merge([c.name]) %}
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if p.orderDay == (i%7) %}
+                                <div title="{{ categories|join('<br>') }}" data-toggle="tooltip"
+                                     data-placement="top" data-html="true" class="orderDay"
+                                     planning-id="{{ p.id }}" ord="{{ loop.index }}">C
+                                </div>
+                            {% endif %}
+
+                            {% if p.deliveryDay ==(i%7) %}
+                                <div title="{{ categories|join('<br>') }}" data-toggle="tooltip"
+                                     data-placement="top" data-html="true"
+                                     class="deliveryDay " planning-id="{{ p.id }}" ord="{{ loop.index }}">L
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+<div style="clear: both;"></div>

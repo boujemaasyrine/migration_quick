@@ -1,0 +1,6 @@
+{{ 'deposit.report.title'|trans }}
+{% if period.startDate|date('d/m/Y') == period.endDate|date('d/m/Y') %}
+    {{ period.startDate|date('d/m/Y') }}
+{% else %}
+    {{ 'keyword.from'|trans ~ ' ' ~ period.startDate|date('d/m/Y') ~ ' '~ 'keyword.to'|trans ~ ' ' ~ period.endDate|date('d/m/Y') }}
+{% endif %}

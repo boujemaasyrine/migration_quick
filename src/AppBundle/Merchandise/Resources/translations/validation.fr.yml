@@ -1,0 +1,34 @@
+invalid_format: Format invalide.
+null_value: Cette valeur ne doit pas être nulle.
+int_field: Ce champ doit être un entier.
+positive_field: La valeur de ce champ doit être supérieur à 0.
+compare_date: La date de début doit précéder la date du fin.
+order:
+    date_not_programmed: Cette date n'est pas programmée dans le planning.
+    date_order_sup_delivery: La date de la commande doit être inférieur ou égale à celle de la livraison.
+    order_line_min: Il doit y avoir au moins une ligne.
+    product_not_in_supplier_products: Ce produit n'appartient pas à la liste des produits fournis par ce fournisseur.
+inventory:
+    sheet_line_min: Il doit y avoir au moins une ligne.
+    inventory_lines_must_be_unique_per_inventory_sheet: Les lignes d'inventaires doivent être uniques (produits en doublon: %product%).
+    only_today_inventory_sheet_can_be_updated: Un inventaire ne peut être édité que le jour de la création.
+sheet_model:
+    sheet_line_min : "Vous devez avoir au moins une ligne."
+    you_cannot_edit_entry_done_sheets: "Vous ne pouvez pas éditer une feuille dont l'inventaire a déjà été saisi."
+    lines_must_be_unique_per_inventory_sheet: Les lignes de la feuilles doivent être uniques (Produits en doublon: %product%).
+product_not_found: Produit non trouvé
+product_not_active: Produit non actif
+date_order_sup_delivery: La date de commande est supérieur à celle de la livraison.
+num_transfert_unique: Le N° du Transfert doit être Unique
+product_already_entred: Produit déjà saisi
+positive_field: La valeur de ce champ doit être positive
+int_postive_field: Ce champ doit être un entier positif
+temperature_field: La temperature doit être entre -30°C et 15°C
+no_qty_was_introduced: Aucune quantité n'est mentionnée
+date_delivery_inf_date_commande: La date de la livraison est inférieure à celle de la commande.
+order_exist_for_supplier: "Une commande pour ce founisseur existe déjà pour cette date."
+product_not_in_supplier_products: Ce produit n'appartient pas au fournisseur choisi.
+product_not_category: Ce produit n'est pas dans la catégorie du jour sélectionné.
+j_31_constraint_message: La date de commande doit être supérieure à J-31.
+
+# Missed Translation

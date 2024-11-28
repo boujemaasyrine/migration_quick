@@ -1,0 +1,128 @@
+<style>
+    .category{
+        background-color: rgba(255, 255, 0, 0.22);
+    }
+    .total{
+        background-color: rgba(0, 0, 255, 0.19);
+    }
+    .tab_header{
+        background-color: rgba(25, 118, 210, 0.73);
+    }
+    .all_total{
+        background-color: rgba(0, 55, 255, 0.58);
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h2>{{ 'strike_rate.title_two' |trans }}</h2>
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%" style="margin-bottom: 20px">
+            <thead>
+            <tr>
+                <th width="40%"></th>
+                <th width=20%" class="tab_header">N</th>
+                <th width=20%" class="tab_header">N - 1</th>
+                <th width=30%" class="tab_header">V N/N-1</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{'strike_rate.ca_mmm_net_ht' |trans }}</td>
+                <td>{{ data.this_year['ligne_1'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_1'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_1'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.bon_discount_ttc' |trans }}</td>
+                <td>{{ data.this_year['ligne_2'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_2'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_2'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.br_ttc' |trans }}</td>
+                <td>{{ data.this_year['ligne_3'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_3'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_3'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.ca_mmm_brut_ttc' |trans }}</td>
+                <td>{{ data.this_year['ligne_4'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_4'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_4'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.pp_ht' |trans }}</td>
+                <td>{{ data.this_year['ligne_5'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_5'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_5'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.brut_margin' |trans }}</td>
+                <td>{{ data.this_year['ligne_6'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_6'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_6'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.tickets' |trans }}</td>
+                <td>{{ data.this_year['ligne_7'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_7'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_7'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.ticket_moy' |trans }}</td>
+                <td>{{ data.this_year['ligne_8'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_8'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_8'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.pp_ht' |trans }} / {{'strike_rate.tickets' |trans }}</td>
+                <td>{{ data.this_year['ligne_9'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_9'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_9'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.pv_ttc' |trans }}</td>
+                <td>{{ data.this_year['ligne_10'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_10'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_10'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.pp_ht' |trans }} / {{'strike_rate.pv_ttc' |trans }}</td>
+                <td>{{ data.this_year['ligne_11'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_11'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_11'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.nbr_items' |trans }} / {{'strike_rate.ticket_nr' |trans }}</td>
+                <td>{{ data.this_year['ligne_12'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_12'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_12'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.nbr_items' |trans }} / {{'strike_rate.ticket_r' |trans }}</td>
+                <td>{{ data.this_year['ligne_13'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_13'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_13'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.solding_annexe' |trans }}</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.ticket_moy_ttc' |trans }}</td>
+                <td>{{ data.this_year['ligne_14'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_14'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_14'] | number_format('2','.',',')}}</td>
+            </tr>
+            <tr>
+                <td>{{'strike_rate.ticket_moy_net' |trans }}</td>
+                <td>{{ data.this_year['ligne_15'] | number_format('2','.',',')}}</td>
+                <td>{{ data.last_year['ligne_15'] | number_format('2','.',',')}}</td>
+                <td>{{ data.variation['ligne_15'] | number_format('2','.',',')}}</td>
+
+            </tr>
+            </tbody>
+            </table>
+    </div>
+</div>

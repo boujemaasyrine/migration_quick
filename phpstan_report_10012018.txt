@@ -1,0 +1,123 @@
+
+
+ ------ ------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Administration\Entity\Parameter.php                                    
+ ------ ------------------------------------------------------------------------------------- 
+  257    Access to an undefined property AppBundle\Administration\Entity\Parameter::$locale.  
+ ------ ------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Financial\Entity\ChestSmallChest.php                                                                      
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+  869    Method AppBundle\Financial\Entity\ChestSmallChest::calculateTheoricalTreTotal() invoked with 0 parameters, 1 required.  
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Financial\Entity\PaymentMethod.php                                    
+ ------ ------------------------------------------------------------------------------------ 
+  106    Access to an undefined property AppBundle\Financial\Entity\PaymentMethod::$locale.  
+ ------ ------------------------------------------------------------------------------------ 
+
+ ------ -------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Command\ImportWyndCommand.php                                         
+ ------ -------------------------------------------------------------------------------------------- 
+  351    Access to constant IGNORED_PLUS on an unknown class AppBundle\General\Command\ProductSold.  
+  407    Access to constant IGNORED_PLUS on an unknown class AppBundle\General\Command\ProductSold.  
+ ------ -------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Command\SendPoCommand.php  
+ ------ ----------------------------------------------------- 
+  90     Function ftp_connect not found.                      
+  97     Function ftp_login not found.                        
+  104    Function ftp_pasv not found.                         
+  112    Function ftp_put not found.                          
+  132    Function ftp_close not found.                        
+ ------ ----------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------ 
+  Line   src\AppBundle\Merchandise\Service\DeliveryIntegrationService.php  
+ ------ ------------------------------------------------------------------ 
+  66     Function ftp_connect not found.                                   
+  70     Function ftp_login not found.                                     
+  74     Function ftp_pasv not found.                                      
+  77     Function ftp_nlist not found.                                     
+  84     Function ftp_close not found.                                     
+ ------ ------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Report\Service\ReportSalesService.php                                                 
+ ------ ---------------------------------------------------------------------------------------------------- 
+  445    Call to an undefined static method AppBundle\ToolBox\Utils\DateUtilities::getDaysOfWeekInPeriod().  
+ ------ ---------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\LoadParametersLabelCommand.php                                          
+ ------ ---------------------------------------------------------------------------------------------------------- 
+  51     Access to constant EXPENSE_LABELS_TYPE on an unknown class AppBundle\Supervision\Command\ParameterLabel.  
+  62     Access to constant EXPENSE_LABELS_TYPE on an unknown class AppBundle\Supervision\Command\ParameterLabel.  
+  77     Access to constant RECIPE_LABELS_TYPE on an unknown class AppBundle\Supervision\Command\ParameterLabel.   
+  88     Access to constant RECIPE_LABELS_TYPE on an unknown class AppBundle\Supervision\Command\ParameterLabel.   
+  108    Instantiated class AppBundle\Supervision\Command\ParameterLabel not found.                                
+ ------ ---------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Filter\ExceptionHandler.php     
+ ------ ---------------------------------------------------------- 
+  21     Class AppBundle\Filter\NotAuthorizedException not found.  
+ ------ ---------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Filter\NotAuthorizedException.php                                                          
+ ------ --------------------------------------------------------------------------------------------------------------------- 
+  18     AppBundle\Supervision\Filter\NotAuthorizedException::__construct() does not call parent constructor from Exception.  
+ ------ --------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBiAPI\LossService.php                            
+ ------ ------------------------------------------------------------------------------------- 
+  139    Call to an undefined static method AppBundle\ToolBox\Utils\Utilities::formatDate().  
+  139    Access to undefined constant AppBundle\ToolBox\Utils\Utilities::D_FORMAT_DATE.       
+  171    Call to an undefined static method AppBundle\ToolBox\Utils\Utilities::formatDate().  
+ ------ ------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\CashboxCountsSyncService.php                  
+ ------ ---------------------------------------------------------------------------------------- 
+  53     Class Doctrine\ORM\NoResultException constructor invoked with 1 parameter, 0 required.  
+  72     Class Doctrine\ORM\NoResultException constructor invoked with 1 parameter, 0 required.  
+  123    Class Doctrine\ORM\NoResultException constructor invoked with 1 parameter, 0 required.  
+  150    Class Doctrine\ORM\NoResultException constructor invoked with 1 parameter, 0 required.  
+ ------ ---------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\SheetModelsSyncService.php                    
+ ------ ---------------------------------------------------------------------------------------- 
+  39     Class Doctrine\ORM\NoResultException constructor invoked with 1 parameter, 0 required.  
+  56     Class Doctrine\ORM\NoResultException constructor invoked with 1 parameter, 0 required.  
+ ------ ---------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\ToolBox\Tests\Service\DocumentGeneratorServiceTest.php                                         
+ ------ ------------------------------------------------------------------------------------------------------------- 
+  18     Class AppBundle\ToolBox\Service\DocumentGeneratorService constructor invoked with 0 parameters, 1 required.  
+ ------ ------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------- 
+  Line   src\AppBundle\ToolBox\Utils\Utilities.php  
+ ------ ------------------------------------------- 
+  324    Function ftp_connect not found.            
+  328    Function ftp_login not found.              
+  332    Function ftp_pasv not found.               
+  335    Function ftp_nlist not found.              
+  337    Function ftp_get not found.                
+  340    Function ftp_close not found.              
+  351    Function ftp_connect not found.            
+  355    Function ftp_login not found.              
+  359    Function ftp_pasv not found.               
+  361    Function ftp_put not found.                
+  364    Function ftp_close not found.              
+ ------ ------------------------------------------- 
+
+ [ERROR] Found 44 errors                                                                                                
+

@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} !^/quick_bo_belux/web
+    RewriteRule ^(.*)$ /quick_bo_belux/web/$1 [L,QSA]
+</IfModule>

@@ -1,0 +1,344 @@
+<style>
+    .table {
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    .table td, .table th {
+        border: 2px solid black;
+    }
+
+    .table tr:first-child th {
+        border-top: 0;
+    }
+
+    .table tr:last-child td {
+        border-bottom: 0;
+    }
+
+    .table tr td:first-child,
+    .table tr th:first-child {
+        border-left: 0;
+    }
+
+    .table tr td:last-child,
+    .table tr th:last-child {
+        border-right: 0;
+    }
+
+    th, td {
+        font-size: 13px !important;
+    }
+
+</style>
+
+<style>
+    th {
+        font-weight: bold;
+    }
+
+    .good_ecarts {
+        background: #90EE90 !important;
+    }
+
+    .fail_ecarts {
+        background-color: #FFB6C1 !important;
+    }
+
+    /* Header */
+    .top_header th {
+        text-align: center;
+        background-color: #CA9E67 !important;
+    }
+
+    .sub_header {
+        background-color: #EDE2C9 !important;
+    }
+
+    .category_name {
+        background-color: #FDC300 !important;
+    }
+</style>
+
+{% if download is not defined and reportResult.data.data|length > 0 %}
+    <style>
+        .table thead, .table tbody {
+            /*display: block;*/
+        }
+
+        .table td {
+            padding: 2px 0px 0px 2px !important;
+            width: 1px;
+            max-width: 50%;
+            text-align: center;
+            white-space:nowrap;
+        }
+
+        .category_name td{
+            text-align: left;
+        }
+
+        th {
+            border: none;
+            padding: 0 !important;
+            text-align: center !important;
+            margin: 0;
+            white-space:nowrap;
+        }
+
+        .table thead {
+            position: relative;
+            z-index: 9;
+        }
+    </style>
+{% endif %}
+
+<div class="">
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding-top:0; padding-bottom:0; ">
+            <div class="row">
+                <div class="container-fluid">
+                    <table id="portionControlTable" class="table" style="border: 1px solid black;">
+                        <thead id="reportHeader" style="">
+                        <tr class="top_header">
+                            <th colspan="3">{{ 'portion_control.report_labels.items'|trans }}</th>
+                            <th colspan="5"> {{ 'general.week'|trans }} {{ startDate }}</th>
+                            <th colspan="2"> {{ 'general.week'|trans }} {{ weekMinus1 }}</th>
+                            <th colspan="2"> {{ 'general.week'|trans }} {{ weekMinus2 }}</th>
+                            <th colspan="2"> {{ 'general.week'|trans }} {{ weekMinus3 }}</th>
+                            <th colspan="2>">{{ 'keyword.total'|trans() }}</th>
+
+                        </tr>
+                        <tr class="sub_header mainHeader">
+                            <th>{{ 'portion_control.report_labels.code'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.description'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.format'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.ventes'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.item_vtes'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.item_inv'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.ecart'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.valorisation'|trans }} (€)</th>
+                            <th>{{ 'portion_control.report_labels.ecart_minus'|trans({'%number%': 1}) }}</th>
+                            <th>{{ 'portion_control.report_labels.valorisation_minus'|trans({'%number%': 1}) }}
+                                (€)
+                            </th>
+                            <th>{{ 'portion_control.report_labels.ecart_minus'|trans({'%number%': 2}) }}</th>
+                            <th>{{ 'portion_control.report_labels.valorisation_minus'|trans({'%number%': 2}) }}
+                                (€)
+                            </th>
+                            <th>{{ 'portion_control.report_labels.ecart_minus'|trans({'%number%': 3}) }}</th>
+                            <th>{{ 'portion_control.report_labels.valorisation_minus'|trans({'%number%': 3}) }}
+                                (€)
+                            </th>
+                            <th>{{ 'portion_control.report_labels.ecart'|trans() }}</th>
+                            <th>{{ 'portion_control.report_labels.valorisation'|trans() }}
+                                (€)
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody class="mainTbody">
+                        {% for categoryName,row in reportResult.data.data %}
+                            <tr class="category_name">
+
+                                <td colspan="16">{{ categoryName }}
+
+                            </tr>
+
+                            {% for item in row.data %}
+                                <tr class="mainRow">
+                                    <td>
+                                        {{ item.code }}
+                                    </td>
+                                    <td>
+                                        {{ item.description }}
+                                    </td>
+                                    <td>
+                                        {{ item.format|trans }}
+                                    </td>
+                                    <td>
+                                        {% if item.ventes is defined %}
+                                        {{ item.ventes|number_format(2, ',', '.') }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.item_vtes is defined %}
+                                        {{ item.item_vtes|number_format(2, ',', '.') }}
+                                        {% endif %}
+                                    </td>
+
+                                    <td>
+                                        {% if item.item_inv is defined %}
+                                        {{ item.item_inv|number_format(2, ',', '.') }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="
+                                            {% if item.valorisation is defined and item.valorisation|abs < reportResult.threshold %}
+                                                good_ecarts
+                                            {% else %}
+                                                fail_ecarts
+                                            {% endif %}
+                                            ">
+                                        {% if item.ecart is defined %}
+                                        {{ item.ecart|number_format(2, ',', '.') }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="
+                                        {% if item.valorisation is defined and item.valorisation|abs < reportResult.threshold %}
+                                            good_ecarts
+                                        {% else %}
+                                            fail_ecarts
+                                        {% endif %}
+                                        ">
+                                        {% if item.valorisation is defined %}
+                                        {{ item.valorisation|number_format(2, ',', '.') }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="
+                                            {% if item.valorisation_minus_1|abs < reportResult.threshold|abs %}
+                                                good_ecarts
+                                            {% else %}
+                                                fail_ecarts
+                                            {% endif %}
+                                            ">
+                                        {{ item.ecart_minus_1|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td class="
+                                        {% if item.valorisation_minus_1|abs < reportResult.threshold|abs %}
+                                            good_ecarts
+                                        {% else %}
+                                            fail_ecarts
+                                        {% endif %}
+                                        ">
+                                        {{ item.valorisation_minus_1|number_format(2, ',', '.') }}
+                                    </td>
+
+                                    <td class="
+                                            {% if item.valorisation_minus_2|abs < reportResult.threshold|abs %}
+                                                good_ecarts
+                                            {% else %}
+                                                fail_ecarts
+                                            {% endif %}
+                                            ">
+                                        {{ item.ecart_minus_2|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td class="
+                                        {% if item.valorisation_minus_2|abs < reportResult.threshold|abs %}
+                                            good_ecarts
+                                        {% else %}
+                                            fail_ecarts
+                                        {% endif %}
+                                        ">
+                                        {{ item.valorisation_minus_2|number_format(2, ',', '.') }}
+                                    </td>
+
+                                    <td class="
+                                            {% if item.valorisation_minus_3|abs < reportResult.threshold|abs %}
+                                                good_ecarts
+                                            {% else %}
+                                                fail_ecarts
+                                            {% endif %}
+                                            ">
+                                        {{ item.ecart_minus_3|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td class="
+                                        {% if item.valorisation_minus_3|abs < reportResult.threshold|abs %}
+                                            good_ecarts
+                                        {% else %}
+                                            fail_ecarts
+                                        {% endif %}
+                                        ">
+                                        {{ item.valorisation_minus_3|number_format(2, ',', '.') }}
+                                    </td>
+
+                                    <td class=" ">
+                                        {% if item.ecart is defined  %}
+                                        {{ (item.ecart + item.ecart_minus_1 + item.ecart_minus_2 + item.ecart_minus_3)|number_format(2, ',', '.') }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="">
+                                        {% if item.valorisation is defined %}
+                                        {{ (item.valorisation + item.valorisation_minus_1 + item.valorisation_minus_2 + item.valorisation_minus_3)|number_format(2, ',', '.') }}
+                                        {% endif %}
+                                    </td>
+
+
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td style="font-weight: bold;">
+                                    {{ 'portion_control.label.total'|trans }}
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ row.aggregations.valorisation|number_format(2, ',', '.') }}</td>
+                                <td></td>
+                                <td>{{ row.aggregations.valorisation_minus_1|number_format(2, ',', '.') }}</td>
+                                <td></td>
+                                <td>{{ row.aggregations.valorisation_minus_2|number_format(2, ',', '.') }}</td>
+                                <td></td>
+                                <td>{{ row.aggregations.valorisation_minus_3|number_format(2, ',', '.') }}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="3" rowspan="3"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ reportResult.data.aggregations.valorisation|number_format(2, ',', '.') }}</td>
+                            <td></td>
+                            <td>{{ reportResult.data.aggregations.valorisation_minus_1|number_format(2, ',', '.') }}</td>
+                            <td></td>
+                            <td>{{ reportResult.data.aggregations.valorisation_minus_2|number_format(2, ',', '.') }}</td>
+                            <td></td>
+                            <td>{{ reportResult.data.aggregations.valorisation_minus_3|number_format(2, ',', '.') }}</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;" colspan="2">Ecart positif (€)</td>
+                            <td colspan="2">{{ reportResult.data.aggregations.positive_ecart|number_format(2, ',', '.') }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                            <td></td>
+
+
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;" colspan="2">Ecart négatif (€)</td>
+                            <td colspan="2">{{ reportResult.data.aggregations.negative_ecart|number_format(2, ',', '.') }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                            <td></td>
+
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

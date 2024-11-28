@@ -1,0 +1,11 @@
+.idea/
+.git/
+.gitignore
+/terraform/
+/app/logs
+/app/cache
+/docker
+!/docker/images/final/root
+/node_modules/gulp-uglify/node_modules/.bin/uglifyjs
+/node_modules/normalize-package-data/node_modules/.bin/resolve
+/node_modules/snapdragon/node_modules/.bin/atob

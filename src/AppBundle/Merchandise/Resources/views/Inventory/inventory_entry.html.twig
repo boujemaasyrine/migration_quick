@@ -1,0 +1,24 @@
+{% extends '@Merchandise/index_stock.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bundles/app/css/Merchandise/Inventory/inventory.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Inventory/inventory_entry.js') }}"></script>
+{% endblock %}
+{% block base_title %}
+    {{ 'inventory.title.management'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'inventory_management.inventory_management'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <div id="inventory_block" class="panel panel-default">
+        {{ include('@Merchandise/Inventory/parts/form_inventory_sheet.html.twig') }}
+    </div>
+{% endblock %}

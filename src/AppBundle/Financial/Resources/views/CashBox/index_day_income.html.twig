@@ -1,0 +1,23 @@
+{% extends "@Financial/default.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'financial';
+    </script>
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset('src/js/Financial/Cashbox/DayIncome/dayIncome.js') }}"></script>
+    <script >
+        $("#download-btn").on('click',function(){
+            var dayIncome= $('#day_income_date').val().toString();
+            var dateFormat= dayIncome.replace('/', '_').replace('/', '_');
+            var url= Routing.generate('day_income_print',{'dayIncomedate':dateFormat});
+            $('#view').attr('href', url);
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bundles/app/css/Financial/Cashbox/Counting/counting.css') }}">
+{% endblock %}

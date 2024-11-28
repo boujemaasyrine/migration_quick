@@ -1,0 +1,29 @@
+invalid_format: Format invalide
+null_value: Cette valeur ne doit pas être nulle
+int_field: Ce champs doit être un entier
+positive_field: La valeur de ce champs doit être supérieur à 0
+order:
+    date_not_programmed: Cette date n'est pas programmée dans le planning
+    date_order_sup_delivery: La date de la commande doit être inférieur ou égale à celle de livraison
+    order_line_min: Il devait avoir au moins une ligne
+    product_not_in_supplier_products: Ce produit n'appartient pas à la liste des produits fournis par ce fournisseur
+product_not_found: Produit non trouvé
+product_not_active: Produit non actif
+date_order_sup_delivery: Date de la commande est supérieur à celle de la livraison
+num_transfert_unique: Le N° Transfert doit être Unique
+product_sold:
+    transformed_product_sold_must_have_at_least_one_recipe: Ce produit doit avoir au moins une recette
+    recipe_must_have_at_least_one_recipe_line: Une recette doit avoir au moins une ligne
+    null_value: Cette valeur ne doit pas être nulle
+    product_purchased_is_required: Le produit d'inventaire est requis.
+
+# missed translations
+date_in_futur: Veuillez choisir une date au futur
+confirm_password_failed: Vérifiez vos saisies
+unique:
+    username: Le login doit être unique
+    email: L'email doit être unique
+product_sold.code_plu_already_exist_for_at_least_one_restaurant: Code PLU déjà existant dans un des restaurants sélectionnés.
+positive_value: Cette valeur doit être supérieure à 0
+product_sold.recipe_must_be_unique_per_solding_canal: Vous devez saisir une unique recette par canal de vente.
+unique_product_purchased : Le code doit être unique par restaurant et/ou par fornisseur.

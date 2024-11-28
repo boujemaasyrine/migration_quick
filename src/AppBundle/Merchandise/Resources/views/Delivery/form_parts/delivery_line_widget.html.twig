@@ -1,0 +1,82 @@
+{% block delivery_line_widget %}
+    <tr class="cmd-line {% if form.vars.value != null and form.vars.value.orderedQty != form.vars.value.qty %}order-delivery-mismatch{% endif %}">
+        <td>
+            {% if form.vars.value != null and form.vars.value.product != null %}
+                {{ form.vars.value.product.externalID }}
+            {% else %}
+                __ref_product__
+            {% endif %}
+            {{ form_errors(form.product_id) }}
+            <div class="hidden">
+                {{ form_widget(form.product_id,{ 'attr' : { 'class' : 'hidden_product_id' } }) }}
+            </div>
+        </td>
+        <td>
+            {% if form.vars.value != null and form.vars.value.product != null %}
+                {{ form.vars.value.product.name }}
+            {% else %}
+                __name_product__
+            {% endif %}
+        </td>
+        <td>
+            <span class="order-line-qty">
+                {% if form.vars.value != null %}
+                    {% if form.new.vars.value == true %}
+                        0
+                    {% else %}
+                        {{ form.vars.value.orderedQty }}
+                    {% endif %}
+                {% else %}
+                    __ordered_qty__
+                {% endif %}
+            </span>
+            {% if form.vars.value != null and form.vars.value.product != null %}
+                {{ form.vars.value.product.labelUnitExped|trans }}
+            {% else %}
+                __unit__
+            {% endif %}
+        </td>
+        <td class="medium-input">
+            <div class="input-group">
+                {{ form_widget(form.qty,{ 'attr' : { 'class' : 'form-control delivery-line-qty' , 'style' : 'display:inline !important;'  } }) }}
+                <span class="input-group-addon">
+                {% if form.vars.value != null and form.vars.value.product != null %}
+                    {{ form.vars.value.product.labelUnitExped|trans }}
+                {% else %}
+                    __unit__
+                {% endif %}
+                    </span>
+            </div>
+            {{ form_errors(form.qty) }}
+        </td>
+        <td class="unit-price">
+            {% if form.vars.value != null and form.vars.value.product != null %}
+                {{ form.vars.value.product.buyingCost|number_format(2,',','') }}
+            {% else %}
+                __unit_price__
+            {% endif %}
+        </td>
+        <td class="small-input">
+            {{ form_widget(form.valorization,{ 'attr' : { 'class' : 'form-control delivery-line-valorisation' } }) }}
+            {{ form_errors(form.valorization) }}
+            <span class="val-delivery-line">
+            {% if form.vars.value != null %}
+                {{ form.vars.value.valorization|number_format(2,',','') }}
+            {% else %}
+                __line_val__
+            {% endif %}
+                </span>
+            <div style="display: none;">
+                {{ form_widget(form.new) }}
+            </div>
+        </td>
+        <td>
+            {% if form.vars.value == null or form.new.vars.value == true %}
+                <button type='button' class='tooltipped remove-line' data-tooltip='Supprimer la ligne'
+                        data-position='top'>
+                    <span class='glyphicon glyphicon-remove'></span></button>
+            {% endif %}
+        </td>
+
+    </tr>
+{% endblock %}

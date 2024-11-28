@@ -1,0 +1,272 @@
+create_order: Bestelling aanmaken #Création d'une commande
+order_list: Lopende bestellingen #Liste des commandes en cours
+show_planning: Planning bestellingen #Planning des commandes
+help_order: Hulp bij bestellen #Aide à la commande
+create_delivery: Levering invoeren #Saisie d'une livraison
+delivery_list: Leveringslijst #Liste des livraison
+transfer_in: Transfer IN ingeven #Saisie d'un Transfert In
+transfer_out: Transfer OUT ingeven #Saisie d'un Transfert Out
+transfer_list: Overdrachtslijst #Listes des transferts
+create_return: Retour ingeven #Saisie d'un retour
+return_list: Lijst retours #Liste des retours
+edition_inventory_sheet: Wijziging inventarisblad #Edition feuille d'inventaire
+manage_inventory_sheet: Beheer inventarisbladen #Gestion feuilles d'inventaire
+saisie_inventory: Inventaris invoeren #Saisie d'inventaire
+ca_prev_list: Budgetten #Budgets Prévisionnels
+planning_suppliers: Planning leveranciers #Planning des fournisseurs
+index_food_cost_synthetic: Rapport overzicht Foodcost #Rapport FoodCost Synthétique
+control_stock_report: Rapport stockcontrole #Rapport contrôle du Stock
+index_workflows: Beheer procedures #Gestion des procédures
+administrative_closing: Administratieve afsluiting #Clôture Adminstrative
+
+#Financial
+chest_count: Koffertelling #Comptage Coffre
+chest_list: Lijst koffertelling #Liste comptage coffre
+list_recipe_tickets: Lijst ontvangstenbonnen #Liste des bons de recette
+create_recipe_tickets: Een ontvangstbon invoeren #Saisir un bon de recette
+cashbox_counting: kassatelling #Comptage d'une Caisse
+cash_book_report : Rapport kasboek #Rapport livre caisse
+#Merchandise
+loss_entry_article: Verlies ingeven -Inventaris I. #Saisie Pertes - I. Inventaires
+loss_entry_pf: Verlies ingeven - Verkoop I. #Saisie Pertes - I. Ventes
+loss_sheet_article: Lijst Verliezen Inv. Items #Liste des feuille des perte articles
+loss_sheet_pf: Lijst verliezen Verk. Items #Liste des feuills de perte produits finis
+loss_sheet: Lijst verliezen #Liste des feuilles des pertes
+previous_day_loss: Verliezen D-1 #Pertes de la veille
+loss_list: Lijst van  #Liste des
+api_save_inventory_sheet: Nieuw Inventarisblad crëeren #Création d'une nouvelle feuille d'inventaire
+
+withdrawal_entry: Voorafname ingeven #Saisir un prélèvement
+staff_list: Personeelslijst #Liste du personnel
+withdrawal_list: Lijst Voorafnames #Liste des prélèvements
+expense_entry: Uitgave ingeven #Saisir une dépense
+expenses_list: Lijst van uitgaven #Liste des dépenses
+index_config_role: Rechtenbeheer #Gestion des droits
+suppliers_list: Lijst leveranciers #Liste des fournisseurs
+inventory_item_list: Lijst inventarisitems #Liste des items inventaire
+report_inventory_loss: Rapport verliezen Inv Items #Rapport Pertes Items Inventaire
+report_sold_loss: Rapport verliezen Verk Items #Rapport Pertes Items de Vente
+restaurant_list: Lijst restaurants #Liste des restaurants Quick
+report_in_out: Rapport In en OUT #Rapport des entrées & sorties
+items_solding_canals: Verdeling per verkoops canaal
+hour_by_hour: Rapport Uur/Uur #Rapport Heure par Heure
+margin_food_cost_report: Rapport Foodcost marge #Rapport Marge FoodCost
+add_role: Taak toevoegen #Ajouter un role
+daily_results_report: Dagelijkse resultaten #Résultats Journaliers
+
+deposit_ticket: Bankstorting waardecheques retaurants #Versement banque titres restaurants
+deposit_cash: Bankstorting geld  #Versement banque espèces
+envelope_list: Enveloppen met contanten bekijken #Consultation des enveloppes espèces
+deleted_envelope_list: Raadpleging van verwijderde contantenveloppen #Consultation des enveloppes espèces supprimées
+envelope_ticket_list: Enveloppen restaurantcheques  raadplegen #Consultation des enveloppes titres restaurant
+create_envelope_cash: Enveloppe Cash ingeven #Saisir enveloppe espèce
+create_envelope_restau: Enveloppe restaurantcheque  ingeven #Saisir enveloppe titres restaurant
+report_cashbox_counts_owner: Rapport kassatellingen per verantwoordelijke # Rapport comptage caisse par responsable comptage
+report_cashbox_counts_cashier: Rapport kassatellingen per kassier #Rapport comptage caisse par équipier
+report_cashbox_counts_anomalies: Rapport kassaverschillen #Rapport anomalies caissiers
+cashbox_list: Kassatellingen raadplegen #Consultation des comptages caisses
+
+inventory_list: Lijst inventarissen  #Liste des inventaires
+cahsbox_parameter: Parameters kassatelling #Paramètres Comptage caisse
+day_income: Dagelijkse omzet #Recette journalière
+envelope_entry: Enveloppe ingeven #Saisie Enveloppe
+
+#Report
+report_portion_control: Analyse afwijkingen Portion Control #Analyse des écarts-Portion Contrôle
+discount: Rapport % discount
+#Administration
+labels_config: Benaming Ontvangst-, uitgavebon #Libellés Bon de dépense / Bon de recette
+
+coef_calculate_base: Coefficiënten berekenen #Calcul des coefficients
+show_coeff_pp: Coefficiënten raadplegen #Consulter les coefficients
+product_sold_list: Lijst verkoopsitems #Liste des items de vente
+labels_config_expense: configuratie benamingen uitgaven #Configuration libellé depenses
+labels_config_recipe: configuratie benamingen ontvangsten #Configuration libellé bons de recette
+
+verify_opened_table: Controle open tafels #Vérification des tables ouvertes
+
+optikitchen_calcul: berekening coefficiënten voor export Optikitchen #Calcul des coefficients pour l'export OptiKitchen
+optikitchen_parameters: Parametrage Optikitchen #Paramétrage OptiKitchen
+opti_consultation: Raadplegen Coefficiënten Optiktichen #Consultation des coefficients Optikitchen
+edit_optikitchen: Wijzigen Coefficiënten Optikitchen #Modifier les coefficients OptiKitchen
+export_optikitchen: Exporteren coefficiënten Optikitchen #Exporter les coefficients vers OptiKitchen
+
+create_workflow: Creëren procedure #Créer une procédure
+delete_procedure: Schrappen procedure #Supprimer une procédure
+bud_prev_edit: Wijzigen voorziene budget #Modification budget prévisionnel
+
+attribute_role: Functie toedienen #Attribuer une fonction
+default_password: Default wachwoord bepalen #Définir un mot de passe par défaut
+synchronize_users: Gebruikers synchroniseren #Synchronisier les utilisateurs
+planning: Planning leveranciers beheren #Gérer planning des fournisseurs
+
+ccomparable_days_list: Vergelijkbare dagen #Jours comparables
+comparable_days_modify: details van een dag wijzigen #Modifier les détails d'une journée
+
+add_inventory_sheet_model: Template Inventarisblad  toevoegen #Ajout modèle de feuille d'inventaire
+edit_inventory_sheet_model: Template inventarisblad bijwerken #Edition modèle de feuille d'inventaire
+delete_inventory_sheet_model: Template inventarisblad schrappen #Suppression modèle de feuille d'inventaire
+
+add_loss_sheet_article:  Template blad verlies inv.items toevoegen #Ajout modèle de feuille de perte item inventaire
+edit_loss_sheet_article: Template blad verlies inv.items bijwerken #Edition modèle de feuille de perte item inventaire
+delete_loss_sheet_article: Template blad verlies inv.items schrappen #Suppression modèle de feuille de perte item inventaire
+
+add_loss_sheet_pf: Template blad verlies verk.items toevoegen #Ajout modèle de feuille de perte item de vente
+edit_loss_sheet_pf: Template blad verlies verk.items bijwerken #Edition modèle de feuille de perte item de vente
+delete_loss_sheet_pf: Template blad verlies verk.items schrappen #Suppression modèle de feuille de perte item de vente
+
+#Todo end
+previous_day_loss_inv: Pertes de la veille item inventaire
+previous_day_loss_vtes: Pertes de la veille item en vente
+
+money_booking: Creatie bestelling kleingeld #Création d'une commande de monnaie
+mailing_money_booking_details : Bestelling kleingeld doorsturen #Envoi du mail de la commande de monnaie
+export_money_booking_details : Bestellingen kleingeld exporteren #Export des commandes de monnaie
+details_money_booking: Details bestelling kleingeld tonen #Afficher les détails d'une commande de monnaie
+money_booking_listing: Lijst bestellingen kleingeld tonen #Afficher la liste des commandes de monnaie
+
+
+################### Actions supervisions
+create_order: Bestelling aanmaken #Création d'une commande
+order_list: Lopende bestellingen #Liste des commandes en cours
+show_planning: Planning bestellingen #Planning des commandes
+help_order: Hulp bij bestellen #Aide à la commande
+create_delivery: Bestelling invoeren #Saisie d'une livraison
+delivery_list: Lijst Leveringen #Liste des livraisons
+transfer_in: Transfert IN invoeren #Saisie d'un Transfert In
+transfer_out: Transfert UIT invoeren #Saisie d'un Transfert Out
+transfer_list: Lijst transferts #Listes des transferts
+create_return: Een retour invoeren #Saisie d'un retour
+return_list: Lijst retours #Liste des retours
+edition_inventory_sheet: Inventarisblad bijwerken #Edition feuille d'inventaire
+manage_inventory_sheet: Beheer inventarisbladen #Gestion feuilles d'inventaire
+saisie_inventory: Inventaris invoeren #Saisie d'inventaire
+ca_prev_list: Voorziene Budgetten #Budgets Prévisionnels
+planning_suppliers: Planning leveranciers #Planning des fournisseurs
+index_food_cost_synthetic: Rapport overzicht FoodCost #Rapport FoodCost Synthétique
+control_stock_report: Rapport Stockcontrole #Rapport contrôle du Stock
+index_workflows: Procedurebeheer #Gestion des procédures
+administrative_closing: Administratieve afsluiting #Clôture Adminstrative
+
+#Financial
+chest_count: Telling koffer #Comptage Coffre
+chest_list: Lijst koffertelling #Liste comptage coffre
+list_recipe_tickets: Lijst van Ontvangstbon #Liste des bons de recette
+create_recipe_tickets: Een Ontvansgtbon invoeren #Saisir un bon de recette
+cashbox_counting: Kassatelling #Comptage d'une Caisse
+
+#Merchandise
+loss_entry_article: Verlies invoeren - I. Inventaris #Saisie Pertes - I. Inventaires
+loss_entry_pf: Verlies invoeren - I. Verkoop #Saisie Pertes - I. Ventes
+loss_sheet_article: Lijst Verliezen Inv. Items #Liste des feuille des perte articles
+loss_sheet_pf: Lijst verliezen Verk. Items #Liste des feuills de perte produits finis
+loss_sheet: Lijst verliezen #Liste des feuilles des pertes
+previous_day_loss: Verliezen D-1 #Pertes de la veille
+api_save_inventory_sheet: Nieuw Inventarisblad creëren #Création d'une nouvelle feuille d'inventaire
+
+withdrawal_entry: Voorafname invoeren #Saisir un prélèvement
+staff_list: Personeelslijst #Liste du personnel
+withdrawal_list: Lijst van Voorafname #Liste des prélèvements
+expense_entry: Een uitgave invoeren #Saisir une dépense
+expenses_list: Uitgavenlijst #Liste des dépenses
+index_config_role: Rechtenbeheer #Gestion des droits
+suppliers_list: Leverancierslijst #Liste des fournisseurs
+inventory_item_list: Lijst van inventaris items #Liste des items inventaire
+report_inventory_loss: Rapport van verlies items inventaris #Rapport Pertes Items Inventaire
+report_sold_loss: Rapport van verlies items verkoop #Rapport Pertes Items de Vente
+restaurant_list: Lijst van Quick restaurants #Liste des restaurants Quick
+report_in_out: Rapport van Ontvangst en Verzending #Rapport des entrées & sorties
+hour_by_hour: Rapport per uur #Rapport Heure par Heure
+margin_food_cost_report: FoodCost marge Rapport #Rapport Marge FoodCost
+add_role: Rol toevoegen #Ajouter un role
+daily_results_report: Dagelijkse resultaten #Résultats Journaliers
+
+deposit_ticket: Bankstorting waardecheques restaurants #Versement banque titres restaurants
+deposit_cash: Bankstorting geld  #Versement banque espèces
+envelope_list: Enveloppen met geld bekijken #Consultation des enveloppes espèces
+deleted_envelope_list: Enveloppen met geld bekijken #Consultation des enveloppes espèces
+envelope_ticket_list: Enveloppen met waardecheques restaurant bekijken #Consultation des enveloppes titres restaurant
+create_envelope_cash: Een envelop met geld invoeren #Saisir enveloppe espèce
+create_envelope_restau: Invoeren envelop met waardecheques restaurant #Saisir enveloppe titres restaurant
+report_cashbox_counts_owner: Rapport kassatelling per verantwoordelijke persoon kassa # Rapport comptage caisse par responsable comptage
+report_cashbox_counts_cashier: Rapport kassatelling per teamlid #Rapport comptage caisse par équipier
+report_cashbox_counts_anomalies: Rapport afwijkingen per kassier #Rapport anomalies caissiers
+cashbox_list: kassatelling bekijken #Consultation des comptages caisses
+
+inventory_list: Lijst inventarissen  #Liste des inventaires
+cahsbox_parameter: Parameters kassatelling #Paramètres Comptage caisse
+day_income: Dagelijkse omzet #Recette journalière
+envelope_entry: Enveloppe ingeven #Saisie Enveloppe
+
+#Report
+report_portion_control: Analyse van verschillen - Portiecontrole #Analyse des écarts-Portion Contrôle
+#Administration
+labels_config: Labels Uitgavenbon / Ontvangstbon #Libellés Bon de dépense / Bon de recette
+
+coef_calculate_base: Berekening van coëfficiënten #Calcul des coefficients
+show_coeff_pp: De coëfficiënten opvragen #Consulter les coefficients
+product_sold_list: Lijst van verkoopitems #Liste des items de vente
+labels_config_expense: Configuratie label uitgaven #Configuration libellé depenses
+labels_config_recipe: Configuratie label Ontvangstbon #Configuration libellé bons de recette
+
+verify_opened_table: Verificatie open tafels #Vérification des tables ouvertes
+
+categories_list: Beheer van categorieën #Gestion des catégories
+groups_list: Beheer van groepen #Gestion des groupes
+supervision_inventory_item_list: Beheer van inventaris items #Gestion des items inventaire
+supervision_product_sold_list: Lijst verkoopsitems #Liste des items de vente
+product_sold_save: Toevoegen/Wijzigen van een verkoop item #Ajout/Modification d'un items de vente
+supervision_restaurants_list: Beheer van de lijst van restaurants #Gestion de la liste  des restaurants
+restaurant_list_super: Toestand van restaurants #Etat des restaurants
+supervision_suppliers_list: Leverancierslijst #Liste des fournisseurs
+users_list: Lijst van gebruikers #Liste des utilisateurs
+add_role: Beheer van rollen #Gestion des roles
+supervision_control_stock_report: Rapport voorraadcontrole #Rapport controle du Stock
+supervision_daily_results_report: Rapport van de dagelijkse resultaten #Rapport Résultats journaliers
+supervision_hour_by_hour: Rapport uur/uur #Rapport heure par heure
+supervision_margin_food_cost_report: Rapport marge FoodCost #Rapport marge FoodCost
+supervision_index_food_cost_synthetic: Rapport Synthetic FoodCost #Rapport Synthétique FoodCost
+config_right_restaurant: Beheer van rechten restaurant #Gestion des droits restaurant
+config_right_central: Beheer van rechten centrale #Gestion des droits central
+
+optikitchen_calcul: berekening coefficiënten voor export Optikitchen #Calcul des coefficients pour l'export OptiKitchen
+optikitchen_parameters: Instellingen Optikitchen #Paramétrage OptiKitchen
+
+opti_consultation: Raadplegen Coefficiënten Optiktichen #Consultation des coefficients Optikitchen
+edit_optikitchen: Wijzigen Coefficiënten Optikitchen #Modifier les coefficients OptiKitchen
+export_optikitchen: Exporteren coefficiënten Optikitchen #Exporter les coefficients vers OptiKitchen
+
+create_workflow: Creëren procedure #Créer une procédure
+delete_procedure: Schrappen procedure #Supprimer une procédure
+bud_prev_edit: Wijzigen voorziene budget #Modification budget prévisionnel
+
+attribute_role: Functie toedienen #Attribuer une fonction
+default_password: Default wachwoord bepalen #Définir un mot de passe par défaut
+change_email: Verander het e-mailadres #Changer l'adresse email
+synchronize_users: Gebruikers synchroniseren #Synchronisier les utilisateurs
+planning: Planning leveranciers beheren #Gérer planning des fournisseurs
+
+comparable_days_list: vergelijkbare dagen #Jours comparables
+comparable_days_modify: details van een dag wijzigen #Modifier les détails d'une journée
+
+add_inventory_sheet_model: Template Inventarisblad  toevoegen #Ajout modèle de feuille d'inventaire
+edit_inventory_sheet_model: Template inventarisblad bijwerken #Edition modèle de feuille d'inventaire
+delete_inventory_sheet_model: Template inventarisblad schrappen #Suppression modèle de feuille d'inventaire
+
+add_loss_sheet_article:  Template blad verlies inv.items toevoegen #Ajout modèle de feuille de perte item inventaire
+edit_loss_sheet_article: Template blad verlies inv.items bijwerken #Edition modèle de feuille de perte item inventaire
+delete_loss_sheet_article: Template blad verlies inv.items schrappen #Suppression modèle de feuille de perte item inventaire
+
+add_loss_sheet_pf: Template blad verlies verk.items toevoegen #Ajout modèle de feuille de perte item de vente
+edit_loss_sheet_pf: Template blad verlies verk.items bijwerken #Edition modèle de feuille de perte item de vente
+delete_loss_sheet_pf: Template blad verlies verk.items schrappen #Suppression modèle de feuille de perte item de vente
+historic_broadcast_all_restaurants: Historiek broadcasts naar de restaurants#Historique des broadcasts vers les restaurants
+supervision_details: Historiek synchronisatie voor één restaurant #Historique de synchronisation pour un restaurant
+
+previous_day_loss_inv: Verliezen van de vorige dag inventarisitem #Pertes de la veille item inventaire
+previous_day_loss_vtes: Verliezen van de vorige dag verkoopsitem #Pertes de la veille item en vente
+
+api_delete_envelope : Envelop Verwijdering #Suppression enveloppe
+takeout_report : Rapport TakeOut
+
+supervision_foodcost_report: Rapport FoodCost

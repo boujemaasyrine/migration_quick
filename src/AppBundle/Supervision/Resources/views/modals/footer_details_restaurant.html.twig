@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col col-md-12" style="text-align: right">
+        <a href="{{ path('restaurants_list', {'restaurant': restaurant.id}) }}"
+           class="btn btn-modify btn-icon btn-edit-restaurant">
+            {{ 'btn.edit' | trans }}
+        </a>
+
+       <!-- <button data-restaurant-id="{{ restaurant.id }}" type="button"
+                class="btn btn-delete btn-icon btn-remove-restaurant"
+                style="margin-left: 10px; margin-right: 10px;">
+            {{ 'btn.delete' | trans }}
+        </button>-->
+        <button style="margin-left: 10px; margin-right: 10px;" type="button" class="btn btn-cancel" data-dismiss="modal">{{ 'btn.close' | trans }}</button>
+    </div>
+</div>
+
+
+{#<div class="row">#}
+    {#<div class="col-modal col-sm-3 col-sm-offset-6">#}
+        {#<button data-restaurant-id="{{ restaurant.id }}" type="button" class="btn btn-block green btn-edit" data-dismiss="modal"><span class="glyphicon glyphicon-edit"></span>{{ 'btn.edit' | trans }}</button>#}
+    {#</div>#}
+    {#<div class="col-modal col-sm-3">#}
+        {#<button data-restaurant-id="{{ restaurant.id }}" type="button" class="btn btn-block red btn-remove"><span class="glyphicon glyphicon-remove"></span>{{ 'btn.delete' | trans }}</button>#}
+    {#</div>#}
+{#</div>#}

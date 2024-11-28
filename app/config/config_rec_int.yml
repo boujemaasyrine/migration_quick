@@ -1,0 +1,14 @@
+imports:
+    - { resource: config_prod.yml }
+
+swiftmailer:
+    delivery_address:
+        - amira.soltani@talan.tn
+
+parameters:
+    router.request_context.scheme: http
+    router.request_context.base_url: "http://10.4.1.234/quick.bo.recette.interne"
+    wynd.url: "http://quickpprod.wynd.eu/api/orders/get_all/quick"
+    wynd.api.user: "quick"
+    wynd.api.secretKey: "2f6d70d20d23e782c8fc4637934090bda49eca80"
+    asynch_postfix: ' > /dev/null &'

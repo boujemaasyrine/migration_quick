@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col col-md-12" style="text-align: right">
+        <a href="{{ path('users_list', {'user' : user.id}) }}">
+            <button type="button" class="btn btn-modify btn-icon" style="margin-left: 10px;">
+                {{ 'btn.edit' | trans([],'supervision') }}
+            </button>
+        </a>
+        <button type="button" class="btn btn-delete delete-user btn-icon" data-user="{{ user.id }}"
+                data-username="{{ user.username }}"
+                style="margin-left: 10px;">{{ 'btn.delete' | trans([],'supervision') }}</button>
+        <button type="button" class="btn btn-cancel" data-dismiss="modal"
+                style="margin-left: 10px;">{{ 'btn.close' | trans([],'supervision') }}</button>
+    </div>
+</div>

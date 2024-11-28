@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  prod:
+    image: "${ACCOUNT_NAME}/${WORKSPACE}bo:${TAG}"
+    build:
+      context: .
+      args:
+      - WORKSPACE=quick
+    environment:
+      - SYMFONY_ENV=prod
+      - SYMFONY_DEBUG=0
+    ports:
+      - 8080:80
+    restart: unless-stopped

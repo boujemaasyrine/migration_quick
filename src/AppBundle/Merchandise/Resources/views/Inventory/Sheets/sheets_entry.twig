@@ -1,0 +1,33 @@
+{% extends '@Merchandise/index_stock.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bundles/app/css/Merchandise/Inventory/inventory.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/Merchandise/sheet_model.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/datatables/Scroller-1.5.0/css/scroller.bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/datatables/RowReorder-1.2.4/css/rowReorder.bootstrap.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var sheetsType = '{{ sheetType }}';
+    </script>
+    {{ parent() }}
+    <script src="{{ asset('plugins/datatables/Scroller-1.5.0/js/scroller.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables/RowReorder-1.2.4/js/rowReorder.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('src/js/Merchandise/Inventory/sheet.js') }}"></script>
+    <script src="{{ asset('src/js/Merchandise/SheetModel/sheet.js') }}"></script>
+{% endblock %}
+{% block base_title %}
+    {{ 'inventory.title.management'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'inventory_management.inventory_management'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <div class="panel panel-default">
+        {{ include('@Merchandise/Inventory/Sheets/parts/form_sheet_model.html.twig') }}
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h4><b>{{ 'cashbox_counts_anomalies.title'|trans }}</b></h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="row" style="margin-top: 15px">
+        <div class="col-xs-2 input-field">
+            <label for="startDate">{{ 'cashbox_counts_anomalies.filter_labels.from'|trans }} </label>
+            <span class="text-muted">
+            {{ reportResult.startDate|date('d/m/Y') }}
+        </span>
+        </div>
+        <div class="col-xs-2 input-field">
+            <label for="endDate">{{ 'cashbox_counts_anomalies.filter_labels.to'|trans }} </label>
+            <span class="text-muted">
+            {{ reportResult.endDate|date('d/m/Y') }}
+        </span>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/CashboxCounts/CountsAnomalies/cashbox_count_anomalies_report_body.html.twig') }}
+{% endblock body %}

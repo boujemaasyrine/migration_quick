@@ -1,0 +1,39 @@
+<tr class="total-week">
+    <td>Total</td>
+    <td>{{ week.ca_brut_ttc|float_format }}</td>
+    <td>{{ week.ca_net_ht|float_format }}</td>
+    <td>{{ week.ventes_pr|float_format }}</td>
+    <td>{{ week.fc_mix|float_format }}</td>
+
+    <!-- Theorique -->
+    <td>{{ week.fc_ideal|float_format }}</td>
+    <td>{{ week.pertes_i_inv|float_format }}</td>
+    <td>{{ week.pertes_inv_pourcentage|float_format }}</td>
+    <td>{{ week.pertes_i_vtes|float_format }}</td>
+    <td>{{ week.pertes_vtes_pourcentage|float_format }}</td>
+    <td>{{ week.pertes_connues|float_format }}</td>
+    <td>{{ week.pertes_connues_pourcentage|float_format }}</td>
+    <td>{{ week.pertes_inconnues|float_format }}</td>
+    <td>{{ week.pertes_inconnues_pourcentage|float_format }}</td>
+    <td>{{ week.pertes_totales|float_format }}</td>
+    <td>{{ week.pertes_totales_pourcentage|float_format }}</td>
+    <td>{{ week.fc_theo|float_format }}</td>
+    <td>{{ week.marge_theo|float_format }}</td>
+
+    <!-- Real -->
+    <td>{{ week.initialStock|float_format }}</td>
+    <td>{{ week.entree|float_format }}</td>
+    <td>{{ week.sortie|float_format }}</td>
+    <td>{{ week.finalStock|float_format }}</td>
+    <td>{{ week.conso_real|float_format }}</td>
+    <td>{{ week.fc_real|float_format }}</td>
+    <td>{{ week.marge_real|float_format }}</td>
+
+    <!-- Marge -->
+    <td>{{ week.br|float_format }}</td>
+    <td>{{ week.br_pourcentage|float_format }}</td>
+    <td>{{ week.pr_pub|float_format }}</td>
+    <td>{{ week.discount_pourcentage|float_format }}</td>
+    <td>{{ week.fc_real_net|float_format }}</td>
+    <td>{{ week.marge_brute|float_format }}</td>
+</tr>

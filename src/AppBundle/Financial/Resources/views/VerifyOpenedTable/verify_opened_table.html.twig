@@ -1,0 +1,20 @@
+{% extends "@Financial/default.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'financial';
+    </script>
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="alert alert-info">
+                {{ 'verify_opened_table'|trans() }}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

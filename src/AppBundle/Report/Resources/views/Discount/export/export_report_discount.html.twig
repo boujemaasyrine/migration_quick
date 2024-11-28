@@ -1,0 +1,82 @@
+{% extends('@Report/Discount/base_exports_report.html.twig') %}
+
+{% block reportTitle %}
+    <h4> {{ 'discount_report.discount_report' |trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-2 input-field">
+        <label for="startDate">{{ 'keyword.from'|trans }} :</label>
+        <span class="text-muted">
+            {{ data.startDate }}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="endDate">{{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {{ data.endDate }}
+        </span>
+    </div>
+
+    <div class="col-xs-4">
+        <label for="selection">{{ 'keyword.from'|trans }}: </label>
+        <span class="text-muted">
+
+            {%  if data.startHour is defined and not null %}
+               {{ data.startHour }} H
+            {%  else %}
+                --
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'discount_report.to'|trans }}: </label>
+        <span class="text-muted">
+            {%  if data.startHour is defined and not null %}
+               {{ data.endHour }} H
+            {%  else %}
+                --
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'label.member' | trans }}: </label>
+        <span class="text-muted">
+            {%  if data.cashier is defined and not null %}
+                       {{ data.cashier }}
+            {%  else %}
+                --
+            {% endif %}
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'discount_report.discount_min' | trans }}: </label>
+        <span class="text-muted">
+            {%  if data.discountMin is defined and not null %}
+               {{ data.discountMin }}
+            {%  else %}
+                --
+            {% endif %}
+
+        </span>
+    </div>
+
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'discount_report.discount_max' | trans }}: </label>
+        <span class="text-muted">
+            {%  if data.discountMax is defined and not null %}
+               {{ data.discountMax }}
+            {%  else %}
+                --
+            {% endif %}
+
+        </span>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/Discount/report_discount.html.twig') }}
+{% endblock body %}

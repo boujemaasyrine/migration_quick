@@ -1,0 +1,85 @@
+{% extends '@Merchandise/index_supplying.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        input[type=checkbox] {
+            visibility: visible !important;
+            position: inherit !important;
+            left: auto !important;
+            width: 40px;
+            height: 18px;
+        }
+    </style>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'buying_management.coef.base'|trans([],'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'buying_management.command_management'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Coeff/coeff.js') }}"></script>
+    <script>
+        $(function () {
+            var today = moment();
+            if ($('#coef_base_startDate').length > 0) {
+                var picker1 = $('#coef_base_startDate').pickadate('picker');
+                picker1.set('max', [today.year(), today.month(), today.date()]);
+            }
+            if ($('#coef_base_endDate').length > 0) {
+                var picker2 = $('#coef_base_endDate').pickadate('picker');
+                picker2.set('max', [today.year(), today.month(), today.date()]);
+            }
+        })
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">
+                {{ 'base_calcul'|trans() }}
+            </div>
+        </div>
+        <div class="panel-body">
+
+            {% if locked is defined %}
+                <br><br>
+                <div class="alert alert-info" role="alert">
+                    {{ 'processing_pending'|trans() }}
+                </div>
+            {% else %}
+
+                <div id="form-zone">
+                    {% include '@Merchandise/Coef/base_calcul_form.html.twig' with { 'form' : form } %}
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12" style="padding-top: 20px;">
+                        <label> {{ 'ca_realized_on_period'|trans() }} : </label>
+                        <span style=" font-size: 1.4em; margin-left: 30px;" id="ca-zone">
+                                    {{ form.vars.value.ca|number_format(2,',','') }} &euro;
+                                </span>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: right">
+                        <button type="button" onclick="$('form[name=coef_base]').submit()"
+                                class="btn btn-save">
+                            {{ 'coef_calculate'|trans }} <span class="glyphicon glyphicon-chevron-right"></span>
+                        </button>
+                    </div>
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

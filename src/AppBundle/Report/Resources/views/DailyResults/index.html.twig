@@ -1,0 +1,146 @@
+{% extends('@Report/Revenue/index.html.twig') %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .disabled {
+            opacity: 1 !important;
+            cursor: not-allowed;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset('bundles/app/js/Report/daily_results.js') }}"></script>
+    <script src="{{ asset('src/js/fixHeader.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'report.daily_result.title'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                {{ form_start(form, {'method' : 'POST' ,'action' : path('daily_results_report'), 'attr' : { 'id' : 'dailyResultsFilterForm'} }) }}
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <label class="required">
+                            {{ 'report.period' |trans }}
+                        </label>
+                        <div class="input-group">
+                            {{ form_widget(form.startDate, { "attr": { "class": 'form-control datepicker' } }) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(form.startDate) }}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <label class="required">
+                            {{ 'keyword.to' |trans }}
+                        </label>
+                        <div class="input-group">
+                            {{ form_widget(form.endDate, { "attr": { "class": 'form-control datepicker' } }) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(form.endDate) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <label>
+                            {{ 'report.period_to_compare' |trans }}
+                        </label>
+                        <div class="input-group">
+                            {% if form.vars.form.children.compareStartDate.vars.value == "" %}
+                                {{ form_widget(form.compareStartDate, { "attr": { "class": 'form-control datepicker',
+                                    "disabled" : "disabled" } }) }}
+                            {% else %}
+                                {{ form_widget(form.compareStartDate, { "attr": { "class": 'form-control datepicker'} }) }}
+                            {% endif %}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <label>
+                            {{ 'keyword.to' |trans }}
+                        </label>
+                        <div class="input-group">
+                            {% if form.vars.form.children.compareEndDate.vars.value == "" %}
+                                {{ form_widget(form.compareEndDate, { "attr": { "class": 'form-control datepicker',
+                                    "disabled" : "disabled" } }) }}
+                            {% else %}
+                                {{ form_widget(form.compareEndDate, { "attr": { "class": 'form-control datepicker'} }) }}
+                            {% endif %}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <label>
+                            {{ 'btn.export' |trans }}
+                        </label>
+                        {{ form_widget(form.comment) }}
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(form) }}
+                </div>
+
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-md-12 col-xs-12" style="text-align:right;">
+                        {% if(generated is defined) %}
+                            <button class="btn waves-effect btn-export text-black dropdown-button"
+                                    data-activates='dropdown2'>
+                                <span> {{ 'btn.export'|trans() }} </span>
+                            </button>
+                            <ul id="dropdown2" class="dropdown-content" style="">
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="downloadReport">
+                                        <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                    </a></li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-btn">
+                                        <img src="{{ asset('bundles/app/images/export/csv-128.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_csv'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_csv'|trans() }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-xls">
+                                        <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+
+                        <button type="submit" class="btn waves-effect orange text-black " id="generateReport">
+                            {{ 'btn.generate_report'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    {% if(generated is defined) %}
+        {{ include('@Report/DailyResults/body_report.html.twig') }}
+    {% endif %}
+{% endblock %}

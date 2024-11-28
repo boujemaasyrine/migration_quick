@@ -1,0 +1,10 @@
+{{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'AttributeRoleForm'} }) }}
+<div class="row">
+    <div class="col col-lg-6 col-sm-12 col-md-6 col-xs-12 input-field">
+        {{ form_label(form.role, 'label.role', { 'label_attr': {'class': 'active'} }) }}
+        {{ form_widget(form.role,{ 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_errors(form.role) }}
+    </div>
+</div>
+<div class="hidden">{{ form_rest(form) }}</div>
+{{ form_end(form) }}

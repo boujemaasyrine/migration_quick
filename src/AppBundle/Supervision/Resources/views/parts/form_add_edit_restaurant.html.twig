@@ -1,0 +1,115 @@
+{% if type == 'edit' %}
+    {% set action = path('restaurants_list', {'restaurant' : form.vars.value.id}) %}
+{% else %}
+    {% set action = path('restaurants_list') %}
+{% endif %}
+{{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'AddRestaurantForm', 'action' : action} }) }}
+<div class="row">
+    <div class="col-xs-12">
+        <h4>Informations générales</h4>
+    </div>
+
+    {% if type != 'edit' %}
+        <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+            {{ form_label(form.code) }}
+            {{ form_widget(form.code) }}
+            {{ form_errors(form.code) }}
+        </div>
+    {% endif %}
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+    </div>
+    <div class="col col-sm-6 col-xs-12 col-md-2">
+        {{ form_label(form.country) }}
+        {{ form_widget(form.country, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.country) }}
+    </div>
+    <div class="col col-sm-6 col-xs-12 col-md-2">
+        {{ form_label(form.active) }}
+        {{ form_widget(form.active) }}
+        {{ form_errors(form.active) }}
+    </div>
+
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.address) }}
+        {{ form_widget(form.address) }}
+        {{ form_errors(form.address) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.phone) }}
+        {{ form_widget(form.phone) }}
+        {{ form_errors(form.phone) }}
+    </div>
+    <div class="col col-md-2 col-sm-6 col-xs-12 ">
+        {{ form_label(form.type, 'label.type', { 'label_attr': {'style': 'position: initial'} }) }}
+        {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.type) }}
+    </div>
+
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.manager) }}
+        {{ form_widget(form.manager) }}
+        {{ form_errors(form.manager) }}
+    </div>
+        <!--Gestion des recettes -->
+    <div class="col col-md-2 col-sm-6 col-md-6 col-xs-12" style="margin-top: 30px">
+        {{ form_widget(form.reusable) }}
+        {{ form_label(form.reusable) }}
+        {{ form_errors(form.reusable) }}
+    </div>
+
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.managerEmail) }}
+        {{ form_widget(form.managerEmail) }}
+        {{ form_errors(form.managerEmail) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.managerPhone) }}
+        {{ form_widget(form.managerPhone) }}
+        {{ form_errors(form.managerPhone) }}
+    </div>
+
+    <div class="col col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.suppliers, 'restaurant.list.supplier_list', { 'label_attr': {'style': 'position: initial'} }) }}
+        {{ form_widget(form.suppliers, { 'attr': {'class': 'selectize'}} ) }}
+        {{ form_errors(form.suppliers) }}
+    </div>
+
+
+</div>
+
+{% if type == 'plus' %}
+        {% include('@Supervision/parts/edit_restaurant.html.twig') %}
+{% else %}
+        {% if form.active.vars.value == false %}
+            <div   class="row" style="display: none">
+            </div>
+        {% endif %}
+ {% endif %}
+{% if type == 'plus' %}
+    {% set btnLabel = 'add' %}
+{% elseif type == 'edit' %}
+    {% set btnLabel = 'modify' %}
+{% endif %}
+
+<div class="row">
+    <div class="col col-lg-12 col-sm-12 col-md-12 col-xs-12" style="text-align: right">
+        {% if type == 'edit' %}
+            <button class="btn  btn-cancel" type="button" id="btn-cancel-edit">
+                {{ 'btn.cancel' | trans }}
+            </button>
+        {% endif %}
+        <button class="btn btn-{{ btnLabel }} btn-icon" type="submit" id="{{ type }}-restaurant-button">
+            {{ ( 'btn.' ~ btnLabel ) | trans }}
+        </button>
+    </div>
+</div>
+
+{{ form_end(form) }}

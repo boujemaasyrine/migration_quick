@@ -1,0 +1,1 @@
+$(document).ready(function(){function n(){null===window.location.href.match(/login/g)&&(o++,o>=window.idle_time&&(window.location=Routing.generate("logout")))}var o=0;setInterval(n,1e3);$(this).mousemove(function(n){o=0}),$(this).keypress(function(n){o=0})});

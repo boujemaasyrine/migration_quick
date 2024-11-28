@@ -1,0 +1,73 @@
+<div id="tirelireContainer" class="container-fluid">
+    <div id="" class="row">
+        <div class="col-xs-12">
+            <h5>{{ 'chest.envelope_cash_not_versed'|trans }}</h5>
+            <div class="col-xs-3">
+                <div class="panel panel-default" style="margin: 0;">
+                    <div class="panel panel-heading"
+                         style="margin: 0;">{{ 'chest.counting.tirelire_cashbox'|trans }}</div>
+                    <div class="panel panel-body" style="margin: 0;">
+                <span class="text-muted bold bank_card_amount"> {{ form.vars.value.tirelire.calculateTotalCashboxCashEnveloppes|number_format(2, ',', '') }}
+                    <i class="glyphicon glyphicon-euro"></i>
+                </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+                <div class="panel panel-default" style="margin: 0;">
+                    <div class="panel panel-heading"
+                         style="margin: 0;">{{ 'chest.counting.tirelire_withdrawal'|trans }}</div>
+                    <div class="panel panel-body" style="margin: 0;">
+            <span class="text-muted bold bank_card_amount"> {{ form.vars.value.tirelire.calculateTotalWithdrawalCashEnveloppes|number_format(2, ',', '') }}
+                <i class="glyphicon glyphicon-euro"></i>
+            </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="panel panel-default" style="margin: 0;">
+                    <div class="panel panel-heading"
+                         style="margin: 0;">{{ 'chest.counting.tirelire_exchange_fund'|trans }}</div>
+                    <div class="panel panel-body" style="margin: 0;">
+            <span class="text-muted bold bank_card_amount"> {{ form.vars.value.tirelire.calculateTotalExchangeFundCashEnveloppes|number_format(2, ',', '') }}
+                <i class="glyphicon glyphicon-euro"></i>
+            </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="panel panel-default" style="margin: 0;">
+                    <div class="panel panel-heading"
+                         style="margin: 0;">{{ 'chest.counting.tirelire_small_chest'|trans }}</div>
+                    <div class="panel panel-body" style="margin: 0;">
+            <span class="text-muted bold bank_card_amount"> {{ form.vars.value.tirelire.calculateTotalSmallChestCashEnveloppes|number_format(2, ',', '') }}
+                <i class="glyphicon glyphicon-euro"></i>
+            </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-12">
+            <h5>{{ 'chest.envelope_titre_not_versed'|trans }}</h5>
+            {% if(form.vars.value.tirelire.getNotVersedTrIdpayments|length > 0) %}
+                {% for idPayment in form.vars.value.tirelire.getNotVersedTrIdpayments %}
+                    <div class="col-xs-3">
+                        <div class="panel panel-default" style="margin: 0;">
+                            <div class="panel panel-heading"
+                                 style="margin: 0;">{{ parameter_service.getTicketRestaurantLabel(idPayment) }}</div>
+                            <div class="panel panel-body" style="margin: 0;">
+                            <span class="text-muted bold">
+                                {{ form.vars.value.tirelire.calculateTotalTrNotVersedEnveloppes(idPayment)|number_format(2, ',', '') }}
+                                <i class="glyphicon glyphicon-euro"></i>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
+</div>

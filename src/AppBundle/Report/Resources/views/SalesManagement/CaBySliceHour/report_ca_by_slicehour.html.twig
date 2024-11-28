@@ -1,0 +1,53 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h2>
+        {{ 'report.sales.slice_schedule.title' | trans }}
+    </h2>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="row">
+        <div class="col col-lg-4 col-md-4 col-xs-6">
+            <label>{{ 'report.sales.slice_schedule.ref_date' | trans }}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-lg-1 col-md-1 col-xs-3">
+            <label >
+                Date 1:
+            </label>
+            {{ filter.date1|date('d-m-Y') }}
+                <br><b style="margin-left: 50px;">{{ result.date0[24] }} &euro;</b>
+        </div>
+        <div class="col col-lg-1 col-md-1 col-xs-3">
+            <label >
+                Date 2:
+            </label>
+                {{ filter.date2|date('d-m-Y') }}
+                <br><b style="margin-left: 50px;">{{ result.date1[24] }} &euro;</b>
+        </div>
+        <div class="col col-lg-1 col-md-1 col-xs-3">
+            <label >
+                Date 3:
+            </label>
+                {{ filter.date3|date('d-m-Y') }}
+                <br><b style="margin-left: 50px;">{{ result.date2[24] }} &euro;</b>
+        </div>
+        <div class="col col-lg-1 col-md-1 col-xs-3">
+            <label>
+                Date 4:
+            </label>
+                {{ filter.date4|date('d-m-Y') }}
+                <br><b style="margin-left: 50px;">{{ result.date3[24] }} &euro;</b>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {% if scheduleType == 0 %}
+        {{ include('@Report/SalesManagement/CaBySliceHour/body_report_ca_by_slicehour_pdf.html.twig', {'caType': caType}) }}
+    {% else %}
+        {{ include('@Report/SalesManagement/CaBySliceHour/body_report_half_slicehour_pdf.html.twig', {'scheduleType' : scheduleType, 'caType' : caType}) }}
+    {% endif %}
+{% endblock %}

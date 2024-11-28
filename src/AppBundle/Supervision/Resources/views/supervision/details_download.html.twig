@@ -1,0 +1,85 @@
+<div class="download-filter-zone filter-zone">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+        </div>
+        <div class="panel-body" style="padding-top: 5px;">
+            <form id="download-filter-zone">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <label> {{ 'label.type'|trans([], 'supervision') }} </label>
+                        <select name="download-type" class="form-control" id="download-type">
+                            <option value=""> {{ 'label.type'|trans([], 'supervision') }} </option>
+                            {% for t in downloadTypes %}
+                                <option value="{{ t }}">{{ t|trans({},'synchro_msg') }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label>{{ 'date_synchro'|trans() }}</label>
+                        <div class="input-group">
+                            <input name="date-synchro" placeholder="{{ 'date_synchro'|trans() }}" type="text"
+                                   class="form-control datepicker" id="download-date">
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label>{{ 'status_label'|trans() }}</label>
+                        <select name="status" class="form-control" id="download-status">
+                            <option value=""> {{ 'status_label'|trans() }} </option>
+                            <option value="pending">{{ 'pending'|trans({},'synchro_msg') }}</option>
+                            <option value="executed">{{ 'executed'|trans({},'synchro_msg') }}</option>
+                            {#<option value="executed_success">{{ 'executed_success'|trans({},'synchro_msg') }}</option>
+                            <option value="executed_fail">{{ 'executed_fail'|trans({},'synchro_msg') }}</option>#}
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<table id="download-table" class="table table-hover table-striped table-bordered"
+       style="width: 100%;">
+    <thead>
+    <tr>
+        <th> {{ 'date_synchro'|trans() }} </th>
+        <th> {{ 'status_label'|trans() }} </th>
+        <th> {{ 'label.type'|trans() }} </th>
+        <th> {{ 'keywords.details'|trans([], 'supervision') }} </th>
+    </tr>
+    </thead>
+    <tbody>
+    {#{% for r in detailsDownload %}#}
+    {#<tr date="{{ r.createdAtInCentral|date('d/m/Y') }}" status="{{ r.status }}" cmd='{{ r.cmd }}'>#}
+    {#<td  >{{ r.createdAtInCentral|date('d/m/Y H:i:s') }}</td>#}
+    {#<td >#}
+    {#<div class="status {{ r.status }}">#}
+    {#{{ r.status|trans({},'synchro_msg') }}#}
+    {#</div>#}
+    {#</td>#}
+    {#<td  >{{ r.cmd|trans({},'synchro_msg') }}</td>#}
+    {#<td>#}
+    {#<div class="row">#}
+    {#&#123;&#35;<div class="col-xs-3">&#35;&#125;#}
+    {#&#123;&#35;<button class="btn details-synchro-btn btn-view btn-icon btn-xs">Afficher les détails</button>&#35;&#125;#}
+    {#&#123;&#35;</div>&#35;&#125;#}
+    {#<div class="col-xs-8">#}
+    {#<div class="details-synchro">#}
+    {#{% if r.params != null %}#}
+    {#{% if r.params is iterable %}#}
+    {#{% for i in r.params|keys %}#}
+    {#{{ r.params[i]|paramBroadcast(r,i) }}<br>#}
+    {#{% endfor %}#}
+    {#{% else %}#}
+    {#{{ r.params }}#}
+    {#{% endif %}#}
+    {#{% endif %}#}
+
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</td>#}
+    {#</tr>#}
+    {#{% endfor %}#}
+    </tbody>
+</table>

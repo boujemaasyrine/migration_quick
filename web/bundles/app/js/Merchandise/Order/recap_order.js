@@ -1,0 +1,17 @@
+/**
+ * Created by mchrif on 10/02/2016.
+ */
+
+$(function () {
+    shortcutController.addSimple(KEY_ESCAPE, function () {
+        alert('ESC pressed');
+    });
+
+    shortcutController.addSimple(KEY_F8, function () {
+        alert('F8 pressed');
+    });
+
+    shortcutController.addCtrlShift(KEY_ADD, function () {
+        alert('CTRL SHIFT + pressed');
+    });
+});

@@ -1,0 +1,87 @@
+{% extends ':default:index.html.twig' %}
+{% block base_title %}{{ 'profile.title'|trans }}{% endblock %}
+{% block base_subtitle %}&nbsp;{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-lg-4 col-md-8 col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">{{ 'profile.details'|trans }}</div>
+                </div>
+                <div class="panel-body" style="padding-top: 30px">
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <b>{{ 'user.last_name' | trans }}:</b>
+                            {{ user.firstName ~ ' ' ~ user.lastName }}
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <b>{{ 'user.username' | trans }}:</b>
+                            {{ user.username }}
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <b>{{ 'label.mail' | trans }}: </b>
+                            {{ user.email }}
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <b>{{ 'label.role' | trans }}: </b>
+                            {% for role in user.employeeRoles %}
+                                {% if role.label != 'ROLE_EMPLOYEE' %}{{ role.textLabel }}{% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title"> {{ 'language.change'|trans }}</div>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_start(form_language) }}
+                        {{ form_rest(form_language) }}
+                        <button class="btn btn-validate btn-icon pull-right">{{ 'btn.validate'|trans }}</button>
+                        {{ form_end(form_language) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title"> {{ 'staff.list.change_email'|trans }}</div>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_start(form_email) }}
+                        {{ form_rest(form_email) }}
+                        {{ form_errors(form_email) }}
+                        <button class="btn btn-validate btn-icon pull-right">{{ 'btn.validate'|trans }}</button>
+                        {{ form_end(form_email) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title"> {{ 'profile.change_password.title'|trans }}</div>
+                </div>
+                <div class="panel-body">
+                    {{ form_start(form_password) }}
+                    {{ form_rest(form_password) }}
+                    <button class="btn btn-validate btn-icon pull-right">{{ 'btn.validate'|trans }}</button>
+                    {{ form_end(form_password) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+    {% endblock %}

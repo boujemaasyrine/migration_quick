@@ -1,0 +1,30 @@
+{% block sheet_model_line_widget %}
+    {% spaceless %}
+        {% if form.vars.value != null %}
+            <tr class="line" style="cursor: all-scroll;">
+                <td class="draggable">
+                    {{ form_widget(form.id) }}
+                    <span class="product_id">{{ form.vars.data.product.codePlu }}</span>
+                    {{ form_widget(form.product) }}
+                </td>
+                <td class="draggable">
+                    <span class="product_name">{{ form.vars.data.product.name }}</span>
+                </td>
+                <td class="actions-btn ">
+                    <button type='button'
+                            class='small-btn btn btn-remove btnRemoveSheetModelLine waves-effect waves-light red darken-5'  data-product-id="{{ form.vars.data.product.id }}">
+						<span style="color: white;"
+                              class="glyphicon glyphicon-minus"></span>
+                    </button>
+
+                </td>
+                <td style="display: none;">
+                    {{ form_widget(form.orderInSheet, { 'id': 'orderInSheet_'~form.vars.data.product.id,'value': index }) }}
+                </td>
+                <td style="display: none;">
+                    {{ index }}
+                </td>
+            </tr>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}

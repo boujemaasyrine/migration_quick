@@ -1,0 +1,40 @@
+MUCatalogID;Description_FR;Description_NL;Afficher
+20;Annulation  Achat foodcost;Annulatie Aankoop Foodcost;1
+21;Annulation  Achat petit matériel;Annulatie  Aankoop Klein Materiaal;1
+22;Annulation  Acomptes sur salaires;Annulatie Voorschot Op Loon;1
+31;Annulation  Animation Noël;Annulatie KerstAnimatie;1
+24;Annulation  Cadeau personnel / Soirée équipe;Annulatie Personeelsfeest / Cadeau;1
+33;Annulation  Divers;Annulatie Diversen;1
+25;Annulation  Enquête repas concurrence;Annulatie Maaltijd Concurrentie;1
+14;Annulation  Entretien hors contrat;Annulatie Onderhoud buiten contract;1
+30;Annulation  Etrennes;Annulatie Geld Premie;1
+16;Annulation  Fournitures de bureaux papeterie;Annulatie Bureau Benodigheden;1
+19;Annulation  Frais annexes personnels;Annulatie Extra kosten Personeel;1
+13;Annulation  Frais de déplacement;Annulatie Vervoerkosten;1
+15;Annulation  Frais postaux & affranchissements;Annulatie Post uitgaven;1
+17;Annulation  Parking;Annulatie  Parking;1
+28;Annulation  Pharmacie;Annulatie Apotheek;1
+26;Annulation  Photocopies;Annulatie Kopies;1
+27;Annulation  Pressing;Annulatie Droogkuis;1
+29;Annulation  Pub locale;Annulatie Lokale Pub;1
+18;Annulation  Remboursement borne;Annulatie Terugbetaling Bestelzuil;1
+36;Annulation  Remise Bancomat;Annulatie Afgifte Bancontact;1
+38;Annulation  Remise Chèques Quick;Annulatie Storting Cheques Quick;1
+12;Annulation  Taxi;Annulatie Taxi;1
+23;Annulation  Transports sur achats;Annulatie Vervoersonkosten;1
+10;Annulation Dépôt Bancaire;Annulatie Bank Storting;1
+11;Annulation Dépôt Chèques Restaurant;Annulatie Storting Maaldtijdcheques;1
+37;Annulation Remise Visa;Annulatie Afgifte Visa;1
+35;Autres;Andere;1
+46;Cancellation Tax Local;Annulatie Afgifte Proton;1
+1;Comptage Caisse;Kassa Telling;1
+4;Dépôt Employé;Voorafname;1
+34;Divers;Diversen;1
+5;Erreur Caisse;Kassa Fout;0
+6;Erreur Coffre;Koffer Fout;0
+3;Erreur Validation Journalière;Fout Dagvalidatie;1
+7;Réception De Monnaie;Ontvangst Klein geld;1
+32;Recette Point toilettes& distributeur d'hygiène;Omzet Toiletten & Verdelers;1
+8;Régularisation Dépôt Bancaire;Regularisatie Bankstorting;1
+9;Régularisation dépôt titres restaurant;Regularisatie Storting Maaltijdcheque;1
+2;Régularisation Recette Journalière;Regularisatie Dagomzet;1

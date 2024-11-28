@@ -1,0 +1,26 @@
+<div class="foreignCurrencyRow col-sm-6 col-md-6 col-lg-4">
+    <div class="row">
+        <input type="hidden" id="cashbox_parameter_foreignCurrencyContainer_foreignCurrencyCounts___index___id"
+               name="cashbox_parameter[foreignCurrencyContainer][foreignCurrencyCounts][__index__][id]">
+        <div class="col-xs-5">
+            <label for="cashbox_parameter_foreignCurrencyContainer_foreignCurrencyCounts___index___foreignCurrencyLabel"
+                   class="required active">{{ 'keyword.label' | trans }}</label>
+            <input type="text"
+                   id="cashbox_parameter_foreignCurrencyContainer_foreignCurrencyCounts___index___foreignCurrencyLabel"
+                   name="cashbox_parameter[foreignCurrencyContainer][foreignCurrencyCounts][__index__][foreignCurrencyLabel]"
+                   required="required" class="form-control" value="__value__">
+        </div>
+        <div class="col-xs-5">
+            <label for="cashbox_parameter_foreignCurrencyContainer_foreignCurrencyCounts___index___exchangeRate"
+                   class="required active">{{ 'keyword.exchange_rate' | trans }}</label>
+            <input type="text"
+                   id="cashbox_parameter_foreignCurrencyContainer_foreignCurrencyCounts___index___exchangeRate"
+                   name="cashbox_parameter[foreignCurrencyContainer][foreignCurrencyCounts][__index__][exchangeRate]"
+                   class="parse-float form-control">
+        </div>
+        <div class="col-xs-2">
+            <button type="button" style="line-height: 100%; margin-top: 25px"
+                    class="removeForeignCurrencyValue btn btn-delete btn-icon"></button>
+        </div>
+    </div>
+</div>

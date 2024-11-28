@@ -1,0 +1,23 @@
+{% for message in app.session.flashBag.get('success') %}
+    <div class="alert alert-success">
+        <span class="glyphicon glyphicon-ok"></span> {{ message|trans }}
+    </div>
+{% endfor %}
+
+{% for message in app.session.flashBag.get('info') %}
+    <div class="alert alert-info">
+        <span class="glyphicon glyphicon-exclamation-sign"></span> {{ message|trans }}
+    </div>
+{% endfor %}
+
+{% for message in app.session.flashBag.get('warning') %}
+    <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-warning-sign"></span> {{ message|trans }}
+    </div>
+{% endfor %}
+
+{% for message in app.session.flashBag.get('error') %}
+    <div class="alert alert-danger">
+        <span class="glyphicon glyphicon-remove"></span> {{ message|trans }}
+    </div>
+{% endfor %}

@@ -1,0 +1,800 @@
+datatable:
+    processing: "In behandeling..."  #"traitement en cours..."
+    search: "Zoeken&nbsp;:" #"Rechercher&nbsp;:"
+    lengthMenu: "_MENU_ items tonen" #"Afficher _MENU_ &eacute;l&eacute;ments"
+    info: Item van _START_ to _END_ van _TOTAL_ items tonen #"Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments"
+    infoEmpty: "Item 0 tot 0 van 0 items tonen" #"Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments"
+    infoFiltered: "Item van _START_ to _END_ van _TOTAL_ items tonen" #"(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)"
+    infoPostFix: ""
+    loadingRecords: "Bezig met laden..." #"Chargement en cours..."
+    zeroRecords: "Er zijn geen items te tonen" #"Aucun &eacute;l&eacute;ment &agrave; afficher"
+    emptyTable: "Geen data beschikbaar" #"Aucune donnée disponible dans le tableau"
+    paginate:
+        first: "Eerste" #"Premier"
+        previous: "Vorige" #"Pr&eacute;c&eacute;dent"
+        next: "Volgende" #"Suivant"
+        last: "Laatste" #"Dernier"
+datepicker:
+    labelMonthNext: 'Volgende' #'Suivant'
+    labelMonthPrev: 'Vorige' #'Précédent'
+    labelMonthSelect: 'Een maand selecteren' #'Choisir un mois'
+    labelYearSelect: 'Een jaar selecteren' #'Selectionner une année'
+    monthsFull:
+        1: 'januari' #'Janvier'
+        2: 'februari' #'Février'
+        3: 'maart' #'Mars'
+        4: 'april' #'Avril'
+        5: 'mei' #'Mai'
+        6: 'juni' #'Juin'
+        7: 'juli' #'Juillet'
+        8: 'augustus' #'Août'
+        9: 'september' #'Septembre'
+        10: 'oktober' #'Octobre'
+        11: 'november' #'Novembre'
+        12: 'december' #'Décembre'
+    monthsShort:
+        1: 'jan' #'Jan'
+        2: 'feb' #'Fev'
+        3: 'mrt' #'Mar'
+        4: 'apr' #'Avr'
+        5: 'mei' #'Mai'
+        6: 'jun' #'Jui'
+        7: 'jul' #'Jui'
+        8: 'aug' #'Aoû'
+        9: 'sep' #'Sep'
+        10: 'okt' #'Oct'
+        11: 'nov' #'Nov'
+        12: 'dec' #'Déc'
+    weekdaysFull:
+        1: 'zondag' #'Dimanche'
+        2: 'maandag' #'Lundi'
+        3: 'dinsdag' #'Mardi'
+        4: 'woensdag' #'Mercredi'
+        5: 'donderdag' #'Jeudi'
+        6: 'vrijdag' #'Vendredi'
+        7: 'zaterdag' #'Samedi'
+    weekdaysShort:
+        1: 'zo' #'Dim'
+        2: 'ma' #'Lun'
+        3: 'di' #'Mar'
+        4: 'wo' #'Mer'
+        5: 'do' #'Jeu'
+        6: 'vr' #'Ven'
+        7: 'za' #'Sam'
+    weekdaysLetter:
+        1: 'z' #'D'
+        2: 'm' #'L'
+        3: 'd' #'M'
+        4: 'w' #'M'
+        5: 'd' #'J'
+        6: 'v' #'V'
+        7: 'z' #'S' ** Dimanche et Samedi ont la meme initiale
+    today: "Vandaag" #"Aujourd'hui"
+    clear: "Wissen" #"Effacer"
+    close: 'Sluiten' #'Fermer'
+Error:
+    general:
+        internal: "Er is een interne fout opgetreden" #"Une erreur interne s'est produite."
+form:
+    error: Er is een fout opgetreden #Une erreur s'est produite
+label:
+    action: "Actie" #"Action"
+    code: "Code" #"Code"
+    code_plu: "PLU code" #"Code PLU"
+    status: "Status" #"Status"
+    name: "Naam" #"Nom"
+    mail: "E-mailadres" #"Adresse email"
+    manager: "Verantwoordelijke persoon" #"Responsable"
+    managerPhone: "Verantwoordelijke telefoon" #"Téléphone responsable"
+    managerEmail: "Verantwoordelijke E-mail" #"Email responsable"
+    address: "Adres" #"Adresse"
+    phone: "Telefoon" #"Téléphone"
+    type: "Type" #"Type"
+    reference: "Referentie" #"Référence"
+    group: "Groep" #"Groupe"
+    active: "Actief" #"Actif"
+    order: Order #Ordre
+    ordersUrl: Bestellen API Url
+    usersUrl: Gebruikers API Url
+    withdrawal_url:
+    wynd_user: Login
+    secret_key: "Verificatiesleutel"  #"Clé d'authentification"
+    wynd_active: "Importeren inschakelen" #"Activation de l'importation"
+    opening_date: "Introductiedatum"
+    optikitchen_path : "Optikitchen Path"
+    reusable: Herbruikbaar
+btn:
+    validate: "Bevestigen" #"Valider"
+    plus: "Toevoegen" #"Ajouter"
+    close: "Sluiten" #"Fermer"
+    print: "Printen" #"Imprimer"
+    abort: "Afbreken" #"Abondonner"
+    add: "Toevoegen" #"Ajouter"
+    modify: "Wijzigen" #"Modifier"
+    edit: "Wijzigen" #"Modifier"
+    cancel: "Annuleren" #"Annuler"
+    copy: "Kopieren" #"Copier"
+    delete: "Verwijderen" #"Supprimer"
+    delete_ligne: "Deze regel verwijderen" #"Supprimer cette ligne"
+    save: "Opslaan" #"Enregistrer"
+    export: "Exporteren" #"Exporter"
+    deactivate: "Deactiveren" #"Désactiver"
+    activate: "activeren" #"Activer"
+    reload: "Verversen" #"Rafraîchir"
+    show: "Tonen" #"Afficher"
+    view: "Bekijken" #"Voir"
+    download: "Downloaden" #"Télécharger"
+    download_report: "Rapport downloaden" #"Télécharger le rapport"
+    download_pdf: "PDF" #"PDF"
+    download_csv: "CSV" #"CSV"
+    download_xls: "XLS" #"XLS"
+    download_excel: "EXCEL" #"EXCEL"
+    generate_report: "Rapport tonen" #"Afficher le rapport"
+    filter: "Filteren" #"Filtrer"
+    synchronise: "Synchroniseren" #"Synchroniser"
+
+    select_all: "Alles toevoegen" #"Ajouter tout"
+    view_envelope: "Envelop bekijken" #"Voir enveloppe"
+    view_details: "Specificaties bekijken" #"Voir détails"
+
+    save: "Opslaan" #"Sauvegarder"
+tooltip:
+    select_all: "Alles selecteren" #"Selectionner tout"
+    click_to_open: "Klik om te openen" #"Clicker pour ouvrir"
+    deactivate_invetory_item_for_restaurants: #Désactiver cet item d'inventaire pour un ou des restaurants
+shortcut:
+    labels:
+        validate: "Bevestigen" #"Valider"
+        print: "Printen" #"Imprimer"
+        quit_without_saving: "Stoppen zonder te bevestigen" #"Quitter sans valider"
+        edit: "Wijzigen" #"Modifier"
+        add: "Toevoegen" #"Ajouter"
+        delete: "Verwijderen" #"Supprimer"
+        create: "Aanmaken" #"Créer"
+        quit: "Stoppen" #"Quitter"
+        action: "Acties" #"Actions"
+        cancel: "Annuleren" #"Annuler"
+        reference: "Referentie" #"Référence"
+    key:
+        delete: "DEL" #"SUPP"
+keyword:
+    price: "Prijs" #"Prix"
+    label: "Label" #"Libellé"
+    code: "Code" #"Code"
+    total: "Totaal" #"Total"
+    yes: "Ja" #"Oui"
+    no: "Nee" #"Non"
+    help: Hulp #Aides
+    article: "Inventaris item" #"Item inventaire"
+    begin: "Begin" #"Début"
+    end: "Einde" #"Fin"
+    supplier: Leverancier #Fournisseur
+    suppliers: Leveranciers #Fournisseurs
+    actif: Actief #Actifs
+    inactive: Inactief #Inactif
+    toInactive: Desactivatie aan de gang #En cours de désactivation
+    status: Status #Statut
+    restaurants: Restaurants #Restaurants
+keywords:
+    close: "Sluiten" #Fermer
+    pending: "In behandeling" #En cours
+    with: "Met" #Avec
+    without: "Zonder" #Sans
+    category: Categorie #Catégorie
+    categories: "Categorieën" #Catégories
+    period: Periode #Période
+    budget: Budget #Budget
+    time: "Tijd" #Heure
+    provisional: "Tijdelijk" #Provisoire
+    definitive: "Definitief" #Définitif
+    tva: "BTW" #TVA
+    comment: "Commentaren" #Commentaires
+    continue: "Doorgaan" #Continuer
+    foodCost: FoodCost #FoodCost
+    paperCostDirect: PAPERCOST DIRECT #PAPERCOST DIRECT
+    paperCostIndirect: PAPERCOST INDIRECT #PAPERCOST INDIRECT
+    theorical: "THEORETISCH" #THEORIQUE
+    gap: "Verschil" #Différence
+    real: "Reëel" #REEL
+    margin: "MARGE" #MARGE
+    portion_control: Portiecontrole #Portions contrôle
+    in: in #Entrées
+    out: out #Sorties
+    loss: Verlies #Pertes
+    consumption: "Verbruik" #Consommation
+    details: "Specificaties" #Détails
+    prefix_return: Retour #Retour
+    unspecified: "Niet gespecificeerd" #Non spécifié
+    and: "en" #et
+    media: Media #Média
+    total_media: Alle media #Total Media
+    with_media: "per media" #"Par Média"
+    exchange_rate: Wisselkoers #Taux de change
+    cash: Geld #Espèces
+    cash_gap: Kasverschil #Ecart Caisse
+    chest_gap: kofferverschil #Ecart Coffre
+    notification: Notificaties  #Notifications
+    message: Bericht #Message
+    reload: Bijwerken #Actualiser
+    logout: "Uitloggen" #"Déconnexion"
+    help: "Hulp" #"Aides"
+    price: "Prijs" #"Prix"
+    label: "Beschrijving" #"Libellé"
+    quantite: "Hoeveelheid" #"Quantité"
+    code: "Code" #"Code"
+    total: "Totaal" #"Total"
+    yes: "Ja" #"Oui"
+    no: "Nee" #"Non"
+    article: "Inventarisitem" #"Item inventaire"
+    unit: "Eenheid" #Unité
+    articles: "Inventaris items" #"Items inventaire"
+    product_sold: "Product in verkoop" #"Produit en vente"
+    products_sold: "Producten in verkoop" #"Produits en vente"
+    begin: "Start" #"Début"
+    end: "Einde" #"Fin"
+    from: "Van" #"Du"
+    to: "Tot" #"Au"
+    status: "Status" #"Statut"
+    delivery: "Bezorging" #"Livraison"
+    transferIn: Transfert IN #Transfert IN
+    transferOut: Transfert UIT #Transfert OUT
+    return: "Retouren" #"Retours"
+    invoice: "Factuur" #"Facture"
+    date: "Datum" #"Date"
+    fiscal_date: "Fiscale datum" #Date fiscale
+    week: "Week" #"Sem"
+    month: "Maand" #"Mois"
+    date_comp: Datum comp #Date comp
+    amount: "Bedrag" #"Montant"
+    amount_ttc: "Bedrag incl. BTW" #"Montant TTC"
+    number: "Nummer" #"Numéro"
+    envelope: "Envelop" #Enveloppe
+    closing: Afgesloten #Clôturé
+    restaurant: Restaurant #Restaurant
+    force_synchronize: De synchronisatie forceren #Forcer la synchronisation
+    substitute: vervangen #Substituer
+days:
+    Mon: 'maandag' #'Lundi'
+    Tue: 'dinsdag' #'Mardi'
+    Wed: 'woensdag' #'Mercredi'
+    Thu: 'donderdag' #'Jeudi'
+    Fri: 'vrijdag' #'Vendredi'
+    Sat: 'zaterdag' #'Samedi'
+    Sun: 'zondag' #'Dimanche'
+units:
+    colis: DOOS #COLIS
+    piece: STUK #PIECE
+    kilo: KILO #KILO
+    litre: LITER #LITRE
+    sachet: ZAKJE #SACHET
+    barquette: BAKJE #BARQUETTE
+    gramme: GRAM #GRAMME
+    centilitre: CENTILITER #CENTILITRE
+    seau: EMMER #SEAU
+    pile: STAPEL #PILE
+    bidon: BIDON #BIDON
+    doos: DOOS #DOOS
+    stuk: STUK #STUK
+    zakje: ZAKJE #ZAKJE
+    stapel: STAPEL #STAPEL
+    centiliter: CENTILITER #CENTILITER
+    portion: DEEL #Portion
+
+status:
+    active: Actief #Actif
+    inactive: Inactief #Inactif
+    toInactive: Binnenkort Inactief #En cours de désactivation
+
+canal:
+    pos: POS #POS
+    website: Website #Site Web
+    drive: Drive #Drive
+    borne: Bestelzuilen #Bornes
+    delivery: "Delivery" #"Delivery"
+period_label: Periode #Période
+
+# missed translations
+transformed_product: Verwerkt product #Produit transformé
+non_transformed_product: Niet verwerkt product #Produit non transformé
+provider:
+    list:
+        title: Beheer lijst van leveranciers #Gestion de la Liste des fournisseurs
+        add: Een leverancier toevoegen #Ajouter un fournisseur
+        edit: De leverancier wijzigen #modifier le fournisseur
+        provider: Leverancier #Fournisseur
+        designation: Benaming #Désignation
+        validate: Toevoegen #Ajouter
+        phone: Telefoon #Téléphone
+        address: Adres #Adresse
+        action: Actie #Action
+        add_success: Leverancier met succes toegevoegd #Fournisseur ajouté avec succès
+        edit_success: Leverancier met succes gewijzigd #Fournisseur modifié avec succès
+        details: Informatie leverancier #informations du fournisseur
+        delete: De leverancier verwijderen #Supprimer le fournisseur
+        popUp_delete: De leverancier verwijderen #Supprimer le Fournisseur
+        delete_success: De leverancier met succes verwijderd #Fournisseur supprimé avec succès
+        delete_fails: Er is een probleem opgetreden vanwege de verwijdering #Un problème est survenu lors de la supression
+    planning:
+        title: Planning leveranciers #Planning des fournisseurs
+        label: Leverancier kiezen #Choisir le fournisseur
+        category_label: Categorieën #Catégories
+        category_empty: Categorielijst kiezen #Choisir la liste des catégories
+        supplier_select: Leverancier kiezen #Choisir le fournisseur
+        cancel: ingave anuleren #Annuler la saisie
+        verify_cancel: Bent u zeker de ingave van deze planning te willen verwijderen.  #Vous en êtes sûr de vouloir annuler la saisie de ce planning?
+        delete: Regel verwijderen #Supprimer la ligne
+        js:
+            error: Er is een fout opgetreden #Une erreur s'est produite
+            success: De regel is met succes verwijderd #La ligne est supprimée avec succès
+restaurant:
+    type:
+        franchise: Franchise #Franchisé
+        company: Bedrijf #Compagnie
+        choose: Kies het type #Choisir Le type
+    list:
+        title: Beheer van de lijst van restaurants #Gestion de la liste des Restaurants
+        add: Een restaurant toevoegen #Ajouter un restaurant
+        edit: De restaurant wijzigen #Modifier le restaurant
+        supplier_list: Leverancierslijst #Liste des fournisseurs
+        delete: Het restaurant verwijderen #Supprimer le restaurant
+        details: Informatie restaurant #informations du restaurant
+        delete_success: Restaurant met succes verwijderd. #Restaurant supprimé avec succès
+        add_success: Restaurant met succes toegevoegd #Restaurant ajouté avec succès
+        edit_success: Restaurant met succes gewijzigd #Restaurant modifié avec succès
+    form_error:
+        opening_date: "De startdatum moet groter zijn dan of gelijk zijn aan de huidige datum." #"La date du lancement doit être supérieur ou égale à la date du jour."
+category:
+    list:
+        title: Beheer van de categorieënlijst #Gestion de la liste des catégories
+        label_help: Keuzehulp bij de bestelling #Eligible à l'aide à la commande
+        group_select: De groep kiezen #Choisir le groupe
+        tvaBel: BTW-tarief België #Taux TVA Belgique
+        tvaLux: BTW-tarief Luxemburg #Taux TVA Luxembourg
+        add: Een categorie toevoegen #Ajouter une catégorie
+        edit: De categorie wijzigen #Modifier la catégorie
+        delete: De categorie verwijderen #Supprimer la catégorie
+        delete_success: Categorie met succes verwijderd #Catégorie supprimée avec succès
+        add_success: Categorie met succes toegevoegd. #Catégorie ajoutée avec succès
+        edit_success: Categorie met succes gewijzigd #Catégorie modifiée avec succès
+        choose_tva_bel: Het BTW-tarief in België kiezen #Choisir le taux de TVA au Belgique
+        choose_tva_lux: Het BTW-tarief in Luxemburg kiezen #Choisir le taux de TVA à Luxembourg
+division:
+    empty_values: Geen divisie #Pas de division
+solding_canal:
+    empty_values: Geen verkoopkanaal #Pas de canal de vente
+group:
+    list:
+        title: Beheer van lijst met groepen #Gestion de la liste des groupes
+        add: Een groep toevoegen #Ajouter un groupe
+        delete: De groep verwijderen #Supprimer le groupe
+        edit: De groep wijzigen #Modifier le groupe
+        delete_success: Groep met succes verwijderd #Groupe supprimé avec succès
+        add_success: Groep met succes toegevoegd #Groupe ajouté avec succès
+        edit_success: Groep met succes gewijzigd #Groupe modifié avec succès
+    label:
+        is_food_cost: Foodcost
+item:
+    label:
+        unit_expedition: Eenheid levering #Unité de livraison
+        unit_inventory: Eenheid inventaris #Unité inventaire
+        unit_usage: Eenheid gebruik #Unité d'utilisation
+        inventory_qty: Eenheid inventaris in eenheid levering #Unité d'inventaire dans unité de livraison
+        inventory_qty_abbr: Kwantiteit inventaris #Qty inventaire
+        category: Categorie #Catégorie
+        status: Status #Statut
+        buying_cost: Inkoopprijs #Prix d'achat
+        reusable: herbruikbaar  #Réutilisable
+        usage_qty: Eenheid gebruik in eenheid inventaris #Unité d'usage dans unité d'inventaire
+    inventory:
+        title: Lijst met items inventaris #Liste des items inventaire
+        add: Een inventaris item toevoegen #Ajouter un item inventaire
+        edit: "Een inventaris item wijzigen %name%" #Modifier l'item inventaire
+        add_success: Inventaris item met succes toegevoegd #Item inventaire ajouté avec succès
+        delete: De status van het item veranderen #Changer le statut de l'item
+        delete_success: Inventaris item met succes verwijderd #Item Inventaire supprimé avec succès
+        delete_fails: Er is een probleem opgetreden vanwege de verwijdering #Un problème est survenu lors de la supression
+        deactivateDate: Datum van de deactivering #date de désactivation
+        primary: Primaire item #Item primaire
+        secondary: Secundaire item #Item Secondaire
+        choose_type: Een item type kiezen #Choisir le type de l'item
+        choose_product: Het secundaire item kiezen #Choisir l'item secondaire
+        choose_category: De categorie kiezen #Choisir la catégorie
+        choose_unit_expedition: De eenheid van levering kiezen #Choisir l'unité de livraison
+        choose_unit_inventory: De eenheid van inventaris kiezen #Choisir l'unité d'inventaire
+        choose_unit_usage: De eenheid van gebruik kiezen #Choisir l'unité d'usage
+        choose_supplier: De leverancier kiezen #Choisir le fournisseur
+        deactivate: Het item deactiveren #Désactiver l'item
+        startDateCmdItem: Begindatum van de bestelling van het item #startDateCmd
+        endDateCmdItem: Einddatum van de bestelling van het item  #EndDateCmd
+        activate: Item activeren #Activer l'Item
+        status_change_success: De status van het inventaris item met succes veranderd #Changement de statut de l'Item Inventaire avec succès
+        status_change_fails: Een probleem is opgetreden vanwege de verandering van de status #Un problème est survenu lors du changement du statut
+        details: Specificaties inventaris item #Détails de l'item inventaire
+        substitute: Inventarisitem wijzigen #Substituer l'item d'inventaire
+        choose_status: De status kiezen #Choisir le statut
+        secondary_product: Secundair product #Produit Secondaire
+        synchro_date: Datum van de synchronisatie #Date de la synchronisation
+
+product_sold:
+    title: Beheer van verkoop items #Gestion des items de vente
+    vente_annexe: Vente annexe
+    list:
+        tile: Lijst van verkoop items #Liste des items en vente
+    flashbag:
+        product_created_with_success: Product met succes aangemaakt ! #Produit mis à jour avec succès !
+    sub_titles:
+        new_product: Een nieuw verkoopitem aanmaken #Création d'un nouveau item de vente
+        old_product: Een bestaand verkoopitem veranderen #Édition d'un item de vente déjà existant
+    btns:
+        add_recipe: Een recept/verkoopkanaal toevoegen #Ajouter une recette/Canal de vente
+        add_recipe_line: Een regel toevoegen #Ajouter une ligne
+    labels:
+        name: Naam van het verkoop item #Nom de l'item de vente
+        purchased_product: Naam van het inventaris item #Nom de l'item d'inventaire
+        supplier_code: Code leverancier #Code fournisseur
+        solding_canal: Verkoopkanalen #Canal des ventes
+        sub_solding_canal: Subkanaal verkoop #Sous canal des ventes
+        division: Divisie #Division
+        active: Actief #Actif
+        size: Maat #Taille
+        type: Type verkoopproduct #Type du produit en vente
+        recettes: Recepten #Recettes
+        qty: Kwantiteit gebruik #Quantité d'usage
+        code_plu: PLU Code #Code PLU
+        default_revenu: Opbrengst standaard #Revenu par défault
+filter:
+    label: Filters #Filtres
+    supplier: Leverancier #Fournisseur
+    btn: Filteren #Filtrer
+    delete_filter: Verwijder het filter #Effacer le filtre
+validation:
+    unique_code_constraint: Deze code is al reeds gebruikt #Ce code est déjà utilisé
+confirmation:
+    cancel:
+        title: De invoer annuleren #Annuler la saisie
+        content: U staat op het punt om uw wijzigingen te annuleren, bevestigt u deze handeling? #Vous êtes sur le point d'annuler vos modifications, confirmez vous cette opération?
+
+button:
+    parameters: Instellingen #Paramètres
+    download: "Downloaden" #"Télécharger"
+    download_report: "Het Rapport downloaden" #"Télécharger le rapport"
+    download_pdf: "PDF" #"PDF"
+    download_csv: "CSV" #"CSV"
+    download_xls: "XLS" #"XLS"
+restaurant_parameter:
+    title: "Instellingen van het restaurant %restaurant%" #"Paramètres du restaurant %restaurant%"
+    payment_method: Betaalmethoden #Modes de paiement
+    real_cash: geld #Espèce
+    foreign_currency: Buitenlandse valuta #Argent Étranger
+    ticket_restaurant: Waardecheques restaurants #Titres restaurants
+    electronic_ticket_restaurant:  Electronische waardecheques restaurants #Titres restaurants électronique
+    bank_card: Bankkaarten #Carte Bancaire
+    check_quick: Quick Cheques #Quick Cheques
+    check_bk: BK Cheques # BK Cheques
+    update_success: "<h3>Instellingen van het restaurant %restaurant%  zijn met succes ingevoerd</h3>" #"<h3>Paramètres du restaurant %restaurant%  a été mis à jour avec succès</h3>"
+success: Succesvol #Succès
+dayShort:
+    Mon: Ma #Lu
+    Tue: Di #Ma
+    Wed: Wo #Me
+    Thu: Do #Je
+    Fri: Vr #Ve
+    Sat: Za #Sa
+    Sun: Zo #Di
+
+report:
+    period: Gevraagde periode #Période demandée
+    discount: Pub #Pub
+    br: MB #BR
+    period_to_compare: Vergelijking #Comparabilité
+    loss:
+        inventory_item_title: Rapport verliezen items inventaris #Rapport des pertes des items inventaire
+        sold_item_title: Rapport verliezen items verkoop #Rapport des pertes des items de ventes
+    generate: Rapport genereren #Générer le rapport
+    inventory:
+        title: Verlies items inventaris #Pertes items inventaire
+    sold:
+        title: Verlies items verkoop #Pertes items de vente
+    sales:
+        hour_by_hour:
+            title: Uur Per uur #Heure par heure
+            ca_prev: Voorziene omzet #CA Prévisionnel
+            ca_brut: Bruto omzet incl. BTW #CA Brut TTC
+            escompte_br: Discount MB incl. #Escompte BR inclus
+            cumul_ticket: Cumul Ticket #Cumul Ticket
+            tickets: Tickets #Tickets
+            ticket: Ticket #Ticket
+            avg_ticket: Ticket gemiddeld #Ticket Moyen
+            cumul_ca_brut: Cumulatief bruto omzet incl. BTW #Cumul CA Brut TTC
+    food_cost:
+        synthetic:
+            title: Overzicht Foodcost #Synthétique Foodcost
+            sold_pr_ht: Verkopen VP HT #Ventes PR HT
+            fc_mix: FC Mix #FC Mix
+            ideal_fc: Ideale FC #FC Idéal
+            loss_inventory: Verliezen I.Inv #Pertes I.Inv
+            loss_sold: Verliezen I.Verk. #Pertes I.Vts
+            known_loss: Verlies bekend #Pertes Connues
+            unknown_loss: Verlies onbekend #Pertes Inconnues
+            total_loss: Totaal Verlies #Pertes Totales
+            theorical_fc: FC Theoretisch #FC Théorique
+            theorical_margin: Marge Theoretische #Marge Théorique
+            initial_stock: Beginstock #Stock Inital
+            in: in #Entrées
+            out: out #Sorties
+            final_stock: Eindstock #Stock Final
+            real_consomation: Werkelijke verbruik #Conso Réelle
+            real_fc: FC Reëel #FC Réel
+            real_margin: reëele marge #Marge Réelle
+            real_fc_net: FC Reëel Net #FC Réel Net
+            brut_margin: Bruto Marge #Marge Brute
+        margin:
+            title: Marge FoodCost #Marge FoodCost
+            mix_ca_ttc: Food cost Mix omzet incl. BTW #Food cost Mix C.A T.T.C.
+            ideal_ht: Food cost Ideaal excl. BTW #Food cost Ideal HT
+            total_loss: Totaal verlies #Pertes totales
+            theorical_foodcost: Food Cost Theoretisch #Food Cost Théorique
+            net_sold: Netto verkoop excl. BTW #Ventes Nettes H.T.
+            real_foodcost: Food Cost Reëel #Food Cost Réel
+            voucher_pub: Food cost - discount #Food cost - discount
+            voucher_meal_foodcost: Food cost - Maaltijdbon #Food cost - Bons repas
+            net_real_foodcost: Food cost Reëel Netto #Food cost réel net
+            net_real_margin: Marge Reëel Netto #Marge réelle net
+            period: Geselecteerde periode #Période sélectionnée
+            margin_pf: Marge eindproduct #Marge P.F.
+            voucher_meal: Maaltijdbon #Bon repas
+            ca_ht: Omzet exl. BTW #C.A.H.T.
+            theorical_margin: Marge Theoretisch #Marge Theorique
+    ca:
+        ca_brut_ttc: Bruto omzet incl. BTW #CA Brut TTC
+        ca_net_ht: Netto omzet excl. BTW #CA NET HTVA
+        net_ttc: Netto BTW #Net TTC
+    daily_result:
+        title: Dagelijkse resultaten #Résultats journaliers
+        chest_error: Kluis error #Err. Coffre
+        avg_net_ticket: Netto gemiddelde ticket #TM Net
+        inventory_loss: % Verlies I.Inv #% Pertes I.Inv
+        sold_loss: % Verlies I.Verk. #% Pertes I.Vts
+        diff_caisse: Kassaverschil #Diff. de caisse
+    hour_by_hour:
+        title: Uur/Uur #Heure par heure
+budget_label: Budget #Budget
+generate_report: Het Rapport weergeven #Afficher le rapport
+labels:
+    sold_item: "Verkoop item" #"Item de vente"
+    inventory_item: "Inventaris item" #"Item inventaire"
+    value: "waarde" #"valeur"
+    comparable: Vergelijkbare dag #Jour Comparable
+    role: Rol #Rôle
+    roles: Rollen #Rôles
+    old_password: Oud Wachtwoord #"Ancien mot de passe"
+    password: Wachtwoord #Mot de passe
+    confirm_password: Bevestiging #Confirmation
+    rights: Rechten #Droits
+article: Inventaris items #Items Inventaire
+finalProduct: Verkoop items #Items ventes
+generated_at: Document gegenereerd op #Document généré le
+
+expense:
+    group:
+        GROUP_BANK_CASH_PAYMENT:  Bankstorting geld #Versement banque espèces
+        GROUP_BANK_RESTAURANT_PAYMENT: Bankstorting waardecheques restaurant #Versement banque titres restaurant
+        GROUP_BANK_E_RESTAURANT_PAYMENT: Bankstorting electr. waardecheques  restaurant #Versement banque titres restaurant électronique
+        GROUP_BANK_CARD_PAYMENT: Bankstorting bankkaart #Versement banque carte bancaire
+        GROUP_ERROR_COUNT: Opmaak error #Erreur comptage
+        error_cashBox: kastelling error #Erreur compatage caisse
+        GROUP_OTHERS: Anderen #Autres
+    label:
+        cashbox_count: Kasopmaak
+recipe_ticket:
+    change_recipe: Ontvangst wisselgeld #Réception Monnaie
+    various: Toiletgeld #Argent toilette
+    wc_money: Diversen #Divers
+    cashbox_error: Kas error #Erreur caisse
+    chest_error: Kluis error #Erreur coffre
+    cachbox_recipe: Comptage caisse #TODO
+users:
+    management: Beheer van gebruikers #Gestion des Utilisateurs
+    list:
+        title: Lijst van gebruikers #Liste des utilisateurs
+        add: Een gebruiker toevoegen #Ajouter un utilisateur
+        edit: "Gebruiker wijzigen %name%" #"Modifier l'utilisateur %name%"
+        choose_role: Een rol kiezen #Choisir un rôle
+        add_success: Lijst van gebruikers met succes ingevoerd #Liste utilisateurs mise à jour avec succès
+        details: Informatie over de gebruiker #Informations sur l'utilsateur
+        eligible_restaurant: Te kiezen restaurants #Restataurants éligibles
+        delete: De gebruiker verwijderen #Supprimer l'utilisateur
+        delete_confirm: <h3>U staat op het punt om de gebruiker '%username%' te verwijderen, bevestigt u deze handeling?</h3> #<h3>Vous êtes sur le point de supprimer l'utilisateur '%username%', Confirmez vous cette opération?</h3>
+        delete_success: Gebruiker met succes verwijderd #Utilisateur supprimé avec succès
+
+    username: Login #Login
+    first_name: Voornaam #Prénom
+    last_name: Achternaam #Nom
+rights_roles:
+    success: Rechten met succes gewijzigd #Droits modifiés avec succès
+parameters:
+    title: Instellingen #Paramètres
+    right_role: Beheer van rechten #Gestion Droits
+    restaurant: Restaurant #Restaurant
+    central: Centrale #Central
+    financial_management:
+        delete: Het label verwijderen #Supprimer le libellé
+        add: Nieuw Label toevoegen #Ajouter un nouveau libellé
+        edit: Label wijzigen #Modifier un libellé
+        delete_confirm: <h3>U staat op het punt om het label '%label%' te verwijderen, bevestigt u deze handeling?</h3> #<h3>Vous êtes sur le point de supprimer le libellé '%label%', Confirmez vous cette opération?</h3>
+        delete_success: Label met succes verwijderd #Libellé supprimé avec succès
+        add_success: Label met succes toegevoegd #Libellé ajouté avec succès
+        edit_success: Label met succes gewijzigd #Libellé modifié avec succès
+
+roles:
+    title: Beheer van rollen #Gestions des rôles
+    choose_type: Kies het type #Choisir le type
+    add_success: Rol met succes toegevoegd #Rôle ajouté avec succès
+    edit_success: Rol met succes gewijzigd #Rôle modifié avec succès
+    delete: De rol verwijderen #Supprimer le rôle
+    add: Nieuwe functie toevoegen #Ajouter une nouvelle fonction
+    edit: Functie wijzigen #Modifier une fonction
+    delete_confirm: <h3>U staat op het punt om de rol '%role%' te verwijderen, bevestigd u deze handeling?</h3> #<h3>Vous êtes sur le point de supprimer le rôle '%role%', Confirmez vous cette opération?</h3>
+    delete_success: Rol met succes verwijderd #Rôle supprimé avec succès
+    delete_failed_title: Verwijderen onmogelijk #Suppression impossible
+    delete_failed_body: <h3>Wilt u de rechtenlijst voor deze rol verwijderen en verifiëren of deze aan geen enkele gebruiker is toegewezen.</h3> #<h3>Veuillez supprimer la liste des droits pour ce rôle et vérifier qu'il n'est pas affecté à aucun utilisateur pour pouvoir le supprimer</h3>
+    last_name: Achternaam #Nom
+
+#Rapport Contrôle du Stock
+control_stock:
+    title: Stockcontrole #Controle du Stock
+    start_date: Begindatum #Date début
+    end_date: Einddatum #Date fin
+    sheet_model: Modelblad #Modèle de Feuille
+    total: Totaal #Total
+    diff: Verschil #Différence
+    inventory_unit: Inventaris Eenheid #Unité d'inventaire
+    coef: Coef #Coef
+    en_stock: In stock #En Stock
+    need: Nodig #Besoin
+    delivery: levering #Liv
+    stock_liv: stock + Levering #Stock + Livraison
+    total_need: Totaal nodig #Total Besoin
+    ca_prev: Verwachte omzet #CA Prévisionnel
+    cumul_ca: Cumulatieve verwachte omzet #Cumul des CA Prévisionnels
+    dlc_1: Houdbaarheidsdatum 1 #DLC 1
+    dlc_2: Houdbaarheidsdatum 2 #DLC 2
+    transfers_pending: Overdracht bezig #Transfert en cours
+    base_calcul: Basis van berekening #Base du Calcul
+    ca: Omzet #Chiffre d'affaire
+    rapport_title: Rapport stockcontrole #Rapport Contrôle du Stock
+    document_generated: Document opgesteld op #Document généré le
+progress.calcul_result: Resultaat #Résultat
+months:
+    jan: 'Januari' #'Janvier'
+    feb: 'Februari' #'Février'
+    mar: 'Maart' #'Mars'
+    apr: 'April' #'Avril'
+    mai: 'Mei' #'Mai'
+    jun: 'Juni' #'Juin'
+    jul: 'Juli' #'Juillet'
+    aug: 'Augustus' #'Août'
+    sep: 'September' #'Septembre'
+    oct: 'Oktober' #'Octobre'
+    nov: 'November' #'Novembre'
+    dec: 'December' #'Décembre'
+list:
+    group:
+        message_edit_success: "De groep %name% is met succes gewijzigd" #"Le groupe %name% a été modifié avec succès"
+        message_add_success: "<h4>Le groupe '%name%' a été ajouté avec succès</h4>"
+inventory-item-plus-success: "L'item Inventaire '%name%' a été ajouté avec succès"
+inventory-item-edit-success: "L'item Inventaire '%name%' a été modifié avec succès"
+
+language:
+    frensh: Frans #Français
+    dutch: Nederlands #Néerlandais
+    fr: Franse taal #Langue Française
+    nl: Nederlandse taal #Langue Neerlandaise
+    label: Default taal#Langue par défaut
+    change: Wijziging default Taal #Modification de la langue par défaut
+    change_confirm: Default Taal met succes gewijzigd #Langue par défaut modifiée avec succès!
+
+country:
+    label: Land
+    bel: België
+    lux: Luxemburg
+
+profile:
+    title: Profile #Profil
+    details: Uw Informatie Votre Informations
+    change_password:
+        title: Wachtwoord wijzigen #Modification de mot de passe
+        confirm: Wachtwoord met succes gewijzigd #Mot de passe modifié avec succès!
+
+cancel:
+    confirmation:
+        title: Ingave annuleren #Annulation de la saisie
+        content: Wenst u echt de wijzigingen annuleren? #Souhaitez-vous vraiment annuler vos modifications ?
+restaurant-edit-success: het restaurant '%name%' werd met succes gewijzigd #"Le restaurant '%name%' a été modifié avec succès"
+restaurant-plus-success: het restaurant '%name%' werd met succes toegevoegd #"Le restaurant '%name%' a été ajouté avec succès"
+
+restaurant-list-add: "Een restaurant toevoegen" #"Ajouter un restaurant"
+restaurant-list-edit: "het restaurant '%name%' wijzigen" #"Modifier le restaurant '%name%'"
+
+choose_unit_expedition: Eenheid levering #Unité de livraison
+choose_unit_inventory: Eenheid inventaris #Unité d'inventaire
+choose_unit_usage: Eenheid gebruik #Unité d'usage
+yes_confirm: ja, mijn wijzigingen annuleren #Oui, annuler mes modifications
+choose_restaurant: Een restaurant Kiezen #Choisir un restaurant
+
+product_sold.revenu_price: kostprijs #Coût de revient
+product.synchronization_message: U staat op punt de synchronisatie van het product te forceren naar: %restaurants%"."Vous êtes sur le point de forcer la synchronisation du produit %product% vers : %restaurants%"
+product.synchronization_title: Synchronisatie forceren #Forcer la synchronisation
+synchro_order_launched: "Een aanvraag om het product %product% te synchroniseren naar %restaurants% werd doorgestuurd" #"Une demande de synchronisation du produit %product% a été lancé vers les restaurants: %restaurants%"
+
+parameters_financial_management_edit: Label %name% wijzigen #"Modifier le libellé %name%"
+parameters_financial_management_add_expense: Label uitgave %name% toevoegen #Ajouter un libellé de bon de dépense
+parameters_financial_management_add_recipe: Label ontvansgt %name% toevoegen #Ajouter un libellé de bon de recette
+manage_rights: Rechten beheer #Gestion des droits
+roles_list_edit: "de functie %label% wijzigen" #Modifier la fonction %label%"
+roles_list_add: functie toevoegen #Ajouter une fonction
+central_role: Functie centrale #Fonction centrale
+access_bo_restaurants: toegang tot Bo restaurants #Accès aux BO restaurants
+password_confirmation: wachtwoord bevestigen #Confirmation du mot de passe
+synchro_order_launched: "Een aanvraag om het product %product% te synchroniseren naar %restaurants% werd doorgestuurd" #"Une demande de synchronisation du produit %product% a été lancé vers les restaurants: %restaurants%"
+
+allcanals: alle kanalen #Tous canaux
+onsite: ter plaatse #Sur place
+takeaway: mee te nemen#A emporter
+drive: Drive
+walk: Walk
+delivery: Delivery
+edit_synchronize_immediately: Aanpassen en onmiddellijk synchroniseren #Editer et synchroniser immédiatement
+plus_synchronize_immediately: toevoegen en onmiddellijk synchroniseren #Ajouter et synchroniser immédiatement
+validate_synchronize_immediately: valideren en onmiddellijk synchroniseren #Valider et synchroniser immédiatement
+
+
+synchronisation_date: datum volgende synchronisatie #Date de la prochaine synchronisation
+last_synchronisation_date: datum Laatste synchronisatie #Date de la derniére synchronisation
+
+pw_label: Wachtwoord #Mot de passe
+username_label: gebruikersnaam #Non d'utilisateur
+connect: Aanmelden #Se connecter
+stay_connected:  Aangemeld blijven #Rester connecté
+pw_forgotten: Wachtwoord vergeten #Mot de passe oublié
+mail_adresse: Email adres #Adresse email
+reset_password: wachtwoord initialiseren #Initialiser mot de passe
+user_not_found: Geen gebruiker gevonden voor dit Email adres #Aucun utilisateur trouvé pour l'email indiqué
+pw_reset_success: Wachtwoord met succes geïnitialiseerd #Mot de passe réinitialisé avec succès
+pw_reset_send_mail_fail: Doorsturen van Email mislukt #Echec lors de l'envoi du mail
+
+go_back_restaurant_list: terug naar de lijst van de restaurants #Retourner à la liste des restaurants
+restaurant_supervision: Supervisie van de restaurants #Supervision des restaurants
+rapport_supervision_quick: rapport Synchronisatie van de #Rapport de synchronisation du Quick
+connected: geconnecteerd #Connecté
+disconnected: uitgeschakeld #Déconnecté
+state: status #Etat
+historic_broadcast_all_restaurants: Historiek broadcasts restaurants #Historique des broadcasts vers les restaurants
+restaurant_supervision: Supervisie van de restaurants #Supervision des restaurants
+
+documentation_label: Documentatie #Documentation
+changlog_label: Changlog
+
+missing_pluS:
+    subject_mail: Notificatie van ontbrekende PLU's #Notification des Plu'S manquants
+    title: ontbrekende PLU's #Plu'S manquants
+    body: recepten van onderstaande PLU's #les recettes des PLU suivants :
+    prefix: Code Plu:
+    endBody: zijn niet te vinden in deze restaurants #sont introuvables dans ces restaurants
+recipe_label: label ontvansten #LabelBonDeRecette
+expense_label: label Uitgaven #LabelBonDeDepense
+
+id_inventory_item: ID inventaris item #ID produit inventaire
+id_recipe: ID recept #ID recette
+id_sold_item: ID verkoopsitem #ID item vente
+code_inventory_item: Code inv item  #Code item inv
+name_inventory_item: Naam inv item  #Nom item inv
+price_of_line: prijs van de regel #Prix de la ligne
+price_of_recipe: prijs van het recept #Prix de la recette
+id_recipe_line: ID recept regel #ID ligne de recette
+
+product_substituted_with_success: Product met succes veranderd! #Produit substituer avec succès!
+product_substitute_now_recipe: Geen recept komt met dit product overeen! #Aucunne recette ne coreespond à ce produit!
+
+non_comparable_day: Niet comparabele dag #Jour Non Comparable
+avg_tm_brut: Gem. T Brutto #TM Brut

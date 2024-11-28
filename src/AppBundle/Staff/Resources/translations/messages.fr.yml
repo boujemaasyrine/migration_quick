@@ -1,0 +1,45 @@
+unique:
+    socialId: Ce numéro d'identification Sociale existe déja.
+
+staff:
+    list:
+        title: List du personnel
+        details: Détails du personnel
+        all_roles: Toute Fonction
+        roles:
+            title: Liste des fonctions attribués
+            success: Fonction attribuée avec succès.
+            delete: Supprimer la fonction
+            deleted: Fonction supprimée avec succès.
+        password:
+            success: Mot de passe par défault créé avec succès.
+            force_edit_success: Vous pouvez à présent commencer à utiliser Quick BO.
+            force_edit: Vous devez commencer par changer votre mot de passe.
+        email:
+             success: L'adresse email a été modifiée avec succès.
+             right_error: Vous n'avez pas le droit d'exécuter cette action.
+        attribute_role: Attribuer une fonction
+        default_password: Définir un mot de passe
+        reset_password: Redéfinir le mot de passe
+        change_email: Changer l'adresse email
+        choose_role: Choisir une fonction
+        default_password_title: Définir le mot de passe par défault
+        synchronize:
+           success: Synchronisation effectuée avec succès.
+           users_added: Nombre d'employés ajoutés :
+    role:
+        title: Ajouter une fonction
+        delete: Supprimer la fonction
+        delete_confirm: Vous êtes sur le point de supprimer la fonction '%role%', Confirmez vous cette opération?
+        add_success: Fonction ajoutée avec succès.
+        edit_success: Fonction modifiée avec succès.
+        delete_success: Fonction supprimée avec succès.
+        delete_failed_title: Suppression impossible.
+        delete_failed_body: Veuillez supprimer la liste des droits pour cette fonction et vérifier qu'elle n'est pas affectée à aucun utilisateur pour pouvoir le supprimer.
+
+# Missed Translation
+roles:
+    edit_role: Modifier la fonction
+synchronize:
+    users_added: "<h4>Nombre d'employés ajoutés: %addedUsers%</h4><h4>Nombre d'employés supprimés: %deletedUsers%</h4>"
+

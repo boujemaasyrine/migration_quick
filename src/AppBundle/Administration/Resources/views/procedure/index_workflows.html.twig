@@ -1,0 +1,148 @@
+{% extends '@Administration/index_administration.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var notDeletebaleActions = [];
+        $(function () {
+
+            $('#procedure_eligibleRoles').selectize({
+                plugins: ['remove_button']
+            });
+
+            $.each($('#procedure_actions').find('option'), function (key, value) {
+                if ($(value).attr('cannot_be_deletable') != undefined) {
+                    notDeletebaleActions.push($(value).val());
+                }
+            });
+
+            orderMultoSelectWithoutOrderingSelectedOptions($('#procedure_actions'));
+
+            initMultiSelect('#procedure_actions');
+
+            $('#procedure_actions').bind('multiselectChange', function (evt, ui) {
+                if (ui.selected == false) {
+                    $.each(ui.optionElements, function (key, value) {
+                        if ($.inArray($(value).val(), notDeletebaleActions) >= 0) {
+                            $(value).prop('selected', true)
+                            showPopError(Translator.trans('procedure.cannot_deselect_step'));
+                        }
+                    });
+                    $('#procedure_actions').multiselect('refresh');
+                }
+            });
+
+            $('.multiselect-available-list .ui-icon-arrowthickstop-1-w').toggleClass('ui-icon-arrowthickstop-1-w ui-icon-arrowthickstop-1-e');
+            $('.multiselect-selected-list .ui-icon-arrowthickstop-1-e').toggleClass('ui-icon-arrowthickstop-1-w ui-icon-arrowthickstop-1-e');
+
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .ui-state-default.option-selected[cannot_be_deletable=''] div {
+            background-color: #04004b;
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'procedure.title'|trans }}
+{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {% if new %}
+                <span class="glyphicon glyphicon-plus"></span> {{ 'procedure.add_title'|trans() }}
+            {% else %}
+                <span class="glyphicon glyphicon-edit"></span> {{ 'procedure.modify_title'|trans() }}
+            {% endif %}
+        </div>
+        <div class="panel-body" style="    padding-bottom: 10px;">
+            <div class="row">
+                <div class="col s12 input-field">
+                    <label class="required" for="procedure_name">{{ 'procedure.name'|trans() }} </label>
+                    {{ form_widget(form.name,{ 'attr' : { 'class' : 'form-control' } }) }}
+                    {{ form_errors(form.name) }}
+                </div>
+                <div class="col s12">
+                    <label class="required" for="steps">{{ 'procedure.steps'|trans() }} :</label>
+                    {{ form_widget(form.actions , { 'attr' : { 'class' : 'multiselect' } }) }}
+                    {{ form_errors(form.name) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label class="required" for="procedure_eligibleRoles">{{ 'label.roles'|trans() }} </label>
+                    {{ form_widget(form.eligibleRoles) }}
+                    {{ form_errors(form.eligibleRoles) }}
+                </div>
+            </div>
+
+            <button {{ securityChecker.disableBtn('create_workflow') }} type="submit" class="pull-right btn btn-icon
+                {% if new %}
+                    btn-save
+                {% else %}
+                   btn-save
+                {% endif %}
+                ">
+                {% if new %}
+                    {{ 'btn.save'|trans() }}
+                {% else %}
+                    {{ 'btn.edit'|trans() }}
+                {% endif %}
+            </button>
+
+            {% if new == false %}
+                <a class="pull-right" href="{{ path('index_workflows') }}"> {{ 'btn.cancel'|trans() }} </a>
+            {% endif %}
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <!-- End Panel -->
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h4>
+                {{ 'procedure.list'|trans() }}
+            </h4>
+
+            <table id="workflows_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+                   width="100%">
+                <thead>
+                <tr>
+                    <th width="80%">{{ 'procedure.name'|trans() }} </th>
+                    <th>{{ 'label.action'|trans() }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for p in procedures %}
+                    <tr>
+                        <td>{{ p.name|title }}</td>
+                        <td>
+                            <a {{ securityChecker.disableBtn('create_workflow') }} class="btn btn-save btn-icon"
+                                                                                   href="{{ path('index_workflows',{ 'procedure' : p.id }) }}">
+                                {{ 'procedure.modify_btn'|trans() }}
+                            </a>
+
+                            {% if p.canBeDeleted %}
+                                <a {{ securityChecker.disableBtn('delete_procedure') }} class="btn btn-delete btn-icon"
+                                                                                        href="{{ path('delete_procedure',{'procedure': p.id}) }}">
+                                    {{ 'procedure.delete_btn'|trans() }}
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

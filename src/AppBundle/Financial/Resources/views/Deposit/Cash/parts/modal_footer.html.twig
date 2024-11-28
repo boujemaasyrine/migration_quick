@@ -1,0 +1,10 @@
+<div style="">
+    <a class="btn btn-primary" href="{{ path('deposit_redirect', { 'source' : 'deposit_cash' }) }}"
+       style="margin-right: 5px;">
+        <span class="glyphicon glyphicon-arrow-right"></span> &nbsp; {{ 'keyword.continue'|trans() }}
+    </a>
+    <a class="btn btn-validate pull-right"
+       href="{{ path('deposit_report', { 'id' : deposit.id }) }}?download=true" style="margin-right: 5px;">
+        <span class="glyphicon glyphicon-download"></span> &nbsp; {{ 'deposit.report.download_report'|trans() }}
+    </a>
+</div>

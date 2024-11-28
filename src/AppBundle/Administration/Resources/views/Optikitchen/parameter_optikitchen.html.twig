@@ -1,0 +1,100 @@
+{% extends "@Administration/index_administration.html.twig" %}
+
+ {% block base_title %}
+     {{ 'optikitchen.parameter' |trans }}
+ {% endblock %}
+
+{% block base_subtitle %}
+    {{ 'optikitchen.sub_title'|trans() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $.fn.dataTable.ext.order['eligible'] = function (settings, col) {
+            return this.api().column(col, {order: 'index'}).nodes().map(function (td, i) {
+                if ($(td).find("input").is(':checked')) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        };
+
+        $(function () {
+            var tables = initSimpleDataTable('.product-table', {
+                order: [[1, "asc"]],
+                columns: [
+                    null,
+                    null,
+                    {"orderDataType": "eligible"}
+                ]
+            });
+
+            $('#submit_button').on('click', function (e) {
+                loader.block();
+                tables.destroy();
+                $('#optikitchen_param').submit();
+            });
+        });
+
+    </script>
+{% endblock %}
+
+{% block body %}
+    <style>
+        .nav.nav-tabs li {
+            width: 50%;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        input[type="checkbox"]:not(:checked), input[type="checkbox"]:checked {
+            position: absolute;
+            left: inherit;
+            visibility: visible;
+        }
+    </style>
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-xs-12" style="text-align: right">
+                    <button id="submit_button"
+                            class="btn btn-save btn-icon" type="button"> {{ 'btn.save'|trans() }} </button>
+                </div>
+            </div>
+
+            <ul class="nav nav-tabs" role="tablist" style="margin-top: 10px;">
+                <li class="active" role="presentation">
+                    <a href="#ps" data-toggle="tab">
+                        {{ 'keyword.products_sold'|trans() }}
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#pp" data-toggle="tab">
+                        {{ 'keyword.articles'|trans() }}
+                    </a>
+                </li>
+            </ul>
+
+            <form method="post" id="optikitchen_param">
+                <div class="tab-content" style=" margin-top: 0px; padding: 10px; border: solid 1px #DDDDDD;">
+                    <div role="tabpanel" class="tab-pane active" id="ps">
+                        {% include '@Administration/Optikitchen/param_optikitchen_product_table.html.twig'
+                            with { 'products': productsSold , 'type' : 'sold' } %}
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="pp">
+                        {% include '@Administration/Optikitchen/param_optikitchen_product_table.html.twig'
+                            with { 'products': productsPurchased , 'type' : 'purchased'} %}
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

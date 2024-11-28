@@ -1,0 +1,49 @@
+<div class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+        {% for key,item in form.vars.value.discountContainer.listDiscountLabels %}
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ key }}"
+                       aria-expanded="false" aria-controls="collapse{{ key }}">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label>  {{ 'keyword.label'|trans() }} : </label> <span
+                                        class="text-muted">{{ item }}</span>
+                            </div>
+                            <div class="col-xs-4" style="text-align: right;">
+                                <label>  {{ 'keyword.quantite'|trans() }} :</label>
+                                <span> {{ form.vars.value.discountContainer.quantityByLabel(item) }} </span>
+                            </div>
+                            <div class="col-xs-4" style="text-align: right;">
+                                <label>  {{ 'keyword.amount'|trans() }} :</label>
+                                <span> {{ form.vars.value.discountContainer.amountByLabel(item)|abs|number_format(2, ',', '.') }}
+                                    <i class="glyphicon glyphicon-euro"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {#<div id="collapse{{ key }}" class="panel-collapse" role="tabpanel" aria-labelledby="heading{{ key }}">#}
+                {#<div class="panel-body" role="tabpanel">#}
+                {#<div class="col-xs-12">#}
+                {#<div class="">#}
+                {#<div class="list">#}
+                {#{% for tp in form.vars.value.discountContainer.ticketLines %}#}
+                {#{% if item == tp.description %}#}
+                {#<div class="row">#}
+                {#<div class="col-xs-12">#}
+                {#<label>  {{ 'keyword.amount'|trans() }} :</label><span#}
+                {#class="text-muted bold"> {{ tp.totalTTC|abs|round(2)|number_format(2, ',', '.') }}#}
+                {#<i class="glyphicon glyphicon-euro"></i></span>#}
+                {#</div>#}
+                {#</div>#}
+                {#{% endif %}#}
+                {#{% endfor %}#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,1 @@
+$(function(){function n(){var n,i=$(".table"),t=i.find("tbody.mainTbody tr.mainRow:not(.hidden):first").children();n=t.map(function(){return $(this).innerWidth()}).get(),i.find("thead tr.mainHeader").children().each(function(i,t){$(t).width(n[i])})}n(),$(window).scroll(function(){n()}),fixMyHeader(".table")});

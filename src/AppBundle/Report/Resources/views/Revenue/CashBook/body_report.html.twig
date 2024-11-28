@@ -1,0 +1,234 @@
+<style>
+    .row-foot {
+        /*border-top: solid 2px;*/
+        padding-top: 20px;
+    }
+
+    .spaced-col .row {
+        padding-top: 20px;
+    }
+
+    .cashbook-report .bordered-row {
+        border-bottom: 1px solid black;
+    }
+
+    /*.cashbook-report .row .col{*/
+    /*padding: 0 1rem;*/
+    /*}*/
+</style>
+<br/>
+{% set countRecipes = ( result.caBrutByTva | length ) + ( result.recipeByLabel | length ) + 2 %}
+{% set countExpenses = ( result.expensesBySubGroup | length ) %}
+{% if result.cashGap > 0 %}{% set countRecipes = countRecipes + 1 %}
+{% elseif result.cashGap < 0 %}{% set countExpenses = countExpenses + 1 %}{% endif %}
+{% if result.chestGap > 0 %}{% set countRecipes = countRecipes + 1 %}
+{% elseif result.chestGap < 0 %}{% set countExpenses = countExpenses + 1 %}{% endif %}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="cashbook-report row">
+            <div class="col col-lg-1 col-md-1"></div>
+            <div class="col col-lg-10 col-md-10" style="border: 1px solid;">
+                <div class="row" style="border: 1px solid; margin-bottom: 0px;">
+
+                    <div class="col col-xs-6" style="border-right: 1px solid;">
+                        <div class="row">
+                            <div class="col col-xs-12 bold" style="text-align: center">
+                                {{ 'cash_book.recipes' | trans }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-xs-12 bold" style="text-align: center">
+                                {{ 'cash_book.previous_credit' | trans }}
+                                : {{ result.previousCredit | number_format(2, ',', '') }} &euro;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-xs-4 bold">
+                                {{ 'keyword.label' | trans }}
+                            </div>
+                            <div class="col col-xs-4 center bold">
+
+                            </div>
+                            <div class="col col-xs-4 bold" style="text-align: right;">
+                                {{ 'keyword.amount' | trans }} (&euro;)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-xs-6" style="border-left: 1px solid;">
+                        <div class="row">
+                            <div class="col col-xs-12 bold" style="text-align: center">
+                                {{ 'cash_book.expense' | trans }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-xs-12 bold" style="text-align: center">
+                                {{ 'cash_book.current_credit' | trans }}
+                                : {{ result.currentCredit | number_format(2, ',', '') }} &euro;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-xs-6  bold">
+                                {{ 'keyword.label' | trans }}
+                            </div>
+                            <div class="col col-xs-6 bold" style="text-align: right;">
+                                {{ 'keyword.amount' | trans }} (&euro;)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 0px">
+                    <div class="col col-xs-6 spaced-col"
+                         {% if countRecipes >= countExpenses %}style="border-right: 1px solid;" {% endif %}>
+                        <div class="row bordered-row">
+                            <div class="col col-xs-4">
+                                {{ 'report.ca.net_ttc' | trans }}
+                            </div>
+                            <div class="col col-xs-4">
+
+                            </div>
+                            <div class="col col-xs-4" style="text-align: right">
+                                {{ result.totalCaBrut | number_format(2, ',', '') }}
+                            </div>
+                        </div>
+                        {% for caTva in result.caBrutByTva %}
+                            <div class="row bordered-row">
+                                <div class="col col-xs-4">
+                                    TVA
+                                </div>
+                                <div class="col col-xs-4 center">
+                                    {{ caTva.tva }} %
+                                </div>
+                                <div class="col col-xs-4" style="text-align: right">
+                                    {{ caTva.totalAmount | number_format(2, ',', '') }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="row bordered-row">
+                            <div class="col col-xs-4">
+                                {{ 'cash_book.daily_recipe' | trans }}
+                            </div>
+                            <div class="col col-xs-4">
+
+                            </div>
+                            <div class="col col-xs-4" style="text-align: right">
+                                {{ result.dailyRecipe | number_format(2, ',', '') }}
+                            </div>
+                        </div>
+                        {% if result.cashGap > 0 %}
+                            <div class="row bordered-row">
+                                <div class="col col-xs-4">
+                                    {{ 'keyword.cash_gap' | trans }}
+                                </div>
+                                <div class="col col-xs-4">
+
+                                </div>
+                                <div class="col col-xs-4" style="text-align: right">
+                                    {{ result.cashGap | number_format(2, ',', '') }}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% for recipeTicket in result.recipeByLabel %}
+                            <div class="row bordered-row">
+
+                                <div class="col col-xs-6">
+                                    {{ recipeTicket.label | recipe_ticket_label }}
+                                </div>
+                                <div class="col col-xs-6" style="text-align: right;">
+                                    {{ recipeTicket.totalAmount | number_format(2, ',', '') }}
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {% if result.chestGap > 0 %}
+                            <div class="row bordered-row">
+                                <div class="col col-xs-4">
+                                    {{ 'keyword.chest_gap' | trans }}
+                                </div>
+                                <div class="col col-xs-4">
+
+                                </div>
+                                <div class="col col-xs-4" style="text-align: right">
+                                    {{ result.chestGap | number_format(2, ',', '') }}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col col-xs-6 spaced-col"
+                         {% if countRecipes < countExpenses %}style="border-left: 1px solid;" {% endif %}>
+                        {% for expense in result.expensesBySubGroup %}
+                            <div class="row bordered-row">
+
+                                <div class="col col-xs-6">
+                                    {% if expense.groupExpense == constant('AppBundle\\Financial\\Entity\\Expense::GROUP_BANK_RESTAURANT_PAYMENT')
+                                    or expense.groupExpense == constant('AppBundle\\Financial\\Entity\\Expense::GROUP_BANK_E_RESTAURANT_PAYMENT') %}
+                                        {{ expense.subGroup | ticket_label }}
+                                    {% elseif expense.groupExpense == constant('AppBundle\\Financial\\Entity\\Expense::GROUP_BANK_CARD_PAYMENT') %}
+                                        {{ expense.subGroup | b_card_label }}
+                                    {% elseif expense.groupExpense == constant('AppBundle\\Financial\\Entity\\Expense::GROUP_BANK_CASH_PAYMENT') %}
+                                        {{ 'keyword.cash' | trans }}
+                                    {% elseif expense.groupExpense == constant('AppBundle\\Financial\\Entity\\Expense::GROUP_OTHERS') %}
+                                        {{ expense.subGroup | other_group_label }}
+                                    {% endif %}
+                                </div>
+                                <div class="col col-xs-6" style="text-align: right;">
+                                    {{ expense.totalAmount | number_format(2, ',', '') }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% if result.cashGap < 0 %}
+                            <div class="row bordered-row">
+                                <div class="col col-xs-6">
+                                    {{ 'keyword.cash_gap' | trans }}
+                                </div>
+                                <div class="col col-xs-6" style="text-align: right">
+                                    {{ ( result.cashGap | abs ) | number_format(2, ',', '') }}
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if result.chestGap < 0 %}
+                            <div class="row bordered-row">
+                                <div class="col col-xs-6">
+                                    {{ 'keyword.chest_gap' | trans }}
+                                </div>
+                                <div class="col col-xs-6" style="text-align: right">
+                                    {{ ( result.chestGap | abs ) | number_format(2, ',', '') }}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 0px;">
+
+                    <div class="col col-xs-6" style="border-right: 1px solid;">
+                        <div class="row row-foot">
+                            <div class="col col-xs-6 bold">
+                                {{ 'cash_book.total_recipe' | trans }} (&euro;)
+                            </div>
+                            <div class="col col-xs-6 bold" style="text-align: right;">
+                                {{ result.recipesAmount | number_format(2, ',', '') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-xs-6" style="border-left: 1px solid;">
+                        <div class="row row-foot">
+                            <div class="col col-xs-6 bold">
+                                {{ 'cash_book.total_expense' | trans }} (&euro;) :
+                            </div>
+                            <div class="col col-xs-6 bold" style="text-align: right;">
+                                {{ result.expensesAmount | number_format(2, ',', '') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-lg-1 col-md-1"></div>
+        </div>
+    </div>
+</div>

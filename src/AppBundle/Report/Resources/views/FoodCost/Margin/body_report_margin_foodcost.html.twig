@@ -1,0 +1,543 @@
+<style>
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 0px;
+        line-height: 1.9;
+        vertical-align: top;
+        border: 1px solid #ddd !important;
+        font-family: "avenirpro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .table > thead > tr > th {
+        text-align: center;
+    }
+
+    .report-table-head {
+        background-color: #ca9e67 !important;
+    }
+
+    .table > tbody > tr > td {
+        border: none !important;
+    }
+
+    hr {
+        border-top: 2px solid #c8102e;
+    }
+
+    .spaced_rows td {
+        padding-bottom: 10px !important;
+    }
+</style>
+<div class="row" style="padding-top: 40px">
+    <div class="col col-lg-6 col-md-6 col-sm-12 col-xs-6">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="report-table-head">
+                    {{ 'keyword.theorical' | trans }}
+                </th>
+                <th class="report-table-head">
+                    {{ 'label.value' | trans }}
+                </th>
+                <th class="report-table-head">
+                    %
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    {{ 'report.food_cost.margin.mix_ca_ttc' | trans }}
+                </td>
+                <td>
+                    {{ result.revenuePrice | number_format(2, ',', '') }}
+                </td>
+                <td style="text-align: right">
+                    {% if result.caBrutTtc == 0 %} 0 {% else %}
+                        {{ ( result.revenuePrice / result.caBrutTtc * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'report.food_cost.margin.ideal_ht' | trans }}
+                </td>
+                <td>
+                    {{ result.revenuePrice | number_format(2, ',', '') }}
+                </td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.revenuePrice / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'report.food_cost.synthetic.known_loss' | trans }}
+                </td>
+                <td>
+                    {{ ( result.inventoryLossVal + result.soldLossVal ) | number_format(2, ',', '') }}
+                </td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ (( result.inventoryLossVal + result.soldLossVal)/ result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    {{ 'article' | trans }}
+                </td>
+                <td>{{ result.inventoryLossVal | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.inventoryLossVal / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    {{ 'finalProduct' | trans }}
+                </td>
+                <td>{{ result.soldLossVal | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.soldLossVal / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'report.food_cost.margin.total_loss' | trans }}
+                </td>
+                <td>{{ ( result.total_loss |abs| number_format(2, ',', '') ) }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.total_loss / result.caNetHt * 100 ) | abs | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>{{ 'report.food_cost.margin.theorical_foodcost' | trans }}</b>
+                </td>
+                <td>{{ result.theorical_fc | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.theorical_fc / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    {{ 'report.food_cost.synthetic.unknown_loss' | trans }}
+                </td>
+                <td>{{ ( result.unknown_loss | abs | number_format(2, ',', '') ) }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( ( result.unknown_loss / result.caNetHt * 100 )| abs | number_format(2, ',', '') ) }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr style="visibility: hidden">
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'keyword.portion_control' | trans }}
+                </td>
+                <td>{{ result.portionControl | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.portionControl / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr style="visibility: hidden">
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col col-lg-6 col-md-6 col-sm-12 col-xs-6">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="report-table-head">
+                    {{ 'keyword.real' | trans }}
+                </th>
+                <th class="report-table-head">
+                    {{ 'label.value' | trans }}
+                </th>
+                <th class="report-table-head">
+                    %
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>
+                    {{ 'report.ca.ca_net_ht' | trans }}
+                </td>
+                <td>
+                    {{ result.caNetHt | number_format(2, ',', '') }}
+                </td>
+                <td style="text-align: right">
+                    100
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'report.food_cost.synthetic.initial_stock' | trans }}
+                </td>
+                <td>
+                    {{ result.initial | number_format(2, ',', '') }}
+                </td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.initial / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr style="visibility: hidden">
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    {{ 'keyword.in' | trans }}
+                </td>
+                <td>{{ result.in | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.in / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    {{ 'keyword.out' | trans }}
+                </td>
+                <td>{{ result.out | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.out / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr style="text-align: center">
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    {{ 'report.food_cost.synthetic.final_stock' | trans }}
+                </td>
+                <td>{{ result.final | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.final / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr style="text-align: center">
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    <b>{{ 'report.food_cost.margin.real_foodcost' | trans }}</b>
+                </td>
+                <td>{{ ( result.real_fc ) | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.real_fc  / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    {{ 'report.food_cost.margin.voucher_pub' | trans }}
+                </td>
+                <td>{{ result.discount | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.discount / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    {{ 'report.food_cost.margin.voucher_meal_foodcost' | trans }}
+                </td>
+                <td>{{ result.voucherMeal | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.voucherMeal / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    {{ 'report.food_cost.margin.net_real_foodcost' | trans }}
+                </td>
+                <td>{{ result.fcRealNet | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.fcRealNet / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    {{ 'report.food_cost.margin.net_real_margin' | trans }}
+                </td>
+                <td>{{ result.realMargin | number_format(2, ',', '') }}</td>
+                <td style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.realMargin / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+<div class="row" style="padding-top: 40px; page-break-inside: avoid;">
+    <div class="col col-lg-6 col-md-6 col-sm-12 col-xs-6">
+        <table class="table">
+            <thead>
+            <tr>
+                <th colspan="4" class="report-table-head">
+                    {{ 'keyword.theorical' | trans }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    {{ 'report.food_cost.margin.margin_pf' | trans }}
+                </td>
+                <td colspan="2" style="text-align: right">
+                    {{ ( result.caNetHt - result.revenuePrice ) | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    {{ 'report.food_cost.margin.voucher_meal' | trans }}
+                </td>
+                <td colspan="2" style="text-align: right">
+                    {{ result.caVoucherMeal | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <hr>
+                </td>
+            </tr>
+            <tr class="spaced_rows">
+                <td>
+                    {{ 'keyword.loss' | trans }}
+                </td>
+                <td>
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( (result.inventoryLossVal + result.soldLossVal) / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+                <td>% H.T.</td>
+                <td style="text-align: right">{{ ( result.inventoryLossVal + result.soldLossVal ) | number_format(2, ',', '') }}</td>
+            </tr>
+            <tr class="spaced_rows">
+                <td style="text-align: center">
+                    {{ 'label.inventory_item' | trans }}
+                </td>
+                <td>
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.inventoryLossVal / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+                <td>% H.T.</td>
+                <td style="text-align: right">{{ result.inventoryLossVal | number_format(2, ',', '') }}</td>
+            </tr>
+            <tr class="spaced_rows">
+                <td style="text-align: center">
+                    {{ 'label.sold_item' | trans }}
+                </td>
+                <td>
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( result.soldLossVal / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                </td>
+                <td>% H.T.</td>
+                <td style="text-align: right;">{{ result.soldLossVal | number_format(2, ',', '') }}</td>
+            </tr>
+            <tr class="spaced_rows">
+                <td colspan="2">
+                    {{ 'report.ca.ca_net_ht' | trans }}
+                </td>
+                <td colspan="2" style="text-align: right">
+                    {{ result.caNetHt | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr class="spaced_rows">
+                <td colspan="2">
+                    {{ 'report.food_cost.margin.theorical_margin' | trans }}
+                </td>
+                <td colspan="2" style="text-align: right">
+                    {{ ( result.caNetHt - result.theorical_fc ) | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr class="spaced_rows">
+                <td colspan="4" style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( ( result.caNetHt - result.theorical_fc ) / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                    %
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col col-lg-6 col-md-6 col-sm-12 col-xs-6">
+        <table class="table">
+            <thead>
+            <tr>
+                <th colspan="2" class="report-table-head">
+                    {{ 'report.food_cost.margin.period' | trans }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    {{ 'report.food_cost.synthetic.initial_stock' | trans }}
+                </td>
+                <td style="text-align: right">
+                    {{ result.initial | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'keyword.in' | trans }}
+                </td>
+                <td style="text-align: right">
+                    {{ result.in | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr class="spaced_rows">
+                <td>
+                    {{ 'keyword.out' | trans }}
+                </td>
+                <td style="text-align: right">
+                    {{ result.out | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr class="spaced_rows">
+                <td>
+                    {{ 'report.food_cost.synthetic.final_stock' | trans }}
+                </td>
+                <td style="text-align: right">
+                    {{ result.final | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr class="spaced_rows">
+                <td>
+                    {{ 'keyword.consumption' | trans }}
+                </td>
+                <td style="text-align: right">
+                    {{ result.real_fc | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr class="spaced_rows">
+                <td>
+                    {{ 'report.ca.ca_net_ht' | trans }}
+                </td>
+                <td style="text-align: right">
+                    {{ result.caNetHt | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr class="spaced_rows">
+                <td>
+                    {{ 'report.food_cost.synthetic.real_margin' | trans }}
+                </td>
+                <td style="text-align: right">
+                    {{ ( result.caNetHt - result.real_fc ) | number_format(2, ',', '') }}
+                </td>
+            </tr>
+            <tr class="spaced_rows">
+                <td colspan="2" style="text-align: right">
+                    {% if result.caNetHt == 0 %} 0 {% else %}
+                        {{ ( ( result.caNetHt - result.real_fc ) / result.caNetHt * 100 ) | number_format(2, ',', '') }}
+                    {% endif %}
+                    %
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

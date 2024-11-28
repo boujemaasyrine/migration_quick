@@ -1,0 +1,42 @@
+#!/command/with-contenv bash
+EMAIL="${MAINTAINER:-nabil.ben-salah@talan.com}"
+NAME="${IMAGE_NAME:-s6-ubuntu}"
+WEBUSER="${WEBUSER:-www-data}"
+WEBGROUP="${WEBGROUP:-www-data}"
+WEBHOME="$(webhome)"
+GREETING="
+
+----------------------------------------
+  Container : $NAME
+  Distro    : $(bash -c '. /etc/os-release;echo ${PRETTY_NAME:-Unknown}')
+  Timezone  : $(date +'%Z') (GMT$(date +'%z'))
+  UID / GID : $WEBUSER:$WEBGROUP ($(id -u $WEBUSER):$(id -g $WEBUSER))
+  Web Root  : $WEBHOME
+----------------------------------------
+
+"
+
+if [ ! -z "$WEBHOME" ]; then
+    if [ "$FIX_WEBHOME_PERMISSION" == "true" ] || [ -e /tmp/owner-changed ]; then
+        rm -rf /tmp/owner-changed
+        echo "🗂 Fixing permission for ${WEBHOME}"
+        wmd /root    -R 2>&1 &
+        wmd $WEBHOME -R 2>&1 &
+    else
+        wmd $WEBHOME 2>&1
+    fi
+fi
+
+if [ -d /startup ]; then
+    echo "🗂 Looking for startup scripts"
+    for script in /startup/* ; do
+        if [ -x $script ]; then
+            echo "  📜 Started $script in the background."
+            bash -c "sleep 0.2; . $script | sed -u 's@^@⚙️ ${script#/startup/}: @g'" &
+        fi
+    done
+    echo
+fi
+
+echo
+exec echo "$GREETING"

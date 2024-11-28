@@ -1,0 +1,105 @@
+<div id="calculation_preview" class="{% if download is not defined %}col-xs-4{% else %}col-xs-12{% endif %}">
+    <div class="panel panel-default row">
+        <div class="col-xs-6">
+            <h5>
+                {{ 'chest.counting.preview'|trans() }}
+            </h5>
+        </div>
+        <div class="col-xs-12">
+            {% include('@Financial/Chest/Counting/parts/calculation_preview.html.twig') %}
+        </div>
+    </div>
+</div>
+{% if download is not defined %}
+    <div id="counting_main_form" class="{% if download is not defined %}col-xs-8{% else %}col-xs-12{% endif %}">
+        <div class="row panel panel-default">
+            <div class="col-xs-12">
+                <h4>
+                    {{ 'chest.counting.entries'|trans() }}
+                </h4>
+            </div>
+            <div class="col-xs-12">
+                {{ form_errors(form) }}
+            </div>
+            {% if download is not defined %}
+                <div class="col-xs-12">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        {#<li role="presentation" class="active">#}
+                        {#<a href="#tirelire" aria-controls="tirelire" role="tab" data-toggle="tab">#}
+                        {#{{ 'chest.counting.tirelire'|trans() }}#}
+                        {#</a></li>#}
+                        <li role="presentation" class="active">
+                            <a href="#smallChest" aria-controls="ticket_restaurant" role="tab"
+                               data-toggle="tab">
+                                {{ 'chest.counting.small_chest'|trans() }}
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#exchangeFund" aria-controls="electronic_ticket_restaurant" role="tab"
+                               data-toggle="tab">
+                                {{ 'chest.counting.exchange_fund'|trans() }}
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#cashboxFund" aria-controls="bank_card" role="tab" data-toggle="tab">
+                                {{ 'chest.counting.cashbox_fund'|trans() }}
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        {#<div role="tabpanel" class="tab-pane active" id="tirelire">#}
+                        {#{% include('@Financial/Chest/Counting/parts/tirelire.html.twig') %}#}
+                        {#</div>#}
+                        <div role="tabpanel" class="tab-pane active" id="smallChest">
+                            {% include('@Financial/Chest/Counting/parts/small_chest.html.twig') %}
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="exchangeFund">
+                            {% include('@Financial/Chest/Counting/parts/exchange_fund.html.twig') %}
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="cashboxFund">
+                            {% include('@Financial/Chest/Counting/parts/cashbox_fund.html.twig') %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                {#<div class="col-xs-12">#}
+                {#<div class="panel panel-default">#}
+                {#<div class="panel-heading" style="text-align: left;">#}
+                {#{{ 'chest.counting.tirelire'|trans() }}#}
+                {#</div>#}
+                {#<div class="panel-body">#}
+                {#{% include('@Financial/Chest/Counting/parts/tirelire.html.twig') %}#}
+                {#</div>#}
+                {#</div>#}
+                {#<div class="panel panel-default">#}
+                {#<div class="panel-heading" style="text-align: left;">#}
+                {#{{ 'chest.counting.small_chest'|trans() }}#}
+                {#</div>#}
+                {#<div class="panel-body">#}
+                {#{% include('@Financial/Chest/Counting/parts/small_chest.html.twig') %}#}
+                {#</div>#}
+                {#</div>#}
+                {#<div class="panel panel-default">#}
+                {#<div class="panel-heading" style="text-align: left;">#}
+                {#{{ 'chest.counting.exchange_fund'|trans() }}#}
+                {#</div>#}
+                {#<div class="panel-body">#}
+                {#{% include('@Financial/Chest/Counting/parts/exchange_fund.html.twig') %}#}
+                {#</div>#}
+                {#</div>#}
+                {#<div class="panel panel-default">#}
+                {#<div class="panel-heading" style="text-align: left;">#}
+                {#{{ 'chest.counting.cashbox_fund'|trans() }}#}
+                {#</div>#}
+                {#<div class="panel-body">#}
+                {#{% include('@Financial/Chest/Counting/parts/cashbox_fund.html.twig') %}#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+            {% endif %}
+
+        </div>
+    </div>
+{% endif %}

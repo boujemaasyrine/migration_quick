@@ -1,0 +1,56 @@
+{% extends('@Report/Discount/base_exports_report.html.twig') %}
+
+{% block reportTitle %}
+    <h4> {{ 'cancellation_report.cancellation_report' |trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-2 input-field">
+        <label for="startDate">{{ 'keyword.from'|trans }} :</label>
+        <span class="text-muted">
+            {{ data.startDate }}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="endDate">{{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {{ data.endDate }}
+        </span>
+    </div>
+
+    <div class="col-xs-4">
+        <label for="selection">{{ 'keyword.from'|trans }}: </label>
+        <span class="text-muted">
+
+            {%  if data.startHour is not null %}
+               {{ data.startHour }} H
+            {%  else %}
+                --
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {%  if data.startHour is not null %}
+               {{ data.endHour }} H
+            {%  else %}
+                --
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'label.member' | trans }}: </label>
+        <span class="text-muted">
+               {{ data.cashier }}
+        </span>
+    </div>
+
+
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/Cancellation/report_cancellation.html.twig') }}
+{% endblock body %}

@@ -1,0 +1,252 @@
+create_order: Création d'une commande
+order_list: Liste des commandes en cours
+show_planning: Planning des commandes
+help_order: Aide à la commande
+create_delivery: Saisie d'une livraison
+delivery_list: Liste des livraisons
+transfer_in: Saisie d'un Transfert In
+transfer_out: Saisie d'un Transfert Out
+transfer_list: Listes des transferts
+create_return: Saisie d'un retour
+return_list: Liste des retours
+edition_inventory_sheet: Edition feuille d'inventaire
+manage_inventory_sheet: Gestion feuilles d'inventaire
+saisie_inventory: Saisie d'inventaire
+ca_prev_list: Budgets Prévisionnels
+planning_suppliers: Planning des fournisseurs
+index_food_cost_synthetic: Rapport FoodCost Synthétique
+control_stock_report: Rapport contrôle du Stock
+index_workflows: Gestion des procédures
+administrative_closing: Clôture Adminstrative
+
+#Financial
+chest_count: Comptage Coffre
+chest_list: Liste comptage coffre
+list_recipe_tickets: Liste des bons de recette
+create_recipe_tickets: Saisir un bon de recette
+cashbox_counting: Comptage d'une Caisse
+cash_book_report : Rapport livre caisse
+#Merchandise
+loss_entry_article: Saisie Pertes - I. Inventaires
+loss_entry_pf: Saisie Pertes - I. Ventes
+loss_sheet_article: Liste des feuilles de perte articles
+loss_sheet_pf: Liste des feuilles de perte produits finis
+loss_sheet: Liste des feuilles de pertes
+loss_list: Liste des
+api_save_inventory_sheet: Création d'une nouvelle feuille d'inventaire
+
+withdrawal_entry: Saisir un prélèvement
+staff_list: Liste du personnel
+withdrawal_list: Liste des prélèvements
+expense_entry: Saisir une dépense
+expenses_list: Liste des dépenses
+index_config_role: Gestion des droits
+suppliers_list: Liste des fournisseurs
+inventory_item_list: Liste des items d'inventaire
+report_inventory_loss: Rapport Pertes Items Inventaire
+report_sold_loss: Rapport Pertes Items de Vente
+restaurant_list: Liste des restaurants Quick
+report_in_out: Rapport des entrées & sorties
+items_solding_canals: Rapport des ventes par canaux
+hour_by_hour: Rapport Heure par Heure
+margin_food_cost_report: Rapport Marge FoodCost
+add_role: Ajouter une fonction
+daily_results_report: Résultats Journaliers
+
+deposit_ticket: Versement titres restaurants
+deposit_cash: Versement banque espèces
+envelope_list: Consultation des enveloppes espèces
+deleted_envelope_list: Consultation des enveloppes espèces
+envelope_ticket_list: Consultation des enveloppes titres restaurant
+create_envelope_cash: Saisir enveloppe espèce
+create_envelope_restau: Saisir enveloppe titres restaurant
+report_cashbox_counts_owner: Rapport comptage caisse par responsable de comptage
+report_cashbox_counts_cashier: Rapport comptage caisse par équipier
+report_cashbox_counts_anomalies: Rapport anomalies caissiers
+cashbox_list: Consultation des comptages caisses
+
+inventory_list: Liste des inventaires
+cahsbox_parameter: Paramètres Comptage caisse
+day_income: Recette journalière
+envelope_entry: Saisie Enveloppe
+
+#Report
+report_portion_control: Analyse des écarts-Portion Contrôle
+discount: Rapport % discount
+#Administration
+labels_config: Libellés Bon de dépense / Bon de recette
+
+coef_calculate_base: Calcul des coefficients
+show_coeff_pp: Consulter les coefficients
+product_sold_list: Liste des items de vente
+labels_config_expense: Configuration libellé depenses
+labels_config_recipe: Configuration libellé bons de recette
+
+# Missed Translation
+verify_opened_table: Vérification des tables ouvertes
+
+optikitchen_calcul: Calcul des coefficients pour l'export OptiKitchen
+optikitchen_parameters: Paramétrage OptiKitchen
+opti_consultation: Consultation des coefficients Optikitchen
+edit_optikitchen: Modifier les coefficients OptiKitchen
+export_optikitchen: Exporter les coefficients vers OptiKitchen
+
+create_workflow: Créer une procédure
+delete_procedure: Supprimer une procédure
+bud_prev_edit: Modification budget prévisionnel
+
+attribute_role: Attribuer une fonction
+default_password: Définir un mot de passe par défaut
+synchronize_users: Synchronisier les utilisateurs
+planning: Gérer planning des fournisseurs
+
+comparable_days_list: Jours comparables
+comparable_days_modify: Modifier les détails d'une journée
+
+add_inventory_sheet_model: Ajout modèle de feuille d'inventaire
+edit_inventory_sheet_model: Edition modèle de feuille d'inventaire
+delete_inventory_sheet_model: Suppression modèle de feuille d'inventaire
+
+add_loss_sheet_article: Ajout modèle de feuille de perte item inventaire
+edit_loss_sheet_article: Edition modèle de feuille de perte item inventaire
+delete_loss_sheet_article: Suppression modèle de feuille de perte item inventaire
+
+add_loss_sheet_pf: Ajout modèle de feuille de perte item de vente
+edit_loss_sheet_pf: Edition modèle de feuille de perte item de vente
+delete_loss_sheet_pf: Suppression modèle de feuille de perte item de vente
+
+previous_day_loss_inv: Pertes de la veille item inventaire
+previous_day_loss_vtes: Pertes de la veille item en vente
+
+money_booking: Création d'une commande de monnaie
+mailing_money_booking_details : Envoi du mail de la commande de monnaie
+export_money_booking_details : Export des commandes de monnaie
+details_money_booking: Afficher les détails d'une commande de monnaie
+money_booking_listing: Afficher la liste des commandes de monnaie
+
+################### Action Supervisions
+create_order: Création d'une commande
+order_list: Liste des commandes en cours
+show_planning: Planning des commandes
+help_order: Aide à la commande
+create_delivery: Saisie d'une livraison
+delivery_list: Liste des livraison
+transfer_in: Saisie d'un Transfert In
+transfer_out: Saisie d'un Transfert Out
+transfer_list: Listes des transferts
+create_return: Saisie d'un retour
+return_list: Liste des retours
+edition_inventory_sheet: Edition feuille d'inventaire
+manage_inventory_sheet: Gestion feuilles d'inventaire
+saisie_inventory: Saisie d'inventaire
+ca_prev_list: Budgets Prévisionnels
+planning_suppliers: Voir planning des fournisseurs
+index_food_cost_synthetic: Rapport FoodCost Synthétique
+control_stock_report: Rapport contrôle du Stock
+index_workflows: Gestion des procédures
+administrative_closing: Clôture Adminstrative
+#Financial
+chest_count: Comptage Coffre
+chest_list: Liste comptage coffre
+list_recipe_tickets: Liste des bons de recette
+create_recipe_tickets: Saisir un bon de recette
+cashbox_counting: Comptage d'une Caisse
+#Merchandise
+loss_entry_article: Saisie Pertes - I. Inventaires
+loss_entry_pf: Saisie Pertes - I. Ventes
+loss_sheet_article: Liste des feuille des perte articles
+loss_sheet_pf: Liste des feuills de perte produits finis
+loss_sheet: Liste des feuilles des pertes
+previous_day_loss: Pertes de la veille
+api_save_inventory_sheet: Création d'une nouvelle feuille d'inventaire
+withdrawal_entry: Saisir un prélèvement
+staff_list: Liste du personnel
+withdrawal_list: Liste des prélèvements
+expense_entry: Saisir une dépense
+expenses_list: Liste des dépenses
+index_config_role: Gestion des droits
+suppliers_list: Liste des fournisseurs
+inventory_item_list: Liste des items inventaire
+report_inventory_loss: Rapport Pertes Items Inventaire
+report_sold_loss: Rapport Pertes Items de Vente
+restaurant_list: Liste des restaurants Quick
+report_in_out: Rapport des entrées & sorties
+hour_by_hour: Rapport Heure par Heure
+margin_food_cost_report: Rapport Marge FoodCost
+add_role: Ajouter un role
+daily_results_report: Résultats Journaliers
+deposit_ticket: Versement titres restaurants #TODO modified
+deposit_cash: Versement banque espèces
+envelope_list: Consultation des enveloppes espèces
+deleted_envelope_list: Consultation des enveloppes espèces supprimées
+envelope_ticket_list: Consultation des enveloppes titres restaurant
+create_envelope_cash: Saisir enveloppe espèce
+create_envelope_restau: Saisir enveloppe titres restaurant
+report_cashbox_counts_owner: Rapport comptage caisse par responsable comptage
+report_cashbox_counts_cashier: Rapport comptage caisse par équipier
+report_cashbox_counts_anomalies: Rapport anomalies caissiers
+cashbox_list: Consultation des comptages caisses
+inventory_list: Liste des inventaires
+cahsbox_parameter: Paramètres Comptage caisse
+day_income: Recette journalière
+envelope_entry: Saisie Enveloppe
+#Report
+report_portion_control: Analyse des écarts-Portion Contrôle
+#Administration
+labels_config: Libellés Bon de dépense / Bon de recette
+coef_calculate_base: Calcul des coefficients
+show_coeff_pp: Consulter les coefficients
+product_sold_list: Liste des items de vente
+labels_config_expense: Configuration libellé bons de dépenses
+labels_config_recipe: Configuration libellé bons de recette
+verify_opened_table: Vérification des tables ouvertes
+categories_list: Gestion des catégories
+groups_list: Gestion des groupes
+supervision_inventory_item_list: Gestion des items inventaire supervision
+supervision_product_sold_list: Liste des items de vente supervision
+product_sold_save: Ajout/Modification d'un items de vente
+supervision_restaurants_list: Gestion de la liste  des restaurants supervision
+restaurants_list : Liste  des restaurants
+restaurant_list_super: Etat des restaurants
+supervision_suppliers_list: Liste des fournisseurs supervision
+users_list: Liste des utilisateurs
+add_role: Gestion des roles
+supervision_control_stock_report: Rapport controle du Stock supervision
+supervision_daily_results_report: Rapport Résultats journaliers supervision
+supervision_hour_by_hour: Rapport heure par heure supervision
+supervision_margin_food_cost_report: Rapport marge FoodCost supervision
+supervision_index_food_cost_synthetic: Rapport Synthétique FoodCost supervision
+config_right_restaurant: Gestion des droits restaurant
+config_right_central: Gestion des droits central
+optikitchen_calcul: Calcul des coefficients pour l'export OptiKitchen
+optikitchen_parameters: Paramétrage OptiKitchen
+opti_consultation: Consultation des coefficients Optikitchen
+edit_optikitchen: Modifier les coefficients OptiKitchen
+export_optikitchen: Exporter les coefficients vers OptiKitchen
+create_workflow: Créer une procédure
+delete_procedure: Supprimer une procédure
+bud_prev_edit: Modification budget prévisionnel
+attribute_role: Attribuer une fonction
+default_password: Définir un mot de passe par défaut
+change_email: Changer l'adresse email
+synchronize_users: Synchroniser les utilisateurs
+planning: Gérer planning des fournisseurs
+comparable_days_list: Jours comparables
+comparable_days_modify: Modifier les détails d'une journée
+add_inventory_sheet_model: Ajout modèle de feuille d'inventaire
+edit_inventory_sheet_model: Edition modèle de feuille d'inventaire
+delete_inventory_sheet_model: Suppression modèle de feuille d'inventaire
+add_loss_sheet_article: Ajout modèle de feuille de perte item inventaire
+edit_loss_sheet_article: Edition modèle de feuille de perte item inventaire
+delete_loss_sheet_article: Suppression modèle de feuille de perte item inventaire
+add_loss_sheet_pf: Ajout modèle de feuille de perte item de vente
+edit_loss_sheet_pf: Edition modèle de feuille de perte item de vente
+delete_loss_sheet_pf: Suppression modèle de feuille de perte item de vente
+historic_broadcast_all_restaurants: Historique des broadcasts vers les restaurants
+supervision_details: Historique de synchronisation pour un restaurant
+previous_day_loss_inv: Pertes de la veille item inventaire
+previous_day_loss_vtes: Pertes de la veille item en vente
+api_delete_envelope : Suppression enveloppe
+takeout_report : Rapport TakeOut
+supervision_foodcost_report: Rapport FoodCost
+supervision_product_purchase_report: Rapport Achat des produits

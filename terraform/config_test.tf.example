@@ -1,0 +1,7 @@
+locals {
+  #Database_Server
+  test_db_administrator_login           = ""
+  test_db_administrator_password        = ""
+  test_storage_mb                       = ""
+  test_primary_zone                     = ""
+}

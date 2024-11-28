@@ -1,0 +1,170 @@
+{% extends '@Merchandise/index_supplying.html.twig' %}
+
+{% form_theme form.lines "@Merchandise/Returns/form_parts/return_line_widget.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Returns/return.js') }}"></script>
+    <script>
+        $(document).on('click', '#print-btn', function () {
+
+            $("form[name=return]").attr('action', Routing.generate('create_return') + "?download=1");
+            $("form[name=return]").submit();
+            $("form[name=return]").attr('action', Routing.generate('create_return'));
+            loader.hide();
+        });
+    </script>
+{% endblock %}
+{% block base_title %}
+    {{ 'new_retour_title'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'buying_management.return_management'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <style>
+        .selectize-input .item {
+            padding: 10px !important;
+        }
+    </style>
+    {{ form_start(form) }}
+    <div class="add-delivery-table">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row add-command-table-row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <label class="active required">{{ "filter.supplier"|trans }}</label>
+                        {{ form_widget(form.supplier) }}
+                        {{ form_errors(form.supplier) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <label class="active">{{ "delivery.regularisation.responsible_label"|trans }}: </label><br>
+                        {{ app.user.firstName|title }} {{ app.user.lastName|upper }}
+                    </div>
+                </div>
+                <div class="row add-command-table-row">
+                    <div class="col-xs-12">
+                        <label>{{ "motif"|trans }}</label>
+                        {{ form_widget(form.comment,{'attr' : { 'class' : 'form-control' }}) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table id="regularization-lines" class="table table-striped ">
+                            <thead>
+                            <tr>
+                                <th width="110px"><label
+                                            class="required">{{ 'delivery.regularisation.table.ref'|trans }}</label>
+                                </th>
+                                <th><label>{{ 'delivery.regularisation.table.articles'|trans }}</label></th>
+                                <th><label> {{ 'u.exp_qty'|trans() }} </label></th>
+                                <th><label> {{ 'u.inv_qty'|trans() }} </label></th>
+                                <th><label> {{ 'u.use_qty'|trans() }} </label></th>
+                                <th><label> {{ 'total.inv_qty'|trans() }} </label></th>
+                                <th><label>{{ 'delivery.regularisation.table.unit_price'|trans }} (&euro;)</label></th>
+                                <th><label>{{ 'delivery.regularisation.table.valorisation'|trans }} (&euro;)</label>
+                                </th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody count="{{ form.lines|length }}"
+                                   data-prototype="{{ form_widget(form.lines.vars.prototype)|e }}">
+                            {% for l in form.lines %}
+                                {{ form_widget(l) }}
+                            {% endfor %}
+                            <tr id="new-line">
+                                <td class="small-input">
+                                    <input type="text" id="code-product" class="form-control" placeholder="code">
+                                </td>
+                                <td>
+                                    <input type="text" id="name-product" class="form-control">
+                                </td>
+
+                                <td class="medium-input">
+                                    <div class="input-group">
+                                        <input id="qty-cmd-exp" type="text" style="display: inline !important;"
+                                               class="form-control">
+                                        <span id="new-line-unit-exp-label" class="input-group-addon"></span>
+                                    </div>
+                                </td>
+
+                                <td class="medium-input">
+                                    <div class="input-group">
+                                        <input id="qty-cmd" type="text" style="display: inline !important;"
+                                               class="form-control">
+                                        <span id="new-line-unit-label" class="input-group-addon"></span>
+                                    </div>
+                                </td>
+
+                                <td class="medium-input">
+                                    <div class="input-group">
+                                        <input id="qty-cmd-use" type="text" style="display: inline !important;"
+                                               class="form-control">
+                                        <span id="new-line-unit-use-label" class="input-group-addon"></span>
+                                    </div>
+                                </td>
+
+                                <td id="new-total-line">
+
+                                </td>
+
+                                <td id="new-line-unit-price">
+                                </td>
+                                <td></td>
+                                <td>
+                                    <button data-tooltip="{{ "command.new.lines.btn"|trans }}"
+                                            data-position="top" class="tooltipped" id="new-line-btn"
+                                            type="button" style="color : green;">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                            <tfoot>
+                            {% if form.lines.vars.errors|length >0 %}
+                                <tr>
+                                    <td colspan="9" style="    font-size: larger;">
+                                        {{ form_errors(form.lines) }}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            <tr>
+                                <td colspan="6"></td>
+                                <td>
+                                    <label>{{ "delivery.regularisation.table.valorisation"|trans }} (&euro;)</label>
+                                </td>
+                                <td>
+                                    <span style="color : darkred; font-weight: bold;" id="regularization-val">0</span>
+                                </td>
+                                <td></td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit"
+                                class="btn btn-validate btn-icon pull-right">
+                            {{ 'btn.validate'|trans }}
+                        </button>
+                        <button type="button" id="print-btn" class="btn btn-print btn-icon pull-right">
+                            {{ 'btn.print'|trans }}
+                        </button>
+                        <a class="pull-right" style="padding: 7px 10px 7px 10px;" href="{{ path('returns_list') }}">
+                            {{ "btn.cancel"|trans }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+            {{ form_end(form) }}
+            {{ form_widget(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends '@Financial/default.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        td {
+            font-family: 'Arial', sans-serif !important;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <a class="btn btn-validate pull-right"
+       href="{{ path('deposit_report', { 'id' : deposit.id }) }}?download=true">
+        <span class="glyphicon glyphicon glyphicon-download"></span> &nbsp; {{ 'btn.download'|trans() }}
+    </a>
+    <br>
+    <h2>{{ 'deposit.report.title'|trans }}</h2>
+    {% include ('@Financial/Deposit/Report/exports/body.html.twig') %}
+
+{% endblock %}

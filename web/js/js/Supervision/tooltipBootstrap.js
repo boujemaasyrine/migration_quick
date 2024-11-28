@@ -1,0 +1,1 @@
+$.fn.tootltipBootstrap=$.fn.tooltip;

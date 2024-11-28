@@ -1,0 +1,20 @@
+<div id="realCashContainer" class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    <div id="" class="col-xs-4 col-xs-offset-4">
+        <div class="panel panel-default row">
+            <div class="col-xs-12 panel-body">
+                {{ form_label(form.smallChest.totalCash, 'cashbox.counting.total_amount') }}
+                <div class="input-group">
+                    {% if list is defined %}
+                        {{ chestCount.smallChest.totalCash|number_format(2, '.', ',') }}
+                    {% else %}
+                        {{ form_widget(form.smallChest.totalCash, { 'attr': { 'class': 'total_amount_input real_cash_input splitted_input form-control', 'maxlength':"10" }}) }}
+                    {% endif %}
+                    <span class="input-group-addon" id="basic-addon2">
+                        <i class="glyphicon glyphicon-euro"></i>
+                    </span>
+                </div>
+                {{ form_errors(form.smallChest.totalCash) }}
+            </div>
+        </div>
+    </div>
+</div>

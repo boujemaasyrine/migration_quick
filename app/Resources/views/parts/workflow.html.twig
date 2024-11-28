@@ -1,0 +1,53 @@
+{% set currentWorkflow = app.session.get('current_workflow') %}
+{% set procedure = workflow_service.getCurrentProcedure %}
+{% set currentInstance= workflow_service.currentProcedureInstance %}
+{% set currentAction = null %}
+{% if procedure != null and currentInstance != null and workflow_service.inCurrentStep == true %}
+    <div class="col-xs-12">
+        <div class="workflow-container" style="    font-size: 1.3em;">
+            {% set current_step = procedure.getStepByOrder(currentWorkflow.current_step) %}
+            <div class="workflow-title">
+
+                {% if procedure.getNameTranslation(app.request.getLocale()) is empty %}
+                    {{ procedure.name|upper }}
+                {% else %}
+                    {{ procedure.getNameTranslation(app.request.getLocale())|upper }}
+                {% endif %}
+
+                </div>
+
+            <div class="workflow-progress">
+                <ul class="progress-indicator custom-complex">
+                    {% for step in procedure.steps|reverse %}
+                        {% set class = 'completed' %}
+                        {% if step.order == currentWorkflow.current_step %}
+                            {% set class = 'current' %}
+                            {% set currentAction = step.action %}
+                        {% elseif step.order > currentWorkflow.current_step %}
+                            {% set class = 'not-yet' %}
+                        {% endif %}
+                        <li class="{{ class }}"><span class="bubble"></span>
+                            {{ step.order }}. {{ step.action.name|trans({},'actions') }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="workflow-navigation">
+                {% if procedure.autorizeAbandon %}
+                    <a href="{{ path('abandon_workflow') }}?url={{ app.request.uri }}">
+                        {{ 'procedure.abandon_label'|trans() }}
+                    </a>
+                {% endif %}
+
+
+                {% if currentAction != null and currentAction.hasExit != true %}
+                    <a href="{{ path('next_in_workflow') }}" style="margin-left: 20px;"
+                       class="btn waves-effect waves-light white-text"> {{ 'procedure.next_label'|trans() }} <span
+                                class="glyphicon glyphicon-chevron-right"></span></a>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,50 @@
+restaurant:
+    title: Restaurants
+    restaurant_list: Liste des restaurants
+parameters:
+    title: Paramètres
+    manage_suppliers: Gestion de la liste des fournisseurs
+    manage_restaurants: Gestion de la liste des restaurants
+    manage_categories: Gestion de la liste des catégories
+    manage_groups: Gestion des groupes
+    manage_inventory_item: Gestion des items inventaire
+    manage_product_sold: Gestion des items en vente
+    merchandise_management: Gestion des marchandises
+reports:
+    title: Reporting
+    merchandise_management:
+        title: Gestion des marchandises
+        portion_control: Portion contrôle
+        foodcost_report: Rapport FoodCost
+    sales_management:
+        hour_by_hour: Heure par heure
+        daily_results: Résultats Journaliers
+    food_cost:
+        synthetic: Synthétique Foodcost
+        margin: Marge FoodCost
+    financial_revenue:
+        title: Chiffre d'affaires
+    stock_control: Controle du Stock
+    stock_control_items: Controle du Stock des items
+    product_purchase: Achat des Produits
+    moulinette:
+        title: Moulinette
+staff:
+    title: Gestion des utilisateurs centraux
+    list: Liste des utilisateurs centraux
+    role: Gérer les fonctions
+language:
+    frensh: Français
+    dutch: Néerlandais
+    fr: Langue Française
+    nl: Langue Neerlandaise
+params:
+    rights:
+        title: Gestion des droits
+        central: Central
+    financial_management:
+        title: Gestion financière
+        expense_labels: Gestion des libellés des bons de dépense #Todo modified
+        recipe_labels: Gestion des libellés des bons de recette #Todo modified
+parameters.add_new_product_sold: Ajouter un nouveau item en vente
+parameters.list_product_sold: Liste des items en vente

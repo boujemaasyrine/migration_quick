@@ -1,0 +1,50 @@
+<div id="check_restaurant_container"
+     data-prototype="{{ form_widget(form.checkRestaurantContainer.ticketRestaurantCounts.vars.prototype) | e }}"
+     style="padding:10px;">
+    {% set i = 0 %}
+    <div class="row">
+        {% for ticket in form.checkRestaurantContainer.ticketRestaurantCounts %}
+            {% if paymentMethodStatus.isIdPaymentActive(ticket.vars['value']['value']['id']) %}
+                <div class="checkRestaurantRow col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {{ ticket.ticketName.vars.value }}
+                        </div>
+
+                        <div class="panel-body">
+                            <div>
+                                {{ form_label(ticket.value.affiliate_code) }}
+                                {{ form_widget(ticket.value.affiliate_code, { "attr": { "class": 'form-control' } }) }}
+                                {{ form_errors(ticket.value.affiliate_code) }}
+                            </div>
+                            <label class="control-label required">
+                                {{ 'label.value' | trans | title }}
+                            </label>
+                            {% for value in ticket.value.values %}
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        {{ form_widget(value.unitValue, { "attr": { "class": 'parse-float form-control' } }) }}
+                                        {{ form_errors(value.unitValue) }}
+                                    </div>
+                                    <div class="col-xs-3" style="text-align: right">
+                                        <button type="button" style="line-height: 100%;"
+                                                class="btnRemoveValue btn btn-delete btn-icon"></button>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="row">
+                                <div class="col-xs-12" style="text-align: right">
+                                    <button type="button" class="btn btn-add btn-icon addTicketRestaurantValue"
+                                            data-prototype='{% include("@Administration/Cashbox/parts/prototype/ticket_restaurant_prototype.html.twig") %}'
+                                            data-count="{{ ticket.vars.value.value.values | length }}">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% set i = i + 1 %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

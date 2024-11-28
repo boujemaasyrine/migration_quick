@@ -1,0 +1,26 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h2>
+        {{ 'report.sold.title' | trans }}
+    </h2>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-3 input-field">
+        <label for="startDate">{{ 'portion_control.filter_labels.from'|trans }} </label>
+        <span class="text-muted">
+            {{ beginDate|date('d/m/Y') }}
+        </span>
+    </div>
+    <div class="col-xs-3 input-field">
+        <label for="endDate">{{ 'portion_control.filter_labels.to'|trans }} </label>
+        <span class="text-muted">
+            {{ endDate|date('d/m/Y') }}
+        </span>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/MerchandiseManagement/Loss/Sold/body_report_sold_loss.html.twig') }}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "@Financial/CashBox/index_cashbox.html.twig" %}
+
+{% block base_title %}
+    {{ 'cashbox.counting.title'|trans() }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.cashbox_management'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div id="cashbox_count_container">
+        {% include('@Financial/CashBox/Counting/parts/cashbox_count_block.html.twig') %}
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends '@Merchandise/index_stock.html.twig' %}
+
+{% block javascripts %}
+    <script>
+        var sheetsType = '{{ type }}';
+    </script>
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/SheetModel/sheet.js') }}"></script>
+    <script src="{{ asset('src/js/Merchandise/Inventory/sheet.js') }}"></script>
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/Merchandise/sheet_model.css') }}">
+{% endblock %}
+{% block base_title %}
+    {{ 'inventory.sheets.title'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'inventory_management.inventory_management'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <div class="">
+        <div class="panel panel-default">
+            {{ include('@Merchandise/Inventory/Sheets/parts/sheet_list.html.twig') }}
+        </div>
+    </div>
+
+{% endblock %}

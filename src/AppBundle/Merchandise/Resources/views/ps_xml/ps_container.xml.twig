@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<DOTItems>
+
+    {% for p in productsSold %}
+        <Item Image="" ID="{{ p.codePlu }}" Col="0" SName="{{ p.name }}" LName="{{ p.name }}"
+              OffName="{{ p.name|offName }}"/>
+    {% endfor %}
+
+</DOTItems>

@@ -1,0 +1,561 @@
+<li class="dropdown financial-item">
+    <a href="#!" data-toggle="dropdown"><span class="icon icon-cash hidden-lg"></span>
+        <span class="hidden-md hidden-sm">{{ 'financial_management.title'|trans([], 'navbar') }}</span>
+    </a>
+
+    <ul class="dropdown-menu level-1 animated fadeIn multi-level">
+        <li class="dropdown-submenu">
+            <a class="" href="#!"> {{ 'financial_management.cashbox_management'|trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('withdrawal_entry') }}"><a class="link"
+                                                                                  href="{{ path('withdrawal_entry') }}">{{ 'fund_management.withdrawal_entry' | trans([],'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('cashbox_counting') }}">
+                    <a class="link"
+                       href="{{ path('cashbox_counting') }}"> {{ 'financial_management.cashbox_counting'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('day_income') }}"><a class="link"
+                                                                            href="{{ path('day_income') }}">  {{ 'financial_management.daily_income'|trans([], 'navbar') }}  </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a class="" href="#!"> {{ 'financial_management.chest_management'|trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('chest_count') }}">
+                    <a class="link" href="{{ path('chest_count') }}">
+                        {{ 'financial_management.chest_count'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('create_recipe_tickets') }}">
+                    <a class="link" href="{{ path('create_recipe_tickets') }}">
+                        {{ 'financial_management.recipe_ticket_entry'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('expense_entry') }}"><a class="link"
+                                                                               href="{{ path('expense_entry') }}"> {{ 'financial_management.expense_entry'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('create_envelope_cash') }}"><a class="link"
+                                                                                      href="{{ path('create_envelope_cash') }}"> {{ 'financial_management.envelope_cash'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('create_envelope_restau') }}"><a class="link"
+                                                                                        href="{{ path('create_envelope_restau') }}"> {{ 'financial_management.envelope_restau'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('deposit_cash') }}"><a class="link"
+                                                                              href="{{ path('deposit_cash') }}"> {{ 'financial_management.deposit.cash'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('deposit_ticket') }}"><a class="link"
+                                                                                href="{{ path('deposit_ticket') }}"> {{ 'financial_management.deposit.ticket'|trans([], 'navbar') }}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a class="" href="#!">{{ 'financial_management.consultations.title'|trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('cashbox_list') }}">
+                    <a class="link"
+                       href="{{ path('cashbox_list') }}">{{ 'financial_management.consultations.cashbox_listing' | trans([],'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('chest_list') }}">
+                    <a class="link"
+                       href="{{ path('chest_list') }}">{{ 'financial_management.consultations.chest_listing' | trans([],'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('withdrawal_list') }}"><a class="link"
+                                                                                 href="{{ path('withdrawal_list') }}">{{ 'fund_management.withdrawal_list' | trans([],'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('expenses_list') }}"><a class="link"
+                                                                               href="{{ path('expenses_list') }}">{{ 'financial_management.expenses_list'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('list_recipe_tickets') }}"><a class="link"
+                                                                                     href="{{ path('list_recipe_tickets') }}">{{ 'financial_management.consultations.recipe_ticket'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('envelope_list') }}"><a class="link"
+                                                                               href="{{ path('envelope_list') }}">{{ 'financial_management.consultations.envelope'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('deleted_envelope_list') }}"><a class="link"  href="{{ path('deleted_envelope_list') }}">{{ 'financial_management.consultations.deleted_envelopes'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('envelope_ticket_list') }}">
+                    <a class="link"
+                       href="{{ path('envelope_ticket_list') }}">{{ 'financial_management.consultations.envelope_ticket'|trans([], 'navbar') }}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="{{ securityChecker.hideLink('ca_prev_list') }}"><a class="link"
+                                                                      href="{{ path('show_ca_prv_list') }}">{{ 'navbar.parameter.ca_prev'|trans }}</a>
+        </li>
+        <li class="{{ securityChecker.hideLink('comparable_days_list') }}"><a
+                    class="link"
+                    href="{{ path('comparable_days_list') }}">{{ 'comprable_days'|trans }}</a></li>
+    </ul>
+</li>
+
+<li class="dropdown supplying-item">
+    <a href="#!" data-toggle="dropdown">
+        <span class="icon icon-supplying hidden-lg"></span>
+        <span class="hidden-md hidden-sm">
+            {{ 'buying_management.title'|trans([],'navbar') }}
+        </span>
+    </a>
+    <ul class="dropdown-menu level-1 animated fadeIn multi-level">
+        <li class="dropdown-submenu">
+            <a href="#!" data-toggle="dropdown">{{ 'buying_management.command_management'|trans([],'navbar') }} </a>
+            <ul class="dropdown-menu animated fadeIn multi-level">
+                <li class="{{ securityChecker.hideLink('create_order') }}">
+                    <a class="link"
+                       href="{{ path('add_command') }}">{{ 'buying_management.command.create'|trans([],'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('help_order') }}">
+                    <a class="link"
+                       href="{{ path('init',{'init':1}) }}">{{ 'buying_management.command.help'|trans([],'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('order_list') }}">
+                    <a class="link"
+                       href="{{ path('list_pendings_commands') }}">{{ 'buying_management.command.list'|trans([],'navbar') }}</a>
+                </li>
+                <li class="dropdown-submenu">
+                    <a href="#" data-toggle="dropdown"> {{ 'coef.title'|trans([],'navbar') }} </a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ securityChecker.hideLink('coef_calculate_base') }}">
+                            <a class="link"
+                               href="{{ path('coef_calculate_base') }}">{{ 'coef.calcul'|trans([],'navbar') }} </a></li>
+                        <li class="{{ securityChecker.hideLink('show_coeff_pp') }}">
+                            <a class="link"
+                               href="{{ path('show_coeff_pp') }}">{{ 'coef.consult'|trans([],'navbar') }} </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a href="#!" data-toggle="dropdown">{{ 'buying_management.delivery_management'|trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('create_delivery') }}">
+                    <a class="link"
+                       href="{{ path('delivery_entry') }}">{{ 'buying_management.delivery.new'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('delivery_list') }}">
+                    <a class="link"
+                       href="{{ path('delivered_list') }}">{{ 'buying_management.delivery.list'|trans([], 'navbar') }}</a>
+                </li>
+                {#<li><a href="{{ path('pending_delievries_list') }}"> {{ 'delivery_pending_list'|trans([],'navbar') }} </a></li>#}
+                <li class="{#{{ securityChecker.hideLink('comparable_days_list') }}#}">
+                    <a class="link"
+                       href="{{ path('new_create_test_xml') }}">{{ 'simulate_delivery_ticket'|trans([],'navbar') }} </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a href="#!" data-toggle="dropdown"> {{ 'buying_management.transfer_management'|trans([], 'navbar') }} </a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('transfer_in') }}">
+                    <a class="link"
+                       href="{{ path('new_transfer_in') }}">{{ 'buying_management.transfer.new_in'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('transfer_out') }}">
+                    <a class="link"
+                       href="{{ path('new_transfer_out') }}">{{ 'buying_management.transfer.new_out'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('transfer_list') }}">
+                    <a class="link"
+                       href="{{ path('list_transfer') }}">{{ 'buying_management.transfer.list'|trans([], 'navbar') }}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a href="#!" data-toggle="dropdown">{{ 'buying_management.return_management'|trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('create_return') }}">
+                    <a class="link"
+                       href="{{ path('create_return') }}">{{ 'buying_management.return.new'|trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('return_list') }}">
+                    <a class="link"
+                       href="{{ path('returns_list') }}">{{ 'buying_management.return.list'|trans([], 'navbar') }}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</li>
+
+<li class="dropdown stock-item">
+    <a href="#!" data-toggle="dropdown">
+        <span class="icon icon-stock hidden-lg"></span>
+        <span class="hidden-md hidden-sm">{{ 'stock_management.title'|trans([], 'navbar') }}</span>
+    </a>
+    <ul class="dropdown-menu level-1 animated fadeIn multi-level">
+        <li class="dropdown-submenu">
+            <a href="#!">
+                {{ 'inventory_management.title'|trans([], 'navbar') }}
+            </a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('add_inventory_sheet_model') }}">
+                    <a class="link" href="{{ path('api_save_inventory_sheet_model') }}">
+                        {{ 'inventory_management.add_inventory_sheet_model'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('manage_inventory_sheet') }}">
+                    <a class="link" href="{{ path('inventory_sheet') }}">
+                        {{ 'inventory_management.inventory_sheet_list'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('saisie_inventory') }}">
+                    <a class="link" href="{{ path('inventory_entry') }}">
+                        {{ 'inventory_management.add_new_inventory'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('inventory_list') }}">
+                    <a class="link" href="{{ path('inventory_list') }}">
+                        {{ 'inventory_management.list_inventories'|trans([], 'navbar') }}
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a href="#!">{{ 'loss_management.title'|trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn multi-level">
+                <li class="dropdown-submenu">
+                    <a href="#!">
+                        {{ 'loss_management.articles'|trans([], 'navbar') }}
+                    </a>
+                    <ul class="dropdown-menu animated fadeIn">
+                        <li class="{{ securityChecker.hideLink('loss_sheet_article') }}">
+                            <a class="link"
+                               href="{{ path('loss_sheet', { 'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') } ) }}">
+                                {{ 'loss_management.loss_sheet_management'|trans([], 'navbar') }}
+                            </a>
+                        </li>
+                        <li class="{{ securityChecker.hideLink('loss_entry_article') }}">
+                            <a class="link"
+                               href="{{ path('loss_entry', { 'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') }) }}">
+                                {{ 'loss_management.loss_entry'|trans([], 'navbar') }}
+                            </a>
+                        </li>
+                        <li class="{{ securityChecker.hideLink('previous_day_loss_inv') }}">
+                            <a class="link"
+                               href="{{ path('previous_date', { 'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL')}) }}">
+                                {{ 'loss_management.previous_date'|trans([], 'navbar') }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown-submenu">
+                    <a href="#!">
+                        {{ 'loss_management.sold_products'|trans([], 'navbar') }}
+                    </a>
+                    <ul class="dropdown-menu animated fadeIn">
+                        <li class="{{ securityChecker.hideLink('loss_sheet_pf') }}">
+                            <a class="link"
+                               href="{{ path('loss_sheet', {'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL')}) }}">
+                                {{ 'loss_management.loss_sheet_management'|trans([], 'navbar') }}
+                            </a>
+                        </li>
+                        <li class="{{ securityChecker.hideLink('loss_entry_pf') }}">
+                            <a class="link"
+                               href="{{ path('loss_entry', { 'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL') }) }}">
+                                {{ 'loss_management.loss_entry'|trans([], 'navbar') }}
+                            </a>
+                        </li>
+                        <li class="{{ securityChecker.hideLink('previous_day_loss_vtes') }}">
+                            <a class="link"
+                               href="{{ path('previous_date', { 'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL')}) }}">
+                                {{ 'loss_management.previous_date'|trans([], 'navbar') }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li class="{{ securityChecker.hideLink('control_stock_report') }}">
+            <a class="link" href="{{ path('control_stock_report') }}"> {{ 'stock_control'|trans([],'navbar') }} </a>
+        </li>
+    </ul>
+</li>
+
+<li class="dropdown people-item">
+    <a href="#!" data-toggle="dropdown">
+        <span class="icon icon-people hidden-lg"></span>
+        <span class="hidden-md hidden-sm">{{ 'staff.title'|trans([], 'navbar') }}</span>
+    </a>
+    <ul class="dropdown-menu level-1 animated fadeIn multi-level">
+        <li class="{{ securityChecker.hideLink('staff_list') }}">
+            <a class="link" href="{{ path('staff_list') }}">
+                {{ 'staff.list'|trans([], 'navbar') }}
+            </a>
+        </li>
+        {#<li class="">#}
+        {#<a class="" href="{{ path('add_role') }}">{{ 'staff.role'|trans([], 'navbar') }}</a>#}
+        {#</li>#}
+    </ul>
+
+</li>
+
+<li class="dropdown utilities">
+    <a class="" href="#!" data-toggle="dropdown">
+        <span class="icon icon-workflow hidden-lg"></span>
+        <span class="hidden-md hidden-sm">{{ 'navbar.procedure.title' |trans }}</span>
+    </a>
+    <ul class="dropdown-menu level-1 animated fadeIn multi-level">
+        {% set procedures = workflow_service.getProcedures() %}
+        {% for p in procedures %}
+            <li class="">
+                <a class="workflow_start" href="{{ path('start_workflow',{ 'procedure' : p.id }) }}">
+                    {% if p.nameTranslation(app.request.getLocale()) is empty %}
+                        {{ p.name|title }}
+                    {% else %}
+                        {{ p.nameTranslation(app.request.getLocale())|title }}
+                    {% endif %}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</li>
+
+<li class="dropdown reporting-item last-child">
+    <a href="#!" data-toggle="dropdown">
+        <span class="icon icon-reporting hidden-lg"></span>
+        <span class="hidden-md hidden-sm">{{ 'reports.title'|trans([], 'navbar') }}</span></a>
+    <ul class="dropdown-menu level-1 animated fadeIn multi-level ">
+        <li class="dropdown-submenu"><a
+                    href="#!">{{ 'reports.merchandise_management.title'|trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('report_portion_control') }}">
+                    <a class="link" href="{{ path('report_portion_control') }}">
+                        {{ 'reports.merchandise_management.portion_control'|trans([], 'navbar') }}
+                    </a>
+                <li class="{{ securityChecker.hideLink('report_portion_control') }}">
+                    <a class="link" href="{{ path('report_portion_control_three_weeks') }}">
+                        {{ 'reports.merchandise_management.portion_control_three_weeks'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('report_inventory_loss') }}">
+                    <a class="link" href="{{ path('report_inventory_loss') }}">
+                        {{ 'reports.merchandise_management.inventory_item' | trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('report_sold_loss') }}">
+                    <a class="link" href="{{ path('report_sold_loss') }}">
+                        {{ 'reports.merchandise_management.solde_item' | trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('report_in_out') }}">
+                    <a class="link" class="" href="{{ path('report_in_out') }}">
+                        {{ 'reports.buying_management.in_out'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('index_food_cost_synthetic') }}">
+                    <a class="link" href="{{ path('index_food_cost_synthetic') }}">
+                        {{ 'reports.food_cost.synthetic'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('margin_food_cost_report') }}">
+                    <a class="link" href="{{ path('margin_food_cost_report') }}">
+                        {{ 'reports.food_cost.margin'|trans([], 'navbar') }}
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="dropdown-submenu"><a
+                    href="#!">{{ 'reports.cashbox_counts.title'|trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('report_cashbox_counts_owner') }}">
+                    <a class="link" href="{{ path('report_cashbox_counts_owner') }}">
+                        {{ 'reports.cashbox_counts.per_owner'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('report_cashbox_counts_cashier') }}">
+                    <a class="link" href="{{ path('report_cashbox_counts_cashier') }}">
+                        {{ 'reports.cashbox_counts.per_cashier'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('report_cashbox_counts_anomalies') }}">
+                    <a class="link" href="{{ path('report_cashbox_counts_anomalies') }}">
+                        {{ 'reports.cashbox_counts.anomalies'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class=""><a
+                            href="{{ path('cancellation') }}">{{ 'reports.cashbox_counts.annulations'|trans([], 'navbar') }}</a>
+                </li>
+                <li class=""><a
+                            href="{{ path('corrections_report') }}">{{ 'reports.cashbox_counts.corrections'|trans([], 'navbar') }}</a>
+                </li>
+                <li class=""><a
+                            href="{{ path('discount') }}">{{ 'reports.cashbox_counts.discount'|trans([], 'navbar') }}</a>
+                </li>
+                <li class=""><a
+                            href="{{ path('tickets_report') }}">{{ 'tickets_report.title' |trans }}</a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="dropdown-submenu"><a
+                    href="#!">{{ 'reports.financial_revenue.title'|trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('hour_by_hour') }}">
+                    <a class="link" href="{{ path('hour_by_hour') }}">
+                        {{ 'reports.sales_management.hour_by_hour'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="">
+                    <a class="link" href="{{ path('hour_by_hour_employee') }}">
+                        {{ 'reports.sales_management.hour_by_hour_employee'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="">
+                    <a class="link" href="{{ path('ca_by_slice_hour') }}">
+                        {{ 'reports.sales_management.ca_by_slice_hour'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('daily_results_report') }}">
+                    <a class="link" href="{{ path('daily_results_report') }}">
+                        {{ 'reports.sales_management.daily_results'|trans([], 'navbar') }}
+                    </a>
+                </li>
+                <li class=""><a
+                            href="{{ path('items_solding_canals') }}">{{ 'reports.financial_revenue.sale_per_canal'|trans([], 'navbar') }}</a>
+                </li>
+                <li class=""><a
+                            href="{{ path('ca_per_tva') }}">{{ 'reports.financial_revenue.ca_per_tva'|trans([], 'navbar') }}</a>
+                </li>
+                <li class=""><a
+                            href="{{ path('strike_rate') }}">{{ 'reports.financial_revenue.strike_rate'|trans([], 'navbar') }}</a>
+                </li>
+                <li class=""><a href="{{ path('takeout_report') }}">Takeout</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a class="" href="#!" data-toggle="dropdown">
+                <span class="icon icon-workflow hidden-lg"></span>
+                <span class="hidden-md hidden-sm">{{ 'reports.financial_management.title'|trans([], 'navbar') }}</span>
+            </a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="dropdown-submenu"><a
+                            href="#!">{{ 'reports.financial_management.br'|trans([], 'navbar') }}</a>
+                    <ul class="dropdown-menu animated fadeIn">
+                        <li class="">
+                            <a class="link" href="{{ path('br_beneficiary_report') }}">
+                                {{ 'reports.financial_management.beneficiary'|trans([], 'navbar') }}
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="link" href="{{ path('br_responsible_report') }}">
+                                {{ 'reports.financial_management.responsible'|trans([], 'navbar') }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a class="link" href="{{ path('cash_book_report') }}">
+                        {{ 'reports.sales_management.cash_book'|trans([], 'navbar') }}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</li>
+
+{#<li class="dropdown last-child">#}
+    {#<a href="#!" data-toggle="dropdown">#}
+        {#<span class="icon icon-kitchen hidden-lg"></span>#}
+        {#<span class="hidden-md hidden-sm">Export Optikitchen</span>#}
+    {#</a>#}
+    {#<ul class="dropdown-menu level-1 animated fadeIn multi-level ">#}
+        {#<li>#}
+            {#<a href="{{ path('optikitchen_calcul') }}">Calcul</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('optikitchen_pp') }}">#}
+                {#Coefficients Items d'Inventaires#}
+            {#</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('optikitchen_ps') }}">#}
+                {#Coefficients Items de Ventes#}
+            {#</a>#}
+        {#</li>#}
+    {#</ul>#}
+{#</li>#}
+
+
+<li class="dropdown config-item  last-child">
+    <a href="#!" data-toggle="dropdown">
+        <span class="icon icon-config hidden-lg"></span>
+        <span class="hidden-md hidden-sm">{{ 'navbar.parameter.parameter'|trans }}</span>
+    </a>
+    <ul class="dropdown-menu level-1 animated fadeIn multi-level">
+        <li class="{{ securityChecker.hideLink('index_workflows') }}">
+            <a class="link" href="{{ path('index_workflows') }}">{{ 'navbar.procedures'|trans() }} </a>
+        </li>
+
+        <li class="">
+            <a class="link" href="{{ path('restaurant_parameter') }}">{{ 'navbar.restaurant'|trans() }} </a>
+        </li>
+        <li class="dropdown-submenu">
+            <a href="#!">{{ 'parameters.merchandise_management.title' | trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('suppliers_list') }}">
+                    <a class="link"
+                       href="{{ path('suppliers_list') }}">{{ 'parameters.supplier_list' | trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('restaurant_list') }}">
+                    <a class="link"
+                       href="{{ path('restaurant_list') }}">{{ 'parameters.restaurant_list' | trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('planning') }}">
+                    <a class="link" href="{{ path('planning') }}">{{ 'parameters.planing' | trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('inventory_item_list') }}">
+                    <a class="link"
+                       href="{{ path('inventory_item_list') }}">{{ 'parameters.inventory_items_list' | trans([], 'navbar') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('product_sold_list') }}">
+                    <a class="link"
+                       href="{{ path('product_sold_list') }}">{{ 'parameters.solding_items_list' | trans([], 'navbar') }}</a>
+                </li>
+                {#<li><a href="{{ path('list_menus') }}">{{ 'navbar.parameter.menus'|trans }}</a></li>#}
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a href="#!">{{ 'financial_management.title'|trans([], 'navbar') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                {#<li class=""><a href="{{ path('cahsbox_parameter') }}">{{ 'financial_management.cashbox_counting' | trans([], 'navbar') }}</a>#}
+                {#</li>#}
+                {#<li class=""><a href="{{ path('labels_config', {'type': constant('AppBundle\\Administration\\Entity\\Parameter::EXPENSE')}) }}">{{ 'parameters.financial_management.expense_labels' | trans([], 'navbar') }}</a>#}
+                {#</li>#}
+                {#<li class=""><a href="{{ path('labels_config', {'type': constant('AppBundle\\Administration\\Entity\\Parameter::RECIPE')}) }}">{{ 'parameters.financial_management.recipe_labels' | trans([], 'navbar') }}</a>#}
+                {#</li>#}
+                {#TODO#}
+                <li class="">
+                    <a class="link" href="{{ path('fiscale_date') }}">
+                        {{ 'navbar.fiscal_date' |trans }}
+                    </a>
+                </li>
+                {#<li>#}
+                {#<a href="{{ path('tables_opened') }}">#}
+                {#Tables Ouvertes#}
+                {#</a>#}
+                {#</li>#}
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a href="#!"> {{ 'opti.title'|trans({},'navbar') }} </a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('optikitchen_calcul') }}">
+                    <a class="link" href="{{ path('optikitchen_calcul') }}">
+                        {{ 'opti.calcul'|trans({},'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('opti_consultation') }}">
+                    <a class="link" href="{{ path('opti_consultation') }}">
+                        {{ 'opti.consult'|trans({},'navbar') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('optikitchen_parameters') }}">
+                    <a class="link" href="{{ path('optikitchen_param') }}">
+                        {{ 'opti.param'|trans({},'navbar') }}
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</li>

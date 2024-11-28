@@ -1,0 +1,101 @@
+{% extends ":supervision/default:index.html.twig" %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset('src/js/Supervision/administration.js') }}"></script>
+    <script src="{{ asset('src/js/Supervision/Supplier/supplier_list.js') }}"></script>
+    <script>
+        $(function () {
+            $('.dataTable').closest('div').css('overflow-y', 'auto');
+        })
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block base_title %}{{ 'provider.list.title' | trans({}, "supervision") }}{% endblock %}
+{% block base_subtitle %}{% endblock %}
+{% block body %}
+    <div class="filter-zone" id="filter-zone-add">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-add"><span
+                        class="glyphicon glyphicon-plus"></span> {{ 'provider.list.add'| trans({}, "supervision") }}
+            </div>
+            <div class="panel-body">
+                {% include('@Supervision/parts/form_add_edit.html.twig') %}
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-zone" id="filter-zone-search">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span
+                        class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans({}, "supervision") }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px;">
+                {{ form_start(searchForm,{ 'method' : 'POST', 'attr': {'id': 'supplierFilterForm'} }) }}
+                <div class="row" style="margin-bottom: 0;">
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 ">
+                        {{ form_label(searchForm.code) }}
+                        {{ form_widget(searchForm.code) }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 ">
+                        {{ form_label(searchForm.name) }}
+                        {{ form_widget(searchForm.name) }}
+                    </div>
+
+
+                </div>
+                <div class="hidden">
+                    {{ form_rest(form) }}
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align:right; padding-top: 7px">
+                        <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "filter.delete_filter"|trans({}, "supervision") }}
+                        </button>
+                        <button onclick="list_supplier.ajax.reload();" type="button" class="btn btn-primary">
+                        <span style="color : white"
+                              class="glyphicon glyphicon-filter"></span> {{ 'filter.btn'|trans({}, "supervision") }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12" style="padding-bottom: 15px; text-align: right">
+                    <button class="btn btn-export btn-icon" type="button" id="export-supplier-btn">
+                        {{ "btn.export"|trans({}, "supervision") }}
+                    </button>
+                </div>
+            </div>
+
+            <table id="supplier_list_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+                   width="100%">
+                <thead>
+                <tr>
+                    <th>{{ 'label.code' | trans({}, "supervision") }}</th>
+                    <th>{{ 'provider.list.provider' | trans({}, "supervision") }}</th>
+                    <th>{{ 'provider.list.designation' | trans({}, "supervision") }}</th>
+                    <th>{{ 'provider.list.address' | trans({}, "supervision") }}</th>
+                    <th>{{ 'provider.list.phone' | trans({}, "supervision") }}</th>
+                    <th>{{ 'label.mail' | trans({}, "supervision") }}</th>
+                    <th>{{ 'provider.list.action' | trans({}, "supervision") }}</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <div class="form-zone"></div>
+            <div id="modal-supplier-added" style="display: none">
+            </div>
+        </div>
+    </div>
+{% endblock %}

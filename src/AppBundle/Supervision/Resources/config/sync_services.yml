@@ -1,0 +1,46 @@
+services:
+#    sync.abstract.service:
+#        class: AppBundle\Service\WsBoAPI\AbstractSyncService
+#        abstract: true
+#        arguments:
+#            - "@doctrine.orm.entity_manager"
+#            - "@Logger"
+#            - "@remote.historic.service"
+#    sync.inventory.service:
+#        class: AppBundle\Service\WsBoAPI\InventorySyncService
+#        parent: "sync.abstract.service"
+#    sync.loss.service:
+#        class: AppBundle\Service\WsBoAPI\LossSyncService
+#        parent: "sync.abstract.service"
+#    sync.tickets.service:
+#        class: AppBundle\Service\WsBoAPI\TicketsSyncService
+#        parent: "sync.abstract.service"
+#    sync.cashbox.counts.service:
+#        class: AppBundle\Service\WsBoAPI\CashboxCountsSyncService
+#        parent: "sync.abstract.service"
+#    sync.chest.counts.service:
+#        class: AppBundle\Service\WsBoAPI\ChestCountsSyncService
+#        parent: "sync.abstract.service"
+#    sync.deposits.service:
+#        class: AppBundle\Service\WsBoAPI\DepositsSyncService
+#        parent: "sync.abstract.service"
+#    sync.enveloppes.service:
+#        class: AppBundle\Service\WsBoAPI\EnveloppesSyncService
+#        parent: "sync.abstract.service"
+#    sync.expenses.service:
+#        class: AppBundle\Service\WsBoAPI\ExpensesSyncService
+#        parent: "sync.abstract.service"
+#    sync.recipe.tickets.service:
+#        class: AppBundle\Service\WsBoAPI\RecipeTicketsSyncService
+#        parent: "sync.abstract.service"
+#    sync.withdrawals.service:
+#        class: AppBundle\Service\WsBoAPI\WithdrawalsSyncService
+#        parent: "sync.abstract.service"
+#    sync.sheet_models.service:
+#        class: AppBundle\Service\WsBoAPI\SheetModelsSyncService
+#        parent: "sync.abstract.service"
+    sync.create.entry.service:
+        class: AppBundle\Supervision\Service\SyncCmdCreateEntryService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@logger"

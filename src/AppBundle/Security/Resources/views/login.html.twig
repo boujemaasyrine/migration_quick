@@ -1,0 +1,102 @@
+{% extends ':default:index.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/app/css/Security/login.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+{% block base_heading %}
+{% endblock %}
+{% block base_body %}
+    <div id="login_container" class=" card card-container" style="background-color: white;">
+        <ul style="margin-bottom: 20px;">
+            <li class="dropdown navbar-right">
+                <a href="#!" data-toggle='dropdown'>
+                    <img src="{{ asset('bundles/app/images/blank.png') }}"
+                            {% if app.request.locale == 'fr' %}
+                                class="flag flag-fr" alt="{{ 'language.fr'|trans([], 'navbar') }}"
+                            {% elseif app.request.locale == 'nl' %}
+                                class="flag flag-nl" alt="{{ 'language.nl'|trans([], 'navbar') }}"
+                            {% endif %}
+                    />
+                </a>
+                <ul class="dropdown-menu animated fadeIn multi-level" style="">
+                    <li {% if app.request.locale == 'fr' %}class="active"{% endif %}><a
+                                href="{{ path('login', { 'locale' : 'fr' }) }}">
+                            <img src="{{ asset('src/images/blank.png') }}" class="flag flag-fr"
+                                 alt="{{ 'language.fr'|trans([], 'navbar') }}"/>
+                            {{ 'language.frensh'|trans([], 'navbar') }}
+                        </a>
+                    </li>
+                    <li {% if app.request.locale == 'nl' %}class="active"{% endif %}>
+                        <a href="{{ path('login', { 'locale' : 'nl' }) }}">
+                            <img src="{{ asset('src/images/blank.png') }}" class="flag flag-nl"
+                                 alt="{{ 'language.nl'|trans([], 'navbar') }}"/>
+                            {{ 'language.dutch'|trans([], 'navbar') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <center>
+            <img class="logo" style="height: 10rem;" src="{{ asset('src/images/logo.png') }}">
+        </center>
+
+        {% if error %}
+            <div style="margin-top: 5px;" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+                <span id="alertContent">
+                    {{ error.messageKey|trans({},'security') }}
+                </span>
+            </div>
+        {% endif %}
+        <div id="messages" style="display: none;margin-top: 5px;" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            <span id="alertContent"></span>
+        </div>
+
+        <form id="loginForm" class="form-signin" method="POST" action="{{ path('login_check') }}">
+            <span id="reauth-email" class="reauth-email"></span>
+            <div class="input-field" style="width: 90% !important;">
+                <i class="material-icons prefix">account_circle</i>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"
+                       placeholder="{{ "username_label"|trans }}" required autofocus>
+            </div>
+
+            <div class="input-field" style="width: 90% !important;">
+                <i class="material-icons prefix">lock</i>
+                <input type="password" id="password" name="_password" class="form-control col s8"
+                       placeholder="{{ "pw_label"|trans }}"
+                       required>
+            </div>
+
+            <div id="remember" class="checkbox">
+                <input id="rememberMe" type="checkbox" name="_remember_me"/>
+                <label for="rememberMe" class="label"
+                       style="font-size: 1.5em !important;">  {{ 'stay_connected'|trans() }} </label>
+            </div>
+            <button id="login" class="btn btn-lg btn-block btn-signin white-text waves-effect waves-light"
+                    style="background-color: #D3072A !important;     width: 90%; margin: auto;"
+                    type="submit"> {{ 'connect'|trans() }}
+            </button>
+            <div style="text-align: right; margin: auto; width: 90%; padding-top: 15px; font-size: 14px">
+                <a href="{{ path('reset_password') }}"> {{ 'pw_forgotten'|trans() }} </a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block logout %}
+{% endblock %}
+
+{% block lang_btn_zone %}
+{% endblock %}
+
+{% block vertical_nav %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

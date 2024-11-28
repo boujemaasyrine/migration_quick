@@ -1,0 +1,13 @@
+/* Colors definitions */
+.color-4 {
+    font-weight: bold !important;
+}
+
+.text-color-4 {
+    color: #F18700 !important;
+}
+
+.not-seen {
+    font-weight: bold !important;
+    background-color: #fafafa !important;
+}

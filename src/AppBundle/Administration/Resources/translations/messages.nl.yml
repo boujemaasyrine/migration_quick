@@ -1,0 +1,312 @@
+provider:
+    list:
+        title: Lijst leveranciers #Liste des fournisseurs
+        add: Een leverancier toevoegen #Ajouter un fournisseur
+        provider: Leverancier #Fournisseur
+        designation: Aanwijzing #Désignation
+        validate: Toevoegen #Ajouter
+        phone: Telefoon #Téléphone
+        address: Adres #Adresse
+        action: Actie #Action
+        add_success: Leverancier succesvol toegevoegd #Fournisseur ajouté avec succès
+        details: Informatie over de leverancier #informations du fournisseur
+        delete: Leverancier verwijderen #Supprimer le fournisseur
+        popUp_delete: Leverancier verwijderen #Supprimer le Fournisseur
+        delete_success: Leverancier succesvol verwijderd #Fournisseur supprimé avec succès
+        delete_fails: Er is een probleem opgetreden bij het verwijderen #Un problème est survenu lors de la supression
+    planning:
+        title: Planning leveranciers #Planning des fournisseurs
+        label: Leverancier kiezen #Choisir le fournisseur
+        category_label: Categorieën #Catégories
+        category_empty: Categorielijst kiezen #Choisir la liste des catégories
+        supplier_select: Leverancier kiezen #Choisir le fournisseur
+        cancel: ingave anuleren #Annuler la saisie
+        verify_cancel: Bent u zeker de ingave van deze planning te willen annuleren.  #Vous en êtes sûr de vouloir annuler la saisie de ce planning?
+        delete: Regel verwijderen #Supprimer la ligne
+        js:
+            error: Er is een fout opgetreden #Une erreur s'est produite
+            success: De regel is met succes verwijderd #La ligne est supprimée avec succès
+restaurant:
+    list:
+        title: Lijst restaurants #Liste des restaurants Quick
+        add: Een restaurant toevoegen #Ajouter un restaurant
+        number: Nummer #Numéro
+        name: Restaurant #Restaurant
+        format: Hoeveelheid (voorraadeenheid)
+        fin: Laatste #Final
+        index: Index #Indice
+        phone: Telefoon #Téléphone
+        details: Informatie over het restaurant #informations du restaurant
+        orderable: verkiesbaar voor tranfer IN #Eligible au transfert IN
+        supplier_list: Lijst leveranciers #Liste des fournisseur
+article:
+    list:
+        title: Lijst inventarisitems #Liste des items inventaire
+        label: Beschrijving #Libellé
+        frequence: Freq #Freq
+        month: Maand #Mois
+        record: Formulier inventaris item & out #Fiche Item inventaire & Sortie
+        edit: Wijziging Tops #Modifs des Tops
+        coefficient: Coef Sec #Coef Sec
+        actif: Actief #Actifs
+    details:
+        article: Inventaris items #Items inventaire
+        famComp: Fam Comp #Fam Comp
+        famItem: Fam Arti #Fam Arti
+        supplier: Leverancier #Fournisseur
+        foodCost: Food Cost #Food Cost
+        created: Aangemaakt op #Créé le
+        validityStart: Start geldigheid #Début de validité
+        CoefMultiple: Coef Vermenigvuldiger #Coef Multiplicateur
+        actifPrice: Prijs actief #Prix Actif
+
+shortcut:
+    enter: "ENTER" #"ENTREE"
+    delete: "DEL" #"SUPP"
+    edit: "Veranderen" #"Modifier"
+    add: "Toevoegen" #"Ajouter"
+    deleteText: "Verwijderen" #"Supprimer"
+    access: "Toegang(J/N)" #"Access(O/N)"
+    web: "WEB" #"WEB"
+    create: "Aanmaken" #"Création"
+    instruction: "Instructies" #"Consignes"
+    quit: "Stoppen" #"Quitter"
+product_sold:
+    title: Beheer verkoopsitems #Gestion des produits vendus
+    detail_title: Details verkoopsitem #Détail du produit en vente
+    list:
+        tile: Lijst verkoopsitems #Liste des produits vendus
+    flashbag:
+        product_created_with_success: Verkoopsitem met succes geüpdate #Produit mis à jour avec succès !
+    sub_titles:
+        new_product: Een nieuw verkoopsitem aanmaken #Création d'un nouveau produit en vente
+        old_product: Wijziging reeds bestaand verkoopsitem #Édition d'un produit en vente déjà existant
+    btns:
+        add_recipe: Toevoegen ontvangst/verkoopkanaal #Ajouter une recette/Canal de vente
+        add_recipe_line: Een regel toevoegen #Ajouter une ligne
+    labels:
+        name: Naam verkoopsitem #Nom de l'item de vente
+        purchased_product: Naam inventarisitems #Nom de l'item d'inventaire
+        supplier_code: Leverancierscode #Code fournisseur
+        division: Divisie #Division
+        active: Actief #Actif
+        size: Maat #Taille
+        type: Type #Type du produit en vente
+        recettes: Recepten #Recettes
+        qty: Hoeveelheid gebruik #Quantité d'usage
+        code_plu: PLU Code #Code PLU
+    transformed_product_sold_must_have_at_least_one_recipe: Dit verkoopsitem moet minimaal één recept bevatten #Ce produit doit avoir au moins une recette
+    recipe_must_have_at_least_one_recipe_line: Een omzet moet minimaal 1 regel hebben #Une recette doit avoir au moins une ligne
+    detail:
+        label:
+            solding_canal: Verkoopkanaal #Canal de vente
+            product_purchased: product in inventaris gehouden #Produit en inventaire lié
+menus:
+    titles:
+        details: "receptfiche" #"Fiche recette"
+        create: "een nieuw menu aanmaken" #"Creation d'un nouveau menu"
+    table:
+        label: "Beschrijving" #"Libellé"
+        code: "Code" #"Code"
+        revenu: "Kostprijs" #"P. revient"
+        validity_start_date: "Begindatum geldigheid" #"Date de début de validité"
+        validity_end_date:  "Einddatum geldigheid" #"Date de fin de validité"
+    filter:
+        active_menus: "Actieve menu's tonen" #"Afficher les menus active"
+        inactive_menus: "Inactieve menu's tonen" #"Afficher les menus inactive"
+        all_menus: "Alle menu's tonen" #"Afficher tous les menus"
+    details:
+        menu: "Menu" #"Menu"
+        start_date_validity: "Start geldigheid" #"Début de validité"
+        end_date_validity: "Einde" #"Fin de validité"
+        current_selling_price: "Huidige verkoopprijs" #"Prix de vente en cours"
+        date_effect: "Startdatum" #"Date effet"
+        revenu_price: "Kostprijs" #"Prix de revient"
+        zone_price: "Prijsklasse" #"Zone de Prix"
+        table:
+            articles: "Inventarisitem" #"Items inventaire"
+            finished_products: "Verkoopsitems" #"Items ventes"
+            raw_material: "Grondstof" #"Matière première"
+            consumed_material: "Verbruikte grondstoffen" #"Matière consommée"
+            qte: "Hoeveelheid" #"Quantité"
+            total: "Totalen" #"Totaux"
+            cost: "Kosten" #"Coût"
+            sold_price_percent: "% van de verkoopprijs" #"% du prix de vente"
+            m_b_sal: "M. B Sal" #"M. B Sal"
+            m_b_emp: "M. B Emp" #"M. B Emp"
+ca_prev_list_title: Budgetten #Budgets prévisionnels
+ca_prev_enregistrer: Budgetten opslaan #Enregistrer les budgets prévisionnels
+ca_prev_export: Exporteren #Exporter
+today: Vandaag #Aujourd'hui
+ca_prev_detail_title_pop: Details  budget voor de %1% #Détail du Budget Prévisionnel pour le %1%
+ca_prev_for: Budget van #Budget pour le
+ca_prev_save_success: Opgeslagen met succes  #Enregistré avec succès
+item:
+    label:
+        unit_expedition: Eenheid levering #Unité de livraison
+        unit_inventory: Eenheid inventaris #Unité inventaire
+        unit_usage: Eenheid gebruik #Unité d'utilisation
+        inventory_qty: Inventariseenh.  in leveringseenh. #Unité d'inventaire dans unité de livraison
+        inventory_qty_abbr: Hoeveelheid inventaris #Qty inventaire
+        category: Categorie #Catégorie
+        status: Status #Statut
+        buying_cost: Inkoopprijs #Prix d'achat
+        current_qty: Aantal in stock #Quantité dans Stock
+        usage_qty: Gebruikseenh. in inventariseenh. #Unité d'usage dans unité d'inventaire
+    inventory:
+        title: Lijst met items inventaris #Liste des items inventaire
+        details: Details inventarisitem #Détails sur l'item inventaire
+        primary_product: Primair product #Produit primaire
+        choose_supplier: Leverancier kiezen #Choisir le fournisseur
+        choose_status: statuut kiezen #Choisir le Statut
+cashbox:
+    eft: Activering van de EFT #Activation de l'EFT
+    nbr_cashbox: Aantal kassa's #Nombre des caisses
+    cashbox_start_day_fund: Kassafonds #Montant initial d'une caisse
+    error_form: Controleer uw ingave #Veuillez vérifier vos saisies
+    labels:
+        delete_success: Beschrijving met succes verwijderd #Libellé supprimé avec succès
+        add_success: Beschrijving met succes toegevoegd #Libellé ajouté avec succès
+        edit_success: Beschrijving met succes gewijzigd #Libellé modifié avec succès
+    tabs:
+        restaurant: Restaurant #Restaurant
+        cashbox: Kassa #Caisse
+        money_booking: Bestelling kleingeld #Commande de monnaie
+        cmd_help: Bestelhulp #Aide à la commande
+        cash_counting: Kassa telling #Comptage des caisses
+right_role:
+    title: Rechtenbeheer #Gestion des droits
+    success: Rechten met succes veranderd #Droits modifiés avec succès
+
+#Gestion des Procédures
+  #ecran paramétrage
+procedure:
+    title: Beheer van procedures #Gestion des procédures
+    add_title: Een procedure toevoegen #Ajouter une procédure
+    modify_title: Een procedure wijzigen #Modifier une procédure
+    name: Naam van de procedure #Nom de la procédure
+    steps: Stappen #Etapes
+    add_btn: Toevoegen #Ajouter
+    modify_btn: Wijzigen #Modifier
+    list: Lijst van procedures #Liste des procédures
+    delete_btn: Verwijderen #Supprimer
+    cannot_deselect_step: U kunt geen vaste stap deselecteren #Vous ne pouvez pas désélectionner une étape fixée
+    cannot_execute_opening: Je kunt deze dag niet afsluiten, het is gelijk aan of groter dan de datum van vandaag. # Vous ne pouvez pas clôturer ce jour il est égal au date d'aujourd'hui.
+  #workflow
+    next_label: Volgende #Suivant
+    abandon_label: Verlaten #Abandonner
+workflow_added_with_success: Procedure met succes toegevoegd #Procédure ajoutée avec succès
+workflow_edit_with_success: Procedure met succes gewijzigd #Procédure modifiée avec succès
+workflow_deleted_with_success: Procedure met succes verwijderd #Procédure supprimée avec succès
+you_must_be_in_cloture: U moet de openingsprocedure volledig afwerken. #Vous devez terminer la procédure d'ouverture
+procedure_executed_once_a_day: De procedure %1% kan maar één keer peer dag worden uitgevoerd #La procédure %1% peut être executée qu'une seule fois par jour
+procedure_executed_once_a_day_for_all_user: De procedure %1% kan maar één keer per dag worden uitgevoerd door alle gebruikers #La procédure %1% peut être executée qu'une seule fois par jour pour tous les utilisateurs
+procedure_cannot_be_executed_at_the_same_time: De procedure %1% wordt op dit moment uitgevoerd door een andere gebruiker #La procédure %1% est entrain d'être executée par un autre utilisateur
+procedure_pending: U kunt geen nieuwe procedure starten. Er wordt op dit moment al een procedure uitgevoerd. #Vous ne pouvez pas démarrer une nouvelle procédure. Il y'a une procédure en cours.
+
+procedure_not_authroized: U mag de procedure niet uitvoeren #Vous n'avez pas le droit d'éxecuter la procédure %1%
+procedure_pending_complete: De procedure  %1% wordt op dit moment uitgevoerd.<br> Click hier om ze af te werken #La procédure %1% est en cours.<br>Cliquez ici pour la finaliser >>
+procedure_pending_complete_2: Click hier om ze af te werken #Cliquez ici pour la finaliser >>
+started_at: Opgestart op #Démarrée le
+
+label:
+    comparable: Vergelijkbare dag #Jour Comparable
+    variance: Variatie #Variance
+
+parameters:
+    save: opslaan van parameters #Sauvegarde des paramètres
+    confirm_save: <h3> U staat op het punt om de paramters van uw restaurant te wijzigen, bevestigt u deze handeling? </h3> # Vous êtes sur le point de modifier les paramètres de votre restaurant, confirmez-vous cette action
+    currencies: Vreemd geld #Devises
+    eft: EFT #EFT
+    choose_currency: Vrremdgeld toevoegen #Ajouter une devise
+    additional_emails: extra emails #Emails additionnels
+
+optikitchen:
+    calcul_title: coefficiënten berekenen voor de voorziene verkopen voor %1% #Calcul des coefficients pour les prévisions de ventes pour le %1%
+    consultation_title: Coefficiënten voorziene verkopen (inv.items & verk. Items) #Coefficients de prévision de ventes (Items de ventes & items d'inventaire)
+    sub_title: Export Optikitchen
+    msg_abs: De coefficiënten voor de verkoopsprognose(export Optikitchen) kunnen niet worden weergegeven omdat de berekeningen voor %1% niet uitgevoerd zijn #Les coefficients pour les prévisions de ventes (export Optikitchen) ne peuvent être affichés car les calculs pour le %1% n'ont pas été lancés
+    calculate_btn: coefficiënten berekenen (inv.items & verk. Items) #Calculer les coefficients (Items d'inventaires & items de ventes)
+    please_wait: In behandeling. Een ogenblikje. #Traitement en cours. Veuillez patienter.
+    save_and_send_to: voorziene verkopen pslaan en exporteren naar Optikitchen #Enregistrer et Exporter les prévisions de ventes vers OptiKitchen   Enregistrer et Exporter les prévisions de ventes vers OptiKitchen
+    calcul_informations: Informatie over de berekening #Informations du Calcul
+    calcul_date: Datum berekening #Date du calcul
+    ref_days: Verwijsbare dagen #Jours de référence
+    ref_days_used_for_bud: verwijzbare dagen voor de <b>berekening</b> #Jours de référence utilisés pour le <b>calcul du budget</b>
+    ref_days_used_for_prevision: verwijzbare dagen voor de berekening van de coefficiënten voor de voorziene verkopen #Jours de référence utilisés pour le calcul des coefficients pour les prévisions de ventes
+    tab:
+        pp: Coeff Inventarisitems #Coeff. Items d'inventaires
+        ps: Coeff verkoopsitems #Coeff. Items de vente
+    data_not_send_yes: de verkoopsprognoses voor %1% zijn nog niet geëxporteerd naar Optikitchen #Les prévisions de vente pour le %1% ne sont pas encore exportées vers OptiKitchen
+    last_send_data: Datum van laatste export naar Optikitchen voo %1% #Date du dernier export des données vers Optikichen pour le %1%
+    coef_vts_saved_with_succes: Coeff verkoopsitems met succes opgeslagen #Coeff. Items de vente sont enregistrés avec succès
+    coef_inv_saved_with_succes: Coeff Inventarisitems met succes opgeslagen #Coeff. Items d'inventaires sont enregistrés avec succès
+    coef_sended_with_success: Coeff en verkoopsprognose met succes naar OptiKitchen geëxporteerd) #Coeff et prévisions de vente exportés vers l'OptiKitchen avec succès
+    coef_saved_with_succes: De coëfficiënten zijn met succes opgeslagen #Les coefficients sont enregistrés avec succès
+    parameter: Parameters #Paramétrage
+
+validation_icom_please_count_cashbox: Om verder te gaan, gelieve de kassa's van de volgende medewerkers te tellen : #Pour continuer, veuillez compter les caisses des équipiers suivants
+verififaction_fdj_rapport_z: "Gelieve het Aloha-verkooprapport %1% te genereren <a target='_blank' href='%2%'><b>door hier</b></a> en voer het netto CA-bedrag exclusief btw hier in. " #"Veuillez générer le rapport Z du %1% en cliquant <a target='_blank' href='%2%'><b>ici</b></a> puis saisissez le montant CA Brut TTC de la Z ici."
+verify_opened_table: Gelieve te controleren dat al de kassa's van het restaurant zijn uitgelogd.  #Veuillez vérifier que toutes les caisses du restaurant sont bien délogguées
+
+pending_procedures: Lopende procedures #Procédures en cours
+success_parametres: Parameters met succes gewijzigd #Paramètres modifiés avec succès
+you_cannot_modify_a_pending_procedure: U kan geen lopende procedure wijzigen #Vous ne pouvez pas modifier une procédure en cours.
+non_comparable_day: Niet comparabele dag #Jour Non Comparable
+secondary_item: Conversie item #Item Secondaire
+
+config_saved_with_success: Parameters met succes opgeslagen #Paramétrage enregistré avec succès
+optikitchen_calcul_ok: Berekening met succes uitgevoerd #Calcul effectué avec succès. <a href="%1%"> Consulter la liste des coefficients </a>
+optikitchen_path_is_not_set: Het pad voor de export van Optikitchen is niet geïnitialiseerd. Gelieve de configuratie na te kijken #Le chemin pour l'export Optikitchen n'est pas initialisé. Veuillez vérifier la configuration
+optikitchen_path_not_exist: De file %1% voor de export van Optikitchen is niet gevonden #Le dossier %1% pour l'export Optikichen est introuvable
+optikitchen_path_not_writable: De creatie van de file %1% is niet toegelaten. Gelieve de rechten op het dossier %1% na te kijken #La création du fichier sur %1% n'est pas autorisée. Veuillez vérifier les droits sur le dossier %1%
+
+budget_prev_export:
+    title: Previsionele prognose #Budget Prévisionnel
+    title_excel: Previsionele prognose 1/4 uur #Budget Prévisionnel 1/4 d'heure
+    title_table: Export Week #Export Semaine
+    title_excel_half_hour: Previsionele prognose 1/2 uur
+    title_excel_hour: Previsionele prognose uur
+    periode : Periode #Période
+    from: "" #du
+    to: tot
+    total: Totalen #Totaux
+
+money_booking:
+    contact_emails: Contact Emails #Emails de contact
+    delivery_margin: Levering marge (in dagen) #Marge de livraison (en jours)
+    money_booking: Bestelling kleingeld #Commande de monnaie
+    bank_name: Naam bank #Nom de la  banque
+    account_number: Banknummer #Numéro de compte
+    bank_address: Adres #Adresse
+    booking_day: Besteldag #Jour de commande
+    delivery_day: Leveringsdag #Jour de livraison
+
+product_categories:
+    category: Categorie #Catégorie
+    eligibility: Bestelhulp #Éligibilité à l'aide à la commande
+    security_margin: Veiligheidsmarge #Marge de sécurité
+    categories_management: Beheer categorieën #Gestion des catégories
+
+no_closed_day: Dag niet afgesloten #Journée non cloturée
+
+fiscal_date:
+   last_fiscal_date: Laatste fiscale datum #Dérnière Date Fiscale
+   save: Record #Enregistrer
+   warining: Test functionnaliteit #Fonctionnalité de test
+   save_success: Laatste fiscale datum is succesvol geregistreerd: #Dérnière date fiscale est enregistrée avec succès:
+
+ca_notify:
+    email: "De omzet geïntroduceerd %1% door %2% %3% is anders dan de omzet in BO %4%"
+    modal: "De geïntroduceerde omzet verschilt van CA NET HTVA in de BO"
+    title: "CA NET HTVA-validatie"
+    subject: "Verschil van CA tussen ALOHA en TALAN"
+
+portion_control:
+    report_labels:
+        items: Items
+        stocks: Stocks
+        description: Omschrijving
+        format: Formaat
+        quantite: Aantal (voorraadeenheid)
+        final: Laatste

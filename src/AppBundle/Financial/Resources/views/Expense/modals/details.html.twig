@@ -1,0 +1,80 @@
+<style>
+    {% if download is not defined or download == false %}
+    .detail-body span, .detail-body {
+        font-size: 1.2rem !important;
+    }
+
+    {% else %}
+    .detail-body span, .detail-body {
+        font-size: 2rem !important;
+    }
+
+    {% endif %}
+</style>
+
+<div class="detail-body">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-modal">
+            <b>{{ 'keyword.label' | trans }}:</b>
+            {{ expense.label }}
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-modal" style="; text-align: right;">
+            <b>{{ 'label.reference' | trans }}: </b>
+            {{ expense.reference }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-modal" style=";">
+            <b>{{ 'label.group' | trans }}: </b>
+            {{ expense.group }}
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-modal" style="; text-align: right;">
+            <b>{{ 'keyword.date' | trans }}: </b>
+            {{ expense.date | date('d/m/Y') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-modal">
+            <b>{{ 'label.manager' | trans }}: </b>
+            {{ expense.owner }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-modal">
+            <b>{{ 'keyword.amount' | trans }}: </b>
+            {{ expense.amount }} &euro;
+        </div>
+    </div>
+    {% if(expense.deposit == null) %}
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-modal">
+                <b>{{ 'keyword.tva' | trans }}: </b>
+                {{ expense.tva }} &euro;
+            </div>
+        </div>
+    {% endif %}
+    {% if expense.comment %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-modal">
+                <b>{{ 'keyword.comment' | trans }}: </b>
+                {{ expense.comment }}
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% if(expense.deposit != null and expense.deposit.envelopes|length > 0) and download is not defined %}
+    {% set envelopes = expense.deposit.envelopes %}
+    {% include ('@Financial/Expense/parts/list_envelope.html.twig') %}
+{% endif %}
+
+    {% if download is defined %}
+        <div class="detail-body" style="padding-top: 50px; padding-bottom: 150px">
+            <div class="col col-xs-6">
+                <b>{{ 'keywords.signature' | trans }} N</b>
+            </div>
+            <div class="col col-xs-6" style="text-align: right;">
+                <b>{{ 'keywords.signature' | trans }} N + 1</b>
+            </div>
+        </div>
+    {% endif %}

@@ -1,0 +1,321 @@
+provider:
+    list:
+        title: Liste des fournisseurs
+        add: Ajouter un fournisseur
+        provider: Fournisseur
+        designation: Désignation
+        validate: Ajouter
+        phone: Téléphone
+        address: Adresse
+        action: Action
+        add_success: Fournisseur ajouté avec succès.
+        details: Informations du fournisseur
+        delete: Supprimer le fournisseur
+        popUp_delete: Supprimer le fournisseur
+        delete_success: Fournisseur supprimé avec succès.
+        delete_fails: Un problème est survenu lors de la suppression.
+    planning:
+        title: Planning des fournisseurs
+        label: Choisir le fournisseur
+        category_label: Catégories
+        category_empty: Choisir la liste des catégories
+        supplier_select: Choisir le fournisseur
+        cancel: Annuler la saisie
+        verify_cancel: Êtes-vous sûr de vouloir annuler la saisie de ce planning ?
+        delete: Supprimer la ligne
+        js:
+            error: Une erreur s'est produite.
+            success: La ligne a été supprimée avec succès.
+restaurant:
+    list:
+        title: Liste des restaurants
+        add: Ajouter un restaurant
+        number: Numéro
+        name: Restaurant
+        format: Quantité (unité d'inventaire)
+        fin: Final
+        index: Indice
+        phone: Téléphone
+        details: Informations du restaurant
+        orderable: Eligible au transfert IN
+        supplier_list: Liste des fournisseurs
+article:
+    list:
+        title: Liste des items d'inventaire
+        label: Libellé
+        frequence: Fréq.
+        month: Mois
+        record: Fiche Item inventaire & Sortie
+        edit: Modifs des Tops
+        coefficient: Coef Sec
+        actif: Actif
+    details:
+        article: Items inventaire
+        famComp: Fam Comp
+        famItem: Fam Arti
+        supplier: Fournisseur
+        foodCost: Food Cost
+        created: Créé le
+        validityStart: Début de validité
+        CoefMultiple: Coef Multiplicateur
+        actifPrice: Prix Actif
+
+shortcut:
+    enter: "ENTREE"
+    delete: "SUPP"
+    edit: "Modifier"
+    add: "Ajouter"
+    deleteText: "Supprimer"
+    access: "Access(O/N)"
+    web: "WEB"
+    create: "Création"
+    instruction: "Consignes"
+    quit: "Quitter"
+product_sold:
+    title: Gestion des items de vente
+    detail_title: Détail de l'item de vente
+    list:
+        tile: Liste des items de vente
+    flashbag:
+        product_created_with_success: Item de vente mis à jour avec succès.
+    sub_titles:
+        new_product: Création d'un nouvel item de vente
+        old_product: Édition d'un item de vente déjà existant
+    btns:
+        add_recipe: Ajouter une recette / canal de vente
+        add_recipe_line: Ajouter une ligne
+    labels:
+        name: Nom de l'item de vente
+        purchased_product: Nom de l'item d'inventaire
+        supplier_code: Code fournisseur
+        division: Division
+        active: Actif
+        size: Taille
+        type: Type
+        recettes: Recettes
+        qty: Quantité d'usage
+        code_plu: Code PLU
+    transformed_product_sold_must_have_at_least_one_recipe: Cet item de vente doit avoir au moins une recette
+    recipe_must_have_at_least_one_recipe_line: Une recette doit au moins contenir une ligne
+    detail:
+        label:
+            solding_canal: Canal de vente
+            product_purchased: Produit en inventaire lié
+menus:
+    titles:
+        details: "Fiche recette"
+        create: "Création d'un nouveau menu"
+    table:
+        label: "Libellé"
+        code: "Code"
+        revenu: "P. revient"
+        validity_start_date: "Date de début de validité"
+        validity_end_date:  "Date de fin de validité"
+    filter:
+        active_menus: "Afficher les menus actifs"
+        inactive_menus: "Afficher les menus inactifs"
+        all_menus: "Afficher tous les menus"
+    details:
+        menu: "Menu"
+        start_date_validity: "Début de validité"
+        end_date_validity: "Fin de validité"
+        current_selling_price: "Prix de vente en cours"
+        date_effect: "Date effet"
+        revenu_price: "Prix de revient"
+        zone_price: "Zone de Prix"
+        table:
+            articles: "Items d'inventaire"
+            finished_products: "Items de ventes"
+            raw_material: "Matière première"
+            consumed_material: "Matière consommée"
+            qte: "Quantité"
+            total: "Totaux"
+            cost: "Coût"
+            sold_price_percent: "% du prix de vente"
+            m_b_sal: "M. B Sal"
+            m_b_emp: "M. B Emp"
+ca_prev_list_title: Budgets prévisionnels
+ca_prev_enregistrer: Enregistrer les budgets prévisionnels
+ca_prev_export: Exporter
+today: Aujourd'hui
+ca_prev_detail_title_pop: Détail du Budget prévisionnel pour le %1%
+ca_prev_for: Budget pour le
+ca_prev_save_success: Enregistré avec succès
+item:
+    label:
+        unit_expedition: Unité de livraison
+        unit_inventory: Unité d'inventaire
+        unit_usage: Unité d'utilisation
+        inventory_qty: U. d'inv. dans U. de livr.
+        inventory_qty_abbr: Qté inventaire
+        category: Catégorie
+        status: Statut
+        buying_cost: Prix d'achat
+        current_qty: Quantité en stock
+        usage_qty: U. d'util. dans U. d'inv.
+    inventory:
+        title: Liste des items d'inventaire
+        details: Détail de l'item inventaire
+        primary_product: Produit primaire
+        choose_supplier: Choisir le fournisseur
+        choose_status: Choisir le Statut
+cashbox:
+    eft: Activation de l'EFT
+    nbr_cashbox: Nombre de caisses
+    cashbox_start_day_fund: Fond de caisse
+    error_form: Veuillez vérifier vos saisies
+    labels:
+        delete_success: Libellé supprimé avec succès.
+        add_success: Libellé ajouté avec succès.
+        edit_success: Libellé modifié avec succès
+
+    tabs:
+        restaurant: Restaurant
+        cashbox: Caisse
+        money_booking: Commande de monnaie
+        cmd_help: Aide à la commande
+        cash_counting: Comptage des caisses
+right_role:
+    title: Gestion des droits
+    success: Droits modifiés avec succès.
+
+#Gestion des Procédures
+  #ecran paramétrage
+procedure:
+    title: Gestion des procédures
+    add_title: Ajouter une procédure
+    modify_title: Modifier une procédure
+    name: Nom de la procédure
+    steps: Etapes
+    add_btn: Ajouter
+    modify_btn: Modifier
+    list: Liste des procédures
+    delete_btn: Supprimer
+    cannot_deselect_step: Vous ne pouvez pas désélectionner une étape fixée.
+    cannot_execute_opening: Vous ne pouvez pas clôturer ce jour il est égal ou supérieure au date d'aujourd'hui.
+  #workflow
+    next_label: Suivant
+    abandon_label: Abandonner
+workflow_added_with_success: Procédure ajoutée avec succès.
+workflow_edit_with_success: Procédure modifiée avec succès.
+workflow_deleted_with_success: Procédure supprimée avec succès.
+you_must_be_in_cloture: Vous devez finaliser la procédure d'ouverture.
+procedure_executed_once_a_day: La procédure %1% ne peut être executée qu'une seule fois par jour.
+procedure_executed_once_a_day_for_all_user: La procédure %1% ne peut être executée qu'une seule fois par jour pour tous les utilisateurs.
+procedure_cannot_be_executed_at_the_same_time: La procédure %1% est en cours d'exécution par un autre utilisateur.
+procedure_pending: Vous ne pouvez pas démarrer une nouvelle procédure car une procédure est déjà en cours.
+procedure_transfered: Vous ne pouvez pas continuer. La procédure %1% est en cours d'exécution par un autre utilisateur. #TODO new
+
+procedure_not_authroized: Vous n'avez pas le droit d'éxecuter la procédure %1%
+
+
+procedure_pending_complete: La procédure %1% est en cours.<br>Cliquez ici pour la finaliser >>
+procedure_pending_complete_2: Cliquez ici pour la finaliser >>
+started_at: Démarrée le
+
+label:
+    comparable: Jour Comparable
+    variance: Variance
+
+parameters:
+    save: Sauvegarde des paramètres
+    confirm_save: <h3>Vous êtes sur le point de modifier les paramètres de votre restaurant, confirmez-vous cette action</h3>
+    currencies: Devises
+    eft: EFT
+    choose_currency: Ajouter une devise
+    additional_emails: Emails additionnels
+
+optikitchen:
+    calcul_title: Calcul des coefficients pour les prévisions de ventes pour le %1%
+    consultation_title: Coefficients de prévision de ventes (Items de ventes & items d'inventaire)
+    sub_title: Export Optikitchen
+    msg_abs: Les coefficients pour les prévisions de ventes (export Optikitchen) ne peuvent être affichés car les calculs pour le %1% n'ont pas été lancés
+    calculate_btn: Calculer les coefficients (Items d'inventaires & items de ventes)
+    please_wait: Traitement en cours. Veuillez patienter.
+    save_and_send_to: Enregistrer et Exporter les prévisions de ventes vers OptiKitchen
+    calcul_informations: Informations du Calcul
+    calcul_date: Date du calcul
+    ref_days: Jours de référence
+    ref_days_used_for_bud: Jours de référence utilisés pour le <b>calcul du budget</b>
+    ref_days_used_for_prevision: Jours de référence utilisés pour le calcul des coefficients pour les prévisions de ventes #todo
+    tab:
+        pp: Coeff. Items d'inventaires
+        ps: Coeff. Items de vente
+    data_not_send_yes: Les prévisions de vente pour le %1% ne sont pas encore exportées vers OptiKitchen
+    last_send_data: Date du dernier export des données vers Optikichen pour le %1%
+    coef_vts_saved_with_succes: Coeff. Items de vente sont enregistrés avec succès
+    coef_inv_saved_with_succes: Coeff. Items d'inventaires sont enregistrés avec succès
+    coef_sended_with_success: Coeff et prévisions de vente exportés vers l'OptiKitchen avec succès
+    coef_saved_with_succes: Les coefficients sont enregistrés avec succès
+    parameter: Paramétrage
+
+validation_icom_please_count_cashbox: Pour continuer, veuillez compter les caisses des équipiers suivants
+verififaction_fdj_rapport_z: "Veuillez générer le Sales Report d'Aloha de %1% en cliquant <a target='_blank' href='%2%'><b>ici</b></a> et saisissez le montant CA net HTVA ici."
+verify_opened_table: Veuillez vérifier que toutes les caisses du restaurant sont bien délogguées
+
+pending_procedures: Procédures en cours
+success_parametres: Paramètres modifiés avec succès
+you_cannot_modify_a_pending_procedure: Vous ne pouvez pas modifier une procédure en cours.
+non_comparable_day: Jour Non Comparable
+secondary_item: Item Secondaire
+
+operator_doesnt_exist: L'operateur avec wyndId %1% n'exist pas
+multiple_operator_found: Il existe deux operateurs avec wyndId %1%
+
+config_saved_with_success: Paramétrage enregistré avec succès
+optikitchen_calcul_ok: Calcul effectué avec succès. <a href="%1%"> Consulter la liste des coefficients </a>
+optikitchen_path_is_not_set: Le chemin pour l'export Optikitchen n'est pas initialisé. Veuillez vérifier la configuration
+optikitchen_path_not_exist: Le dossier %1% pour l'export Optikichen est introuvable
+optikitchen_path_not_writable: La création du fichier sur %1% n'est pas autorisée. Veuillez vérifier les droits sur le dossier %1%
+
+budget_prev_export:
+    title: Budget Prévisionnel
+    title_excel: Budget Prévisionnel par 1/4 d'heure
+    title_table: Export Semaine
+    title_excel_half_hour: Budget Prévisionnel par 1/2 heure
+    title_excel_hour: Budget Prévisionnel par heure
+    periode : Période
+    from: du
+    to: au
+    total: Totaux
+
+money_booking:
+    contact_emails: Emails de contact
+    delivery_margin: Marge de livraison (en jours)
+    money_booking: Commande de monnaie
+    bank_name: Nom de la  banque
+    account_number: Numéro de compte
+    bank_address: Adresse
+    booking_day: Jour de commande
+    delivery_day: Jour de livraison
+product_categories:
+    category: Catégorie
+    eligibility: Éligibilité à l'aide à la commande
+    security_margin: Marge de sécurité
+    categories_management: Gestion des catégories
+
+no_closed_day: Journée non cloturée
+
+fiscal_date:
+   last_fiscal_date: Dérnière Date Fiscale
+   save: Enregistrer
+   warining: Fonctionnalité de test
+   save_success: Dérnière date fiscale est enregistrée avec succès:
+
+ca_notify:
+    email: "Le chiffre d'affaire introduit %1% par %2% %3% est différent de chiffre d'affaire en BO %4%"
+    modal: "Le chiffre d'affaire introduit est different de CA NET HTVA dans le BO"
+    title: "Validation CA NET HTVA"
+    subject: "Difference CA entre ALOHA et TALAN"
+
+portion_control:
+    report_labels:
+        items: Items
+        stocks: Stocks
+        description: Description
+        format: Format
+        quantite: Quantité (unité d'inventaire)
+        final: Final
+
+tickets_report:
+    title: Factures

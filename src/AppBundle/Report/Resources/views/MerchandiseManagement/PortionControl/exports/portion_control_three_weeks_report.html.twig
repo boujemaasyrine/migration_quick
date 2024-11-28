@@ -1,0 +1,40 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h4>{{ 'portion_control.title'|trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-2 input-field">
+        <label for="startDate">{{ 'portion_control.filter_labels.from'|trans }} </label>
+        <span class="text-muted">
+            {{ reportResult.startDate|date('d/m/Y') }}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="endDate">{{ 'portion_control.filter_labels.to'|trans }} </label>
+        <span class="text-muted">
+            {{ reportResult.endDate|date('d/m/Y') }}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="mesureUnit" class="active"> {{ 'portion_control.filter_labels.mesure_unit'|trans() }} </label>
+        {{ 'portion_control.filter_labels.inventory'|trans() }}
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'portion_control.filter_labels.selection'|trans() }} </label>
+        <span class="text-muted">
+            {{ 'portion_control.filter_values.' + reportResult.selection|trans() }}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="threshold">{{ 'portion_control.filter_labels.threshold'|trans }} </label>
+        <span class="text-muted">
+            {{ reportResult.threshold }}
+        </span>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/MerchandiseManagement/PortionControl/exports/portion_control_three_weeks_report_body.html.twig') }}
+{% endblock body %}

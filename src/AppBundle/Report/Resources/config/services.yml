@@ -1,0 +1,201 @@
+services:
+  report.stock.service:
+    class: AppBundle\Report\Service\ReportStockService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "%report_sql_queries_dir%"
+    - "@phpexcel"
+  report.buying.service:
+    class: AppBundle\Report\Service\ReportBuyingService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@phpexcel"
+  report.sales.service:
+    class: AppBundle\Report\Service\ReportSalesService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@paremeter.service"
+    - "@phpexcel"
+    - "@restaurant.service"
+  report.foodcost.service:
+    class: AppBundle\Report\Service\ReportFoodCostService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "%report_sql_queries_dir%"
+    - "@translator.default"
+    - "@product.service"
+    - "@phpexcel"
+    - "@restaurant.service"
+  report.cashbox.service:
+    class: AppBundle\Report\Service\ReportCashboxCountsService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@service_container"
+    - "%report_sql_queries_dir%"
+  report.control.stock.service:
+    class: AppBundle\Report\Service\ReportControlStockService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@ca_prev.service"
+    - "@product.service"
+    - "@phpexcel"
+    - "@translator.default"
+    - "%tmp_directory%"
+  report.foodcost.synthetic.service:
+    class: AppBundle\Report\Service\ReportFoodCostSyntheticV2
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@product.service"
+    - "@report.foodcost.service"
+    - "%report_sql_queries_dir%"
+
+  report.daily.results.service:
+    class: AppBundle\Report\Service\ReportDailyResultsService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@cashbox.service"
+    - "@paremeter.service"
+    - "@chest.service"
+    - "@phpexcel"
+  cash.book.report:
+    class: AppBundle\Report\Service\ReportCashBookService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@cashbox.service"
+    - "@paremeter.service"
+    - "@phpexcel"
+  report.synthetic.fc.excel.service:
+    class: AppBundle\Report\Service\GenerateExcelForSynthFCService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@report.foodcost.synthetic.service"
+    - "@phpexcel"
+    - "@translator.default"
+    - "%tmp_directory%"
+  report.br.form:
+    class: AppBundle\Report\Form\BrFormType
+    arguments: ["@report.br.service", "@translator.default"]
+    tags:
+    - { name: form.type, alias: br_type}
+  report.br.service:
+    class: AppBundle\Report\Service\ReportBrService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@paremeter.service"
+    - "@restaurant.service"
+    - "@phpexcel"
+
+  report.corrections.service:
+    class: AppBundle\Report\Service\ReportCorrectionsService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@paremeter.service"
+    - "@restaurant.service"
+    - "@phpexcel"
+  report.corrections.form:
+    class: AppBundle\Report\Form\CorrectionsFormType
+    arguments: ["@report.corrections.service", "@translator.default"]
+    tags:
+    - { name: form.type, alias: corrections_type}
+
+  report.cancellation.service:
+    class: AppBundle\Report\Service\ReportCancellationService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@paremeter.service"
+    - "@phpexcel"
+  report.cancellation.form:
+    class: AppBundle\Report\Form\CancellationFormType
+    arguments: ["@report.cancellation.service"]
+    tags:
+    - { name: form.type, alias: cancellation_type}
+  report.discount.service:
+    class: AppBundle\Report\Service\ReportDiscountService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@paremeter.service"
+    - "@restaurant.service"
+    - "@phpexcel"
+  report.discount.form:
+    class: AppBundle\Report\Form\DiscountFormType
+    arguments: ["@report.discount.service"]
+    tags:
+    - { name: form.type, alias: discount_type}
+  report.item.canals.service:
+    class: AppBundle\Report\Service\ReportItemsPerSoldingCanalsService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@paremeter.service"
+    - "@report.sales.service"
+    - "@restaurant.service"
+    - "@phpexcel"
+  report.item.canals.form:
+    class: AppBundle\Report\Form\ItemsPerSoldingCanalsFormType
+    arguments: ["@report.item.canals.service", "@translator.default"]
+    tags:
+    - { name: form.type, alias: items_per_canals_type}
+
+  report.takeout.service:
+    class: AppBundle\Report\Service\ReportTakeoutService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@paremeter.service"
+    - "@restaurant.service"
+    - "@phpexcel"
+
+  report.takeout.form:
+    class: AppBundle\Report\Form\TakeOutFormType
+    arguments: ["@translator.default","@restaurant.service", "@doctrine.orm.entity_manager"]
+    tags:
+    - { name: form.type, alias: takeout_type}
+  report.strike.rate.service:
+    class: AppBundle\Report\Service\ReportStrikeRateService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@restaurant.service"
+    - "@phpexcel"
+  report.ca.per.tva.service:
+    class: AppBundle\Report\Service\ReportCaPerTvaService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@restaurant.service"
+    - "@phpexcel"
+    - "@translator.default"
+  report.tickets.service:
+    class: AppBundle\Report\Service\ReportTicketsService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@translator.default"
+    - "@paremeter.service"
+    - "@restaurant.service"
+    - "@phpexcel"
+    tags:
+    - { name: knp_paginator.injectable, paginator: knp_paginator }
+  report.tickets.form:
+    class: AppBundle\Report\Form\TicketsFormType
+    arguments: ["@report.tickets.service"]
+    tags:
+    - { name: form.type, alias: tickets_type}
+  report.db_cache.service:
+    class: AppBundle\Report\Service\DBDataCache
+    arguments:
+    - "@doctrine.orm.entity_manager"
+
+  report.cache.service:
+    class: AppBundle\Report\Service\ReportCacheService
+    arguments:
+    - "@report.db_cache.service"
+    - "@toolbox.simple_key_generator.service"
+    - "@monolog.logger.generate_report"

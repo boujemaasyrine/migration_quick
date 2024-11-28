@@ -1,0 +1,77 @@
+{% extends ":default:index.html.twig" %}
+
+{% block base_title %}
+    {{ 'parameters.restaurant_management.title'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'navbar.parameter.parameter'|trans() }}
+{% endblock %}
+
+
+{% block body %}
+    <div>
+
+        {{ form_start(form, {'method' : 'POST', 'attr': {'novalidate' : ''}}) }}
+
+        <div class="panel-body" style="padding-top:0; padding-bottom:0; ">
+            <div class="col-xs-12">
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="col-xs-4">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                {{ form_label(form.openingHour) }}
+                                <br/>
+                                {{ form_widget(form.openingHour, { "attr": { "class": 'form-control' } }) }}
+                                {{ form_errors(form.openingHour) }}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                {{ form_label(form.closingHour) }}
+                                <br/>
+                                {{ form_widget(form.closingHour, { "attr": { "class": 'form-control' } }) }}
+                                {{ form_errors(form.closingHour) }}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                {{ form_label(form.mail) }}
+                                <br/>
+                                {{ form_widget(form.mail, { "attr": { "class": 'form-control' } }) }}
+                                {{ form_errors(form.mail) }}
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 5px;">
+
+                <div class=" col-xs-10"></div>
+
+                <div class="col-xs-2" style="text-align:right;">
+                    <button type="submit" class="btn waves-effect btn-validate text-black ">
+                        {{ 'btn.save'|trans() }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

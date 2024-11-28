@@ -1,0 +1,3 @@
+{
+    "translations": {"nl":{"order_status":{"draft":"Gereed","sending":"Bezig met verzenden","sended":"Verzonden","rejected":"Afgewezen","canceled":"Geannuleerd","unsended":"Niet verstuurd","modified":"Na verzending gewijzigd"}}}
+}

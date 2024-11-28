@@ -1,0 +1,48 @@
+<div id="check_quick_container"
+     data-prototype="{{ form_widget(form.checkQuickContainer.checkQuickCounts.vars.prototype) | e }}"
+     style="padding: 10px;">
+    {% set j = 0 %}
+    <div class="row">
+        {% for check in form.checkQuickContainer.checkQuickCounts %}
+            {% if paymentMethodStatus.isIdPaymentActive(check.vars['value']['value']['id']) %}
+                <div class="checkRestaurantRow col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {{ check.checkName.vars.value}}
+                        </div>
+                        <div class="panel-body">
+                            <label class="control-label required">
+                                {{ 'label.value' | trans | title }}
+                            </label>
+                            {% for value in check.value.values %}
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        {{ form_widget(value.unitValue, { "attr": { "class": 'parse-float form-control' } }) }}
+                                        {{ form_errors(value.unitValue) }}
+                                    </div>
+                                    <div class="col-xs-3" style="text-align: right">
+                                        <button type="button" style="line-height: 100%;"
+                                                class="btnRemoveValue btn btn-delete btn-icon"></button>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            <div class="row">
+                                <div class="col-xs-12" style="text-align: right">
+                                    <button type="button" class="btn btn-add btn-icon addCheckQuickValue"
+                                            data-prototype='{% include("@Administration/Cashbox/parts/prototype/check_quick_prototype.html.twig") %}'
+                                            data-count="{{ check.vars.value.value.values | length }}">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% set j = j + 1 %}
+            {% endif %}
+
+
+        {% endfor %}
+    </div>
+
+</div>

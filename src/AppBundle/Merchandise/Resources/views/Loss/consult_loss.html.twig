@@ -1,0 +1,42 @@
+{{ form_start(form, {'method': 'GET', 'attr': {'id': 'hourlyLossForm'}}) }}
+<div class="row">
+    <div class="col l4 m4 s12">
+        {{ form_label(form.date) }}
+        {{ form_widget(form.date, { 'attr': {'class': 'form-control datepicker picker__input'} }) }}
+        {{ form_errors(form.date) }}
+    </div>
+    {% if ( type == 'hourly' ) %}
+        <div class="col l4 m4 s12">
+            {{ form_label(form.startTime) }}
+            {{ form_widget(form.startTime) }}
+            {{ form_errors(form.startTime) }}
+        </div>
+        <div class="col l4 m4 s12">
+            {{ form_label(form.endTime) }}
+            {{ form_widget(form.endTime) }}
+            {{ form_errors(form.endTime) }}
+        </div>
+    {% elseif ( type == 'daily' or type == 'monthly' ) %}
+        <div class="col l4 m4 s12">
+            {{ form_label(form.endDate) }}
+            {{ form_widget(form.endDate, { 'attr': {'class': 'form-control datepicker picker__input'} }) }}
+            {{ form_errors(form.endDate) }}
+        </div>
+    {% elseif (type == 'weekly') %}
+        <div class="col l4 m4 s12">
+            {{ form_label(form.weeks) }}
+            {{ form_widget(form.weeks, { 'attr': {'class': 'form-control'} }) }}
+            {{ form_errors(form.weeks) }}
+        </div>
+    {% endif %}
+</div>
+{{ form_rest(form) }}
+    {{ form_end(form) }}
+<div class="row pull-right">
+    <div class="col l6 m6 s12">
+        <button type="button" id="consult-loss-product" class="btn green lighten-1 white-text waves-effect waves-light">
+            {{ 'loss.check.consult' | trans }}
+        </button>
+    </div>
+</div>
+

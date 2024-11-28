@@ -1,0 +1,27 @@
+services:
+  toolbox.document.generator:
+    class: AppBundle\ToolBox\Service\DocumentGeneratorService
+    arguments: ["@service_container"]
+  toolbox.rest.client:
+    class: AppBundle\ToolBox\Service\RestClient
+  toolbox.rest.client.json:
+    class: AppBundle\ToolBox\Service\RestJsonClient
+  toolbox.command.launcher:
+    class: AppBundle\ToolBox\Service\CommandLauncher
+    arguments: ["%php_cli%","%kernel.root_dir%","%asynch_postfix%","@kernel"]
+  toolbox.pdf.generator.service:
+    class: AppBundle\ToolBox\Service\PdfGeneratorService
+    arguments: ["@templating","@knp_snappy.pdf","%tmp_directory%"]
+  float_extension:
+    class: AppBundle\ToolBox\Twig\FloatExtension
+    tags:
+    - { name: twig.extension }
+  t_head_extension:
+    class: AppBundle\ToolBox\Twig\TableHeaderExtension
+    tags:
+    - { name: twig.extension }
+  test.document.generator:
+    class: AppBundle\ToolBox\Tests\Service\DocumentGeneratorServiceTest
+    arguments: ["@service_container"]
+  toolbox.simple_key_generator.service:
+    class: AppBundle\ToolBox\Service\Cache\SimpleGeneratorKey

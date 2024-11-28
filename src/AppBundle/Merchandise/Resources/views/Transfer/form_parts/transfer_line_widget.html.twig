@@ -1,0 +1,99 @@
+{% block transfer_line_widget %}
+    <tr class="cmd-line">
+        <td class="product small-input">
+            {% if  form.vars.value != null %}
+                {{ form.vars.value.product.externalId }}
+            {% else %}
+                __ref_product__
+            {% endif %}
+            {{ form_errors(form) }}
+            <div class="hidden">
+                {{ form_widget(form.product) }}
+            </div>
+        </td>
+        <td>
+            {% if  form.vars.value != null %}
+                {{ form.vars.value.product.name }}
+            {% else %}
+                __name_product__
+            {% endif %}
+            {{ form_errors(form.product) }}
+        </td>
+        <td class="medium-input">
+            <div class="input-group">
+                {{ form_widget(form.qty,{ 'attr' : { 'class' : 'form-control qty-line' , 'type' :'number' , 'style' : ' display : inline !important' } }) }}
+                <span class="unit input-group-addon">
+                    {% if  form.vars.value != null %}
+                        {{ form.vars.value.product.labelUnitInventory|trans }}
+                    {% else %}
+                        __unit__
+                    {% endif %}
+                 </span>
+                {{ form_errors(form.qty) }}
+            </div>
+        </td>
+
+        <td class="medium-input">
+            <div class="input-group">
+                {{ form_widget(form.qtyUse,{ 'attr' : { 'class' : 'form-control qty-line-use' , 'type' :'number' , 'style' : ' display : inline !important' } }) }}
+                <span class="unit input-group-addon">
+                    {% if  form.vars.value != null %}
+                        {{ form.vars.value.product.labelUnitUsage|trans }}
+                    {% else %}
+                        __unit_use__
+                    {% endif %}
+                 </span>
+                {{ form_errors(form.qtyUse) }}
+            </div>
+        </td>
+
+        <td class="medium-input">
+            <div class="input-group">
+                {{ form_widget(form.qtyExp,{ 'attr' : { 'class' : 'form-control qty-line-exp' , 'type' :'number' , 'style' : ' display : inline !important' } }) }}
+                <span class="unit input-group-addon">
+                        {% if  form.vars.value != null %}
+                            {{ form.vars.value.product.labelUnitExped|trans }}
+                        {% else %}
+                            __unit_exp__
+                        {% endif %}
+                    </span>
+                {{ form_errors(form.qtyExp) }}
+            </div>
+        </td>
+
+        <td class="total">
+            {% if  form.vars.value != null %}
+                {{ form.vars.value.total|number_format(2,',','') }}
+            {% else %}
+                __total_qty__
+            {% endif %}
+            <span>
+                {% if  form.vars.value != null %}
+                    {{ form.vars.value.product.labelUnitInventory|trans }}
+                {% else %}
+                    __unit__
+                {% endif %}
+            </span>
+        </td>
+
+        <td class="unit-price">
+            {% if  form.vars.value != null %}
+                {{ form.vars.value.product.buyingCost|number_format(2,',','') }}
+            {% else %}
+                __unit_price__
+            {% endif %}
+        </td>
+        <td class="line-valorization">
+            {% if  form.vars.value != null %}
+                {{ form.vars.value.valorization|number_format(2,',','') }}
+            {% else %}
+                __val__
+            {% endif %}
+        </td>
+        <td>
+            <button type="button" data-tooltip="Supprimer la ligne" data-position="top" class="tooltipped remove-line">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </td>
+    </tr>
+{% endblock %}

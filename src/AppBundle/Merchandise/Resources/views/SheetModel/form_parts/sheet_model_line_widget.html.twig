@@ -1,0 +1,44 @@
+{% block sheet_model_line_widget %}
+    {% spaceless %}
+        {% if form.vars.value != null %}
+            <tr class="line">
+                <td class="draggable">
+                    {{ form_widget(form.id) }}
+                    <span class="product_id">{{ form.vars.data.product.externalId }}</span>
+                    {{ form_widget(form.product) }}
+                </td>
+                <td class="draggable">
+                    {% if  form.vars.data.product.productCategory is not null %}
+                        <span class="">{{ form.vars.data.product.productCategory.name }}</span>
+                    {% else %}
+                        <span class="">{{ form.vars.data.product.division.name }}</span>
+                    {% endif %}
+                </td>
+                <td class="draggable">
+                    <span class="product_name">{{ form.vars.data.product.name }}</span>
+                    {{ form_errors(form.product) }}
+                </td>
+                <td class="actions-btn ">
+                    <button type='button' style="line-height: 100%;"
+                            class='btnRemoveSheetModelLine btn btn-remove waves-effect waves-light red darken-5'
+                            data-product-id="{{ form.vars.data.product.id }}">
+                        <i style="color: white;"
+                           class="glyphicon glyphicon-minus"></i>
+                    </button>
+
+                    {#<button type="button" class="btn btn-primary orderUp" style="margin-left: 10px;">
+                        <i class="glyphicon glyphicon-arrow-up"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-primary orderDown" style="margin-left: 10px;">
+                        <i class="glyphicon glyphicon-arrow-down"></i>
+                    </button>#}
+                    {{ form_widget(form.orderInSheet, { 'id': 'orderInSheet_'~form.vars.data.product.id,'value': index }) }}
+                </td>
+                <td style="display: none;">
+                    {{ index }}
+                </td>
+            </tr>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}

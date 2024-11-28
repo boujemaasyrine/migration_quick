@@ -1,0 +1,147 @@
+{% extends('@Report/MerchandiseManagement/index.html.twig') %}
+
+{% block base_title %}
+    {{ 'tickets_report.title' |trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'reports.title'|trans([], 'navbar') }}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/selectize/dist/css/selectize.css') }}">
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('plugins/masonry-layout/dist/masonry.pkgd.min.js') }}"></script>
+    <script src="{{ asset('plugins/selectize/dist/js/standalone/selectize.js') }}"></script>
+    <script>
+        $('.selectize').selectize({plugins: ['remove_button']});
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                {{ form_start(form, {'attr' : {'action' :  path("tickets_report"), 'novalidate' : 'novalidate' }}) }}
+                <div class="row">
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.startDate) }}
+                        <div class="input-group">
+                            {{ form_widget(form.startDate, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.startDate) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.endDate) }}
+                        <div class="input-group">
+                            {{ form_widget(form.endDate, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.endDate) }}
+                    </div>
+
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.startHour) }}
+                        <div class="input-group">
+                            {{ form_widget(form.startHour, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+                        </div>{{ form_errors(form.startHour) }}
+                    </div>
+
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.endHour) }}
+                        <div class="input-group">
+                            {{ form_widget(form.endHour, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+                        </div>{{ form_errors(form.endHour) }}
+                    </div>
+
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.startInvoiceNumber) }}
+                        <div class="input-group">
+                            {{ form_widget(form.startInvoiceNumber, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-ticket"></span></span>
+                        </div>{{ form_errors(form.startInvoiceNumber) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.endInvoiceNumber) }}
+                        <div class="input-group">
+                            {{ form_widget(form.endInvoiceNumber, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-ticket"></span></span>
+                        </div>{{ form_errors(form.endInvoiceNumber) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.solding_canal) }}
+                        {{ form_widget(form.solding_canal, {'attr' : {'class' : 'selectize'}}) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.paymentMethod) }}
+                        {{ form_widget(form.paymentMethod, {'attr' : {'class' : 'selectize'}}) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.amountMin) }}
+                        <div class="input-group">
+                            {{ form_widget(form.amountMin, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                        </div>{{ form_errors(form.amountMin) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.amountMax) }}
+                        <div class="input-group">
+                            {{ form_widget(form.amountMax, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                        </div>{{ form_errors(form.amountMax) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.cashier) }}
+                        <div class="input-group">
+                            {{ form_widget(form.cashier, {'attr' : {'class' : 'form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                        </div>{{ form_errors(form.cashier) }}
+                    </div>
+
+
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-md-12 col-xs-12" style="text-align:right;">
+                        {% if(generated is defined) %}
+                            <button class="btn waves-effect btn-export text-black dropdown-button"
+                                    data-activates='dropdown2' id="export-btn">
+                                <span class="hide-on-med-and-down"> {{ 'btn.export'|trans() }} </span>
+                            </button>
+                        {% endif %}
+
+                        <button type="submit" class="btn waves-effect orange text-black " id="generateReport">
+                            {{ 'btn.generate_report'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(form) }}
+                    {% if result is defined %}
+                        <input type="hidden" name="page" value="{{ result.getCurrentPageNumber }}">
+                    {% endif %}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    {% if(generated is defined) %}
+        {{ include('@Report/Tickets/report_tickets.html.twig') }}
+    {% endif %}
+
+    {% if result is defined %}
+        <div style="width: 100%;text-align: center;margin: auto;">
+            {# display navigation #}
+            <div class="navigation">
+                {{ knp_pagination_render(result) }}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

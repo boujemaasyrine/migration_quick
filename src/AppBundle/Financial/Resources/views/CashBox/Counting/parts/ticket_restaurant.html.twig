@@ -1,0 +1,56 @@
+<div id="check_restaurant_container"
+     data-prototype="{{ form_widget(form.checkRestaurantContainer.ticketRestaurantCounts.vars.prototype) | e }}"
+     class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    {% for ticket in form.vars.value.checkRestaurantContainer.getCheckRestaurantNamesAndIdPayment(false) %}
+        {% if list or paymentMethodStatus.isIdPaymentActive(ticket['id']) %}
+            <div class="checkRestaurantRow col-md-4" style="padding: 0 5px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="text-align: left;">
+                        {{ ticket['name'] }}
+                    </div>
+                    <div class="panel-body">
+                        <div id="lines{{ ticket['name']|replace({' ': '_'}) }}">
+                            {% for checkRestaurantCount in form.checkRestaurantContainer.ticketRestaurantCounts %}
+                                {% if ticket['name'] == checkRestaurantCount.vars.value.ticketName %}
+                                    {% if not list %}
+                                        {{ form_widget(checkRestaurantCount, { 'attr': {'maxlength':"10"}}) }}
+                                    {% else %}
+                                        <div class="col-xs-12">
+                                            <div class="row">
+                                                <div class="col-xs-6" style="padding: 0 5px;">
+                                                    <span class="text-muted">{{ checkRestaurantCount.qty.vars.value|number_format() }}</span>
+                                                </div>
+                                                <div class="col-xs-6" style="text-align: right; padding: 0 5px;">
+                                                    <span class="text-muted bold bank_card_amount"> x{{ checkRestaurantCount.unitValue.vars.value }}
+                                                        <span><i class="glyphicon glyphicon-euro"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% if not list %}
+                            <div class="row">
+                                <div class="col-xs-12" style="text-align: right">
+                            <span class="btn btn-add addTicketRestaurantValue"
+                                  data-ticket-name="{{ ticket['name']|replace({' ': '_'}) }}">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            </span>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="panel-footer" style="text-align: left;">
+                        <div class="row">
+                            <span class="text-muted pull-right" style="margin-right: 5px;">
+                                <span class="total_check_restaurant_by_type">{{ form.vars.value.checkRestaurantContainer.calculateTotalByTicketName(ticket['name'])|number_format(2, ',', '.') }}</span>
+                                <i class="glyphicon glyphicon-euro"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

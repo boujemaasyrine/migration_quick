@@ -1,0 +1,9 @@
+#Todo
+report.generate: "Générer le rapport"
+report.force_generation: "Forcer la regénération du rapport"
+data_not_found: "Aucune donnée n'est trouvée"
+
+date_synchro: Date de synchronisation
+status_label: Statut
+#todo
+report.process.warning: Un processus est déjà en cours, veuillez réessayer plus tard!

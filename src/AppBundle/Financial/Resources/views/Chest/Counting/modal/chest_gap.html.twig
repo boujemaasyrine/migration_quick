@@ -1,0 +1,210 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <label> {{ 'chest.gap.owner'|trans() }} </label> : <span class="text-accent-1"> {{ chest.owner }} </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label> {{ 'chest.counting.date'|trans() }} </label>: <span
+                    class="text-muted">{{ chest.date|date("d/m/Y h:i:s") }}</span>
+        </div>
+        <div class="col-xs-4">
+            <label> {{ 'chest.counting.cash_box_starting_fund'|trans() }} </label>: <span
+                    class="text-muted">{{ parameter_service.getStartDayCashboxFunds|number_format(2, ',', '') }} <i
+                        class="glyphicon glyphicon-euro"></i></span>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-3"><label> {{ 'keyword.real'|trans() }} </label></div>
+        <div class="col-xs-3"><label> {{ 'keyword.theorical'|trans() }} </label></div>
+        <div class="col-xs-3"><label> {{ 'keyword.gap'|trans() }} </label></div>
+    </div>
+
+    {#<div class="list">#}
+    {#<div class="row hoverable">#}
+    {#<div class="col-xs-3">#}
+    {#<label> {{ 'chest.counting.total_cash'|trans() }} </label>:#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.cashContainer.total|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.getTheoricalCashTotal|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold {% if chest.calculateCashGap > 0 %}green-text {% elseif chest.calculateCashGap < 0 %} red-text {% endif %}">#}
+    {#{{ chest.calculateCashGap|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="row hoverable">#}
+    {#<div class="col-xs-3">#}
+    {#<label> {{ 'chest.counting.total_withdrawls'|trans() }} </label>:#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.calculateTotalWithdrawals|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.calculateTotalWithdrawals|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold {% if chest.calculateWithdrawalsGap > 0 %}green-text {% elseif chest.calculateWithdrawalsGap < 0 %} red-text {% endif %}"> {{ chest.calculateWithdrawalsGap|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="row hoverable">#}
+    {#<div class="col-xs-3">#}
+    {#<label> {{ 'chest.counting.total_check'|trans() }} </label>:#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.checkQuickContainer.calculateCheckQuickTotal|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.checkQuickContainer.calculateTheoricalTotal|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold {% if chest.checkQuickContainer.calculateTotalGap > 0 %}green-text {% elseif chest.checkQuickContainer.calculateTotalGap < 0 %} red-text {% endif %}"> {{ chest.checkQuickContainer.calculateTotalGap|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="row hoverable">#}
+    {#<div class="col-xs-3">#}
+    {#<label> {{ 'chest.counting.total_bank_card'|trans() }} </label>:#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.bankCardContainer.calculateBankCardTotal|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.bankCardContainer.calculateTheoricalTotal|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold {% if chest.bankCardContainer.calculateTotalGap > 0 %}green-text {% elseif chest.bankCardContainer.calculateTotalGap < 0 %} red-text {% endif %}"> {{ chest.bankCardContainer.calculateTotalGap|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="row hoverable">#}
+    {#<div class="col-xs-3">#}
+    {#<label> {{ 'chest.counting.total_foreign_currency'|trans() }} </label>:#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.foreignCurrencyContainer.calculateTotalForeignCurrencyAmount|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.foreignCurrencyContainer.calculateTheoricalTotal|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold {% if chest.foreignCurrencyContainer.calculateTotalGap > 0 %}green-text {% elseif chest.foreignCurrencyContainer.calculateTotalGap < 0 %} red-text {% endif %}"> {{ chest.foreignCurrencyContainer.calculateTotalGap|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="row hoverable">#}
+    {#<div class="col-xs-3">#}
+    {#<label> {{ 'chest.counting.total_check_restaurant'|trans() }} </label>:#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.checkRestaurantContainer.calculateRealTotalAmount(false)|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.checkRestaurantContainer.calculateTheoricalTotal(false)|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold {% if chest.checkRestaurantContainer.calculateTotalGap(false) > 0 %}green-text {% elseif chest.checkRestaurantContainer.calculateTotalGap(false) < 0 %} red-text {% endif %}"> {{ chest.checkRestaurantContainer.calculateTotalGap(false)|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="row hoverable">#}
+    {#<div class="col-xs-3">#}
+    {#<label> {{ 'chest.counting.total_check_restaurant_electronic'|trans() }} </label>:#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.checkRestaurantContainer.calculateRealTotalAmount(true)|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.checkRestaurantContainer.calculateTheoricalTotal(true)|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold {% if chest.checkRestaurantContainer.calculateTotalGap(true) > 0 %}green-text {% elseif chest.checkRestaurantContainer.calculateTotalGap(true) < 0 %} red-text {% endif %}"> {{ chest.checkRestaurantContainer.calculateTotalGap(true)|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<hr style="margin: 0;">#}
+
+    {#<div class="row hoverable">#}
+    {#<div class="col-xs-3">#}
+    {#<label style="font-size: 1em !important;"> {{ 'chest.counting.total_chest'|trans() }} </label>:#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.calculateTotalchest|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold">{{ chest.calculateTheoricalTotalchest|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#<div class="col-xs-3">#}
+    {#<span class="text-muted bold {% if chest.calculateRealTotalChestGap > 0 %}green-text {% elseif chest.calculateRealTotalChestGap < 0 %} red-text {% endif %}"> {{ chest.calculateRealTotalChestGap|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="col-xs-6 col-xs-offset-3" style="margin-top: 35px;">#}
+    {#<div class="col-xs-12">#}
+    {#<div class="row">#}
+    {#<div class="col-xs-6">#}
+    {#<label> {{ 'chest.counting.canceling_number'|trans() }} </label>: <span#}
+    {#class="text-muted">#}
+    {#{{ chest.numberCancels }}#}
+    {#</span>#}
+    {#<br/>#}
+    {#</div>#}
+    {#<div class="col-xs-6">#}
+    {#<label> {{ 'chest.counting.total_cancels'|trans() }} </label>: <span#}
+    {#class="text-muted">#}
+    {#<span>{{ chest.totalCancels|number_format(2, ',', '.') }}</span>#}
+    {#<i class="glyphicon glyphicon-euro"></i>#}
+    {#</span>#}
+    {#<br/>#}
+    {#</div>#}
+    {#</div>#}
+    {#<hr style="margin: 0;">#}
+    {#</div>#}
+    {#<div class="col-xs-12">#}
+    {#<hr style="margin: 0;">#}
+    {#<div class="row">#}
+    {#<div class="col-xs-6">#}
+    {#<label> {{ 'chest.counting.correction_number'|trans() }} </label>: <span#}
+    {#class="text-muted">{{ chest.numberCorrections }}</span>#}
+    {#<br/>#}
+    {#</div>#}
+    {#<div class="col-xs-6">#}
+    {#<label> {{ 'chest.counting.total_corrections'|trans() }} </label>: <span#}
+    {#class="text-muted">#}
+    {#<span>{{ chest.totalCorrections|number_format(2, ',', '.') }}</span>#}
+    {#<i class="glyphicon glyphicon-euro"></i>#}
+    {#</span>#}
+    {#<br/>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="col-xs-12">#}
+    {#<hr style="margin: 0;">#}
+    {#<div class="row">#}
+    {#<div class="col-xs-6">#}
+    {#<label> {{ 'chest.counting.abondons_number'|trans() }} </label>: <span#}
+    {#class="text-muted">{{ chest.numberAbondons }}</span>#}
+    {#<br/>#}
+    {#</div>#}
+    {#<div class="col-xs-6">#}
+    {#<label> {{ 'chest.counting.abondons_total'|trans() }} </label>: <span#}
+    {#class="text-muted">#}
+    {#<span>{{ chest.totalAbondons|number_format(2, ',', '.') }}</span>#}
+    {#<i class="glyphicon glyphicon-euro"></i>#}
+    {#</span>#}
+    {#<br/>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+</div>

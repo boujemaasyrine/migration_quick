@@ -1,0 +1,30 @@
+{{ form_errors(form) }}
+{% form_theme form.translations ':supervision/form_part:tranlsations.html.twig' %}
+
+<div class="row">
+    <div class="col-md-8 col-sm-8">
+        {{ form(form.translations) }}
+    </div>
+    <div class="col-md-offset-1 col-md-3 col-sm-4">
+        {{ form_label(form.isFoodCost, 'group.label.is_food_cost', { 'label_attr': {'style': 'position: initial'} }) }}
+        {{ form_widget(form.isFoodCost) }}
+        {{ form_errors(form.isFoodCost) }}
+    </div>
+</div>
+
+<div class="hidden">
+    {{ form_rest(form) }}
+</div>
+<div class="row">
+    <div class="col-xs-12" style="text-align: right">
+        {% if type == 'edit' %}
+            <button class="btn  btn-cancel btn-icon" type="button" id="btn-cancel-edit">
+                {{ 'btn.cancel' | trans }}
+            </button>
+        {% endif %}
+        <button class="btn {% if type == 'edit' %}btn-modify{% else %}btn-add{% endif %} btn-icon glyphicon-{{ type }}"
+                type="button" id="{{ type }}-group-button">
+            {{ ( 'btn.validate' ) | trans }}
+        </button>
+    </div>
+</div>

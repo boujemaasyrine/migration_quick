@@ -1,0 +1,91 @@
+{% extends('@Report/Discount/base_exports_report.html.twig') %}
+
+{% block reportTitle %}
+    <h4> {{ 'corrections_report.title' |trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-2 input-field">
+        <label for="startDate">{{ 'keyword.from'|trans }} :</label>
+        <span class="text-muted">
+            {{ data.startDate }}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="endDate">{{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {{ data.endDate }}
+        </span>
+    </div>
+
+    <div class="col-xs-4">
+        <label for="selection">{{ 'keyword.from'|trans }}: </label>
+        <span class="text-muted">
+
+            {%  if data.startHour is defined and not null %}
+                {{ data.startHour }} H
+            {%  else %}
+                00 H
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {%  if data.endHour is defined and not null %}
+                {{ data.endHour }} H
+            {%  else %}
+                23 H
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'corrections_report.cashier' | trans }}: </label>
+        <span class="text-muted">
+            {%  if data.cashier is defined and not null %}
+                {{ data.cashier }}
+            {%  else %}
+                {{'corrections_report.all' |trans }}
+            {% endif %}
+        </span>
+    </div>
+    {#<div class="col-xs-4">#}
+        {#<label for="selection"> {{ 'corrections_report.responsible' | trans }}: </label>#}
+        {#<span class="text-muted">#}
+            {#{%  if data.responsible is defined and not null %}#}
+                {#{{ data.responsible }}#}
+            {#{%  else %}#}
+                {#{{'corrections_report.all' |trans }}#}
+            {#{% endif %}#}
+        {#</span>#}
+    {#</div>#}
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'corrections_report.amount_min' | trans }}: </label>
+        <span class="text-muted">
+            {%  if data.amountMin is defined and not null %}
+                {{ data.amountMin }}
+            {%  else %}
+                --
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'corrections_report.amount_max' | trans }}: </label>
+        <span class="text-muted">
+            {%  if data.amountMax is defined and not null %}
+                {{ data.amountMax }}
+            {%  else %}
+                --
+            {% endif %}
+
+        </span>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/Corrections/report_corrections.html.twig') }}
+{% endblock body %}

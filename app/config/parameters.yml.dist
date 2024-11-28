@@ -1,0 +1,93 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    version:
+    app_version:
+    withdrawal_petty_cash_id:
+    database_driver:   pdo_pgsql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+    # You should uncomment this if you want use pdo_sqlite
+    # database_path: "%kernel.root_dir%/data.db3"
+    sender_adress: 
+    delivery_email:
+    mailer_port:
+
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: team.php.test@gmail.com
+    mailer_password: emaildetest
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            ThisTokenIsNotSoSecretChangeIt
+    fallback_locale:   fr
+    app_locales: fr|nl
+    po_directory: "%kernel.root_dir%/../data/po_xml"
+    php_cli: 'php '
+    asynch_postfix: ' '
+    number_of_rows_per_page: 10
+    number_of_groups_per_page: 5 # means by group => divisions and categories (group of products)
+
+    quick: Quick L530
+    tmp_directory: '%kernel.root_dir%/../data/tmp'
+    quick_code: 6530
+    api_user_code: 1
+    quick_address: 'Adresse du %quick%'
+    ftp_host: 10.2.1.33
+    ftp_user: test
+    ftp_pw: test
+    ftp_port: 21
+
+    ftp_delivery_host: 10.2.1.34
+    ftp_delivery_user: test
+    ftp_delivery_pw: test
+    ftp_delivery_port: 21
+
+    report_sql_queries_dir: "%kernel.root_dir%/../src/AppBundle/Report/SqlQueries"
+    wkhtmltopdf_path: ~
+    session_idel_time: 1800
+    supervision:
+        url: ~
+        central_notify: ws_bo_api/ack
+    #Remonte
+        orders: ws_bo_api/orders
+        employee: ws_bo_api/employee
+        inventories: ws_bo_api/inventories
+        deliveries: ws_bo_api/deliveries
+        transfers: ws_bo_api/transfers
+        returns: ws_bo_api/returns
+        financial_revenues: ws_bo_api/financial_revenues
+        admin_closing: ws_bo_api/admin_closing
+        bud_prev: ws_bo_api/bud_prev
+        loss_purchased_item: ws_bo_api/loss/purchased
+        loss_sold_item: ws_bo_api/loss/sold
+        tickets: ws_bo_api/tickets
+        cashbox_counts: ws_bo_api/cashbox_counts
+        chest_counts: ws_bo_api/chest_counts
+        enveloppes: ws_bo_api/enveloppes
+        withdrawals: ws_bo_api/withdrawals
+        deposits: ws_bo_api/deposits
+        expenses: ws_bo_api/expenses
+        recipe_tickets: ws_bo_api/recipe_tickets
+        closing_opening_hour: ws_bo_api/closing_opening_hour
+    #Getting
+        suppliers: ws_bo_api/suppliers
+        restaurants: ws_bo_api/restaurants
+        categories: ws_bo_api/categories
+        sold_items: ws_bo_api/sold_items
+        inv_items: ws_bo_api/inv_items
+        solding_canals: ws_bo_api/solding_canals
+        recipes: ws_bo_api/recipes
+        rights: ws_bo_api/rights
+        roles: ws_bo_api/roles
+        actions: ws_bo_api/actions
+        sup_users: ws_bo_api/sup_users
+        cmd: ws_bo_api/cmd_to_execute
+        restaurant_parameters: ws_bo_api/restaurant_parameters
+        payment_methods: ws_bo_api/payment_methods
+        ping: ws_bo_api/ping
+        modify_pw: ws_bo_api/modify_pw

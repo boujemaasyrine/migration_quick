@@ -1,0 +1,41 @@
+#!/command/with-contenv bash
+TZ="${TZ:-CET}"
+PUID="${PUID:-$(id -u www-data)}"
+PGID="${PGID:-$(id -g www-data)}"
+WEBUSER="${WEBUSER:-www-data}"
+WEBGROUP="${WEBGROUP:-www-data}"
+WEBHOME="$(webhome)"
+
+if [ ! -z "$TZ" ] && [ -e /usr/share/zoneinfo/$TZ ]; then
+    ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
+fi
+
+if [ "$WEBGROUP" != "www-data" ]; then
+    echo "🔥 Creating '${WEBGROUP}' group."
+    groupadd -r -g 9999 $WEBGROUP
+fi
+
+if [ "$WEBUSER" != "www-data" ];  then
+    echo "🔥 Creating '${WEBUSER}' user."
+    useradd -r -g 9999 \
+        -G root,www-data --no-log-init \
+        -d /root -s /bin/bash -u $PUID $WEBUSER
+    wmd /root -R
+else
+    usermod -s /bin/bash $WEBUSER
+fi
+
+if [[ "$PUID" != "$(id -u $WEBUSER)" || "$PGID" != "$(id -g $WEBUSER)" ]]; then
+    echo "🔥 New PUID and PGID for $WEBHOME will be updated."
+    usermod  -o -u $PUID $WEBUSER
+    groupmod -o -g $PGID $WEBGROUP
+    touch /tmp/owner-changed
+fi
+
+[ ! -z "$WEBHOME" ] && wmd $WEBHOME
+
+if [ -d /source/ ]; then
+    echo "  🗂 Source folder detected. Moving files to $WEBHOME..."
+    move -bf /source/* $WEBHOME/ && rm -rf /source/ || true
+    touch /tmp/owner-changed
+fi

@@ -1,0 +1,55 @@
+{% for category in categories %}
+    <div class="panel panel-default">
+        <div
+                class="panel-heading bootstrap_tooltipped" role="tab" id="heading{{ category.id }}"
+                style="padding: 3px;cursor: pointer;">
+                                    <span title='{{ 'tooltip.click_to_show_contained_items'|trans }}'
+                                          data-placement='top'
+                                          class=" bootstrap_tooltipped panel-title category-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                           href="#collapse{{ category.id }}" aria-expanded="false"
+                                           aria-controls="collapse{{ category.id }}"
+                                           style="font-size: 0.9em; font-weight: lighter;">
+                                            {{ category.name }}
+                                        </a>
+                                    </span>
+            <span data-category-id="{{ category.id }}"
+                  title='{{ 'tooltip.select_all_in_category'|trans }}'
+                  data-placement='right'
+                  class="waves-effect bootstrap_tooltipped waves-light badge small-btn select_this_categorie"
+                  style="font-size: 0.8em; font-weight: 100;">
+                            {{ 'btn.select_all'|trans }}
+                        </span>
+            <div>
+
+            </div>
+        </div>
+        <div id="collapse{{ category.id }}" class="panel-collapse collapse"
+             role="tabpanel"
+             aria-labelledby="heading{{ category.id }}">
+            <div id="category_content{{ category.id }}" class="panel-body"
+                 style="max-height: 200px; overflow-x: hidden; width: 100%;">
+                {% for product in  category.products %}
+                    <div class="product-line row product-line{{ product.id }} hoverable bootstrap_tooltipped
+                        {% if sheetModelForm.vars.data.doesProductAlreadyExistInThisSheet(product) %} display_none {% endif %}
+                    "
+                         title='{{ 'tooltip.click_to_add_to_list'|trans }}'
+                         data-placement='right'
+
+                         data-product-id="{{ product.id }}"
+                         data-product-external-id="{{ product.externalId }}"
+                         data-product-name="{{ product.name }}"
+                         data-category-name="{{ category.name }}"
+                         style="padding: 5px; cursor: pointer; font-size: 0.9em;">
+                        <div class="col-xs-4">
+                            {{ product.externalId }}
+                        </div>
+                        <div class="col-xs-8">
+                            {{ product.name }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endfor %}

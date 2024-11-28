@@ -1,0 +1,35 @@
+{% extends '@Merchandise/index_supplying.html.twig' %}
+
+{% block base_title %}
+    {{ 'buying_management.coef.base'|trans([],'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'buying_management.command_management'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Coeff/coeff.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    {% if locked is defined %}
+        <br><br>
+        <div class="alert alert-info" role="alert">
+            {{ 'processing_pending'|trans() }}
+        </div>
+    {% else %}
+        {% if base is not defined %}
+
+            {% include '@Merchandise/Coef/calcul_coef_progress.html.twig' %}
+            <div id="data-table">
+
+            </div>
+        {% else %}
+            <div id="data-table">
+                {% include '@Merchandise/Coef/coef_table.html.twig' %}
+            </div>
+        {% endif %}
+        {% endif %}
+            {% endblock %}

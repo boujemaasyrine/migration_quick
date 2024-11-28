@@ -1,0 +1,145 @@
+services:
+  withdrawal.service:
+    class: AppBundle\Financial\Service\WithdrawalService
+    arguments: ["@doctrine.orm.entity_manager","@security.token_storage", "@translator.default", "@envelope.service","@restaurant.service"]
+  withdrawal.synchronization.service:
+    class: AppBundle\Financial\Service\WithdrawalSynchronizationService
+    arguments: ["@doctrine.orm.entity_manager", "@translator.default",'@monolog.logger.financial','@session',"@service_container"]
+  expense.service:
+    class: AppBundle\Financial\Service\ExpenseService
+    arguments: ["@doctrine.orm.entity_manager","@security.token_storage", "@translator.default", "@paremeter.service", "@service_container"]
+  cashbox.service:
+    class: AppBundle\Financial\Service\CashboxService
+    arguments: ["@doctrine.orm.entity_manager", '@monolog.logger.financial', "@paremeter.service", "@withdrawal.service", "@security.token_storage", "@service_container","@restaurant.service"]
+  day_income.service:
+    class: AppBundle\Financial\Service\DayIncomeService
+    arguments: ["@doctrine.orm.entity_manager", '@monolog.logger.financial', "@paremeter.service", "@service_container","@restaurant.service"]
+  chest.service:
+    class: AppBundle\Financial\Service\ChestService
+    arguments: ["@doctrine.orm.entity_manager", "@paremeter.service", "@security.token_storage", "@router", "@phpexcel", "@translator.default", "@workflow.service", "@expense.service", "@administrative.closing.service","@restaurant.service"]
+  max_amount_withdrawal.validator:
+    class: AppBundle\Financial\Validator\MaxAmountWithdrawalConstraintValidator
+    arguments: ["@doctrine.orm.entity_manager", "@translator.default", "@administrative.closing.service","@restaurant.service"]
+    tags:
+    - { name: validator.constraint_validator , alias: max_amount_withdrawal_validator }
+  expense.form:
+    class: AppBundle\Financial\Form\Expense\ExpenseType
+    arguments: ["@doctrine.orm.entity_manager", "@paremeter.service"]
+    tags:
+    - { name: form.type, alias: expense_type }
+  withdrawal.form:
+    class: AppBundle\Financial\Form\Withdrawal\WithdrawalType
+    arguments: ["@doctrine.orm.entity_manager", "@translator.default", "@administrative.closing.service"]
+    tags:
+    - { name: form.type, alias: withdrawal_type }
+  foreign_currency.form:
+    class: AppBundle\Financial\Form\Cashbox\ForeignCurrencyType
+    arguments: ["@paremeter.service"]
+    tags:
+    - { name: form.type, alias: foreign_currency_type }
+  exchange.form:
+    class: AppBundle\Financial\Form\Chest\ExchangeType
+    arguments: ["@paremeter.service"]
+    tags:
+    - { name: form.type, alias: exchange_type }
+  envelope.service:
+    class: AppBundle\Financial\Service\EnvelopeService
+    arguments: ["@doctrine.orm.entity_manager", "@translator.default", "@paremeter.service",'@restaurant.service']
+  recipe_ticket.service:
+    class: AppBundle\Financial\Service\RecipeTicketService
+    arguments: ["@doctrine.orm.entity_manager", "@logger", "@security.token_storage", "@paremeter.service","@restaurant.service"]
+  enveloppe.form:
+    class: AppBundle\Financial\Form\Envelope\EnvelopeType
+    arguments: ["@doctrine.orm.entity_manager"]
+    tags:
+    - { name: form.type }
+  enveloppe_cash.form:
+    class: AppBundle\Financial\Form\Envelope\EnvelopeCreateType
+    arguments: ["@doctrine.orm.entity_manager", "@translator.default"]
+    tags:
+    - { name: form.type }
+  enveloppe_ticket.form:
+    class: AppBundle\Financial\Form\Envelope\EnvelopeTicketCreateType
+    arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+    tags:
+    - { name: form.type }
+  recipe_ticket.form:
+    class: AppBundle\Financial\Form\RecipeTicket\RecipeTicketType
+    arguments: ["@doctrine.orm.entity_manager", "@paremeter.service"]
+    tags:
+    - { name: form.type }
+  recipe_ticket.search.form:
+    class: AppBundle\Financial\Form\RecipeTicket\RecipeTicketSearchType
+    arguments: ["@paremeter.service","@doctrine.orm.entity_manager"]
+    tags:
+    - { name: form.type }
+  withdrawal.search.service:
+    class: AppBundle\Financial\Form\Withdrawal\WithdrawalSearchType
+    arguments: ["@doctrine.orm.entity_manager", "@employee.service"]
+    tags:
+    - { name: form.type, alias: withdrawal_search_type }
+  expense.search.form:
+    class: AppBundle\Financial\Form\Expense\ExpenseSearchType
+    arguments: ["@doctrine.orm.entity_manager", "@translator.default", "@paremeter.service", "@expense.service"]
+    tags:
+    - { name: form.type, alias: expense_search_type }
+  ticket.service:
+    class: AppBundle\Financial\Service\TicketService
+    arguments: ["@doctrine.orm.entity_manager", "@toolbox.command.launcher", "@logger", "@staff.service","@restaurant.service"]
+  deposit.service:
+    class: AppBundle\Financial\Service\DepositService
+    arguments: ["@doctrine.orm.entity_manager", "@translator.default", "@service_container","@restaurant.service"]
+  deposit.form.service:
+    class: AppBundle\Financial\Form\Deposit\DepositType
+    arguments: ["@doctrine.orm.entity_manager"]
+    tags:
+    - { name: form.type }
+  deposit_ticket.form.service:
+    class: AppBundle\Financial\Form\Deposit\DepositTicketType
+    arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+    tags:
+    - { name: form.type }
+  administrative.closing.service:
+    class: AppBundle\Financial\Service\AdministrativeClosingService
+    arguments: ["@doctrine.orm.entity_manager", "@service_container", "@logger"]
+  chest_count.form.service:
+    class: AppBundle\Financial\Form\Chest\ChestCountType
+    arguments: ["@doctrine.orm.entity_manager"]
+    tags:
+    - { name: form.type }
+  payment_method.status.service:
+    class: AppBundle\Financial\Service\PaymentMethodStatus
+    arguments: ["@doctrine.orm.entity_manager", "@restaurant.service"]
+  prices.revenues.service:
+    class: AppBundle\Financial\Service\RevenuePricesService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@logger"
+  chest.exchange.label.filter:
+    class: AppBundle\Financial\Twig\ChestExchangeLabelExtension
+    arguments: ["@service_container"]
+    tags:
+    - { name: twig.extension }
+
+  cashbox.check.quick.container.service:
+    class: AppBundle\Financial\Service\CashboxCheckQuickContainerService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@restaurant.service"
+
+  cashbox.check.restaurant.container.service:
+    class: AppBundle\Financial\Service\CashboxCheckRestaurantContainerService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@restaurant.service"
+  cashbox.meal.ticket.container.service:
+    class: AppBundle\Financial\Service\CashboxMealTicketContainerService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@restaurant.service"
+
+  cashbox.discount.container.service:
+    class: AppBundle\Financial\Service\CashboxDiscountContainerService
+    arguments:
+    - "@doctrine.orm.entity_manager"
+    - "@restaurant.service"

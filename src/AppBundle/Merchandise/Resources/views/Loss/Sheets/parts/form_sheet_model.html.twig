@@ -1,0 +1,194 @@
+{% if type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') %}
+    {% form_theme sheetModelForm.lines "@Merchandise/SheetModel/form_parts/sheet_model_line_widget.html.twig" %}
+{% elseif type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL') %}
+    {% form_theme sheetModelForm.lines "@Merchandise/Loss/Sheets/form_parts/final_product_sheet_model_line_widget.html.twig" %}
+
+{% endif %}
+
+<script>
+    var cibledProducts = '{{ cibledProduct }}'
+    if ( $.fn.dataTable.isDataTable( '#sheetModelFormTable' ) ) {
+        sheetModelFormTable = $('#sheetModelFormTable').DataTable();
+        sheetModelFormTable.destroy()
+        sheetModelFormTable = initSimpleDataTable('#sheetModelFormTable', {
+        retrieve: true,
+        lengthChange: true,
+        processing: false,
+        serverSide: false,
+        searching: true,
+        orderFixed: [ 4, 'asc' ],
+        ordering: true,
+        aoColumnDefs: [
+            { "bSortable": false, "aTargets": [ "_all" ] }
+        ],
+        columnDefs: [
+            { orderable: true, className: 'reorder', targets: 4 },
+            { orderable: false, targets: '_all' }
+        ],
+        rowReorder: {selector: 'td.draggable', dataSrc: 4},
+        paging: false,
+        scrollY:        400,
+        deferRender:    true,
+        scroller:       true,
+        scrollCollapse: true,
+        });
+        sheetModelFormTable.on('row-reordered', function (e, details, edit) {
+
+            for ( var i=0, ien=details.length ; i<ien ; i++ ) {
+                var line=$(details[i].node);
+                var orderInSheet=line.find('.sorting_1').text();
+                var id=line.find('.btnRemoveSheetModelLine').attr('data-product-id');
+                var orderInSheet=line.find('#orderInSheet_'+id).val(orderInSheet.trim());
+            }
+
+        });
+    } 
+</script>
+
+<div class="panel panel-default" style="margin-bottom: 0" id="lossSheetModal">
+    <div class="panel-heading" style="color: #333; background-color: #f5f5f5 !important;">
+        <div class="panel-title" style="color: #333">
+            {% if sheetModelForm.vars.value.id is null %}
+                {% set old = "" %}
+                {{ 'sheet_model.new_sheet.title'|trans }}
+            {% else %}
+                {% set old = "oldSheetModel" %}
+                {{ 'sheet_model.old_sheet.title'|trans }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="panel-body">
+
+        {{ form_start(sheetModelForm,{'method' : 'POST' ,'action' : path('api_save_loss_sheet_model') , 'attr' : { 'id' : 'sheet_model_form', 'class': old } }) }}
+        {{ form_widget(sheetModelForm.id) }}
+        <div class="row">
+            <div class="col-xs-3">
+                {{ form_label(sheetModelForm.label, 'sheet_model.new_sheet.labels.label' ) }} <br/>
+                {{ form_widget(sheetModelForm.label, { "attr": { "class": 'form-control' }}) }}
+                {{ form_errors(sheetModelForm.label) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {% if type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') %}
+                                    <label> {{ 'inventory.sheets.new_sheet.labels.add_an_article'|trans() }} </label>
+                                {% else %}
+                                    <label> {{ 'inventory.sheets.new_sheet.labels.add_a_product_sold'|trans() }} </label>
+                                {% endif %}
+                            </div>
+                            <div class="col-xs-12">
+                                <input id="searchByCode" class="form-control" type="text"
+                                       placeholder="{{ 'placeholder.research'|trans }}"/>
+                            </div>
+                            {#<div class="col-xs-6">#}
+                            {#<label>{{ 'sheet_model.list.product_name'|trans }}</label>#}
+                            {#<input id="searchByProductName" class="form-control" type="text" placeholder=""/>#}
+                            {#</div>#}
+                            <div class="col-xs-12">
+                                {% if type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') %}
+                                    <div id="category_list_container" class="col-xs-12">
+                                        {{ include('@Merchandise/Loss/Sheets/parts/category_list.html.twig') }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{ form_label(sheetModelForm.lines, 'sheet_model.new_sheet.list_title' ) }}
+                        {{ form_errors(sheetModelForm.lines) }}
+                        <table id="sheetModelFormTable" class="table table-striped table-hover"
+                               width="100%">
+                            <thead>
+                            <tr>
+                                <th style="width: 70px;">{{ 'sheet_model.new_sheet.labels.code'|trans }}</th>
+                                {% if type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') %}
+                                    <th style="width: 100px;">{{ 'sheet_model.new_sheet.labels.category'|trans }}</th>
+                                {% endif %}
+                                <th style="width: 250px;">{{ 'sheet_model.new_sheet.labels.article'|trans }}</th>
+                                <th  style="width: 100px;">{{ 'sheet_model.new_sheet.labels.action'|trans }}</th>
+                                {% if type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL') %}
+                                    <th style="display: none;">Sort value</th>
+                                {% endif %}
+                                <th style="display: none;">Sort</th>
+                            </tr>
+                            </thead>
+                            <tbody id="containerSheetModelLines"
+                                   data-count="{{ sheetModelForm.lines| length }}"
+                                   data-prototype="
+                                           {% if type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') %}
+                                                  {% filter escape %}
+                                                     {{ include('@Merchandise/SheetModel/form_parts/prototype_sheet_model_line_widget.html.twig', { 'form': sheetModelForm.lines.vars.prototype }) }}
+                                                 {% endfilter %}
+                                            {% elseif type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL') %}
+                                                {% filter escape %}
+                                                    {{ include('@Merchandise/Loss/Sheets/form_parts/final_product_prototype_sheet_model_line_widget.html.twig', { 'form': sheetModelForm.lines.vars.prototype }) }}
+                                                {% endfilter %}
+                                            {% endif %}
+                                    ">
+                            {% for line in sheetModelForm.lines %}
+                                {{ form_widget(line,{'index':loop.index}) }}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="pull-right" style="padding-bottom: 5px;">
+                    <a href="#" style="margin-right: 5px;" class="closeDefaultModal">
+                        {{ 'btn.cancel'|trans() }}
+                    </a>
+
+                    {% if sheetModelForm.vars.value.id is not null %}
+                        <a type="button" id="exportPdf"
+                           href="{{ path('export_sheet_model', { 'sheetModel': sheetModelForm.vars.value.id}) }}"
+                           class="btn #4a148c white black-text waves-effect waves-light">
+                            <span class="glyphicon glyphicon-print"></span> {{ 'btn.print'|trans }}
+                        </a>
+                    {% else %}
+                        <button type="button" id="print_btn" style="margin-right: 5px;"
+                                class="btn #4a148c white black-text waves-effect waves-light">
+                            <span class="glyphicon glyphicon-print"></span> {{ 'btn.print'|trans }}
+                        </button>
+                    {% endif %}
+                    <button
+                            {% if sheetModelForm.vars.value.id is null %}
+                                {% if cibledProduct == 'article' %}
+                                    {{ securityChecker.disableBtn('add_loss_sheet_article') }}
+                                {% else %}
+                                    {{ securityChecker.disableBtn('add_loss_sheet_pf') }}
+                                {% endif %}
+                            {% else %}
+                                {% if cibledProduct == 'article' %}
+                                    {{ securityChecker.disableBtn('edit_loss_sheet_article') }}
+                                {% else %}
+                                    {{ securityChecker.disableBtn('edit_loss_sheet_pf') }}
+                                {% endif %}
+                            {% endif %}
+                            id="validateFormSheetModel" type="button" data-is-ajax="{{ isNotAjax is not defined }}"
+                            class="btn green lighten-1 white-text waves-effect waves-light">
+                        {{ 'btn.validate'|trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden">
+            {{ form_rest(sheetModelForm) }}
+        </div>
+        {{ form_end(sheetModelForm) }}
+
+    </div>
+</div>

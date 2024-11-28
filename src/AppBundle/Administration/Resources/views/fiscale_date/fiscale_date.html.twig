@@ -1,0 +1,28 @@
+{% extends '@Administration/index_administration.html.twig' %}
+
+{% block body %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            {{ form_start(form) }}
+
+            <div class="row">
+                <div class="col-xs-4">
+                    <label for="{{ form.date.vars.id }}">{{ 'fiscal_date.last_fiscal_date' |trans }}</label>
+                    {{ form_widget(form.date,{ 'attr' : { 'class' : 'datepicker form-control' } }) }}
+                </div>
+                <div class="col-xs-2">
+                    <label></label>
+                    <button class="btn btn-save btn-block btn-icon">  {{ 'fiscal_date.save'|trans }}</button>
+
+                </div>
+            </div>
+
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,181 @@
+.carousel-control {
+  width: 50px;
+}
+td,
+th {
+  height: 34px !important;
+}
+.flat-slider-vertical {
+  height: 100%;
+  width: 100% !important;
+}
+.vertical {
+  margin: auto !important;
+  height: 100%;
+  width: 25px !important;
+}
+.ui-widget-content {
+  border: 1px solid #ccc;
+  background: #c8c8c8 50% 50% repeat-x;
+  color: #222222;
+}
+.ui-widget-header {
+  border: 1px solid #aaaaaa;
+  background: #b50511 50% 50% repeat-x;
+  color: #222222;
+  font-weight: bold;
+}
+.ui-slider-vertical .ui-slider-handle {
+  width: 25px !important;
+  margin-left: 2px !important;
+}
+.handle-tooltip {
+  position: absolute;
+  display: none;
+  margin-left: 30px;
+  width: 65px;
+  height: 20px;
+  text-align: center;
+  font: 10pt Tahoma, Arial, sans-serif;
+  border-radius: 3px;
+  border: 1px solid #333;
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  background-color: #B50511;
+  color: white;
+}
+.handle-tooltip-2 {
+  width: 50px;
+  margin-left: -60px;
+  background-color: darkblue;
+}
+.handle-tooltip-1 {
+  width: 90px;
+}
+.day-table tbody {
+  background: url('../../../images/line.png');
+  background-size: 100% 34px;
+}
+.day-table tbody tr {
+  background-color: transparent !important;
+}
+#suppliers-table tbody tr td {
+  padding: 0px !important;
+}
+.order-day {
+  background-color: darkblue !important;
+  color: white;
+}
+.delivery-day {
+  background-color: darkgreen !important;
+  color: white;
+}
+.order-day.delivery-day {
+  background-color: darkviolet !important;
+  color: white;
+}
+.double-height {
+  height: 68px !important;
+  vertical-align: middle !important;
+}
+.one-half-height {
+  height: 51px !important;
+  vertical-align: middle !important;
+}
+.triple-height {
+  height: 102px !important;
+  vertical-align: middle !important;
+}
+.cat-budgets {
+  text-align: center;
+  height: 20px !important;
+  margin-bottom: 3px !important;
+}
+.order-delivery-0 {
+  background-color: darkblue !important;
+  color: white;
+}
+.order-delivery-1 {
+  background-color: #028b07 !important;
+  color: white;
+}
+.order-delivery-2 {
+  background-color: #9200db !important;
+  color: white;
+}
+.order-delivery-3 {
+  background-color: #8b0008 !important;
+  color: white;
+}
+.order-delivery-4 {
+  background-color: #ee5d0c !important;
+  color: white;
+}
+.order-delivery-5 {
+  background-color: #005151 !important;
+  color: white;
+}
+.order-delivery-6 {
+  background-color: #514f4e !important;
+  color: white;
+}
+.carousel-inner {
+  border: 1px solid #DDDDDD;
+}
+.carousel-control .glyphicon-chevron-right {
+  top: 10px !important;
+  margin: 0px !important;
+  margin-right: -20px !important;
+}
+.carousel-control .glyphicon-chevron-left {
+  top: 10px !important;
+  margin: 0px !important;
+  margin-left: -20px !important;
+}
+ol.carousel-indicators {
+  top: 30px !important;
+  bottom: initial;
+}
+ol.carousel-indicators li {
+  background-color: white;
+  border-color: darkgray;
+}
+ol.carousel-indicators li.active {
+  background-color: darkred;
+}
+.day-table-control {
+  z-index: 2;
+  position: absolute;
+  margin-top: 52px !important;
+  cursor: pointer;
+}
+.day-table-control.left-control {
+  margin-left: 5%;
+}
+.day-table-control.right-control {
+  margin-right: 5%;
+}
+.day-table {
+  display: none;
+}
+.day-table.active {
+  display: table;
+}
+.day-table-indicator-container {
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  z-index: 1;
+  margin-top: 25px;
+}
+.day-table-indicator-container .day-table-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px ;
+  border: solid 1px gray;
+}
+.day-table-indicator-container .day-table-indicator.active {
+  background-color: darkblue;
+}

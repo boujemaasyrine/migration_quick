@@ -1,0 +1,40 @@
+{% extends('@General/exports/base_exports_2.html.twig') %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .label {
+            color: #000;
+        }
+
+        .panel-heading .label {
+            font-size: 1.6rem !important;
+        }
+
+        .col-modal {
+            margin-bottom: 20px;
+        }
+
+        h6, h5, h4, h3 {
+            font-size: 2.4rem !important;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100% !important;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="panel panel-default" style="margin-top: 25px;">
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                Date  {{ dayIncome.date|date('d-m-Y') }}
+                </div>
+            </div>
+
+            {% include('@Financial/CashBox/DayIncome/parts/day_income.html.twig') %}
+        </div>
+    </div>
+{% endblock body %}

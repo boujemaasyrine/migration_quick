@@ -1,0 +1,5 @@
+{
+    "require": {
+        "amnuts/opcache-gui": "^2.4"
+    }
+}

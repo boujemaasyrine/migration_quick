@@ -1,0 +1,138 @@
+<style>
+    {% if download is not defined %}
+    .user {
+        background-color: rgba(255, 255, 0, 0.22);
+    }
+
+    .user_total {
+        background-color: rgba(19, 70, 224, 0.4);
+    }
+
+    .tab_header {
+        background-color: rgba(73, 171, 210, 0.73);
+    }
+
+    .all_total {
+        background-color: rgba(49, 137, 255, 0.58);
+    }
+
+    {% endif %}
+
+    table th, table td {
+        width: 80px;
+    !important;
+    }
+
+    /*
+    .user_total{
+        background-color: rgba(0, 0, 255, 0.19);
+    }
+    .tab_header{
+        background-color: rgba(25, 118, 210, 0.73);
+    }
+    .all_total{
+        background-color: rgba(0, 55, 255, 0.58);
+    }
+    */
+</style>
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <h2>{{ 'br_report.report_two_title' |trans }}</h2>
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%"
+               style="margin-bottom: 20px">
+            <thead>
+            <tr class="tab_header mainHeader">
+                <th> {{ 'br_report.responsible_report.responsible'|trans }}</th>
+                <th> {{ 'keyword.date'|trans }}</th>
+                <th> {{ 'envelope.header.hour'|trans }}</th>
+                <th> {{ 'br_report.amount_br'|trans }}</th>
+                <th> {{ 'br_report.amount_ticket'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody class="mainTbody">
+            {% set total_br =0 %}
+            {% set total_amount =0 %}
+            {% for user_id, user in data.report_three.users %}
+                {% set sub_total_br =0 %}
+                {% set sub_total_amount =0 %}
+                <tr class="mainRow">
+                    <td class="user">{{ user }}</td>
+                    <td>
+                        <table>
+                            {% for date , stats in data.report_three.stats[user_id] %}
+
+                                {% for br in stats %}
+                                    <tr>
+                                        <td>{{ date }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            {% for date , stats in data.report_three.stats[user_id] %}
+
+                                {% for time, br in stats %}
+                                    <tr>
+                                        <td>{{ time }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+
+                        </table>
+                    </td>
+
+                    <td>
+                        <table>
+
+                            {% for date , stats in data.report_three.stats[user_id] %}
+
+                                {% for time, br in stats %}
+                                    <tr>
+                                        <td>{{ br['br'] }}</td>
+                                    </tr>
+                                    {% set sub_total_br = sub_total_br + br['br'] %}
+                                {% endfor %}
+                            {% endfor %}
+
+
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+
+                            {% for date , stats in data.report_three.stats[user_id] %}
+
+                                {% for time, br in stats %}
+                                    <tr>
+                                        <td>{{ br['amount'] }}</td>
+                                    </tr>
+                                    {% set sub_total_amount = sub_total_amount + br['amount'] %}
+                                {% endfor %}
+                            {% endfor %}
+
+
+                        </table>
+                    </td>
+                </tr>
+                <tr class="user_total">
+                    <td colspan="3"></td>
+                    <td>{{ sub_total_br }}</td>
+                    <td>{{ sub_total_amount }}</td>
+                </tr>
+                {% set total_amount = total_amount + sub_total_amount %}
+                {% set total_br = total_br + sub_total_br %}
+            {% endfor %}
+
+            <!-- total général -->
+            <tr class="all_total">
+                <td colspan="3">{{ 'keyword.total' | trans }}</td>
+                <td>{{ total_br }}</td>
+                <td>{{ total_amount }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>

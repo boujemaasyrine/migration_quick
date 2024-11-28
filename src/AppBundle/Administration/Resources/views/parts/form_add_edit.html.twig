@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 input-field">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 input-field">
+        {{ form_label(form.designation) }}
+        {{ form_widget(form.designation) }}
+        {{ form_errors(form.designation) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 input-field">
+        {{ form_label(form.code) }}
+        {{ form_widget(form.code) }}
+        {{ form_errors(form.code) }}
+    </div>
+
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 input-field">
+        {{ form_label(form.cif) }}
+        {{ form_widget(form.cif) }}
+        {{ form_errors(form.cif) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 input-field">
+        {{ form_label(form.phone) }}
+        {{ form_widget(form.phone) }}
+        {{ form_errors(form.phone) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 input-field">
+        {{ form_label(form.address) }}
+        {{ form_widget(form.address) }}
+        {{ form_errors(form.address) }}
+    </div>
+</div>
+<div class="hidden">
+    {{ form_rest(form) }}
+</div>
+<div class="row">
+    <div class="col col-md-12 col-sm-12 col-md-12 col-xs-12">
+        <div class="pull-right" style="margin-top: 20px;">
+            <button class="btn btn-primary btn-block  waves-effect waves-light" type="button" id="edit-supplier-button">
+                <span style="color : white" class="glyphicon glyphicon-edit"></span>
+                {{ 'shortcut.edit' | trans }}
+            </button>
+        </div>
+    </div>
+</div>

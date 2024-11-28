@@ -1,0 +1,39 @@
+<div id="cashboxFundContainer" class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    <div id="" class="col-xs-12 only-number">
+        <div class="panel panel-default row">
+            <div class="panel-body">
+                <div class="col-xs-12 row">
+                    <div class="col-xs-6">
+                        {{ form_label(form.cashboxFund.nbrOfCashboxes, 'chest.counting.nb_of_cashboxes') }}
+                        {% if list is defined %}
+                            {{ form.vars.value.cashboxFund.nbrOfCashboxes }}
+                        {% else %}
+                            <div class="input-group">
+                                {{ form_widget(form.cashboxFund.nbrOfCashboxes, { 'attr': {'class': 'real_cash_input form-control', 'maxlength':"10","disabled": "disabled"}} ) }}
+                            </div>
+                        {% endif %}
+
+                        {{ form_errors(form.cashboxFund.nbrOfCashboxes) }}
+                    </div>
+                    <div class="col-xs-6">
+                        {{ form_label(form.cashboxFund.initialCashboxFunds, 'chest.counting.initial_cashbox_amount') }}
+                        {% if list is defined %}
+                            {{ form.vars.value.cashboxFund.initialCashboxFunds }} <i
+                                class="glyphicon glyphicon-euro"></i>
+                        {% else %}
+                            <div class="input-group">
+
+                                {{ form_widget(form.cashboxFund.initialCashboxFunds, { 'attr': {'class': 'form-control splitted_input', 'data-unit-value': 1, 'maxlength':"10", "disabled": "disabled"} }) }}
+                                <span class="input-group-addon" id="basic-addon2">
+                                    <i
+                                            class="glyphicon glyphicon-euro"></i></span>
+                            </div>
+                        {% endif %}
+
+                        {{ form_errors(form.cashboxFund.initialCashboxFunds) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

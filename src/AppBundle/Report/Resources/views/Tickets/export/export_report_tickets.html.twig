@@ -1,0 +1,116 @@
+{% extends('@Report/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h4> {{ 'tickets_report.title' |trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+
+    <div class="col-xs-2 input-field">
+        <label for="startDate">{{ 'keyword.from'|trans }} :</label>
+        <span class="text-muted">
+            {{ result.params.filter.startDate|date("m/d/Y") }}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="endDate">{{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {{  result.params.filter.endDate|date("m/d/Y") }}
+        </span>
+    </div>
+
+    {%  if result.params.filter.startHour is not null %}
+    <div class="col-xs-2">
+        <label for="selection">{{ 'keyword.from'|trans }}: </label>
+        <span class="text-muted">
+            {{ result.params.filter.startHour }} H
+        </span>
+    </div>
+    {% endif %}
+
+    {%  if result.params.filter.endHour is not null %}
+    <div class="col-xs-2">
+        <label for="selection"> {{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {{ result.params.filter.endHour }} H
+        </span>
+    </div>
+    {% endif %}
+
+    {%  if result.params.filter.cashier is not null %}
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'label.member' | trans }}: </label>
+        <span class="text-muted">
+               {{ result.params.filter.cashier }}
+        </span>
+    </div>
+    {% endif %}
+
+    {%  if result.params.filter.startInvoiceNumber is not null %}
+        <div class="col-xs-6">
+            <label for="selection"> {{ 'tickets_report.invoiceFrom' | trans }}: </label>
+            <span class="text-muted">
+               #{{ result.params.filter.startInvoiceNumber }}
+        </span>
+        </div>
+    {% endif %}
+    {%  if result.params.filter.endInvoiceNumber is not null %}
+        <div class="col-xs-6">
+            <label for="selection"> {{ 'tickets_report.invoiceTo' | trans }}: </label>
+            <span class="text-muted">
+               #{{ result.params.filter.endInvoiceNumber }}
+        </span>
+        </div>
+    {% endif %}
+
+    {%  if result.params.filter.amountMin is not null %}
+        <div class="col-xs-2">
+            <label for="selection"> {{ 'tickets_report.amountMin' | trans }}: </label>
+            <span class="text-muted">
+               {{ result.params.filter.amountMin }}&euro;
+        </span>
+        </div>
+    {% endif %}
+    {%  if result.params.filter.amountMax is not null %}
+        <div class="col-xs-2">
+            <label for="selection"> {{ 'tickets_report.amountMax' | trans }}: </label>
+            <span class="text-muted">
+               {{ result.params.filter.amountMax }}&euro;
+        </span>
+        </div>
+    {% endif %}
+
+    {%  if (result.params.filter.solding_canal is not null) and (result.params.filter.solding_canal is not empty ) %}
+        <div class="col-xs-6">
+            <label for="selection"> {{ 'tickets_report.saleCanal' | trans }}: </label>
+            <span class="text-muted">
+                {% for canal in  result.params.filter.solding_canal %}
+                    {{ canal }} ;
+                {% endfor %}
+        </span>
+        </div>
+    {% endif %}
+    {%  if (result.params.filter.paymentMethod is not null) and (result.params.filter.paymentMethod is not empty ) %}
+        <div class="col-xs-6">
+            <label for="selection"> {{ 'tickets_report.paymentMethod' | trans }}: </label>
+            <span class="text-muted">
+                {% for payment_method in  result.params.filter.paymentMethod %}
+                    {{ payment_method.label }} ;
+                {% endfor %}
+        </span>
+        </div>
+    {% endif %}
+    <div class="col-xs-12">
+        <label for="selection"> {{ 'tickets_report.ticketFrom' | trans }} : </label>
+        <span class="text-muted">
+                {{ result.getPaginationData.firstItemNumber }} &rarr; {{ result.getPaginationData.lastItemNumber }}
+        </span>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    <div class="pdf_export">
+    {{ include('@Report/Tickets/report_tickets.html.twig') }}
+    </div>
+{% endblock body %}

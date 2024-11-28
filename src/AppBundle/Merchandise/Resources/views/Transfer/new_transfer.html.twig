@@ -1,0 +1,179 @@
+{% extends '@Merchandise/index_supplying.html.twig' %}
+
+{% form_theme form.lines '@Merchandise/Transfer/form_parts/transfer_line_widget.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Transfer/add_edit_transfer.js') }}"></script>
+{% endblock %}
+{% block base_title %}
+    {% if form.vars.value.type == constant('TRANSFER_IN',form.vars.value) %}
+        {{ "transfer.in.new.title"|trans }}
+    {% else %}
+        {{ "transfer.out.new.title"|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'buying_management.transfer_management'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <style>
+        .selectize-input .item {
+            padding: 10px !important;
+        }
+    </style>
+
+    {{ form_start(form) }}
+    <div class="add-command-table">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row add-command-table-row">
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="required">{{ 'navbar.restaurant'|trans }}</label>
+                            {{ form_widget(form.restaurant,{'attr' : { 'class' : 'selectize' }}) }}
+                            {{ form_errors(form.restaurant) }}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="form-group">
+                            <label for="{{ form.dateTransfer.vars.id }}"
+                                   class="required">{{ "transfer.transfer_date"|trans }}</label>
+                            <div class="input-group">
+                                {{ form_widget(form.dateTransfer,{ 'attr' : { 'class' : 'datepicker form-control' } }) }}
+                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            </div>
+                            {{ form_errors(form.dateTransfer) }}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="form-group">
+                            <label for="responsable">{{ "transfer.responsible"|trans }}</label>
+                            {{ app.user.firstName|title }}  {{ app.user.lastName|upper }}
+                        </div>
+                    </div>
+                </div>
+                {% if form.vars.value.type == constant('TRANSFER_IN',form.vars.value) %}
+                    <div class="row add-command-table-row">
+                        <div class="col-xs-12 col-sm-4">
+                            <label for="{{ form.numTransfer.vars.id }}"
+                                   class="active required">{{ "transfer.transfer_num"|trans }}</label>
+                            {{ form_widget(form.numTransfer,{ 'attr' : { 'class' : 'form-control' } }) }}
+                            {{ form_errors(form.numTransfer) }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="add-command-table-row">
+                    <table id="products-table" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><label>{{ "command.new.lines.code"|trans }}</label></th>
+                            <th><label>{{ "command.new.lines.article"|trans }}</label></th>
+                            <th><label>{{ "command.new.lines.qty_inv" |trans }}</label></th>
+                            <th><label>{{ "command.new.lines.qty_use" |trans }}</label></th>
+                            <th><label>{{ "command.new.lines.qty_exp" |trans }}</label></th>
+                            <th><label>{{ "command.new.lines.qty_total" |trans }}</label></th>
+                            <th><label>{{ "delivery.entry.unit_price"|trans }} (&euro;)</label></th>
+                            <th><label>{{ "valorization"|trans }} (&euro;)</label></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody count="{{ form.lines|length }}"
+                               data-prototype="{{ form_widget(form.lines.vars.prototype)|e }}">
+                        {% for l in form.lines %}
+                            {{ form_widget(l) }}
+                        {% endfor %}
+                        {% if form.lines.vars.errors|length >0 %}
+                            <tr>
+                                <td colspan="10">
+                                    {{ form_errors(form.lines) }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        <tr id="new-line">
+                            <td class="small-input">
+                                <input id="code-product" type="text" class="form-control">
+                            </td>
+                            <td>
+                                <input id="name-product" type="text" class="form-control">
+                            </td>
+                            <td class="medium-input">
+                                <div class="input-group">
+                                    <input id="qty-cmd" type="text" style="display: inline !important;"
+                                           class="form-control">
+                                    <span id="new-line-unit-label" class="input-group-addon"></span>
+                                </div>
+                            </td>
+
+                            <td class="medium-input">
+                                <div class="input-group">
+                                    <input id="qty-cmd-use" type="text" style="display: inline !important;"
+                                           class="form-control">
+                                    <span id="new-line-unit-use-label" class="input-group-addon"></span>
+                                </div>
+                            </td>
+
+                            <td class="medium-input">
+                                <div class="input-group">
+                                    <input id="qty-cmd-exp" type="text" style="display: inline !important;"
+                                           class="form-control">
+                                    <span id="new-line-unit-exp-label" class="input-group-addon"></span>
+                                </div>
+                            </td>
+
+                            <td id="new-total-line">
+
+                            </td>
+
+                            <td id="new-line-unit-price">
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                <button id="new-line-btn" type="button"
+                                        data-tooltip="Enregistrer la ligne et Ajouter une nouvelle ligne"
+                                        data-position="top" class="tooltipped add-line">
+                                    <span class="glyphicon glyphicon-plus"></span></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="6"></td>
+                            <td><label>{{ "valorization"|trans }} (&euro;)</label></td>
+                            <td colspan="2" class="medium-input">
+                                {{ form_widget(form.valorization,{ 'attr' : { 'class' : 'form-control '  } }) }}
+                                <span id="span-transfer-val">
+                                    {% if form.valorization != null %}
+                                        {{ form.valorization.vars.value|number_format(2,',','') }}
+                                    {% endif %}
+                                </span>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: right">
+                        <a style="margin: 5px 15px;"
+                           href="{{ path('list_transfer') }}">
+                            {{ "btn.cancel"|trans }}
+                        </a>
+                        <button type="submit" class="btn btn-validate btn-icon">
+                            {{ "save_transfer"|trans }}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock %}

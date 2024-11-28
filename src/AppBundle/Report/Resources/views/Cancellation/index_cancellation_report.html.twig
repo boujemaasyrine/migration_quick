@@ -1,0 +1,143 @@
+{% extends('@Report/MerchandiseManagement/index.html.twig') %}
+
+{% block base_title %}
+    {{ 'cancellation_report.cancellation_report' |trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'reports.title'|trans([], 'navbar') }}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/selectize/dist/css/selectize.bootstrap3.css') }}">
+    <style>
+        .selectize-control, .single .selectize-input.not-full{
+            height: 35px!important;
+        }
+        .selectize-input{
+           border-right: none!important;
+            -webkit-border-top-right-radius: 0px!important;
+            -webkit-border-bottom-right-radius: 0px!important;
+            -moz-border-radius-topright: 0px!important;
+            -moz-border-radius-bottomright: 0px!important;
+            border-top-right-radius: 0px!important;
+            border-bottom-right-radius: 0px!important;
+        }
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/fixHeader.js') }}"></script>
+    <script src="{{ asset('plugins/selectize/dist/js/standalone/selectize.js') }}"></script>
+    <script>
+        $('.selectize').selectize(
+            {
+                create: false,
+                maxItems:1
+            }
+        );
+    </script>
+{% endblock %}
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                {{ form_start(form, {'attr' : {'action' :  path("cancellation"), 'novalidate' : 'novalidate' }}) }}
+                <div class="row">
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.startDate) }}
+                        <div class="input-group">
+                            {{ form_widget(form.startDate, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.startDate) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.endDate) }}
+                        <div class="input-group">
+                            {{ form_widget(form.endDate, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.endDate) }}
+                    </div>
+
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.startHour) }}
+                        <div class="input-group">
+                            {{ form_widget(form.startHour, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+                        </div>{{ form_errors(form.startHour) }}
+                    </div>
+
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.endHour) }}
+                        <div class="input-group">
+                            {{ form_widget(form.endHour, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+                        </div>{{ form_errors(form.endHour) }}
+                    </div>
+
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.InvoiceNumber) }}
+                        <div class="input-group">
+                            {{ form_widget(form.InvoiceNumber, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                        </div>{{ form_errors(form.InvoiceNumber) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.cashier) }}
+                        <div class="input-group">
+                            {{ form_widget(form.cashier, {'attr' : {'class' : 'selectize'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                        </div>{{ form_errors(form.cashier) }}
+                    </div>
+
+
+
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-md-12 col-xs-12" style="text-align:right;">
+                        {% if(generated is defined) %}
+                            <button class="btn waves-effect btn-export text-black dropdown-button"
+                                    data-activates='dropdown2'>
+                                <span> {{ 'btn.export'|trans() }} </span>
+                            </button>
+                            <ul id="dropdown2" class="dropdown-content" style="">
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="downloadReport">
+                                        <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                    </a></li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-xls">
+                                        <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+
+                        {% endif %}
+
+                        <button type="submit" class="btn waves-effect orange text-black " id="generateReport">
+                            {{ 'btn.generate_report'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(form) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    {% if(generated is defined) %}
+        {{ include('@Report/Cancellation/report_cancellation.html.twig') }}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends('@Report/MerchandiseManagement/index.html.twig') %}
+
+{% block base_title %}
+    {{ 'br_report.responsible_report.title' |trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'reports.title'|trans([], 'navbar') }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/fixHeader.js') }}"></script>
+{% endblock %}
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                {{ form_start(form, {'attr' : {'action' :  path("br_responsible_report"), 'novalidate' : 'novalidate' }}) }}
+                <div class="row">
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.startDate) }}
+                        <div class="input-group">
+                            {{ form_widget(form.startDate, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.startDate) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.endDate) }}
+                        <div class="input-group">
+                            {{ form_widget(form.endDate, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.endDate) }}
+                    </div>
+
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.startHour) }}
+                        <div class="input-group">
+                            {{ form_widget(form.startHour, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+                        </div>{{ form_errors(form.startHour) }}
+                    </div>
+
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.endHour) }}
+                        <div class="input-group">
+                            {{ form_widget(form.endHour, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+                        </div>{{ form_errors(form.endHour) }}
+                    </div>
+
+
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.amountMin) }}
+                        <div class="input-group">
+                            {{ form_widget(form.amountMin, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-gift"></span></span>
+                        </div>{{ form_errors(form.amountMin) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.amountMax) }}
+                        <div class="input-group">
+                            {{ form_widget(form.amountMax, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-gift"></span></span>
+                        </div>{{ form_errors(form.amountMax) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.ticketMin) }}
+                        <div class="input-group">
+                            {{ form_widget(form.ticketMin, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                        </div>{{ form_errors(form.ticketMin) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.ticketMax) }}
+                        <div class="input-group">
+                            {{ form_widget(form.ticketMax, {'attr' : {'class' : ' form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                        </div>{{ form_errors(form.ticketMax) }}
+                    </div>
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        <label for="app_bundle_br_form_type_cashier">{{'br_report.responsible_report.responsible' | trans }}</label>
+                        <div class="input-group">
+                            {{ form_widget(form.cashier, {'attr' : {'class' : 'form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                        </div>{{ form_errors(form.cashier) }}
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-md-12 col-xs-12" style="text-align:right;">
+                        {% if(generated is defined) %}
+                            <button class="btn waves-effect btn-export text-black dropdown-button"
+                                    data-activates='dropdown2'>
+                                <span class="hide-on-med-and-down"> {{ 'btn.export'|trans() }} </span>
+                            </button>
+                            <ul id="dropdown2" class="dropdown-content" style="">
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-pdf">
+                                        <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-xls">
+                                        <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+
+                        <button type="submit" class="btn waves-effect orange text-black " id="generateReport">
+                            {{ 'btn.generate_report'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(form) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    {% if(generated is defined) %}
+        {{ include('@Report/BR/responsible/report_br.html.twig') }}
+    {% endif %}
+
+{% endblock %}

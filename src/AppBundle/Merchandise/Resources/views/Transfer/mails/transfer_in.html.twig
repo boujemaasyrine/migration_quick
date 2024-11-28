@@ -1,0 +1,9 @@
+{% extends '::base_mail.html.twig' %}
+
+{% block body %}
+    {{ "Hello"|trans({}, "messages", local) }}<br>
+    <h3>{{ "confirmation_transfer"|trans({}, "messages", local) }}</h3>
+
+    {{ "message1_transfer"|trans({}, "messages", local) }}<br>
+    {{ "message2_transfer"|trans({}, "messages", local) }}
+{% endblock %}

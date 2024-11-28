@@ -1,0 +1,21 @@
+unique:
+    socialId: Ce numéro d'identification Sociale existe déja.
+
+
+pw_label: Mot de passe
+username_label: Non d'utilisateur
+connect: Se connecter
+stay_connected:  Rester connecté
+pw_forgotten: Mot de passe oublié
+mail_adresse: Adresse email
+reset_password: Initialiser mot de passe
+user_not_found: Aucun utilisateur trouvé pour l'email indiqué
+pw_reset_success: Mot de passe réinitialisé avec succès
+pw_reset_send_mail_fail: Echec lors de l'envoi du mail
+your_pw_in_super_synchronized_success: Votre mot de passe au niveau du central est synchronisé avec succès
+your_pw_in_super_synchronized_fail: Echec lors de la synchronisation du votre mot de passe avec le central
+restaurant_switch_success : Vous venez de basculer vers le restaurant
+restaurant_switch_failure : Requête invalide ! Impossible de changer le restaurant.
+restaurant_not_found : Restaurant introuvable !
+back : Retour
+select_user: Plusieurs comptes pour cet email existent, veuillez sélectionner l'utilisateur concerné:

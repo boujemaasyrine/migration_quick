@@ -1,0 +1,57 @@
+{% block exchange_widget %}
+    {% spaceless %}
+        <tr class="exchange_row">
+            {% if form.vars.value is not null and form.vars.value.type=="CASH" %}
+            <td>
+                <div class="col-xs-12">
+                    {{ form_label(form.qty, 'chest.counting.exchange_found_money') }}
+                    <div class="input-group">
+                        {{ form_widget(form.qty, { 'attr': { 'class': 'form-control exchange_quantity'}}) }}
+                        <span class="input-group-addon" id="basic-addon2">
+                        <i class="glyphicon glyphicon-euro"></i>
+                    </span>
+                    </div>
+                    {{ form_errors(form.qty) }}
+                </div>
+            </td>
+            <td style="display: none">
+                {{ form_widget(form.unitParamsId, { 'attr': {'disabled': 'disabled', 'class': 'disabled form-control exchange_fund_rate_select'}}) }}
+                {{ form_widget(form.unitParamsId) }}
+
+                {{ form_widget(form.unitValue, { 'attr': { 'class': 'form-control unit_value'}}) }}
+            </td>
+            <td style="display: none">
+                {% if form.vars.value is not null %}
+                    {#<label>{{ 'keyword.total'|trans }}</label><br/>#}
+                    <span class="total_span">{{ form.vars.value.total|number_format(2, ',', '') }} </span>
+                    <i class="glyphicon glyphicon-euro"></i>
+                {% else %}
+                    <label>{{ 'keyword.total'|trans }}</label><br/>
+                    <span class="total_span">__total__</span> <i class="glyphicon glyphicon-euro"></i>
+                {% endif %}
+            </td>
+            {% else %}
+            <td>
+                {{ form_widget(form.qty, { 'attr': { 'class': 'form-control exchange_quantity'}}) }}
+                {{ form_errors(form.qty) }}
+            </td>
+            <td>
+                {{ form_widget(form.unitParamsId, { 'attr': {'disabled': 'disabled', 'class': 'disabled form-control exchange_fund_rate_select'}}) }}
+                {{ form_widget(form.unitParamsId) }}
+
+                {{ form_widget(form.unitValue, { 'attr': { 'class': 'form-control unit_value'}}) }}
+            </td>
+            <td>
+                {% if form.vars.value is not null %}
+                    {#<label>{{ 'keyword.total'|trans }}</label><br/>#}
+                    <span class="total_span">{{ form.vars.value.total|number_format(2, ',', '') }} </span>
+                    <i class="glyphicon glyphicon-euro"></i>
+                {% else %}
+                    <label>{{ 'keyword.total'|trans }}</label><br/>
+                    <span class="total_span">__total__</span> <i class="glyphicon glyphicon-euro"></i>
+                {% endif %}
+            </td>
+            {% endif %}
+        </tr>
+    {% endspaceless %}
+{% endblock %}

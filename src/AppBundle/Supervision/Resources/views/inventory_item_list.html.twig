@@ -1,0 +1,190 @@
+{% extends ":supervision/default:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/selectize/dist/css/selectize.css') }}">
+    <style>
+        select {
+            margin: 0 15px 0 0;
+        }
+
+        .selectize-input {
+            padding: 3px 8px;
+        }
+
+        .input-group-label input {
+            margin: 0 !important;
+        }
+
+        .input-group-label span {
+            width: 40% !important;
+            font-size: 12px;
+        }
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .single .selectize-input.full {
+            display: block !important;
+            width: 100% !important;
+            height: 35px !important;
+            padding: 6px 12px !important;
+            font-size: 14px !important;
+            line-height: 1.52857143 !important;
+            color: #3a3f51 !important;
+            background-color: #ffffff !important;
+            background-image: none !important;
+            border: 1px solid #dde6e9 !important;
+            border-radius: 4px !important;
+            box-sizing: border-box;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075) !important;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075) !important;
+            -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s !important;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s !important;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s !important;
+        }
+
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('plugins/selectize/dist/js/standalone/selectize.js') }}"></script>
+    <script src="{{ asset('src/js/Module/datepicker.js') }}"></script>
+    <script src="{{ asset('src/js/Supervision/inventory_item_list.js') }}"></script>
+    <script type="application/javascript"
+            src="{{ asset('src/js/Supervision/Merchandise/products_autocomplete.js') }}"></script>
+
+    <script>
+        $(function () {
+            $('.dataTable').closest('div').css('overflow-y', 'auto');
+        })
+    </script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'item.inventory.title' | trans }}
+{% endblock %}
+{% block base_subtitle %}{% endblock %}
+{% block body %}
+    <div class="filter-zone" id="filter-zone-add">
+
+        <div class="panel panel-default">
+            <div class="panel-heading heading-add"><span
+                        class="glyphicon glyphicon-{{ type }}"></span>
+                {% if type == 'edit' %}
+                    {{ 'item.inventory.edit' | trans ({'%name%' : form.vars.value.name},'supervision') }}
+                {% else %}
+                    {{ 'item.inventory.add' | trans([],'supervision') }}
+                {% endif %}
+            </div>
+            <div class="panel-body" {% if formError == true or type == 'edit' %} style="display: inherit;" {% endif %}>
+                {{ include('@Supervision/parts/form_add_edit_inventory_item.html.twig') }}
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-zone" id="filter-zone-search">
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><span
+                        class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans({}, "supervision") }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px;">
+                {{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'itemInventoryFilterForm'} }) }}
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="col-xs-12 col-sm-6 col-md-4 ">
+                        {{ form_label(formSearch.codeSearch) }}
+                        {{ form_widget(formSearch.codeSearch, {'attr' :
+                            {'onKeyPress' : 'if(event.keyCode == 13) list_inventory_item.ajax.reload()();'}}) }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-4 ">
+                        {{ form_label(formSearch.nameSearch) }}
+                        {{ form_widget(formSearch.nameSearch, {'attr' :
+                            {'onKeyPress' : 'if(event.keyCode == 13) list_inventory_item.ajax.reload()();'}}) }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-4 ">
+                        {{ form_label(formSearch.supplierSearch, 'filter.supplier', { 'label_attr': {'class': 'active'} }) }}
+                        {{ form_widget(formSearch.supplierSearch, {'attr': {'class': 'selectize',
+                            'onKeyPress' : 'if(event.keyCode == 13) list_inventory_item.ajax.reload()();'}}) }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-4 ">
+                        {{ form_label(formSearch.statusSearch, 'keyword.status', { 'label_attr': {'class': 'active'} }) }}
+                        {{ form_widget(formSearch.statusSearch, {'attr': {'class': 'form-control',
+                            'onKeyPress' : 'if(event.keyCode == 13) list_inventory_item.ajax.reload()();'}}) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        {{ form_label(formSearch.dateSynchro) }}
+                        <div class="input-group">
+                            {{ form_widget(formSearch.dateSynchro) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(formSearch.dateSynchro) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-sm-4">
+                        {{ form_label(formSearch.lastDateSynchro) }}
+                        <div class="input-group">
+                            {{ form_widget(formSearch.lastDateSynchro) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(formSearch.lastDateSynchro) }}
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(form) }}
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align:right; padding-top: 7px">
+                        <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "filter.delete_filter"|trans([],'supervision') }}
+                        </button>
+                        <button onclick="list_inventory_item.ajax.reload();" type="button"
+                                class="btn btn-filter btn-icon">
+                            {{ 'filter.btn' | trans }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12" style="text-align: right">
+                    <button class="btn btn-export btn-icon" type="button" id="export-btn">
+                        {{ "btn.export"|trans({},"supervision") }}
+                    </button>
+                    <a id="download-duplicate-inventory-item" role="button" href="{{ path('download_duplicate_inventory_item') }}" class="btn btn-export btn-icon" >
+                        {{ "btn.export_duplicate_inventory_item"|trans([],'supervision') }}
+                    </a>
+                </div>
+            </div>
+
+            <table id="inventory_item_list_table" class="table table-striped table-bordered table-hover"
+                   cellspacing="0"
+                   width="100%">
+                <thead>
+                <tr>
+                    <th>{{ 'label.code' | trans([],'supervision') }}</th>
+                    <th>{{ 'label.name' | trans([],'supervision') }}</th>
+                    <th>{{ 'item.label.buying_cost' | trans([],'supervision') }}</th>
+                    <th>{{ 'item.label.status' | trans([],'supervision') }}</th>
+                    <th> {{ 'synchronisation_date'|trans([],'supervision') }} </th>
+                    <th> {{ 'last_synchronisation_date'|trans([],'supervision') }} </th>
+                    <th class="sorting_disabled">{{ 'shortcut.labels.action' | trans([],'supervision') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div class="form-zone"></div>
+            <div id="modal-inventory-item-added" style="display: none">
+            </div>
+        </div>
+    </div>
+{% endblock %}

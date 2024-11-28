@@ -1,0 +1,168 @@
+{% extends('@Report/MerchandiseManagement/index.html.twig') %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            var today = moment();
+            var yesterday = today.subtract(1, 'days');
+            var dates = $('.datepicker');
+
+            // $.each(dates, function (key, value) {
+            //
+            //     var picker = $(value).pickadate('picker');
+            //     picker.set('max', [yesterday.year(), yesterday.month(), yesterday.date()]);
+            //
+            // });
+
+            dates.on('change', function (event) {
+                var self = $(this);
+                var d = $(this).val();
+                var caType=$('#ca_by_slice_hour_report_caType').val();
+                ajaxCall({
+                    url: Routing.generate('ca_byHour'),
+                    method: 'POST',
+                    data: {
+                        date: d,
+                        catype: caType
+                    }
+                }, function (data) {
+                    if (data.ca != null) {
+                        $(self).siblings('.bud').html(data.ca + " €");
+                    } else {
+                        $(self).siblings('.bud').html('-');
+                    }
+                });
+            });
+
+        })
+    </script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'report.sales.slice_schedule.title'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'reports.title'|trans([], 'navbar') }} - {{ 'reports.financial_revenue.title'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                {{ form_start(form, {'method' : 'POST' ,'action' : path('ca_by_slice_hour') }) }}
+                <div class="row">
+                    <div class="col col-lg-2 col-md-2 col-xs-6">
+                        <label class="required">
+                            {{ 'report.sales.hour_by_hour.ca_type' |trans }}
+                        </label>
+                    </div>
+                    <div class="col col-lg-3 col-md-3 col-xs-6">
+                        {{ form_widget(form.caType, { "attr": { "class": 'form-control'} } ) }}
+                        {{ form_errors(form.caType) }}
+                    </div>
+                    <div class="col col-lg-2 col-md-2 col-xs-6">
+                        <label class="required">
+                            {{ 'report.sales.hour_by_hour.calculate_by' |trans }}
+                        </label>
+                    </div>
+                    <div class="col col-lg-3 col-md-3 col-xs-6">
+                        {{ form_widget(form.scheduleType, { "attr": { "class": 'form-control'} } ) }}
+                        {{ form_errors(form.scheduleType) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-lg-4 col-md-4 col-xs-6">
+                        <label>{{ 'report.sales.slice_schedule.ref_date' | trans }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-lg-3 col-md-3 col-xs-6">
+                        <label class="required">
+                            {{ 'report.sales.slice_schedule.date' |trans }} 1
+                        </label>
+                        <div class="input-group">
+                            {{ form_widget(form.date1, { "attr": { "class": 'form-control datepicker' } }) }}
+                            <br><b class="bud" style="margin-left: 50px;">{% if generated is defined %}{{ result.date0[24] }}&euro;{% else %}- &euro;{% endif %}</b>
+                        </div>
+                        {{ form_errors(form.date1) }}
+                    </div>
+                    <div class="col col-lg-3 col-md-3 col-xs-6">
+                        <label class="required">
+                            {{ 'report.sales.slice_schedule.date' |trans }} 2
+                        </label>
+                        <div class="input-group">
+                            {{ form_widget(form.date2, { "attr": { "class": 'form-control datepicker' } }) }}
+                            <br><b class="bud" style="margin-left: 50px;">{% if generated is defined %}{{ result.date1[24] }}&euro;{% else %}- &euro;{% endif %}</b>
+                        </div>
+                        {{ form_errors(form.date2) }}
+                    </div>
+                    <div class="col col-lg-3 col-md-3 col-xs-6">
+                        <label class="required">
+                            {{ 'report.sales.slice_schedule.date' |trans }} 3
+                        </label>
+                        <div class="input-group">
+                            {{ form_widget(form.date3, { "attr": { "class": 'form-control datepicker' } }) }}
+                            <br><b class="bud" style="margin-left: 50px;">{% if generated is defined %}{{ result.date2[24] }}&euro;{% else %}- &euro;{% endif %}</b>
+                        </div>
+                        {{ form_errors(form.date3) }}
+                    </div>
+                    <div class="col col-lg-3 col-md-3 col-xs-6">
+                        <label class="required">
+                            {{ 'report.sales.slice_schedule.date' |trans }} 4
+                        </label>
+                        <div class="input-group">
+                            {{ form_widget(form.date4, { "attr": { "class": 'form-control datepicker' } }) }}
+                            <br><b class="bud" style="margin-left: 50px;">{% if generated is defined %}{{ result.date3[24] }}&euro;{% else %}- &euro;{% endif %}</b>
+                        </div>
+                        {{ form_errors(form.date4) }}
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-md-12 col-xs-12" style="text-align:right;">
+                        {% if(generated is defined) %}
+                            <button class="btn waves-effect btn-export text-black dropdown-button"
+                                    data-activates='dropdown2'>
+                                <span> {{ 'btn.export'|trans() }} </span>
+                            </button>
+                            <ul id="dropdown2" class="dropdown-content" style="">
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="downloadReport">
+                                        <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                    </a></li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-xls">
+                                        <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+
+                        <button type="submit" class="btn waves-effect orange text-black " id="generateReport">
+                            {{ 'btn.generate_report'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    {% if(generated is defined) %}
+        {% if scheduleType == 0 %}
+            {{ include('@Report/SalesManagement/CaBySliceHour/body_report_ca_by_slicehour_pdf.html.twig', {'caType': caType}) }}
+        {% else %}
+            {{ include('@Report/SalesManagement/CaBySliceHour/body_report_half_slicehour_pdf.html.twig', {'scheduleType' : scheduleType, 'caType' : caType}) }}
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

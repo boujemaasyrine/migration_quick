@@ -1,0 +1,34 @@
+{% extends "@Financial/default.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'financial';
+        var cashBoxCountingIsValid = true;
+    </script>
+    {{ parent() }}
+    <script type="application/javascript"
+            src="{{ asset('bundles/app/lib/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+    <script type="application/javascript" src="{{ asset('plugins/handlebars/handlebars.js') }}"></script>
+    <script type="application/javascript" src="{{ asset('src/js/Financial/check_password.js') }}"></script>
+    <script type="application/javascript" src="{{ asset('src/js/Financial/Cashbox/Counting/counting.js') }}"></script>
+    <script type="application/javascript"
+            src="{{ asset('src/js/Financial/Cashbox/Counting/summary_calculator.js') }}"></script>
+    <script type="application/javascript"
+            src="{{ asset('src/js/Financial/Cashbox/Counting/real_cash_calculation.js') }}"></script>
+    <script type="application/javascript"
+            src="{{ asset('src/js/Financial/Cashbox/Counting/bank_card_calculation.js') }}"></script>
+    <script type="application/javascript"
+            src="{{ asset('src/js/Financial/Cashbox/Counting/foreign_currency_calculation.js') }}"></script>
+    <script type="application/javascript"
+            src="{{ asset('src/js/Financial/Cashbox/Counting/check_quick_calculation.js') }}"></script>
+    <script type="application/javascript"
+            src="{{ asset('src/js/Financial/Cashbox/Counting/check_restaurant_calculation.js') }}"></script>
+    <script type="application/javascript"
+            src="{{ asset('src/js/Financial/Cashbox/Counting/check_restaurant_electronic_calculation.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bundles/app/css/Financial/Cashbox/Counting/counting.css') }}">
+{% endblock %}

@@ -1,0 +1,39 @@
+services:
+    ws.security.checker_filter:
+        class: AppBundle\Filter\WsSecurityCheckerFilter
+        arguments:
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+            - "%bi_token%"
+            - "@security.token_storage"
+        tags:
+            - { name: kernel.event_listener , event: kernel.controller, method: onKernelController }
+    exception.listener:
+        class: AppBundle\Filter\ExceptionHandler
+        tags:
+            - { name: kernel.event_listener , event: kernel.exception , method: onKernelException }
+    restaurant.converter:
+        class: AppBundle\Filter\RestaurantParamConverter
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - {  name: request.param_converter, converter: restaurant_converter }
+    app.security.authentication_handler:
+        class: AppBundle\Handler\AuthenticationHandler
+        public: false
+        arguments: ["@router","@session","@translator.default"]
+    app.security.checker:
+        class: AppBundle\Service\UsersManagement\VerifyingRoleService
+        arguments: ["@security.token_storage","@doctrine.orm.entity_manager"]
+    app.security.session.idle:
+        class: AppBundle\Handler\SessionIdleHandler
+        arguments: ["@session", "@security.context", "@router", "%session_idel_time%"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+    app.reset.pw.service:
+        class: AppBundle\Service\Security\ResetPasswordService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@security.password_encoder"
+            - "@mailer"
+            - "@templating"
+            - "%sender_adress%"

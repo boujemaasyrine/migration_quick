@@ -1,0 +1,11 @@
+cashbox_counts_anomalies:
+    validation:
+        diff_cashbox: Het filter "Kasverschil" is verkeerd #Le filtre "Diff. de caisse" est erroné
+        annulations: Het filter "Annuleringen" is verkeerd #Le filtre "Annulations" est erroné
+        corrections: Het filter "Correcties" is verkeerd #Le filtre "Corrections" est erroné
+        especes: Het filter "Contanten" is verkeerd #Le filtre "Espèces" est erroné
+        titres_restaurant: Het filter "waardecheques restaurants" is verkeerd #Le filtre "Titres restaurant" est erroné
+        ecart: Het filter "Verschil ventilatie" is verkeerd #"Ecart Ventilation" est erroné
+        error: Het filter is verkeerd #Le filtre est erroné
+        start_date_must_be_before_end_dat: De begindatum moet vóór de einddatum liggen #La date de début doit précéder la date de fin
+

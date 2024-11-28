@@ -1,0 +1,419 @@
+{% if data.result|length == 0 %}
+
+    <strong>{{ 'data_not_found'|trans() }}</strong>
+
+{% else %}
+    <script src="{{ asset('src/js/fixHeader.js') }}"></script>
+    <style>
+        .table > thead > tr > td {
+            font-weight: bolder;
+        }
+
+        #data-zone {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table > tbody > tr > td,
+        .table > tbody > tr > th,
+        .table > tfoot > tr > td,
+        .table > tfoot > tr > th,
+        .table > thead > tr > td,
+        .table > thead > tr > th {
+            /*padding: 3px;*/
+            /*line-height: 1.9;*/
+            /*vertical-align: top;*/
+            /*border: 1px solid #898AA7 !important;*/
+            /*font-family: "avenirpro", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+            /*font-size: 1em;*/
+        {%  if print is defined %}
+            padding: 0px 1px;
+        {% else %}
+            padding: 0px 1px;
+            text-align: center;
+        {%endif%}
+
+            text-align: center;
+            vertical-align: top;
+            border: 1px solid #898AA7 !important;
+        }
+
+        .table > tbody > tr > td {
+            white-space: nowrap !important;
+        }
+
+        .report-table-head {
+            background-color: #ca9e67 !important;
+        }
+
+        .report-table-second-head {
+            background-color: #ede2c9 !important;
+        }
+
+        {% if print is defined %}
+        .report-table-second-head th{
+            font-size: .7rem;
+        }
+        {% endif %}
+
+        .highlight-tr-report {
+            background-color: #fdc300 !important;
+        }
+
+        .highlight-important-td {
+            background-color: #c8102e !important;
+            color: white;
+        }
+
+        .total-week {
+            background-color: #8FCCFF !important;
+            color: black !important;
+        }
+
+        .report-table-head th .rotate-text,
+        .report-table-second-head th .rotate-text {
+            -ms-transform: rotate(290deg);
+            -ms-transform-origin: -40% 20%;
+            -webkit-transform: rotate(290deg);
+            -webkit-transform-origin: -40% 20%;
+            -moz-transform: rotate(290deg);
+            -moz-transform-origin: -40% 20%;
+            -o-transform: rotate(290deg);
+            -o-transform-origin: -40% 20%;
+            transform: rotate(290deg);
+            transform-origin: -40% 20%;
+            /* word-wrap: normal; */
+            /* white-space: pre-line; */
+            /* height: 120px; */
+            vertical-align: top !important;
+            font-size: 1em !important;
+            margin-top: 120px;
+            margin-left: 0px;
+            width: 100px;
+            /* margin-right: 22px !important; */
+        }
+
+    </style>
+    <table class="table table-stripped primary-table" style="margin-top: 50px;">
+        <thead>
+        <tr>
+            <th colspan="6" style="background-color: white; border: none !important;"></th>
+            <th colspan="13" class="report-table-head" style="text-align: center;">
+                <b>{{ 'keyword.theorical' | trans }}</b>
+            </th>
+            <th colspan="7" class="report-table-head" style="text-align: center;">
+                <b>{{ 'keyword.real' | trans }}</b>
+            </th>
+            <th colspan="6" class="report-table-head" style="text-align: center;">
+                <b>{{ 'keyword.margin' | trans }}</b>
+            </th>
+        </tr>
+        <tr class="report-table-second-head mainHeader">
+            <th style="min-width: 20px;width: 20px;">S</th>
+            <th class="font-reduce-th" style="min-width: 25px;width: 25px;">{{ 'keyword.date' | trans }}</th>
+            <th class="font-reduce-th" style="width:2% !important;;"><span
+                        class='rotate-text'>{{ 'report.ca.ca_brut_ttc' | trans }}</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>{{ 'report.ca.ca_net_ht' | trans }}</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.sold_pr_ht' | trans }}</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.fc_mix' | trans }}</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.ideal_fc' | trans }}</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.loss_inventory' | trans }}</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>%</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.loss_sold' | trans }}</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>%</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.known_loss' | trans }}</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>%</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.unknown_loss' | trans }}</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>%</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.total_loss' | trans }}</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>%</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.theorical_fc' | trans }}</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.theorical_margin' | trans }}</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.initial_stock' | trans }}</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>{{ 'report.food_cost.synthetic.in' | trans }}</span>
+            </th>
+            <th class="font-reduce-th"><span class='rotate-text'>{{ 'report.food_cost.synthetic.out' | trans }}</span>
+            </th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.final_stock' | trans }}</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.real_consomation' | trans }}</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.real_fc' | trans }}</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.real_margin' | trans }}</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>BR</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>%</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>Pub</span></th>
+            <th class="font-reduce-th"><span class='rotate-text'>%</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.real_fc_net' | trans }}</span></th>
+            <th class="font-reduce-th"><span
+                        class='rotate-text'>{{ 'report.food_cost.synthetic.brut_margin' | trans }}</span></th>
+        </tr>
+        </thead>
+        <tbody class="mainTbody">
+        {% set weekCumul = 1 %}
+        {% set lastWeek = null %}
+        {% set weeks = data.weeks %}
+        {% for line in data.result %}
+
+            {% if lastWeek is null %}
+                {% set lastWeek = line.week %}
+            {% endif %}
+
+            {% if lastWeek is not null and line.week != lastWeek %}
+                {# SHOW LAST TOTAL WEEK #}
+                {% set  lastWeekTotal = data.perWeek[lastWeek] %}
+
+                {% set lastWeek = line.week %}
+                {% include '@Report/SyntheticFoodCost/synthetic_food_cost_week.html.twig' with { 'week' : lastWeekTotal } %}
+            {% endif %}
+
+            <tr class="text-nowrap-tr mainRow">
+                {% if loop.index == weekCumul %}
+                    <td rowspan="{{ weeks[line.week] + 1 }}" class="highlight-important-td">{{ line.week }}</td>
+                    {% set weekCumul = weekCumul +  weeks[line.week] %}
+                {% endif %}
+
+                {% if line.date['date'] is defined %}
+                    <td class="highlight-important-td">{{ line.date['date'] |date('d/m') }}</td>
+                {% else %}
+                    <td class="highlight-important-td">{{ line.date |date('d/m') }}</td>
+                {% endif %}
+                <td class="font-reduce">{{ line.ca_brut_ttc|float_format }}</td>
+                <td class="font-reduce">{{ line.ca_net_ht|float_format }}</td>
+                <td class="font-reduce">{{ line.ventes_pr|float_format }}</td>
+                <td class="font-reduce">{{ line.fc_mix|float_format }}</td>
+
+                <!-- Theorique -->
+                <td class="font-reduce">{{ line.fc_ideal|float_format }}</td>
+                <td class="font-reduce">{{ line.pertes_i_inv|float_format }}</td>
+                <td class="font-reduce">{{ line.pertes_inv_pourcentage|float_format }}</td>
+                <td class="font-reduce">{{ line.pertes_i_vtes|float_format }}</td>
+                <td class="font-reduce">{{ line.pertes_vtes_pourcentage|float_format }}</td>
+                <td class="font-reduce">{{ line.pertes_connues|float_format }}</td>
+                <td class="font-reduce">{{ line.pertes_connues_pourcentage|float_format }}</td>
+                <td class="font-reduce">{{ line.pertes_inconnues|float_format }}</td>
+                <td class="font-reduce">{{ line.pertes_inconnues_pourcentage|float_format }}</td>
+                <td class="font-reduce">{{ line.pertes_totales |float_format }}</td>
+                <td class="font-reduce">{{ line.pertes_totales_pourcentage |float_format }}</td>
+                <td class="font-reduce">{{ line.fc_theo|float_format }}</td>
+                <td class="font-reduce">{{ line.marge_theo|float_format }}</td>
+
+                <!-- Real -->
+                <td class="font-reduce">{{ line.initialStock|float_format }}</td>
+                <td class="font-reduce">{{ line.entree|float_format }}</td>
+                <td class="font-reduce">{{ line.sortie|float_format }}</td>
+                <td class="font-reduce">{{ line.finalStock|float_format }}</td>
+                <td class="font-reduce">{{ line.conso_real|float_format }}</td>
+                <td class="font-reduce">{{ line.fc_real|float_format }}</td>
+                <td class="font-reduce">{{ line.marge_real|float_format }}</td>
+
+                <!-- Marge -->
+                <td class="font-reduce">{{ line.br|float_format }}</td>
+                <td class="font-reduce">{{ line.br_pourcentage|float_format }}</td>
+                {#<td>{{ line.discount|float_format }}</td>#}
+                <td class="font-reduce">{{ line.pr_pub|float_format }}</td>
+                <td class="font-reduce">{{ line.discount_pourcentage|float_format }}</td>
+                <td class="font-reduce">{{ line.fc_real_net|float_format }}</td>
+                <td class="font-reduce"> {{ line.marge_brute|float_format }}</td>
+            </tr>
+        {% endfor %}
+
+        {#show last week #}
+        {% set  lastWeekTotal = data.perWeek[lastWeek] %}
+        {% include '@Report/SyntheticFoodCost/synthetic_food_cost_week.html.twig' with { 'week' : lastWeekTotal } %}
+
+        <tr class="report-table-head mainRow">
+            {% set total = data.total %}
+            <td colspan="2" class="highlight-important-td">Total</td>
+            <td class="font-reduce">{{ total.ca_brut_ttc|float_format }}</td>
+            <td class="font-reduce">{{ total.ca_net_ht|float_format }}</td>
+            <td class="font-reduce">{{ total.ventes_pr|float_format }}</td>
+            <td class="font-reduce">{{ total.fc_mix|float_format }}</td>
+
+            <!-- Theorique -->
+            <td class="font-reduce">{{ total.fc_ideal|float_format }}</td>
+            <td class="font-reduce">{{ total.pertes_i_inv|float_format }}</td>
+            <td class="font-reduce">{{ total.pertes_inv_pourcentage|float_format }}</td>
+            <td class="font-reduce">{{ total.pertes_i_vtes|float_format }}</td>
+            <td class="font-reduce">{{ total.pertes_vtes_pourcentage|float_format }}</td>
+            <td class="font-reduce">{{ total.pertes_connues|float_format }}</td>
+            <td class="font-reduce">{{ total.pertes_connues_pourcentage|float_format }}</td>
+            <td class="font-reduce">{{ total.pertes_inconnues|float_format }}</td>
+            <td class="font-reduce">{{ total.pertes_inconnues_pourcentage|float_format }}</td>
+            <td class="font-reduce">{{ total.pertes_totales | abs |float_format }}</td>
+            <td class="font-reduce">{{ total.pertes_totales_pourcentage | abs |float_format }}</td>
+            <td class="font-reduce">{{ total.fc_theo|float_format }}</td>
+            <td class="font-reduce">{{ total.marge_theo|float_format }}</td>
+
+            <!-- Real -->
+            <td class="font-reduce">{{ total.initialStock|float_format }}</td>
+            <td class="font-reduce">{{ total.entree|float_format }}</td>
+            <td class="font-reduce">{{ total.sortie|float_format }}</td>
+            <td class="font-reduce">{{ total.finalStock|float_format }}</td>
+            <td class="font-reduce">{{ total.conso_real|float_format }}</td>
+            <td class="font-reduce">{{ total.fc_real|float_format }}</td>
+            <td class="font-reduce">{{ total.marge_real |float_format }}</td>
+
+            <!-- Marge -->
+            <td class="font-reduce">{{ total.br|float_format }}</td>
+            <td class="font-reduce">{{ total.br_pourcentage|float_format }}</td>
+            {#<td>{{ total.discount|float_format }}</td>#}
+            <td class="font-reduce">{{ total.pr_pub|float_format(2, '.', '') }}</td>
+            <td class="font-reduce">{{ total.discount_pourcentage|float_format }}</td>
+            <td class="font-reduce">{{ total.fc_real_net|float_format }}</td>
+            <td class="font-reduce">{{ total.marge_brute|float_format }}</td>
+        </tr>
+        <tr>
+            <td style="height: 40px;border: none !important;" colspan="32"></td>
+        </tr>
+
+        {# BEGIN MONTH #}
+
+        {#<tr>#}
+        {#<th colspan="6" style="background-color: white; border: none !important;"></th>#}
+        {#<th colspan="13" class="report-table-head" style="text-align: center;">#}
+        {#<b>{{ 'keyword.theorical' | trans }}</b>#}
+        {#</th>#}
+        {#<th colspan="7" class="report-table-head" style="text-align: center;">#}
+        {#<b>{{ 'keyword.real' | trans }}</b>#}
+        {#</th>#}
+        {#<th colspan="6" class="report-table-head" style="text-align: center;">#}
+        {#<b>{{ 'keyword.margin' | trans }}</b>#}
+        {#</th>#}
+        {#</tr>#}
+        {#<tr class="report-table-second-head">#}
+        {#<th colspan="2" style="width: 70px;">M</th>#}
+        {#<th><span class='rotate-text'>{{ 'report.ca.ca_brut_ttc' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.ca.ca_net_ht' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.sold_pr_ht' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.fc_mix' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.ideal_fc' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.loss_inventory' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>%</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.loss_sold' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>%</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.known_loss' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>%</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.unknown_loss' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>%</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.total_loss' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>%</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.theorical_fc' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.theorical_margin' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.initial_stock' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.in' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.out' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.final_stock' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.real_consomation' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.real_fc' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.real_margin' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>BR</span></th>#}
+        {#<th><span class='rotate-text'>%</span></th>#}
+        {#<th><span class='rotate-text'>Pub</span></th>#}
+        {#<th><span class='rotate-text'>%</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.real_fc_net' | trans }}</span></th>#}
+        {#<th><span class='rotate-text'>{{ 'report.food_cost.synthetic.brut_margin' | trans }}</span></th>#}
+        {#</tr>#}
+        {#{% set months = data.perMonth %}#}
+        {#{% for mNum,mData in months %}#}
+        {#<tr>#}
+        {#{% set month = "datepicker.monthsShort."~mNum %}#}
+        {#<td colspan="2" class="highlight-important-td">{{ month|trans }}</td>#}
+        {#<td>{{ mData.ca_brut_ttc|float_format }}</td>#}
+        {#<td>{{ mData.ca_net_ht|float_format }}</td>#}
+        {#<td>{{ mData.ventes_pr|float_format }}</td>#}
+        {#<td>{{ mData.fc_mix|float_format }}</td>#}
+
+        {#<!-- Theorique -->#}
+        {#<td>{{ mData.fc_ideal|float_format }}</td>#}
+        {#<td>{{ mData.pertes_i_inv|float_format }}</td>#}
+        {#<td>{{ mData.pertes_inv_pourcentage|float_format }}</td>#}
+        {#<td>{{ mData.pertes_i_vtes|float_format }}</td>#}
+        {#<td>{{ mData.pertes_vtes_pourcentage|float_format }}</td>#}
+        {#<td>{{ mData.pertes_connues|float_format }}</td>#}
+        {#<td>{{ mData.pertes_connues_pourcentage|float_format }}</td>#}
+        {#<td>{{ mData.pertes_inconnues|float_format }}</td>#}
+        {#<td>{{ mData.pertes_inconnues_pourcentage|float_format }}</td>#}
+        {#<td>{{ mData.pertes_totales|float_format }}</td>#}
+        {#<td>{{ mData.pertes_totales_pourcentage|float_format }}</td>#}
+        {#<td>{{ mData.fc_theo|float_format }}</td>#}
+        {#<td>{{ mData.marge_theo|float_format }}</td>#}
+
+        {#<!-- Real -->#}
+        {#<td>{{ mData.initialStock|float_format }}</td>#}
+        {#<td>{{ mData.entree|float_format }}</td>#}
+        {#<td>{{ mData.sortie|float_format }}</td>#}
+        {#<td>{{ mData.finalStock|float_format }}</td>#}
+        {#<td>{{ mData.conso_real|float_format }}</td>#}
+        {#<td>{{ mData.fc_real|float_format }}</td>#}
+        {#<td>{{ mData.marge_real|float_format }}</td>#}
+
+        {#<!-- Marge -->#}
+        {#<td>{{ mData.br|float_format }}</td>#}
+        {#<td>{{ mData.br_pourcentage|float_format }}</td>#}
+        {#<td>{{ mData.discount|float_format }}</td>#}
+        {#<td>{{ mData.discount_pourcentage|float_format }}</td>#}
+        {#<td>{{ mData.fc_real_net|float_format }}</td>#}
+        {#<td>{{ mData.marge_brute|float_format }}</td>#}
+        {#</tr>#}
+        {#{% endfor %}#}
+        {#<tr class="report-table-head">#}
+        {#{% set total = data.total %}#}
+        {#<td colspan="2" class="highlight-important-td">Total</td>#}
+        {#<td>{{ total.ca_brut_ttc|float_format }}</td>#}
+        {#<td>{{ total.ca_net_ht|float_format }}</td>#}
+        {#<td>{{ total.ventes_pr|float_format }}</td>#}
+        {#<td>{{ total.fc_mix|float_format }}</td>#}
+
+        {#<!-- Theorique -->#}
+        {#<td>{{ total.fc_ideal|float_format }}</td>#}
+        {#<td>{{ total.pertes_i_inv|float_format }}</td>#}
+        {#<td>{{ total.pertes_inv_pourcentage|float_format }}</td>#}
+        {#<td>{{ total.pertes_i_vtes|float_format }}</td>#}
+        {#<td>{{ total.pertes_vtes_pourcentage|float_format }}</td>#}
+        {#<td>{{ total.pertes_connues|float_format }}</td>#}
+        {#<td>{{ total.pertes_connues_pourcentage|float_format }}</td>#}
+        {#<td>{{ total.pertes_inconnues|float_format }}</td>#}
+        {#<td>{{ total.pertes_inconnues_pourcentage|float_format }}</td>#}
+        {#<td>{{ total.pertes_totales|float_format }}</td>#}
+        {#<td>{{ total.pertes_totales_pourcentage|float_format }}</td>#}
+        {#<td>{{ total.fc_theo|float_format }}</td>#}
+        {#<td>{{ total.marge_theo|float_format }}</td>#}
+
+        {#<!-- Real -->#}
+        {#<td>{{ total.initialStock|float_format }}</td>#}
+        {#<td>{{ total.entree|float_format }}</td>#}
+        {#<td>{{ total.sortie|float_format }}</td>#}
+        {#<td>{{ total.finalStock|float_format }}</td>#}
+        {#<td>{{ total.conso_real|float_format }}</td>#}
+        {#<td>{{ total.fc_real|float_format }}</td>#}
+        {#<td>{{ total.marge_real|float_format }}</td>#}
+
+        {#<!-- Marge -->#}
+        {#<td>{{ total.br|float_format }}</td>#}
+        {#<td>{{ total.br_pourcentage|float_format }}</td>#}
+        {#<td>{{ total.discount|float_format }}</td>#}
+        {#<td>{{ total.discount_pourcentage|float_format }}</td>#}
+        {#<td>{{ total.fc_real_net|float_format }}</td>#}
+        {#<td>{{ total.marge_brute|float_format }}</td>#}
+        {#</tr>#}
+
+
+    </table>
+
+{% endif %}

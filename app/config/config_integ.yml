@@ -1,0 +1,32 @@
+imports:
+    - { resource: config_prod.yml }
+
+swiftmailer:
+    delivery_address:
+        - mohamedali.zouai@talan.com
+        - amjed.nouira@talan.com
+
+parameters:
+    router.request_context.scheme: http
+    router.request_context.base_url: "http://197.3.0.226/quick.bo.integration"
+    wynd.url: "http://quickrecettelocal.wynd.eu/api/orders/get_all/quick"
+    wynd.api.rest.user: "http://quickrecettelocal.wynd.eu/api/users/list/"
+    wynd.api.user: "quick"
+    wynd.api.secretKey: "2f6d70d20d23e782c8fc4637934090bda49eca80"
+    wynd_active: true	
+    asynch_postfix: ' > /dev/null &'
+    supervision.url: "" #"http://197.3.0.226/quick.super.integ"
+    supervision.alias: ''
+    supervision.key: "NotSecretKey"
+    database_host: 10.4.1.234
+    database_port: 5432
+    database_name: "quick_saas_bk_integ_v10012018"
+    database_user: postgresadmin
+    database_password: p0stgresadm1n
+    ftp_host: "ftp.bidvest.be"
+    ftp_user: "quickxmltest"
+    ftp_pw: "@@Quick@6530@"
+    ftp_port: 21
+    wkhtmltopdf_path: "/var/www/wkhtmltox/wkhtmltopdf "
+    optikitchen_path: "/var/www/html/integration/quick_bo/data/tmp"
+    ftp_delivery_host: null

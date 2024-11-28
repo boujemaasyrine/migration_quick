@@ -1,0 +1,147 @@
+{% form_theme form.checkRestaurantContainer.ticketRestaurantCounts "@Financial/CashBox/Counting/form_parts/check_restaurant_widget.html.twig" %}
+{% form_theme form.bankCardContainer.bankCardCounts "@Financial/CashBox/Counting/form_parts/bank_card_widget.html.twig" %}
+{% form_theme form.checkQuickContainer.checkQuickCounts "@Financial/CashBox/Counting/form_parts/check_quick_widget.html.twig" %}
+
+{% set cashbox = form.vars.value %}
+{% if list is not defined %}{% set list = false %}{% endif %}
+
+{% if list %}
+    <style>
+        .modal-body {
+            padding: 5px;
+        }
+    </style>
+{% endif %}
+<div class="{% if list %}container{% else %} container-fluid {% endif %}"
+     {% if list %}style="width: 100%; max-width: inherit;"{% endif %}>
+
+    {{ form_start(form,{'method' : 'POST' , 'attr' : { 'id' : 'cahsbox_count_form', 'class': '' } }) }}
+    <div class="row">
+        <div class="row-height">
+            <div class="col-xs-12 col-sm-5 col-xs-height">
+                <div class="panel panel-default row inside inside-full-height">
+                    <div class="panel-body">
+                        <div class="col-xs-12">
+                            <h4>
+                                {{ 'cashbox.counting.counting_information'|trans() }}
+                            </h4>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="row">
+                                <div class="col-xs-12"> {{ form_label(form.date, 'keyword.fiscal_date') }}
+                                    :
+                                </div>
+                                <div class="col-xs-12">
+                                    {% if list %}
+                                        {{ cashbox.date|date('d/m/Y') }}
+                                    {% else %}
+                                        {{ form_widget(form.date, { 'attr': { 'class': 'cashbox_date form-control','data-max-date': administrative_closing_service.getLastWorkingEndDate()|date('Y/m/d'), 'data-last-closured-date': administrative_closing_service.getLastNonClosedDate()|date('Y/m/d') }}) }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-12">{{ form_label(form.cashier, 'cashbox.counting.cashier') }}
+                                    :
+                                </div>
+                                <div class="col-xs-12">
+                                    {% if list %}
+                                        {{ cashbox.cashier }}
+                                    {% else %}
+                                        {{ form_widget(form.cashier, { 'attr': { 'class': 'form-control' }}) }}
+                                    {% endif %}
+                                </div>
+                                <div class="col-xs-12">
+                                    {{ form_errors(form.cashier) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-1" style="text-align: right;">
+                            {% if not list %}
+                                <span id="reload" class="btn small-btn btn-reload bootstrap_tooltipped"
+                                      title="{{ 'keyword.reload'|trans() }}">
+                                <i class="glyphicon glyphicon-repeat"></i>
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-xs-height">
+                <div class="panel panel-default row inside inside-full-height">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <h4>
+                                {{ 'cashbox.counting.ticket_retrive'|trans() }}
+                            </h4>
+                        </div>
+                        <div class="col-xs-5">
+                            <div>
+                                <label> {{ 'cashbox.counting.counting_owner'|trans() }} : </label>
+                            </div>
+                            <span class="text-accent-1"> {{ cashbox.owner.firstName|title }} {{ cashbox.owner.lastName|capitalize }} </span>
+                        </div>
+
+                        <div class="col-xs-5">
+                            <div><label> {{ 'cashbox.counting.cash_box_starting_fund'|trans() }} </label>:</div>
+                            <span class="text-muted bold"> {{ parameter_service.getStartDayCashboxFunds|number_format(2, ',', '.') }}
+                                <i class="glyphicon glyphicon-euro"></i></span>
+                        </div>
+                        <div class="col-xs-2" style="text-align: right;">
+                            {% if parameter_service.isEftActivated == true %}
+                                <span class="green-text"> {{ 'eft.is_activated'|trans() }}</span>
+                            {% else %}
+                                <span class="red-text"> {{ 'eft.is_not_activated'|trans() }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if cashbox.cashier %}
+                <div class="col-xs-12 col-sm-2 col-xs-height" style="">
+                    <div class="panel panel-default row inside inside-full-height">
+                        <div class="panel-body">
+                            <h4 style="display: inline-block;margin-left: 10px;"> {{ 'cashbox.counting.gap'|trans() }} </h4>
+                            <div
+                                 style="display: inline-block; margin: auto 10px;">
+                                <span class="text-muted bold">
+                                    <span id="gapLabel" class="total_gap" style="font-size:1.25em !important;">
+                                        {{ cashbox.calculateCashboxGap()|number_format(2, ',', '.') }}
+                                    </span>
+                                    <i class="glyphicon glyphicon-euro"></i>
+                                </span>
+                            </div>
+                            {% if not list %}
+                                <div class="col-xs-12">
+                                <span id="validateCashboxGap"
+                                      class="waves-effect waves-light btn btn-validate full-width"
+                                      style="float:initial;">
+                                    {{ 'cashbox.validate_cashbox_gap' | trans }}
+                                </span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        {% if cashbox.cashier %}
+            {% include('@Financial/CashBox/Counting/parts/cashbox_counting_sub_part.html.twig') %}
+        {% endif %}
+    </div>
+    {#<div class="col-xs-12">#}
+    {#<div class="pull-right">#}
+    {#<span id="validateCashBoxCounting"#}
+    {#class="btn btn-validate"> {{ 'cashbox.show_cashbox_difference'|trans() }} </span>#}
+    {#</div>#}
+    {#</div>#}
+
+    <div class="hidden">
+        {{ form_rest(form) }}
+    </div>
+
+    {{ form_end(form) }}
+</div>

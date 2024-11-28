@@ -1,0 +1,41 @@
+<div class="panel-body">
+    <style>
+        .form-error {
+            font-size: 1.2em;
+        }
+    </style>
+    {{ form_start(form,{'method' : 'POST' , 'attr' : { 'id' : 'enveloppe_create_form', 'class': '' } }) }}
+    <div class="col-xs-6 col-xs-offset-3">
+        <div class="check_quick_container">
+            <div class="row">
+                {#<div class="form-group">#}
+                {#{{ form_label(form.numEnvelope, 'envelope.number') }}#}
+                {#{{ form_widget(form.numEnvelope, { 'attr': {'class': 'form-control'} }) }}#}
+                {#{{ form_errors(form.numEnvelope) }}#}
+                {#</div>#}
+
+                <div class="form-group">
+                    {{ form_label(form.reference, 'envelope.reference') }}
+                    {{ form_widget(form.reference, { 'attr': {'autofocus': true, 'class': 'form-control'} }) }}
+                    {{ form_errors(form.reference) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.amount, 'envelope.amount') }}
+                    <div class="input-group">
+                        {{ form_widget(form.amount, { 'attr': {'class': 'form-control force-modulo-5'} }) }}
+                        <span class="input-group-addon" id="basic-addon2"> <i
+                                    class="glyphicon glyphicon-euro"></i></span>
+                    </div>
+                    {{ form_errors(form.amount) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden">
+        {{ form_rest(form) }}
+    </div>
+
+    {{ form_end(form) }}
+</div>

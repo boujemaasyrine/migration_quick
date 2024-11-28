@@ -1,0 +1,49 @@
+{% spaceless %}
+<program DateTime="{{ 'now'|date('Y-m-d H:i') }}" ForecasteSales="{{ optikitchen.budPrev|number_format(0,',','') }}">
+    <Dayparts>
+        {% for d in optikitchen.getDayParts %}
+            <Daypart id="{{ d.id }}" starttime="{{ d.startH }}{{ d.startM }}" stoptime="{{ d.endH }}{{ d.endM }}"
+                     Binlevel="{{ optikitchen.getBinLevel(matrix, d) }}"
+                     DistributionPercent="{{ 100* d.percent_budget }}"/>
+        {% endfor %}
+    </Dayparts>
+
+    <PLUList>
+
+        {% for p in sold_products %}
+            <PLU id="{{ p.product.codePlu }}" Code="{{ p.product.codePlu }}" Description="{{ p.product.name }}"
+                 FamilyID="1" CoeffValue="{% if p.coef is null%}{{ p.coefByDay }}{% else %}{{ p.coef}}{% endif %}">
+                <BinLevels>
+                    {% for x in p.getBinLevels(matrix) %}
+                        <BinLevel Id="{{ x.id }}" Qty="{{ x.qty }}"/>
+                    {% endfor %}
+                </BinLevels>
+
+                <ForeCasts>
+                    {% for x in p.getForeCasts(matrix) %}
+                        <Daypart
+                                {#coefTrancheFixed="{{ p.coef }}"#}
+                                {#bud1_4="{{ x.budget }}"#}
+                                {#coefQuart="{{ x.coefInQuart }}"#}
+                                Id="{{ x.id }}" Qty="{{ x.qty }}"/>
+                    {% endfor %}
+                </ForeCasts>
+
+            </PLU>
+        {% endfor %}
+    </PLUList>
+
+    <InvItems>
+        {% for p in purchased_products %}
+            <InvItem id="{{ p.product.externalId }}" Description="{{ p.product.name }}"
+                     FamilyID="1" CoeffValue="{{ p.coefByDay }}" >
+                <ForeCasts>
+                    {% for x in p.getForeCasts(matrix) %}
+                        <Daypart Id="{{ x.id }}" Qty="{{ x.qty }}"/>
+                    {% endfor %}
+                </ForeCasts>
+            </InvItem>
+        {% endfor %}
+    </InvItems>
+</program>
+{% endspaceless %}

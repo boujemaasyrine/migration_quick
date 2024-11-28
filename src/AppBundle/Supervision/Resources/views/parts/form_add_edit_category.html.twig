@@ -1,0 +1,53 @@
+{{ form_errors(form) }}
+<div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        {% form_theme form.translations ':supervision/form_part:tranlsations.html.twig' %}
+        {{ form(form.translations) }}
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        {{ form_label(form.taxBe, 'category.list.tvaBel', { 'label_attr': {'style': 'position: initial'} }) }}
+        {{ form_widget(form.taxBe, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.taxBe) }}
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        {{ form_label(form.taxLux, 'category.list.tvaLux', { 'label_attr': {'style': 'position: initial'} }) }}
+        {{ form_widget(form.taxLux, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.taxLux) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 col-sm-4">
+        {{ form_label(form.order, 'label.order'|trans, { 'label_attr': {'style': 'position: initial'} }) }}
+        {{ form_widget(form.order, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.order) }}
+    </div>
+    <div class="col-md-4 col-sm-4">
+        {{ form_label(form.categoryGroup, 'label.group', { 'label_attr': {'style': 'position: initial'} }) }}
+        {{ form_widget(form.categoryGroup, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.categoryGroup) }}
+    </div>
+    <div class="col-md-4 col-sm-4">
+        {{ form_label(form.eligible, 'category.list.label_help', { 'label_attr': {'style': 'position: initial'} }) }}
+        {{ form_widget(form.eligible) }}
+        {{ form_errors(form.eligible) }}
+    </div>
+</div>
+<div class="hidden">
+    {{ form_rest(form) }}
+</div>
+<div class="row">
+    <div class="col-xs-12" style="text-align: right">
+        {% if type == 'edit' %}
+            <button class="btn btn-cancel btn-icon" type="button" id="btn-cancel-edit">
+                {{ 'btn.cancel' | trans([],'supervision') }}
+            </button>
+        {% endif %}
+
+        <button class="btn btn-{% if type == 'edit' %}modify{% else %}add{% endif %} btn-icon" type="button"
+                id="{{ type }}-category-button">
+            {{ ( 'btn.' ~ type ) | trans([],'supervision') }}
+        </button>
+    </div>
+</div>

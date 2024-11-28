@@ -1,0 +1,63 @@
+  <style>
+      .table > thead > tr > th {
+          width: 20px;
+      }
+  </style>
+
+
+<table class="table hourByHour table-striped table-bordered table-hover" >
+    <thead>
+    <tr>
+        <th></th>
+        <th>{{ filter.date1|date('d-m-Y') }}</th>
+        <th>{{ filter.date2|date('d-m-Y') }}</th>
+        <th>{{ filter.date3|date('d-m-Y') }}</th>
+        <th>{{ filter.date4|date('d-m-Y') }}</th>
+        <th> {{ 'report.sales.slice_schedule.moyen'|trans() }}</th>
+    </tr>
+    </thead>
+{% if openingHour > closingHour %}
+    {% set limitHour =23 %}
+ {% else %}
+    {% set limitHour = closingHour %}
+ {% endif %}
+    <tbody class="mainTbody">
+    {% for i in openingHour .. limitHour %}
+        <tr>
+        <th>
+            {{ i ~ ':00' }}
+        </th>
+        <td>{{ result.date0[i] }}</td>
+        <td>{{ result.date1[i] }}</td>
+        <td>{{ result.date2[i] }}</td>
+        <td>{{ result.date3[i] }}</td>
+            {% set moyen= (result.date0[i]+result.date1[i]+result.date2[i]+result.date3[i])/4 %}
+        <td>{{ moyen|number_format('2','.','') }}</td>
+        </tr>
+    {% endfor %}
+    {% if openingHour > closingHour  %}
+        {% for i in 0 .. closingHour %}
+            <tr>
+                <th>
+                    {{ i ~ ':00' }}
+                </th>
+                <td>{{ result.date0[i] }}</td>
+                <td>{{ result.date1[i] }}</td>
+                <td>{{ result.date2[i] }}</td>
+                <td>{{ result.date3[i] }}</td>
+                {% set moyen= (result.date0[i]+result.date1[i]+result.date2[i]+result.date3[i])/4 %}
+                <td>{{ moyen|number_format('2','.','') }}</td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+    <tr>
+        <th>{{ 'report.sales.slice_schedule.total' |trans }}</th>
+        <td>{{ result.date0[24] }}</td>
+        <td>{{ result.date1[24] }}</td>
+        <td>{{ result.date2[24] }}</td>
+        <td>{{ result.date3[24] }}</td>
+        {% set moyen= (result.date0[24]+result.date1[24]+result.date2[24]+result.date3[24])/4 %}
+        <td>{{ moyen|number_format('2','.','') }}</td>
+    </tr>
+    </tbody>
+</table>

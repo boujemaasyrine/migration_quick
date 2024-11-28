@@ -1,0 +1,34 @@
+services:
+#    app.security.authentication_handler:
+#        class: AppBundle\Handler\AuthenticationHandler
+#        public: false
+#        arguments:
+#            - @router
+#            - @session
+#    app.security.checker_filter:
+#        class: AppBundle\Filter\SecurityCheckerFilter
+#        arguments: ["@security.token_storage"]
+#        tags:
+#            - { name: kernel.event_listener , event: kernel.controller, method: onKernelController }
+
+    employee.service:
+        class: AppBundle\Staff\Service\EmployeeService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+    staff.service:
+        class: AppBundle\Staff\Service\StaffService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "%api_user_code%"
+            - "@toolbox.command.launcher"
+            - "@logger"
+            - "@security.password_encoder"
+            - "@phpexcel"
+    role.form:
+        class: AppBundle\Staff\Form\Management\AttributeRoleType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: role_type }
+

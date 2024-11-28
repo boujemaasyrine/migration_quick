@@ -1,0 +1,11 @@
+{% extends '::base_mail.html.twig' %}
+
+{% block body %}
+    Bonjour,<br>
+    <h3>Commande rejetée</h3>
+
+    La <a href="{{ absolute_url(path('list_pendings_commands')) }}#{{ order.id }}">commande
+    du {{ order.dateOrder|date('d/m/Y') }}</a> est rejetée suite à un problème lors de l'envoi vers le portail fournisseur.
+    <br>
+    Vous trouvez ci-joint le bon de commande correspondant.
+{% endblock %}

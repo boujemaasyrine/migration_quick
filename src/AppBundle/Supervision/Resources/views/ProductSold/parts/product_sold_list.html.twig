@@ -1,0 +1,49 @@
+{#<div class="panel-heading">
+    {{ 'product_sold.list.tile'|trans }}
+</div>#}
+
+<div class="panel-body" style="padding-top: 0; padding-bottom: 0;">
+    {#<div class="row">#}
+    {#<div class="col-xs-12" style="margin-top: 15px; margin-bottom: 15px; text-align: right">#}
+    {#<a id="sheetModelBlock" class="btn btn-add" href="{{ path('product_sold_save') }}">#}
+    {#{{ 'btn.add'|trans }}#}
+    {#</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    <div class="container-fluid" style="margin-top: 10px;">
+        <div class="row">
+            <div class="col-xs-12" style="text-align: right">
+                <button class="btn btn-export btn-icon" type="button" id="export-btn">
+                    {{ "btn.export"|trans([],'supervision') }}
+                </button>
+                <a id="download-duplicate-product-sold" role="button" href="{{ path('download_duplicate_product_sold') }}" class="btn btn-export btn-icon" >
+                    {{ "btn.export_duplicate_sales_item"|trans([],'supervision') }}
+                </a>
+            </div>
+        </div>
+        <table id="product_sold_table" class="table table-striped table-bordered" style="width: 100%"
+               data-template="<a data-id='_id_' href='#' class='btn btn-deactivate bootstrap_tooltipped   btn-icon btn-xs' title='{{ 'tooltip.deactivate_product_sold_in_restaurants'|trans([],'supervision') }}'>{{ 'btn.deactivate'|trans([],'supervision') }}</a>
+               <a data-id='_id_' href='{{ path('product_sold_save', { 'productSold': '_id_' }) }}' class='btnEdit btn btn-modify btn-icon btn-xs'>{{ 'btn.edit'|trans([],'supervision') }}</a>
+               <span class='btn small-btn btn-reload bootstrap_tooltipped reload-sold-item btn-xs' data-item='_id_' data-product-name='_product_name_' data-elligible-restaurans='_restaurants_'
+                title='{{ 'keywords.force_synchronize'|trans([],'supervision') }}'>
+                <i class='fa fa-cloud-download'></i>
+                </span>
+               ">
+            <thead>
+            <tr>
+                <th>{{ 'label.code_plu'|trans([],'supervision') }}</th>
+                <th>{{ 'label.name'|trans([],'supervision') }}</th>
+                <th>{{ 'label.type'|trans([],'supervision') }}</th>
+                <th>{{ 'label.active'|trans([],'supervision') }}</th>
+                <th> {{ 'synchronisation_date'|trans([],'supervision') }} </th>
+                <th> {{ 'last_synchronisation_date'|trans([],'supervision') }} </th>
+                <th {#style="width: 100px"#}>{{ 'label.action'|trans([],'supervision') }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>

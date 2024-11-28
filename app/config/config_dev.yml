@@ -1,0 +1,105 @@
+imports:
+    - { resource: config.yml }
+    - { resource : parameters.yml}
+    - { resource : parameters_dev.yml}
+
+framework:
+    router:
+        resource: "%kernel.root_dir%/config/routing_dev.yml"
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
+
+assetic:
+    use_controller: true
+
+swiftmailer:
+    delivery_address: "%delivery_email%"
+    port: "%mailer_port%"
+
+parameters:
+    router.request_context.scheme: http
+    router.request_context.base_url: "http://localhost:9007"
+    wynd.url: "http://localhost/quick/trunk/quick_saas/web/alohatickets10112017.json"
+    wynd.api.rest.user: "http://localhost/quick/trunk/quick_saas/web/users_16_11_2017.json"
+
+    wynd.api.user: "quick"
+    wynd.api.secretKey: "2f6d70d20d23e782c8fc4637934090bda49eca80"
+#    database_name: recette_int_quick
+#    database_host: 10.4.1.234
+#    database_user: postgresadmin
+#    database_password: p0stgresadm1n
+    quick_code: 6295
+
+    supervision.url: "http://quick_sup"
+    supervision.key: "NotSecretKey"
+    supervision.alias: ''
+    asynch_postfix: ' '
+    wynd_active: true
+
+monolog:
+    channels: ['synchro', 'tickets_import', 'product_purchased_mvmt', 'app_commands', 'financial','import_commands','ignored_tickets','generate_report']
+    handlers:
+        import_commands:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/import_commands_%kernel.environment%.log'
+            channels: import_commands
+        financial:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/financial_%kernel.environment%.log'
+            channels: financial
+        app_commands:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/commands_%kernel.environment%.log'
+            channels: app_commands
+        product_purchased_mvmt:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/product_purchased_mvmt_%kernel.environment%.log'
+            channels: product_purchased_mvmt
+        tickets_import:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/tickets_import_%kernel.environment%.log'
+            channels: tickets_import
+        generate_report:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/generate_report_%kernel.environment%.log'
+            channels: generate_report
+        synchro:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/synchro_%kernel.environment%.log'
+            channels: synchro
+        doctrine:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/doctrine_%kernel.environment%.log'
+            channels: doctrine
+        main:
+            type:  rotating_file
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            max_files: 10
+            channels: ['!doctrine', '!synchro', '!tickets_import', '!product_purchased_mvmt', '!app_commands', '!financial']
+        ignored_tickets:
+            level: debug
+            type: rotating_file
+            path: '%kernel.logs_dir%/app_log/ignored_tickets_%kernel.environment%.log'
+            max_files: 10
+            channels: ignored_tickets

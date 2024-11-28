@@ -1,0 +1,60 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        td {
+            font-size: 10px !important;
+            padding: 4px !important;
+        }
+
+        h3 {
+            font-size: 14px !important;
+        }
+
+        div, h4, th, b {
+            font-size: 12px !important;
+        }
+    </style>
+{% endblock %}
+{% block reportTitle %}
+    <h3>
+        <b>{{ 'report.buying.title' | trans }}</b>
+    </h3>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-6 input-field">
+        <label for="startDate">{{ 'portion_control.filter_labels.from'|trans }} </label>
+        <span class="text-muted">
+            {{ beginDate|date('d/m/Y') }}
+        </span>
+    </div>
+    <div class="col-xs-6 input-field">
+        <label for="endDate">{{ 'portion_control.filter_labels.to'|trans }} </label>
+        <span class="text-muted">
+            {{ endDate|date('d/m/Y') }}
+        </span>
+    </div>
+    {% if filter.type is defined %}
+        <div class="col-xs-12 input-field">
+            <label>{{ 'filter.label'|trans }} </label><br/>
+            <div class="row">
+                {% for type in filter.type %}
+                    <div class="col-lg-8 col-md-8 col-xs-3">
+                        <span>{{ ('keyword.' ~ type) | trans }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="col-xs-12 input-field">
+            <label for="endDate">{{ 'filter.no_filter'|trans }} </label>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+    {% include '@Report/BuyingManagement/InOut/body_report_in_out.html.twig' with {'download': download } %}
+
+{% endblock %}

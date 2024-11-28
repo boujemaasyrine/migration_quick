@@ -1,0 +1,169 @@
+<style>
+    .qty-to-order-input {
+        width: 100px !important;
+        padding: 2px 0px 2px 10px !important;
+        height: 20px !important;
+    }
+
+    .result-recap-table th, .result-recap-table td {
+        border: solid 2px white;
+        color: black;
+        font-weight: bolder;
+        text-align: center;
+        padding: 7px;
+    }
+
+    .result-recap-table thead th {
+        background-color: #0005AD;
+        color: white;
+    }
+
+    .result-recap-table tbody tr:nth-child(even) {
+        background-color: #EAEFFD;
+    }
+
+    .result-recap-table tbody tr:nth-child(odd) {
+        background-color: #BED5FF;
+    }
+
+    .result-recap-table-center th, .result-recap-table-center td {
+        color: black;
+        font-weight: bolder;
+        text-align: center;
+        padding: 7px;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-6">
+        <select id="supplier-select" multiple="multiple">
+            <option value=""> {{ 'filter_by_supplier'|trans() }} </option>
+            {% for ss in tmp.suppliers %}
+                <option value="{{ ss.supplier.id }}">{{ ss.supplier.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-xs-6">
+        <select id="day-select" multiple="multiple">
+            <option value=""> {{ 'filter_by_day'|trans() }} </option>
+            {% set daysToBeInSelect = [] %}
+            {% for ss in tmp.suppliers %}
+                {% for d in ss.getDaysWithOccurence|keys %}
+                    {% if d not in daysToBeInSelect %}
+                        {% set daysToBeInSelect = daysToBeInSelect|merge([d]) %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            {% for dd in daysToBeInSelect %}
+                <option value="{{ dd }}">{{ days[dd]|title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+{% for s in tmp.suppliers %}
+    {% for d in s.getDaysWithOccurence|keys %}
+        {% set show = false %}
+        {% for p in s.helpMaskProducts %}
+            {% if p.mask != null and p.mask.orderDay == d %}
+                {% if (displayAll and p.qtyToBeOrdred>=-1) or p.qtyToBeOrdred > 0 %}
+                {% set show = true %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        {% if show == true %}
+            <form class="form-products" id="form-{{ s.supplier.id }}-{{ d }}">
+                <h4>{{ days[d]|title }} ({{ orderDates[d]|date('d/m/Y') }}) -{{ s.supplier.name }} </h4>
+                <table width="100%" class="result-recap-table-center table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>{{ 'keyword.category'|trans }}</th>
+                        <th colspan="2">{{ 'keyword.period'|trans }}</th>
+                        <th>{{ 'keyword.budget'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for mm in s.days %}
+                        {% if mm.orderDay == d %}
+                            <tr>
+                                <td>{{ mm.category.name }}</td>
+                                <td>{{ mm.range }} Jour(s)</td>
+                                <td>{{ mm.absoluteOrderDate|date('d/m/Y') }}
+                                    => {{ mm.absoluteDeliveryDate|date('d/m/Y') }}</td>
+                                <td>{{ mm.budget|number_format(0,',','') }} (&euro;)</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <hr style="border-color: lightgray;">
+                <table id="table-{{ s.supplier.id }}-{{ d }}" class="products table table-striped table-hover"
+                       width="100%">
+                    <thead>
+                    <tr>
+                        <th> {{ 'product.code'|trans() }} </th>
+                        <th>  {{ 'article'|trans() }}  </th>
+                        <th> {{ 'stock_qty_theo_real'|trans() }} </th>
+                        <th> {{ 'coeff_label'|trans() }} </th>
+                        <th> {{ 'need_label'|trans() }} </th>
+                        <th> {{ 'expected_deliveries_u_expd'|trans() }} </th>
+                        <th> {{ 'qty_to_be_ordred_label'|trans() }} </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for p in s.helpMaskProducts %}
+                        {% if p.mask != null and p.mask.orderDay == d and ((displayAll and p.qtyToBeOrdred>=-1) or p.qtyToBeOrdred > 0) %}
+
+                            <tr >
+                                <td>{{ p.helpProduct.product.externalId }}</td>
+                                <td date="{{ p.mask.orderDate|date('d/m/Y') }}" {% if 0 > p.qtyToBeOrdred >=-1 %} style="text-decoration: underline; text-decoration-color: red;" {% endif %}>{{ p.helpProduct.product.name }} </td>
+                                <td>
+                                    {{ p.helpProduct.lastStockQty|number_format(2,',','') }} {{ p.helpProduct.product.labelUnitExped|trans }}
+                                    {% if p.helpProduct.lastStockQtyIsReal %}
+                                        (R)
+                                    {% else %}
+                                        (T)
+                                    {% endif %}
+                                </td>
+                                {#<td>{{ p.hebTheo }}#}
+                                {#/ {{ p.hebReal }} {% if p.type == 'real' %} R {% else %} T {% endif %}</td>#}
+                                <td>{{ p.helpProduct.coeff|number_format(2,',','') }}</td>
+                                <td>{{ p.need|number_format(2,',','') }} </td>
+                                <td>{{ p.lp }}</td>
+                                <td class="small-input">
+                                    <input class="form-control qty-to-order-input"
+                        {% if 0 > p.qtyToBeOrdred >=-1 %}value="1" {% else %}value="{{ p.qtyToBeOrdred }}"{% endif %}
+                                           name="product[{{ p.helpProduct.product.id }}]">
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div style="text-align: right">
+                    {% set couple = s.supplier.id~"/"~d %}
+                    {% if couple not in tmp.generatedCouples %}
+                        <span class="confirmation-msg"><span
+                                    class="glyphicon glyphicon-thumbs-up"></span> {{ 'order_generated'|trans() }} </span>
+                        <button target-id="table-{{ s.supplier.id }}-{{ d }}" type="button"
+                                class="btn prepare-cmd-btn violet">
+                            <span class="glyphicon glyphicon-ok"></span> {{ 'prepare_order'|trans() }}
+                        </button>
+                    {% else %}
+                        <span class="confirmation-msg" style="display: inline-block;"><span
+                                    class="glyphicon glyphicon-thumbs-up"></span>{{ 'order_generated'|trans() }}</span>
+                        <button disabled target-id="table-{{ s.supplier.id }}-{{ d }}" type="button"
+                                class="btn violet">
+                            <span class="glyphicon glyphicon-ok"></span> {{ 'prepare_order'|trans() }}
+                        </button>
+                    {% endif %}
+                </div>
+
+                <div style="clear: both"></div>
+                <hr>
+            </form>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+

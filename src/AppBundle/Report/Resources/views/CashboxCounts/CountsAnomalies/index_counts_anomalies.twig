@@ -1,0 +1,244 @@
+{% extends('@Report/CashboxCounts/index.html.twig') %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/Materialize/extras/noUiSlider/nouislider.css') }}">
+    <style>
+        .noUi-background, .noUi-base, .noUi-connect, .noUi-target .noUi-active.noUi-handle {
+            height: 6px;
+        }
+
+        .noUi-target .noUi-active.noUi-handle {
+            left: -1px;
+        }
+
+        .noUi-horizontal .noUi-handle {
+            top: -5px
+        }
+
+        .noUi-horizontal .noUi-handle {
+            left: -8px;
+        }
+
+        span.percent-sign:after {
+            content: '%';
+            padding-left: 1px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var filterMax = {};
+        {% if filters is defined %}
+        {% for key, filter in filters.max %}
+        filterMax['{{ key }}'] = {{ filter }};
+        {% endfor %}
+        {% endif %}
+    </script>
+    <script type="application/javascript"
+            src="{{ asset('plugins/Materialize/extras/noUiSlider/nouislider.min.js') }}"></script>
+    <script type="application/javascript" src="{{ asset('src/js/Report/report_anomalie.js') }}"></script>
+    <script>
+        $('.filter-guidance').click(function (e) {
+            var title = "{{ 'cashbox_counts_anomalies.filter_guidance.title'|trans }}";
+            var body = "{{'cashbox_counts_anomalies.filter_guidance.body'| trans | e('js')  }}";
+            showDefaultModal(title, body);
+        });
+    </script>
+  <script src="{{ asset('src/js/fixHeader.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'cashbox_counts_anomalies.title'|trans }}
+{% endblock %}
+
+{% block subBody %}
+
+    <div class="panel panel-default">
+        {{ form_start(countAnomaliesForm, {'method' : 'POST' ,'action' : path('report_cashbox_counts_anomalies'), 'attr' : { 'id' : 'anomaliesFilterForm'} }) }}
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-filter"></span> {{ 'title.filters'|trans }} <a
+                    class="filter-guidance"><span id="" class="glyphicon glyphicon-question-sign"></span></a>
+            <div class=""></div>
+        </div>
+        <div class="panel-body" style="padding-top:0; padding-bottom:0; ">
+
+            <div class="row" style="margin-bottom: 0;">
+                <div class="col-xs-6 col-md-4">
+                    {{ form_label(countAnomaliesForm.startDate, 'cashbox_counts_anomalies.filter_labels.from' ) }}
+                    <br/>
+                    <div class="input-group">
+                        {{ form_widget(countAnomaliesForm.startDate, { "attr": { "class": 'form-control datepicker' } }) }}
+                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                    </div>
+                    {{ form_errors(countAnomaliesForm.startDate) }}
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    {{ form_label(countAnomaliesForm.endDate, 'cashbox_counts_anomalies.filter_labels.to' ) }}
+                    <br/>
+                    <div class="input-group">
+                        {{ form_widget(countAnomaliesForm.endDate, { "attr": { "class": 'form-control datepicker' }}) }}
+                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                    </div>
+                    {{ form_errors(countAnomaliesForm.endDate) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 range-container">
+                    {{ form_label(countAnomaliesForm.diffCashbox) }}
+                    <a class="filter-guidance"><span id="" class="glyphicon glyphicon-question-sign"></span></a>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding-bottom: 0;">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="range-diffCashbox" style="margin-bottom: 15px"></div>
+                                    <span class="percent-sign" id="min-diffCashbox" style="float: left">0</span>
+                                    <span class="percent-sign" id="max-diffCashbox" style="float: right">100</span>
+                                </div>
+                            </div>
+                            {{ form_widget(countAnomaliesForm.diffCashbox) }}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 range-container">
+                    {{ form_label(countAnomaliesForm.annulations) }}
+                    <a class="filter-guidance"><span id="" class="glyphicon glyphicon-question-sign"></span></a>
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding-bottom: 0;">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="range-annulations" style="margin-bottom: 15px"></div>
+                                    <span class="percent-sign" id="min-annulations" style="float: left">0</span>
+                                    <span class="percent-sign" id="max-annulations" style="float: right">100</span>
+                                </div>
+                            </div>
+                            {{ form_widget(countAnomaliesForm.annulations) }}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 range-container">
+                    {{ form_label(countAnomaliesForm.corrections) }}
+                    <a class="filter-guidance"><span id="" class="glyphicon glyphicon-question-sign"></span></a>
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding-bottom: 0;">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="range-corrections" style="margin-bottom: 15px"></div>
+                                    <span class="percent-sign" id="min-corrections" style="float: left">0</span>
+                                    <span class="percent-sign" id="max-corrections" style="float: right">100</span>
+                                </div>
+                            </div>
+                            {{ form_widget(countAnomaliesForm.corrections) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4 range-container">
+                    {{ form_label(countAnomaliesForm.abandons) }}
+                    <a class="filter-guidance"><span id="" class="glyphicon glyphicon-question-sign"></span></a>
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding-bottom: 0;">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="range-abandons" style="margin-bottom: 15px"></div>
+                                    <span class="percent-sign" id="min-abandons" style="float: left">0</span>
+                                    <span class="percent-sign" id="max-abandons" style="float: right">100</span>
+                                </div>
+                            </div>
+                            {{ form_widget(countAnomaliesForm.abandons) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 range-container">
+                    {{ form_label(countAnomaliesForm.especes) }}
+                    <a class="filter-guidance"><span id="" class="glyphicon glyphicon-question-sign"></span></a>
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding-bottom: 0;">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="range-especes" style="margin-bottom: 15px"></div>
+                                    <span class="percent-sign" id="min-especes" style="float: left">0</span>
+                                    <span class="percent-sign" id="max-especes" style="float: right">100</span>
+                                </div>
+                            </div>
+                            {{ form_widget(countAnomaliesForm.especes) }}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 range-container">
+                    {{ form_label(countAnomaliesForm.titreRestaurant) }}
+                    <a class="filter-guidance"><span id="" class="glyphicon glyphicon-question-sign"></span></a>
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding-bottom: 0;">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="range-titreRestaurant" style="margin-bottom: 15px"></div>
+                                    <span class="percent-sign" id="min-titreRestaurant" style="float: left">0</span>
+                                    <span class="percent-sign" id="max-titreRestaurant" style="float: right">100</span>
+                                </div>
+                            </div>
+                            {{ form_widget(countAnomaliesForm.titreRestaurant) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 5px;">
+                <div class="col-md-12 col-xs-12" style="text-align:right;">
+
+                    {% if(generated is defined) %}
+                        <button class="btn waves-effect btn-export text-black dropdown-button"
+                                data-activates='dropdown2'>
+                            <span> {{ 'btn.export'|trans() }} </span>
+                        </button>
+                        <ul id="dropdown2" class="dropdown-content" style="">
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="downloadReport">
+                                    <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}" style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                </a></li>
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="export-btn">
+                                    <img src="{{ asset('bundles/app/images/export/xls-512.png') }}" style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    {% endif %}
+
+                    <button id="generateReport" type="button" class="btn waves-effect orange text-black ">
+                        {{ 'btn.generate_report'|trans() }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="hidden">
+                {{ form_rest(countAnomaliesForm) }}
+            </div>
+
+        </div>
+        {{ form_end(countAnomaliesForm) }}
+    </div>
+
+
+    {% if(generated is defined) %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ include('@Report/CashboxCounts/CountsAnomalies/cashbox_count_anomalies_report_body.html.twig') }}
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

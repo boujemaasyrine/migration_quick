@@ -1,0 +1,1 @@
+checkov -d docker --output-file-path docker/checkov_report

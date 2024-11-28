@@ -1,0 +1,152 @@
+{% if download is not defined %}
+    {% set  class_tab='table table-striped table-bordered table-hover' %}
+    <style>
+        .highlight-supplier {
+            background-color: #FFF282 !important;
+        }
+
+        .highlight-restaurant {
+            background-color: #EDE2C9 !important;
+        }
+    </style>
+{% else %}
+    {% set  class_tab='table table-bordered table-hover' %}
+{% endif %}
+
+{% if result['delivery'] is defined %}
+
+    {% for supplierDeliveries in result['delivery'] %}
+
+
+        {% set row_number = supplierDeliveries | length %}
+
+
+        <table class="{{ class_tab }}" cellspacing="0"
+               width="100%">
+            <thead>
+            <tr>
+                <th colspan="3" style="padding: 0;">
+                    <h3 class="highlight-supplier" style="text-align: center; padding: 10px; margin: 0;">
+                        {{ supplierDeliveries.name }}
+                    </h3>
+                </th>
+            </tr>
+            <tr class="report-table-head mainHeader">
+                <th style="width: 33.33%;">{{ 'keyword.invoice' | trans }}</th>
+                <th style="width: 33.33%;">{{ 'keyword.date' | trans }}</th>
+                <th>{{ 'keyword.total' | trans }}</th>
+            </tr>
+            </thead>
+            <tbody class="mainTbody">
+            {% for i in 0..( row_number - 3 ) %}
+                <tr>
+                    <td>#{{ supplierDeliveries[i].invoice }}</td>
+                    <td>{{ supplierDeliveries[i].date | date("d/m/Y") }}</td>
+                    <td>{{ supplierDeliveries[i].valorization }} €</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td><b>{{ supplierDeliveries.totalValorization }} €</b></td>
+            </tr>
+            </tbody>
+        </table>
+
+    {% endfor %}
+{% endif %}
+
+{% if result['transfer'] is defined %}
+
+    {% for restaurantTransfers in result['transfer'] %}
+
+
+        {% set row_number = restaurantTransfers | length %}
+
+
+        <table class="{{ class_tab }}" cellspacing="0"
+               width="100%">
+            <thead>
+            <tr>
+                <th colspan="3" style="padding: 0">
+                    <h3 class="highlight-restaurant" style="text-align: center; padding: 10px;  margin: 0;">
+                        {{ restaurantTransfers.name }}
+                    </h3>
+                </th>
+            </tr>
+            <tr>
+                <th style="width: 33.33%;">{{ 'keyword.invoice' | trans }}</th>
+                <th style="width: 33.33%;">{{ 'keyword.date' | trans }}</th>
+                <th>{{ 'keyword.total' | trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in 0..( row_number - 3 ) %}
+                <tr>
+                    <td>#{{ restaurantTransfers[i].invoice }}</td>
+                    <td>{{ restaurantTransfers[i].date | date("d/m/Y") }}</td>
+                    <td>{{ restaurantTransfers[i].valorization }} €</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td><b>{{ restaurantTransfers.totalValorization }} €</b></td>
+            </tr>
+            </tbody>
+        </table>
+
+    {% endfor %}
+{% endif %}
+
+
+<table class="{{ class_tab }}" cellspacing="0"
+       width="100%">
+    <thead>
+    <tr>
+        <th colspan="2">
+            <h3 style="margin: 0">
+                {{ 'label.recap' | trans }}
+            </h3>
+        </th>
+    </tr>
+    <tr>
+        <th style="width: 50%;">{{ 'label.name' | trans }}</th>
+        <th>{{ 'keyword.total' | trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if result['delivery'] is defined %}
+        {% for supplierDeliveries in result['delivery'] %}
+            <tr>
+                <td>
+                    {{ supplierDeliveries.name }}
+                </td>
+                <td>
+                    {{ supplierDeliveries.totalValorization }} €
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+
+    {% if result['transfer'] is defined %}
+        {% for restaurantTransfers in result['transfer'] %}
+            <tr>
+                <td>
+                    {{ restaurantTransfers.name }}
+                </td>
+                <td>
+                    {{ restaurantTransfers.totalValorization }} €
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+
+    </tbody>
+</table>
+
+
+
+
+
+

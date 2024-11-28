@@ -1,0 +1,43 @@
+unique:
+    socialId: Dit rijksregisterummer bestaat al #Ce numéro d'identification Sociale existe déja.
+
+staff:
+    list:
+        title: Personeelslijst #List du personnel
+        details: Gegevens over het personeel #Détails du personnel
+        all_roles: Alle functies
+        roles:
+            title: Lijst met toegewezen rollen #Liste des rôles attribués
+            success: Rol met succes toegewezen #Rôle attribué avec succès
+            delete: De rol verwijderen #Supprimer le rôle
+            deleted: Rol met succes verwijderd #Rôle supprimé avec succès
+        password:
+            success: Standaard wachtwoord met succes aangemaakt #Mot de passe par défault créé avec succès
+            force_edit_success: U kunt vanaf nu gebruik maken van quik BO #Vous pouvez à présent commencer à utiliser quick BO
+            force_edit: U dient te beginnen met uw wachtwoord aan te passen #Vous devez d'abord changer votre mot de passe
+        email:
+            success: Het e-mailadres is succesvol gewijzigd. #L'adresse email a été modifiée avec succès.
+            right_error: U bent niet gemachtigd om deze actie uit te voeren #Vous n'avez pas le droit d'exécuter cette action.
+        attribute_role: Een rol toewijzen #Attribuer un rôle
+        default_password: Kies een wachtwoord #Définir un mot de passe
+        reset_password: Verander het wachtwoord opnieuw #Redéfinir le mot de passe
+        change_email: Verander het e-mailadres #Changer l'adresse email
+        choose_role: Kies de rol #Choisir le rôle
+        default_password_title: Bepaal de standaard wachtwoord #Définir le mot de passe par défault
+        synchronize:
+           success: Synchronisatie met succes uitgevoerd #Synchronisation effectuée avec succès
+           users_added: Aantal werknemers toegevoegd #Nombre d'employés ajoutés:
+    role:
+        title: Een rol toevoegen #Ajouter un rôle
+        delete: Verwijder de rol #Supprimer le rôle
+        delete_confirm: <h3>Vous êtes sur le point de supprimer la fonction '%role%', Confirmez vous cette opération?</h3>  #TODO Bilel
+        add_success: Rol met succes toegevoegd #Rôle ajouté avec succès
+        edit_success: Fonction modifiée avec succès  #TODO Bilel
+        delete_success: Rol met succes verwijderd #Rôle supprimé avec succès
+        delete_failed_title: Verwijdering onmogelijk #Suppression impossible
+        delete_failed_body: <h3>Wilt u de lijst van rechten voor deze rol verwijderen en verifiëren of deze niet aan een andere gebruiker toegewijzen is</h3>
+
+roles:
+    edit_role: De taak wijzigen #Modifier le rôle
+synchronize:
+    users_added: "<h4>Nombre d'employés ajoutés: %addedUsers%</h4><h4>Nombre d'employés supprimés: %deletedUsers%</h4>"

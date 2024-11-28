@@ -1,0 +1,76 @@
+{% extends '@Merchandise/index_supplying.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var xlsImagePath = "{{ asset('bundles/app/images/export/xls-512.png') }}";
+        var pdfImagePath = "{{ asset('bundles/app/images/export/pdf-512.png') }}";
+    </script>
+    <script src="{{ asset('src/js/Merchandise/Order/pending_list.js') }}"></script>
+    <script src="{{ path('bazinga_jstranslation_js', { 'domain': 'order_status' }) }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ "command.list.pending.title"|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'buying_management.command_management'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-4">
+                    <a href="{{ path('add_command') }}" class="btn btn-add btn-icon">
+                        {{ "new_order_btn"|trans }}
+                    </a>
+                </div>
+                <div class="col-xs-5"></div>
+                <div class="col-md-12" style="text-align:right;">
+                    <button class="btn waves-effect btn-icon btn-export text-black dropdown-button"
+                            data-activates='dropdown2'>
+                        <span> {{ 'btn.export'|trans() }} </span>
+                    </button>
+                    <ul id="dropdown2" class="dropdown-content" style="">
+                        <li>
+                            <a class="strech_btn text-black" href="#" id="export-xls">
+                                <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                     style="height: 25px"
+                                     alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                            </a></li>
+                        <li>
+                            <a class="strech_btn text-black" href="#" id="export-btn">
+                                <img src="{{ asset('bundles/app/images/export/csv-128.png') }}"
+                                     style="height: 25px"
+                                     alt="{{ 'btn.download'|trans() }} {{ 'btn.download_csv'|trans() }}"/>
+                                <span style="color: #000;">{{ 'btn.download_csv'|trans() }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <table id="pending_commands_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+                   width="100%">
+                <thead>
+                <tr>
+                    <th>{{ "command.list.table.header.num_order"|trans }}</th>
+                    <th>{{ "command.list.table.header.supplier"|trans }}</th>
+                    <th>{{ "command.list.table.header.date_order"|trans }}</th>
+                    <th>{{ "command.list.table.header.date_delivery"|trans }}</th>
+                    <th>{{ "command.list.table.header.responsible"|trans }}</th>
+                    <th>{{ "command.list.table.header.status"|trans }}</th>
+                    <th>{{ "command.list.table.header.actions"|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}
+

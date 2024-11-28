@@ -1,0 +1,48 @@
+error:
+    value_must_be_modulo_5: Deze waarde moet een veelvoud van 5 zijn #Cette valeur doit être modulo 5
+    envelope_unique_source_date: Een enveloppe van deze type werd al gecreëerd voor deze dag #Enveloppe unique par Type/Jour
+    envelope_amount_over_cash_real: Het bedrag van de enveloppe is hoger dan het bedrag van de kassa. #La montant de l'enveloppe est supèrieur au montant de la caisse.
+    envelope_amount_is_invalid: Het bedrag van de enveloppe kan niet lager of gelijk zijn aan nul. #Le montant de l'enveloppe ne doit pas être inférieur ou égale à zero.
+    envelope_max_amount: Montant non autorisé.
+    out_of_values: Waarde tussen 0 en 23 #Valeur entre 0 et 23
+    null_value: Deze waarde kan niet nul zijn #Cette valeur ne doit pas être nulle
+    start_date_must_be_before_end_dat: De begindatum moet vóór de einddatum liggen #La date de début doit préceder la date de fin
+
+    # Missed Translation
+    there_is_a_problem: Uw formulier is ongeldig, gelieve de ingevoerde gegevens te controleren #Votre formulaire invalide, veuillez vérifier les données saisies.
+    last_chest_count_is_modified: Een koffertelling werd juist vóór uw telling gevalideerd. Gelieve het overzicht van de telling te controleren.  #Un comptage coffre viens d'être valider avant votre comptage, merci de reverifier la récapitulatif du comptage.
+
+confirm_password_failed: De ingaven controleren #Vérifiez vos saisies
+max_one_week: Selecteer een periode van maximum een week  #Sélectionnez une période qui ne dépasse pas une semaine
+
+#supervision translations
+invalid_format: Format niet geldig #Format invalide
+null_value: Deze waarde dient geen nul te zijn #Cette valeur ne doit pas être nulle
+int_field: Dit veld moet een geheel getal zijn #Ce champs doit être un entier
+positive_field: De waarde van dit veld dient meer te zijn dan 0 #La valeur de ce champ doit être supérieur à 0
+order:
+    date_not_programmed: Deze datum is niet in de planning geprogrammeerd #Cette date n'est pas programmée dans le planning
+    date_order_sup_delivery: De besteldatum dient eerder of gelijk te zijn aan die van de levering #La date de la commande doit être inférieure ou égale à celle de livraison
+    order_line_min: Er dient minimaal één regel te zijn #Il devait avoir au moins une ligne
+    product_not_in_supplier_products: Dit product komt niet voor op de lijst van producten van deze leverancier #Ce produit n'appartient pas à la liste des produits fournis par ce fournisseur
+product_not_found: Product niet gevonden #Produit non trouvé
+product_not_active: Product niet actief #Produit non actif
+date_order_sup_delivery: Besteldatum is later dan die van de levering #Date de la commande est supérieur à celle de la livraison
+num_transfert_unique: Het transfer Nr. dient uniek te zijn #Le N° Transfert doit être Unique
+product_sold:
+    transformed_product_sold_must_have_at_least_one_recipe: Dit product moet minimaal een recept hebben #Ce produit doit avoir au moins une recette
+    recipe_must_have_at_least_one_recipe_line: Een recept dient minimaal één regel te hebben #Une recette doit avoir au moins une ligne
+    null_value: Deze waarde kan niet nul zijn #Cette valeur ne doit pas être nulle
+    product_purchased_is_required: Een inventaris item is vereist #Le produit d'inventaire est requis.
+
+# missed translations
+date_in_futur: Kiest u een datum in de toekomst #Veuillez choisir une date au futur
+confirm_password_failed: Uw invoer verifiëren #Vérifiez vos saisies
+unique:
+    username: De login dient uniek te zijn #Le login doit être unique
+    email: Het email adres dient uniek te zijn #L'email doit être unique
+product_sold.code_plu_already_exist_for_at_least_one_restaurant: Code PLU bestaat al in de geselecteerde restaurants. #Code PLU déjà existant dans un des restaurants sélectionnés.
+positive_value: deze waarde dient hoger zijn dan 0 #Cette valeur doit être supérieure à 0
+product_sold.recipe_must_be_unique_per_solding_canal: U dient ééen enkel recept te selecteren per verkoopskanaal #Vous devez saisir une unique recette par canal de vente.
+startdate_inf_enddate : De startdatum moet kleiner zijn dan of gelijk zijn aan de einddatum. #La date de début doit être inférieure ou égale à la date de fin.
+startHour_inf_endHour : De starttijd moet korter zijn dan of gelijk zijn aan de eindtijd. #L'heure de début doit être inférieure ou égale à  l'heure de fin.

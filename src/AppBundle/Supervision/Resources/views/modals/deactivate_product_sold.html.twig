@@ -1,0 +1,58 @@
+{% if successInRestaurant is defined %}
+    {% if successInRestaurant|length>0 %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert">
+                    <h6>{{ 'product_sold.deactivate_success' | trans({'%product.sold%': item.name,'%restaurant%':successInRestaurant|join(', ') }, "supervision") }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+{% if  failedInRestaurant is defined %}
+    {% if failedInRestaurant|length>0 %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger" role="alert">
+                    <p> {{ 'product_sold.deactivate_failed' | trans({'%product.sold%': item.name,'%restaurant%':failedInRestaurant|join(', ') }, "supervision") }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+{% if isActivatedInOneOfTheRestaurant==true %}
+    {{ form_start(form, {'attr' : {'action':path('deactivate_product_sold_in_restaurants',{'productSold':item.id}), 'id' : 'form-deactivate-product-sold' }}) }}
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>{{ 'product_sold.deactivate_description' | trans({'%product.sold%': item.name }, "supervision") }}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {{ form_label(form.restaurant) }}
+                {{ form_widget(form.restaurant, {'attr': {'class': 'selectize'}}) }}
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+    <script>
+        $(function () {
+            var $select = $('#deactivate_product_for_restaurant_restaurant').selectize({});
+        });
+    </script>
+{% else %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                <h5>  {{ 'product_sold.is_not_activated_In_One_Of_The_Restaurants' | trans({'%product.sold%': item.name }, "supervision") }}
+                </h5>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+

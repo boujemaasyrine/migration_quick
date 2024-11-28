@@ -1,0 +1,41 @@
+{% extends '@Merchandise/index_stock.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/Merchandise/sheet_model.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var sheetsType = '{{ type }}';
+    </script>
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/SheetModel/sheet.js') }}"></script>
+    <script src="{{ asset('src/js/Merchandise/Loss/sheet.js') }}"></script>
+    {% if type ==  constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL') %}
+        <script src="{{ asset('src/js/Merchandise/Loss/sheets_final_product.js') }}"></script>
+    {% endif %}
+{% endblock %}
+
+{% block base_title %}
+    {% if type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') %}
+        {{ 'loss.sheets.title_articles_loss_model'  |trans }}
+    {% elseif type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL') %}
+        {{ 'loss.sheets.title_sold_products_loss_model'  |trans }}
+    {% endif %}
+{% endblock %}
+
+{% block base_subtitle %}
+    {% if type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') %}
+        {{ parent() }} - {{ 'loss_management.title'|trans([], 'navbar') }} - {{ 'loss_management.articles'|trans([], 'navbar') }}
+    {% elseif type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL') %}
+        {{ parent() }} - {{ 'loss_management.title'|trans([], 'navbar') }} - {{ 'loss_management.sold_products'|trans([], 'navbar') }}
+    {% endif %}
+{% endblock %}
+{% block body %}
+    <div class="">
+        <div class="panel panel-default">
+            {{ include('@Merchandise/SheetModel/parts/sheet_list.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

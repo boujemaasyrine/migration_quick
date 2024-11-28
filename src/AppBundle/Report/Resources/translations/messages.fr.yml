@@ -1,0 +1,539 @@
+portion_control:
+    title: Analyse des écarts-Portion Contrôle
+    three_weeks: Analyse des écarts 3 semaines
+    tille_file: Portion Control
+    plu_warning: les recettes des PLU suivants sont introuvables dans votre back Office :
+    filter_labels:
+        periode: Période Courante
+        from: Du
+        to: au
+        mesure_unit: Unité de mesure
+        inventory: Inventaire
+        selection: Sélection
+        threshold: Seuil (Euros)
+        code: Code
+        name: Nom Item
+        category: Catégorie
+    filter_values:
+        inventory_done: Inventaire fait
+        all_items: Tous les items
+        error: En erreur (Ecart > Seuil)
+    report_labels:
+        items: Items
+        stocks: Stocks
+        ventes: Ventes
+        pertes: Pertes
+        consommations: Consommations
+        ecarts: Ecarts
+        code: Code
+        description: Description
+        format: Format
+        quantite: Quantité (unité d'inventaire)
+        initial: Initial
+        entree: Entrée
+        sortie: Sortie
+        final: Final
+        valeur_final: Valeur finale
+        ventes: Ventes
+        item_vtes: Item Vtes
+        item_inv: Item Inv
+        theo: Theo
+        reel: Réel
+        ecart: Écart
+        valorisation: Valo
+        ecart_positif: Ecart positif
+        ecartnegatif: Ecart négatif
+        dont_paper_cost_indirect: Dont Paper Cost Indirect
+        gain_inf_seuil: Gain inf. seuil
+        perte_sup_seuil: Perte sup. sueil
+        sans_erreur: Sans erreur
+    export_labels:
+        initial: Init.
+        entree: IN
+        sortie: OUT
+        final: Fin
+        fin: Final
+        quantite: Quantité (unité d'inventaire)
+        valeur_final: €
+        ventes: Vts
+        item_vtes: It Vts
+        item_inv: It Inv
+        ecart: +/-
+        valorisation: €
+    label:
+        total: Total
+    validation:
+        start_date_must_be_before_end_dat: La date de début doit précéder la date de fin
+data_invalid: Données invalides
+report:
+    period: Période demandée
+    period_time: Heures demandées
+    discount: Discount
+    br: BR
+    period_to_compare: Comparabilité
+    loss:
+        inventory_item_title: Rapport des pertes des items d'inventaire
+        sold_item_title: Rapport des pertes des items de ventes
+    generate: Générer le rapport
+    generate_error: Une erreur est survenue lors de la génération du rapport
+    inventory:
+        title: Pertes items inventaire
+    sold:
+        title: Pertes items de vente
+    buying:
+        in_out_title: Rapport des entrées & sorties
+        title: Entrées & Sorties
+    sales:
+        hour_by_hour:
+            title: Heure par heure
+            ca_prev: CA Prévisionnel
+            ca_brut: CA Brut TTC
+            ca_ht: CA HTVA
+            escompte_br: Escompte BR inclus
+            cumul_ticket: Cumul Ticket
+            tickets: Tickets
+            ticket: Ticket
+            avg_ticket: Ticket Moyen
+            cumul_ca_brut: Cumul CA Brut TTC
+            cumul_ca_ht: Cumul CA HTVA
+            hour: Heure
+            half_hour: 1/2 Heure
+            quarter_hour: 1/4 Heure
+            ca_type: Type du CA
+            calculate_by: Calculer par
+        slice_schedule:
+            title: Ca par tranche horaire
+            ref_date: Jours de référence utilisés
+            moyen: Moyenne
+            total: Total
+            date: Date
+        hour_by_hour_employee:
+                    title: Chiffre d'affaire par heure par collaborateur
+    food_cost:
+        synthetic:
+            title: Synthétique Foodcost
+            sold_pr_ht: V. PR HT
+            fc_mix: FC Mix
+            ideal_fc: FC Idéal
+            loss_inventory: P. I.Inv
+            loss_sold: P. I.Vts
+            known_loss: P. Con.
+            unknown_loss: P. Inc.
+            total_loss: P. Tot.
+            theorical_fc: FC Thé.
+            theorical_margin: M. Thé.
+            initial_stock: S. Ini.
+            in: Ent.
+            out: Sort.
+            final_stock: S. Final
+            real_consomation: Con. R.
+            real_fc: FC R.
+            real_margin: M. R.
+            real_fc_net: FC R. Net
+            brut_margin: Marge B.
+        margin:
+            title: Marge FoodCost
+            mix_ca_ttc: Food cost Mix C.A T.T.C.
+            ideal_ht: Food cost Ideal HT
+            total_loss: Pertes totales
+            theorical_foodcost: Food Cost Théorique
+            net_sold: Ventes Nettes H.T.
+            real_foodcost: Food Cost Réel
+            voucher_pub: Food cost - discount
+            voucher_meal_foodcost: Food cost - Bons repas
+            net_real_foodcost: Food cost réel net
+            net_real_margin: Marge réelle net
+            period: Période sélectionnée
+            margin_pf: Marge P.F
+            voucher_meal: Bon repas
+            ca_ht: C.A.H.T.
+            theorical_margin: Marge Théorique
+            btn_generate_tooltip : Ce bouton permet de re calculer le rapport sur la période séléctionnée. <br> (Le calcul va prendre un peu du temps)
+
+    ca:
+        ca_brut_ttc: Brut TTC
+        ca_net_ht: NET HTVA
+        net_ttc: Net TTC
+    daily_result:
+        title: Résultats journaliers
+        chest_error: Err. Coffre
+        avg_net_ticket: TM Net
+        inventory_loss: % Pertes I.Inv
+        sold_loss: % Pertes I.Vts
+        takeout_percentage : % TakeOut
+        vente_annexe: Vente Annexe
+    cash_book:
+        title: Livre de caisse
+cashbox_counts_owner:
+    title: Liste des comptages caisses par responsable de comptage
+    filter_labels:
+        periode: Période Courante
+        from: Du
+        to: au
+        owner: Responsable comptage
+    report_labels:
+        responsable: Responsable caisse
+        nombre_comptage: Nbre de comptages
+        ca_theorique: C.A. théorique
+        ca_reel: C.A. réel compté
+        especes: Espèces
+        titres_restaurant: Titres restaurant
+        cartes_bancaires: Cartes Bancaires
+        bon_repas: Bon repas
+        discounts: Discounts
+        annulations: Annulations
+        pourcentage: %
+        corrections: Corrections
+        abandons: Abandons
+        nombre: Nbre
+        montant: Montant
+        ecart: Ecart
+        diff_caisse: Diff. de caisse
+        total: Total
+
+    validation:
+        start_date_must_be_before_end_dat: La date de début doit précéder la date de fin.
+
+cashbox_counts_cashier:
+    title: Liste des comptages caisses par équipier
+    filter_labels:
+        periode: Période Courante
+        from: Du
+        to: au
+    report_labels:
+        responsable: Caissier
+        nombre_comptage: Nbre de comptages
+        ca_theorique: C.A. théorique
+        ca_reel: C.A. réel compté
+        especes: Espèces
+        titres_restaurant: Titres restaurant
+        cartes_bancaires: Cartes Bancaires
+        bon_repas: Bon repas
+        autre_quick: Chèques Quick
+        autre_bk: Chèques BK
+        annulations: Annulations
+        brut: Brut
+        escompte: Escompte
+        pourcentage: %
+        net: Net
+        corrections: Corrections
+        abandons: Abandons
+        nombre: Nbre
+        montant: Montant
+        ecart: Ecart
+        diff_caisse: Diff. de caisse
+        total: Total
+        discounts: Discounts
+
+cashbox_counts_anomalies:
+    title: Rapport des anomalies caissiers
+    filter_labels:
+        periode: Période Courante
+        from: Du
+        to: au
+    filter_guidance:
+        title: Fonctionnement des filtres
+        body: |
+             <h5>Les filtres fonctionne comme suit:</h5>
+             <ul style='font-size:1.5em !important'>
+             <li> - La valeur d'un filtre est l'intervalle (en %) représenté par la barre verte </li>
+             <li> - Les filtres sont mis-à-jour à chaque changement de période avec les valeurs par défaut suivantes :<br>
+                    <span style='margin-left:20px!important'>* Diff. de caisse :&nbsp; supérieur à +/- 0,5%</span> <br>
+                    <span style='margin-left:20px!important'>* Annulations :&nbsp;&nbsp;&nbsp;&nbsp; 	  supérieur à (moyenne du resto + 0,2%)</span> <br>
+                    <span style='margin-left:20px!important'>* Corrections :&nbsp;&nbsp;&nbsp;&nbsp;	  supérieur à (moyenne du resto + 1%)</span> <br>
+                    <span style='margin-left:20px!important'>* Abandons :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	      supérieur à (moyenne du resto)</span> <br>
+                    <span style='margin-left:20px!important'>* Espèces :&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	      inférieur à (moyenne du resto - 2,5%)</span> <br>
+                    <span style='margin-left:20px!important'>* Titres resto. :&nbsp;&nbsp;&nbsp;&nbsp;	  inférieur à (moyenne du resto + 2,5%)</span> <br>
+             </li>
+             <li> - La marge supérieur d'un filtre peut dépasser le 100% selon la valeur maximale des pourcentages dans la colonne correspondante du rapport. </li>
+             </ul>
+    report_labels:
+        responsable: Caissier
+        nombre_caisse: Nbre de caisses
+        ca_reel: C.A. réel compté
+        diff_caisse: Diff. de caisse
+        annulations: Annulations
+        corrections: Corrections
+        abandons: Abandons
+        especes: Espèces
+        titres_restaurant: Titres restaurant
+        ecart: Ecart Ventilation
+        pourcentage: %
+        montant: Montant
+        total: Total
+        avg: Moyenne
+    validation:
+        diff_cashbox: Le filtre "Diff. de caisse" est erroné
+        annulations: Le filtre "Annulations" est erroné
+        corrections: Le filtre "Corrections" est erroné
+        especes: Le filtre "Espèces" est erroné
+        titres_restaurant: Le filtre "Titres restaurants" est erroné
+        ecart: Le filtre "Ecart Ventilation" est erroné
+        error: Le filtre est erroné
+
+form_filter:
+    interval: Intervalle
+    or: Ou
+    and: Et
+
+no_result: Aucun résultat trouvé
+
+#Rapport Contrôle du Stock
+control_stock:
+    title: Contrôle du Stock
+    start_date: Date début
+    end_date: Date fin
+    sheet_model: Modèle de feuille
+    total: Total
+    diff: Différence
+    inventory_unit: Unité d'inventaire
+    coef: Coef
+    en_stock: En Stock
+    need: Besoin
+    delivery: Liv
+    stock_liv: Stock + Livraison
+    total_need: Total Besoin
+    ca_prev: CA Prévisionnel
+    cumul_ca: Cumul des CA Prévisionnels
+    dlc_1: DLC 1
+    dlc_2: DLC 2
+    transfers_pending: Transfert en cours
+    base_calcul: Base du Calcul
+    ca: Chiffre d'affaire
+    rapport_title: Rapport Contrôle du Stock
+    document_generated: Document généré le
+cash_book:
+    recipes: Recettes
+    recipe: Recette
+    expense: Dépenses
+    total_recipe: Total Recettes
+    total_expense: Total Dépenses
+    previous_credit: Solde jour précédent
+    current_credit: Nouveau solde
+    daily_recipe: Recette journalière
+    daily_recipe_theo: CA Théorique
+    real_cashGap: Différence caisse
+# Missed Translation
+sheet_model: Modèle de la feuille
+
+portion_control.plu_warning_footer: La coordination a été avertie.
+ca_prev_today: CA Prévisionnel du Jour
+
+report.generate: "Générer le rapport"
+report.force_generation: "Forcer la regénération du rapport"
+data_not_found: "Aucune donnée n'est trouvée"
+portion_control.report_labels.ecart_minus: Éca.-%number%
+portion_control.report_labels.valorisation_minus: Val.-%number%
+
+# TODO
+no_comparable_days: "Pas de %day% comparables dans cette période"
+nbr_comparable_days: "%nbrComparableDay% jours comparables de %nbrTotalDay% en total"
+nbr_comparable_days_in_week: "%nbrComparableDay% %day% comparables de %day% au total"
+keyword_balancing: Solde Comptable
+keyword_in_chest: En Coffre
+diff_budget: Diff bdg
+avg_tm_brut: TM Brut
+financial_summary:
+    title: Synthétique Financier
+    cancels: Annul.
+    abandonment: Abandon
+    corrections: Corr.
+
+#todo
+report.process.warning: Un processus est déjà en cours, veuillez réessayer plus tard!
+
+br_report:
+    amount_br_min: Montant Min.
+    amount_br_max: Montant Max.
+    amount_ticket_min: Montant ticket Min.
+    amount_ticket_max: Montant ticket Max.
+    amount_br: Montant bons de repas
+    amount_ticket: Montant ticket
+    beneficiary: Bénéficiaire
+    report_one_title: Bons repas
+    report_two_title: Badges responsables
+    br_nb: Nb Bons repas
+    beneficiary_report:
+        title: Bons de repas par bénéficiaire
+    responsible_report:
+        title: Badges responsables
+        responsible: Responsable
+
+with_comment: Avec commentaire
+without_comment: Sans commentaire
+envelope.choose_cashier: Tous
+corrections_report:
+    amount_min: Montant Min
+    amount_max: Montant Max
+    correction: Correction
+    cashier: Equipier
+    responsible: Responsable
+    all: Tous
+    before_total: Avant
+    after_total: Après
+    title: Corrections
+    before: Avant
+    after: Après
+    amount: Montant
+    product: Produit
+    hour: Heure
+    date: Date
+    matricule: Matricule
+    number: Nombre
+    percent_amount: Montant (%)
+    percent_number: Nombre (%)
+    total: Total
+    moyen: Moyenne de la période sélectionné(%)
+
+
+without_comment: Sans commentaire
+without_comment: Sans commentaire
+
+cancellation_report:
+    cancellation_report: Rapport d'annulations
+    invoice_number: Numéro Facture
+    date: Date
+    hour: Heure Annulation
+    cashier: Caissier
+    responsible: Responsable
+    amount_canceled: Montant
+    total : Montant total
+    moyen: Moyenne de la période sélectionné(%)
+    perc: % Annulations
+discount_report:
+    discount_report: Rapport de réduction
+    invoice_number:  Numéro de ticket
+    date: Date
+    hour: Heure
+    to: Au
+    discount_min: Pourcentage réduction Min
+    discount_max: Pourcentage réduction Max
+    discount_value: Montant de réduction
+    before_discount: Montant avant la réduction
+    discount_per_cent: Pourcentage de réduction
+    total : Total
+    matricule: Matricule
+    cashier: Caissier
+
+items_per_canals:
+     title: Répartition des ventes par canaux
+     details_per_day: Détails par jour
+     details_per_hour: Détails par heures
+     revenue_center: Centre de Revenu
+     total: Total
+     total_ttc: Total TTC
+     training: Training
+     brut_ttc: CA Brut TTC
+     percentage: Pourcentage
+     br: Bon de repas
+     discount: Réduction
+     solding_annex: Vts Annexes
+     net_ttc: Net TTC
+     net_ht: NET HTVA
+     tax: Taxes
+     tickets: Tickets
+     tm_brut: TM Brut
+     tm_net: TM NET
+     tm_ht: TM HT
+     kiosk_in: KIOSK IN
+     kiosk_out: KIOSK OUT
+     eat_in: Eat In
+     take_out: Take Out
+     drive: Drive
+     delivery: Delivery
+     e_ordering_in: E-ordering IN
+     e_ordering_out : E-ordering OUT
+     e_ordering : E-ordering
+     day: Date
+     hour: Heures
+     ca_prev_ttc: CA Prév. TTC
+     va: Vts Annexes
+     ht: HTVA
+     tm_: 'messages'
+takeout_report:
+      amount_ticket_min: Montant ticket Min.
+      amount_ticket_max: Montant ticket Max.
+      cashier: Caissier
+      date: Date
+      ca_net_ttc: CA Net TTC
+      takein: TAKE IN
+      takeout: TAKE OUT
+      drive: DRIVE
+      delivery : DELIVERY
+      kiosk_in: KIOSK IN
+      kiosk_out: KIOSK OUT
+      e_ordering_in : E-ordering IN
+      e_ordering_out : E-ordering OUT
+      total: Total
+      all: Tous
+      title: Analyse du Take Out par caissiers
+
+strike_rate:
+    title: Rapport Strike Rate
+    items : Items
+    qty_nr: Quantité
+    strike_rate_nr:
+    qty: Quantité
+    pr_product: % Produit
+    per_100_product : Par 100 Tickets
+    total: Total
+    nbr_total_ticket: Nombre de tickets pour la période sélectionnée :
+    item_name: Nom d'item
+
+ca_per_tva:
+    title: Rapport de répartition du chiffre d'affaire par TVA
+    ca_global: Chiffre Affaire Global
+    ca_tva: Répartition par taux tva
+    amount: Montant
+    ticket: Ticket(sans annulation)
+    ca_per_canal: CA TTC PAR CANAL DE VENTE
+    all_ttc: Toutes Transactions TTC
+    ca_per_tva: CA PAR TVA
+    tva: TVA
+    report_title: Ca_par_tva_report_
+
+tickets_report:
+    title: Factures
+    resultsCount : Nombre de tickets filtrés
+    amount: Montant ticket
+    amountMin: Montant Min
+    amountMax: Montant Max
+    invoiceFrom: Depuis facture numéro
+    invoiceTo: Jusqu'à facture numéro
+    saleCanal: Canaux de vente
+    paymentMethod : Méthodes de paiement
+    ticketFrom: Lot tickets
+    total: Total
+    ticket : Facture
+    par : Par
+
+coeff_product_warning: Liste d'items sur lequel il n 'y a pas de calcul de coefficient :
+coef_report: Calcul de coefficient
+
+canal:
+    drive : Drive
+    eatin : Eat In
+    takeout : Take Out
+    kiosk : KIOSK
+    delivery : Delivery
+    pos : POS
+    e-ordering : E-ordering
+
+hour_bu_hour_employee :
+    title : Chiffre d'affaire par heure par collaborateur
+    ca_brut_ttc: CA BRUT TTC
+    ca_net_htva :  CA NET HTVA
+    ticket_count: Nombre de tickets
+    item_qty : Quantité items
+    tm_brut : TM BRUT
+    total: Total
+    totals: Totaux
+
+easi_bi :
+    title : EASI BI Generation
+    type : Type de fichier
+    bi : BI
+    generate_btn : Générer Fichier
+
+general:
+    week: Semaine du

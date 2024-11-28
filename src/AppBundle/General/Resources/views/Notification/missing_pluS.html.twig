@@ -1,0 +1,29 @@
+{% extends '@General/index_general.html.twig' %}
+
+{% block base_title %}
+    {{ 'title.missing_pluS' | trans([], 'notifications') }}
+{% endblock %}
+{% block base_subtitle %}{{ 'keyword.notification' | trans }}{% endblock %}
+
+{% block body %}
+    <a href="{{ path('notification_list') }}" class="btn btn-primary" style="margin-bottom: 15px">
+        <span class="fa fa-arrow-left"></span> {{ 'keyword.notification' | trans }}
+    </a>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h4>
+                {{ 'notification.missing_plus.title' | trans }}
+            </h4>
+            <ul>
+                {% for plu in instance.notification.data['pluS'] %}
+                    <li class="text-danger">
+                        {{ 'missing_plus.plu_code' | trans }} : {{ plu }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <h4>
+                {{ 'missing_plus.end_of_message' | trans }}
+            </h4>
+        </div>
+    </div>
+{% endblock %}

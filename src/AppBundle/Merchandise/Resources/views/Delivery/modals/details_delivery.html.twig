@@ -1,0 +1,94 @@
+<div class="details-modal" style="padding: 5px;">
+    <div class="row">
+        <h3 style="padding-left: 10px;">
+            {{ 'delivery.delevry'|trans }} #{{ delivery.deliveryBordereau }}
+        </h3>
+    </div>
+    <hr>
+
+    {% if no_btns is not defined %}
+        <a href="{{ path('print_delivery',{'delivery': delivery.id}) }}"
+           class="btn pull-right white black-text"><span
+                    class="glyphicon glyphicon-print"></span> {{ "bl_print"|trans }}</a>
+    {% endif %}
+
+    <h3>{{ 'delivery.informations'|trans }}</h3>
+
+    <div class="row">
+        <div class="col-xs-4 col-lg-2">
+            <b>{{ "delivery.details.supplier"|trans }}: </b>
+        </div>
+        <div class="col-xs-8 col-lg-2">
+            {{ delivery.order.supplier.name }}
+        </div>
+        <div class="col-xs-4 col-lg-2">
+            <b>{{ "command.date.order"|trans }}: </b>
+        </div>
+        <div class="col-xs-8 col-lg-2">
+            {{ delivery.order.dateOrder|date('d/m/Y') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-lg-2">
+            <b>{{ "delivery_date_prevu"|trans }}: </b>
+        </div>
+        <div class="col-xs-8 col-lg-2">
+            {{ delivery.order.dateDelivery|date('d/m/Y') }}
+        </div>
+        <div class="col-xs-4 col-lg-2">
+            <b>{{ "command.new.delivery_date"|trans }}: </b>
+        </div>
+        <div class="col-xs-8 col-lg-2">
+            {{ delivery.date|date('d/m/Y') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-lg-2">
+            <b>{{ "delivery.entry.responsible"|trans }} : </b>
+        </div>
+        <div class="col-xs-8 col-lg-2">
+            {{ delivery.employee.firstName|title }} {{ delivery.employee.lastName|upper }}
+        </div>
+    </div>
+    <hr>
+    <h3>{{ 'delivery.details.title'|trans }}</h3>
+
+    <div class="row add-command-table-row" style="margin-top: 20px">
+        <div class="container-fluid">
+            <table class="table table-striped ">
+                <thead>
+                <tr>
+                    <th>{{ "product.code"|trans }}</th>
+                    <th>{{ "product.name"|trans }}</th>
+                    <th>{{ "command.table.cmd_qty"|trans }}</th>
+                    <th>{{ "delivery.details.delivered_qty"|trans }}</th>
+                    <th>{{ "unit_price"|trans }} (€)</th>
+                    <th>{{ "delivery.regularisation.table.valorisation"|trans }} (&euro;)</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for l in delivery.lines %}
+                    <tr {% if l.getOrderedQty !=  l.qty %} style="background: #ff9090" {% endif %}>
+                        <td>{{ l.product.externalId }}</td>
+                        <td>{{ l.product.name }}</td>
+                        <td>
+                            {{ l.getOrderedQty }} {{ l.product.labelUnitExped|trans }}
+                        </td>
+                        <td>{{ l.qty }} {{ l.product.labelUnitExped|trans }}</td>
+                        <td>{{ l.product.buyingCost|number_format(2,',','') }}</td>
+                        <td>{{ l.valorization|number_format(2,',','') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="4"></th>
+                    <th><label>{{ 'delivery_valorisation'|trans }} (&euro;)</label></th>
+                    <th>{{ delivery.valorization|number_format(2,',','') }}</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<div style="clear: both;"></div>

@@ -1,0 +1,238 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: '@AppBundle/Administration/Resources/config/services.yml'}
+    - { resource: '@AppBundle/Api/Resources/config/services.yml'}
+    - { resource: '@AppBundle/Financial/Resources/config/services.yml'}
+    - { resource: '@AppBundle/General/Resources/config/services.yml'}
+    - { resource: '@AppBundle/General/Resources/config/download_services.yml'}
+    - { resource: '@AppBundle/General/Resources/config/sync_services.yml'}
+    - { resource: '@AppBundle/Merchandise/Resources/config/services.yml'}
+    - { resource: '@AppBundle/Report/Resources/config/services.yml'}
+    - { resource: '@AppBundle/Security/Resources/config/services.yml'}
+    - { resource: '@AppBundle/Staff/Resources/config/services.yml'}
+    - { resource: '@AppBundle/ToolBox/Resources/config/services.yml'}
+    - { resource: '@AppBundle/Supervision/Resources/config/services.yml'}
+    - { resource:  observations.yml}
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    bazinga.jstranslation.translation_finder.class: TranslationBundle\Finder\TranslationFinder
+    locale: "%fallback_locale%"
+
+framework:
+    #esi:             ~
+    default_locale: "%fallback_locale%"
+    translator:
+        fallbacks: ["%fallback_locale%"]
+        path:
+            - "%kernel.root_dir%/../src/AppBundle/Merchandise/Resources/translations"
+            - "%kernel.root_dir%/../src/AppBundle/Administration/Resources/translations"
+            - "%kernel.root_dir%/../src/AppBundle/Api/Resources/translations"
+            - "%kernel.root_dir%/../src/AppBundle/Financial/Resources/translations"
+            - "%kernel.root_dir%/../src/AppBundle/General/Resources/translations"
+            - "%kernel.root_dir%/../src/AppBundle/Report/Resources/translations"
+            - "%kernel.root_dir%/../src/AppBundle/Security/Resources/translations"
+            - "%kernel.root_dir%/../src/AppBundle/Staff/Resources/translations"
+            - "%kernel.root_dir%/../src/AppBundle/Supervision/Resources/translations"
+
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    serializer:
+        cache: serializer.mapping.cache.apc
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%fallback_locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+    assets:
+          version: 'v42'
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    paths:
+        "%kernel.root_dir%/../src/AppBundle/Administration/Resources/views": Administration
+        "%kernel.root_dir%/../src/AppBundle/Api/Resources/views": Api
+        "%kernel.root_dir%/../src/AppBundle/Financial/Resources/views": Financial
+        "%kernel.root_dir%/../src/AppBundle/General/Resources/views": General
+        "%kernel.root_dir%/../src/AppBundle/Merchandise/Resources/views": Merchandise
+        "%kernel.root_dir%/../src/AppBundle/Report/Resources/views": Report
+        "%kernel.root_dir%/../src/AppBundle/Security/Resources/views": Security
+        "%kernel.root_dir%/../src/AppBundle/Staff/Resources/views": Staff
+        "%kernel.root_dir%/../src/AppBundle/Supervision/Resources/views": Supervision
+    form_themes:
+        - 'form_part/errors.html.twig'
+    globals:
+        quick : "%quick%"
+        app_dir: "%kernel.root_dir%"
+        quick_code: "%quick_code%"
+        quick_address: "%quick_address%"
+        parameter_service: "@paremeter.service"
+        withdrawal_service: "@withdrawal.service"
+        product_service: "@product.service"
+        workflow_service: "@workflow.service"
+        administrative_closing_service: "@administrative.closing.service"
+#        bo_status_service: "@bo_status.service"
+        app_locales: "%app_locales%"
+        securityChecker: "@app.security.checker"
+        restaurant_service: "@restaurant.service"
+        session_idle_time: "%session_idel_time%"
+        version: "%version%"
+        app_version : "%app_version%"
+        withdrawal_petty_cash_id: "%withdrawal_petty_cash_id%"
+        basic_color_writing: #333333
+        basic_color_table_line: #ffffff
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ ]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        #closure:
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        #yui_css:
+        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+    orm:
+        #metadata_cache_driver: apc
+        #query_cache_driver: apc
+        #result_cache_driver : apc
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        mappings:
+            Security:
+                type : annotation
+                dir: "%kernel.root_dir%/../src/AppBundle/Security/Entity"
+                prefix: AppBundle\Security\Entity
+            Staff:
+                type : annotation
+                dir: "%kernel.root_dir%/../src/AppBundle/Staff/Entity"
+                prefix: AppBundle\Staff\Entity
+            Merchandise:
+                type : annotation
+                dir: "%kernel.root_dir%/../src/AppBundle/Merchandise/Entity"
+                prefix: AppBundle\Merchandise\Entity
+                is_bundle: false
+            Financial:
+                type : annotation
+                dir: "%kernel.root_dir%/../src/AppBundle/Financial/Entity"
+                prefix: AppBundle\Financial\Entity
+            Administration:
+                type : annotation
+                dir: "%kernel.root_dir%/../src/AppBundle/Administration/Entity"
+                prefix: AppBundle\Administration\Entity
+            General:
+                type: annotation
+                dir: "%kernel.root_dir%/../src/AppBundle/General/Entity"
+                prefix: AppBundle\General\Entity
+                is_bundle: false
+            Report:
+                type: annotation
+                dir: "%kernel.root_dir%/../src/AppBundle/Report/Entity"
+                prefix: AppBundle\Report\Entity
+                is_bundle: false
+            Supervision:
+                type: annotation
+                dir: "%kernel.root_dir%/../src/AppBundle/Supervision/Entity"
+                prefix: AppBundle\Supervision\Entity
+                is_bundle: false
+            translatable:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Translatable\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                is_bundle: false
+
+        dql:
+            datetime_functions:
+                date:           Oro\ORM\Query\AST\Functions\SimpleFunction
+                time:           Oro\ORM\Query\AST\Functions\SimpleFunction
+                timestamp:      Oro\ORM\Query\AST\Functions\SimpleFunction
+                convert_tz:     Oro\ORM\Query\AST\Functions\DateTime\ConvertTz
+            numeric_functions:
+                timestampdiff:  Oro\ORM\Query\AST\Functions\Numeric\TimestampDiff
+                dayofyear:      Oro\ORM\Query\AST\Functions\SimpleFunction
+                dayofmonth:     Oro\ORM\Query\AST\Functions\SimpleFunction
+                dayofweek:      Oro\ORM\Query\AST\Functions\SimpleFunction
+                week:           Oro\ORM\Query\AST\Functions\SimpleFunction
+                day:            Oro\ORM\Query\AST\Functions\SimpleFunction
+                hour:           Oro\ORM\Query\AST\Functions\SimpleFunction
+                minute:         Oro\ORM\Query\AST\Functions\SimpleFunction
+                month:          Oro\ORM\Query\AST\Functions\SimpleFunction
+                quarter:        Oro\ORM\Query\AST\Functions\SimpleFunction
+                second:         Oro\ORM\Query\AST\Functions\SimpleFunction
+                year:           Oro\ORM\Query\AST\Functions\SimpleFunction
+                sign:           Oro\ORM\Query\AST\Functions\Numeric\Sign
+                pow:            Oro\ORM\Query\AST\Functions\Numeric\Pow
+                round:          Oro\ORM\Query\AST\Functions\Numeric\Round
+            string_functions:
+                STRING: AppBundle\ToolBox\DoctrineExtension\CastIntegerToString
+                DATE_STRING: AppBundle\ToolBox\DoctrineExtension\CastDateToString
+                DATE: AppBundle\ToolBox\DoctrineExtension\DateExtension
+                md5:            Oro\ORM\Query\AST\Functions\SimpleFunction
+                group_concat:   Oro\ORM\Query\AST\Functions\String\GroupConcat
+                concat_ws:      Oro\ORM\Query\AST\Functions\String\ConcatWs
+                cast:           Oro\ORM\Query\AST\Functions\Cast
+                replace:        Oro\ORM\Query\AST\Functions\String\Replace
+                date_format:    Oro\ORM\Query\AST\Functions\String\DateFormat
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     "%wkhtmltopdf_path%"
+        options:    
+            images: true
+            enable-local-file-access: true
+bazinga_js_translation:
+    locale_fallback:      fr
+    default_domain:       messages
+
+knp_paginator:
+    template:
+        pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig'
+
+services:
+    monolog.logger.generate_report:
+        class: Monolog\Logger
+        arguments: [generate_report_channel]

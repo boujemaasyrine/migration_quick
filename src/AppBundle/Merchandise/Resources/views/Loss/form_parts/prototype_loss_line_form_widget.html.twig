@@ -1,0 +1,71 @@
+{% spaceless %}
+    <tr class="line" _data_block_
+
+            {#data-inventory-qty="_inventory_qty_"#}
+            {#data-usage-qty="_usage_qty_"#}
+
+            {#data-inventory-unit-label="_label_unit_usage_"#}
+            {#data-usage-unit-label="_label_unit_inventory_"#}
+            {#data-expedition-unit-label="_label_unit_exped_"#}
+    >
+        <td>
+            {#<input type="hidden" id="loss_sheet_lossLines__line_number__id" name="loss_sheet[lossLines][_line_number_][id]" value="_loos_line_id_">#}
+            <span class="product_id">_product_reference_</span>
+            <input type="hidden" id="loss_sheet_lossLines__line_number__product"
+                   name="loss_sheet[lossLines][_line_number_][product]" value="_product_id_">
+        </td>
+        <td>
+            <span class="product_name">_product_name_</span>
+        </td>
+        <td>
+            <div class="col-xs-12 input-group">
+                <input type="text" id="loss_sheet_lossLines__line_number__totalLoss"
+                       name="loss_sheet[lossLines][_line_number_][totalLoss]" required="required"
+                       readonly="readonly"
+                       class="form-control qty-input readOnlyInput" value="0">
+                _inventory_label_total_
+            </div>
+        </td>
+        <td>
+            <div class="col-xs-12 input-group">
+                <input type="text" id="loss_sheet_lossLines__line_number__firstEntry"
+                       name="loss_sheet[lossLines][_line_number_][firstEntry]" required="required"
+                       class="form-control qty-input splitted_input" value="_first_entry_cnt_">
+                _inventory_label_splited_
+                _qty_modal_btn_
+            </div>
+
+        </td>
+        <td>
+            <div class="col-xs-12 input-group">
+                <input type="text" id="loss_sheet_lossLines__line_number__secondEntry"
+                       name="loss_sheet[lossLines][_line_number_][secondEntry]" required="required"
+                       class="form-control qty-input splitted_input" value="_second_entry_cnt_">
+                _inventory_label_splited_
+                _qty_modal_btn_
+            </div>
+
+        </td>
+        <td>
+            <div class="col-xs-10 input-group">
+                <input type="text" id="loss_sheet_lossLines__line_number__thirdEntry"
+                       name="loss_sheet[lossLines][_line_number_][thirdEntry]" required="required"
+                       class="form-control qty-input splitted_input" value="_third_entry_cnt_">
+                _inventory_label_splited_
+                _qty_modal_btn_
+            </div>
+
+        </td>
+        {% if loss.vars.value.type == 'finalProduct' %}
+            <td class="solding_canals" data-allowed-solding-canals="_solding_canals_id_">
+                {{ form_widget(form.soldingCanal, { "attr": { "class": 'form-control solding_canal_input' }}) }}
+            </td>
+        {% endif %}
+        <td class="actions-btn">
+            <button type='button'
+                    class='btnRemoveSheetLossLine btn btn-delete waves-effect waves-light'>
+                <span style="color: white;" class='glyphicon glyphicon-remove'></span>
+            </button>
+        </td>
+    </tr>
+{% endspaceless %}

@@ -1,0 +1,313 @@
+<ul id="vertical-nav-bar" class="sf-menu sf-vertical">
+    <li class="header-item">
+        <a href="#!" class="collapse-link" data-target=".financial-item"> <span class="icon icon-cash"></span>
+            {{ 'financial_management.title'|trans([], 'navbar') }} </a>
+    </li>
+    <li class="financial-item navbar-item-1">
+        <a class="" href="#!"> {{ 'financial_management.cashbox_management'|trans([], 'navbar') }}</a>
+        <ul>
+            <li><a class=""
+                   href="{{ path('withdrawal_entry') }}">{{ 'fund_management.withdrawal_entry' | trans([],'navbar') }}</a>
+            </li>
+            <li>
+                <a class=""
+                   href="{{ path('cashbox_counting') }}"> {{ 'financial_management.cashbox_counting'|trans([], 'navbar') }}</a>
+            </li>
+            <li><a class=""
+                   href="{{ path('day_income') }}">  {{ 'financial_management.daily_income'|trans([], 'navbar') }}  </a>
+            </li>
+        </ul>
+    </li>
+    <li class="financial-item navbar-item-1">
+        <a class="" href="#!"> {{ 'financial_management.chest_management'|trans([], 'navbar') }} </a>
+        <ul>
+            <li>
+                <a class="" href="{{ path('create_recipe_tickets') }}">
+                    {{ 'financial_management.recipe_ticket_entry'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li>
+                <a class="disabled" href="{{ path('chest_count') }}">
+                    {{ 'financial_management.chest_count'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li><a class=""
+                   href="{{ path('expense_entry') }}"> {{ 'financial_management.expense_entry'|trans([], 'navbar') }}</a>
+            </li>
+            <li class="disabled"><a class="disabled"
+                                    href="{{ path('create_envelope_cash') }}"> {{ 'financial_management.envelope_cash'|trans([], 'navbar') }}</a>
+            </li>
+            <li class="disabled"><a class="disabled"
+                                    href="{{ path('create_envelope_restau') }}"> {{ 'financial_management.envelope_restau'|trans([], 'navbar') }}</a>
+            </li>
+            <li class="disabled"><a class="disabled"
+                                    href="{{ path('deposit_cash') }}"> {{ 'financial_management.deposit.cash'|trans([], 'navbar') }}</a>
+            </li>
+            <li class="disabled"><a class="disabled"
+                   href="{{ path('deposit_ticket') }}"> {{ 'financial_management.deposit.ticket'|trans([], 'navbar') }}</a>
+            </li>
+
+        </ul>
+    </li>
+    <li class="financial-item navbar-item-1">
+        <a class="" href="#!">{{ 'financial_management.consultations.title'|trans([], 'navbar') }}</a>
+        <ul>
+            <li><a class=""
+                   href="{{ path('withdrawal_list') }}">{{ 'fund_management.withdrawal_list' | trans([],'navbar') }}</a>
+            </li>
+            <li><a class=""
+                   href="{{ path('expenses_list') }}">{{ 'financial_management.expenses_list'|trans([], 'navbar') }}</a>
+            </li>
+            <li><a class=""
+                   href="{{ path('list_recipe_tickets') }}">{{ 'financial_management.consultations.recipe_ticket'|trans([], 'navbar') }}</a>
+            </li>
+            <li><a class=""
+                   href="{{ path('envelope_list') }}">{{ 'financial_management.consultations.envelope'|trans([], 'navbar') }}</a>
+            </li>
+            <li><a class=""
+                   href="{{ path('deleted_envelope_list') }}">{{ 'financial_management.consultations.deleted_envelopes'|trans([], 'navbar') }}</a>
+            </li>
+            <li class="disabled"><a class="disabled"
+                                    href="{{ path('envelope_ticket_list') }}">{{ 'financial_management.consultations.envelope_ticket'|trans([], 'navbar') }}</a>
+            </li>
+        </ul>
+    </li>
+    <li class="header-item"><a href="#!" class="collapse-link" data-target=".supplying-item"> <span
+                    class="icon icon-supplying"></span> {{ 'buying_management.title'|trans([],'navbar') }} </a></li>
+    <li class="supplying-item navbar-item-1">
+        <a href="#!">Gestion des commandes </a>
+        <ul>
+            <li><a href="{{ path('add_command') }}">Créer une commande</a></li>
+            <li><a href="{{ path('list_pendings_commands') }}">Liste des commandes en cours</a></li>
+            <li><a href="{{ path('planning_suppliers') }}">Planning des commandes</a></li>
+            <li><a href="{{ path('first_step_order_help') }}">Aide à la commande</a></li>
+            {#<li>#}
+                {#<a href="#" class="navbar-item-1">Coefficients</a>#}
+                {#<ul>#}
+                    {#<li><a href="{{ path('coef_calculate_base') }}">Calcul</a></li>#}
+                    {#<li><a href="#">Consultation</a></li>#}
+                {#</ul>#}
+            {#</li>#}
+        </ul>
+    </li>
+    <li class="supplying-item navbar-item-1">
+        <a href="#!">Gestion des livraisons</a>
+        <ul>
+            <li><a href="{{ path('delivery_entry') }}">Saisir une livraison</a></li>
+            <li><a href="{{ path('delivered_list') }}">Liste des livraisons</a></li>
+        </ul>
+    </li>
+    <li class="supplying-item navbar-item-1">
+        <a href="#!"> {{ 'buying_management.transfer_management'|trans([], 'navbar') }} </a>
+        <ul>
+            <li><a href="{{ path('new_transfer_in') }}">Saisir transfert IN</a></li>
+            <li><a href="{{ path('new_transfer_out') }}">Saisir transfert OUT</a></li>
+            <li><a href="{{ path('list_transfer') }}">Liste des transferts</a></li>
+        </ul>
+    </li>
+    <li class="supplying-item navbar-item-1">
+        <a href="#!">Gestion des retours</a>
+        <ul>
+            <li><a href="{{ path('create_return') }}">Saisir retour</a></li>
+            <li><a href="{{ path('returns_list') }}">Liste des retours</a></li>
+        </ul>
+    </li>
+    <li class="header-item"><a href="#!" class="collapse-link" data-target=".stock-item"><span
+                    class="icon icon-stock"></span>Gestion du stock</a></li>
+    <li class="stock-item navbar-item-1">
+        <a href="#!">
+            {{ 'inventory_management.title'|trans([], 'navbar') }}
+        </a>
+        <ul>
+            <li><a href="{{ path('api_save_inventory_sheet_model') }}">
+                    {{ 'inventory_management.add_inventory_sheet_model'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li><a href="{{ path('inventory_sheet') }}">
+                    {{ 'inventory_management.inventory_sheet_list'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li><a href="{{ path('inventory_entry') }}">
+                    {{ 'inventory_management.add_new_inventory'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li><a href="{{ path('inventory_list') }}">
+                    {{ 'inventory_management.list_inventories'|trans([], 'navbar') }}
+                </a>
+            </li>
+            {#<li>#}
+            {#<a href="{{ path('inventory_consult') }}">#}
+            {#{{ 'inventory_management.consult_stock'|trans([], 'navbar') }}#}
+            {#</a>#}
+            {#</li>#}
+        </ul>
+    </li>
+    <li class="stock-item navbar-item-1">
+        <a href="#!">Gestion des pertes</a>
+        <ul>
+            <li class="stock-item navbar-item-1">
+                <a href="#!">
+                    {{ 'loss_management.articles'|trans([], 'navbar') }}
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ path('loss_sheet', { 'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') } ) }}">
+                            {{ 'loss_management.loss_sheet_management'|trans([], 'navbar') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('loss_entry', { 'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') }) }}">
+                            {{ 'loss_management.loss_entry'|trans([], 'navbar') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('previous_date', { 'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL')}) }}">
+                            {{ 'loss_management.previous_date'|trans([], 'navbar') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="stock-item navbar-item-1">
+                <a href="#!">
+                    {{ 'loss_management.sold_products'|trans([], 'navbar') }}
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ path('loss_sheet', {'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL')}) }}">
+                            {{ 'loss_management.loss_sheet_management'|trans([], 'navbar') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('loss_entry', { 'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL') }) }}">
+                            {{ 'loss_management.loss_entry'|trans([], 'navbar') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('previous_date', { 'type': constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL')}) }}">
+                            {{ 'loss_management.previous_date'|trans([], 'navbar') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li class="header-item"><a href="#!" class="collapse-link disabled" data-target=".people-item"><span
+                    class="icon icon-people"></span>{{ 'staff.title'|trans([], 'navbar') }}</a></li>
+    <li class="people-item navbar-item-1 disabled">
+        <a class="disabled" href="{{ path('staff_list') }}">
+            {{ 'staff.list'|trans([], 'navbar') }}
+        </a>
+    </li>
+    <li class="people-item navbar-item-1 disabled"><a class="disabled" href="{{ path('add_role') }}">{{ 'staff.role'|trans([], 'navbar') }}</a></li>
+    <li class="header-item">
+        <a href="#!" class="collapse-link" data-target=".config-item"><span
+                    class="icon icon-config"></span> {{ 'navbar.parameter.parameter'|trans }}</a>
+    </li>
+    <li class="config-item navbar-item-1 "><a
+                href="{{ path('index_workflows') }}">{{ 'navbar.procedures'|trans() }} </a></li>
+    <li class="config-item navbar-item-1 disabled"><a class="disabled" href="{{ path('index_config_role') }}">Gestion
+            des droits</a></li>
+    <li class="config-item navbar-item-1"><a
+                href="{{ path('show_ca_prv_list') }}">{{ 'navbar.parameter.ca_prev'|trans }}</a></li>
+    <li class="config-item navbar-item-1"><a href="#!">Gestion des marchandises</a>
+        <ul>
+            <li><a href="{{ path('suppliers_list') }}">{{ 'parameters.supplier_list' | trans([], 'navbar') }}</a></li>
+            <li><a href="{{ path('restaurant_list') }}">{{ 'parameters.restaurant_list' | trans([], 'navbar') }}</a>
+            </li>
+            <li><a href="{{ path('planning') }}">{{ 'parameters.planing' | trans([], 'navbar') }}</a></li>
+            <li>
+                <a href="{{ path('inventory_item_list') }}">{{ 'parameters.inventory_items_list' | trans([], 'navbar') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('product_sold_list') }}">{{ 'parameters.solding_items_list' | trans([], 'navbar') }}</a>
+            </li>
+            {#<li><a href="{{ path('list_menus') }}">{{ 'navbar.parameter.menus'|trans }}</a></li>#}
+        </ul>
+    </li>
+    <li class="config-item navbar-item-1"><a href="#!">   {{ 'financial_management.title'|trans([], 'navbar') }}  </a>
+        <ul>
+            <li>
+                <a href="{{ path('cahsbox_parameter') }}">{{ 'financial_management.cashbox_counting' | trans([], 'navbar') }}</a>
+            </li>
+        </ul>
+    </li>
+    <li class="header-item disabled"><a href="#!" class="collapse-link" data-target=".workflow-item"> <span
+                    class="icon icon-workflow"></span> Procédures</a>
+    </li>
+
+    {% set procedures = workflow_service.getProcedures() %}
+    {% for p in procedures %}
+        <li class="workflow-item navbar-item-1 disabled ">
+            <a class="disabled" href="{{ path('start_workflow',{ 'procedure' : p.id }) }}">
+                {{ p.name|title }} xx
+            </a>
+        </li>
+    {% endfor %}
+    <li class="header-item"><a href="#!" class="collapse-link" data-target=".reporting-item"><span
+                    class="icon icon-reporting"></span> Reporting et Indicateurs</a></li>
+    <li class="reporting-item navbar-item-1"><a
+                href="#!">{{ 'reports.merchandise_management.title'|trans([], 'navbar') }}</a>
+        <ul>
+            <li>
+                <a href="{{ path('report_portion_control') }}">
+                    {{ 'reports.merchandise_management.portion_control'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li><a href="{{ path('report_inventory_loss') }}">
+                    {{ 'reports.merchandise_management.inventory_item' | trans([], 'navbar') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('report_sold_loss') }}">
+                    {{ 'reports.merchandise_management.solde_item' | trans([], 'navbar') }}
+                </a>
+            </li>
+            <li class="">
+                <a class="" href="{{ path('report_in_out') }}">
+                    {{ 'reports.buying_management.in_out'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li class="">
+                <a class="" href="{{ path('index_food_cost_synthetic') }}">
+                    {{ 'reports.food_cost.synthetic'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li class="">
+                <a class="" href="{{ path('margin_food_cost_report') }}">
+                    {{ 'reports.food_cost.margin'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li><a href="{{ path('control_stock_report') }}">Controle du Stock</a></li>
+        </ul>
+    </li>
+    <li class="reporting-item navbar-item-1"><a
+                href="#!">{{ 'reports.cashbox_counts.title'|trans([], 'navbar') }}</a>
+        <ul>
+            <li>
+                <a href="{{ path('report_cashbox_counts_owner') }}">
+                    {{ 'reports.cashbox_counts.per_owner'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('report_cashbox_counts_cashier') }}">
+                    {{ 'reports.cashbox_counts.per_cashier'|trans([], 'navbar') }}
+                </a>
+            </li>
+            <li class="">
+                <a class="" href="{{ path('report_cashbox_counts_anomalies') }}">
+                    {{ 'reports.cashbox_counts.anomalies'|trans([], 'navbar') }}
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="reporting-item navbar-item-1"><a
+                href="#!">{{ 'reports.financial_revenue.title'|trans([], 'navbar') }}</a>
+        <ul>
+            <li class="">
+                <a class="" href="{{ path('hour_by_hour') }}">
+                    {{ 'reports.sales_management.hour_by_hour'|trans([], 'navbar') }}
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>

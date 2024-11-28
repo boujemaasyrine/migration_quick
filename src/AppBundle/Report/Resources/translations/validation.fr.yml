@@ -1,0 +1,14 @@
+cashbox_counts_anomalies:
+    validation:
+        diff_cashbox: Le filtre "Diff. de caisse" est erroné
+        annulations: Le filtre "Annulations" est erroné
+        corrections: Le filtre "Corrections" est erroné
+        especes: Le filtre "Espèces" est erroné
+        titres_restaurant: Le filtre "Titres restaurant" est erroné
+        ecart: Le filtre "Ecart Ventilation" est erroné
+        error: Le filtre est erroné
+        start_date_must_be_before_end_dat: La date de début doit préceder la date de fin
+
+# Missed Translation
+
+bigger_than_closure_date: Veuillez saisir des dates cloturées

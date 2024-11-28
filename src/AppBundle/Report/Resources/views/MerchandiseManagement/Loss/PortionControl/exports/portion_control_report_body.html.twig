@@ -1,0 +1,196 @@
+<style>
+    .table {
+        border-collapse: collapse;
+    }
+
+    .table > thead > tr > th {
+        border: 1px solid black !important;
+        font-weight: bold;
+    }
+
+    .table td, .table th {
+        border: 1px solid black;
+        height: 17px;
+        font-size: 7pt;
+    }
+
+    /* Header */
+    .top_header th {
+        text-align: center;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .description {
+        width: 200px;
+        min-width: 200px;
+    }
+
+
+</style>
+<div class="">
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding-top:0; padding-bottom:0; ">
+            <div class="row">
+                <div class="container-fluid">
+                    <table id="portionControlTable" class="table" style="border: 1px solid black;">
+                        <thead id="reportHeader" style="">
+                        <tr class="top_header">
+                            <th colspan="3">{{ 'portion_control.report_labels.items'|trans }}</th>
+                            <th colspan="5">{{ 'portion_control.report_labels.stocks'|trans }}</th>
+                            <th colspan="1">{{ 'portion_control.report_labels.ventes'|trans }}</th>
+                            <th colspan="2">{{ 'portion_control.report_labels.pertes'|trans }}</th>
+                            <th colspan="2>">{{ 'portion_control.report_labels.consommations'|trans }}</th>
+                            <th colspan="2>">{{ 'portion_control.report_labels.ecart'|trans }}</th>
+
+                        </tr>
+                        <tr class="sub_header mainHeader">
+                            <th>{{ 'portion_control.report_labels.code'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.description'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.format'|trans }}</th>
+                            <th>{{ 'portion_control.export_labels.initial'|trans }}</th>
+                            <th>{{ 'portion_control.export_labels.entree'|trans }}</th>
+                            <th>{{ 'portion_control.export_labels.sortie'|trans }}</th>
+                            <th>{{ 'portion_control.export_labels.final'|trans }}</th>
+                            <th>{{ 'portion_control.export_labels.valeur_final'|trans }} (€)</th>
+                            <th>{{ 'portion_control.export_labels.ventes'|trans }}</th>
+                            <th>{{ 'portion_control.export_labels.item_vtes'|trans }}</th>
+                            <th>{{ 'portion_control.export_labels.item_inv'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.theo'|trans }}</th>
+                            <th>{{ 'portion_control.report_labels.reel'|trans }}</th>
+                            <th>{{ 'portion_control.export_labels.ecart'|trans }}</th>
+                            <th>{{ 'portion_control.export_labels.valorisation'|trans }} (€)</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody class="mainTbody">
+                        {% for categoryName,row in reportResult.data.data %}
+                            <tr class="category_name">
+
+                                <td colspan="15">{{ categoryName }}
+
+                            </tr>
+
+                            {% for item in row.data %}
+                                <tr class="mainRow">
+                                    <td class="bold">
+                                        {{ item.code }}
+                                    </td>
+                                    <td class="description">
+                                        {{ item.description }}
+                                    </td>
+                                    <td>
+                                        {{ item.format|trans }}
+                                    </td>
+                                    <td class="bold">
+                                        {{ item.initial|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ item.entree|number_format(2, ',', '.') }}
+                                    </td>
+
+                                    <td>
+                                        {{ item.sortie|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td class="bold">
+                                        {{ item.final|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td class="bold">
+                                        {{ item.valeur_final|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ item.ventes|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ item.item_vtes|number_format(2, ',', '.') }}
+                                    </td>
+
+                                    <td>
+                                        {{ item.item_inv|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ item.theo|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ item.reel|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ item.ecart|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ item.valorisation|number_format(2, ',', '.') }}
+                                    </td>
+
+
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td style="font-weight: bold;">
+                                    {{ 'portion_control.label.total'|trans }}
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ row.aggregations.final_value|number_format(2, ',', '.') }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ row.aggregations.valorisation|number_format(2, ',', '.') }}</td>
+
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="3" rowspan="3"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ reportResult.data.aggregations.final_value|number_format(2, ',', '.') }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ reportResult.data.aggregations.valorisation|number_format(2, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;" colspan="2">Ecart positif (€)</td>
+                            <td colspan="2">{{ reportResult.data.aggregations.positive_ecart|number_format(2, ',', '.') }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;" colspan="2">Ecart négatif (€)</td>
+                            <td colspan="2">{{ reportResult.data.aggregations.negative_ecart|number_format(2, ',', '.') }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

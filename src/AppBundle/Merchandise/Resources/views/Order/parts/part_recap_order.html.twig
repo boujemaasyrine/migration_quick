@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-xs-6"><label>{{ "command.list.table.header.status"|trans }}</label></div>
+    <div class="col-xs-6">
+        <b>{{ order.status|trans({},'order_status') }}</b>
+    </div>
+</div>
+<div class="row add-command-table-row">
+    <div class="col-xs-3"><span class="label">{{ "command.new.quick_num"|trans }}: </span><strong>{{ quick }}</strong>
+    </div>
+</div>
+<div class="row add-command-table-row">
+    <div class="col-xs-4"><span class="label">{{ "command.table.supplier"|trans }}:</span></div>
+    <div class="col-xs-8">{{ order.supplier.name }}</div>
+</div>
+<div class="row add-command-table-row">
+    <div class="col-xs-4">
+        <span class="label">{{ "command.table.num_order"|trans }}°: </span><strong>{{ order.numOrder }}</strong>
+    </div>
+    <div class="col-xs-2">
+        <span class="label">{{ "command.date.order"|trans }}:</span>
+    </div>
+    <div class="col-xs-2">
+        {{ order.dateOrder|date('d/m/Y') }}
+    </div>
+    <div class="col-xs-2">
+        <span class="label">{{ "command.date.delivery"|trans }}:</span>
+    </div>
+    <div class="col-xs-2">
+        {{ order.dateDelivery|date('d/m/Y') }}
+    </div>
+</div>
+<div class="row add-command-table-row">
+    <div class="col-xs-4">
+        <span class="label">{{ "command.responsable"|trans }}:</span>
+    </div>
+    <div class="col-xs-8">
+        {{ order.employee.firstName|title }} {{ order.employee.lastName|upper }}
+    </div>
+</div>
+<div class="row add-command-table-row">
+    <div class="container-fluid">
+        <table id="products-table" class="table table-striped ">
+            <thead>
+            <tr>
+                <th>{{ "product.code"|trans }}</th>
+                <th>{{ "command.new.lines.article"|trans }}</th>
+                <th>{{ "command.new.lines.unit_exped"|trans }}</th>
+                <th>{{ "command.new.lines.order_qty"|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for l in order.lines %}
+                <tr class="cmd-line">
+                    <td>{{ l.product.externalId }}</td>
+                    <td>{{ l.product.name }}</td>
+                    <td>{{ l.product.labelUnitExped|trans }}</td>
+                    <td>{{ l.qty }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>

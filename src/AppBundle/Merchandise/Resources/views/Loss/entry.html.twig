@@ -1,0 +1,154 @@
+{% extends '@Merchandise/index_stock.html.twig' %}
+
+{% block javascripts %}
+    <script>
+        var lossSheetType = '{{ type }}';
+        var yesterdayLoss = '{{ yesterdayLoss }}';
+        if (yesterdayLoss == true) {
+            {% if minDate is defined %}
+            var from = '{{ minDate|date('Y/m/d') }}';
+            {% endif %}
+            {% if maxDate is defined %}
+            var to = '{{ maxDate|date('Y/m/d') }}';
+            {% endif %}
+
+            {% if previousDate is defined %}
+            var previousDate = '{{ previousDate|date('Y-m-d') }}';
+            {% endif %}
+        }
+    </script>
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Loss/entry.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bundles/app/css/Merchandise/loss.css') }}">
+    <style>
+        .qty-input {
+            text-align: right !important;
+            padding-left: 6px !important;
+            padding-right: 6px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block base_title %}
+
+    {{ ('loss.entry.title_' ~ type) |trans }}    {% if onlyDate==false %} {% if lossForm.vars.data is not null %}- {{ lossForm.vars.data.entryDate| date('d/m/Y') }}{% endif %} {% endif %}
+
+{% endblock %}
+
+{% block base_subtitle %}
+    {% if type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLES_LOSS_MODEL') %}
+        {{ parent() }} - {{ 'loss_management.title'|trans([], 'navbar') }} - {{ 'loss_management.articles'|trans([], 'navbar') }}
+    {% elseif type == constant('AppBundle\\Merchandise\\Entity\\SheetModel::PRODUCT_SOLD_LOSS_MODEL') %}
+        {{ parent() }} - {{ 'loss_management.title'|trans([], 'navbar') }} - {{ 'loss_management.sold_products'|trans([], 'navbar') }}
+    {% endif %}
+{% endblock %}
+{% block body %}
+    {% if  (yesterdayLoss==true) %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ form_start(lossDateForm, {'attr' : {'id':'previous_date','action' :  path("previous_date",{'type':type})}}) }}
+                <div class="row">
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(lossDateForm.date) }}
+                        <div class="input-group">
+                            {{ form_widget(lossDateForm.date, {'attr' : {'class' : 'previous-date form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(lossDateForm.date) }}
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(lossDateForm) }}
+                </div>
+                {{ form_end(lossDateForm) }}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if onlyDate == false %}
+        {% if lossForm.vars.data is not null %}
+            <div class="add-command-table">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{ form_start(lossForm,{ 'method' : 'POST', 'attr': {'id': 'lossSetForm'} }) }}
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                {{ form_label(lossForm.model) }}
+                                {{ form_errors(lossForm.model) }}
+                                {{ form_widget(lossForm.model, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+
+                        <div id="table_loss"
+                             class="{% if lossForm.vars.data.lossLines|length == 0 %} display_none {% endif %}">
+                            {% include '@Merchandise/Loss/parts/loss_type_article.html.twig' with { 'loss' : lossForm } %}
+                        </div>
+
+                        <div class="hidden">
+                            {{ form_rest(lossForm) }}
+                        </div>
+                        {{ form_end(lossForm) }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <div class="hidden">
+        <div id="formContainer">
+            <form id="_form_id_" class="row">
+                <div class="col-xs-8" style="border-right: 1px solid #ddd;">
+                    <div class="col-xs-4">
+                        <span class="text-muted"> {{ 'item.label.unit_expedition'|trans }} </span>
+                        <div class="input-group">
+                            <input id="expeditionQtyInput" name="expedInput" type="text"
+                                   class="form-control expedInput splitted_input" data-error=".expedQtyError">
+                            <span class="text-muted  input-group-addon" style="margin-right: 5px;">_unit_exped_</span>
+                        </div>
+                        <span class="error expedQtyError"></span>
+                    </div>
+                    <div class="col-xs-4">
+                        <span class="text-muted"> {{ 'item.label.unit_inventory'|trans }} </span>
+                        <br/>
+                        <div class="input-group">
+                            <input id="inventoryQtyInput" name="inventoryInput" type="text"
+                                   class="form-control inventoryInput splitted_input"
+                                   data-error=".inventoryQtyError"
+                                   value="_inventory_initial_qty_">
+                            <span class="text-muted input-group-addon"
+                                  style="margin-right: 5px;">_unit_inventory_</span>
+                        </div>
+                        <span id="" class="inventoryQtyError error"></span>
+                    </div>
+                    <div class="col-xs-4">
+                        <span class="text-muted"> {{ 'item.label.unit_usage'|trans }} </span>
+                        <div class="input-group">
+                            <input autofocus id="usageQtyInput" name="usageInput" type="text"
+                                   class="form-control usageInput splitted_input"
+                                   data-error=".usageQtyError">
+                            <span class="text-muted input-group-addon" style="margin-right: 5px;">_unit_usage_</span>
+                        </div>
+                        <span id="" class="error usageQtyError"></span>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <span class="text-muted-2" style="font-weight: bold;">{{ 'keyword.total'|trans }} :</span> <br/>
+                    <span class="text-muted" id="totalQty">_inventory_initial_qty_</span>
+                    <span class="text-muted">_unit_inventory_</span>
+                </div>
+
+            </form>
+        </div>
+
+        <div id="qtysFormFooter">
+            <span id="saveQtys" class="btn btn-validate">
+                {{ 'btn.validate'|trans }}
+            </span>
+        </div>
+    </div>
+
+{% endblock %}

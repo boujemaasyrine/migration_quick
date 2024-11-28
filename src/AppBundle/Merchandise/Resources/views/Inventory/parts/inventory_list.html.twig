@@ -1,0 +1,61 @@
+<div class="filter-zone">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+        </div>
+        <div class="panel-body">
+            {{ form_start(form,{ 'method' : 'GET', 'attr': {'id': 'filterInventoryForm', 'class' : 'form-horizontal' } }) }}
+            {% form_theme form ':form_layouts:horizontal_layout.html.twig' %}
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    {{ form_row(form.startDate) }}
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    {{ form_row(form.endDate) }}
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 0;">
+                <div class="col-md-12" style="text-align:right;">
+                    <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                        <span class="glyphicon glyphicon-remove"></span>{{ "delete_filter"|trans }}
+                    </button>
+                    <button onclick="iventoryListDatatable.ajax.reload();" type="button" class="btn btn-primary">
+                        <span style="color : white" class="glyphicon glyphicon-filter"></span> {{ 'filter.btn'|trans() }}
+                    </button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+
+<div class="panel-body">
+
+    <a href="{{ path('inventory_entry') }}" class="btn btn-add btn-icon">
+        {{ 'btn.add'|trans }}
+    </a>
+
+    <h3>{{ 'inventory.title.list'|trans }} </h3>
+    <table id="inventory-table" class="table table-striped"
+           data-template="<a href='{{ path('inventory_entry', {
+               'inventorySheet': '_id_'
+           }) }}' data-id='_id_' class='btn btn-primary btn-xs'>{{ 'inventory.btn.entry_inventory'|trans }}</a>
+                   <button data-id='_id_' class='btnDetailsInventory btn btn-view btn-icon btn-xs'> {{ 'btn.view'|trans }}</button>
+                   ">
+        <thead>
+        <tr>
+            <th>{{ 'label.code'|trans }}</th>
+            <th>{{ 'label.created_at'|trans }}</th>
+            <th>{{ 'inventory.labels.fiscal_date'|trans }}</th>
+            <th>{{ 'inventory.labels.model'|trans }}</th>
+            <th>{{ 'label.action'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+</div>

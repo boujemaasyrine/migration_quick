@@ -1,0 +1,1 @@
+delete from  withdrawal_tmp  where  origin_restaurant_id=:restaurantId and withdrawal_id in(:withdrawalId) ;delete from  withdrawal  where  origin_restaurant_id=:restaurantId and date=:date

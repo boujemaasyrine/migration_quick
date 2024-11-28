@@ -1,0 +1,111 @@
+{% extends "@Financial/default.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bundles/app/css/Financial/Cashbox/Counting/counting.css') }}">
+
+    <style>
+        {{[  'cashbox.listing.header.date'|trans,
+             'cashbox.listing.header.owner'|trans,
+             'cashbox.listing.header.cashier'|trans,
+             'cashbox.listing.header.real'|trans,
+             'cashbox.listing.header.theorical'|trans,
+             'cashbox.listing.header.diff'|trans,
+             'cashbox.listing.header.createdAt'|trans,
+             'cashbox.listing.header.action'|trans
+         ]|t_head|raw }}
+
+        .modal-body {
+            font-size: 1rem !important;
+        }
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Financial/Cashbox/Listing/listing.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'financial_management.consultations.cashbox_listing'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.cashbox_management'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body">
+                {{ form_start(form,{ 'method' : 'GET', 'attr': {'id': 'filterCasbocCountsForm', 'class' : 'form-horizontal'} }) }}
+                {% form_theme form ':form_layouts:horizontal_layout.html.twig' %}
+                <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                        {{ form_row(form.startDate) }}
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        {{ form_row(form.endDate) }}
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        {{ form_row(form.owner) }}
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        {{ form_row(form.cashier) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:right;">
+                        <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "delete_filter"|trans }}
+                        </button>
+                        <button onclick="cashboxCounts.ajax.reload();" type="button" class="btn btn-filter btn-icon">
+                            {{ 'btn.filter'|trans }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding-bottom: 0;">
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-export btn-icon" type="button" id="export-btn" style="float: right">
+                        {{ "btn.export"|trans }}
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="cashbox_counts_table"
+                           class="table table-striped table-bordered table-hover"
+                           data-template="
+                    <button type='button' class='btn btn-view btn-icon detail-btn'> {{ 'btn.view_details'|trans }}</button>"
+                    data-delete="<button {{ securityChecker.disableBtn('delete_cashbox_count') }} class='btn btn-delete btn-icon delete-cashbox' >{{ 'btn.delete'|trans }}</button>"
+                           style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>{{ 'cashbox.listing.header.date'|trans }}</th>
+                            <th>{{ 'cashbox.listing.header.owner'|trans }}</th>
+                            <th>{{ 'cashbox.listing.header.cashier'|trans }}</th>
+                            <th>{{ 'cashbox.listing.header.real'|trans }}</th>
+                            <th>{{ 'cashbox.listing.header.theorical'|trans }}</th>
+                            <th>{{ 'cashbox.listing.header.diff'|trans }}</th>
+                            <th>{{ 'cashbox.listing.header.createdAt'|trans }}</th>
+                            <th>{{ 'cashbox.listing.header.action'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

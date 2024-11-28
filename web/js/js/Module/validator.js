@@ -1,0 +1,1 @@
+$(function(){$.validator.addMethod("regex",function(a,t,n){var r=new RegExp(n);return this.optional(t)||r.test(a)},Translator.trans("general_validation.invalid_format"))});

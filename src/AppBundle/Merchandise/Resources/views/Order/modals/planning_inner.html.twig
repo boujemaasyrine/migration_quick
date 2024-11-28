@@ -1,0 +1,32 @@
+
+{#<div class="panel panel-default">#}
+        {#<div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ "filter.label"|trans }}</div>#}
+        {#<div class="panel-body">#}
+            {#<div class="row" style="padding-top: 20px;">#}
+                {#<div class="col-xs-12 col-sm-6 col-md-4 input-field" id="supplier_planning_container">#}
+                    {#<label for="supplier_planning">{{ "planning.supplier"|trans }}</label>#}
+                    {#<input id="supplier_planning" class="form-control" type="text">#}
+                {#</div>#}
+
+                {#<div class="col-xs-12 col-sm-6 col-md-4 input-field">#}
+                    {#<label for="order_date_planning">{{ "command.date.order"|trans }}</label>#}
+                    {#<input id="order_date_planning" type="text" class="datepicker picker_input">#}
+                {#</div>#}
+
+                {#<div class="col-xs-12 col-sm-6 col-md-4 input-field">#}
+                    {#<label for="delivery_date_planning">{{ "command.date.delivery"|trans }}</label>#}
+                    {#<input id="delivery_date_planning" type="text" class="datepicker picker_input">#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="row">#}
+                {#<div class="col-xs-12" style="text-align : right;">#}
+                    {#<button type="button" id="planning_filter_btn" class="btn ">{{ "filter.btn"|trans }}</button>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+    {% include '@Merchandise/Order/modals/planning_table.html.twig' with { 'suppliers' : suppliers } %}
+
+<br>
+<div style="clear: both;"></div>

@@ -1,0 +1,60 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block body %}
+    <div class="row add-command-table-row">
+        <h4>
+            {{ lossForm.entryDate.vars.value|date('d/m/Y') }}
+        </h4>
+        <div class="container-fluid">
+            <table id="loss-entry-table" class="table table-bordered">
+                <thead>
+                <tr id="loss-entry-table-head">
+                    <th>{{ 'label.code' | trans }}</th>
+                    <th>{{ 'keyword.article' | trans }}</th>
+                    <th> {{ 'loss.label.entry'|trans() }} 1</th>
+                    <th> {{ 'loss.label.entry'|trans() }} 2</th>
+                    <th> {{ 'loss.label.entry'|trans() }} 3</th>
+                    <th> {{ 'keyword.total'|trans() }} </th>
+                    {% if lossForm.vars.value.type == 'article' %}
+                        <th> {{ 'keyword.unit'|trans() }} </th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody id="loss_list_article">
+                {% for line in lossForm.lossLines|sort %}
+                    <tr class="line">
+                        <td>
+                            {% if line.vars.data.product.externalId is defined %}
+                                <span class="product_id"> {{ line.vars.data.product.externalId }}</span>
+                            {% else %}
+                                <span class="product_id"> {{ line.vars.data.product.codePlu }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="product_id"> {{ line.vars.data.product.name }}</span>
+                        </td>
+                        <td>
+                            {{ line.vars.data.firstEntry }}
+                        </td>
+                        <td>
+                            {{ line.vars.data.secondEntry }}
+                        </td>
+                        <td>
+                            {{ line.vars.data.thirdEntry }}
+                        </td>
+                        <td>
+                            {{ line.vars.data.totalLoss }}
+                        </td>
+                        {% if lossForm.vars.value.type == 'article' %}
+                            <td>
+                                {{ line.vars.data.product.labelUnitInventory|trans() }}
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

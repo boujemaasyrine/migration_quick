@@ -1,0 +1,26 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h2>
+        <b> {{ 'report.cash_book.title'|trans }}</b>
+    </h2>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-3 input-field">
+        <label for="date">{{ 'keyword.from'|trans }} </label>
+        <span class="text-muted">
+            {{ filter.startDate | date('d/m/Y') }}
+        </span>
+    </div>
+    <div class="col-xs-3 input-field">
+        <label for="date">{{ 'keyword.to'|trans }} </label>
+        <span class="text-muted">
+            {{ filter.endDate | date('d/m/Y') }}
+        </span>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/Revenue/CashBook/new_body.html.twig') }}
+{% endblock %}

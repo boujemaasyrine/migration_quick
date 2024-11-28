@@ -1,0 +1,223 @@
+<style>
+    .table {
+        border-collapse: collapse;
+    }
+
+    .table td, .table th {
+        border: 1px solid black;
+    }
+
+    .table tr:first-child th {
+        border-top: 0;
+    }
+
+    .table tr:last-child td {
+        border-bottom: 0;
+    }
+
+    .table tr td:first-child,
+    .table tr th:first-child {
+        border-left: 0;
+    }
+
+    .table tr td:last-child,
+    .table tr th:last-child {
+        border-right: 0;
+    }
+
+    .table > thead > tr > th {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    {% if download is not defined %}
+    .percent {
+        color: #af3c0d !important;
+    }
+
+    tr.error {
+        background-color: #FBACAC !important;
+    }
+
+    .good_ecarts {
+        background: #4caf50 !important;
+    }
+
+    .fail_ecarts {
+        background-color: #d32f2f !important;
+    }
+
+    /* Header */
+    .top_header th {
+        text-align: center;
+        background-color: #edcc87 /*#caa24d*/ !important;
+    }
+
+    .sub_header {
+        background-color: #EDE2C9 !important;
+    }
+
+    .empty_header {
+        background-color: #57a4ed !important;
+    }
+
+    .sub_header.filter {
+        background-color: #0be9ed /*#0c95ed*/ !important;
+    }
+
+    .category_name {
+        background-color: #FDC300 !important;
+    }
+
+    .bottom_header th {
+        background-color: #edcc87 /*#caa24d*/ !important;
+    }
+
+    {% endif %}
+
+    .number {
+        text-align: right;
+    }
+
+    table th, table td {
+        width: 80px;
+    !important;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table" width="100%" style="border: 1px solid black;">
+            <thead style="">
+            <tr class="top_header">
+                <th colspan="1">{{ 'cashbox_counts_anomalies.report_labels.responsable'|trans }}</th>
+                <th colspan="1">{{ 'cashbox_counts_anomalies.report_labels.nombre_caisse'|trans }}</th>
+                <th colspan="1">{{ 'cashbox_counts_anomalies.report_labels.ca_reel'|trans }}</th>
+                <th colspan="2">{{ 'cashbox_counts_anomalies.report_labels.diff_caisse'|trans }}</th>
+                <th colspan="2">{{ 'cashbox_counts_anomalies.report_labels.annulations'|trans }}</th>
+                <th colspan="2">{{ 'cashbox_counts_anomalies.report_labels.corrections'|trans }}</th>
+                <th colspan="2">{{ 'cashbox_counts_anomalies.report_labels.abandons'|trans }}</th>
+                <th colspan="2">{{ 'cashbox_counts_anomalies.report_labels.especes'|trans }}</th>
+                <th colspan="2">{{ 'cashbox_counts_anomalies.report_labels.titres_restaurant'|trans }}</th>
+            </tr>
+            <tr class="sub_header mainHeader">
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>{{ 'cashbox_counts_anomalies.report_labels.montant'|trans }}</th>
+                <th>{{ 'cashbox_counts_anomalies.report_labels.pourcentage'|trans }}</th>
+
+                <th>{{ 'cashbox_counts_anomalies.report_labels.montant'|trans }}</th>
+                <th>{{ 'cashbox_counts_anomalies.report_labels.pourcentage'|trans }}</th>
+
+                <th>{{ 'cashbox_counts_anomalies.report_labels.montant'|trans }}</th>
+                <th>{{ 'cashbox_counts_anomalies.report_labels.pourcentage'|trans }}</th>
+
+                <th>{{ 'cashbox_counts_anomalies.report_labels.montant'|trans }}</th>
+                <th>{{ 'cashbox_counts_anomalies.report_labels.pourcentage'|trans }}</th>
+
+                <th>{{ 'cashbox_counts_anomalies.report_labels.montant'|trans }}</th>
+                <th>{{ 'cashbox_counts_anomalies.report_labels.pourcentage'|trans }}</th>
+
+                <th>{{ 'cashbox_counts_anomalies.report_labels.montant'|trans }}</th>
+                <th>{{ 'cashbox_counts_anomalies.report_labels.pourcentage'|trans }}</th>
+
+            </tr>
+            <tr class="sub_header filter">
+                <th></th>
+                <th></th>
+                <th></th>
+                {% for filter in filters %}
+                    {% if filter.firstInput is defined %}
+                        <th colspan="2">
+                            {% if filter.firstInput == 0 and filter.secondInput == 100 %}
+                            {% elseif filter.firstInput == 0 %}
+                                {% if loop.index == 3 %}{{ " > -" ~ filter.secondInput|number_format(2, ',', '.') ~ " %  et " }}{% endif %}{{ "  < " ~ filter.secondInput|number_format(2, ',', '.') ~ " %" }}
+                            {% elseif filter.secondInput == 100 %}
+                                {% if loop.index == 3 %}{{ " < -" ~ filter.firstInput|number_format(2, ',', '.') ~ " %  ou " }}{% endif %}{{ " > " ~ filter.firstInput|number_format(2, ',', '.') ~ " %" }}
+                            {% else %}
+                                {% if loop.index == 3 %}{{ "> -" ~ filter.secondInput|number_format(2, ',', '.') ~ " %  et  < -" ~ filter.firstInput|number_format(2, ',', '.') ~ " %" }}
+                                    <br>{% endif %}
+                                {{ "> " ~ filter.firstInput|number_format(2, ',', '.') ~ " %  et  < " ~ filter.secondInput|number_format(2, ',', '.') ~ " %" }}
+                            {% endif %}
+                        </th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody class="mainTbody">
+            {% if reportResult is defined and reportResult.data.lines is defined and reportResult.data.lines|length > 0 %}
+                {% for line in reportResult.data.lines %}
+                    <tr class="{% if not line.ca_real %}error{% endif %} mainRow">
+                        <td>{{ line.cashier_name }}</td>
+                        <td class="number">{% if line.nbre %}{{ line.nbre|number_format }}{% endif %}</td>
+                        <td class="number">{% if line.ca_real is not null %}{{ line.ca_real|number_format(2, ',', '.') }}{% else %} 0 {% endif %}</td>
+                        <td class="number">{% if line.diff_caisse is not null %}{{ line.diff_caisse|number_format(2, ',', '.') }}{% endif %}</td>
+                        <td class="percent number">{% if line.diff_caisse_percent is not null %}{{ line.diff_caisse_percent|number_format(2, ',', '.') }}{% else %}{% endif %}</td>
+                        <td class="number">{% if line.total_cancels is not null %}{{ line.total_cancels|number_format(2, ',', '.') }}{% endif %}</td>
+                        <td class="percent number">{% if line.total_cancels_percent is not null %}{{ line.total_cancels_percent|number_format(2, ',', '.') }}{% endif %}</td>
+                        <td class="number">{% if line.total_corrections is not null %}{{ line.total_corrections|number_format(2, ',', '.') }}{% endif %}</td>
+                        <td class="percent number">{% if line.total_corrections_percent is not null %}{{ line.total_corrections_percent|number_format(2, ',', '.') }}{% endif %}</td>
+                        <td class="number">{% if line.total_abondons is not null %}{{ line.total_abondons|number_format(2, ',', '.') }}{% endif %}</td>
+                        <td class="percent number">{% if line.total_abondons_percent is not null %}{{ line.total_abondons_percent|number_format(2, ',', '.') }}{% endif %}</td>
+                        <td class="number">{% if line.rc_real is not null %}{{ line.rc_real|number_format(2, ',', '.') }}{% endif %}</td>
+                        <td class="percent number">{% if line.rc_real_percent is not null %}{{ line.rc_real_percent|number_format(2, ',', '.') }}{% endif %}</td>
+                        <td class="number">{% if line.cr_real is not null %}{{ line.cr_real|number_format(2, ',', '.') }}{% endif %}</td>
+                        <td class="percent number">{% if line.cr_real_percent is not null %}{{ line.cr_real_percent|number_format(2, ',', '.') }}{% endif %}</td>
+                    </tr>
+                {% endfor %}
+                <tr class="bottom_header">
+                    {% set total = reportResult.data.total.0 %}
+                    <th><b>{{ 'cashbox_counts_anomalies.report_labels.total'|trans }}</b></th>
+                    <th class="number">{{ total.nbre|number_format }}</th>
+                    <th class="number">{{ total.ca_real|number_format(2, ',', '.') }}</th>
+                    <th class="number">{{ total.diff_caisse|number_format(2, ',', '.') }}</th>
+                    <th class="percent number">{{ total.diff_caisse_percent|number_format(2, ',', '.') }}</th>
+                    <th class="number">{{ total.total_cancels|number_format(2, ',', '.') }}</th>
+                    <th class="percent number">{{ total.total_cancels_percent|number_format(2, ',', '.') }}</th>
+                    <th class="number">{{ total.total_corrections|number_format(2, ',', '.') }}</th>
+                    <th class="percent number">{{ total.total_corrections_percent|number_format(2, ',', '.') }}</th>
+                    <th class="number">{{ total.total_abondons|number_format(2, ',', '.') }}</th>
+                    <th class="percent number">{{ total.total_abondons_percent|number_format(2, ',', '.') }}</th>
+                    <th class="number">{{ total.rc_real|number_format(2, ',', '.') }}</th>
+                    <th class="percent numbert">{{ total.rc_real_percent|number_format(2, ',', '.') }}</th>
+                    <th class="number">{{ total.cr_real|number_format(2, ',', '.') }}</th>
+                    <th class="percent number">{{ total.cr_real_percent|number_format(2, ',', '.') }}</th>
+                </tr>
+                <tr>
+                    <th><b>{{ 'cashbox_counts_anomalies.report_labels.avg'|trans }}</b></th>
+                    <th></th>
+                    <th></th>
+                    <th class="number">{{ (total.diff_caisse/(reportResult.data.lines|length))|number_format(2, ',', '.') }}</th>
+                    <th class="percent"></th>
+                    <th class="number">{{ (total.total_cancels/(reportResult.data.lines|length))|number_format(2, ',', '.') }}</th>
+                    <th class="percent"></th>
+                    <th class="number">{{ (total.total_corrections/(reportResult.data.lines|length))|number_format(2, ',', '.') }}</th>
+                    <th class="percent"></th>
+                    <th class="number">{{ (total.total_abondons/(reportResult.data.lines|length))|number_format(2, ',', '.') }}</th>
+                    <th class="percent"></th>
+                    <th class="number">{{ (total.rc_real/(reportResult.data.lines|length))|number_format(2, ',', '.') }}</th>
+                    <th class="percent"></th>
+                    <th class="number">{{ (total.cr_real/(reportResult.data.lines|length))|number_format(2, ',', '.') }}</th>
+                    <th class="percent"></th>
+                </tr>
+            {% else %}
+                <tr class="empty_header">
+                    <th colspan="15">
+                        {{ 'no_result'|trans }}
+                    </th>
+                </tr>
+            {% endif %}
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+

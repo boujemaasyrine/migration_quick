@@ -1,0 +1,188 @@
+<style>
+    .center-text {
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+
+    .cat-tr {
+        background-color: #ede2c9 !important;
+        cursor: pointer;
+    }
+
+    #constrol-stock-table thead {
+        background-color: white;
+    }
+
+    .gray-background {
+        background-color: #ECECEC;
+    }
+
+    .green-col {
+        background-color: #CDDAB4;
+    }
+
+    .blue-col {
+        background-color: #CDDAB4;
+    }
+
+    .violet-background {
+        background-color: #CDDAB4;
+    }
+
+    thead {
+        display: table-header-group !important;
+    }
+
+    tfoot {
+        display: table-row-group !important;
+    }
+
+    tr {
+        page-break-inside: avoid !important;
+    }
+</style>
+
+<table id="constrol-stock-table" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th rowspan="2" colspan="5">
+            {{ 'base_calcul'|trans() }} : {{ data.d1|date('d/m/Y') }} - {{ data.d2|date('d/m/Y') }} <br>
+            {{ 'coef_ca'|trans() }} : {{ data.ca|number_format(2,',','') }} (&euro;)
+            {% if print is defined %}
+                <br>
+                {{ 'sheet_model'|trans() }}  {{ data.sheet.label }}
+            {% endif %}
+        </th>
+
+        {% if print is defined %}
+            <th rowspan="2" style="width: 50px;"> {{ 'control_stock.dlc_1'|trans() }} </th>
+            <th rowspan="2" style="width: 50px;"> {{ 'control_stock.dlc_2'|trans() }}</th>
+            <th rowspan="2" style="width: 50px;"> {{ 'control_stock.transfers_pending'|trans() }}</th>
+        {% endif %}
+
+        {% for d in data.days %}
+            <th class="center-text" colspan="2">
+                {{ days[d.date|date('w')+0] }}
+            </th>
+        {% endfor %}
+        <th class="center-text gray-background" rowspan="2" colspan="2"> {{ 'control_stock.total'|trans() }} </th>
+        <th style="border-bottom: none;" class="center-text gray-background"
+            rowspan="4"> {{ 'control_stock.diff'|trans() }}</th>
+    </tr>
+
+    <tr>
+        {% for d in data.days %}
+            <th class="center-text" colspan="2">
+                {% set month = (d.date|date('m') + 0) - 1 %}
+                {{ d.date|date('d') }} {{ months[month] }}
+            </th>
+        {% endfor %}
+    </tr>
+
+    <tr>
+        <th colspan="5" style="text-align: right;" class="gray-background"> {{ 'control_stock.ca_prev'|trans() }}>>
+        </th>
+
+        {% if print is defined %}
+            <th></th>
+            <th></th>
+            <th></th>
+        {% endif %}
+
+        {% for d in data.days %}
+            <th class="center-text " colspan="2">
+                {{ d.caPrev|number_format(2,',','') }} (&euro;)
+            </th>
+        {% endfor %}
+        <th class="center-text violet-background" rowspan="2" colspan="2">
+            {{ data.totalCaPrev|number_format(2,',','') }} (&euro;)
+        </th>
+    </tr>
+
+    <tr>
+        <th colspan="5" style="text-align: right;" class="gray-background"> {{ 'control_stock.cumul_ca'|trans() }}>>
+        </th>
+        {% if print is defined %}
+            <th></th>
+            <th></th>
+            <th></th>
+        {% endif %}
+        {% for d in data.days %}
+            <th class="center-text violet-background" colspan="2">
+                {{ d.caPrevCum|number_format(2,',','') }} (&euro;)
+            </th>
+        {% endfor %}
+    </tr>
+
+    <tr class="main-header-tr gray-background">
+        <th width="60px"> {{ 'product.code'|trans() }}</th>
+        <th width="150px"> {{ 'article'|trans() }}</th>
+        <th width="80px"> {{ 'control_stock.inventory_unit'|trans() }}</th>
+        <th width="80px"> {{ 'control_stock.coef'|trans() }}</th>
+        <th width="80px"> {{ 'control_stock.en_stock'|trans() }}</th>
+
+        {% if print is defined %}
+            <th></th>
+            <th></th>
+            <th></th>
+        {% endif %}
+
+        {% for d in data.days %}
+            <th> {{ 'control_stock.need'|trans() }}</th>
+            <th> {{ 'control_stock.delivery'|trans() }}</th>
+        {% endfor %}
+        <th width="100px"> {{ 'control_stock.stock_liv'|trans() }}</th>
+        <th width="100px"> {{ 'control_stock.total_need'|trans() }}</th>
+        <th width="60px" style="border-top: none;"></th>
+    </tr>
+
+    </thead>
+    <tbody>
+    {#{% set lastCat = null %}#}
+    {% set colSpenCount = data.days|length *2 +8 %}
+    {% if print is defined %}
+        {% set colSpenCount = colSpenCount +3 %}
+    {% endif %}
+
+    {% if data.products|length >0 %}
+        {% set firtCat = data.products[0].product.productCategory.id %}
+    {% endif %}
+
+    {% for p in data.products %}
+        {#{% if lastCat == null or p.product.productCategory.id != lastCat %}#}
+        {#<tr class="cat-tr" cat-id="{{ p.product.productCategory.id }}">#}
+        {#<td colspan="{{ colSpenCount }}">#}
+        {#{{ p.product.productCategory.name }}#}
+        {#</td>#}
+        {#</tr>#}
+        {#{% set lastCat = p.product.productCategory.id %}#}
+        {#{% endif %}#}
+        <tr
+                {#{% if print is not defined and firtCat != p.product.productCategory.id %} style="display: none" {% endif %}#}
+                class="product-tr main-tbody-tr" cat-id="{{ p.product.productCategory.id }}">
+            <td>{{ p.product.externalId }}</td>
+            <td>{{ p.product.name }}</td>
+            <td>{{ p.product.labelUnitInventory|trans }}</td>
+            <td>{{ p.coef|number_format(2,',','') }}</td>
+            <td class="green-col">{{ p.stock|number_format(2,',','') }}</td>
+
+            {% if print is defined %}
+                <th></th>
+                <th></th>
+                <th></th>
+            {% endif %}
+
+            {% for d in  p.days %}
+                <td>{{ d.need|number_format(2,',','') }}</td>
+                <td class="blue-col">{{ d.liv|number_format(2,',','') }}</td>
+            {% endfor %}
+            <td>
+                {% set sl = p.totalLiv+p.stock %}
+                {{ sl|number_format(2,',','') }}
+            </td>
+            <td>{{ p.totalNeed|number_format(2,',','') }}</td>
+            <td>{{ (sl-p.totalNeed)|number_format(2,',','') }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

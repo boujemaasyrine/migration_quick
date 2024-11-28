@@ -1,0 +1,156 @@
+{% form_theme inventorySheetForm.lines "@Merchandise/Inventory/form_parts/inventory_sheet_line_widget.html.twig" %}
+
+{% if inventorySheetForm.vars.value.createdAt is null %}
+    {% set leftDays = 0 %}
+{% else %}
+    {% set difference = date('now').diff(inventorySheetForm.vars.value.createdAt) %}
+    {% set leftDays = difference.days %}
+{% endif %}
+
+{% if leftDays == 0 %}
+
+    <div class="panel-heading">
+        <div class="panel-title">
+            {% if inventorySheetForm.vars.value.id is null %}
+                {% set old = "" %}
+                {{ 'inventory.title.new_entry'|trans }}
+            {% else %}
+                {% set old = "existing" %}
+                {{ 'inventory.title.existing_entry'|trans }} - {{ inventorySheetForm.vars.data.status|trans }} (N° {{ inventorySheetForm.vars.data.id }})
+            {% endif %}
+        </div>
+    </div>
+
+    {{ form_start(inventorySheetForm,{'method' : 'POST' ,'action' : path('inventory_entry') , 'attr' : { 'id' : 'inventory_sheet_form', 'class': old } }) }}
+    {{ form_widget(inventorySheetForm.id) }}
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    {{ form_label(inventorySheetForm.sheetModel, 'inventory.labels.inventory_sheet' ) }} <br/>
+                    {% if inventorySheetForm.vars.value.id is null %}
+                        {{ form_widget(inventorySheetForm.sheetModel, { "attr": { "class": 'form-control' }}) }}
+                    {% else %}
+                        {{ form_widget(inventorySheetForm.sheetModel, { "attr": { "class": 'form-control', 'disabled': 'disabled' }}) }}
+                    {% endif %}
+                    {{ form_errors(inventorySheetForm.sheetModel) }}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    {{ form_label(inventorySheetForm.fiscalDate, 'inventory.labels.fiscal_date' ) }}
+                    <div class="input-group">
+                        {{ form_widget(inventorySheetForm.fiscalDate, { "attr": { "class": 'form-control', 'data-from-date': administrative_closing_service.getLastNonClosedDate()|date('Y/m/d') }}) }}
+                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                    </div>
+                    {{ form_errors(inventorySheetForm.fiscalDate) }}
+                </div>
+            </div>
+
+            {% if inventorySheetForm.vars.value.id is null %}
+                <div class="col-xs-12 col-md-4" style="padding-top: 8px">
+                    <button id="btnCreateInventorySheetFromModel" type="button"
+                            class="btn btn-validate" style="margin-top: 15px; width: 100%">
+                        {% if inventorySheetForm.vars.value.id is null %}
+                            {{ 'inventory.btn.load_sheet'|trans }}
+                        {% else %}
+                            {{ 'inventory.btn.load_other_sheet'|trans }}
+                        {% endif %}
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+
+        <div id="table_container" class="row
+                {% if inventorySheetForm.vars.value.id is null and inventorySheetForm.vars.valid %}
+                    display_none
+                {% endif %}
+                ">
+            <div class="col-xs-12">
+                {{ form_label(inventorySheetForm.lines, 'sheet_model.new_sheet.list_title' ) }}
+                {{ form_errors(inventorySheetForm.lines) }}
+                <table id="inventorySheetFormTable" class="table table-striped" style="width: 100%;">
+                    <thead>
+                    <tr>
+                        <th>{{ 'sheet_model.new_sheet.labels.code'|trans }}</th>
+                        <th>{{ 'sheet_model.new_sheet.labels.article'|trans }}</th>
+                        <th>{{ 'inventory.labels.exped_cnt'|trans }}</th>
+                        <th>{{ 'inventory.labels.inventory_cnt'|trans }}</th>
+                        <th>{{ 'inventory.labels.usage_cnt'|trans }}</th>
+                        <th>{{ 'sheet_model.new_sheet.labels.action'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody id="containerLines"
+                           data-count="{{ inventorySheetForm.lines| length }}"
+                           data-prototype="
+                                     {% filter escape %}
+                                         {{ include('@Merchandise/Inventory/form_parts/prototype_inventory_sheet_line_widget.html.twig', { 'form': inventorySheetForm.lines.vars.prototype }) }}
+                                     {% endfilter %}"
+                    >
+
+                    {% for line in inventorySheetForm.lines %}
+                        {{ form_widget(line) }}
+                    {% endfor %}
+                    </tbody>
+                    <tr class="new-line">
+                        <td>
+                            <input id="productReference" class="form-control" type="text"
+                                   placeholder="{{ 'keyword.code'|trans() }}"/>
+                            <input id="productId" type="hidden" class=""/>
+                        </td>
+                        <td>
+                            <input id="productName" class="article form-control" type="text"
+                                   placeholder="{{ 'keyword.label'|trans() }}"/>
+                        </td>
+                        <td>
+                            <input id="productExpedQty" class="form-control" type="hidden" value="0"/>
+                        </td>
+                        <td>
+                            <input id="productInventoryQty" class="form-control" type="hidden" value="0"/>
+                        </td>
+                        <td>
+                            <input id="productUsageQty" class="form-control" type="hidden" value="0"/>
+                        </td>
+                        <td class="actions-btn ">
+                                <span id="btnAddNewLine" class="btn btn-add"
+                                      style="text-align: center;">
+                                    <i class="material-icons">add</i>
+                                </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="pull-right" style="">
+
+                    <a href="{{ path('inventory_list') }}" type="button" id="closeInventory"
+                       class="white-text waves-effect waves-light">
+                        {{ 'btn.cancel'|trans }}
+                    </a>
+
+                    {% if inventorySheetForm.vars.value.id is not null %}
+                        <a type="button" id="exportPdf"
+                           href="{{ path('export_inventory', { 'inventorySheet': inventorySheetForm.vars.value.id}) }}"
+                           class="btn #4a148c white black-text pull-right waves-effect waves-light">
+                            <span class="glyphicon glyphicon-print"></span> {{ 'btn.print'|trans }}
+                        </a>
+                    {% endif %}
+
+                    <button id="validateInventory" type="button"
+                            class="btn green lighten-1 white-text waves-effect waves-light">
+                        {{ 'btn.validate'|trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden">
+        {{ form_rest(inventorySheetForm) }}
+    </div>
+    {{ form_end(inventorySheetForm) }}
+
+{% else %}
+    {{ include('@Merchandise/Inventory/parts/consult_inventory_sheet.html.twig') }}
+{% endif %}

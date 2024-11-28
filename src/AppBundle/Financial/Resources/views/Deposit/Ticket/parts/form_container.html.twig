@@ -1,0 +1,36 @@
+{{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'deposit-form', 'class' : 'form-horizontal'} }) }}
+{% form_theme form ':form_layouts:horizontal_layout.html.twig' %}
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        {{ form_row(form.sousType) }}
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="form-group row">
+            <label class="control-label col-md-4">{{ 'label.affiliate_code'|trans }}</label>
+            <div class="col-md-8">
+                <div class="form-control" id="affiliate-code" disabled>{{ form.affiliateCode.vars.value }}&nbsp;</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="form-group row">
+            <label class="col-md-4 control-label">{{ 'label.total_amount'|trans }}</label>
+            <div class="col-md-8">
+                <div class="form-control" id="total-amount-div" disabled>{{ deposit.totalAmount|number_format }}
+                    &euro;
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hidden">
+    {{ form_rest(form) }}
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-validate btn-icon pull-right" type="button" id="btn-validate">
+            {{ 'deposit.btn_verser' | trans }}
+        </button>
+    </div>
+</div>
+{{ form_end(form) }}

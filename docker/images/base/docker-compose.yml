@@ -1,0 +1,50 @@
+######################################################################
+
+version: '3.8'
+services:
+
+######################################################################
+
+  scratch:
+    build:
+      context: base
+    image: scratch
+
+  s6-overlay:
+    build:
+      context: base-s6
+    depends_on:
+      - scratch
+    image: s6-overlay:v3.1.6.2
+
+  s6-ubuntu:
+    build:
+      context: base-ubuntu
+    depends_on:
+      - s6-overlay
+    image: s6-ubuntu:22.04
+
+  php-cli:
+    build:
+      context: php/cli
+    depends_on:
+      - s6-ubuntu
+    image: php:5.6-cli
+
+  php-fpm:
+    build:
+      context: php/fpm
+    depends_on:
+      - php-cli
+    image: php:5.6-fpm
+
+  phpfpm-apache:
+    build:
+      context: servers/fpm-apache
+    depends_on:
+      - php-fpm
+    ports:
+      - 8080:80
+    image: phpfpm-apache:php5.6-${BASE_GIT_COMMIT}
+
+######################################################################

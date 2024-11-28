@@ -1,0 +1,197 @@
+{% extends '@Merchandise/index_stock.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/Merchandise/loss.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Loss/sheet.js') }}"></script>
+{% endblock %}
+{% block base_title %}
+    {{ 'loss_sheet.title'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'loss_management.title'|trans([], 'navbar') }} - {{ 'reports.merchandise_management.inventory_item'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <div id="newBlock" style="display: none;">
+        <div class="add-command-table">
+            <div class="panel panel-default">
+                <h4>{{ 'loss_sheet.label.create_new'|trans }}</h4>
+                <div class="panel-body" style=" padding-top: 0px;     padding-bottom: 0px; ">
+                    <div class="row">
+                        {#{{ form_start(loss_form, {'attr': {'class': 'aa'} }) }}#}
+                        <div class="col l6 m6 s12 input-field">
+                            <label class="">{{ 'loss_sheet.label.numero'|trans }} : </label>
+                            <input type="text"/>
+                            {#{{ form_label(loss_form.id) }}#}
+                            {#{{ form_errors(loss_form.id) }}#}
+                            {#{{ form_widget(loss_form.id) }}#}
+                        </div>
+                        <div class="col l6 m6 s12">
+                            {#{{ form_label(loss_form.type) }}#}
+                            {#{{ form_errors(loss_form.type) }}#}
+                            {#{{ form_widget(loss_form.type) }}#}
+                            <label class=""> {{ 'loss.type'|trans() }} </label>
+                            <!-- Dropdown Trigger -->
+                            <a class='dropdown-button btn red darken-2' href='#'
+                               data-activates='inventory_types'> {{ 'keyword.articles'|trans() }} </a>
+
+                            <!-- Dropdown Structure -->
+                            <ul id='inventory_types' class='dropdown-content'>
+                                <li><a href="#!">{{ 'keyword.articles'|trans() }}</a></li>
+                                <li><a href="#!"> {{ 'keyword.products_sold'|trans() }} </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l6 m6 s12">
+                            <label class="">{{ 'loss_sheet.label.date'|trans }}:</label>
+                            <input id="ca_previsionnel" class="datepicker" type="text">
+                        </div>
+                        <div class="col l12 m12 s12 pull-right">
+                            <button id="form_loss_button"
+                                    class="btn green lighten-1 white-text pull-right waves-effect waves-light">
+                                {{ 'loss_sheet.label.btn_define_product'|trans }}
+                            </button>
+
+
+                        </div>
+                        {#{{ form_end(loss_form) }}#}
+                    </div>
+
+                    <div id="lossProductsList" class="row add-command-table-row" style="display: none;">
+                        <div class="container-fluid">
+                            <h4>{{ 'loss_sheet.label.list_product'|trans }}</h4>
+                            <table id="inventory-sheet-table-aa" class="table table-striped ">
+                                <thead>
+                                <tr>
+                                    <th>{{ 'loss_sheet.label.code'|trans }}</th>
+                                    <th> {{ 'article'|trans() }} </th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="new-line">
+                                    <td><input class="qty-input" style="height: 1rem;" type="text"/>
+                                    </td>
+                                    <td><input class="qty-input" style="height: 1rem;" type="text"/>
+                                    </td>
+                                    <td class="actions-btn">
+                                        <span class="btn btn-add waves-effect waves" id="add-button-1"
+                                              style="text-align: center;"><i
+                                                    class="material-icons">{{ 'btn.add'|trans }}</i></span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="pull-right">
+                            <button onclick="$('#newBlock').fadeOut();"
+                                    class="btn red lighten-1 white-text waves-effect waves-light">
+                                {{ 'loss_sheet.label.btn_cancel'|trans }}
+                            </button>
+                            <button href="#generated_sheet"
+                                    class="modal-trigger btn green lighten-1 white-text waves-effect waves-light">
+                                {{ 'loss_sheet.label.btn_create'|trans }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="add-command-table">
+        <div class="panel panel-default">
+            <div class="panel-body" style=" padding-top: 0px;     padding-bottom: 0px; ">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button onclick="$('#newBlock').fadeIn();"
+                                class="btn green lighten-1 white-text pull-right waves-effect waves-light">
+                            Nouvelle feuille de perte
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row add-command-table-row">
+                    <div class="container-fluid">
+                        <h3>Liste des feuilles de perte</h3>
+                        <table id="inventory-sheet-table" class="table table-striped ">
+                            <thead>
+                            <tr>
+                                <th>Code de la feuille de perte</th>
+                                <th>Date</th>
+                                <th>Type de perte</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="">
+                                <td>0539</td>
+                                <td>2016/02/16</td>
+                                <td class="">
+                                    Produits
+                                </td>
+                                <td>
+                                    <button onclick="$('#details').fadeIn()"
+                                            class="btn waves-effect pull-right color-4">Editer
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="hidden-xs hidden-sm col-md-8">
+                            <span class="shortcut-lab">
+                                <span class="keybored-key-icon">CTRL</span>
+                                +
+                                <span class="keybored-key-icon">SHIFT</span>
+                                +
+                                <span class="keybored-key-icon">+</span>
+                                : Enregistrer la ligne et Ajouter une nouvelle ligne</span> <br>
+                        <span class="shortcut-lab">
+                                <span class="keybored-key-icon">F7</span> : Aide à la commande</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Structure -->
+    <div id="generated_sheet" class="modal">
+        <div class="modal-content">
+            <h4 class="green-text">Feuille des pertes générée !</h4>
+
+            <p>Votre feuille est générée avec succés.</p>
+
+            <p>
+                Le numéro de la feuille est :</p>
+
+            <div class="chip">
+                01550110
+            </div>
+            (Ce code vous sera utile pour reprendre/effectuer la saisie des pertes)
+
+            <div class="row">
+                <button class="btn color-4 waves-effect pull-right">Imprimer</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#"
+               class="modal-action modal-close waves-effect waves-green btn-flat">Continuer vers la Saisie
+                des pertes</a>
+        </div>
+    </div>
+
+{% endblock %}

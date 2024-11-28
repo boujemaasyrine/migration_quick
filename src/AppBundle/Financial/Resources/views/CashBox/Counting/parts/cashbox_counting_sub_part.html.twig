@@ -1,0 +1,185 @@
+<div id="calculation_preview" class="col-xs-12 col-sm-4" style="page-break-after:always">
+    <div class="panel panel-default row">
+        <div class="col-xs-12">
+            <h5>
+                {{ 'cashbox.counting.preview'|trans() }}
+            </h5>
+        </div>
+        <div class="col-xs-12">
+            {% include('@Financial/CashBox/Counting/parts/calculation_preview.html.twig') %}
+        </div>
+    </div>
+</div>
+{% if download is defined %}
+    <div class="" style="height: 100px;page-break-after:always; page-break-inside: avoid;"><br></div>
+{% endif %}
+ {% if download is not defined %}
+     <div id="couynting_main_form" class="col-xs-12 col-sm-8"
+          style="page-break-after:always; page-break-inside: avoid;">
+         <div class="row panel panel-default">
+             <div class="col-xs-12">
+                 <h5>
+                     {{ 'cashbox.counting.entries'|trans() }}
+                 </h5>
+             </div>
+             {% if download is not defined %}
+                 <div class="col-xs-12">
+                     <!-- Nav tabs -->
+                     <ul class="nav nav-tabs" role="tablist">
+                         {% if list or paymentMethodStatus.isPaymentMethodActive('REAL_CASH_VALUE') %}
+                             <li role="presentation" class="active">
+                                 <a href="#real_cash" aria-controls="real_cash" role="tab" data-toggle="tab">
+                                     {{ 'cashbox.counting.real_cash'|trans() }}
+                                 </a></li>
+                         {% endif %}
+                         {% if list or paymentMethodStatus.isCheckRestaurantdActive(false) %}
+                             <li role="presentation"><a href="#ticket_restaurant" aria-controls="ticket_restaurant"
+                                                        role="tab"
+                                                        data-toggle="tab">
+                                     {{ 'cashbox.counting.ticket_restaurant'|trans() }}
+                                 </a>
+                             </li>
+                         {% endif %}
+                         {% if list or ( parameter_service.isEftActivated()) %}
+                             <li role="presentation"><a href="#electronic_ticket_restaurant"
+                                                        aria-controls="electronic_ticket_restaurant" role="tab"
+                                                        data-toggle="tab">
+                                     {{ 'cashbox.counting.electronic_ticket_restaurant'|trans() }}
+                                 </a>
+                             </li>
+                         {% endif %}
+                         {% if list or paymentMethodStatus.isPaymentMethodActive('BANK_CARD_VALUES') %}
+                             <li role="presentation"><a href="#bank_card" aria-controls="bank_card" role="tab"
+                                                        data-toggle="tab">
+                                     {{ 'cashbox.counting.bank_card'|trans() }}
+                                 </a>
+                             </li>
+                         {% endif %}
+                         {% if list or paymentMethodStatus.isPaymentMethodActive('CHECK_QUICK_VALUES') %}
+                             <li role="presentation"><a href="#check_quick" aria-controls="check_quick" role="tab"
+                                                        data-toggle="tab">
+                                     {% if version=="quick" %} {{ 'cashbox.counting.check_quick'|trans() }} {% else %} {{ 'cashbox.counting.check_bk'|trans() }}{% endif %}
+                                 </a>
+                             </li>
+                         {% endif %}
+                         <li role="presentation"><a href="#discount" aria-controls="discount" role="tab"
+                                                    data-toggle="tab">
+                                 {{ 'cashbox.counting.discount'|trans() }}
+                             </a>
+                         </li>
+                         <li role="presentation" class=""><a href="#bon_repas" aria-controls="bon_repas" role="tab"
+                                                             data-toggle="tab">
+                                 {{ 'cashbox.counting.bon_repas'|trans() }}
+                             </a></li>
+                         {% if list or paymentMethodStatus.isPaymentMethodActive('FOREIGN_CURRENCY_TYPE') %}
+                             <li role="presentation">
+                                 <a href="#foreign_currency" aria-controls="foreign_currency" role="tab"
+                                    data-toggle="tab">
+                                     {{ 'cashbox.counting.foreign_currency'|trans() }}
+                                 </a>
+                             </li>
+                         {% endif %}
+                     </ul>
+                 </div>
+
+                 <!-- Tab panes -->
+                 <div class="tab-content only-number">
+                     {% if list or paymentMethodStatus.isPaymentMethodActive('REAL_CASH_VALUE') %}
+                         <div role="tabpanel" class="tab-pane active" id="real_cash">
+                             {% include('@Financial/CashBox/Counting/parts/real_cash.html.twig') %}
+                         </div>
+                     {% endif %}
+                     <div role="tabpanel" class="tab-pane" id="ticket_restaurant">
+                         {% include('@Financial/CashBox/Counting/parts/ticket_restaurant.html.twig') %}
+                     </div>
+                     <div role="tabpanel" class="tab-pane" id="electronic_ticket_restaurant">
+                         {% include('@Financial/CashBox/Counting/parts/ticket_restaurant_electronic.html.twig') %}
+                     </div>
+                     <div role="tabpanel" class="tab-pane" id="check_quick">
+                         {% include('@Financial/CashBox/Counting/parts/check_quick.html.twig') %}
+                     </div>
+                     <div role="tabpanel" class="tab-pane" id="discount">
+                         {% include('@Financial/CashBox/Counting/parts/discount.html.twig') %}
+                     </div>
+                     <div role="tabpanel" class="tab-pane" id="bon_repas">
+                         {% include('@Financial/CashBox/Counting/parts/bon_repas.html.twig') %}
+                     </div>
+                     <div role="tabpanel" class="tab-pane" id="foreign_currency">
+                         {% include('@Financial/CashBox/Counting/parts/foreign_currency.html.twig') %}
+                     </div>
+                     <div role="tabpanel" class="tab-pane" id="bank_card">
+                         {% include('@Financial/CashBox/Counting/parts/bank_card.html.twig') %}
+                     </div>
+                 </div>
+                 {#{% else %}
+                     <div class="col-xs-12">
+                         <div class="panel panel-default">
+                             <div class="panel-heading" style="text-align: left;">
+                                 {{ 'cashbox.counting.real_cash'|trans() }}
+                             </div>
+                             <div class="panel-body">
+                                 {% include('@Financial/CashBox/Counting/parts/real_cash.html.twig') %}
+                             </div>
+                         </div>
+                         <div class="panel panel-default">
+                             <div class="panel-heading" style="text-align: left;">
+                                 {{ 'cashbox.counting.ticket_restaurant'|trans() }}
+                             </div>
+                             <div class="panel-body">
+                                 {% include('@Financial/CashBox/Counting/parts/ticket_restaurant.html.twig') %}
+                             </div>
+                         </div>
+                         <div class="panel panel-default">
+                             <div class="panel-heading" style="text-align: left;">
+                                 {{ 'cashbox.counting.electronic_ticket_restaurant'|trans() }}
+                             </div>
+                             <div class="panel-body">
+                                 {% include('@Financial/CashBox/Counting/parts/ticket_restaurant_electronic.html.twig') %}
+                             </div>
+                         </div>
+                         <div class="panel panel-default">
+                             <div class="panel-heading" style="text-align: left;">
+                                 {{ 'cashbox.counting.check_quick'|trans() }}
+                             </div>
+                             <div class="panel-body">
+                                 {% include('@Financial/CashBox/Counting/parts/check_quick.html.twig') %}
+                             </div>
+                         </div>
+                         <div class="panel panel-default">
+                             <div class="panel-heading" style="text-align: left;">
+                                 {{ 'cashbox.counting.discount'|trans() }}
+                             </div>
+                             <div class="panel-body">
+                                 {% include('@Financial/CashBox/Counting/parts/discount.html.twig') %}
+                             </div>
+                         </div>
+                         <div class="panel panel-default">
+                             <div class="panel-heading" style="text-align: left;">
+                                 {{ 'cashbox.counting.bon_repas'|trans() }}
+                             </div>
+                             <div class="panel-body">
+                                 {% include('@Financial/CashBox/Counting/parts/bon_repas.html.twig') %}
+                             </div>
+                         </div>
+                         <div class="panel panel-default">
+                             <div class="panel-heading" style="text-align: left;">
+                                 {{ 'cashbox.counting.foreign_currency'|trans() }}
+                             </div>
+                             <div class="panel-body">
+                                 {% include('@Financial/CashBox/Counting/parts/foreign_currency.html.twig') %}
+                             </div>
+                         </div>
+                         <div class="panel panel-default">
+                             <div class="panel-heading" style="text-align: left;">
+                                 {{ 'cashbox.counting.bank_card'|trans() }}
+                             </div>
+                             <div class="panel-body">
+                                 {% include('@Financial/CashBox/Counting/parts/bank_card.html.twig') %}
+                             </div>
+                         </div>
+                     </div>#}
+             {% endif %}
+
+         </div>
+     </div>
+ {% endif %}

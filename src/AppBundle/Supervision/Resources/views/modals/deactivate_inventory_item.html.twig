@@ -1,0 +1,59 @@
+{% if successInRestaurant is defined %}
+    {% if successInRestaurant|length>0 %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert">
+                    <h6>{{ 'item.inventory.deactivate_success' | trans({'%inventory.item%': item.name,'%restaurant%':successInRestaurant|join(', ') }, "supervision") }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+{% if  failedInRestaurant is defined %}
+    {% if failedInRestaurant|length>0 %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger" role="alert">
+                    <p> {{ 'item.inventory.deactivate_failed' | trans({'%inventory.item%': item.name,'%restaurant%':failedInRestaurant|join(', ') }, "supervision") }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+{% if isActivatedInOneOfTheRestaurant==true %}
+    {{ form_start(form, {'attr' : {'action':path('supervision_inventory_item_deactivate',{'inventoryItem':item.id}), 'id' : 'form-deactivate-inventory-item' }}) }}
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>{{ 'item.inventory.deactivate_description' | trans({'%inventory.item%': item.name }, "supervision") }}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {{ form_label(form.restaurant) }}
+                {{ form_widget(form.restaurant, {'attr': {'class': 'selectize'}}) }}
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+    <script>
+        $(function () {
+            var $select = $('#deactivate_product_for_restaurant_restaurant').selectize({});
+            //  var selectize = $select[0].selectize;
+        });
+    </script>
+{% else %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                <h5>  {{ 'item.inventory.is_not_activated_In_One_Of_The_Restaurants' | trans({'%inventory.item%': item.name }, "supervision") }}
+                </h5>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+

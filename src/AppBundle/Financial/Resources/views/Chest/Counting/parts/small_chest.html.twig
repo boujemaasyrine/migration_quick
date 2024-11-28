@@ -1,0 +1,110 @@
+<div id="smallChestContainer">
+    {% if download is not defined %}
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#real_cash" aria-controls="real_cash" role="tab" data-toggle="tab">
+                    {{ 'chest.counting.real_cash'|trans() }}
+                </a></li>
+            <li role="presentation"><a href="#ticket_restaurant" aria-controls="ticket_restaurant" role="tab"
+                                       data-toggle="tab">
+                    {{ 'chest.counting.ticket_restaurant'|trans() }}
+                </a>
+            </li>
+            <li role="presentation"><a href="#electronic_ticket_restaurant" aria-controls="electronic_ticket_restaurant"
+                                       role="tab"
+                                       data-toggle="tab">
+                    {{ 'chest.counting.electronic_ticket_restaurant'|trans() }}
+                </a>
+            </li>
+            <li role="presentation"><a href="#bank_card" aria-controls="bank_card" role="tab" data-toggle="tab">
+                    {{ 'chest.counting.bank_card'|trans() }}
+                </a>
+            </li>
+            <li role="presentation"><a href="#check_quick" aria-controls="check_quick" role="tab"
+                                       data-toggle="tab">
+                {% if version=="quick" %}  {{ 'chest.counting.check_quick'|trans() }} {% else %} {{ 'chest.counting.check_bk'|trans() }} {% endif %}
+                </a>
+            </li>
+            <li role="presentation"><a href="#foreign_currency" aria-controls="foreign_currency" role="tab"
+                                       data-toggle="tab">
+                    {{ 'chest.counting.foreign_currency'|trans() }}
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content only-number">
+            <div role="tabpanel" class="tab-pane active" id="real_cash">
+                {% include('@Financial/Chest/Counting/parts/real_cash.html.twig') %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="ticket_restaurant">
+                {% include('@Financial/Chest/Counting/parts/ticket_restaurant.html.twig') %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="electronic_ticket_restaurant">
+                {% include('@Financial/Chest/Counting/parts/ticket_restaurant_electronic.html.twig') %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="check_quick">
+                {% include('@Financial/Chest/Counting/parts/check_quick.html.twig') %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="foreign_currency">
+                {% include('@Financial/Chest/Counting/parts/foreign_currency.html.twig') %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="bank_card">
+                {% include('@Financial/Chest/Counting/parts/bank_card.html.twig') %}
+            </div>
+        </div>
+    {% else %}
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="text-align: left;">
+                    {{ 'chest.counting.real_cash'|trans() }}
+                </div>
+                <div class="panel-body">
+                    {% include('@Financial/Chest/Counting/parts/real_cash.html.twig') %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="text-align: left;">
+                    {{ 'chest.counting.ticket_restaurant'|trans() }}
+                </div>
+                <div class="panel-body">
+                    {% include('@Financial/Chest/Counting/parts/ticket_restaurant.html.twig') %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="text-align: left;">
+                    {{ 'chest.counting.electronic_ticket_restaurant'|trans() }}
+                </div>
+                <div class="panel-body">
+                    {% include('@Financial/Chest/Counting/parts/ticket_restaurant_electronic.html.twig') %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="text-align: left;">
+                    {{ 'chest.counting.bank_card'|trans() }}
+                </div>
+                <div class="panel-body">
+                    {% include('@Financial/Chest/Counting/parts/check_quick.html.twig') %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="text-align: left;">
+                   {% if version=="quick" %} {{ 'chest.counting.check_quick'|trans() }} {% else %}  {{ 'chest.counting.check_bk'|trans() }} {% endif %}
+                </div>
+                <div class="panel-body">
+                    {% include('@Financial/Chest/Counting/parts/foreign_currency.html.twig') %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="text-align: left;">
+                    {{ 'chest.counting.foreign_currency'|trans() }}
+                </div>
+                <div class="panel-body">
+                    {% include('@Financial/Chest/Counting/parts/bank_card.html.twig') %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>

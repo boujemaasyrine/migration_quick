@@ -1,0 +1,73 @@
+<div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label>{{ "transfer.restaurant"|trans }} : </label> {{ transfer.restaurant.name|upper }}
+            ({{ transfer.restaurant.code }})
+        </div>
+        <div class="col-xs-4">
+            <label>{{ "transfer.transfer_num"|trans }} : </label>{{ transfer.numTransfer }}
+        </div>
+        <div class="col-xs-4">
+            {% if no_btns is not defined %}
+                <a href="{{ path('print_transfer',{'transfer' : transfer.id}) }}"
+                   class="btn pull-right white black-text "><span
+                            class="glyphicon glyphicon-print"></span> {{ "btn.print"|trans }}</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label>{{ "transfer.transfer_date"|trans }} : </label>{{ transfer.dateTransfer|date('d/m/Y') }}
+        </div>
+        <div class="col-xs-4">
+            <label>{{ "transfer.responsible"|trans }}: </label>
+            {{ transfer.employee.firstName|title }} {{ transfer.employee.lastName|upper }}
+        </div>
+        <div class="col-xs-4">
+            <label>{{ "tranfer_type"|trans }} : </label>{{ transfer.type|trans }}
+        </div>
+    </div>
+
+    <div class="row add-command-table-row" style="margin-top: 20px">
+        <div class="container-fluid">
+            <table class="table table-striped ">
+                <thead>
+                <tr>
+                    <th>{{ "command.details.lines.code"|trans }}</th>
+                    <th>{{ "designation"|trans }}</th>
+                    <th>{{ 'transfer.exp_qty'|trans() }}</th>
+                    <th>{{ 'transfer.invt_qty'|trans() }} </th>
+                    <th>{{ 'transfer.use_qty'|trans() }}</th>
+                    <th>{{ 'transfer.total'|trans() }}</th>
+                    <th>{{ "delivery.entry.unit_price"|trans }} (&euro;)</th>
+                    <th>{{ "valorization"|trans }} (&euro;)</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for l in transfer.lines %}
+                    <tr>
+                        <td>{{ l.product.externalId }}</td>
+                        <td>{{ l.product.name }}</td>
+                        <td>{{ l.qtyExp }} {{ l.product.labelUnitExped|trans }}</td>
+                        <td>{{ l.qty }} {{ l.product.labelUnitInventory|trans }}</td>
+                        <td>{{ l.qtyUse }} {{ l.product.labelUnitUsage|trans }}</td>
+                        <td>{{ l.total|number_format(2,',','') }} {{ l.product.labelUnitInventory|trans }}</td>
+                        <td>{{ l.product.buyingCost|number_format(2,',','') }}</td>
+                        <td>
+                            {{ l.valorization|number_format(2,',','') }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="6"></th>
+                    <th>{{ "valorization"|trans }} (&euro;)</th>
+                    <th>{{ transfer.valorization|number_format(2,',','') }}</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</div>

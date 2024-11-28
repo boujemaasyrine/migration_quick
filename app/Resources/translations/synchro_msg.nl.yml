@@ -1,0 +1,55 @@
+#Upload && Download
+orders: bestellingen #Commandes
+deliveries: leveringen #Livraisons
+transfers: transferts #Transferts
+returns: Retour #Retours
+
+inventories: Inventarissen #Inventaires
+loss_purchased: bestellingen #Pertes items d'inventaire
+loss_sold: verliezen verkoopsitems #Pertes items de vente
+
+financial_revenues: Omzet #Chiffres d'affaires
+bud_prev: Voorziene budgetten #Budgets Prévisionnels
+admin_closing: Administratieve afsluitingen #Clôtures administratives
+cashbox_counts: Kassatelling #Comptages caisses
+chest_counts: Koffertelling #Comptages coffres
+enveloppes: Enveloppen #Enveloppes
+withdrawals: Voorafnames #Prélèvements
+deposits: Stortingen #Virements
+expenses: Uitgaven #Dépenses
+recipe_tickets: Ontvansgtbon #Bons de recette
+tickets: Verkopen #Ventes
+employee: Werknemers #Employés
+
+suppliers: Leveranciers #Fournisseurs
+restaurants: Restaurants #Restaurants
+categories: Categorieën #Catégories
+sold_items: Verkoopsitems #Items de vente
+inv_items: Inventarisitems #Items d'inventaire
+solding_canals: Verkoopkanalen #Canals de vente
+recipes: Recepten #Recettes
+rights: Rechten #Droits
+roles: Rollen #Rôles
+actions: Acties #Actions
+sup_users: Gebruikers supervisie #Utilistateurs de supervision
+restaurant_parameters: Instellingen restaurants #Paramètres restaurants
+payment_methods: Betaalmethoden #Méthodes de paiement
+expense_labels: Uitgaven #Dépenses
+recipe_ticket_labels: Ontvangsten #Bons de recette
+
+#Status
+waiting: In de wacht #En attente
+pending: Bezig #En cours
+executed: Geïntegreerd #Envoyé
+#executed_success: Geïntegreerd #Intégré
+executed_fail: Uitvoering mislukt #Execution échoué
+executed_success: Succesvolle uitvoering #Execution avec succès
+
+fail: Mislukt #Echoué
+success: Succesvol #Succès
+
+#errors
+technical_problem: Technisch probleem #Problème technique
+
+#details
+item_not_found: item onvindbaar #Element introuvable

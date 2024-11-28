@@ -1,0 +1,86 @@
+{% extends('@Financial/RecipeTicket/index_recipe_ticket.html.twig') %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Financial/RecipeTicket/recipe_ticket_list.js') }}"></script>
+{% endblock %}
+{% block base_title %}
+    {{ 'financial_management.consultations.recipe_ticket'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.consultations.title'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body">
+                {{ form_start(form,{ 'method' : 'GET', 'attr': {'id': 'filterRecipeTicketForm', 'class' : 'form-horizontal'} }) }}
+                {% form_theme form ':form_layouts:horizontal_layout.html.twig' %}
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-3">
+                        {{ form_row(form.startDate) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-3">
+                        {{ form_row(form.endDate) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-3">
+                        {{ form_row(form.owner) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-3">
+                        {{ form_row(form.label) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:right;">
+                        <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "delete_filter"|trans }}
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="recipeTickets.ajax.reload();">
+                            <span style="color : white"
+                                  class="glyphicon glyphicon-filter"></span> {{ 'btn.filter'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding-bottom: 0;">
+            <div class="row">
+                <div class="col-xs-12" style="text-align: right; margin-bottom: 15px">
+
+                    <button class="btn btn-print btn-icon" type="button" id="download-btn">
+                        {{ "btn.print"|trans }}
+                    </button>
+                    <span class="btn btn-export btn-icon" type="button" id="export-btn">
+                             {{ "btn.export"|trans }}
+                        </span>
+                </div>
+            </div>
+            <table id="recipe_tickets" class="table table-striped table-bordered table-hover"
+                   style="width: 100%">
+                <thead>
+                <tr>
+                    <th>{{ 'recipe_ticket.reference'|trans }}</th>
+                    <th>{{ 'recipe_ticket.label'|trans }}</th>
+                    <th>{{ 'recipe_ticket.date'|trans }}</th>
+                    <th>{{ 'recipe_ticket.amount'|trans }}</th>
+                    <th>{{ 'recipe_ticket.owner'|trans }}</th>
+                    <th>{{ 'recipe_ticket.action'|trans }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

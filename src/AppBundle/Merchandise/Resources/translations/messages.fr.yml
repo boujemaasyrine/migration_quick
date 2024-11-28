@@ -1,0 +1,606 @@
+command:
+    new:
+        title: Nouvelle commande
+        quick_num: Quick N°
+        ca_prev: CA prévisionnel
+        supplier: Fournisseur
+        order_num: Commande N°
+        order_date: Date commande
+        delivery_date: Date de livraison
+        responsible: Responsable de la commande
+        lines:
+            code: Code
+            article: Item Inventaire
+            unit_exped: Unité Exped
+            stock_qty: Qté en stock
+            order_qty: Qté Cmd
+            btn: Enregistrer la ligne et ajouter une nouvelle ligne
+            qty_inv: Qté (U.Inv)
+            qty_use: Qté (U.Usage)
+            qty_exp: Qté (U.Exp)
+            qty_total: Total (U.Inv)
+        order_pass: Passer la commande
+        save_draft: Préparer la commande
+        js:
+            date_not_found: Aucune date trouvée pour le fournisseur choisi.
+            ca_not_found: Aucun chiffre d'affaire trouvé pour la date choisie.
+            product_not_found: Aucun produit trouvé pour le fournisseur choisi.
+        recap_title: Récapitulatif
+    date:
+        order: Date Commande
+        delivery: Livraison
+    responsable: Responsable de la commande
+    ca: CA Prévisionnel
+    num_order: Commande N°
+    lines:
+        header:
+            code: Code
+            product: Item Inventaire
+            exped_unit: Unité Expéd
+            stock_qty: Qté en stock
+            cmd_qty: Qté Cmd
+    table:
+        num_order: N° Cmd
+        supplier: Fournisseur
+        cmd_qty: Qté cmd
+    list:
+        pending:
+            title: Liste des commandes en cours
+        table:
+            header:
+                num_order: N° Cmd
+                supplier: Fournisseur
+                date_order: Date Cmd
+                date_delivery: Date Livraison
+                responsible: Responsable
+                status: Statut
+                actions: Actions
+        btn:
+            relance_send: Relancer L'envoi
+    details:
+        command : Commande
+        informations : Informations de la commande
+        title : Détail de la commande
+        supplier: Fournisseur
+        num_order: N° Cmd
+        date_order: Date de Commande
+        date_delivery: Date de Livraison
+        responsible: Responsable de la commande
+        lines:
+            code: Code
+            article: Item Inventaire
+            unit_exp: Unité d'Expéd.
+            ordred_qty: Qté Cmd
+    edit:
+        title: Modification de la Commande
+        edit_btn: Modifier
+        recap_old_order: Détail de la version ancienne
+        recap_title: Récapitulatif des modifications
+    modal:
+        title: Confirmation de l'ajout de l'item.
+        message : Une commande avec une autre date de livraison pour l'item <b> %label% </b> existe déjà pour cette date. <br> Confirmez-vouz l'ajout quand même?
+        title_submit: Confirmation de la commande.
+        message_confirm_submit: Une commande avec une autre date de livraison pour les items suivants existe déjà pour cette date : <br> %list% <br> Confirmez-vouz l'ajout quand même?
+    send_planned: L'envoi de la commande est planifié avec succès.
+
+delivery:
+    entry:
+        title: Saisie d'une livraison
+        responsible: Responsable de la livraison
+        deliveryOf: Livraison du
+        schedule: Bordereau de liv
+        provider: Fournisseur
+        order: Commande
+        orderOf: Commande du
+        reference: Code
+        items: Items Inventaire
+        issue: Litige
+        quantity: Qté Commandée
+        expInv: U.exp
+        quantityDeliv: Qté livrée
+        amount: Valorisation
+        amountDelivery: Valorisation de la livraison
+        amountByFamComp: Valorisation par Fam. Comp.
+        instruction: Consigne
+        stock: Stock
+        livery: Livrée
+        reprise: Reprise
+        validate: Valider
+        print: Valider & Imprimer le BL
+        abort: Abandon
+        unit_price: Prix Unitaire
+        date:
+            order: Date Commande
+            delivery: Livraison
+        new:
+            title: Nouvelle Commande
+            ca: CA Prévisionnel
+            num_order: Commande N°
+            lines:
+                header:
+                    code: Code
+                    product: Item inventaire
+                    exped_unit: Unité Expéd
+                    stock_qty: Qté en Stock
+                    cmd_qty: Qté CMD
+    test:
+        title: Simuler un bon de livraison
+        warning : Fonctionnalité de Test: Cet ecran permet de générer un fichier xml similaire à celui généré par le portail fournisseur. Ensuite il permet de le déposer sur le dossier ftp.
+    table:
+        num_order: N° Cmd
+        supplier: Fournisseur
+        cmd_qty: Qté cmd
+    num: N° Livraison
+    delivery_order_title: Liste des livraisons
+    delevry: Livraison
+    informations: Informations de la Livraison
+    details:
+        title: Détails de la livraison
+        supplier: Fournisseur
+        delivered_qty: Qté livrée
+    report:
+        title: Bon de Livraison
+    choose_supplier: Veuillez sélectionner un fournisseur
+    regularisation:
+        title: Régularisation sur BL
+        responsible_label: Responsable de la régularisation
+        delivery_date: Livraison du
+        num_bl: Borderau de Liv n°
+        num_order: Commande N°
+        order_date: Commande du
+        table:
+            ref: Code
+            articles: Items Inventaire
+            observation: Litige
+            delivery_qty: Qté. Liv.
+            unit_exp: U.Exp/ U.Inv
+            unit_price: Prix U.
+            return: Qté Retournée
+            valorisation: Valorisation
+            return_valorisation: Valorisation du retour
+            supplier: Fournisseur
+        historic:
+            date: Date de régularisation
+            responsible: Responsable
+            details: Détails
+product:
+    code: Code
+    name: Item inventaire
+    exp_unit: Unité Exp.
+    not_orderable: Le produit ne peut pas être commandé à cette date. Veuillez sélectionner un autre produit commandable
+
+sheet_model:
+    delete_message: "Confirmation de la suppression de la feuille '%sheet_label%'"
+    list:
+        title: Liste des feuilles
+        code: Code
+        product_name: Nom de l'item inventaire
+        label: Libellé
+        action: Action
+    notification:
+       created_with_success: "La feuille a été créée avec la référence : %id%."
+       edited_with_success: "La feuille (Libellé : %id%) est éditée / créée avec succès."
+       loss_edited_with_success: "La feuille des pertes (Libellé : %id%) a été éditée / créée avec succès."
+       sheet_model_deleted_with_success: "La feuille (label) a été supprimée avec succès."
+       all_item_of_this_category_are_already_selected: Tous les items de cette catégorie sont déjà ajoutés à votre feuille.
+       all_item_of_this_category_are_added_with_success: Tous les items de la catégorie %category_name% on été ajouté avec succès.
+       item_already_exist: %product_name% existe déjà dans votre feuille.
+       item_selected_with_success: %product_name% a été ajouté avec succès dans votre feuille.
+       btn:
+           create_another_one: Crée une autre
+    old_sheet:
+        title: Édition de la feuille
+    new_sheet:
+        title: Création d'une nouvelle feuille
+        list_title: Liste des items inclus dans cette feuille
+        labels:
+            label: Nom de la feuille
+            sheet_type: Type
+            category_filter: Catégorie
+            code: Code
+            article: Item Inventaire
+            action: Action
+            category: Catégorie
+article: Item Inventaire
+finalProduct: Items ventes
+inventory:
+    select_an_inventory_sheet: Sélectionner une feuille d'inventaire
+    entered_with_success: Inventaire mis à jour avec succès !
+    entered_with_error: Des erreurs sont détectées lors du sauvegarde de l'inventaire
+    btn:
+        load_sheet: Charger la feuille et commencer la saisie d'inventaire
+        load_other_sheet: Charger une autre feuille d'inventaire
+        entry_inventory: Saisir l'inventaire
+    title:
+        entry: Saisie de l'inventaire
+        management: Gestion des inventaires
+        list: Liste des inventaires
+        new_entry: Nouvelle saisie d'inventaire
+        existing_entry: Continuer votre saisie d'inventaire
+        consult: Consultation de la saisie d'inventaire
+    labels:
+        inventory_sheet: Feuille d'inventaire
+        type: Type
+        fiscal_date: Date fiscale
+        quantity: Quantité
+        usage_unit: Unité d'usage
+        inventory_unit: Unité d'inventaire
+        condition: Conditionnement
+        exped_unit: Unité d'expédition
+        usage_cnt: Quantité (unité d'usage)
+        inventory_cnt: Quantité (unité d'inventaire)
+        exped_cnt: Quantité (unité d'expédition)
+        model: Feuille d'inventaire
+        total: Total
+    status:
+        draft: Brouillon
+        validated: Validé
+        created: Crée
+    old_sheet:
+        title: Édition de la feuille
+    new_sheet:
+        title: Création d'une nouvelle feuille
+        confirm:
+            message: Confirmation d'ajout / mise à jour d'une feuille d'inventaire
+    consult:
+        btn:
+            launch_gap_analysis: Lancer l'analyse de l'écart
+        title: Consultation du stock
+        labels:
+            code: Code
+            initial_stock_date: Stock Initial au
+            final_stock_date: Stock Final au
+            nbr: Restaurant n°
+            stock_from: Stock du
+            stock_to: au
+            article: Items Inventaire
+            initial_stock: Stock initial
+            inputs: Entrées
+            outputs: Sorties
+            final_stock: Stock Final
+            theorical_final_stock: Stock final théorique
+            real_final_stock: Stock finale réel
+            gap: Différence planning :
+    sheets:
+        notification:
+            created_with_success: "Votre feuille d'inventaire a été créée avec la référence: {0}."
+            edited_with_success: "Votre feuille d'inventaire (Code Ref.: {0}) a été éditée avec succès."
+            btn:
+                create_another_one: Créer une autre
+        new_sheet:
+            title: Création d'une nouvelle feuille d'inventaire
+            inventory_lines: Liste des items de ventes inclus dans cette feuille
+            labels:
+                type: Type d'inventaire
+                entry_date: Date fiscale
+                category_filter: Catégorie
+                code: Code
+                article: Item d'inventaire
+                action: Action
+                add_an_article: Ajouter un Item d'inventaire
+                add_a_product_sold: Ajouter un Item de vente
+        action:
+            inventory_entry: Saisir l'inventaire
+        old_sheet:
+            title: Édition de la feuille d'inventaire
+        title: Gestion des feuilles d'inventaire
+        list:
+            title: Liste des feuilles d'inventaire
+            code: Code
+            entry_date: Date fiscale
+            type: Type d'inventaire
+            status: Statut
+            action: Action
+    title: Planning des commandes
+    supplier: Fournisseur
+    week_count: Nb Semaine
+    type:
+        food_cost:
+            label: FOOD COST
+            monthly_inventory: Inventaire mensuel - FOOD COST
+            daily_inventory: Inventaire journalier - FOOD COST
+            weekly_inventory: Inventaire hebdomadaire - FOOD COST
+        non_food_cost:
+            label: NON FOOD COST
+            monthly_inventory: Inventaire mensuel - NON FOOD COST
+            daily_inventory: Inventaire journalier - NON FOOD COST
+            weekly_inventory: Inventaire hebdomadaire - NON FOOD COST
+loss_sheet:
+    label:
+        select_a_loss_sheet_model: Veuillez sélectionner une feuille de pertes pour la journée
+        create_new: Création d'une nouvelle feuille de perte
+        numero: Numéro de la feuille de perte
+        date: Date de la saisie
+        btn_define_product: Définir les produits
+        list_product: Liste des produits inclus dans cette feuille
+        code: Code
+        btn_cancel: Annuler la création
+        btn_create: Créer la feuille de perte
+    title: Feuille de saisie des pertes
+loss:
+    sheets:
+        title_articles_loss_model: Gestion des feuilles des pertes (Item Inventaire)
+        title_sold_products_loss_model: Gestion des feuilles des pertes (items ventes)
+        title: Gestion des feuilles des pertes
+        sheet_model: Modèle de feuille
+    confirm:
+        message: Confirmation d'ajout / mise à jour d'une feuille de pertes
+        data_will_be_erased: Confirmation du changement de feuille pour la journée (la saisie effectuée sera alors perdue)
+        continue: Continuer et perdre ma saisie du jour
+    errors:
+        title: Erreur
+        message: Des erreurs existent dans vos saisies, veuillez les corriger
+        validate: Valider
+    type: Type de pertes
+    check:
+        title: Consultation des pertes
+        hourly: Pertes jour H/H (P. Finis)
+        daily: Pertes / Jours
+        weekly: Pertes / Semaines
+        monthly: Pertes / Mois
+        from: Du
+        to: Au
+        list_product: Liste des items inclus dans cette feuille
+        consult: Consulter
+    previous:
+        title: Modification des pertes des items d'inventaire du
+        article: Items d'inventaire
+        finalProduct: Items de ventes
+        actif: Tous les items actifs ?
+        feuille_number: N° feuille de pertes
+    recap:
+        title: Récapitulatif de votre saisie de pertes
+        date: Date de la saisie
+        type: Type de pertes
+    entry:
+        title: Saisie des pertes
+        title_articles_loss_model: Saisie des pertes des Items d'inventaire
+        title_sold_products_loss_model: Saisie des pertes des Items de ventes
+        cancel: Annuler la saisie
+        draft: Enregistrer comme brouillon
+        verify_cancel: Êtes-vous sûr de vouloir annuler vos saisies ?
+        js:
+            no_loss_sheet: Aucune feuille trouvée avec ce numéro.
+    list:
+        menu: Liste des pertes
+        num_loss: N° de la feuille
+        type: Type de la feuille
+        date: Date de la saisie
+        status: Statut
+        set_draft: Finir la Saisie
+        details_set: Afficher les détails
+    btn:
+        load: Charger la feuille de saisie
+        load_another: Charger une autre feuille de pertes
+    confirm:
+        data_will_be_erased: Attention ! Vous êtes sur le point de perdre les données saisies.
+        continue: Continuer et perdre ma saisie du jour
+    warning:
+        yesterday_loss_sheet_unavailable: Il n y'a aucune feuille de pertes saisie le %date%. Vous pouvez saisir les pertes de %date% avec le formulaire en dessous.
+        loss_sheet_date_unavailable: Merci de choisir une date entre %minDate% et %maxDate%.
+    notification:
+        entry_loosed_qty: Saissez les quantités perdues %productName%
+    label:
+        entry: Saisie
+        solding_canal: Canal
+transfer:
+    in:
+        new:
+            title: Nouveau Transfert IN
+    out:
+        new:
+            title: Nouveau Transfert OUT
+    quick_num: Quick N°
+    restaurant: Restaurant
+    transfer_num: Transfer N°
+    transfer_date: Date de Transfert
+    responsible: Responsable du transfert
+    title: Transfer
+planning:
+    supplier: Fournisseur
+order_edit_fail: La modification de la commande a échoué.
+order_edit_success: La modification de la commande a été effectuée avec succès.
+new_order_time_not_in_schedule: Le passage de la commande n'est pas dans la plage d'horaire autorisée.
+new_order_planning_not_found: Pas de planning trouvé pour la nouvelle commande.
+cannot_delete_po_file_from_supplier_server: La suppression de l'ancien bon du commande a échoué.
+new_order_btn: Passer une nouvelle commande
+pendig_list_btn: Liste des commandes en cours
+cancel_order_pop_title: Annuler la commande
+cancel_order_btn: Annuler la commande
+order_cancelled_success: La commande a été supprimée avec succès.
+order_cancelled_fail: L'annulation de la commande a échoué.
+observation: Observation
+too_much: Trop livrée
+not_ordred: Non Commandée
+missing: Quantité manquante
+delivery_valorisation: Valorisation de la livraison
+delivery_date_prevu: Date de livraison prévue
+add_new_line: Ajouter un Item d'inventaire
+no_order_found: Aucune commande n'a été trouvée
+min_valorization: Min Valorisation
+max_valorization: Max Valorisation
+bl_print: Imprimer le Bon de Livraison
+delivery_create_success: Livraison créée avec succès.
+regularization_success: Régularisation créée avec succès.
+delivery_details_title: Détail sur la livraison
+transfer_created_with_success: "Transfert #%id_transfer% créé avec succès."
+transfer_in: Transfert IN
+transfer_out: Transfert OUT
+save_transfer: Valider le Transfert
+transfer_details: Détail du Transfert
+transfer_type: Type de Transfert
+transfer_date_inf: Date Transfert - Inf
+transfer_date_sup: Date Transfert - Sup
+delete_filter: Effacer le filtre
+return_date: Date de retour
+return_responsible: Responsable
+return_valorization: Valorisation
+new_retour_title: Saisie d'un retour
+return_list: Liste des retours
+return_details_title: Détail du retour
+mark_as_sended: Marquer comme envoyée
+send_order_btn: Envoyer la commande
+force_modification: Forcer la modification
+delay_passed: Délais dépassé pour la modification
+delivery_date_min: Date début
+delivery_date_max: Date fin
+motif: Motif
+valorization: Valorisation
+tranfer_type: Type de transfert
+cannot_force_date: Le forçage du statut a echoué.
+delivery_date_has_been_passed: La date de la livraison est passée.
+delivery_create_fail: Echèc lors de la création de la livraison.
+return_created_success: La saisie du retour a été effectuée avec succès.
+return_created_fail: Echèc lors de la saisie du retour.
+send_mail_fail: Echèc lors de l'envoi de l'email.
+transfer_created_with_fail: Echèc lors de la création du transfert.
+marked_as_sended_success: La commande a été marquée comme envoyée.
+marked_as_sended_failed: Echèc lors du forçage du statut.
+only_rejected_prepared_can_be_forced: Seules les commandes rejetées et préparées peuvent être marquées comme envoyée.
+tooltip:
+    select_all_in_category: Ajouter tous les items de cette catégorie à la feuille
+    click_to_add_to_list: Cliquer pour ajouter cet élèment à la liste
+    click_to_show_contained_items: Cliquer pour afficher les items de cette catégorie
+delete_order_confirmation: 'Êtes-vous sûr de vouloir supprimer la commande #%num_order% ?'
+delete_order: Suppression de la commande
+delete_order_yes_btn: Oui, supprimer
+select_supplier: Veuillez sélectionner un fournisseur
+select_restaurant: Veuillez sélectionner un restaurant
+select_command: Veuillez sélectionner une commande
+order_valorization: Valorisation de la commande
+unit_price: Prix U.
+units_rapport: U.Expd/U.Inv/U.Usage
+designation: Désignation
+temperature: Température
+dlc: Date limite de consommation
+#Transfet bon et details
+transfer.invt_qty: Qté (U.Inv)
+transfer.use_qty: Qté (U.Usage)
+transfer.exp_qty: Qté (U.Exp)
+transfer.total: Total (U.Inv)
+
+#Aide à la commande messages
+order_day: Jour de la commande
+select_order_day: Veuillez sélectionner un jour
+help_order_title: Aide à la commande
+start_with_this_step: Veuillez commencer par cette étape.
+period_label: Période
+from_label: Du
+to_label: À
+to_label_2: au
+ca_realized_on_period: Chiffre d'affaire réalisé sur la période
+next_step_without_recalculation: Passer à l'étape suivante sans refaire le calcul
+save_and_go_to_next_step: Enregistrer et passer à l'étape suivante
+go_back_previous_step: Retourner à l'étape précédente
+filter_by_supplier: Filtrer par Fournisseur
+filter_by_category: Filtrer par Catégorie
+filter_by_day: Filtrer par Jour
+u_exp_u_inv: U.Exp/U.Inv
+u_inv_u_use: U.Inv/U.Usage
+r_t: R/T
+consumed_qty_u_exp: Qté Consommée (U.Inv)
+coef_euro_u_exp: Coeff (€/U.Inv)
+fixed: Fixé
+real_shortcut: R
+theo_shortcut: T
+work_budget: Budgets de travail
+date_label: Date
+budget_label: Budget
+stock_qty_theo_real: Qté en stock T/R
+coeff_label: Coefficient
+need_label: Besoin
+display_all_items: Afficher tous les items
+expected_deliveries_u_expd: L.P (U.Exped)
+qty_to_be_ordred_label: Qté à commander
+order_generated: Commande générée
+prepare_order: Préparer la commande
+order_created_with_succes:  La commande a été créée avec succès.
+order_not_created: Commande non créée.
+consult_order: Consulter la commande
+order_exisit_for_supplier: Il y a une commande créée pour ce fournisseur
+override_existing_order:  Ecraser la commande existante
+order_not_editable_exist: Il y a une commande non modifiable créée pour ce fournisseur.
+steps.first: Base de calcul des Coefficients
+steps.second: Coefficients
+steps.third: Masques
+steps.fourth: Résultats
+progress.initialisation: Initialisation
+progress.calcul_coef: Calcul de Coefficients
+progress.calcul_result: Calcul du résultat
+product_label: Produits
+days_label_shortcut: jrs
+all_coef_must_be_numeric: Le coefficient doit être numérique pour le produit :
+base_calcul: Base de Calcul
+coef_ca: Chiffre d'affaire
+order_help_processing: Il y a traitement en cours sur l'aide à la commande de cette semaine.
+order_help_next_step: Etape suivante
+coef_saved_with_success: Coefficients enregistrés avec succès
+next.step: Etape suivante
+#Budget du Travail prév
+pop_details_title: Détails du Budget Prévisionnel
+s_1_label: S-1
+s_2_label: S-2
+s_3_label: S-3
+s_4_label: S-4
+moyenne_label: Moyenne
+year_n: Année N
+year_n_1: Année N-1
+bud_calculated: Budget prévisionnel calculé
+bud_calculated_short: B.P Calculé
+bud_typed_short: B.P Saisi
+bud_typed: Budget prévisionnel saisie
+bud_to_be_taked: Budget prévisionnel pris en compte
+calculate_btn: Calculer
+actualize_btn: Actualiser
+see_label: Voir
+
+#Commande Messages Modal
+you_choose_a_date_outside_planning: Vous avez choisi une date hors planning.<br> Voulez-vous continuer ?
+you_choose_a_delivery_date_outside_planning: Vous avez choisi une date de livraison hors planning.<br>  Voulez-vous continuer ?
+order_exist_for_supplier: Une commande existe déjà à cette date pour ce founisseur.
+edit_existing_order: Modifier la commande existante
+create_new_order: Créer une nouvelle commande
+command_reciepe: Bon de Commande
+
+#Coefficient
+processing_pending: Traitement en cours. Veuillez patienter SVP.
+base_calcul: Base de calcul
+
+# Missed Translation
+coef_calculate: Lancer le calcul
+last_update_date_label: Dernière date de mise à jours des coefficients
+coef_consult: Consulter les coefficients
+reinitialize: Réinitialiser
+
+#others
+u.inv_qty: Qté (U.Inv)
+u.use_qty: Qté (U.Usage)
+u.exp_qty: Qté (U.Exp)
+total.inv_qty: Total (U.Inv)
+
+# new translation
+loss.success_entry: Votre saisie des pertes est effectuée avec succés.
+inventory.labels.theoric_stock: Stock théorique
+
+
+transfers:
+    delete:
+        title_modal: Supprimer le transfert
+        content_modal: Êtes-vous sûr de bien vouloir supprimer ce transfert ?
+        success: Transfert supprimé avec succès
+        mail:
+            subject: "[QUICK] Transfert Supprimé"
+            head: "Suppression du transfert"
+            body: "Le %type% dont le numéro %number% a été supprimé"
+
+inventory.print.title: Détails de l'inventaire
+
+see: Voir
+total_item: Total des items commandé
+
+Hello: Bonjour,
+confirmation_transfer: Confirmation de Transfert
+message1_transfer: Le transfert est arrivé, Merci.
+message2_transfer: Vous trouvez ci-joint le bon de transfert.
+message1_transfer_out: Un transfert OUT est effectué vers votre restaurant,
+loss_with: Avec pertes

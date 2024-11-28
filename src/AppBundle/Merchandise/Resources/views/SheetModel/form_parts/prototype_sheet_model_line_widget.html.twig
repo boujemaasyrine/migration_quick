@@ -1,0 +1,33 @@
+{% spaceless %}
+    <tr class="line">
+        <td class="draggable">
+            <span class="product_id">_ref_product_</span>
+            <input type='hidden' id='lines__line_number__id'
+                   name='sheet_model[lines][_line_number_][product]' value='_id_product_'>
+        </td>
+        <td class="draggable">
+            <span class="">_category_name_</span>
+        </td>
+        <td class="draggable">
+            <span class="product_id">_label_product_</span>
+        </td>
+        <td class="actions-btn ">
+            <button type="button" style="line-height: 100%;"
+                    class="btnRemoveSheetModelLine small-btn btn btn-remove waves-effect waves-light red darken-5"
+                    data-product-id="_id_product_">
+                <i style="color: white;"
+                   class="glyphicon glyphicon-minus"></i>
+            </button>
+
+            {#<button type="button" class="btn btn-primary orderUp" style="margin-left: 10px;">
+                <i class="glyphicon glyphicon-arrow-up"></i>
+            </button>
+
+            <button type="button" class="btn btn-primary orderDown" style="margin-left: 10px;">
+                <i class="glyphicon glyphicon-arrow-down"></i>
+            </button>#}
+            <input type="hidden" id="orderInSheet__id_product_" name="sheet_model[lines][_order_in_sheet_][orderInSheet]" value="_order_in_sheet_">
+        </td>
+        <td style="display: none;">_order_in_sheet_</td>
+    </tr>
+{% endspaceless %}

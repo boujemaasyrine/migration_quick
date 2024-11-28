@@ -1,0 +1,16 @@
+.setUnitsInDetails {
+  cursor: pointer !important;
+}
+.btn_open_qtys_modal {
+  float: right;
+  color: #ddd;
+  font-weight: bold;
+  font-size: 20px;
+}
+.qty-input {
+  text-align: right !important;
+  padding: 6px 6px !important;
+}
+.sheetModelFormTable {
+  width: 100% !important;
+}

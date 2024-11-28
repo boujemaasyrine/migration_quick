@@ -1,0 +1,170 @@
+{% extends('@Report/MerchandiseManagement/index.html.twig') %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% if reportResult is defined and  reportResult.data|length > 0 %}
+        <style>
+            .footer {
+                position: relative !important;
+            }
+        </style>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var type = '{{ constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLE') }}';
+    </script>
+    <script type="application/javascript" src="{{ asset('src/js/Report/portion_control.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'portion_control.title'|trans }}
+{% endblock %}
+
+{% block blockTitle %}
+    {% if reportResult is defined and reportResult.missing_plus|length > 0 %}
+        <div class="row alert alert-warning" role="alert">
+            {{ 'portion_control.plu_warning'|trans() }} <br/>
+            <ul class=" col-xs-12">
+                {% for line in reportResult.missing_plus %}
+                    <li class="col-xs-3">
+                        {{ line.plu }} - {{ line.description }}
+                    </li>
+                {% endfor %}
+            </ul>
+            </br>
+            {{ 'portion_control.plu_warning_footer'|trans() }}
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block subBody %}
+    <div class="">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-filter"></span> {{ 'title.filters'|trans }}
+            </div>
+            <div class="panel-body">
+                {{ form_start(portionControlForm, {'method' : 'POST' ,'action' : path('report_portion_control') }) }}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="mesureUnit"
+                                   class="active"> {{ 'portion_control.filter_labels.mesure_unit'|trans() }} </label>
+                            {{ 'portion_control.filter_labels.inventory'|trans() }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        {{ form_label(portionControlForm.startDate, 'portion_control.filter_labels.from'|trans ) }}
+                        <br/>
+                        <div class="input-group">
+                            {{ form_widget(portionControlForm.startDate, { "attr": { "class": 'form-control datepicker' } }) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(portionControlForm.startDate) }}
+                    </div>
+                    <div class="col-xs-6  col-md-3">
+                        {{ form_label(portionControlForm.endDate, 'portion_control.filter_labels.to'|trans ) }}
+                        <br/>
+                        <div class="input-group">
+                            {{ form_widget(portionControlForm.endDate, { "attr": { "class": 'form-control datepicker' }}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(portionControlForm.endDate) }}
+                    </div>
+                    <div class="col-xs-6  col-md-3">
+                        {{ form_label(portionControlForm.selection, 'portion_control.filter_labels.selection'|trans ) }}
+                        <br/>
+                        {{ form_widget(portionControlForm.selection, { "attr": { "class": 'form-control' }}) }}
+                        {{ form_errors(portionControlForm.selection) }}
+                    </div>
+                    <div class="col-xs-6  col-md-3">
+                        {{ form_label(portionControlForm.threshold, 'portion_control.filter_labels.threshold'|trans ) }}
+                        <br/>
+                        {{ form_widget(portionControlForm.threshold, { "attr": { "class": 'form-control' }}) }}
+                        {{ form_errors(portionControlForm.threshold) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6  col-md-3">
+                        {{ form_label(portionControlForm.code, 'portion_control.filter_labels.code'|trans ) }}
+                        <br/>
+                        {{ form_widget(portionControlForm.code, { "attr": { "class": 'form-control' }}) }}
+                        {{ form_errors(portionControlForm.code) }}
+                    </div>
+
+                    <div class="col-xs-6  col-md-3">
+                        {{ form_label(portionControlForm.name, 'portion_control.filter_labels.name'|trans ) }}
+                        <br/>
+                        {{ form_widget(portionControlForm.name, { "attr": { "class": 'form-control' }}) }}
+                        {{ form_errors(portionControlForm.name) }}
+                    </div>
+
+                    <div class="col-xs-12  col-md-6">
+                        {{ form_label(portionControlForm.category, 'portion_control.filter_labels.category'|trans ) }}
+                        <br/>
+                        {{ form_widget(portionControlForm.category, { "attr": { "class": '' }}) }}
+                        {{ form_errors(portionControlForm.category) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: right">
+                        {% if(generated is defined) %}
+                            <button class="btn waves-effect btn-export text-black dropdown-button"
+                                    data-activates='dropdown2'>
+                                <span> {{ 'btn.export'|trans() }} </span>
+                            </button>
+                            <ul id="dropdown2" class="dropdown-content" style="">
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="downloadReport">
+                                        <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                    </a></li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-xls">
+                                        <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                        <button id="generateReport" type="button" class="btn waves-effect orange text-black ">
+                            {{ 'btn.generate_report'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(portionControlForm) }}
+                </div>
+                 {% if locked is defined %}
+                    <div class="col col-lg-12 col-sm-12 col-xs-12">
+                        <div class="alert alert-danger form-error" role="alert"><span
+                                    class="glyphicon glyphicon-warning-sign"></span>
+                            {{ 'report.process.warning' |trans }} <br></div>
+                    </div>
+                {% endif %}
+                {{ form_end(portionControlForm) }}
+            </div>
+        </div>
+    </div>
+    <div class="row" id="search" {% if(generated is not defined) %} style="display: none;{% endif %} ">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <label> {{ 'label.search'|trans() }} </label> : <input id="searchOnReport" type="text"
+                                                                   class="form-control"/>
+        </div>
+    </div>
+
+    {% if(generated is defined) %}
+        {{ include('@Report/MerchandiseManagement/PortionControl/portion_control_report_body.html.twig') }}
+    {% endif %}
+
+{% endblock %}

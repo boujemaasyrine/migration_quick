@@ -1,0 +1,3 @@
+#!/bin/bash
+echo; echo "  ⏬ Running composer require $@"
+exec composer require $COMPOSER_REQUIRE_OPTIONS "$@"

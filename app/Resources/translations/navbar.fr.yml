@@ -1,0 +1,162 @@
+financial_management:
+    title: Gestion financière
+    cashbox_management: Gestion des caisses
+    daily_income: Recette journalière
+    levy_entry: Saisir un prélèvement
+    cashbox_counting: Comptage des caisses
+    cashbox_differences: Analyse des différences de caisse
+    expense_entry: Saisir un bon de dépense
+    envelope_cash: Saisir une enveloppe espèces
+    envelope_restau: Saisir une enveloppe titres restaurant
+    chest_management: Gestion du coffre
+    recipe_ticket_entry: Saisir un bon de recette
+    expenses_list: Consultation des bons de dépenses
+    chest_management: Gestion du coffre
+    chest_count: Comptage du coffre
+    consultations:
+        title: Consultations diverses
+        envelope: Consultation des enveloppes espèces
+        deleted_envelopes: Consultation des enveloppes espèces supprimées
+        envelope_ticket: Consultation des enveloppes titres restaurant
+        recipe_ticket: Consultation des bons de recette
+        cashbox_listing: Consultation des comptages caisses
+        chest_listing: Consultation des comptages coffres
+    deposit:
+        cash: Versement banque des espèces
+        ticket: Versement des titres restaurants
+    #to do
+    money_booking: Commande de monnaie
+    create_booking: Créer une commande de monnaie
+    list_money_booking: Liste des commandes de monnaie
+
+
+buying_management:
+    title: Gestion des achats
+    command_management: Gestion des commandes
+    command:
+        create: Créer une commande
+        list: Liste des commandes en cours
+        plan: Planning des commandes
+        help: Aide à la commande
+    transfer_management: Gestion des transferts
+    transfer:
+        new_in: Saisir transfert IN
+        new_out: Saisir transfert OUT
+        list: Liste des transferts
+    delivery_management: Gestion des livraisons
+    delivery:
+        new: Saisir une livraison
+        list: Liste des livraisons
+    return_management: Gestion des retours
+    return:
+        new: Saisir un retour
+        list: Liste des retours
+    coef:
+        base: Calcul des coefficients
+stock_management:
+    title: Gestion du stock
+inventory_management:
+    title: Gestion des inventaires
+    add_inventory_sheet_model: Nouvelle feuille d'inventaire
+    inventory_sheet_list: Liste des feuilles d'inventaires
+    inventory_management: Gestion des inventaires
+    add_new_inventory: Effectuer un saisie d'inventaire
+    list_inventories: Liste des inventaires
+    consult_stock: Consulter le stock
+loss_management:
+    title: Gestion des pertes
+    add_loss_sheet_model: Nouvelle feuille de pertes
+    loss_sheet_management: Gestion des feuilles de pertes
+    articles: Items d'inventaire
+    sold_products: Items de vente
+    loss_entry: Saisir les pertes
+    previous_day: Modifier les pertes de la veille
+    previous_date: Modifier les pertes
+
+parameters:
+    supplier_list: Liste des fournisseurs
+    restaurant_list: Liste des restaurants
+    inventory_items_list: Liste des items d'inventaire
+    solding_items_list: Liste des items de vente
+    planing: Gestion des plannings de livraison
+    merchandise_management:
+        title: Gestion des marchandises
+    financial_management:
+        title: Gestion financière
+        cashbox_counting: Comptage caisse
+        expense_labels: Libellés des bons de dépenses
+        recipe_labels: Libellés des bons de recettes
+    restaurant_management:
+        title: Paramètres du restaurant
+reports:
+    title: Reporting
+    merchandise_management:
+        title: Gestion Foodcost
+        portion_control: Portion contrôle
+        portion_control_three_weeks: Analyse des écarts 3 semaines # Portion contrôle  3 semaines
+        inventory_item: Perte des items inventaire
+        solde_item: Perte des items de vente
+    buying_management:
+        in_out: Contrôle des entrées & sorties
+    sales_management:
+        hour_by_hour: Heure par heure
+        hour_by_hour_employee: Heure par heure par collaborateur
+        sold_analyis: Analyse des ventes
+        daily_results: Résultats Journaliers
+        cash_book: Livre de caisse
+        ca_by_slice_hour: CA par tranche horaire
+    food_cost:
+        synthetic: Synthétique Foodcost
+        margin: Marge FoodCost
+    cashbox_counts:
+        title: Gestion Audit
+        per_owner: Par responsable comptage
+        per_cashier: Par équipier
+        anomalies: Anomalies caissiers
+        annulations: Annulations
+        corrections: Corrections
+        discount: % Discount par ticket
+    financial_revenue:
+        title: Gestion Ventes
+        strike_rate: Strike Rate
+        sale_per_canal: Répartition des ventes par canaux
+        ca_per_tva: Chiffre d'affaire par TVA
+    financial_management:
+        title: Gestion Financière
+        br: Bons de repas
+        beneficiary: Bénéficiaire
+        responsible: Badges responsables
+
+fund_management:
+    withdrawal_entry: Saisir un prélèvement
+    withdrawal_list: Consultation des prélèvements
+staff:
+    title: Gestion du personnel
+    list: Liste du personnel
+    role: Gérer les fonctions
+delivery_pending_list: Liste des livraisons en attente
+simulate_delivery_ticket: Simuler un bon de livraison
+stock_control: Controle du Stock
+coef:
+    title: Coefficients
+    calcul: Calcul
+    consult: Consultation
+
+# Missed Translation
+language:
+    frensh: Français
+    dutch: Néerlandais
+    fr: Langue Française
+    nl: Langue Neerlandaise
+    label: Langue par défaut
+
+parameter.right_management: Gestion des droits
+dashboard: Dashboard
+
+
+opti:
+    title: Export Optikitchen
+    calcul: Calcul des coefficients
+    consult: Consultation des coefficients
+    param: Paramétrage
+financial_summary: Synthétique Financier

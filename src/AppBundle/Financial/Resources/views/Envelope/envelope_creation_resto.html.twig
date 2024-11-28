@@ -1,0 +1,151 @@
+{% extends "@Financial/default.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        select.disabled {
+            display: none !important;
+        }
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Financial/check_password.js') }}"></script>
+    <script>
+        $(function () {
+            var source = $('#envelope_ticket_create_sousType');
+            var amount = $('#envelope_ticket_create_amount');
+            var reference = $('#envelope_ticket_create_reference');
+            var span_reference = $('#reference');
+
+            var ticketIds = {};
+            {% for id in form.sousType.vars.choices %}
+            ticketIds[{{ id.value }}] = "{{ id.value|ticket_code }}";
+            {% endfor %}
+            var val = source.val();
+            var text = source.find(":selected").text();
+            if (val != '') {
+                reference.val('{{ quick_code }}' + '_' + ticketIds[val] + '_' + '{{ 'now'|date('d_m_Y') }}');
+                span_reference.html('{{ quick_code }}' + '_' + ticketIds[val] + '_' + '{{ 'now'|date('d_m_Y') }}');
+            }
+            else {
+                span_reference.html('&nbsp;');
+                reference.val('');
+            }
+
+            source.change(function (e) {
+                var val = source.val();
+                var text = source.find(":selected").text();
+                console.log(val);
+                if (val != '') {
+                    reference.val('{{ quick_code }}' + '_' + ticketIds[val] + '_' + '{{ 'now'|date('d_m_Y') }}');
+                    span_reference.html('{{ quick_code }}' + '_' + ticketIds[val] + '_' + '{{ 'now'|date('d_m_Y') }}');
+                }
+                else {
+                    span_reference.html('&nbsp;');
+                    reference.val('');
+                }
+
+                loader.block();
+
+                var postData = $('#enveloppe_create_form').serializeArray();
+                $.ajax({
+                    type: "POST",
+                    data: postData,
+                    success: function (returnData) {
+                        amount.val(returnData.data);
+                        loader.unblock();
+                    }
+                });
+
+            });
+
+            $('#enveloppe_create_form').submit(function (e) {
+                if($(this).hasClass('password-checked')){
+                    return;
+                }
+                e.preventDefault();
+                $(this).check_password(Translator.trans('title.popup_confirm_password'),
+                    'form',
+                    $(this),
+                    null,
+                    $('#enveloppe_create_form').closest('.panel')
+                );
+            });
+        });
+    </script>
+{% endblock %}
+{% block base_title %}
+    {{ 'financial_management.envelope_restau'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.chest_management'|trans }}
+{% endblock %}
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {{ form_start(form,{'method' : 'POST' , 'attr' : { 'id' : 'enveloppe_create_form', 'class' : 'form-horizontal' } }) }}
+
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="form-group row">
+                        <label class="col-md-4 control-label">{{ 'envelope.owner'|trans }}</label>
+                        <div class="col-md-8"
+                             style="padding-top: 7px">{{ app.user.firstName }} {{ app.user.lastName }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="form-group row">
+                        {{ form_label(form.sousType, 'envelope.source.title', { 'label_attr' : { 'class' : 'col-md-4 control-label'}}) }}
+                        <div class="col-md-8">
+                            {{ form_widget(form.sousType) }}
+                            {{ form_errors(form.sousType) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="form-group row">
+                        {{ form_label(form.amount, 'envelope.amount', { 'label_attr' : { 'class' : 'col-md-4 control-label'}}) }}
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                {{ form_widget(form.amount) }}
+                                <span class="input-group-addon" id="basic-addon2"> <i
+                                            class="glyphicon glyphicon-euro"></i></span>
+                            </div>
+                            {{ form_errors(form.amount) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="form-group row">
+                        {{ form_label(form.reference, 'envelope.reference', { 'label_attr' : { 'class' : 'col-md-4  control-label'}}) }}
+                        <div class="col-md-8">
+                            <div class="form-control" disabled="">
+                                <div id="reference">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="hidden">
+                {{ form_widget(form.reference) }}
+                {{ form_rest(form) }}
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-validate btn-icon pull-right" type="submit" id="btn-validate">
+                        {{ 'btn.validate' | trans }}
+                    </button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

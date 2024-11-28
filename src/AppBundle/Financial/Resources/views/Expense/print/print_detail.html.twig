@@ -1,0 +1,31 @@
+{% extends('@General/exports/base_exports_2.html.twig') %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .label {
+            color: #000;
+        }
+
+        .panel-heading .label {
+            font-size: 1.6rem !important;
+        }
+
+        .col-modal {
+            margin-bottom: 20px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="row col-modal" style="border: 2px solid #333030;  margin-top: 100px; padding: 30px">
+        <div class="col-xs-12">
+            <br>
+            <div class="row col-modal">
+                <div class="col-xs-12" style="text-align: center">
+                    <b style="font-size: 2.8rem !important;">{{ title|upper }}</b>
+                </div>
+            </div>
+            <br>
+            {{ include('@Financial/Expense/modals/details.html.twig') }}
+        </div>
+    </div>
+{% endblock body %}

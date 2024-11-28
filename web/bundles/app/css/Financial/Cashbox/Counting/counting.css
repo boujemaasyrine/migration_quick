@@ -1,0 +1,9 @@
+.input-group-addon {
+  font-size: 0.8em;
+}
+.total_span {
+  word-wrap: break-word;
+}
+.input-group-addon {
+  max-width: 76px;
+}

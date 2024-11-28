@@ -1,0 +1,37 @@
+{% extends '@General/index_general.html.twig' %}
+
+{% block base_title %}
+    {{ 'keyword.notification' | trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/General/notification.css') }}">
+    <style>
+        .open td {
+            padding: 20px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>var instance = {% if instance %}{{ instance.id }}{% else %}null{% endif %};</script>
+    <script src="{{ asset('src/js/General/notification_list.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <table id="notifications_table" class="table table-bordered table-hover" cellspacing="0"
+                   width="100%">
+                <thead style="display:none">
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

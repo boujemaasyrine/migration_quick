@@ -1,0 +1,118 @@
+{% extends '@Merchandise/index_supplying.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Transfer/list.js') }}"></script>
+{% endblock %}
+{% block base_title %}
+    Liste des transferts
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'buying_management.transfer_management'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span
+                        class="glyphicon glyphicon-filter"></span> {{ "filter.label"|trans }}</div>
+            <div class="panel-body">
+                <form id="filter-form">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <select name="restaurant">
+                                <option value="">{{ "transfer.restaurant"|trans }}:</option>
+                                {% for s in restaurants %}
+                                    <option value="{{ s.id }}">{{ s.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <select name="type" class="form-control">
+                                <option value="">{{ "transfer_type"|trans }}</option>
+                                <option value="transfer_in">{{ "transfer_in"|trans }}</option>
+                                <option value="transfer_out">{{ "transfer_out"|trans }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <label for="date_transfer_inf">{{ "control_stock.start_date"|trans }}</label>
+                            <div class="input-group">
+                                <input id="date_transfer_inf" name="date_transfer_inf" type="text"
+                                       class="datepicker form-control">
+                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <label for="date_transfer_sup">{{ "control_stock.end_date"|trans }}</label>
+                            <div class="input-group">
+                                <input id="date_transfer_sup" name="date_transfer_sup" type="text"
+                                       class="datepicker form-control">
+                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12" style="text-align: right">
+                            <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                                <span class="glyphicon glyphicon-remove"></span> {{ "delete_filter"|trans }}
+                            </button>
+                            <button type="button" onclick="listTransfer.ajax.reload();"
+                                    class="btn btn-filter btn-icon">
+                                {{ 'btn.filter'|trans }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12" style="text-align:right;">
+                    <button class="btn waves-effect btn-export text-black dropdown-button"
+                            data-activates='dropdown2'>
+                        <span> {{ 'btn.export'|trans() }} </span>
+                    </button>
+                    <ul id="dropdown2" class="dropdown-content" style="">
+                        <li>
+                            <a class="strech_btn text-black" href="#" id="export-xls">
+                                <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                     style="height: 25px"
+                                     alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                            </a></li>
+                        <li>
+                            <a class="strech_btn text-black" href="#" id="export-btn">
+                                <img src="{{ asset('bundles/app/images/export/csv-128.png') }}"
+                                     style="height: 25px"
+                                     alt="{{ 'btn.download'|trans() }} {{ 'btn.download_csv'|trans() }}"/>
+                                <span style="color: #000;">{{ 'btn.download_csv'|trans() }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <table id="transfer-table" class="table table-striped table-bordered table-hover" cellspacing="0"
+                   width="100%">
+                <thead>
+                <tr>
+                    <th>{{ "transfer.transfer_num"|trans }}</th>
+                    <th>{{ "transfer_type"|trans }}</th>
+                    <th>{{ "transfer.restaurant"|trans }}</th>
+                    <th>{{ "transfer.transfer_date"|trans }}</th>
+                    <th>{{ "valorization"|trans }} (&euro;)</th>
+                    <th>{{ "table.actions"|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

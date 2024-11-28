@@ -1,0 +1,85 @@
+{% extends('@Supervision/Reports/Revenue/index.html.twig') %}
+
+{% block base_title %}
+    {{ 'report.hour_by_hour.title'|trans({}, 'supervision') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span
+                        class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans({}, 'supervision') }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                {{ form_start(form, {'attr' : {'action' : path('supervision_hour_by_hour'), 'novalidate' : 'novalidate'}}) }}
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        {{ form_label(form.date) }}
+                        <div class="input-group">
+                            {{ form_widget(form.date, {'attr' : {'class' : 'form-control datepicker'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.date) }}
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        {{ form_label(form.restaurant) }}
+                        {{ form_widget(form.restaurant, {'attr' : {'class' : 'form-control sortable'}}) }}
+                        {{ form_errors(form.restaurant) }}
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(form) }}
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-md-12 col-xs-12" style="text-align:right;">
+                        {% if(generated is defined) %}
+                            <button class="btn waves-effect btn-export text-black dropdown-button"
+                                    data-activates='dropdown2'>
+                                <span class="hide-on-med-and-down"> {{ 'btn.export'|trans({}, 'supervision') }} </span>
+                            </button>
+                            <ul id="dropdown2" class="dropdown-content" style="">
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="downloadReport">
+                                        <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'button.download'|trans({}, 'supervision') }} {{ 'button.download_pdf'|trans({}, 'supervision') }}"/>
+                                        <span style="color: #000;">{{ 'button.download_pdf'|trans({}, 'supervision') }}</span>
+                                    </a></li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-btn">
+                                        <img src="{{ asset('bundles/app/images/export/csv-128.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'button.download'|trans({}, 'supervision') }} {{ 'button.download_csv'|trans({}, 'supervision') }}"/>
+                                        <span style="color: #000;">{{ 'button.download_csv'|trans({}, 'supervision') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-xls">
+                                        <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans({}, 'supervision') }} {{ 'btn.download_xls'|trans({}, 'supervision') }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_xls'|trans({}, 'supervision') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+
+                        <button type="submit" class="btn waves-effect orange text-black " id="generateReport">
+                            {{ 'generate_report'|trans({}, 'supervision') }}
+                        </button>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    {% if(generated is defined) %}
+        {{ include('@Supervision/Reports/Revenue/HourByHour/body.html.twig') }}
+    {% endif %}
+
+{% endblock %}

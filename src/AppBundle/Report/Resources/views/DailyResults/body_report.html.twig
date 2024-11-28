@@ -1,0 +1,228 @@
+<style>
+    {% if download is not defined %}
+    .table th {
+        background: grey !important;
+        color: White !important;
+    }
+    {% endif %}
+
+    .odd {
+        background-color: #f9f9f9;
+    }
+
+</style>
+<table class="table table-bordered table-hover" cellspacing="0"
+       width="100%">
+    <thead>
+    <tr class="mainHeader">
+        <th>{{ 'keyword.date'| trans }}</th>
+        <th>{{ 'keyword.date_comp'| trans }}</th>
+        <th>{{ 'budget_label'| trans }} (&euro;)</th>
+        <th>{{ 'report.ca.ca_brut_ttc'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.vente_annexe'| trans }}</th>
+        <th>{{ 'report.discount'| trans }} (&euro;)</th>
+        <th>{{ 'report.br'| trans }} (&euro;)</th>
+        <th>{{ 'report.ca.ca_net_ht'| trans }} (&euro;)</th>
+        <th>% (-1)</th>
+        <th>{{ 'report.sales.hour_by_hour.tickets'| trans }}</th>
+        <th>% (-1)</th>
+        <th>{{ 'report.daily_result.avg_net_ticket'| trans }} (&euro;)</th>
+        <th>% (-1)</th>
+        <th>{{ 'cashbox_counts_anomalies.report_labels.diff_caisse'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.chest_error'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.sold_loss'| trans }}</th>
+        <th>{{ 'report.daily_result.inventory_loss'| trans }}</th>
+        <th>{{ 'report.daily_result.takeout_percentage'| trans }}</th>
+
+    </tr>
+    </thead>
+    <tbody class="mainTbody">
+    {% set row = 0 %}
+    {% for line in result.days %}
+        {% if row is divisible by(2) %} {% set class = 'odd' %} {% else %}{% set class = 'even' %}{% endif %}
+        <tr class="{{ class }} mainRow">
+            <td {% if line.comment != null and line.comment != '' %}rowspan="2" {% endif %}>{{ ('days.' ~ (line.day | date('D'))) | trans }} {{ line.day | date('d/m/Y') }}
+                {% if (line.isCompThisDate == false) %}
+                    <span class="glyphicon glyphicon-exclamation-sign bootstrap_tooltipped" style="color: red;"
+                          data-original-title="{{ 'non_comparable_day' | trans }}"></span>
+                {% endif %}
+            </td>
+            <td>
+                {{ ('days.' ~ (line.dayComp | date('D'))) | trans }} {{ line.dayComp | date('d/m/Y') }}
+                {% if (line.isComp == false) %}
+                    <span class="glyphicon glyphicon-exclamation-sign bootstrap_tooltipped" style="color: red;"
+                          data-original-title="{{ 'non_comparable_day' | trans }}"></span>
+                {% endif %}
+            </td>
+            <td>{{ line.budget | number_format(2, ',', '') }}</td>
+            <td>{{ line.caBrutTtc | number_format(2, ',', '') }}</td>
+            <td>{{ line.VA | number_format(2, ',', '') }}</td>
+            <td>{{ line.pub | number_format(2, ',', '') }}</td>
+            <td>{{ line.br | number_format(2, ',', '') }}</td>
+            <td>{{ line.caNetHt | number_format(2, ',', '') }}</td>
+            <td>{% if line.caNetPerCentNOne is not null %}{{ line.caNetPerCentNOne | number_format(2, ',', '') }}{% else %} * {% endif %}</td>
+            <td>{{ line.nbrTickets }}</td>
+            <td>{% if line.nbrTicketsPerCentNOne is not null %}{{ line.nbrTicketsPerCentNOne | number_format(2, ',', '') }}{% else %} * {% endif %}</td>
+            <td>{{ line.avgTicket | number_format(2, ',', '') }}</td>
+            <td>{% if line.avgTicketPerCentNOne is not null %}{{ line.avgTicketPerCentNOne | number_format(2, ',', '') }}{% else %} * {% endif %}</td>
+            <td>{{ line.cashboxTotalGap | number_format(2, ',', '') }}</td>
+            <td>{{ line.chestError | number_format(2, ',', '') }}</td>
+            <td>{% if line.soldLossVal == -1 %} * {% else %}{{ line.soldLossVal | number_format(2, ',', '') }}{% endif %}</td>
+            <td>{% if line.invLossVal == -1 %} * {% else %}{{ line.invLossVal | number_format(2, ',', '') }}{% endif %}</td>
+            <td>{{ line.takeOutPercentage | number_format(2, ',', '') }}</td>
+
+        </tr>
+        {% if line.comment != null and line.comment != '' %}
+            <tr class={{ class }}>
+                <td colspan="16"><b>{{ line.comment }}</b></td>
+            </tr>
+        {% endif %}
+        {% set row = row + 1 %}
+    {% endfor %}
+
+    <tr>
+        <th>{{ 'keyword.week'| trans }}</th>
+        <th></th>
+        <th>{{ 'budget_label'| trans }} (&euro;)</th>
+        <th>{{ 'report.ca.ca_brut_ttc'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.vente_annexe'| trans }}</th>
+        <th>{{ 'report.discount'| trans }} (&euro;)</th>
+        <th>{{ 'report.br'| trans }} (&euro;)</th>
+        <th>{{ 'report.ca.ca_net_ht'| trans }} (&euro;)</th>
+        <th>% (-1)</th>
+        <th>{{ 'report.sales.hour_by_hour.tickets'| trans }}</th>
+        <th>% (-1)</th>
+        <th>{{ 'report.daily_result.avg_net_ticket'| trans }} (&euro;)</th>
+        <th>% (-1)</th>
+        <th>{{ 'cashbox_counts_anomalies.report_labels.diff_caisse'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.chest_error'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.sold_loss'| trans }}</th>
+        <th>{{ 'report.daily_result.inventory_loss'| trans }}</th>
+        <th>{{ 'report.daily_result.takeout_percentage'| trans }}</th>
+
+    </tr>
+
+    {% for line in result.weeks %}
+        {% if row is divisible by(2) %} {% set class = 'odd' %} {% else %}{% set class = 'even' %}{% endif %}
+        <tr class={{ class }}>
+            <td>{{ line.index }}</td>
+            <td></td>
+            <td>{{ line.budget }}</td>
+            <td>{{ line.caBrutTtc | number_format(2, ',', '') }}</td>
+            <td>{{ line.VA | number_format(2, ',', '') }}</td>
+            <td>{{ line.pub | number_format(2, ',', '') }}</td>
+            <td>{{ line.br | number_format(2, ',', '') }}</td>
+            <td>{{ line.caNetHt | number_format(2, ',', '') }}</td>
+            <td>{{ line.caNetPerCentNOne | number_format(2, ',', '') }}</td>
+            <td>{{ line.nbrTickets }}</td>
+            <td>{{ line.nbrTicketsPerCentNOne | number_format(2, ',', '') }}</td>
+            <td>{{ line.avgTicket | number_format(2, ',', '') }}</td>
+            <td>{{ line.avgTicketPerCentNOne | number_format(2, ',', '') }}</td>
+            <td>{{ line.cashboxTotalGap | number_format(2, ',', '') }}</td>
+            <td>{{ line.chestError | number_format(2, ',', '') }}</td>
+            <td>{% if line.soldLossVal == -1 %} * {% else %}{{ line.soldLossVal | number_format(2, ',', '') }}{% endif %}</td>
+            <td>{% if line.invLossVal == -1 %} * {% else %}{{ line.invLossVal | number_format(2, ',', '') }}{% endif %}</td>
+            <td>{{ line.takeOutPercentage | number_format(2, ',', '') }}</td>
+
+        </tr>
+        {% set row = row + 1 %}
+    {% endfor %}
+
+    <tr>
+        <th>{{ 'keyword.month'| trans }}</th>
+        <th></th>
+        <th>{{ 'budget_label'| trans }} (&euro;)</th>
+        <th>{{ 'report.ca.ca_brut_ttc'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.vente_annexe'| trans }}</th>
+        <th>{{ 'report.discount'| trans }} (&euro;)</th>
+        <th>{{ 'report.br'| trans }} (&euro;)</th>
+        <th>{{ 'report.ca.ca_net_ht'| trans }} (&euro;)</th>
+        <th>% (-1)</th>
+        <th>{{ 'report.sales.hour_by_hour.tickets'| trans }}</th>
+        <th>% (-1)</th>
+        <th>{{ 'report.daily_result.avg_net_ticket'| trans }} (&euro;)</th>
+        <th>% (-1)</th>
+        <th>{{ 'cashbox_counts_anomalies.report_labels.diff_caisse'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.chest_error'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.sold_loss'| trans }}</th>
+        <th>{{ 'report.daily_result.inventory_loss'| trans }}</th>
+        <th>{{ 'report.daily_result.takeout_percentage'| trans }}</th>
+
+    </tr>
+
+    {% for line in result.months %}
+        {% if row is divisible by(2) %} {% set class = 'odd' %} {% else %}{% set class = 'even' %}{% endif %}
+        <tr class={{ class }}>
+            <td>{{ line.index }}</td>
+            <td></td>
+            <td>{{ line.budget }}</td>
+            <td>{{ line.caBrutTtc | number_format(2, ',', '') }}</td>
+            <td>{{ line.VA | number_format(2, ',', '') }}</td>
+            <td>{{ line.pub | number_format(2, ',', '') }}</td>
+            <td>{{ line.br | number_format(2, ',', '') }}</td>
+            <td>{{ line.caNetHt | number_format(2, ',', '') }}</td>
+            <td>{{ line.caNetPerCentNOne | number_format(2, ',', '') }}</td>
+            <td>{{ line.nbrTickets }}</td>
+            <td>{{ line.nbrTicketsPerCentNOne | number_format(2, ',', '') }}</td>
+            <td>{{ line.avgTicket | number_format(2, ',', '') }}</td>
+            <td>{{ line.avgTicketPerCentNOne | number_format(2, ',', '') }}</td>
+            <td>{{ line.cashboxTotalGap | number_format(2, ',', '') }}</td>
+            <td>{{ line.chestError | number_format(2, ',', '') }}</td>
+            <td>{% if line.soldLossVal == -1 %} * {% else %}{{ line.soldLossVal | number_format(2, ',', '') }}{% endif %}</td>
+            <td>{% if line.invLossVal == -1 %} * {% else %}{{ line.invLossVal | number_format(2, ',', '') }}{% endif %}</td>
+            <td>{{ line.takeOutPercentage | number_format(2, ',', '') }}</td>
+
+        </tr>
+        {% set row = row + 1 %}
+    {% endfor %}
+
+    <tr>
+        <th>{{ 'keyword.total'| trans }}</th>
+        <th></th>
+        <th>{{ 'budget_label'| trans }} (&euro;)</th>
+        <th>{{ 'report.ca.ca_brut_ttc'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.vente_annexe'| trans }}</th>
+        <th>{{ 'report.discount'| trans }} (&euro;)</th>
+        <th>{{ 'report.br'| trans }} (&euro;)</th>
+        <th>{{ 'report.ca.ca_net_ht'| trans }} (&euro;)</th>
+        <th>% (-1)</th>
+        <th>{{ 'report.sales.hour_by_hour.tickets'| trans }}</th>
+        <th>% (-1)</th>
+        <th>{{ 'report.daily_result.avg_net_ticket'| trans }} (&euro;)</th>
+        <th>% (-1)</th>
+        <th>{{ 'cashbox_counts_anomalies.report_labels.diff_caisse'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.chest_error'| trans }} (&euro;)</th>
+        <th>{{ 'report.daily_result.sold_loss'| trans }}</th>
+        <th>{{ 'report.daily_result.inventory_loss'| trans }}</th>
+        <th>{{ 'report.daily_result.takeout_percentage'| trans }}</th>
+
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td>{{ result.total.budget }}</td>
+        <td>{{ result.total.caBrutTtc | number_format(2, ',', '') }}</td>
+        <td>{{ result.total.VA | number_format(2, ',', '') }}</td>
+        <td>{{ result.total.pub | number_format(2, ',', '') }}</td>
+        <td>{{ result.total.br | number_format(2, ',', '') }}</td>
+        <td>{{ result.total.caNetHt | number_format(2, ',', '') }}</td>
+        <td>{{ result.total.caNetPerCentNOne | number_format(2, ',', '') }}</td>
+        <td>{{ result.total.nbrTickets }}</td>
+        <td>{{ result.total.nbrTicketsPerCentNOne | number_format(2, ',', '') }}</td>
+        <td>{{ result.total.avgTicket | number_format(2, ',', '') }}</td>
+        <td>{{ result.total.avgTicketPerCentNOne | number_format(2, ',', '') }}</td>
+        <td>{{ result.total.cashboxTotalGap | number_format(2, ',', '') }}</td>
+        <td>{{ result.total.chestError | number_format(2, ',', '') }}</td>
+        <td>{% if result.total.soldLossVal == -1 %} * {% else %}{{ result.total.soldLossVal | number_format(2, ',', '') }}{% endif %}</td>
+        <td>{% if result.total.invLossVal == -1 %} * {% else %}{{ result.total.invLossVal | number_format(2, ',', '') }}{% endif %}</td>
+        <td>{{ result.total.takeOutPercentage | number_format(2, ',', '') }}</td>
+
+    </tr>
+
+    </tbody>
+</table>
+
+
+
+

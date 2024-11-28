@@ -1,0 +1,108 @@
+{% form_theme form.smallChest.ticketRestaurantCounts "@Financial/CashBox/Counting/form_parts/check_restaurant_widget.html.twig" %}
+{% form_theme form.smallChest.bankCardCounts "@Financial/CashBox/Counting/form_parts/bank_card_widget.html.twig" %}
+{% form_theme form.smallChest.checkQuickCounts "@Financial/CashBox/Counting/form_parts/check_quick_widget.html.twig" %}
+
+{% set chestCount = form.vars.value %}
+
+<div class="container-fluid {% if list is defined %}container{% endif %}"
+     {% if list is defined %}style="width: 100%; max-width: inherit;"{% endif %}>
+    {{ form_start(form,{'method' : 'POST' , 'attr' : { 'id' : 'chest_count_form', 'class': '' } }) }}
+
+    {% if administrative_closing_service.inChestCount and list is not defined %}
+        {% include '@Financial/AdministrativeClosing/steps.html.twig' with { 'admin_closing_5_step' : true } %}
+    {% endif %}
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="row-height">
+                <div class="{% if download is not defined %} col-xs-10 col-xs-height {% else %} col-xs-12 {% endif %} "
+                        {% if download is not defined %} style="padding-left: 0;" {% endif %}>
+                    <div class="inside inside-full-height {% if download is defined %} row {% endif %}">
+                        <div class="panel panel-default" style="margin: 0;padding: 5px;">
+                            <div class="panel-body">
+                                <h5 style="    margin: 5px;">
+                                    {{ 'chest.counting.counting_information'|trans() }}
+                                </h5>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <div class="col-xs-3">
+                                                    {{ form_label(form.date, 'chest.counting.date') }}
+                                                </div>
+                                                <div class="col-xs-9">
+                                                    {% if list is defined %}
+                                                        {{ chestCount.date('Y/m/d H:m:i') }}
+                                                    {% else %}
+                                                        {{ form_widget(form.date, { 'attr': { 'class': 'count_date form-control' }}) }}
+                                                    {% endif %}
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-5" style="text-align: right;">
+                                                <label> {{ 'chest.counting.counting_owner'|trans() }} : </label>
+                                                <span class="text-accent-1"> {{ chestCount.owner.firstName|title }} {{ chestCount.owner.lastName|capitalize }} </span>
+                                            </div>
+
+                                            {#<div class="col-xs-1" style="text-align: right;">#}
+                                            {#{% if parameter_service.isEftActivated == true %}#}
+                                            {#<span class="green-text"> {{ 'eft.is_activated'|trans() }}</span>#}
+                                            {#{% else %}#}
+                                            {#<span class="red-text"> {{ 'eft.is_not_activated'|trans() }}</span>#}
+                                            {#{% endif %}#}
+                                            {#</div>#}
+                                            <div class="col-xs-3">
+                                                {% if chestCount.closure %}
+                                                    {{ 'chest.listing.header.closured_day'|trans() }} :
+                                                    {{ chestCount.getClosureDate('Y/m/d') }}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="{% if download is not defined %} col-xs-2 col-xs-height {% else %} col-xs-12 {% endif %} "
+                        {% if download is not defined %} style="padding:0;;"{% endif %}>
+                    <div class="inside inside-full-height {% if download is defined %} row {% endif %}">
+                        <div class="panel panel-default" style="height: 100%;margin: 0;padding: 5px;">
+                            <div class="panel-body">
+                                <div class="row" style="text-align: right;">
+                                    <div class="col-xs-12" style="text-align: left;">
+                                        <label style="margin: 5px;">
+                                            {{ 'chest.counting.gap'|trans() }}
+                                        </label>
+                                        <span class="text-muted bold {% if download is defined %} pull-right {% endif %}">
+                                            <span id="" class="chest_total_gap
+                                            {% if form.vars.value.gap > 0 %}
+                                               green-text
+                                            {% else %}
+                                                red-text
+                                            {% endif %}
+                                            "
+                                                  style="font-size:1.25em !important;"> {{ form.vars.value.gap|number_format(2, ',', '') }}</span>
+                                            <i class="glyphicon glyphicon-euro"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        {% if list is not defined %}
+                                            <span id="validateChestCounting"
+                                                  class="btn btn-validate full-width"> {{ 'btn.validate'|trans() }}</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include('@Financial/Chest/Counting/parts/chest_counting_sub_part.html.twig') %}
+    <div class="hidden">
+        {{ form_rest(form) }}
+    </div>
+    {{ form_end(form) }}
+</div>

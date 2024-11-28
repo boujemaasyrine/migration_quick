@@ -1,0 +1,214 @@
+{% extends '@Merchandise/index_supplying.html.twig' %}
+
+{% form_theme form.lines "@Merchandise/Delivery/form_parts/delivery_line_widget.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/Merchandise/merchandise.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/Merchandise/add_edit_order.css') }}">
+    <style>
+        .add-command-table-row:last-child {
+            border-bottom: none !important;
+        }
+
+        .borderau-num input {
+            width: 78% !important;
+            display: inline-block !important;
+        }
+
+        .borderau-num label {
+            display: block;
+        }
+
+        .order-delivery-mismatch {
+            background: #ff9090 !important;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Delivery/delivery_entry.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ "delivery.entry.title"|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'buying_management.delivery_management'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block body %}
+    <div class="deliveryEntry">
+        {{ form_start(form) }}
+        <div class="add-delivery-table">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="delivery_supplier_name"
+                                       class="label-float">{{ 'delivery.entry.provider'|trans }} :</label>
+
+                                {% set suppliers = [] %}
+                                {% for i in  form.order.vars.choices %}
+                                    {% for x in i.choices %}
+                                        {% set s = x.data.supplier.name %}
+                                        {% if s not in suppliers %}
+                                            {% set suppliers = suppliers|merge([s]) %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+
+                                <select id="delivery_supplier" class="form-control">
+                                    <option value="" selected="selected">{{ 'delivery.choose_supplier'|trans }}</option>
+                                    {% for s in suppliers %}
+                                        <option value="{{ s }}">{{ s }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="label-float required">{{ 'delivery.entry.order'|trans }} n° :</label>
+                                {{ form_widget(form.order, { 'attr' : { 'class' : 'form-control' }}) }}
+                                {{ form_errors(form.order) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12 borderau-num">
+                            <div class="form-group">
+                                <label class="required"
+                                       style="display: block !important;">{{ 'delivery.entry.schedule'|trans }}
+                                    N°: </label>
+
+                                <div style="display: inline;">{{ form['prefix-num'].vars.value }}</div>
+                                {{ form_widget(form.deliveryBordereau,{ 'attr' : { 'class' : 'form-control' , 'style' : 'width:70% !important; display : inline-block !important' } }) }}
+                                {{ form_errors(form.deliveryBordereau) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="delivery_date" class="required ">{{ 'delivery.entry.deliveryOf'|trans }}
+                                    :</label>
+                                <div class="input-group">
+                                    {{ form_widget(form.date,{ 'attr' : { 'class' : 'datepicker form-control' } }) }}
+                                    <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                </div>
+                                {{ form_errors(form.date) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="respo" class="active">{{ 'delivery.entry.responsible'|trans }}</label>
+
+                                <div>
+                                    {{ app.user.firstName|title }} {{ app.user.lastName|upper }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-xs-12">
+                            <table id="delivery-entry-table" class="table table-striped ">
+                                <thead>
+                                <tr>
+                                    <th class="clicked">{{ 'delivery.entry.reference'|trans }} <i></i></th>
+                                    <th class="clicked">{{ 'delivery.entry.items'|trans }} <i></i></th>
+                                    <th>{{ 'delivery.entry.quantity'|trans }}</th>
+                                    <th class="required">{{ 'delivery.entry.quantityDeliv'|trans }}</th>
+                                    <th>{{ 'delivery.entry.unit_price'|trans }} (&euro;)</th>
+                                    <th>{{ 'delivery.entry.amount'|trans }} (&euro;)</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody data-prototype="{{ form_widget(form.lines.vars.prototype)|e }}"
+                                       count="{{ form.lines|length }}">
+                                {% for l in form.lines %}
+                                    {{ form_widget(l) }}
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                {% if form.lines.vars.errors|length >0 %}
+                                    <tr>
+                                        <td colspan="8">
+                                            {{ form_errors(form.lines) }}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                <tr>
+                                    <td class="small-input">
+                                        <input type="text" class="form-control" id="code-product"
+                                               placeholder="{{ "product.code"|trans }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="name-product"
+                                               placeholder="{{ "product.name"|trans }}">
+                                    </td>
+                                    <td>
+                                        0
+                                        <span id="unit-new-line">
+
+                                </span>
+                                    </td>
+                                    <td class="small-input">
+                                        <input type="text" class="form-control" id="qty-product">
+                                    </td>
+                                    <td>
+                                        <span id="new-line-unit-price"></span>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                        <button data-tooltip="{{ "command.new.lines.btn"|trans }}"
+                                                data-position="top" class="tooltipped"
+                                                onclick="addNewDeliveryLine();" type="button" style="color: green"><span
+                                                    class="glyphicon glyphicon-plus"></span></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" style="text-align: right"><label>{{ "delivery_valorisation"|trans }}
+                                            (&euro;)</label></td>
+                                    <td class="medium-input">
+                                        {{ form_widget(form.valorization,{ 'attr' : { 'class' : 'form-control' } }) }}
+                                        {{ form_errors(form.valorization) }}
+                                        <b><span id="delivery-valorization-span"></span></b>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: right">
+                        <a style="margin-top: 5px; margin-right: 10px;" href="{{ path('delivered_list') }}">
+                            {{ "btn.cancel"|trans }}
+                        </a>
+                        <button type="button" id="print-bl-btn"
+                                class="btn  btn-print btn-icon">
+                            {{ 'bl_print'|trans }}
+                        </button>
+                        <button type="button" id="submit-bl-btn" class="btn btn-validate btn-icon">
+                            {{ 'delivery.entry.validate'|trans }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden">
+        {{ form_rest(form) }}
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

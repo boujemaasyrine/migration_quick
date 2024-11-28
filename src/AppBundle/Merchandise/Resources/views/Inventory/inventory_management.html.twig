@@ -1,0 +1,30 @@
+{% extends '@Merchandise/index_stock.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bundles/app/css/Merchandise/Inventory/inventory.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset('bundles/app/lib/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+    <script src="{{ asset('src/js/Merchandise/Inventory/consultation.js') }}"></script>
+{% endblock %}
+{% block base_title %}
+    {{ 'inventory.title.management'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'inventory_management.inventory_management'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <div id="inventory_block">
+    </div>
+
+    <div class="">
+        <div class="panel panel-default">
+            {{ include('@Merchandise/Inventory/parts/inventory_list.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

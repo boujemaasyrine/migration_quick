@@ -1,0 +1,159 @@
+@import "colors";
+
+@media (min-width: 320px) {
+  /* smartphones, iPhone, portrait 480x320 phones */
+}
+
+@media (min-width: 481px) {
+  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+}
+
+@media (max-width: 991px) {
+  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  .vertical-nav-bar-global-container {
+    position: fixed;
+    z-index: 9;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 961px) {
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+}
+
+@media (min-width: 1025px) {
+  /* big landscape tablets, laptops, and desktops */
+}
+
+@media (min-width: 1281px) {
+  /* hi-res laptops and desktops */
+}
+
+@media only screen and (max-width: 480px) {
+  .vertical-nav-bar-global-container {
+    width: 50%;
+    padding: 0;
+    .sf-menu ul {
+      position: relative !important;
+      left: 0 !important;
+    }
+    .nav-bar-container {
+      .sf-vertical li:not(.header-item):not(.navbar-item-1) {
+        background-color: @second-color-orange !important;
+      }
+      .hide-nav-bar-btn {
+        left: 93%;
+        top: 3px;
+        z-index: 1000;
+      }
+    }
+  }
+
+  //#mobnav-btn {
+  //  display: block;
+  //}
+  //
+  //.mobnav-subarrow {
+  //  display: block;
+  //  background-color: #0f3975;
+  //  opacity: .3;
+  //  border-bottom: 1px solid white;
+  //  border-top: 1px solid black;
+  //  height: 20px;
+  //  width: 30px;
+  //  background-position: top left !important;
+  //  position: absolute;
+  //  top: 8px;
+  //  right: 10px;
+  //  -webkit-border-radius: 5px;
+  //  border-radius: 5px;
+  //  cursor: pointer;
+  //  -webkit-border-radius: 5px;
+  //  border-radius: 5px;
+  //  cursor: pointer;
+  //  -webkit-transition: all .1s ease-in-out;
+  //  -moz-transition: all .1s ease-in-out;
+  //  -ms-transition: all .1s ease-in-out;
+  //  -o-transition: all .1s ease-in-out;
+  //  transition: all .1s ease-in-out;
+  //}
+  //
+  //.sf-menu {
+  //  width: 100% !important;
+  //  display: none;
+  //}
+  //
+  //.sf-menu.xactive {
+  //  display: block !important;
+  //}
+  //
+  //.sf-menu li {
+  //  float: none !important;
+  //  display: block !important;
+  //  width: 100% !important;
+  //}
+  //
+  //.sf-menu li a {
+  //  float: none !important;
+  //}
+  //
+  //.sf-menu ul {
+  //  position: static !important;
+  //  display: none !important;
+  //}
+  //
+  //.xpopdrop ul {
+  //  display: block !important;
+  //}
+}
+//
+//@media only screen and (max-width: 760px),
+//(min-device-width: 768px) and (max-device-width: 1024px) {
+//
+//  /* Force table to not be like tables anymore */
+//  .table-responsive table,
+//  .table-responsive thead,
+//  .table-responsive tbody,
+//  .table-responsive th,
+//  .table-responsive td,
+//  .table-responsive tr {
+//    display: block;
+//  }
+//
+//  /* Hide table headers (but not display: none;, for accessibility) */
+//  .table-responsive thead tr {
+//    width: 98%;
+//    border: 0 !important;
+//  }
+//
+//  .table-responsive thead tr th {
+//    border-right: 0 !important;
+//  }
+//
+//  .table-responsive thead tr th.sorting_disabled {
+//    display: none;
+//  }
+//
+//  .table-responsive tr {
+//    border: 1px solid #ccc;
+//  }
+//
+//  .table-responsive td {
+//    /* Behave  like a "row" */
+//    border: none;
+//    border-bottom: 1px solid #eee;
+//    position: relative !important;
+//    padding-left: 33.33% !important;
+//  }
+//
+//  .table-responsive td:before {
+//    /* Now like a table header */
+//    position: absolute !important;
+//    /* Top/left values mimic padding */
+//    top: 6px;
+//    left: 6px;
+//    width: 66.66%;
+//    padding-right: 10px;
+//    white-space: nowrap;
+//  }
+//}

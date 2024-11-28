@@ -1,0 +1,200 @@
+#!/usr/bin/env php
+<?php
+
+// if you don't want to setup permissions the proper way, just uncomment the following PHP line
+// read http://symfony.com/doc/current/book/installation.html#configuration-and-setup for more information
+umask(0000);
+
+set_time_limit(0);
+
+require_once __DIR__ . '/bootstrap.php.cache';
+require_once __DIR__ . '/AppKernel.php';
+
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Debug\Debug;
+use AppBundle\Merchandise\Command\SendPoCommand;
+use AppBundle\Merchandise\Command\ResendPOCommand;
+use AppBundle\Merchandise\Command\ResendRejectedOrderCommand;
+use AppBundle\General\Command\ImportWyndCommand;
+use AppBundle\Merchandise\Command\NotifyNotSendPreparedOrders;
+use AppBundle\General\Command\ImportRestaurantsCommand ;
+
+$input = new ArgvInput();
+$env = $input->getParameterOption(['--env', '-e'], getenv('SYMFONY_ENV') ?: 'dev');
+$debug = getenv('SYMFONY_DEBUG') !== '0' && !$input->hasParameterOption(['--no-debug', '']) && $env !== 'prod';
+
+if ($debug) {
+    Debug::enable();
+}
+
+$kernel = new AppKernel($env, false);
+$application = new Application($kernel);
+$application->add(new AppBundle\General\Command\ImportAllDataCommand());
+$application->add(new AppBundle\General\Command\ImportCategoriesCommand());
+$application->add(new AppBundle\General\Command\ImportDivisionsCommand());
+$application->add(new AppBundle\General\Command\ImportInventoryItemsCommand());
+$application->add(new AppBundle\General\Command\ImportProductSoldCommand());
+$application->add(new AppBundle\General\Command\ImportRecipesCommand());
+$application->add(new AppBundle\General\Command\ImportSuppliersCommand());
+$application->add(new AppBundle\General\Command\ImportSoldingCanalCommand());
+$application->add(new AppBundle\General\Command\ImportActionsCommand());
+$application->add(new AppBundle\General\Command\DuplicateRecipeProductSold());
+
+// Administration
+$application->add(new AppBundle\Administration\Command\UpdateLastClosuredDayForDevPurposeCommand());
+// Financial
+$application->add(new AppBundle\Administration\Command\LoadParametersCommand());
+$application->add(new AppBundle\Administration\Command\LoadForeignCurrencyCommand());
+
+$application->add(new SendPoCommand());
+$application->add(new ResendPOCommand());
+$application->add(new ResendRejectedOrderCommand());
+$application->add(new ImportWyndCommand());
+$application->add(new NotifyNotSendPreparedOrders());
+$application->add(new ImportRestaurantsCommand());
+
+// General
+$application->add(new \AppBundle\General\Command\TicketReprise\ImportTicketsFromCsvCommand());
+$application->add(new \AppBundle\General\Command\ImportWyndRestCommand());
+$application->add(new \AppBundle\General\Command\ImportWyndRestMockUpCommand());
+$application->add(new \AppBundle\General\Command\ImportFinancialRevenueCommand());
+$application->add(new \AppBundle\General\Command\ImportWyndFileMockUpCommand());
+$application->add(new \AppBundle\General\Command\DeleteDuplicatePluSoldItemCommand());
+$application->add(new \AppBundle\General\Command\InitProceduresCommand());
+$application->add(new \AppBundle\General\Command\InitializeRestaurantCommand());
+
+// Merchandise
+$application->add(new \AppBundle\Merchandise\Command\InitOrderHelpTmpCommand());
+$application->add(new \AppBundle\Merchandise\Command\CalculateCoefCommand());
+$application->add(new \AppBundle\Merchandise\Command\OrderHelpCalculateResultCommand());
+$application->add(new \AppBundle\Merchandise\Command\CoefficientCommand());
+$application->add(new \AppBundle\Merchandise\Command\NotifyNotDeliveredOrdersCommand());
+$application->add(new \AppBundle\Merchandise\Command\PreviousLossNotEncodedCommand());
+$application->add(new \AppBundle\Merchandise\Command\HelpOrderInitCommand());
+$application->add(new \AppBundle\Merchandise\Command\UpdateProductsPurchasedStatusCommand());
+$application->add(new \AppBundle\Merchandise\Command\CreatePurchasedMvmtOnTicketsCommand());
+
+//user
+$application->add(new \AppBundle\General\Command\ImportUserWyndCommand());
+$application->add(new \AppBundle\General\Command\ImportUserWyndRestCommand());
+$application->add(new \AppBundle\General\Command\ImportRolesCommand());
+$application->add(new \AppBundle\General\Command\InitializeRolesRightsCommand());
+$application->add(new \AppBundle\General\Command\ImportAllRightsCommand());
+$application->add(new \AppBundle\General\Command\ImportStaffSecurityConfigurationCommand());
+
+//Report
+$application->add(new \AppBundle\Report\Command\ControlStockCommand());
+$application->add(new \AppBundle\Report\Command\FoodCostSynthetiqueCommand());
+$application->add(new \AppBundle\Report\Command\FoodCostMargeCommand());
+
+//Supervision Report
+$application->add(new \AppBundle\Supervision\Command\Report\ControlStockCommand());
+$application->add(new \AppBundle\Supervision\Command\Report\FoodCostSynthetiqueCommand());
+$application->add(new \AppBundle\Supervision\Command\Report\FoodCostMargeCommand());
+
+//Sync with supervision
+$application->add(new \AppBundle\General\Command\SupervisionSyncCommand\Up\SyncEmployeesCommand());
+$application->add(new \AppBundle\General\Command\SupervisionSyncCommand\Up\GenericUploadCommand());
+$application->add(new \AppBundle\General\Command\SupervisionSyncCommand\Download\GenericDownloadCommand());
+$application->add(new \AppBundle\General\Command\SupervisionSyncCommand\ExecuteSyncCommand());
+
+//Optikitchen
+$application->add(new \AppBundle\General\Command\OptikitchenInitCommand());
+$application->add(new \AppBundle\Administration\Command\OptikitchenAutomaticLaunchingCommand());
+$application->add(new \AppBundle\Administration\Command\OptikitchenCalculCommand());
+$application->add(new \AppBundle\Administration\Command\OptikitchenAutomaticSendingCommand());
+
+//Initialize BO
+$application->add(new \AppBundle\General\Command\InitializeBOCommand());
+$application->add(new \AppBundle\General\Command\InitializeUserCommand());
+$application->add(new \AppBundle\General\Command\HolidaysInitCommand());
+$application->add(new \AppBundle\General\Command\HolidaysInitCSVCommand());
+
+//Initializing PricesRevenues
+$application->add(new \AppBundle\General\Command\InitPricesRevenuesForTicketLinesCommand());
+$application->add(new \AppBundle\General\Command\InitPricesRevenuesForLossLinesCommand());
+
+// Dev command
+$application->add(new \AppBundle\General\Command\DevCommand\UpdateFiscalDateCommand());
+#$application->add(new \AppBundle\General\Command\DevCommand\FixDuplicatedTicketsCommand());
+$application->add(new \AppBundle\General\Command\DevCommand\CalculateCashboxCountCommand());
+$application->add(new \AppBundle\General\Command\DevCommand\CalculateChestCountCommand());
+$application->add(new \AppBundle\General\Command\DevCommand\AggregateProductPurchasedMvmtCommand());
+$application->add(new \AppBundle\General\Command\DevCommand\InitializeChestCountCommand());
+$application->add(new \AppBundle\General\Command\DevCommand\DeleteDataCommand());
+
+//Clearing Tmp Table commmand
+$application->add(new \AppBundle\General\Command\ClearTmpTablesCommand());
+
+$application->add(new \AppBundle\General\Command\InitSqlViewsAndIndexesCommand());
+
+//Verification Wynd
+$application->add(new \AppBundle\General\Command\VerifyWyndCommand());
+$application->add(new \AppBundle\General\Command\VerifySendEmailCommand());
+
+//Ping Supervision
+$application->add(new \AppBundle\General\Command\SupervisionSyncCommand\PingSupervisionCommand());
+
+//Correction Discount
+#$application->add(new \AppBundle\General\Command\TicketLineDiscountCorrection\CorrectTicketLineDiscountCommand());
+#$application->add(new \AppBundle\General\Command\TicketLineDiscountCorrection\CorrectNotCountedTicketLineDiscountCommand());
+#$application->add(new \AppBundle\General\Command\DevCommand\CashboxRecipeCommand());
+#$application->add(new \AppBundle\General\Command\DevCommand\FixDuplicatedProductCommand());
+$application->add(new \AppBundle\General\Command\TicketReprise\FixTicketTotalCommand());
+
+//Administrative Closing Commands
+$application->add(new \AppBundle\General\Command\DevCommand\UpdateAdministrativeClosingCommand());
+$application->add(new \AppBundle\General\Command\DevCommand\InitializeCreditAmountCommand());
+
+//Support
+#$application->add(new \AppBundle\General\Command\UpdateProd\UpdateWyndUserIdCommand());
+
+//NEW
+$application->add(new \AppBundle\General\Command\FixMvmtBugsCommand());
+
+//Backup and restoration
+$application->add(new \AppBundle\General\Command\ServerDownEmailCommand());
+$application->add(new \AppBundle\General\Command\ServerUpEmailCommand());
+
+// Supervision commands
+$application->add(new \AppBundle\Supervision\Command\ImportActionsCommand());
+
+//Migrate database Command
+$application->add(new \AppBundle\General\Command\DevCommand\MigrateToSaasCommand());
+
+
+//test Dev command
+// Supervision commands
+$application->add(new \AppBundle\ToolBox\Command\DevTestCommand());
+//Aloha Payment Methods Update
+$application->add(new \AppBundle\General\Command\UpdatePaymentMethodsCommand());
+
+// MvtAggregation command for purchased products
+
+$application->add(new \AppBundle\General\Command\DevCommand\AggregateProductPurchasedMvmtCommand());
+
+// XML productSold export
+
+//$application->add(new \AppBundle\Merchandise\Command\PsoldGenerateXMLCommand());
+$application->add(new \AppBundle\General\Command\InitRestaurantEligibilityCommand());
+
+
+//Create Product sold and sync on a given restaurant
+
+$application->add(new \AppBundle\Merchandise\Command\CreateSoldProductsOnBoCommand());
+
+// Purge notifications
+
+$application->add((new \AppBundle\General\Command\PurgeNotificationsCommand()));
+
+// Generate Missing Plus notifications
+
+$application->add(new \AppBundle\General\Command\GenerateMissingPluNotificationsCommand());
+
+// Kiosk cashboxs counting
+
+$application->add(new \AppBundle\Financial\Command\KioskCashboxCountingCommand());
+
+$application->run($input);
+

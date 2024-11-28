@@ -1,0 +1,93 @@
+<div id="check_restaurant_electronic_container" class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    {% for ticket in form.vars.value.checkRestaurantContainer.getCheckRestaurantFiltered(true) %}
+        {% if list or paymentMethodStatus.isIdPaymentActive(ticket.idPayment) %}
+            {% if list %}
+                <div class="col-xs-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="">
+                            {{ ticket.ticketName }}
+                        </div>
+                        <div class="panel-body">
+                            {% for checkRestaurantCount in form.checkRestaurantContainer.ticketRestaurantCounts %}
+                                {% if ticket.ticketName == checkRestaurantCount.vars.value.ticketName %}
+                                    <div class="row bankCardRow">
+                                        <div class="col-xs-6">
+                                        <span class="text-muted bold bank_card_amount">
+                                            {{ (checkRestaurantCount.vars.value.qty * checkRestaurantCount.vars.value.unitValue)|number_format(2, ',', '.') }}
+                                            <i class="glyphicon glyphicon-euro"></i>
+                                        </span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="panel-footer" style="text-align: left;">
+                            <div class="row">
+                            <span class="text-muted pull-right" style="margin-right: 5px;">
+                                <span class="total_check_restaurant_by_type">{{ form.vars.value.checkRestaurantContainer.calculateTotalByTicketName(ticket.ticketName)|number_format(2, ',', '.') }}</span>
+                                <i class="glyphicon glyphicon-euro"></i>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                {% if parameter_service.isEftActivated %}
+                    <div class="col-xs-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="">
+                                {{ ticket.ticketName }}
+                            </div>
+                            <div class="panel-body">
+                                {% for paymentTickets in form.vars.value.checkRestaurantContainer.ticketPayments %}
+                                    {% if ticket.idPayment == paymentTickets.idPayment %}
+                                        <div class="row bankCardRow">
+                                            <div class="col-xs-6">
+                                        <span class="text-muted bold bank_card_amount"> {{ paymentTickets.amount|number_format(2, ',', '.') }}
+                                            <i class="glyphicon glyphicon-euro"></i>
+                                        </span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+                            <div class="panel-footer" style="text-align: left;">
+                                <div class="row">
+                            <span class="text-muted pull-right" style="margin-right: 5px;">
+                                <span class="total_check_restaurant_by_type">{{ form.vars.value.checkRestaurantContainer.calculatePaymentTicketsTotalByPaymentId(ticket.idPayment)|number_format(2, ',', '.') }}</span>
+                                <i class="glyphicon glyphicon-euro"></i>
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="checkRestaurantRow col-xs-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="text-align: left;">
+                                {{ ticket.ticketName }}
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    {% for checkRestaurantCount in form.checkRestaurantContainer.ticketRestaurantCounts %}
+                                        {% if ticket.ticketName == checkRestaurantCount.vars.value.ticketName %}
+                                            {{ form_widget(checkRestaurantCount, { 'attr': {'maxlength':"10"}}) }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="text-align: left;">
+                                <div class="row">
+                <span class="text-muted pull-right" style="margin-right: 5px;">
+                    <span class="total_check_restaurant_by_type">{{ form.vars.value.checkRestaurantContainer.calculateTotalByTicketName(ticket.ticketName)|number_format(2, ',', '.') }}</span>
+                    <i class="glyphicon glyphicon-euro"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</div>

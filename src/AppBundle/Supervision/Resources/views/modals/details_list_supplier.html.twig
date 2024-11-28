@@ -1,0 +1,28 @@
+<div class="detail-modal-body" style="padding: 5px;">
+    <div class="row">
+        <div class="col-modal col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <span class="label">{{ 'label.code' | trans({}, "supervision") }}</span>
+            {{ supplier.code }}
+        </div>
+        <div class="col-modal col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: right;">
+            <span class="label">{{ 'provider.list.provider' | trans({}, "supervision") }}: </span>
+            {{ supplier.name }}
+        </div>
+        <div class="col-modal col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <span class="label">{{ 'provider.list.designation' | trans({}, "supervision") }}: </span>
+            {{ supplier.designation }}
+        </div>
+        <div class="col-modal col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: right;">
+            <span class="label">{{ 'provider.list.phone' | trans({}, "supervision") }} : </span>
+            {{ supplier.phone }}
+        </div>
+        <div class="col-modal col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <span class="label">{{ 'provider.list.address' | trans({}, "supervision") }} : </span>
+            {{ supplier.address }}
+        </div>
+        <div class="col-modal col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: right;">
+            <span class="label">{{ 'label.mail' | trans({}, "supervision") }} : </span>
+            {{ supplier.email }}
+        </div>
+    </div>
+</div>

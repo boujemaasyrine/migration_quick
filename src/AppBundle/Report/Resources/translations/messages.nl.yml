@@ -1,0 +1,506 @@
+portion_control:
+    title: Analyse afwijkingen Portion Control #Analyse des écarts-Portion Contrôle
+    three_weeks: gap-analyse 3 weken
+    plu_warning: De recepten van de volgende PLU's zijn niet te vinden in uw back office : #les recettes des Plus suivants sont introuvables dans votre back Office :
+    filter_labels:
+        periode: Huidige periode #Période Courante
+        from: Van #Du
+        to: tot #au
+        mesure_unit: Eenheid meting #Unité de mesure
+        inventory: Inventaris #Inventaire
+        selection: Selectie #Sélection
+        threshold: Drempel (Euros) #Seuil (Euros)
+        code: Code #Code
+        name: Naam item #Nom Item
+        category: Categorie #Catégorie
+    filter_values:
+        inventory_done: Inventaris uitgevoerd #Inventaire fait
+        all_items: Alle items #Tous les items
+        error: Error (Verschil > Drempel) #En erreur (Ecart > Seuil)
+    report_labels:
+        items: Items #Items
+        stocks: Stocks #Stocks
+        ventes: Verkoop #Ventes
+        pertes: Verlies #Pertes
+        consommations: Verbruik #Consommations
+        ecarts: Verschillen #Ecarts
+        code: Code #Code
+        description: Omschrijving #Description
+        format: Formaat #Format
+        initial: Begin #Initial
+        entree: Levering #Entrée
+        sortie: Verzending #Sortie
+        final: Laatste #Final
+        valeur_final: Laatste waarde #Valeur finale
+        ventes: Verkoop #Ventes
+        item_vtes: Verkoopsitem #Item Vtes
+        item_inv: Inv. item #Item Inv
+        theo: Theo #Theo
+        reel: Reëel #Réel
+        ecart: Verschil #Écart
+        valorisation: Valorisatie #Valorisation
+        ecart_positif: Positief verschil #Ecart positif
+        ecartnegatif: Negatief verschil #Ecart négatif
+        dont_paper_cost_indirect: Waarvan Indirecte papercost #Dont Paper Cost Indirect
+        gain_inf_seuil: Winst min. drempel #Gain inf. seuil
+        perte_sup_seuil: Verlies max. drempel #Perte sup. sueil
+        sans_erreur: Geen error #Sans erreur
+    export_labels:
+        initial: Beg.
+        entree: IN
+        sortie: OUT
+        final: Eind
+        valeur_final: €
+        ventes: Vts
+        item_vtes: It Vts
+        item_inv: It Inv
+        ecart: +/-
+        valorisation: €
+    label:
+        total: Totaal #Total
+    validation:
+        start_date_must_be_before_end_dat: De begindatum dient eerder te zijn dan de einddatum #La date de début doit préceder la date de fin
+data_invalid: Gegevens ongeldig #Données invalide
+report:
+    period: Gevraagde periode #Période demandée
+    discount: Discount #Discount
+    br: MB #BR
+    period_to_compare: Vergelijkbaarheid #Comparabilité
+    loss:
+        inventory_item_title: Rapport verliezen inventarisitems #Rapport des pertes des items inventaire
+        sold_item_title: Rapport verliezen verkoopsitems #Rapport des pertes des items de ventes
+    generate: Rapport genereren #Générer le rapport
+    inventory:
+        title: Verlies inventarisitems #Pertes items inventaire
+    sold:
+        title: Verlies verkoopsitems #Pertes items de vente
+    buying:
+        in_out_title: Rapport In en OUT #Rapport des entrées & sorties
+        title: Levering & OUT ( IN&OUT) #Entrées & Sorties
+    sales:
+        hour_by_hour:
+            title: Uur per uur #Heure par heure
+            ca_prev: Verwachte omzet #CA Prévisionnel
+            ca_brut: Bruto omzet incl. BTW #CA Brut TTC
+            ca_ht: Netto omzet excl. BTW # CA NET HTVA
+            escompte_br: Discount inclusief MB #Escompte BR inclus
+            cumul_ticket: Cumul Ticket #Cumul Ticket
+            tickets: Ticketten #Tickets
+            ticket: Ticket #Ticket
+            avg_ticket: Gemiddeld Ticket #Ticket Moyen
+            cumul_ca_brut: Cumul bruto omzet incl. BTW #Cumul CA Brut TTC
+            cumul_ca_ht: Cumul Netto omzet excl. BTW # CA NET HTVA
+            hour: uur
+            half_hour: 1/2 uur
+            quarter_hour: 1/4 uur
+            ca_type: Type omzet
+            calculate_by: Bereken met
+        slice_schedule:
+            title: Zc per tijds blok
+            ref_date: Gekozen referentiedagen
+            moyen: Gemiddelde
+            total: Totaal
+            date: Datum
+        hour_by_hour_employee:
+            title: Omzet per uur per medewerker #Chiffre d'affaire par heure par collaborateur
+    food_cost:
+        synthetic:
+            title: Synthetic Foodcost #Synthétique Foodcost
+            sold_pr_ht: Netto verkoop kostp. excl. BTW #Ventes PR HT
+            fc_mix: FC Mix #FC Mix
+            ideal_fc: Ideale FC #FC Idéal
+            loss_inventory: Verliezen inv. I  #Pertes I.Inv
+            loss_sold: Verliezen Verk. I. #Pertes I.Vts
+            known_loss: Gekende verlies #Pertes Connues
+            unknown_loss: Ongekende verlies #Pertes Inconnues
+            total_loss: Totaal Verlies #Pertes Totales
+            theorical_fc: Theoretische FC #FC Théorique
+            theorical_margin: Theoretische marge #Marge Théorique
+            initial_stock: Beginstock #Stock Inital
+            in: Levering #Entrées
+            out: Verzending #Sorties
+            final_stock: Eindstock #Stock Final
+            real_consomation: Werkelijke Conso #Conso Réelle
+            real_fc: Reële FC #FC Réel
+            real_margin: Reëele marge #Marge Réelle
+            real_fc_net: Reële FC Netto #FC Réel Net
+            brut_margin: Bruto Marge #Marge Brute
+        margin:
+            title: Marge FoodCost #Marge FoodCost
+            mix_ca_ttc: Food cost Mix incl. BTW #Food cost Mix C.A T.T.C.
+            ideal_ht: Food cost Ideaal excl. BTW #Food cost Ideal HT
+            total_loss: Totaal verlies #Pertes totales
+            theorical_foodcost: Food Cost Theoretisch #Food Cost Théorique
+            net_sold: Netto verkoop excl. BTW #Ventes Nettes H.T.
+            real_foodcost: Food Cost reëel #Food Cost Réel
+            voucher_pub: Food cost - discount #Food cost - discount
+            voucher_meal_foodcost: Food cost - Maaltijdbon #Food cost - Bons repas
+            net_real_foodcost: Food Cost reëel Netto #Food cost réel net
+            net_real_margin: Reëele marge netto #Marge réelle net
+            period: Geselecteerde periode #Période sélectionnée
+            margin_pf: Marge eindproduct #Marge P.F.
+            voucher_meal: maaltijdbon #Bon repas
+            ca_ht: Omzet exl. BTW #C.A.H.T.
+            theorical_margin: Theoretische marge #Marge Theorique
+            btn_generate_tooltip : Metdie knop  is het mogelijk om het rapport op de gekozen periode te laten berekenen.<br> (de berekening zal een beetje tijd nemen) #"Ce bouton permet de re calculer le rapport sur la période séléctionnée. <br> (Le calcul va prendre un peu du temps)"
+    ca:
+        ca_brut_ttc: Bruto omzet incl. BTW #CA Brut TTC
+        ca_net_ht: Netto omzet excl. BTW #CA NET HTVA
+        net_ttc: Netto BTW #Net TTC
+    daily_result:
+        title: Dagelijkse resultaten #Résultats journaliers
+        chest_error: Koffer error #Err. Coffre
+        avg_net_ticket: Netto gemiddelde ticket #TM Net
+        inventory_loss: % Verlies I.Inv #% Pertes I.Inv
+        sold_loss: % Verlies I.Verk. #% Pertes I.Vts
+        takeout_percentage : % TakeOut
+        vente_annexe: Vente Annexe
+    cash_book:
+        title: Kasboek #Livre Caisse
+cashbox_counts_owner:
+    title: Lijst van kassatellingen per verantwoordelijke #Liste des comptages caisses par responsable comptage
+    filter_labels:
+        periode: Huidige periode #Période Courante
+        from: Van #Du
+        to: tot #au
+        owner: Verantwoordelijke kassa #Responsable comptage
+    report_labels:
+        responsable: Verantwoordelijke kassa #Responsable comptage
+        nombre_comptage: Aantal kassatellingen #Nbre de comptage
+        ca_theorique: Theoretische omzet #C.A. théorique
+        ca_reel: Omzet geteld #C.A. réel compté
+        especes: Cash #Espèces
+        titres_restaurant: Restaurantcheques #Titres restaurant
+        cartes_bancaires: bankkaarten #Cartes Bancaires
+        bon_repas: maaltijdbon #Bon repas
+        discounts: Discounts #Discounts
+        annulations: Annulaties #Annulations
+        pourcentage: % #%
+        corrections: Correcties #Corrections
+        abandons: Afbrekingen #Abandons
+        nombre: Aantal #Nbre
+        montant: Bedrag #Montant
+        ecart: Verschil #Ecart
+        diff_caisse: Kasverschil #Diff. de caisse
+        total: Totaal #Total
+
+    validation:
+        start_date_must_be_before_end_dat: De begindatum moet vóór de einddatum liggen #La date de début doit préceder la date de fin
+
+cashbox_counts_cashier:
+    title: Lijst van kassatellingen per medewerker #Liste des comptages caisses par équipier
+    filter_labels:
+        periode: Huidige periode #Période Courante
+        from: Van #Du
+        to: tot #au
+    report_labels:
+        responsable: Kassier #Caissier
+        nombre_comptage: Aantal kassatellingen #Nbre de comptage
+        ca_theorique: Theoretische omzet #C.A. théorique
+        ca_reel: Omzet geteld #C.A. réel compté
+        especes: Cash #Espèces
+        titres_restaurant: Waardecheques restaurant #Titres restaurant
+        cartes_bancaires: bankkaarten #Cartes Bancaires
+        bon_repas: maaltijdbon #Bon repas
+        autre_quick: Quick cheques #Chèques quick
+        autre_bk: BK cheques #Chèques BK
+        annulations: Annulaties #Annulations
+        brut: Bruto #Brut
+        escompte: Discount  #Escompte
+        pourcentage: % #%
+        net: Netto #Net
+        corrections: Correcties #Corrections
+        abandons: Afbrekingen #Abandons
+        nombre: Aantal #Nbre
+        montant: Bedrag #Montant
+        ecart: Verschil #Ecart
+        diff_caisse: Kasverschil #Diff. de caisse
+        total: Totaal #Total
+        discounts: Discounts #Discounts
+
+cashbox_counts_anomalies:
+    title: Rapport afwijkingen per kassier #Rapport des anomalies caissiers
+    filter_labels:
+        periode: Huidige periode #Période Courante
+        from: Van #Du
+        to: tot #au
+    filter_guidance:
+        title: Werking filters #Fonctionnement des filtres
+        body: |
+             <h5>De filters werken als volgt:</h5>
+             <ul style='font-size:1.5em !important'>
+             <li> - De waarde van een filter is het interval (in %) weergegeven met de groene balk </li>
+             <li> - De filters worden bij elke periodeverandering bijgewerkt met de volgende standaard waarden :<br>
+                    <span style='margin-left:20px!important'>* Kasverschil :&nbsp; meer dan +/- 0,5%</span> <br>
+                    <span style='margin-left:20px!important'>* Annuleringen :&nbsp;&nbsp;&nbsp;&nbsp; 	  meer dan (restaurant gemiddelde + 0,2%)</span> <br>
+                    <span style='margin-left:20px!important'>* Correcties :&nbsp;&nbsp;&nbsp;&nbsp;	  meer dan (restaurant gemiddelde + 1%)</span> <br>
+                    <span style='margin-left:20px!important'>* Afbrekingen :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	      meer dan (restaurant gemiddelde)</span> <br>
+                    <span style='margin-left:20px!important'>* Contanten :&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	      minder dan (restaurant gemiddelde - 2,5%)</span> <br>
+                    <span style='margin-left:20px!important'>* Waardecheques restaurant :&nbsp;&nbsp;&nbsp;&nbsp;	  minder dan (restaurant gemiddelde + 2,5%)</span> <br>
+             </li>
+             <li> - De bovenste marge van een filter mag meer dan 100% zijn afhankelijk van de maximale waarde van de percentage in de overeenkomende kolom in het verslag. </li>
+             </ul>
+    report_labels:
+        responsable: Kassier #Caissier
+        nombre_caisse: Aantal kassa's #Nbre de caisses
+        ca_reel: Omzet geteld #C.A. réel compté
+        diff_caisse: Kasverschil #Diff. de caisse
+        annulations: Annulaties #Annulations
+        corrections: Correcties #Corrections
+        abandons: Afbrekingen #Abandons
+        especes: Cash #Espèces
+        titres_restaurant: Restaurantcheques #Titres restaurant
+        ecart: Verschil Verversing #Ecart Ventilation ** necessite une verification
+        pourcentage: % #%
+        montant: Bedrag #Montant
+        total: Totaal #Total
+        avg: Gemiddelde #Moyenne
+    validation:
+        diff_cashbox: De filter "Kasverschil" is verkeerd #Le filtre "Diff. de caisse" est erroné
+        annulations: De filter "Annulaties" is verkeerd #Le filtre "Annulations" est erroné
+        corrections: De filter "Correcties" is verkeerd #Le filtre "Corrections" est erroné
+        especes: De filter "contanten" is verkeerd #Le filtre "Espèces" est erroné
+        titres_restaurant: De filter "waardecheques" is verkeerd #Le filtre "Titres restaurant" est erroné
+        ecart: De filter "Verschil verversen" is verkeerd #Le filtre "Ecart Ventilation" est erroné
+        error: De filter is verkeerd #Le filtre est erroné
+
+form_filter:
+    interval: Interval #Intervalle
+    or: Of #Ou
+    and: En #Et
+
+no_result: Geen enkel resultaat gevonden #Aucun résultat trouvé
+
+#Rapport Contrôle du Stock
+control_stock:
+    title: Stockcontrole #Controle du Stock
+    start_date: Begindatum #Date début
+    end_date: Einddatum #Date fin
+    sheet_model: Modelblad #Modèle de Feuille
+    total: Totaal #Total
+    diff: Verschil #Différence
+    inventory_unit: Eenheid inventaris #Unité d'inventaire
+    coef: Coef #Coef
+    en_stock: In stock #En Stock
+    need: Nodig #Besoin
+    delivery: Levering #Liv
+    stock_liv: Stock + Levering #Stock + Livraison
+    total_need: Totaal nodig #Total Besoin
+    ca_prev: Verwachte omzet #CA Prévisionnel
+    cumul_ca: Cumul verwachte omzet #Cumul des CA Prévisionnels
+    dlc_1: UVD1 #DLC 1
+    dlc_2: UVD2 #DLC 2
+    transfers_pending: Transfer bezig #Transfert en cours
+    base_calcul: Basis van de berekening #Base du Calcul
+    ca: Omzet #Chiffre d'affaire
+    rapport_title: Rapport stockcontrole #Rapport Contrôle du Stock
+    document_generated: Document opgesteld op #Document généré le
+cash_book:
+    recipes: Omzetten #Recettes
+    recipe: Omzet #Recette
+    expense: Uitgaven #Dépenses
+    total_recipe: Totaal omzet #Total Recettes
+    total_expense: Totaal Uitgaven #Total Dépenses
+    previous_credit: Saldo vorige dag #Solde jour précédent
+    current_credit: Nieuw saldo #Nouveau solde
+    daily_recipe: Dagelijkse omzet #Recette Journalière
+    daily_recipe_theo: Theoretisch omzet #Recette théorique
+    real_cashGap: Kassaverschil #Différence de caisse
+# Missed Translation
+sheet_model: Modèle de la feuille
+
+portion_control.plu_warning_footer: De coördinatie werd verwittigd #La coordination a été avertie.
+ca_prev_today: Voorziene omzet v/d dag  #CA Prévisionnel du Jour
+
+report.generate: "Het rapport genereren" #"Générer le rapport"
+report.force_generation: "De generatie van het rapport forceren" #"Forcer la regénération du rapport"
+data_not_found: Er wordt geen #"Aucune donnée n'est trouvée"
+portion_control.report_labels.ecart_minus: Ver.-%number% #Éca.-%number%
+portion_control.report_labels.valorisation_minus: Val.-%number% #Val.-%number%
+
+no_comparable_days: "geen vergelijkbare %day% in deze periode" #"Pas de %day% comparables dans cette période"
+nbr_comparable_days: "%nbrComparableDay% vergelijkbare dagen van %nbrTotalDay% in totaal" #"%nbrComparableDay% jours comparables de %nbrTotalDay% en total"
+nbr_comparable_days_in_week: "%nbrComparableDay% %day% vergelijkbare van %day% in totaal" #"%nbrComparableDay% %day% comparables de 4 %day% au total"
+keyword_balancing: boekhoudkundige saldo #Solde Comptable
+keyword_in_chest: in koffer #En Coffre
+diff_budget: versc. Budget #Diff bdg
+avg_tm_brut: Gem. T Brutto #TM Brut
+financial_summary:
+    title: Synthetic Financieel #Synthétique Financier
+    cancels:  Annul. #Annul.
+    abandonment: Abandon #Abandon
+    corrections: Corr. #Corr.
+
+br_report:
+    amount_br_min: Bedrag Min. #Montant Min.
+    amount_br_max: Bedrag Max. #Montant Max.
+    amount_ticket_min: Ticketbedrag Min. #Montant ticket Min.
+    amount_ticket_max: Ticketbedrag Max. #Montant ticket Max.
+    amount_br: Bedrag Maaltijdbon #Montant bons de repas
+    amount_ticket: Ticketbedrag #Montant ticket
+    beneficiary: Begunstigde #Bénéficiaire
+    report_one_title: Maaltijdbonnen #Bons repas
+    report_two_title: Badge verantwoordelijke #Badges responsables
+    br_nb: Nb Maaltijdbonnen #Nb Bons repas
+    beneficiary_report:
+        title: Maaltijdcheques per begunstigde #Bons de repas par bénéficiaire
+    responsible_report:
+        title: Badge verantwoordelijke #Badges responsables
+        responsible: Verantwoordelijk #Responsable
+
+with_comment: Met commentaar
+without_comment: Zonder commentaar
+envelope.choose_cashier: Alle
+corrections_report:
+    amount_min: Bedrag Min
+    amount_max: Bedrag Max
+    correction: Correcties
+    cashier: Medewerker
+    responsible: Verantwoordelijke
+    all: Alle
+    before_total: Voor
+    after_total: Na
+    title: Correcties
+    before: Voor
+    after: Na
+    amount: Bedrag
+    product: Product
+    hour: Uur
+    date: Datum
+    matricule: Regiments
+    number: Aantal
+    percent_amount: Montant (%)
+    percent_number: Aantal (%)
+    total: Totaal
+    moyen: Gemiddelde per dag
+without_comment: Zonder commentaar
+without_comment: Zonder commentaar
+
+cancellation_report:
+    cancellation_report: Annulering rapport #Rapport d'annulations
+    invoice_number: Ticket
+    date: Datum #Date
+    hour: Tijd #Heure
+    cashier: Kassier #Caissier
+    responsible: Verantwoordelijk #Responsable
+    amount_canceled: Annulering bedrag #Montant annulation
+    total : Totaal bedrag #Montant total
+    moyen: Gemiddelde per dag
+    perc: % Annulering
+
+discount_report:
+    discount_report: Reductie rapport #Rapport de réduction
+    invoice_number:  Ticket nummer #Numéro de ticket
+    date: Datum #Date
+    hour: Tijd #Heure
+    discount_min: Percentage Minimale reductie #Pourcentage réduction Min
+    discount_max: Percentage maximale reductie #Pourcentage réduction Max
+    discount_value: Verminderingsbedrag #Montant de réduction
+    before_discount: Bedrag vóór de korting #Montant avant la réduction
+    discount_per_cent: Percentage reductie #Pourcentage de réduction
+    total : Totaal bedrag #Montant total
+    matricule: Regiments- #Matricule
+    cashier: Kassier #Caissier
+
+items_per_canals:
+     title: Distributie van verkopen per kanaal #Répartition des ventes par canaux
+     details_per_day: Details per dag #Détails par jour
+     details_per_hour: Details per uur #Détails par heures
+     revenue_center: Inkomenscentrum #Centre de Revenu
+     total: Totaal
+     total_ttc: Totaal TTC
+     training: Training
+     brut_ttc: Bruto omzet incl. BTW #CA Brut TTC
+     percentage: percentage #Pourcentage
+     br: MB #Bon de repas
+     discount: Reductie
+     solding_annex: Vts Annexes
+     net_ttc: Net TTC
+     net_ht: Net HTVA
+     tax: BTW #Taxes
+     tickets: Tickets
+     tm_brut: TM Brut
+     tm_net: TM NET
+     tm_ht: TM HT
+     kiosk_in: KIOSK IN
+     kiosk_out: KIOSK OUT
+     eat_in: Eat In
+     take_out: Take Out
+     drive: Drive
+     delivery: Delivery
+     e_ordering_in: E-ordering IN
+     e_ordering_out: E-ordering OUT
+     e_ordering: E-ordering
+     day: Date
+     hour: Uur
+     ca_prev_ttc: Verwachte omzet TTC
+     va: Vts Annexes
+     ht: HTVA
+takeout_report:
+      amount_ticket_min: Ticketbedrag Min.
+      amount_ticket_max: Ticketbedrag Max.
+      cashier: kassier
+      date: datum
+      ca_net_ttc: CA Net TTC
+      takein: TAKE IN
+      takeout: TAKE OUT
+      drive: DRIVE
+      delivery : DELIVERY
+      kiosk_in: KIOSK IN
+      kiosk_out: KIOSK OUT
+      e_ordering: E-ordering
+      total: totaal
+      all: alle
+      title: Analyse take out per kassier
+strike_rate:
+    title: Strike Rate Report
+    items : Items
+    qty: Hoeveelheid #Quantité
+    pr_product: % Product
+    per_100_product : Tegen 100 tickets #Par 100 Tickets
+    total: Totaal
+    nbr_total_ticket: Aantal tickets voor de geselecteerde periode :
+    item_name: Itemnaam
+
+ca_per_tva:
+    title: Rapport verdeling van de omzet per BTW #Rapport de répartition du chiffre d'affaire par TVA
+    ca_global: Totale omzet #Chiffre Affaire Global
+    ca_tva: Verdeling per BTW-Tarief #Répartition par taux tva
+    amount: Bedrag
+    ticket: Ticket(Zonder annulatie) #Ticket (sans annulation)
+    ca_per_canal: ZC incl.BTW PER VERKOOPSKANAAL #CA TTC PAR CANAL DE VENTE
+    all_ttc: Alle Transacties incl.BTW #Toutes Transactions TTC
+    ca_per_tva: ZC PER BTW
+    tva: BTW
+    report_title: Ca_per_btw_report_
+
+tickets_report:
+    title: Facturen #Factures
+    resultsCount : Aantal gefilterde tickets #Nombre de tickets filtrés
+    amount: Ticketbedrag #Montant ticket
+    amountMin: Min Bedrag #Montant Min
+    amountMax: Max Bedrag #Montant Max
+    invoiceFrom: Van factuurnumer #Depuis facture numéro
+    invoiceTo: Tot factuurnumer #Jusqu'à facture numéro
+    saleCanal: Verkoopskanaal #Canaux de vente
+    paymentMethod : Betaalmiddelen #Méthodes de paiement
+    ticketFrom:  Lot van ticket #Lot tickets
+    total: Totaal #Total
+    ticket : Factuur #Facture
+    par : Van #Par
+
+hour_bu_hour_employee :
+    title : Omzet per uur per medewerker #Chiffre d'affaire par heure par collaborateur
+    ca_brut_ttc: ZC BRUT IBTW #CA BRUT TTC
+    ca_net_htva :  ZC NET ZBTW #CA NET HTVA
+    ticket_count: Aantal tickets  #Nombre de tickets
+    item_qty : Aantal Items #Quantité
+    tm_brut : Brutto GT #TM BRUT
+    total: Totaal
+    totals: Totaal #Totaux
+
+coeff_product_warning: Lijst met items waarop er geen coëfficiëntberekening is uitgevoerd :
+
+
+general:
+    week: Week van

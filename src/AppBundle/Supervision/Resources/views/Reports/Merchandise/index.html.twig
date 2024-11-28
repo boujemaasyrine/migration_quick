@@ -1,0 +1,32 @@
+{% extends "@Supervision/Reports/index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        td {
+            font-family: 'Arial', sans-serif !important;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'report';
+    </script>
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset('src/js/Supervision/Reports/report.js') }}"></script>
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'reports.merchandise_management.title'|trans([], 'navbar_supervision') }}
+{% endblock %}
+
+{% block body %}
+
+    {% block blockTitle %}
+    {% endblock %}
+
+    {% block subBody %}
+    {% endblock %}
+
+{% endblock %}

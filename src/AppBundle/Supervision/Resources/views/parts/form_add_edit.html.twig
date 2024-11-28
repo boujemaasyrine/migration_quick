@@ -1,0 +1,64 @@
+{{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'AddSupplierForm'} }) }}
+
+<div class="row">
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.code) }}
+        {% if form.vars.value.id is not null %}
+            {{ form_widget(form.code, {'attr' : { 'readonly' : '' }}) }}
+        {% else %}
+            {{ form_widget(form.code) }}
+        {% endif %}
+        {{ form_errors(form.code) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.designation) }}
+        {{ form_widget(form.designation) }}
+        {{ form_errors(form.designation) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.phone) }}
+        {{ form_widget(form.phone) }}
+        {{ form_errors(form.phone) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.address) }}
+        {{ form_widget(form.address) }}
+        {{ form_errors(form.address) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-xs-12 ">
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+    </div>
+</div>
+<div class="hidden">
+    {{ form_rest(form) }}
+</div>
+{% if type == 'plus' %}
+    {% set btnLabel = 'add' %}
+{% else %}
+    {% set btnLabel = 'modify' %}
+{% endif %}
+<div class="row">
+    <div class="col col-lg-12 col-sm-12 col-md-12 col-xs-12" style="text-align: right">
+        {% if type == 'edit' %}
+            <button class="btn  btn-cancel btn-icon" type="button" id="btn-cancel-edit">
+                {#<span style="color : white" class="glyphicon glyphicon-remove"></span>#}
+                {{ 'btn.cancel' | trans({}, "supervision") }}
+            </button>
+        {% endif %}
+
+        <button class="btn btn-{{ btnLabel }} btn-icon" type="button" id="{{ type }}-supplier-button">
+            {{ ( 'btn.' ~ btnLabel ) | trans({}, "supervision") }}
+        </button>
+    </div>
+</div>
+{{ form_end(form) }}

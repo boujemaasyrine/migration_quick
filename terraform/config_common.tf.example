@@ -1,0 +1,13 @@
+locals {
+  #Storage_Account
+  storage_account_access_key      = ""
+
+  #Container_Registry
+  docker_registry_login           = ""
+  docker_registry_username        = ""
+  docker_registry_password        = ""
+
+  #VIRTUAL_MCHINE
+  vm_admin_username                = ""
+  vm_admin_password                = ""
+}

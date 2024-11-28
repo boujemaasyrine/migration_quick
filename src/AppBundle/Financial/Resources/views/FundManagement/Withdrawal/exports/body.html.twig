@@ -1,0 +1,26 @@
+<br/>
+<p>{{ 'fund_management.withdrawal.list.elements_found' | trans({'%filtred%' : return.recordsFiltered , '%total%' : return.recordsTotal  }) }}</p>
+<table class="table table-responsive" style="border: 1px solid black;">
+    <thead style="">
+    <tr class="top_header">
+        <th>{{ 'fund_management.withdrawal.list.manager'|trans }}</th>
+        <th>{{ 'fund_management.withdrawal.entry.team_member'|trans }}</th>
+        <th>{{ 'keyword.date'|trans }}</th>
+        <th>{{ 'keyword.amount'|trans }} (&euro;)</th>
+        <th>{{ 'keyword.status'|trans }}</th>
+        <th>{{ 'keyword.envelope'|trans }}</th>
+    </tr>
+    </thead>
+    <tbody class="mainTbody">
+    {% for line in return.data %}
+        <tr>
+            <td class="align-left">{{ line.responsible }}</td>
+            <td class="align-right">{{ line.member }}</td>
+            <td class="align-right">{{ line.date }}</td>
+            <td class="align-right">{{ line.amount }}</td>
+            <td class="align-left">{{ line.status }}</td>
+            <td class="align-left">{% if line.envelope == "true" %} {{ 'keyword.with' | trans }}{% else %} {{ 'keyword.without' | trans }}{% endif %}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

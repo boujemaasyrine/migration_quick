@@ -1,0 +1,54 @@
+#Upload && Download
+orders: Commandes
+deliveries: Livraisons
+transfers: Transferts
+returns: Retours
+
+inventories: Inventaires
+loss_purchased: Pertes items d'inventaire
+loss_sold: Pertes items de vente
+
+financial_revenues: Chiffres d'affaires
+bud_prev: Budgets Prévisionnels
+admin_closing: Clôtures administratives
+cashbox_counts: Comptages caisses
+chest_counts: Comptages coffres
+enveloppes: Enveloppes
+withdrawals: Prélèvements
+deposits: Virements
+expenses: Dépenses
+recipe_tickets: Bons de recette
+tickets: Ventes
+employee: Employés
+
+suppliers: Fournisseurs
+restaurants: Restaurants
+categories: Catégories
+sold_items: Items de vente
+inv_items: Items d'inventaire
+solding_canals: Canaux de vente
+recipes: Recettes
+rights: Droits d'accès
+roles: Fonctions
+actions: Actions
+users: Utilistateurs de supervision
+restaurant_parameters: Paramètres restaurants
+payment_methods: Méthodes de paiement
+expense_labels: Dépenses
+recipe_ticket_labels: Bons de recette
+
+#Status
+waiting: En attente
+pending: En cours
+executed: Intégré
+#executed_success: Intégré
+executed_fail: Execution échoué
+executed_success: Execution avec succès
+fail: Echoué
+success: Succès
+
+#errors
+technical_problem: Problème technique
+
+#details
+item_not_found: Element introuvable

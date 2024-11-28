@@ -1,0 +1,17 @@
+<div class="row" style="    margin-bottom: 0px;">
+    <div class="col col-lg-2 col-md-6 col-sm-6 col-xs-6 pull-right">
+        <button class="btn btn-primary btn-block  waves-effect waves-light" type="button" id="envelope-{{ type }}"
+                {% if type == 'validate' %} data-withdrawal-id="{{ withdrawalCreated.id }}"
+                    data-withdrawal-amount="{{ withdrawalCreated.amountWithdrawal }}"
+                {% else %}
+                    data-withdrawal-id="{{ withdrawal }}"
+                {% endif %} >
+            <span>{% if (type == 'create') %}{{ 'btn.validate' | trans }} {% else %} {{ 'keyword.yes' | trans }}{% endif %}</span>
+        </button>
+    </div>
+    <div class="col col-lg-2 col-md-6 col-sm-6 col-xs-6 pull-right">
+        <button class="btn red btn-block  waves-effect waves-light" type="button" id="envelope-cancel">
+            <span>{% if (type == 'create') %}{{ 'btn.cancel' | trans }} {% else %} {{ 'keyword.no' | trans }}{% endif %}</span>
+        </button>
+    </div>
+</div>

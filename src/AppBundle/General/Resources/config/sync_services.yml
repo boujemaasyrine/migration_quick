@@ -1,0 +1,93 @@
+services:
+    synchronizer.service:
+        abstract: true
+        calls:
+            - [setEm, [ "@doctrine.orm.entity_manager"]]
+            - [setLogger, [ "@monolog.logger.synchro"]]
+            - [setParams, ["%supervision%"]]
+            - [setQuickCode, ["%quick_code%"]]
+            - [setParameterService, [ "@paremeter.service"]]
+        tags:
+            - { name: monolog.logger, channel: synchro }
+#   Merchandise
+    sync.orders.service:
+        class: AppBundle\General\Service\Remote\Merchandise\RemoteOrders
+        parent: synchronizer.service
+    sync.employee.service:
+        class: AppBundle\General\Service\Remote\Staff\RemoteStaff
+        parent: synchronizer.service
+    sync.deliveries.service:
+        class: AppBundle\General\Service\Remote\Merchandise\RemoteDeliveries
+        parent: synchronizer.service
+    sync.transfers.service:
+        class: AppBundle\General\Service\Remote\Merchandise\RemoteTransfers
+        parent: synchronizer.service
+    sync.returns.service:
+        class: AppBundle\General\Service\Remote\Merchandise\RemoteReturns
+        parent: synchronizer.service
+    sync.financial_revenues.service:
+        class: AppBundle\General\Service\Remote\Financial\RemoteFinancialRevenue
+        parent: synchronizer.service
+    sync.admin_closing.service:
+        class: AppBundle\General\Service\Remote\Financial\RemoteAdminClosing
+        parent: synchronizer.service
+    sync.bud_prev.service:
+        class: AppBundle\General\Service\Remote\Financial\RemoteBudPrev
+        parent: synchronizer.service
+#   Stock
+    sync.inventories.service:
+        class: AppBundle\General\Service\Remote\Merchandise\Inventories
+        parent: synchronizer.service
+    sync.loss.purchased.service:
+        class: AppBundle\General\Service\Remote\Merchandise\LossPurchased
+        parent: synchronizer.service
+    sync.loss.sold.service:
+        class: AppBundle\General\Service\Remote\Merchandise\LossSold
+        parent: synchronizer.service
+#   Financial
+    sync.tickets.service:
+        class: AppBundle\General\Service\Remote\Financial\Tickets
+        parent: synchronizer.service
+    sync.remove_ticket.service:
+        class: AppBundle\General\Service\Remote\Financial\RemoveTicket
+        parent: synchronizer.service
+    sync.cashbox.counts.service:
+        class: AppBundle\General\Service\Remote\Financial\CashboxCounts
+        parent: synchronizer.service
+    sync.chest.counts.service:
+        class: AppBundle\General\Service\Remote\Financial\ChestCounts
+        parent: synchronizer.service
+    sync.enveloppes.service:
+        class: AppBundle\General\Service\Remote\Financial\Enveloppes
+        parent: synchronizer.service
+    sync.withdrawals.service:
+        class: AppBundle\General\Service\Remote\Financial\Withdrawals
+        parent: synchronizer.service
+    sync.deposits.service:
+        class: AppBundle\General\Service\Remote\Financial\Deposits
+        parent: synchronizer.service
+    sync.expenses.service:
+        class: AppBundle\General\Service\Remote\Financial\Expenses
+        parent: synchronizer.service
+    sync.recipe.tickets.service:
+        class: AppBundle\General\Service\Remote\Financial\RecipeTickets
+        parent: synchronizer.service
+    sync.closing_opening_hour.service:
+        class: AppBundle\General\Service\Remote\General\ClosingOpeningHour
+        parent: synchronizer.service
+    sync.sheet_models.service:
+        class: AppBundle\General\Service\Remote\Merchandise\SheetModels
+        parent: synchronizer.service
+    send.pw.service:
+        class: AppBundle\General\Service\Remote\Staff\RemotePassword
+        parent: synchronizer.service
+    missing.plu.service: #moved to service.yml
+        class: AppBundle\General\Service\Remote\General\MissingPluNotification
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    sync.product_purchased_movements.service:
+        class: AppBundle\General\Service\Remote\Merchandise\ProductPurchasedMovements
+        parent: synchronizer.service
+    sync.remove_movement.service:
+        class: AppBundle\General\Service\Remote\Merchandise\RemoveMovement
+        parent: synchronizer.service

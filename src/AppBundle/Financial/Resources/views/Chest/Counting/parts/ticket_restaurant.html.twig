@@ -1,0 +1,55 @@
+<div id="check_restaurant_container"
+     data-prototype="{{ form_widget(form.smallChest.ticketRestaurantCounts.vars.prototype) | e }}" class="col-xs-12"
+     style="padding: 10px 5px">
+    {% for ticketName in form.vars.value.smallChest.getCheckRestaurantNames(false) %}
+        <div class="checkRestaurantRow col-xs-4" style="padding: 0 5px">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="text-align: left;">
+                    {{ ticketName }}
+                </div>
+                <div class="panel-body">
+                    <div id="lines{{ ticketName|replace({' ': '_'}) }}">
+                        {% for checkRestaurantCount in form.smallChest.ticketRestaurantCounts %}
+                            {% if ticketName == checkRestaurantCount.vars.value.ticketName %}
+                                {% if list is defined %}
+                                    <div class="row" style="padding: 0 5px">
+                                        <div class="col-xs-6" style="padding: 0 5px">
+                                            <span class="text-muted">{{ checkRestaurantCount.qty.vars.value|number_format() }}</span>
+                                        </div>
+                                        <div class="col-xs-6" style="text-align: right; padding: 0 5px">
+                                            <span class="text-muted bold bank_card_amount"> x{{ checkRestaurantCount.unitValue.vars.value }}
+                                                <span><i class="glyphicon glyphicon-euro"></i></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    {{ form_widget(checkRestaurantCount, { 'attr': {'maxlength':"10"}}) }}
+                                {% endif %}
+
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12" style="text-align: right; padding: 0 10px;">
+                            {% if list is not defined %}
+                                <span class="btn btn-add addTicketRestaurantValue"
+                                      data-ticket-name="{{ ticketName|replace({' ': '_'}) }}">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer" style="text-align: left;">
+                    <div class="text-muted" style="margin-right: 5px; text-align: right;">
+                        <span class="total_check_restaurant_by_type">
+                            {{ form.vars.value.smallChest.calculateTotalByTicketName(ticketName)|number_format(2, ',', '') }}
+                        </span>
+                        <i class="glyphicon glyphicon-euro"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

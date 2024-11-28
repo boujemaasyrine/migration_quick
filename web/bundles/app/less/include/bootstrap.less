@@ -1,0 +1,99 @@
+@import "colors";
+
+.panel-heading {
+  font-weight: bold;
+}
+
+.pagination>li>a, .pagination>li>span {
+  color: #337ab7;
+}
+
+.pagination>li>a, .pagination>li>span {
+  padding: 3px 8px;
+}
+
+.pagination li {
+  padding: 0 0px;
+}
+
+.pagination>li:first-child>a:before, .pagination>li:first-child>span:before{
+  font: normal normal normal 14px FontAwesome;
+  padding-right: 2px;
+  content: "\f060";
+}
+
+.pagination>li:last-child>a:after, .pagination>li:last-child>span:after{
+  font: normal normal normal 14px FontAwesome;
+  padding-left: 2px;
+  content: "\f061";
+}
+
+.btn-primary {
+  color: white !important;
+  background-color: @second-color-orange !important;
+  border-color: @second-color-orange-darker !important;
+  &:hover, &:focus {
+    background-color: @second-color-orange-light !important;
+  }
+}
+
+.btn-danger:focus{
+  border-color: @main-red ;
+}
+
+.btn{
+  font-weight: bold !important;
+}
+
+.pagination li{
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.form-control{
+  margin-bottom: 5px !important;
+}
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  max-height: inherit;
+  width: 55%;
+  padding: 0 0 0 0 !important;
+}
+
+.modal.modal-lg {
+  width: 80%;
+}
+
+.modal.modal-sm {
+  width: 33%;
+}
+.modal .modal-content {
+  padding: 0;
+}
+
+
+.modal.fade .modal-dialog {
+  transform: translate(0,0%);
+}
+
+.modal-footer {
+  padding: 7px 15px !important;
+  height: 65px !important;
+}
+.bootbox.modal .modal-footer .btn.btn-cancel {
+  float: none;
+}
+/*.modal button:focus {
+  background-color: rgba(42, 183, 169, 0) !important;
+}*/

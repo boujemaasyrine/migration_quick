@@ -1,0 +1,44 @@
+<div id="section-for-active-restaurant" class="row">
+    {% if form.active.vars.value == true %}
+    <hr style="border-top: 1px ridge #e4e4e4;margin: 25px 0;">
+        <div class="row col-xs-12">
+            <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+                {{ form_label(form.openingDate) }}
+                {{ form_widget(form.openingDate, { 'attr': { 'class': 'opening_date form-control' }}) }}
+                {{ form_errors(form.openingDate) }}
+            </div>
+            <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+                {{ form_row(form.optikitchenPath) }}
+            </div>
+        </div>
+        <div class="row col-xs-12">
+            <div class="col-xs-12">
+                <h4>Paramétrage d'imporation</h4>
+            </div>
+        </div>
+        <div class="row col-xs-12">
+            <div class="col-md-4 col-xs-12">
+                {{ form_row(form.ordersUrl) }}
+            </div>
+            <div class="col-md-4 col-xs-12">
+                {{ form_row(form.usersUrl) }}
+            </div>
+            <div class="col-md-4 col-xs-12">
+                {{ form_row(form.withdrawalUrl) }}
+            </div>
+        </div>
+        <div class="row col-xs-12">
+            <div class="col-md-4 col-xs-12">
+                {{ form_row(form.wyndUser) }}
+            </div>
+            <div class="col-md-4 col-xs-12">
+                {{ form_row(form.secretKey) }}
+            </div>
+            <div class="col col-md-2 col-sm-6 col-md-6 col-xs-12" style="margin-top: 30px">
+                {{ form_widget(form.wyndActive) }}
+                {{ form_label(form.wyndActive) }}
+                {{ form_errors(form.wyndActive) }}
+            </div>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,34 @@
+#App
+admin:
+    resource: "@AppBundle/Administration/Controller/"
+    type:     annotation
+general:
+    resource: "@AppBundle/General/Controller/"
+    type:     annotation
+merchandise:
+    resource: "@AppBundle/Merchandise/Controller/"
+    type:     annotation
+report:
+    resource: "@AppBundle/Report/Controller/"
+    type:     annotation
+security:
+    resource: "@AppBundle/Security/Controller/"
+    type:     annotation
+staff:
+    resource: "@AppBundle/Staff/Controller/"
+    type:     annotation
+financial:
+    resource: "@AppBundle/Financial/Controller/"
+    type:     annotation
+
+supervision:
+    resource: "@AppBundle/Supervision/Controller/"
+    type:     annotation
+    prefix: /supervision
+
+#Third Party
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+_bazinga_jstranslation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
+

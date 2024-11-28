@@ -1,0 +1,33 @@
+invalid_format: Ongeldig format #Format invalide
+null_value: Deze waarde kan niet nul zijn #Cette valeur ne doit pas être nulle
+int_field: Dit veld moet een geheel getal zijn #Ce champs doit être un entier
+positive_field: De waarde van dit veld dient meer te zijn dan 0 #La valeur de ce champs doit être supérieur à 0
+compare_date: De begindatum dient voor de einddatum te liggen #La date de début doit précéder la date du fin
+order:
+    date_not_programmed: Deze datum is niet in de planning geprogrammeerd #Cette date n'est pas programmée dans le planning
+    date_order_sup_delivery: De besteldatum dient eerder of gelijk te zijn aan die van de levering #La date de la commande doit être inférieur ou égale à celle de livraison
+    order_line_min: Er dient minimaal één regel te zijn #Il devait avoir au moins une ligne
+    product_not_in_supplier_products: Dit product komt niet voor op de lijst van producten van deze leverancier #Ce produit n'appartient pas à la liste des produits fournis par ce fournisseur
+inventory:
+    sheet_line_min: Er dient minimaal één regel te zijn #Il devait avoir au moins une ligne
+    inventory_lines_must_be_unique_per_inventory_sheet: De inventarisregels dienen uniek te zijn. (Producten dubbel: %product%) #Les lignes d'inventaires doivent être uniques. (Produits en doublon: %product%)
+    only_today_inventory_sheet_can_be_updated: Een inventaris kan alleen gewijzigd worden op de dag van aanmaak #Un inventaire ne peut être édité que le jour de la création
+sheet_model:
+    sheet_line_min : Er dient minimaal één regel te hebben #"Vous devez avoir au moins une ligne."
+    you_cannot_edit_entry_done_sheets: "U kunt geen blad wijzigen waarbij het inventaris reeds is ingevoerd." #"Vous ne pouvez pas éditer une feuille dont l'inventaire à été déjà saisie."
+    lines_must_be_unique_per_inventory_sheet: De inventarisregels dienen uniek te zijn. (Producten dubbel: %product%) #Les lignes de la feuilles doivent être uniques. (Produits en doublon: %product% )
+product_not_found: Product niet gevonden #Produit non trouvé
+product_not_active: Product niet actief #Produit non actif
+date_order_sup_delivery: Besteldatum is later dan die van de levering #Date de la commande est supérieur à celle de la livraison
+num_transfert_unique: Het transfer Nr. dient uniek te zijn #Le N° Transfert doit être Unique
+product_already_entred: Product reeds ingevoerd #Produit déjà saisi
+positive_field: De waarde van deze velden dient positief te zijn #La valeur de ce champs doit être positive
+int_postive_field: Dit veld moet een geheel positief getal zijn #Ce champs doit être un entier positive
+temperature_field: De temperatuur moet tussen -30°C en 15° C #La temperature doit être entre -30°C et 15°C
+no_qty_was_introduced: Er is geen kwantiteit genoemd #Aucune quantité n'est mentionnée
+date_delivery_inf_date_commande: De datum van de levering is eerder dan die van de bestelling #La date de la livraison est inférieure à celle de la commande
+order_exist_for_supplier: "Er bestaat al een bestelling op deze datum voor deze leverancier" #"Une commande existe déjà à cette date pour ce founisseur"
+product_not_in_supplier_products: Dit product behoort niet tot de gekozen leverancier #Ce produit n'appartient pas au fournisseur choisi
+product_not_category: Dit product bevindt zich niet in de categorie van de geselecteerde dag #Ce produit n'est pas dans la catégorie du jour sélectionné
+j_31_constraint_message: De besteldatum dient later te zijn dan D-31 #La date de commande doit être supérieure à J-31
+

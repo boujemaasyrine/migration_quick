@@ -1,0 +1,9 @@
+{% extends '@Merchandise/gestion_d_achat_base_bon.html.twig' %}
+
+{% block reportTitle %}
+    <h3>Bon de Retour</h3>
+{% endblock %}
+
+{% block body %}
+    {% include '@Merchandise/Returns/modals/return_print.html.twig' with { 'return' : return , 'no_btns' : true } %}
+{% endblock %}

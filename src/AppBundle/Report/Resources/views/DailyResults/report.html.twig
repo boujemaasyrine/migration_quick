@@ -1,0 +1,54 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h2>
+        {{ 'report.daily_result.title' | trans }}
+    </h2>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="row">
+        <div class="col-xs-2 input-field">
+            {{ 'period_label' | trans }}
+        </div>
+        <div class="col-xs-2 input-field">
+            <label for="startDate">{{ 'portion_control.filter_labels.from'|trans }} </label>
+            <span class="text-muted">
+                {{ filter.startDate|date('d/m/Y') }}
+            </span>
+        </div>
+        <div class="col-xs-2 input-field">
+            <label for="endDate">{{ 'portion_control.filter_labels.to'|trans }} </label>
+            <span class="text-muted">
+                {{ filter.endDate|date('d/m/Y') }}
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 input-field">
+            {{ 'label.comparable' | trans }}
+        </div>
+        <div class="col-xs-2 input-field">
+            <label for="startDate">{{ 'portion_control.filter_labels.from'|trans }} </label>
+            <span class="text-muted">
+                {{ filter.compareStartDate|date('d/m/Y') }}
+            </span>
+        </div>
+        <div class="col-xs-2 input-field">
+            <label for="endDate">{{ 'portion_control.filter_labels.to'|trans }} </label>
+            <span class="text-muted">
+                {{ filter.compareEndDate|date('d/m/Y') }}
+            </span>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <style>
+        th {
+            padding: inherit !important;
+            font-size: 0.8em !important;
+        }
+    </style>
+    {{ include('@Report/DailyResults/body_report.html.twig') }}
+{% endblock %}

@@ -1,0 +1,41 @@
+<script>
+
+    {% if ( closing_hour > opening_hour) %}
+    {% set limit_hour = closing_hour %}
+    {% set column_number = closing_hour - opening_hour + 2 %}
+    {% else %}
+    {% set limit_hour = 23 %}
+    {% set column_number = 23 - opening_hour + closing_hour + 3 %}
+    {% endif %}
+    var data = [
+        {
+            "label": "{{ 'report.sales.hour_by_hour.ca_prev' | trans }} (€)",
+            "color": "#9cd159",
+            "data": [
+                {% for i in opening_hour .. limit_hour %}
+                ["{{ i ~ ':00' }}",{{ hourByHour.ca_prev[i] | number_format(2, '.', '') }}],
+                {% endfor %}
+                {% if (closing_hour < opening_hour) %}
+                {% for i in 0 .. closing_hour %}
+                ["{{ i ~ ':00' }}", {{ hourByHour.ca_prev[i] | number_format(2, '.', '') }}],
+                {% endfor %}
+                {% endif %}
+            ]
+        }, {
+            "label": "{{ 'report.sales.hour_by_hour.ca_brut' | trans }} (€)",
+            "color": "#2f80e7",
+            "data": [
+                {% for i in opening_hour .. limit_hour %}
+                ["{{ i ~ ':00' }}", {{ hourByHour.caBrut[i]| number_format }}],
+                {% endfor %}
+                {% if (closing_hour < opening_hour) %}
+                {% for i in 0 .. closing_hour %}
+                ["{{ i ~ ':00' }}", {{ hourByHour.caBrut[i]| number_format }}],
+                {% endfor %}
+                {% endif %}
+            ]
+        }
+    ];
+
+
+</script>

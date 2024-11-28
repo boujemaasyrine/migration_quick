@@ -1,0 +1,79 @@
+{% form_theme form.smallChest.foreignCurrencyCounts "@Financial/CashBox/Counting/form_parts/foreign_currency_widget.html.twig" %}
+
+<div class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align: right;">
+                <span class=""><span class="total_foreign_currency">{{ 0|number_format(2, ',', '') }}</span> <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="panel-body">
+                <div class="col-xs-12">
+                    <div class="">
+                        <div id="foreignCurrencyContainer">
+                            {% if list is defined %}
+                                <table class="table">
+                                    <tr>
+                                        <th>{{ 'keyword.amount'|trans }}</th>
+                                        <th>{{ 'cashbox.counting.exchange_rate'|trans }}</th>
+                                        <th> {{ 'keyword.devise'|trans() }} </th>
+                                        <th>{{ 'keyword.total'|trans }}</th>
+                                    </tr>
+                                    {% for foreignCurrency in form.smallChest.foreignCurrencyCounts %}
+                                        <tr>
+                                            <td>{{ foreignCurrency.vars.value.amount|number_format(2, ',', '') }}</td>
+                                            <td>
+                                                {{ foreignCurrency.vars.value.exchangeRate|number_format(2, ',', '') }}
+                                            </td>
+                                            <td>
+                                                {{ foreignCurrency.vars.value.foreignCurrencyLabel }}
+                                            </td>
+                                            <td>{{ foreignCurrency.vars.value.total|number_format(2, ',', '') }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            {% else %}
+                                {% for foreignCurrency in form.smallChest.foreignCurrencyCounts %}
+                                    {% if list is not defined %}
+                                        {{ form_widget(foreignCurrency) }}
+                                    {% else %}
+                                        {#{{ form_widget(foreignCurrency) }}#}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        {% if list is not defined %}
+                            <span id="addForeignCurrencyExchangeRate"
+                                  data-prototype="{{ form_widget(form.smallChest.foreignCurrencyCounts.vars.prototype) | e }}"
+                                  data-count="{{ form.smallChest.foreignCurrencyCounts|length }}"
+                                  class="btn btn-add col-xs-offset-5">
+                             {{ 'cashbox.foreign_currency.add_new_foreign_currency'|trans() }}
+                            </span>
+
+                            <span id="addForeignCurrency"
+                                  data-prototype="{{ form_widget(form.smallChest.foreignCurrencyCounts.vars.prototype) | e }}"
+                                  data-count="{{ form.smallChest.foreignCurrencyCounts|length }}"
+                                  class="btn btn-add">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="foreignCurrencyModalBody" type="text/x-handlebars-template">
+    <form id="foreignCurrencyForm">
+        <label class="required"> {{ 'cashbox.counting.foreign_currency'|trans() }} </label>
+        <input id="foreignCurrencyLabel" name="label" class="form-control" type="text">
+        <br/>
+        <label class="required"> {{ 'cashbox.counting.exchange_rate'|trans() }} </label>
+        <input id="foreignCurrencyRate" name="rate" class="form-control" type="text">
+    </form>
+</script>
+
+<script id="foreignCurrencyModalFooter" type="text/x-handlebars-template">
+    <span id="saveForeignCurrency" class="btn btn-save"> {{ 'btn.save'|trans() }} </span>
+</script>

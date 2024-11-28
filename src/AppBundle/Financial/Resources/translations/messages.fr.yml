@@ -1,0 +1,588 @@
+title:
+  main: Gestion financière
+  cashbox_management: Gestion des caisses
+  daily_income: Recette journalière
+  levy_entry: Saisir un prélèvement
+  cashbox_counting: Comptage des caisses
+  cashbox_differences: Analyse des différences de caisse
+  expense_entry: Saisir les dépenses
+  recipe_ticket_entry: Saisir les bons de recette
+  create_envelope_cash: Saisir une enveloppe espèce
+  chest_management: Gestion du coffre
+  expenses_list: Consultation des bons de dépenses
+  popup_confirm_password: Saisissez votre mot de passe pour confirmer cette action :
+  wrong_password: Mot de passe incorrect!
+  consultations:
+    title: Consultation diverses
+    envelope: Consultation des enveloppes espèces
+    deleted_envelope: Consultation des enveloppes espèces supprimées
+    recipe_ticket: Consultation des bons de recette
+#to do
+money_booking:
+  title: Commande de monnaie
+  list:  Liste des commandes de monnaie
+  nCmd: Numéro de commande
+  dateStart: Date de la commande
+  dateEnd: Date de la livraison
+  value: Valeur totale
+  action: Actions
+  error: Une erreur s'est produite lors du sauvegarde de votre commande
+  success: Votre commande a été enregistrée
+  sendMail: L'email de la commande a été envoyé avec succés
+  send_mail_error: Aucune addresse Email n'est spécifiée
+  booking_details: Détails de la commande
+  booking_info: Informations de la commande
+  booking_date: Date de la commande
+  delivery_date: Date de la livraison
+  booking_total: Montant total de la commande
+  submit: Valider la commande
+  see: Voir
+  rol_list: Liste des rouleaux
+  bag_list: Liste des sacs
+  bill_list: Liste des billets
+  search:
+    booking_date_start: Date de la commande du
+    date_end: jusqu'au
+    delivery_date_start: Date de la livraison du
+    find_cmd: Chercher la commande N°:
+  details:
+    order: Commande
+    export: Exporter
+    send_mail: Envoyer par email
+    informations: Informations générales
+    bank: Banque
+    booking_date: Date de la commande
+    delivery_date: Date de la livraison
+    address: Adresse
+    contact_mails: Emails de contact
+    order_details: Détails de la commande
+    code: Code
+    item: Element
+    qty: Quantité
+    uv: Valeur unitaire
+    tv: Valeur totale
+    employee: Employé
+  days:
+    monday: Lundi
+    tuesday: Mardi
+    wednesday: Mercredi
+    thursday: Jeudi
+    friday: Vendredi
+  errors:
+    date_error: La date de livraison doit être supérieure à la date de commande
+    total_error: Le montant total de la commande doit être une valeur positive
+    null_error: La commande ne peut pas être nulle !
+    bank_not_found: Avant de passer une commande de monnaie, vous devez configurer les paramètres de commande de votre banque (rubrique commande de monnaie)
+
+
+
+fund_management:
+  withdrawal:
+    entry:
+      title: Saisir un prélèvement
+      responsible: Le responsable de ce prélèvement est:
+      add: Ajouter un prélèvement
+      team_member: Equipier
+      team_member_id: Identifiant de l'équipier
+      previous_amount: Liste des prélèvements en cours
+      previous_amount_waiting: Liste des prélèvements en attente
+      this_amount: Montant
+      modal_withdrawal_set_title: Prélèvement effectué avec succès.
+      modal_withdrawal_validated_success: Prélèvement validé avec succès.
+      modal_withdrawal_validated_error: Problème lors de validation de prélèvement.
+      modal_withdrawal_edit_title: Prélèvement modifié avec succès.
+      new_envelope: Voulez-vous créer une enveloppe pour ce prélèvement ?
+      title_envelope: Création d'une enveloppe
+      add_success: Prélèvement et enveloppe ajoutés avec succès.
+      edit_success: Prélèvement modifié avec succès.
+      add_success_without_envelope: Prélèvement sans enveloppe ajouté avec succès.
+      num_envelope: Numéro enveloppe
+      validation_amount_failed: Le montant saisi dépasse le montant autorisé.
+      update_error: Problème lors de mise à jour des prélèvements
+      latest_update: Dernière mise à jour
+    list:
+      title: Liste des prélèvements
+      manager: Responsable
+      choose_member: Choisir l'équipier
+      choose_owner: Choisir le responsable
+      choose_status: Choisir le statut
+      choose_envelope: Avec enveloppe ?
+      without_envelope: Sans enveloppe
+      envelope_details: Détail de l'enveloppe
+      notOwner: Pas de permission de modification
+      choose_member_search: Tous
+      report_title: Liste des prélèvements
+      elements_found: "%filtred% éléments trouvé filtré de %total% au total "
+cashbox:
+  validation_confirmation: Êtes-vous sûr de valider ce comptage caisse ?
+  validation_confirmation_body: Le comptage caisse présente un écart de %gap%.
+  day_income_download: Recette journalière
+  preview:
+    real_counted_title: Réel compté
+    theorical: Théorique
+    gap: Ecart
+    number: Nombre
+    amount: Montant
+  gap:
+    title: Différence Théorique/Réel
+    owner: Responsable comptage
+    gap_validated_with_success: "La caisse de %operator% %operator_name% a bien été validée."
+  listing:
+    title: Liste des comptages caisses
+    title_download: Comptage caisse
+    details: Détail du comptage caisse
+    header:
+      date: Date
+      createdAt: Date création
+      owner: Responsable
+      cashier: Caissier
+      real: Réel compté
+      theorical: Montant Théorique
+      eft: EFT
+      counted: Compté
+      diff: Différence de caisse
+      action: Action
+    search:
+      choose_owner: Tous
+      choose_cashier: Tous
+  counting:
+    title: Comptage d'une Caisse
+    date: Date
+    cashbox_number: Caisse N°
+    cashier: Equipier
+    cash_box_starting_fund: Fond caisse
+    theorical_count: Montant Théorique
+    gap: Ecart
+    total_cash: Total espèces
+    total_check: Total chèques BK
+    total_check_quick: Total chèques Quick
+    total_check_bk: Total chèques BK
+    total_bank_card: Total Carte Bancaire
+    total_foreign_currency: Total argent étranger
+    total_check_restaurant: Total titres rest.
+    total_check_restaurant_electronic: Total titres rest. élec.
+    total_cashbox: Réel compté
+    total_discount: Total discounts
+    total_bon_repas: Total bons repas
+    total_withdrawls: Total prélèvement
+    real_total_cashboax: Total Caisse Réel
+    discount: Discounts
+    total_cancels: Total annulations
+    total_corrections: Total corrections
+    canceling_number: Annulations
+    correction_number: Corrections
+    abondons_number: Abandons
+    abondons_total: Total d'abandons
+    counting_owner: Responsable du comptage
+    exchange_rate: Devise/Taux d'échange
+    cashbox_count_validated_with_success: Comptage de caisse validé avec succès.
+    withdrawals_validation:
+      title: Validation des prélèvements.
+      msg1: Avant de continuer le comptage de caisse, il faut d'abord valider les prélèvements.
+      msg2: Merci de cliquer sur ce <a href='%link%'>lien</a> pour valider les prélèvements.
+
+    realcash:
+      entry_amount_in_details: Saisir au détail
+      entry_amount_intotal:  Saisir le montant total
+
+    change: Monnaie
+    total_amount: Montant Total
+
+    entries: Saisies
+    preview: Récapitulatif
+    counting_information: Information du comptage
+    ticket_retrive: Récupération des ventes
+    real_cash: Espèces
+    foreign_currency: Argent étranger
+    ticket_restaurant: Titres restaurants
+    electronic_ticket_restaurant: Titres restaurants électronique
+    check_restaurant: Titres restaurants
+    check_quick: Chèques Quick
+    check_bk: Chèques BK
+    bon_repas: Bons Repas
+    bank_card: Carte Bancaire
+
+    cash: Monnaie
+    billet: Billet
+    prelevement: Prélèvement
+    total: Total
+  foreign_currency:
+    add_new_foreign_currency: Ajouter une nouvelle monnaire d'échange
+  select_a_cashier: Veuillez sélectionner un équipier
+  show_cashbox_difference: Visualiser la différence de caisse
+  do_you_want_created_an_enveloppe_for_this_count: Voulez-vous créer une enveloppe pour ce comptage caisse ?
+  cashbox_count_validated: Comptage de caisse validé avec succès.
+  error: Erreur caisse
+  detailed_cash_entry: Saisir au détail
+  total_cash_amount_entry: Saisir le montant total
+  validate_cashbox_gap: Valider la différence caisse
+chest:
+  validation_confirmation: Êtes-vous sûr de valider ce comptage coffre ?
+  validation_confirmation_body: Le comptage coffre présente un écart de %gap%.
+
+  gap:
+    title: Différence Théorique/Réel
+    owner: Responsable comptage
+  preview:
+    real_counted_title: Réel compté
+    theorical: Théorique
+    gap: Ecart
+  listing:
+    title: Liste des comptages coffres
+    title_download: Comptage coffre
+    details: Détails du comptage coffre
+    header:
+      date: Date
+      owner: Elaborée par
+      cashier: Caissier
+      real: Réel compté
+      theorical: Montant Théorique
+      eft: EFT
+      counted: Compté
+      diff: Différence du coffre
+      closured: Effectué lors d'une clôture administrative
+      closured_day: Date de clôture
+      action: Action
+    search:
+      choose_owner: Sélectionner un responsable
+      choose_cashier: Sélectionner un caissier
+  counting:
+    nb_of_cashboxes: Nombre de caisses
+    initial_cashbox_amount: Fond de caisse
+
+    title: Comptage du coffre
+    date: Date
+    cash_box_starting_fund: Fond caisse départ
+    theorical_count: Montant Théorique
+    gap: Ecart
+
+    small_chest: Petit coffre
+    cashbox_fund: Fond de caisse
+    exchange_fund: Fond de change
+    tirelire: Tirelire
+    exchange_found_money: Monnaie
+
+    small_chest_cash: Espèces
+    small_chest_tr: Titres restaurants
+    small_chest_tre: Titres restaurant elec.
+    small_chest_cb: Carte Bancaire
+    small_chest_cq: Chèques Quick
+    small_chest_bk: Chèques BK
+    small_chest_foreign_currency: Argent Étranger
+    total_small_chest: Petit coffre
+
+    total_cashbox_fund: Fond de caisse
+    total_exchange_fund: Fond de change
+
+    tirelire_cashbox: Comptage caisse
+    tirelire_withdrawal: Prélèvement
+    tirelire_exchange_fund: Fond de change
+    tirelire_small_chest: Petit coffre
+    tirelire_enveloppes_tr: Titres restaurant
+    total_tirelire: Tirelire
+
+    total_cash: Total espèces
+    total_check: Total chèques 5 €
+    total_check_quick: Total chèque 5 €
+    total_bank_card: Total Carte Bancaire
+    total_foreign_currency: Total argent étranger
+    total_check_restaurant: Total titres rest.
+    total_check_restaurant_electronic: Total titres rest. électroniques
+    total_chest: Réel compté
+    total_withdrawls: Total prélèvement
+    real_total_cashboax: Total Caisse Réel
+    discount: Discounts
+    total_cancels: Total annulations
+    total_corrections: Total corrections
+    canceling_number: Nombre d'annulations
+    correction_number: Nombre de corrections
+    abondons_number: Nombre d'abandons
+    abondons_total: Total d'abandons
+    counting_owner: Responsable du comptage
+    change_container: Contenaire du change
+    cashbox_count_validated_with_success: Comptage caisse validé avec succès.
+
+    realcash:
+      entry_amount_in_details: Saisir au détail
+      entry_amount_intotal:  Saisir le montant total
+
+    change: Monnaie
+    total_amount: Montant Total
+
+    entries: Saisies
+    preview: Récapitulatif
+    counting_information: Information du comptage
+    gap: Ecart
+    real_cash: Espèces
+    foreign_currency: Argent étranger
+    ticket_restaurant: Titres restaurants
+    electronic_ticket_restaurant: Titres restaurants électroniques
+    check_restaurant: Titres restaurants
+    check_quick: Chèques Quick
+    check_bk: Chèques BK
+    bon_repas: Bons Repas
+    bank_card: Carte Bancaire
+
+    cash: Monnaie
+    billet: Billet
+    prelevement: Prélèvement
+    total: Total
+
+  foreign_currency:
+    add_new_foreign_currency: Ajouter une nouvelle monnaie d'échange
+  select_a_cashier: Veuillez sélectionnez un équipier
+  validate_chest_count: Valider la différence du coffre
+  do_you_want_created_an_enveloppe_for_this_count: Voulez-vous créer un enveloppe pour ce comptage de caisse ?
+  chest_count_validated: Le comptage du coffre est validé avec succès.
+  error: Erreur caisse
+  envelope_not_versed:  Enveloppes espèces
+  envelope_cash_not_versed: Enveloppes espèces
+  envelope_titre_not_versed: Enveloppes titres restaurants
+expense:
+  entry:
+    title: Saisir un bon de dépense
+    choose_type: Choisir le type
+    choose_label: Choisir le libellé
+    add_success:  Votre bon de dépense a été créé avec succès.
+    manager: Responsable
+    #TODO
+    delete_line: Supprimer la ligne
+  list:
+    title: Liste des bons de dépenses
+    choose_member: Tous
+    choose_group: Tous
+    choose_label: Tous
+    expense_details: Détail du bon de dépense
+    expense_export: Bon de dépense
+  group:
+    GROUP_BANK_CASH_PAYMENT:  Versement banque espèces
+    GROUP_BANK_RESTAURANT_PAYMENT: Versement titres restaurant
+    GROUP_BANK_E_RESTAURANT_PAYMENT: Versement titres restaurant électronique
+    GROUP_BANK_CARD_PAYMENT: Versement carte bancaire
+    GROUP_ERROR_COUNT: Erreur comptage
+    error_cashBox: Erreur compatage caisse
+    GROUP_OTHERS: Autres
+  createdAt: Créé le
+deleted_envelope:
+  total: Montant total
+  index_title: Liste des enveloppes espèces
+  index_ticket_title: Liste des enveloppes titres restaurant
+  header:
+    number: Num.
+    amount: Montant
+    type: Type
+    owner: Responsable
+    hour: Heure
+    source: source
+    day: Date
+    status: Statut
+    actions: Actions
+    ref: Réf.
+    deletedBy: Supprimé par
+    deletedAt: Supprimé à
+envelope:
+  total: Montant total
+  index_title: Liste des enveloppes espèces
+  table_title: Liste des enveloppes
+  index_ticket_title: Liste des enveloppes titres restaurant
+  sub_title: Gestion financière
+  envelope_creation: Création d'une enveloppe
+  deleted_with_success: "Votre enveloppe est supprimé avec succès"
+  delete_message: "Saisissez votre mot de passe pour confirmer la suppression de l'enveloppe :"
+  wrong_password: "Suppression impossible : Mot de passe incorrect!"
+  cant_be_deleted: "Votre enveloppe ne peut pas être supprimé !"
+  header:
+    number: Num.
+    amount: Montant
+    type: Type
+    owner: Responsable
+    hour: Heure
+    day: Date
+    status: Statut
+    actions: Actions
+    ref: Réf.
+  source:
+    title: Type
+    cashbox_counts: Comptage caisse
+    withdrawal: Prélèvement
+    exchange_funds: Fonds de change
+    small_chest: Petit coffre
+    cashbox_funds: Fond de caisse
+    so: Sodexo
+    tr: Ticket restaurant
+    cr: Chèque resto Lux
+  status:
+    title: Statut
+    versed: Versé
+    not_versed: Non versé
+  all: Toutes
+  choose_source: Tous
+  choose_cashier: Tous
+  filter_labels:
+    from: Du
+    to: au
+  source:
+    withdrawal: Prélèvement
+  detail:
+    num_envelope: Numéro enveloppe
+    type: Type
+  status:
+    versed: Versé
+    not_versed: Non versé
+  number: Numéro de l'enveloppe
+  reference: Référence
+  amount: Montant
+  owner: Responsable
+  cashier: Equipier
+  enveloppe_created_with_success: Votre Enveloppe a été crée avec succès.
+  error_amount_envelope_more_than_amount_withdrwal_without_envelope: Le montant de l'enveloppe dois être inférieur ou égale à %wamount%
+  search:
+    choose_owner: Tous
+  create_cash: Saisir une enveloppe espèce
+  create_resto: Saisir une enveloppe titres restaurant
+recipe_ticket:
+  created_with_success: Votre bon de recette a été créé avec succès.
+  creation_title: Création d'un nouveau bon de recette
+  index_title: Liste des bons de recette
+  print_title: Bon de recette
+  print_owner: Recette effectuée par
+  reference: Réf.
+  label: Libellé
+  date: Date
+  amount: Montant (€)
+  amount_: Montant
+  owner: Responsable
+  created_at: Crée le
+  action: Action
+  change_recipe: Réception monnaie
+  various: Argent toilette
+  wc_money: Divers
+  cashbox_error: Erreur caisse
+  chest_error: Erreur coffre
+  list:
+    choose_member: Tous
+    choose_label: Tous
+change_recipe: Réception monnaie
+various: Argent toilette
+wc_money: Divers
+cashbox_error: Erreur caisse
+chest_error: Erreur coffre
+chest:
+  error: Erreur coffre
+deposit:
+  envelope_cash:
+    title:    Saisie du versement banque des espèces
+    validate:    Confirmation du versement des enveloppes espèces
+    validate_message: Etes-vous sûr de vouloir verser le(s) %nbre% enveloppe(s) d'un montant total de %amount% ?
+  envelope_ticket:
+    title:    Saisie du versement des titres restaurants
+    validate: Confirmation du versement des enveloppe titres restaurants
+    validate_message: Etes vous sure de verser le(s) %nbre% enveloppe(s) du montant total de %amount% ?
+  electronic:
+    header: Liste des versements banques
+    ticket: Titres restaurants électroniques
+    card: Cartes bancaires
+    no_ticket: Aucun versement de type titre restaurant électronique
+    no_card: Aucun versement de type carte bancaire
+  type:
+    cash: Espèces
+  destination:
+    banque: Banque
+  source:
+    tirelire: Tirelire
+  number_envelope: Nombre d'enveloppes
+  no_envelope: Il n'y a aucune enveloppe espèces non versée dans la tirelire.
+  no_envelope_ticket: Il n'y a aucune enveloppe titre restaurant non versée dans la tirelire.
+  report:
+    confirmation: Votre versement a était efféctué avec succés.
+    title: Versements d'enveloppes
+    title_ticket: Versements d'enveloppes titres restaurants
+    labels:
+      date: Date de versement
+      name: Nom et prénom
+      type: Type d'enveloppe
+      expense_id: Bons de dépenses
+      total_amount: Montant total du versement
+      nbr_envelope: Nombre d'enveloppes
+    headers:
+      reference: "# Référence"
+      num: N°
+      date: Date de saisie
+      type: Type
+      name: Nom et prénom
+      amount: Montant
+      total: Total versement
+    download_report: "Imprimer le rapport du versement"
+  btn_verser: "Verser toutes les enveloppes"
+  type_list: Type d’enveloppes  à verser
+  message:
+    choose_owner: Vous devez choisir un responsable
+    choose_type: Vous devez choisir un type
+    no_envelope: La liste des enveloppes est vide.
+
+#Clôture Adminstrative
+admin_closing:
+  title: Clôture Administrative
+  varify_day_income: Vérification Recette Journalière
+  kiosk_counting: Comptage des caisses Kiosk
+  kiosk_counting_warning: Pas de caisses Kiosk comptés
+  kiosk_eordering_counting: Comptage des caisses E-ordering et Kiosk
+  kiosk_eordering_counting_warning: Pas de caisses E-ordering ou Kiosk comptés
+  end_works: Contrôle lecture Z
+  comprable_day: Jour comparable
+  bank_deposit: Versement des flux électroniques
+  coffre_count: Comptage coffre
+  comprable_day_question: Le jour <b> %1% </b> est-il un jour comparable ?
+  last_date: Dernière date des travaux de fin de journée:
+  yes_label: Oui
+  no_label: Non
+  comment_label: Commentaire
+  validate_label: Valider
+  validate_day_income_label: Valider la recette journalière
+  reverify_label: Revérifier
+  operators_not_counted: Equipiers non comptés
+  go_cash_counting: Accéder au comptage caisse
+  plz_count_cashbox: Veuillez compter l'ensemble des caisses pour continuer
+  ca_brut_ttc: CA Brut TTC
+  check_withdrawal_envelope: Vérification des prélèvements et des enveloppes
+  list_withdrawal_envelope: liste des prélèvements et des envelopes
+  error_during_step_check_withdrawal_envelope: Pour valider cette étape merci de créer une enveloppe de type prélèvement avec un montant supérieur ou égale à %validateAmount% (€). Pour ce faire, merci de cliquer sur ce <a href="%link%"><strong>lien</strong></a>
+progress.cashbox_counting: Comptage des caisses
+min_five: Veuillez saisir une valeur supérieure à 0.
+modulo_five: Veuillez saisir une valeur multiple de 5.
+
+# Missed Translation
+admin_closing.electronic_deposit: Versements flux électroniques
+ROLS: Roul
+BAG: Sac
+BILL: Billet
+admin_closing.comment: Veuillez indiquer ici les différents évènements ayant impacté votre CA
+admin_closing.prbl_encaissmnt: Le système d'encaissement n'as pas pu clôturer fiscalement la date du
+close_day_success: Clôture administrative avec succès pour le %1%
+weather_label: Météo
+weather.snow: Neigeux
+weather.rain: Pluvieux
+weather.sun: Ensoleillé
+weather.cloud: Nuageux
+procedure.finish.success: Procédure finalisée avec succès
+
+you_must_check_an_option: Vous devez cochez une option
+you_must_type_st: Vous devez mentionner quelque chose
+
+
+comprable_days: Jours comparables
+comparable_day_modified_with_success: Les détails de la journée de %1% ont été modifiés avec succès
+last.four.cashbox.count.gap: Ecart 4 derniers compatages caisses
+takeaway_day: % TO du jour
+
+progress.cashbox_counting: Comptage des caisses
+
+cashbox_success_deleted: Comptage caisse a été supprimé avec succés
+cashbox.delete: Suppression comptage caisse
+cashbox.delete_message: "Saisissez votre mot de passe pour confirmer la suppression du comptage caisse :"
+cashbox.delete_count: Voulez-vous supprimer le comptage caisse ?
+cashbox.counted: Ce comptage caisse est déjà compté dans un coffre
+cashbox.cant_be_deleted: "Votre caisse ne peut pas être supprimé !"
+
+operator_doesnt_exist: L'Operateur avec wyndId %1% n'exist pas et posséde des caisses non comptés
+multiple_operator_found : Il existe deux operateurs avec wyndId %1%

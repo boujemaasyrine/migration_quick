@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PurchaseOrder>
+    <PO Update="0" UserID="" ToShip="0" Associate="0" Expert="0"
+        Ordered="0" Completed="0" Number="274317109" ID="274317109">
+        <DateCreated>2024-11-26</DateCreated>
+        <DateReceived>2024-11-26</DateReceived>
+        <Supplier Code="2000003120" Name="BIDFOOD"></Supplier>
+        <Shipping Code="2743" Name="Agora"></Shipping>
+                    <Item Code="870282" Description="CUP MAYO DL" Completed="0" PostedToInvoice="0"
+      SortGroup="0" SuppItemCode="">
+    <QtyOrdered>2000</QtyOrdered>
+</Item>
+            </PO>
+</PurchaseOrder>

@@ -1,0 +1,92 @@
+<style>
+    .modal-details {
+        font-size: 1.2rem !important;
+    }
+</style>
+<div class="modal-details" style="padding: 5px;">
+    <div class="row">
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'label.code' | trans }}: </b>
+            {{ item.externalId }}
+        </div>
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'label.name' | trans }}: </b>
+            {{ item.name }}
+        </div>
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'item.label.buying_cost' | trans }}: </b>
+            {{ item.buyingCost }} &euro;
+        </div>
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'filter.supplier' | trans }}: </b>
+            {{ item.suppliers.first.name | trans }}
+        </div>
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'item.label.category' | trans }}: </b>
+            {% if item.productCategory %}{{ item.productCategory.name | trans }}{% endif %}
+        </div>
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'label.status' | trans }}: </b>
+            {{ ('status.' ~ item.status) | trans }}
+        </div>
+        {% if item.deactivationDate is not null %}
+            <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+                <b>{{ 'deactivation_date_label' | trans }}: </b>
+                {{ item.deactivationDate | date('d/m/Y') }}
+            </div>
+        {% endif %}
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'item.label.unit_expedition' | trans }}: </b>
+            {{ item.labelUnitExped | trans }}
+        </div>
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'item.label.unit_inventory' | trans }}: </b>
+            {{ item.labelUnitInventory | trans }}
+        </div>
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'item.label.unit_usage' | trans }}: </b>
+            {{ item.labelUnitUsage | trans }}
+        </div>
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'item.label.inventory_qty' | trans }}: </b>
+            {{ item.inventoryQty }}
+        </div>
+        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <b>{{ 'item.label.usage_qty' | trans }}: </b>
+            {{ item.usageQty }}
+        </div>
+        {% if item.secondaryItem is not null %}
+            <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+                <b>{{ 'secondary_item' | trans }}: </b>
+                {{ item.secondaryItem.name }}
+            </div>
+        {% endif %}
+
+        {% if item.startDateCmd is not null %}
+            <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+                <b>{{ 'date_debut_commande' | trans }}: </b>
+                {{ item.startDateCmd | date('d/m/Y') }}
+            </div>
+        {% endif %}
+        <div class="col col-lg-4 col-md-3 col-sm-6 col-xs-12 col-modal"><span class="label"> </span></div>
+        <div class="col col-lg-4 col-md-3 col-sm-6 col-xs-12 col-modal"><span class="label"> </span></div>
+        {% if item.endDateCmd is not null %}
+            <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+                <b>{{ 'date_fin_commande' | trans }}: </b>
+                {{ item.endDateCmd | date('d/m/Y') }}
+            </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <span class="label">{{ 'item.label.reusable' | trans({}, "supervision") }}</span>
+        </div>
+        <div class="col-xs-4">
+            <div class="form-group">
+                <input id="reusable" style="margin-top: 30px" type="checkbox" {% if item.reusable == 1 %} checked {% else %}  {% endif %}
+                       readonly/>
+                <label style="cursor: auto" for="#reusable"></label>
+            </div>
+        </div>
+    </div>
+</div>

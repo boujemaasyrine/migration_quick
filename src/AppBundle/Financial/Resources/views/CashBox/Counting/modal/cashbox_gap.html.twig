@@ -1,0 +1,299 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-8">
+            <label> {{ 'cashbox.gap.owner'|trans() }} </label> : <span
+                    class="text-accent-1"> {{ cashbox.owner }} </span>
+        </div>
+        <div class="col-xs-4" style="text-align: right;">
+            {% if parameter_service.isEftActivated == true %}
+                <span class="green-text"> {{ 'eft.is_activated'|trans() }}</span>
+            {% else %}
+                <span class="red-text"> {{ 'eft.is_not_activated'|trans() }}</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label> {{ 'cashbox.counting.date'|trans() }} </label>: <span
+                    class="text-muted">{{ cashbox.date|date("d/m/Y h:i:s") }}</span>
+        </div>
+        <div class="col-xs-4">
+            <label> {{ 'cashbox.counting.cashier'|trans() }} </label>: <span
+                    class="text-muted">{{ cashbox.cashier }}</span>
+        </div>
+        <div class="col-xs-4">
+            <label> {{ 'cashbox.counting.cash_box_starting_fund'|trans() }} </label>: <span
+                    class="text-muted">{{ parameter_service.getStartDayCashboxFunds|number_format(2, ',', '.') }} <i
+                        class="glyphicon glyphicon-euro"></i></span>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-3"><label> {{ 'keyword.real'|trans() }} </label></div>
+        <div class="col-xs-3"><label> {{ 'keyword.theorical'|trans() }} </label></div>
+        <div class="col-xs-3"><label> {{ 'keyword.gap'|trans() }} </label></div>
+    </div>
+
+    <div class="list">
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_cash'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.cashContainer.total|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.getTheoricalCashTotal|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if cashbox.calculateCashGap > 0 %}green-text {% elseif cashbox.calculateCashGap < 0 %} red-text {% endif %}">
+                    {{ cashbox.calculateCashGap|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_withdrawls'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.calculateTotalWithdrawals|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.calculateTotalWithdrawals|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if cashbox.calculateWithdrawalsGap > 0 %}green-text {% elseif cashbox.calculateWithdrawalsGap < 0 %} red-text {% endif %}">
+                    {{ cashbox.calculateWithdrawalsGap|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_check'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.checkQuickContainer.calculateCheckQuickTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.checkQuickContainer.calculateTheoricalTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if cashbox.checkQuickContainer.calculateTotalGap > 0 %}green-text {% elseif cashbox.checkQuickContainer.calculateTotalGap < 0 %} red-text {% endif %}">
+                    {{ cashbox.checkQuickContainer.calculateTotalGap|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_bank_card'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.bankCardContainer.calculateBankCardTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.bankCardContainer.calculateTheoricalTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if cashbox.bankCardContainer.calculateTotalGap > 0 %}green-text {% elseif cashbox.bankCardContainer.calculateTotalGap < 0 %} red-text {% endif %}"> {{ cashbox.bankCardContainer.calculateTotalGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_foreign_currency'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.foreignCurrencyContainer.calculateTotalForeignCurrencyAmount|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.foreignCurrencyContainer.calculateTheoricalTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if cashbox.foreignCurrencyContainer.calculateTotalGap > 0 %}green-text {% elseif cashbox.foreignCurrencyContainer.calculateTotalGap < 0 %} red-text {% endif %}"> {{ cashbox.foreignCurrencyContainer.calculateTotalGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_check_restaurant'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.checkRestaurantContainer.calculateRealTotalAmount(false)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.checkRestaurantContainer.calculateTheoricalTotal(false)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if cashbox.checkRestaurantContainer.calculateTotalGap(false) > 0 %}green-text {% elseif cashbox.checkRestaurantContainer.calculateTotalGap(false) < 0 %} red-text {% endif %}"> {{ cashbox.checkRestaurantContainer.calculateTotalGap(false)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_check_restaurant_electronic'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.checkRestaurantContainer.calculateRealTotalAmount(true)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.checkRestaurantContainer.calculateTheoricalTotal(true)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if cashbox.checkRestaurantContainer.calculateTotalGap(true) > 0 %}green-text {% elseif cashbox.checkRestaurantContainer.calculateTotalGap(true) < 0 %} red-text {% endif %}"> {{ cashbox.checkRestaurantContainer.calculateTotalGap(true)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <hr style="margin: 0;">
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label style="font-size: 1em !important;"> {{ 'cashbox.counting.total_cashbox'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.calculateTotalCashbox|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.calculateTheoricalTotalCashbox|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if cashbox.calculateCashboxGap() > 0 %}green-text {% elseif cashbox.calculateCashboxGap() < 0 %} red-text {% endif %}"> {{ cashbox.calculateCashboxGap()|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <div class="row hoverable" style="margin-top: 30px;">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_discount'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.discountContainer.totalAmount|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.discountContainer.calculateTheoricalTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if cashbox.discountContainer.calculateTotalGap > 0 %}green-text {% elseif cashbox.discountContainer.calculateTotalGap < 0 %} red-text {% endif %}"> {{ cashbox.discountContainer.calculateTotalGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_bon_repas'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.mealTicketContainer.totalAmount|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ cashbox.mealTicketContainer.calculateTheoricalTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if cashbox.mealTicketContainer.calculateTotalGap > 0 %}green-text {% elseif cashbox.mealTicketContainer.calculateTotalGap < 0 %} red-text {% endif %}"> {{ cashbox.mealTicketContainer.calculateTotalGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        {#<hr style="margin: 0;">#}
+        {#<div class="row hoverable">#}
+        {#<div class="col-xs-3">#}
+        {#<label style="font-size: 1em !important;"> {{ 'cashbox.counting.real_total_cashboax'|trans() }} </label>:#}
+        {#</div>#}
+        {#<div class="col-xs-3">#}
+        {#<span class="text-muted bold">{{ cashbox.calculateRealTotalCashbox|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+        {#</div>#}
+        {#<div class="col-xs-3">#}
+        {#<span class="text-muted bold">{{ cashbox.calculateTheoricalRealTotalCashbox|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+        {#</div>#}
+        {#<div class="col-xs-3 ">#}
+        {#<span class="text-muted bold {% if cashbox.calculateCashboxGap > 0 %}green-text {% elseif cashbox.calculateCashboxGap < 0 %} red-text {% endif %}"> {{ cashbox.calculateCashboxGap|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i></span>#}
+        {#</div>#}
+        {#</div>#}
+    </div>
+
+    <div class="col-xs-6 col-xs-offset-3" style="margin-top: 35px;">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.canceling_number'|trans() }} </label>: <span
+                            class="text-muted">
+                    {{ cashbox.numberCancels }}
+                </span>
+                    <br/>
+                </div>
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.total_cancels'|trans() }} </label>: <span
+                            class="text-muted">
+                     <span>{{ cashbox.totalCancels|number_format(2, ',', '.') }}</span>
+                    <i class="glyphicon glyphicon-euro"></i>
+                </span>
+                    <br/>
+                </div>
+            </div>
+            <hr style="margin: 0;">
+        </div>
+        <div class="col-xs-12">
+            <hr style="margin: 0;">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.correction_number'|trans() }} </label>: <span
+                            class="text-muted">{{ cashbox.numberCorrections }}</span>
+                    <br/>
+                </div>
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.total_corrections'|trans() }} </label>: <span
+                            class="text-muted">
+                     <span>{{ cashbox.totalCorrections|number_format(2, ',', '.') }}</span>
+                    <i class="glyphicon glyphicon-euro"></i>
+                </span>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <hr style="margin: 0;">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.abondons_number'|trans() }} </label>: <span
+                            class="text-muted">{{ cashbox.numberAbondons }}</span>
+                    <br/>
+                </div>
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.abondons_total'|trans() }} </label>: <span
+                            class="text-muted">
+                    <span>{{ cashbox.totalAbondons|number_format(2, ',', '.') }}</span>
+                    <i class="glyphicon glyphicon-euro"></i>
+                </span>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

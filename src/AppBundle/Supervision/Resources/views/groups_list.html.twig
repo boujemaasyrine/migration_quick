@@ -1,0 +1,73 @@
+{% extends ":supervision/default:index.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Supervision/group_list.js') }}"></script>
+{% endblock %}
+{% block base_title %}{{ 'group.list.title' | trans([],'supervision') }}{% endblock %}
+{% block base_subtitle %}{% endblock %}
+{% block body %}
+
+    <div class="col-xs-12">
+        <div class="filter-zone">
+            <div class="panel panel-default">
+                <div class="panel-heading"><span
+                            class="glyphicon glyphicon-plus"></span> {{ 'group.list.add'| trans([],'supervision') }}
+                </div>
+                <div class="panel-body">
+                    {{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'AddGroupForm'} }) }}
+                    {% include '@Supervision/parts/form_add_edit_group.html.twig' %}
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12" style="padding-bottom: 15px; text-align: right">
+                        <button class="btn btn-export btn-icon" type="button" id="export-btn">
+                            {{ "btn.export"|trans }}
+                        </button>
+                    </div>
+                </div>
+
+                <table id="groups_list_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+                       width="100%">
+                    <thead>
+                    <tr>
+                        <th>{{ 'label.reference' | trans }}</th>
+                        <th>{{ 'label.name' | trans }} FR</th>
+                        <th>{{ 'label.name' | trans }} NL</th>
+                        <th>{{ 'group.label.is_food_cost' | trans({}, 'supervision') }}</th>
+                        <th class="sorting_disabled">{{ 'shortcut.labels.action' | trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for g in groups %}
+                        <tr id="{{ g.id }}">
+                            <td>{{ g.id }}</td>
+                            <td>{{ g.getNameTranslation('fr') }}</td>
+                            <td>{{ g.getNameTranslation('nl') }}</td>
+                            <td>{% if g.isFoodCost == true %} {{ 'keyword.yes' | trans }}
+                                {% else %} {{ 'keyword.no' | trans }}
+                                {% endif %}</td>
+                            <td class="actions-btn">
+                                <a data-tooltip="{{ 'btn.edit' |trans }}" data-position="top"
+                                   class="tooltipped btn btn-modify btn-icon btn-xs glyphicon-edit"
+                                   id="edit_group_button_{{ g.id }}"></a>
+                                <a data-tooltip="{{ 'btn.delete' | trans }}" data-position="top"
+                                   id="delete_group_button_{{ g.id }}"
+                                   class="tooltipped btn btn-delete btn-icon btn-xs glyphicon-remove"></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="form-zone"></div>
+                <div id="modal-group-added" style="display: none">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

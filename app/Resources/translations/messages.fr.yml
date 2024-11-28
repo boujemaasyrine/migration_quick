@@ -1,0 +1,452 @@
+datatable:
+    processing: "Traitement en cours..."
+    search: "Rechercher&nbsp;:"
+    lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments"
+    info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments"
+    infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments"
+    infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)"
+    infoPostFix: ""
+    loadingRecords: "Chargement en cours..."
+    zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher"
+    emptyTable: "Aucune donnée disponible dans le tableau"
+    paginate:
+        first: "Premier"
+        previous: "Pr&eacute;c&eacute;dent"
+        next: "Suivant"
+        last: "Dernier"
+datepicker:
+    labelMonthNext: 'Suivant'
+    labelMonthPrev: 'Précédent'
+    labelMonthSelect: 'Choisir un mois'
+    labelYearSelect: 'Sélectionner une année'
+    monthsFull:
+        1: 'Janvier'
+        2: 'Février'
+        3: 'Mars'
+        4: 'Avril'
+        5: 'Mai'
+        6: 'Juin'
+        7: 'Juillet'
+        8: 'Août'
+        9: 'Septembre'
+        10: 'Octobre'
+        11: 'Novembre'
+        12: 'Décembre'
+    monthsShort:
+        1: 'Jan'
+        2: 'Fev'
+        3: 'Mar'
+        4: 'Avr'
+        5: 'Mai'
+        6: 'Jui'
+        7: 'Jui'
+        8: 'Aoû'
+        9: 'Sep'
+        10: 'Oct'
+        11: 'Nov'
+        12: 'Déc'
+    weekdaysFull:
+        1: 'Dimanche'
+        2: 'Lundi'
+        3: 'Mardi'
+        4: 'Mercredi'
+        5: 'Jeudi'
+        6: 'Vendredi'
+        7: 'Samedi'
+    weekdaysShort:
+        1: 'Dim'
+        2: 'Lun'
+        3: 'Mar'
+        4: 'Mer'
+        5: 'Jeu'
+        6: 'Ven'
+        7: 'Sam'
+    weekdaysLetter:
+        1: 'D'
+        2: 'L'
+        3: 'M'
+        4: 'M'
+        5: 'J'
+        6: 'V'
+        7: 'S'
+    today: "Aujourd'hui"
+    clear: "Effacer"
+    close: 'Fermer'
+Error:
+    general:
+        internal: "Une erreur interne s'est produite."
+        technique: "Ouppps, Désolé un problème technique est survenu !!"
+        error403: "Ouppps, Vous n'avez pas le droit à accéder à cette page !!"
+        error404: "Ouppps, Cette page n'existe pas!!"
+title:
+    filters: Filtres
+label:
+    action: "Action"
+    code: "Code"
+    code_plu: "Code PLU"
+    status: "Statut"
+    name: "Nom"
+    mail: "Adresse email"
+    manager: "Responsable"
+    managerPhone: "Téléphone responsable"
+    managerEmail: "Email responsable"
+    address: "Adresse"
+    phone: "Téléphone"
+    type: "Type"
+    source: "Source"
+    destination: "Destination"
+    affiliate_code: "Numéro d'affiliation"
+    reference: "Référence"
+    number: "Numéro"
+    created_at: Crée le
+    inventory_item: "Item inventaire"
+    sold_item: "Item de vente"
+    value: "valeur"
+    qty: "Qté"
+    active: "Actif"
+    total_period: Période totale
+    total_amount: Montant total
+    average: Moyenne
+    revenu: Revenu
+    recap: Récapitulatif
+    group: Groupe
+    member: Equipier
+    all: Tous
+    search: "Rechercher"
+    owner: Responsable
+    role: Fonction
+    roles: Fonctions
+    rights: Droits
+    old_password: Ancien mot de passe
+    password: Mot de passe
+placeholder:
+    research: Recherche
+btn:
+    validate: "Valider"
+    close: "Fermer"
+    print: "Imprimer"
+    abort: "Abandonner"
+    add: "Ajouter"
+    modify: "Modifier"
+    edit: "Modifier"
+    cancel:  "Annuler"
+    copy: "Copier"
+    delete: "Supprimer"
+    delete_ligne: "Supprimer cette ligne"
+    save: "Enregistrer"
+    export: "Exporter"
+    reload: "Rafraîchir"
+    show: "Afficher"
+    view: "Voir"
+    download: "Télécharger"
+    download_report: "Télécharger le rapport"
+    download_pdf: "PDF"
+    download_csv: "CSV"
+    download_xls: "XLS"
+    download_excel: "EXCEL"
+    generate_report: "Afficher le rapport"
+    select_all_restaurants: "Séléctionner tous les restaurants"
+    filter: "Filtrer"
+    synchronise: Synchroniser
+    next: "Suivant"
+
+    select_all: Ajouter tout
+    view_envelope: Voir enveloppe
+    view_details: Voir détail
+
+    save: Sauvegarder
+tooltip:
+    select_all: Tout sélectionner
+    click_to_open: Cliquer pour ouvrir
+shortcut:
+    labels:
+        validate: Valider
+        print: Imprimer
+        quit_without_saving: Quitter sans valider
+        edit: Modifier
+        add: Ajouter
+        delete: Supprimer
+        create: Créer
+        quit: Quitter
+        action: Action
+        cancel: Annuler
+        confirm: Confirmer
+    key:
+        delete: SUPP
+keyword:
+    reload: Actualiser
+    logout: Déconnexion
+    help: Aide
+    price: Prix
+    label: Libellé
+    quantite: Quantité
+    code: Code
+    total: Total
+    yes: Oui
+    no: Non
+    article: Item inventaire
+    unit: Unité
+    articles: Items inventaire
+    product_sold: Produit en vente
+    products_sold: Produits en vente
+    begin: Début
+    end: Fin
+    from: Du
+    to: Au
+    the: Le
+    status: Statut
+    delivery: Livraison
+    transferIn: Transfert IN
+    transferOut: Transfert OUT
+    return: Retour
+    invoice: Facture
+    date: Date
+    fiscal_date: Date fiscale
+    week: Sem
+    month: Mois
+    date_comp: Date comp.
+    day : Jour
+    amount: Montant
+    amount_ttc: Montant TTC
+    number: Numéro
+    envelope: Enveloppe
+    closing: Clôturé
+    close: Fermer
+    pending: En cours
+    with: Avec
+    without: Sans
+    category: Catégorie
+    categories: Catégories
+    period: Période
+    budget: Budget
+    time: Heure
+    provisional: Provisoire
+    definitive: Définitif
+    tva: TVA
+    taux_tva: Taux TVA
+    tva_amount: Montant TVA
+    comment: Commentaires
+    continue: Continuer
+    foodCost: FoodCost
+    paperCostDirect: PAPERCOST DIRECT
+    paperCostIndirect: PAPERCOST INDIRECT
+    theorical: THEORIQUE
+    gap: Différence
+    real: REEL
+    margin: MARGE
+    portion_control: Portions contrôle
+    in: Entrées
+    out: Sorties
+    loss: Pertes
+    consumption: Consommation
+    details: Détails
+    prefix_return: Retour
+    unspecified: Non spécifié
+    and: et
+    media: Média
+    total_media: Total Media
+    with_media: Par Média
+    exchange_rate: Taux de change #TODO new
+    cash: Versement banque espèces
+    cash_gap: Ecart Caisse
+    chest_gap: Ecart Coffre
+    notification: Notifications
+    message: Message
+days:
+    monday: Lundi
+    tuesday: Mardi
+    wednesday: Mercredi
+    thursday: Jeudi
+    friday: Vendredi
+    saturday: Samedi
+    sunday: Dimanche
+    Mon: Lu
+    Tue: Ma
+    Wed: Me
+    Thu: Je
+    Fri: Ve
+    Sat: Sa
+    Sun: Di
+months:
+    jan: 'Janvier'
+    feb: 'Février'
+    mar: 'Mars'
+    apr: 'Avril'
+    mai: 'Mai'
+    jun: 'Juin'
+    jul: 'Juillet'
+    aug: 'Août'
+    sep: 'Septembre'
+    oct: 'Octobre'
+    nov: 'Novembre'
+    dec: 'Décembre'
+navbar:
+    parameter:
+        parameter: "Paramètres"
+        menus: "Menus"
+        ca_prev: Budget Prévisionnel
+    procedures: Gestion des procédures
+    restaurant: Restaurant
+    general: Général
+    procedure:
+            title: Procédures
+    fiscal_date: Date fiscale
+units:
+    colis: COLIS
+    piece: PIECE
+    kilo: KILO
+    litre: LITRE
+    sachet: SACHET
+    barquette: BARQUETTE
+    gramme: GRAMME
+    centilitre: CENTILITRE
+    seau: SEAU
+    pile: PILE
+    bidon: BIDON
+    portion: PORTION
+status:
+    active: Actif
+    inactive: Inactif
+    toInactive: En cours de désactivation
+    not_counted: Non Compté
+    counted: Compté
+order_sended: La Commande est envoyée
+order_draft: La Commande est un brouillon
+order_canceled: La Commande est annulée
+order_delivered: La Commande est livrée
+order_sending: La Commande est en cours d'envoi
+order_rejected: La Commande est rejetée
+order_modified: La Commande est modifiée
+transformed_product: Produit transformé
+non_transformed_product: Produit non transformé
+non_transformed_product: Produit non transformé
+last_closured_date: Dernière date clôturée
+general_validation:
+    invalid_format: Format invalide
+popup:
+    do_you_confirm_this_action: Confirmez-vous cette opération ?
+eft:
+    is_activated: EFT activé
+    is_not_activated: EFT désactivé
+
+canal:
+    pos: Caisse
+    website: Site Web
+    drive: Drive
+    borne: Borne
+
+user:
+    username: Login
+    first_name: Prénom et Nom
+    last_name: Nom
+    social_security: n° d'identification à la sécurité sociale (NISS ou BIS)
+payment:
+    method:
+        sodpas: Sodexo Pass
+        chqqui: Chèques QUICK
+        cash: Espèces
+        cb: Carte Bancaire
+        chqlux: Chèques resto LUX
+        tr: Ticket Restaurant
+        br: Bon Repas
+        vpay: Vpay
+        local: Local
+        master: MASTERCARD
+parameter:
+    opening_hour: Heure d'ouverture
+    closing_hour: Heure de fermeture
+
+# Missed Translation
+confirm_password: Confirmation
+keyword.devise: Devise
+eligible: Eligible
+
+form:
+    error: Une erreur s'est produite
+amount-ttc: Montant TTC
+keywords:
+    signature: Signature
+
+last_colsing_date: Dernière date cloturée
+last_synchronisation: Dernière synchronisation
+current_fiscale_date: Date fiscale en cours
+dayly_budget: Budget Prév.
+ca_brut_ttc: CA brut TTC
+cancels: Annulations
+corrections: Corrections
+abandons: Abandons
+not_counted_cash_box: Caisses non comptées
+last_chest_count: Dernier comptage coffre
+diff_chest: Diff. coffre
+diff_cashbox: Diff. caisses
+nbt_ticket_percent: "%(-1) des tickets"
+ca_vs_ca_n-1: CA Net HT vs CA Net HT n-1
+ca_net_htva: CA Net HTVA (€)
+ca_net_htva_n-1: CA Net HTVA n-1 (€)
+today: "Aujourd'hui"
+day_before: La veille
+this_week : Semaine en cours
+this_month: Mois en cours
+refresh: Actualiser
+takeout_comptoir: TO Comptoir
+kiosk_out: TO Kiosk
+
+language:
+    frensh: Français
+    dutch: Néerlandais
+    fr: Langue Française
+    nl: Langue Neerlandaise
+    label: Langue par défaut
+    change: Modification de la langue par défaut
+    change_confirm: Langue par défaut modifiée avec succès!
+profile:
+    title: Profil
+    details: Votre Informations
+    change_password:
+        title: Modification de mot de passe
+        confirm: Mot de passe modifié avec succès!
+
+allcanals: Tous canaux
+onsite: Sur place
+takeaway: A emporter
+drive: Drive
+walk: Walk
+delivery: Delivery
+
+#todo
+next_year: Année suivante
+prev_year: Année précedente
+deactivation_date_label: Date de désactivation
+date_debut_commande: Date de début de commande de l'item
+date_fin_commande: Date de fin de commande de l'item
+
+notification_deleted_with_success: Notification supprimée avec succès!
+
+documentation_label: Documentation
+changlog_label: Changlog
+
+keyword_supplier_liste: Liste des fournisseurs
+id_inventory_item: ID produit inventaire
+id_recipe: ID recette
+id_sold_item: ID item vente
+code_inventory_item: Code item inv
+name_inventory_item: Nom item inv
+price_of_line: Prix des ingrédients
+price_of_recipe: Prix de la recette
+id_recipe_line: ID ligne de recette
+keyword_hello: Bonjour
+keyword_descriptions: Descriptions
+keyword_expenses: Dépenses
+keyword_recipes: Recettes
+
+order_delivery_not_match: Il y a une différence entre ce qui est commandé et ce qui est livré.
+
+workflow_confirm_title: "Lancement de la procédure %name%"
+workflow_confirm_text: "Êtes-vous certain de vouloir lancer cette procédure?"
+restaurant_access_denied: Vous n'avez pas le droit pour accèder a ce restaurant
+opening_date_restaurant_restriction: "La date du lancement n'est pas encore arrivée."
+api_loader_msg: Synchronisation des ventes
+api_loader_withdrawal_msg: Synchronisation des prélèvements
+return_to_home: Veuillez retourner à la page d'%link_start%accueil%link_end%
+ca.confirm_this_action: Saisissez votre mot de passe pour valider CA net HTVA:
+validate_ca.wrong_password: "Validation impossible: mot de passe incorrect!"

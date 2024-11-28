@@ -1,0 +1,55 @@
+<style>
+    table th, table td {
+        width: 80px;
+    !important;
+    }
+
+    thead {
+        background-color: white;
+    }
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%"
+               style="margin-bottom: 20px">
+            <thead>
+            <tr class="table-head mainHeader ">
+                <th>{{ "discount_report.invoice_number" | trans }}</th>
+                <th> {{ "discount_report.date" | trans }}</th>
+                <th> {{ "discount_report.hour" | trans }}</th>
+                <th>{{ "discount_report.cashier" | trans }}</th>
+                <th>{{ "discount_report.discount_value" | trans }}</th>
+                <th>{{ "discount_report.before_discount" | trans }}</th>
+                <th>{{ "discount_report.discount_per_cent" | trans }}</th>
+            </thead>
+
+            <tbody class="mainTbody">
+            {% set total =0 %}
+            {% set totalDiscount =0 %}
+            {% for line in data['report'] %}
+                {% set total = total +line.amount %}
+                {% set totalDiscount = totalDiscount +line.discountTTC %}
+                <tr class="mainRow">
+                    <td>{{ line.invoiceNumber }}</td>
+                    <td>{{ line.date }}</td>
+                    <td>{{ line.hour }}</td>
+                    <td>{{ line.cashier }}</td>
+                    <td>{{ line.discountTTC | abs | float_format }}</td>
+                    <td>{{ line.amount |float_format }}</td>
+                    {% set perc_reduction =  line.discountPerCent  * 100 %}
+                    <td>{{ perc_reduction | number_format }}%</td>
+                </tr>
+            {% endfor %}
+            <tr {% if download is not defined %}style="background-color: rgba(0, 0, 255, 0.15);"{% endif %}>
+                <td colspan="4"> {{ "discount_report.total" | trans }}</td>
+                <td><b>{{ totalDiscount | abs | float_format }}</b></td>
+                <td><b>{{ total |float_format }}</b></td>
+                <td></td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+{% extends('@Report/MerchandiseManagement/index.html.twig') %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var type = '{{ constant('AppBundle\\Merchandise\\Entity\\SheetModel::ARTICLE') }}';
+    </script>
+    <script type="application/javascript" src="{{ asset('src/js/Report/loss.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        td {
+            font-family: 'Arial', sans-serif !important;
+        }
+    </style>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'report.loss.inventory_item_title'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                <form action="{{ path("report_inventory_loss") }}" method="POST">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label>
+                                {{ 'report.period' |trans }}
+                            </label>
+                        </div>
+                        <div class="col-lg-3 col-sm-3 col-xs-12">
+                            <label class="required">
+                                {{ 'loss.check.from' |trans }}
+                            </label>
+                            <div class="input-group">
+                                <input type="text" id="begin_date" name="beginDate" required="required"
+                                       class="datepicker form-control picker__input" {% if(filter.beginDate is defined) %} value="{{ filter.beginDate }}" {% endif %}>
+                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            </div>
+                            {% if errors.firstDate is defined %}
+                                <div class="alert alert-danger form-error" role="alert"><span
+                                            class="glyphicon glyphicon-warning-sign"></span>
+                                    {{ 'null_value' | trans([],'validation') }} <br></div>
+                            {% elseif errors.compareDate is defined %}
+                                <div class="alert alert-danger form-error" role="alert"><span
+                                            class="glyphicon glyphicon-warning-sign"></span>
+                                    {{ 'compare_date' | trans([],'validation') }} <br></div>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-3 col-sm-3 col-xs-12">
+                            <label class="required">
+                                {{ 'keyword.to' |trans }}
+                            </label>
+                            <div class="input-group">
+                                <input type="text" id="end_date" name="endDate" required="required"
+                                       class="datepicker form-control picker__input" {% if(filter.endDate is defined) %} value="{{ filter.endDate }}" {% endif %}>
+                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            </div>
+                            {% if errors.secondDate is defined %}
+                                <div class="alert alert-danger form-error" role="alert"><span
+                                            class="glyphicon glyphicon-warning-sign"></span>
+                                    {{ 'null_value' | trans([],'validation') }} <br></div>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-3 col-sm-3 col-xs-12">
+                            <label>
+                                {{ 'label.name' |trans }}
+                            </label>
+                            <input type="text" id="product_name" name="productName"
+                                   class="form-control" {% if (filter is defined) and (filter.productName != '') %} value="{{ filter.productName }}" {% endif %}>
+                        </div>
+                        <div class="col-lg-3 col-sm-3 col-xs-12 ">
+                            <label>
+                                {{ 'label.code' |trans }}
+                            </label>
+                            <input type="text" id="product_code" name="productCode"
+                                   class="form-control" {% if filter is defined and (filter.productCode != '') %} value="{{ filter.productCode }}" {% endif %}>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 ">
+                            <label class="active" for="categories">{{ 'keyword.categories' | trans }}</label>
+                            <select id="categories" name="categories[]" required="required" multiple="multiple"
+                                    class="selectize">
+                                {% for c in categories %}
+                                    <option value="{{ c.id }}"
+                                            {% if (filter.categories is defined) and (c.id in filter.categories ) %}
+                                        selected="selected" {% endif %}>
+                                        {{ c.name }}</option>
+                                {% endfor %}
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-12 col-xs-12" style="text-align:right;">
+                            {% if(generated is defined) %}
+                                <button class="btn waves-effect btn-export text-black dropdown-button"
+                                        data-activates='dropdown2'>
+                                    <span> {{ 'btn.export'|trans() }} </span>
+                                </button>
+                                <ul id="dropdown2" class="dropdown-content" style="">
+                                    <li>
+                                        <a class="strech_btn text-black" href="#" id="downloadReport">
+                                            <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                                 style="height: 25px"
+                                                 alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                            <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                        </a></li>
+                                    <li>
+                                        <a class="strech_btn text-black" href="#" id="export-btn">
+                                            <img src="{{ asset('bundles/app/images/export/csv-128.png') }}"
+                                                 style="height: 25px"
+                                                 alt="{{ 'btn.download'|trans() }} {{ 'btn.download_csv'|trans() }}"/>
+                                            <span style="color: #000;">{{ 'btn.download_csv'|trans() }}</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="strech_btn text-black" href="#" id="export-xls">
+                                            <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                                 style="height: 25px"
+                                                 alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                            <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            {% endif %}
+
+                            <button type="submit" class="btn waves-effect orange text-black " id="generateReport">
+                                {{ 'btn.generate_report'|trans() }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-4">
+                        <label> {{ 'label.search'|trans() }} </label> :
+                        <input id="searchOnReport" type="text" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if(generated is defined) %}
+        {{ include('@Report/MerchandiseManagement/Loss/body_report_inventory_loss.html.twig') }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PurchaseOrder>
+    <PO Update="0" UserID="" ToShip="0" Associate="0" Expert="0"
+        Ordered="0" Completed="0" Number="{{ order.numOrder }}" ID="{{ order.numOrder }}">
+        <DateCreated>{{ order.dateOrder|date('Y-m-d') }}</DateCreated>
+        <DateReceived>{{ order.dateDelivery|date('Y-m-d') }}</DateReceived>
+        <Supplier Code="{{ order.supplier.code }}" Name="{{ order.supplier.name }}"></Supplier>
+        <Shipping Code="{{ restaurant.code }}" Name="{{ restaurant.name }}"></Shipping>
+        {% for i in order.lines %}
+            {% include "@Merchandise/Order/po_xml/po_item.xml.twig" with { 'item' : i } %}
+        {% endfor %}
+    </PO>
+</PurchaseOrder>

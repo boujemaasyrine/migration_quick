@@ -1,0 +1,603 @@
+command:
+    new:
+        title: Nieuwe bestelling #Nouvelle Commande
+        quick_num: Quick Nr. #Quick N°
+        ca_prev: Verwachte omzet #CA Prévisionnel
+        supplier: Leverancier #Fournisseur
+        order_num: Bestelling Nr. #Commande N°
+        order_date: Datum bestelling #Date Commande
+        delivery_date: Leveringsdatum #Date Livraison
+        responsible: Verantwoordelijke bestelling #Responsable de la commande
+        lines:
+            code: Code #Code
+            article: Inventarisitem #Item Inventaire
+            unit_exped: Eenheid levering #Unité Exped
+            stock_qty: Hoeveelheid in voorraad #Qté en Stock
+            order_qty: Hoeveelheid Cmd #Qté Cmd
+            btn: Regel opslaan en een nieuwe regel toevoegen #Enregistrer la ligne et Ajouter une nouvelle ligne
+            qty_inv: Hoev. (Inv.eenh.) #Qté (U.Inv)
+            qty_use: Hoev. (verb. Eenh.) #Qté (U.Usage)
+            qty_exp: Hoev. (lev.Eenh.) #Qté (U.Exp)
+            qty_total: Totaal (inv. Eenh.) #Total (U.Inv)
+        order_pass: Bestelling overslaan #Passer la commande
+        save_draft: Bestelling voorbereiden #Préparer la commande
+        js:
+            date_not_found: Geen datum gevonden voor de gekozen leverancier #Aucune date trouvée pour le fournisseur choisi
+            ca_not_found: Geen omzet gevonden voor de gekozen datum #Aucun Chiffre d'affaire trouvé pour la date choisie
+            product_not_found: Geen product gevonden voor de gekozen leverancier #Aucun produit trouvé pour le fournisseur choisi
+        recap_title: Overzicht #Récapitulatif
+    date:
+        order: Datum bestelling #Date Commande
+        delivery: Levering #Livraison
+    responsable: Verantwoordelijke bestelling #Responsable de la commande
+    ca: Verwachte omzet #CA Prévisionnel
+    num_order: Bestelling Nr. #Commande N°
+    lines:
+        header:
+            code: Code #Code
+            product: Inventarisitem #Item Inventaire
+            exped_unit: Eenheid levering #Unité Expéd
+            stock_qty: Hoeveelheid in voorraad #Qté en Stock
+            cmd_qty: Hoeveelheid CMD #Qté CMD
+    table:
+        num_order: Nr. Best. #N° Cmd
+        supplier: Leverancier #Fournisseur
+        cmd_qty: Hoeveelheid cmd #Qté cmd
+    list:
+        pending:
+            title: Lijst van lopende bestellingen #Liste des commandes en cours
+        table:
+            header:
+                num_order: Nr. Best. #N° Cmd
+                supplier: Leverancier #Fournisseur
+                date_order: Datum best. #Date Cmd
+                date_delivery: Leveringsdatum #Date Livraison
+                responsible: Verantwoordelijke #Responsable
+                status: Status #Statut
+                actions: Acties #Actions
+        btn:
+            relance_send: Herstart verzending #Relancer L'envoi
+    details:
+        command : Bestelling #Commande
+        informations : Informaties van de bestelling #Informations de la commande
+        title : Details van de bestelling #Détails de la commande
+        supplier: Leverancier #Fournisseur
+        num_order: Nr. Best. #N° Cmd
+        date_order: Datum bestelling #Date de Commande
+        date_delivery: Leveringsdatum #Date de Livraison
+        responsible: Verantwoordelijke bestelling #Responsable de la commande
+        lines:
+            code: Code #Code
+            article: Inventarisitem #Item Inventaire
+            unit_exp: Eenheid levering #Unité d'Expéd.
+            ordred_qty: Hoeveelheid best. #Qté Cmd.
+    edit:
+        title: Wijziging bestelling #Modification de la Commande
+        edit_btn: Wijzigen #Modifier
+        recap_old_order: Details van de oude versie #Détails de la version ancienne
+        recap_title: Overzicht van wijzigingen #Récapitulatif des modifications
+    modal:
+        title: Bevestiging van de toevoeging van het item. #Confirmation de l'ajout de l'item.
+        message :  Een bestelling met een andere leverdatum voor item b> %label% </b> bestaat al voor die datum.<br>Bevestig je de toevoeging toch? # Une commande avec une autre date de livraison pour l'item <b> %label% </b> existe déjà pour cette date. <br> Confirmez-vous l'ajout quand même?
+        title_submit: Bevestiging van de bestelling. #Confirmation de la commande.
+        message_confirm_submit: Een bestelling met een andere leverdatum voor de volgende artikelen bestaat al voor deze datum: <br> %list% <br> Bevestig je de toevoeging toch?  #Une commande avec une autre date de livraison pour les items suivants existe déjà pour cette date : <br> %list% <br> Confirmez-vous l'ajout quand même?
+    send_planned: Het verzenden van de bestelling is succesvol gepland. #L'envoi de la commande est planifié avec succès.
+delivery:
+    entry:
+        title: Bestelling ingeven #Saisie d'une livraison
+        responsible: Verantwoordelijke bestelling #Responsable de la livraison
+        deliveryOf: Levering op #Livraison du
+        schedule: leveringsbon #Bordereau de liv
+        provider: Leverancier #Fournisseur
+        order: Bestelling #Commande
+        orderOf: Bestelling van #Commande du
+        reference: Code #Code
+        items: Inventaris items #Items Inventaire
+        issue: Conflict #Litige
+        quantity: Hoeveelheid besteld #Qté Commandée
+        expInv: L. eenh. #U.exp
+        quantityDeliv: Hoeveelheid geleverd #Qté livrée
+        amount: Valorisatie #Valorisation
+        amountDelivery: Valorisatie van de levering #Valorisation de la livraison
+        amountByFamComp: Valorisatie per boekh. Fam. #Valorisation par Fam. Comp.
+        instruction: Instructie #Consigne
+        stock: Stock #Stock
+        livery: Geleverd #Livrée
+        reprise: Hervatting #Reprise
+        validate: Bevestigen #Valider
+        print: Leveringsbon bevestigen en uitprinten #Valider & Imprimer le BL
+        abort: Afbreking #Abandon
+        unit_price: Prijs eenheid #Prix Unitaire
+        date:
+            order: Datum bestelling #Date Commande
+            delivery: Levering #Livraison
+        new:
+            title: Nieuwe bestelling #Nouvelle Commande
+            ca: Verwachte omzet #CA Prévisionnel
+            num_order: Nr. Bestelling #Commande N°
+            lines:
+                header:
+                    code: Code #Code
+                    product: Inventarisitem #Item inventaire
+                    exped_unit: Eenheid levering #Unité Expéd
+                    stock_qty: Hoeveelheid in voorraad #Qté en Stock
+                    cmd_qty: Hoeveelheid CMD #Qté CMD
+    test:
+        title: Leveringsbon simuleren #Simuler un bon de livraison
+        warning : Test functionnaliteit : dit scherm laat toe een xml file te genereren gelijk aan de file van de leverancier. Hij laat het ook toe deze file op de ftp te zetten.  # "Fonctionnalité de Test: Cet ecran permet de générer un fichier xml similaire à celui généré par le portail fournisseur. Ensuite il permet de le déposer sur le dossier ftp."
+    table:
+        num_order: Nr. Best. #N° Cmd
+        supplier: Leverancier #Fournisseur
+        cmd_qty: Hoeveelheid cmd #Qté cmd
+    num: Leverings Nr. #N° Livraison
+    delivery_order_title: Lijst leveringen #Liste des livraisons
+    delevry: Levering #Livraison
+    informations: Informatie over de levering #Informations de la Livraison
+    details:
+        title: Details levering #Détails de la livraison
+        supplier: Leverancier #Fournisseur
+        delivered_qty: Hoeveelheid geleverd #Qté livrée
+    report:
+        title: Leveringsbon #Bon de Livraison
+    choose_supplier: Gelieve een leverancier te selecteren #Veuillez sélectionner un fournisseur
+    regularisation:
+        title: Herziening leveringsbon #Régularisation sur BL
+        responsible_label: Verantwoordelijke regularisatie #Responsable de la régularisation
+        delivery_date: Levering op #Livraison du
+        num_bl: nr leveringsbon #Borderau de Liv n°
+        num_order: Bestelling Nr. #Commande N°
+        order_date: Bestelling van #Commande du
+        table:
+            ref: Code #Code
+            articles: Inventaris items #Items Inventaire
+            observation: Conflict #Litige
+            delivery_qty: Hoeveelheid Levering #Qté. Liv.
+            unit_exp: L. eenh./Inv eenh. #U.Exp/ U.Inv
+            unit_price: Prijs Eenh. #Prix U.
+            return: Hoeveelheid retouren #Qté Retournée
+            valorisation: Valorisatie #Valorisation
+            return_valorisation: Valorisatie van de retour #Valorisation du retour
+            supplier: Leverancier #Fournisseur
+        historic:
+            date: Datum herziening #Date de régularisation
+            responsible: Verantwoordelijke #Responsable
+            details: Details #Détails
+product:
+    code: Code #Code
+    name: Inventarisitem #Item inventaire
+    exp_unit: Eenheid lev. #Unité Exp.
+    yes: Ja #Oui
+    no: Nee #Non
+    not_orderable: Dit product mag op die datum niet besteld worden. Gelieve een ander product te selecteren.
+sheet_model:
+    delete_message: "U staat op het punt om het blad '%sheet_label%' te verwijderen !" #"Vous êtes sur le point de supprimer la feuille '%sheet_label%' !"
+    list:
+        title: Lijst van bladen #Liste des feuilles
+        code: Code #Code
+        product_name: Naam inventarisitems #Nom de l'item inventaire
+        label: Beschrijving #Libellé
+        action: Actie #Action
+    notification:
+       created_with_success: "Uw blad is aangemaakt met de referentie: %id%" #"Votre feuille est créée avec la référence: %id%"
+       edited_with_success: "Uw blad (Libellé : id)is met succes gewijzigd/aangemaakt." #"Votre feuille (Libellé : id) est éditée/crée avec succès."
+       loss_edited_with_success: "Uw verliesblad(Libellé : id)is met succes gewijzigd/aangemaakt." #"Votre feuille des pertes (Libellé : id) est éditée/crée avec succès."
+       sheet_model_deleted_with_success: "Uw blad (label)is met succes verwijderd." #"Votre feuille (label) est supprimé avec succès"
+       all_item_of_this_category_are_already_selected: Alle items van deze categorie zijn al toegevoegd aan uw blad. #Tous les items de cette catégorie sont déjà ajoutés a votre feuille.
+       all_item_of_this_category_are_added_with_success: Alle items van de categorie %category_name% zijn met succes toegevoegd. #Tous les items de la catégorie %category_name% on été ajouté avec succés.
+       item_already_exist: %product_name% bestaat al in uw blad #%product_name% existe déjà dans votre feuille
+       item_selected_with_success: %product_name% is met succes toegevoegd aan uw blad #%product_name% a été ajouté avec succès dans votre feuille
+       btn:
+           create_another_one: Een andere aanmaken #Crée une autre
+    old_sheet:
+        title: Wijziging blad #Édition de la feuille
+    new_sheet:
+        title: Een nieuw blad aanmaken #Création d'une nouvelle feuille
+        list_title: Lijst inventarisitems #Liste des items inclus dans cette feuille
+        labels:
+            label: Naam blad #Nom de la feuille
+            sheet_type: Type #Type
+            category_filter: Categorie #Catégorie
+            code: Code #Code
+            article: Inventarisitem #Item Inventaire
+            action: Actie #Action
+            category: Categorie #Catégorie
+article: Inventarisitem #Item Inventaire
+finalProduct: Verkoopsitems #Items ventes
+inventory:
+    select_an_inventory_sheet: Selecteer een inventarisblad #Sélectionner une feuille d'inventaire
+    entered_with_success: Inventaris met succes bijgewerkt ! #Inventaire mis à jour avec succés !
+    entered_with_error: Er worden fauten gevonden bij het opslagen van het inventaris #Des erreurs sont détectées lors du sauvegarde de l'inventaire
+    btn:
+        load_sheet: Het blad laden en beginnen met invoeren van inventaris #Charger la feuille et commencer la saisie d'inventaire >
+        load_other_sheet: Een ander inventarisblad laden #Charger une autre feuille d'inventaire
+        entry_inventory: Inventaris invoeren #Saisir l'inventaire
+    title:
+        entry: Invoer inventaris #Saisie de l'inventaire
+        management: Inventarisbeheer #Gestion des inventaires
+        list: Lijst inventarissen  #Liste des inventaires
+        new_entry: Nieuwe invoer inventaris #Nouvelle saisie inventaire
+        existing_entry: Doorgaan met invoer inventaris #Continuer votre saisie d'inventaire
+        consult: Invoer inventaris raadplegen #Consultation de la saisie d'inventaire
+    labels:
+        inventory_sheet: Inventarisblad #Feuille d'inventaire
+        type: Type #Type
+        fiscal_date: Fiscale datum #Date fiscale
+        quantity: Hoeveelheid #Quantité
+        usage_unit: Eenheid gebruik #Unité d'usage
+        inventory_unit: Eenheid inventaris #Unité d'inventaire
+        condition: conditionnering #Conditionnement
+        exped_unit: Eenheid levering #Unité d'éxpedition
+        usage_cnt: Hoeveelheid (eenheid gebruik) #Quantité (unité d'usage)
+        inventory_cnt: Hoeveelheid (eenheid inventaris) #Quantité (unité d'inventaire)
+        exped_cnt: Hoeveelheid (eenheid verzending) #Quantité (unité d'expedition)
+        model: Inventarisblad #Feuille d'inventaire
+        total: Totaal #Total
+    status:
+        draft: draft #Brouillon
+        validated: Bevestigen #Validé
+        created: Aangemaakt #Crée
+    old_sheet:
+        title: Wijzigingen blad #Édition de la feuille
+    new_sheet:
+        title: Een nieuw blad aanmaken #Création d'une nouvelle feuille
+        confirm:
+            message: U staat op het punt om een inventarisblad toe te voegen/bij te werken #Voulez êtes sur le point d'ajouter/mettre à jour votre feuille d'inventaire
+    consult:
+        btn:
+            launch_gap_analysis: Verschilanalyse starten #Lancer l'analyse de l'ecart
+        title: Stock raadplegen #Consultation du stock
+        labels:
+            code: Code #Code
+            initial_stock_date: Beginstock op #Stock Initial au
+            final_stock_date: Eindstock op #Stock Final au
+            nbr: Restaurant nr. #Restaurant n°
+            stock_from: Stock van #Stock du
+            stock_to: tot #au
+            article: Inventarisitem #Items Inventaire
+            initial_stock: Beginstock #Stock initiale
+            inputs: in #Entrées
+            outputs: out #Sorties
+            final_stock: Eindstock #Stock Finale
+            theorical_final_stock: Theoretische eindstock  #Stock finale théorique
+            real_final_stock: Werkelijke eindstock #Stock finale réel
+            gap: Planning verschil: #Différenceplanning:
+    sheets:
+        notification:
+            created_with_success: "Uw inventarisblad is aangemaakt met referentie: {0}" #"Votre feuille d'inventaire crée avec la référence: {0}"
+            edited_with_success: "Uw inventarisblad(Code Ref.: {0}) is met succes gewijzigd." #"Votre feuille d'inventaire (Code Ref.: {0}) est édité avec succès."
+            btn:
+                create_another_one: Een ander aanmaken #Crée une autre
+        new_sheet:
+            title: Nieuw Inventarisblad crëeren #Création d'une nouvelle feuille d'inventaire
+            inventory_lines: Lijst verkoopsitems van dit blad #Liste des items ventes inclus dans cette feuille
+            labels:
+                type: Type inventaris #Type d'inventaire
+                entry_date: Fiscale datum #Date fiscale
+                category_filter: Categorie #Catégorie
+                code: Code #Code
+                article: Inventarisitem #Item Inventaire
+                action: Actie #Action
+                add_an_article: Een inventarisitem toevoegen #Ajouter un Item Inventaire
+                add_a_product_sold: Een verkoopsitem toevoegen #Ajouter un Item en Ventes
+        action:
+            inventory_entry: De inventaris invoeren #Saisir l'inventaire
+        old_sheet:
+            title: Wijziging inventarisblad #Édition de la feuille d'inventaire
+        title: Beheer  inventarisbladen #Gestion des feuilles d'inventaire
+        list:
+            title: Lijst inventarisbladen #Liste des feuilles d'inventaire
+            code: Code #Code
+            entry_date: Fiscale datum #Date fiscale
+            type: Type inventaris #Type d'inventaire
+            status: Status #Status
+            action: Actie #Action
+    title: Planning bestellingen #Planning des commandes
+    supplier: Leverancier #Fournisseur
+    week_count: Aantal week #Nb Semaine
+    type:
+        food_cost:
+            label: FOOD COST #FOOD COST
+            monthly_inventory: Maandelijkse inventaris - FOOD COST #Inventaire mensuel - FOOD COST
+            daily_inventory: Dagelijkse inventaris - FOOD COST #Inventaire journalier - FOOD COST
+            weekly_inventory: Wekelijkse inventaris - FOOD COST #Inventaire hebdomadaire - FOOD COST
+        non_food_cost:
+            label: NON FOOD COST #NON FOOD COST
+            monthly_inventory: Maandelijkse inventaris - NON FOOD COST #Inventaire mensuel - NON FOOD COST
+            daily_inventory: Dagelijkse inventaris - NON FOOD COST #Inventaire journalier - NON FOOD COST
+            weekly_inventory: Wekelijkse inventaris - NON FOOD COST #Inventaire hebdomadaire - NON FOOD COST
+loss_sheet:
+    label:
+        select_a_loss_sheet_model: Wilt u een verliesblad voor de dag selecteren #Veuiller sélectionner une feuille de perte pour la journée
+        create_new: Aanmaken nieuw perteblad #Création d'une nouvelle feuille de perte
+        numero: Nummer perteblad #Numéro de la feuille de perte
+        date: Datum van de invoer #Date de la saisie
+        btn_define_product: producten bepalen #Définir les produits
+        list_product: lijst van de producten van dit blad #Liste des produits inclus dans cette feuille
+        code: Code #Code
+        btn_cancel: aanmaken annuleren #Annuler la création
+        btn_create: perteblad aanmaken #Créer la feuille de perte
+    title: Blad invoer verliezen #Feuille de saisie des pertes
+loss:
+    sheets:
+        title_articles_loss_model: Beheer verliesbladen (Invetaris items ) #Gestion des feuilles des pertes (Item Inventaire)
+        title_sold_products_loss_model: Beheer verliesbladen (Verkoopsitems) #Gestion des feuilles des pertes (items ventes)
+        title: Beheer verliesbladen #Gestion des feuilles des pertes
+        sheet_model: Type Blad #Modèle de feuille
+    confirm:
+        message: U staat op het punt om een verliesblad toe te voegen/bewerken #Voulez êtes sur le point d'ajouter/mettre à jour votre feuille des pertes
+        data_will_be_erased: u staat op het punt om van blad van dag te wijzigen, de invoer dreigt verloren te gaan. #Attention vous ête sur le point de changer de feuille, la saisie effectué risque d'être perdu.
+        continue: Doorgaan en mijn invoer verliezen #Continuer et perdre ma saisie du jour
+    errors:
+        title: Fout #Erreur
+        message: Er bestaan fouten bij uw ingave. Gelieve ze recht te zetten #Des erreurs existent dans vos saisies, veuillez les corriger
+        validate: Valideren #Valider
+    type: Type verlies #Type des pertes
+    check:
+        title: Verliezen raadplegen #Consultation des pertes
+        hourly: Dagverlies U/U (Afgew. P) #Pertes jour H/H (P. Finis)
+        daily: Verliezen / Dagen #Pertes / Jours
+        weekly: Verliezen / Weken #Pertes / Semaines
+        monthly: Verliezen / Maanden #Pertes / Mois
+        from: Van #Du
+        to: Tot #Au
+        list_product: Lijst inventarisitems #Liste des items inclus dans cette feuille
+        consult: Raaplegen #Consulter
+    previous:
+        title: Wijziging verliezen inventarisitems van #Modification des pertes des Items inventaire du
+        article: Inventarisitem #Items inventaire
+        finalProduct: Verkoopsitems #Items ventes
+        actif: Alle actieve items #Tous les items Actifs?
+        feuille_number: Nr. verliesblad #N° feuille des pertes
+    recap:
+        title: Overzicht van verliezen invoer #Récapitulatif de votre saisie de perte
+        date: Datum van de invoer #Date de la saisie
+        type: Type verlies #Type de perte
+    entry:
+        title: Invoeren verlies #Saisie des pertes
+        title_articles_loss_model: Ingeven verlies inventarisitems #Saisie des pertes des Items Inventaire
+        title_sold_products_loss_model: Ingeven verlies verkoopsitems #Saisie des pertes des Items ventes
+        cancel: ingave anuleren #Annuler la saisie
+        draft: Opslaan als draft #Enregistrer comme brouillon
+        verify_cancel: Bent u zeker uw ingave te willen valideren.  #Vous en êtes sûr de vouloir annuler vos saisies ?
+        js:
+            no_loss_sheet: Geen blad gevonden met dit nummer #Aucune feuille trouvée avec ce numéro
+    list:
+        menu: Lijst verliezen #Liste des pertes
+        num_loss: Nr. van het blad #N° de la feuille
+        type: Type blad #Type de la feuille
+        date: Datum van de invoer #Date de la saisie
+        status: Status #Statut
+        set_draft: De invoer afmaken #Finir la Saisie
+        details_set: Details tonen #Afficher les détails
+    btn:
+        load: Het invoerblad laden #Charger la feuille de saisie
+        load_another: Een nieuw verliesblad laden #Charger une autre feuille de pertes
+    confirm:
+        data_will_be_erased: Attentie ! U staat op het punt om alle ingevoerde gegevens te verliezen. #Attention ! Vous êtes sur le point de perdre les données saisies.
+        continue: Doorgaan en mijn invoer verliezen #Continuer et perdre ma saisie du jour
+    warning:
+        yesterday_loss_sheet_unavailable: Er is gisteren geen enkel verliesblad ingevoerd. U kunt de verliezen van gisteren invoeren met het onderstaande formulier. #Il n y'a aucune feuille de pertes saisie hier. Vous pouvez saisir les pertes d'hier avec le formulaire en dessous
+    notification:
+        entry_loosed_qty: Geef de verliezen in #Saissez les quantités perdus
+    label:
+        entry: Invoer #Saisie
+        solding_canal: Kanaal #Canal
+transfer:
+    in:
+        new:
+            title: Nieuwe transfer IN #Nouveau Transfert IN
+    out:
+        new:
+            title: Nieuwe transfer UIT #Nouveau Transfert OUT
+    quick_num: Quick Nr. #Quick N°
+    restaurant: Restaurant #Restaurant
+    transfer_num: Transfer Nr. #Transfer N°
+    transfer_date: Datum transfer #Date de Transfert
+    responsible: Verantwoordelijke transfer #Responsable du transfert
+    title: Overdracht
+planning:
+    supplier: Leverancier #Fournisseur
+order_edit_fail: Wijziging van de bestelling is mislukt #Modification de la commande est échouée
+order_edit_success: Wijziging van de bestelling is met succes toegepast #Modification de la commande est effectuée avec succès
+new_order_time_not_in_schedule: De plaatsing van de bestelling bevindt zich niet in de toegestane tijden #Le passage de la commande n'est pas dans la plage d'horaire autorisée
+new_order_planning_not_found: Geen planning gevonden voor de nieuwe bestelling #Pas de planning trouvé pour la nouvelle commande
+cannot_delete_po_file_from_supplier_server: Verwijderen van de oude bestelbon is mislukt #Suppression de l'ancier bon du commande est échouée
+new_order_btn: Doorgaan met een nieuwe bestelling #Passer une nouvelle commande
+pendig_list_btn: Lijst van lopende bestellingen #Liste des commandes en cours
+cancel_order_pop_title: Bestelling annuleren #Annuler la commande
+cancel_order_btn: Bestelling annuleren #Annuler la commande
+order_cancelled_success: Bestelling succesvol verwijderd #Commande supprimée avec succès
+order_cancelled_fail: De annulatie van de bestelling is mislukt #L'annulation de la commande est échouée
+observation: Waarneming #Observation
+too_much: Te veel geleverd #Trop livrée
+not_ordred: Niet besteld #Non Commandée
+missing: Ontbrekende hoeveelheid #Quantité manquante
+delivery_valorisation: Valorisatie van de levering #Valorisation de la livraison
+delivery_date_prevu: Verwachte leveringsdatum #Date de livraison prévue
+add_new_line: Een inventarisitem toevoegen #Ajouter un Item inventaire
+no_order_found: Geen enkele bestelling gevonden #Aucune commande n'est trouvée
+min_valorization: Min. waardering #Min Valorisation
+max_valorization: Max. waardering #Max Valorisation
+bl_print: Leveringsbon printen #Imprimer le BL
+delivery_create_success: Levering met succes aangemaakt #Livraison crée avec succès
+regularization_success: Herziening met succes aangemaakt #Régularisation crée avec succès
+delivery_details_title: Details levering #Détails sur la livraison
+transfer_created_with_success: "Transfer #%id_transfer% met succes aangemaakt" #"Transfert #%id_transfer% crée avec succès"
+transfer_in: tranfer IN #Transfert IN
+transfer_out: Transfer UIT #Transfert OUT
+save_transfer: Transfer opslaan #Enregistrer le Transfert
+transfer_details: Details transfer #Détails du Transfert
+transfer_type: Type transfer #Type de Transfert
+transfer_date_inf: leveringsdatum - Min #Date Transfert - Inf
+transfer_date_sup: leveringsdatum - Max #Date Transfert - Sup
+delete_filter: Filter verwijderen #Effacer le filtre
+return_date: Retourdatum #Date de retour
+return_responsible: Verantwoordelijke peroon #Responsable
+return_valorization: Valorisatie #Valorisation
+new_retour_title: Retour ingeven #Saisie d'un retour
+return_list: Lijst met retouren #Liste des retours
+return_details_title: Details retour #Détails du retour
+mark_as_sended: Markeren als verstuurd #Marquer comme envoyée
+send_order_btn: De bestelling versturen #Envoyer la commande
+force_modification: Een wijziging forceren #Forcer la modification
+delay_passed: Tijd overschreden voor de wijziging #Délais dépassé pour la modification
+delivery_date_min: transfertsdatum - Min #Date Transfert - Inf
+delivery_date_max: transfertsdatum - Max #Date livraison - Sup
+motif: Reden #Motif
+valorization: Valorisatie #Valorisation
+tranfer_type: Type transfer #Type de transfert
+cannot_force_date: Forceren van het statuut is mislukt #Forçage du statut est echoué
+delivery_date_has_been_passed: De datum van de levering is voorbij #Date de la livraison est passée
+delivery_create_fail: Aanmaken bestelling mislukt #Echèc lors de la création de la livraison
+return_created_success: Invoer van de retour is met succes doorgevoerd. #Saisie du retour est effectuée avec succès
+return_created_fail: Invoer retour mislukt #Echèc lors de la saisie du retour
+send_mail_fail: Versturen mail mislukt #Echèc lors de l'envoi du mail
+transfer_created_with_fail: Aanmaken transfer mislukt #Echèc lors de la création du transfert
+marked_as_sended_success: Bestelling gemarkeerd als verstuurd #Commande est marquée comme envoyée
+marked_as_sended_failed: Forceren status mislukt #Echèc lors du forçage du statut
+only_rejected_prepared_can_be_forced: Slechts de leveringen die afgekeurd zijn en klaargezet kunnen worden gemarkeerd als verzonden #Seules les commandes rejetées et préparées peuvent être marquées comme envoyée
+tooltip:
+    select_all_in_category: Alle items van deze categorie toevoegen aan het blad #Ajouter tous les items de cette catégorie à la feuille
+    click_to_add_to_list: Klikken om dit element aan de lijst toe te voegen #Cliquer pour ajouter cet élèment à la liste
+    click_to_show_contained_items: Klikken om de items van deze categorie weer te geven #Cliquer pour afficher les items de cette catégorie
+delete_order_confirmation: 'Bent u zeker de bestelling #%num_order% te willen valideren?' #'Êtes-vous certain de vouloir supprimer la commande #%num_order% ?'
+delete_order: Bestelling verwijderen #Suppression de la commande
+delete_order_yes_btn: Ja, verwijderen #Oui, supprimer
+select_supplier: selecteer een leverancier #Veuillez sélectionner un fournisseur
+select_restaurant: Selecteer een restaurant #Veuillez sélectionner un restaurant
+select_command: Selecteer een bestelling #Veuillez sélectionner une commande
+order_valorization: Valorisatie van de bestelling #Valorisation de la commande
+unit_price: Prijs Eenh. #Prix U.
+units_rapport: L. eenh./Inv eenh./geb. eenh #U.Expd/U.Inv/U.Usage
+designation: Aanwijzing #Désignation
+temperature: Temperatuur #Température
+dlc: Uiterste verbruiksdatum #Date limite de consommation
+#Transfet Bon en specificaties #bon et details
+transfer.invt_qty: Hoeveelheid (Inv. eenh) #Qté (U.Inv)
+transfer.use_qty: Hoeveelheid (verbruiks eenh.) #Qté (U.Usage)
+transfer.exp_qty: Hoeveelheid (U.Exp) #Qté (U.Exp)
+transfer.total: Totaal (Inv Eenh.) #Total (U.Inv)
+
+#Aide à la commande messages
+order_day: Besteldag #Jour de la commande
+select_order_day: Selecteer een dag #Veuillez sélectionner un jour
+help_order_title: Hulp bij bestellen #Aide à la commande
+start_with_this_step: Begint u bij deze stap #Veuillez commencer par cette étape.
+period_label: Periode #Période
+from_label: Van #Du
+to_label: Tot #À
+to_label_2: tot #au
+ca_realized_on_period: Omzet gerealiseerd in deze periode #Chiffre d'affaire réalisé sur la période
+next_step_without_recalculation: Ga naar de volgende stap zonder een nieuwe berekening te maken #Passer à l'étape suivante sans refaire le calcul
+save_and_go_to_next_step: Opslaan en naar de volgende stap gaan #Enregistrer et passer à l'étape suivante
+display_all_items: Alle items Weegeven          #Afficher tous les items
+go_back_previous_step: Teruggaan naar de vorige stap #Retourner à l'étape précédente
+filter_by_supplier: Filteren per leverancier #Filtrer par Fournisseur
+filter_by_category: Filteren per categorie #Filtrer par Catégorie
+filter_by_day: Filter per dag #Filtrer par Jour
+u_exp_u_inv: U.Exp/U.Inv #U.Exp/U.Inv
+u_inv_u_use: Inv eenh./geb. eenh #U.Inv/U.Usage
+r_t: R/T #R/T
+consumed_qty_u_exp: Hoeveelheid verbruikt (U.Exped) #Qté Consommée (U.Exped)
+coef_euro_u_exp: coeff (€/lev. Eenheid) #Coeff (€/U.Expéd)
+fixed: Vast #Fixé
+real_shortcut: R #R
+theo_shortcut: T #T
+work_budget: werkbudgetten #Budgets du Travail
+date_label: Datum #Date
+budget_label: Budget #Budget
+stock_qty_theo_real: Hoeveelheid in voorraad T/R #Qté en stock T/R
+coeff_label: Coefficient #Coefficient
+need_label: Nodig #Besoin
+expected_deliveries_u_expd: L.P (U.Exped) #L.P (U.Exped)
+qty_to_be_ordred_label: Bestelkwantiteit #Qté à commander
+order_generated: Gegenereerde bestelling #Commande Générée
+prepare_order: Bestelling voorbereiden #Préparer la commande
+order_created_with_succes:  Bestelling als aangeduid als verstuurd #Votre commande a été créée avec succès
+order_not_created: Bestelling is niet aangemaakt #Commande non créée
+consult_order: De bestelling raadplegen #Consulter la commande
+order_exisit_for_supplier: Er is een bestelling aangemaakt voor deze leverancier #Il y a une commande créée pour ce fournisseur
+override_existing_order:  Overschrijf de huidige bestelling #Ecraser la commande existante
+order_not_editable_exist: Er is een niet wijzigbare bestelling aangemaakt voor deze leverancier #Il y a une commande non modifiable créée pour ce fournisseur.
+steps.first: Basis van de berekening van de coëfficiënten #Base de calcul des Coefficients
+steps.second: Coefficienten #Coefficients
+steps.third: Maskers #Masques
+steps.fourth: Resultaten #Résultats
+progress.initialisation: Initialisatie #Initialisation
+progress.calcul_coef: Coefficiënten berekenen #Calcul de Coefficients
+progress.calcul_result: Resultaat berekenen #Calcul du résultat
+product_label: Producten #Produits
+days_label_shortcut: dgn #jrs
+all_coef_must_be_numeric: De coefficient moet numeriek zijn voor het product #Le coefficient doit être numérique pour le produit :
+base_calcul: Basis van de berekening #Base de Calcul
+coef_ca: Omzet #Chiffre d'affaire
+order_help_processing: Er is een lopende handeling op de bestellingexpert van deze week . #Il y a traitement en cours sur l'aide à la commande de cette semaine.
+order_help_next_step: Volgende stap
+coef_saved_with_success: Coeff met succes opgeslagen #Coefficients enregistrés avec succès
+next.step: Volgende stap #Budget du Travail prév
+pop_details_title: Details budget #Détails du Budget Prévisionnel
+s_1_label: S-1 #S-1
+s_2_label: S-2 #S-2
+s_3_label: S-3 #S-3
+s_4_label: S-4 #S-4
+moyenne_label: Gemiddelde #Moyenne
+year_n: Jaar N #Année N
+year_n_1: Jaar N-1 #Année N-1
+bud_calculated: budget berekend #Budget prévisionnel calculé
+bud_calculated_short: Budget berekend #B.P Calculé
+bud_typed_short: Ingave Budget #B.P Saisie
+bud_typed: ingave budget #Budget prévisionnel saisie
+bud_to_be_taked: budget in acht genomen #Budget prévisionnel pris en compte
+calculate_btn: Berekenen #Calculer
+actualize_btn: Bijwerken #Actualiser
+see_label: Bekijken #Voir
+
+#Commande Messages Modal
+you_choose_a_date_outside_planning: U heeft een datum buiten de planning gekozen.<br> Wilt u doorgaan? #Vous avez choisi une date hors planning.<br> Voulez-vous continuer?
+you_choose_a_delivery_date_outside_planning: U heeft een leveringsdatum buiten de planning gekozen.<br> Wilt u doorgaan? #Vous avez choisi une date de livraison hors planning.<br>  Voulez-vous continuer?
+order_exist_for_supplier: Er bestaat al een bestelling op deze datum voor deze leverancier. #Une commande existe déjà à cette date pour ce founisseur.
+edit_existing_order: Huidige bestelling wijzigen #Modifier la commande existante
+create_new_order: Een nieuwe bestelling aanmaken #Créer une nouvelle commande
+command_reciepe: bestelbon #Bon de Commande
+
+#Coefficient
+processing_pending: In behandeling. Een moment geduld AUB #Il y a traitement en cours. Veuillez patienter un moment.
+base_calcul: Basis berekening #Base de calcul
+
+# Missed Translation
+coef_calculate: Berekening opstarten #Lancer le calcul
+last_update_date_label: Datum laatste update coefficiënten #Dérnière date du mise à jours des coefficient
+coef_consult: Coefficiënten raadplegen #Consulter les coefficients
+reinitialize: Reset #Réinitialiser
+
+#others
+u.inv_qty: Hoeveelheid (Inv eenh.) #Qté (U.Inv)
+u.use_qty: Hoeveelheid (verbruik eenh.) #Qté (U.Usage)
+u.exp_qty: Hoeveelheid (U.Exp) #Qté (U.Exp)
+total.inv_qty: Totaal (Inv Eenh.) #Total (U.Inv)
+
+loss.success_entry: Uw ingave van verliezen werd met succes uitgevoerd #Votre saisie des pertes est effectuée avec succés.
+inventory.labels.theoric_stock: Theoretische stock #Stock théorique
+
+
+transfers:
+    delete:
+        title_modal: Schrap het transfer #Supprimer le transfert
+        content_modal: Wenst u zeker deze transfer te schrappen? #Êtes-vous sûr de bien vouloir supprimer ce transfert ?
+        success: Transfer met succes verwijderd #Transfert supprimé avec succès
+        mail:
+            subject: "[Quick] Transfer verwijderd" #"[QUICK] Transfert Supprimé"
+            head: "Verwijdering van transfer" #"Suppression du transfert"
+            body: "De %type% met het nummer %number% werd werwijderd" #"Le %type% dont le numéro %number% a été supprimé"
+
+inventory.print.title: Details van de inventaris #Détails de l'inventaire
+
+see: Zien #Voir
+total_item: Totaal bestelde artikelen
+
+Hello: Hallo, #Bonjour,
+confirmation_transfer: Bevestiging van overdracht #Confirmation de Transfert
+message1_transfer: De overdracht is aangekomen, bedankt. #Le transfert est arrivé, Merci.
+message2_transfer: In bijlage vindt u de overschrijvingsbon. #Vous trouvez ci-joint le bon de transfert.
+message1_transfer_out: Een overdracht ‘OUT’ wordt uitgevoerd naar uw restaurant. #Un transfert OUT est effectué vers votre restaurant,
+loss_with: Met verliezen #Avec pertes

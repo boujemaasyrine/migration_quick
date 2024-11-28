@@ -1,0 +1,286 @@
+<style>
+    .scrollable {
+        width: 100%;
+        overflow: auto;
+    }
+
+    {% if download is not defined %}
+    .highlight-hours {
+        background-color: #fdc300 !important;
+    }
+
+    .highlight-ca-prev {
+        background-color: #CA9E67 !important;
+    }
+
+    .highlight-impair-cells {
+        background-color: #93D5F6;
+    }
+
+    .highlight-title-cells {
+        background-color: #EDE2C9;
+    }
+
+    .table .employee_name {
+        background-color: #93D5F6;
+    }
+
+    .table .totals_label {
+        background-color: #6cf600;
+    }
+
+    .table .totals {
+        color: #008a21;
+    }
+
+    {% endif %}
+
+    .highlight-hours {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .hours {
+        text-align: center;
+    }
+
+    .title-bold {
+        font-weight: bold;
+    }
+
+    .table {
+        margin-bottom: 50px;
+    }
+</style>
+{% if currentHour is not defined %}
+    {% set currentHour=9999 %}
+{% endif %}
+
+{% if download is not defined and result|length > 0 %}
+    <style>
+        .table > thead, .table > tbody {
+            display: inline-block;
+        }
+
+        tbody.mainTbody {
+            height: 550px; /* Just for the demo          */
+            width: 100%;
+            overflow-y: auto; /* Trigger vertical scroll    */
+        }
+
+        th {
+            border: none;
+            padding: 0 !important;
+            text-align: center !important;
+            margin: 0;
+        }
+    </style>
+{% else %}
+    <style>
+        .table > thead > tr > td {
+            font-size: 1.4em !important;
+        }
+    </style>
+{% endif %}
+
+ {% set column_number = result.totals_results.ca_brut_ttc | length + 2 %}
+ {% set ticket_count_total , ca_brut_ttc_total , ca_net_htva_total , item_qty_total  = 0,0,0,0 %}
+<div class="scrollable">
+    <table class="table hourByHour table-striped table-bordered table-hover" cellspacing="0"
+           width="100%" style="margin-bottom: 20px" id="table">
+        <tbody style="width: 100%!important;">
+        {% for row in result.employee_results %}
+            {% set ticket_count_total_user , ca_brut_ttc_total_user , ca_net_htva_total_user , item_qty_total_user  = 0,0,0,0 %}
+            <tr class="report-table-head mainHeader highlight-hours">
+                <td class="employee_name">{{ row.name }}</td>
+                {% for key,h in result.totals_results.ca_brut_ttc %}
+                    <td {% if(currentHour==key) %} class="current-hour" {% endif %} class="hours">
+                        {% if key < 10 %}
+                            {{ '0' ~ key ~ ':00' }}
+                        {% else %}
+                            {{ key ~ ':00' }}
+                        {% endif %}
+                    </td>
+                    <td {% if(currentHour==key) %} class="current-hour" {% endif %} class="hours">
+                        {% if key < 10 %}
+                            {{ '0' ~ key ~ ':15' }}
+                        {% else %}
+                            {{ key ~ ':15' }}
+                        {% endif %}
+                    </td>
+                    <td {% if(currentHour==key) %} class="current-hour" {% endif %} class="hours">
+                        {% if key < 10 %}
+                            {{ '0' ~ key ~ ':30' }}
+                        {% else %}
+                            {{ key ~ ':30' }}
+                        {% endif %}
+                    </td>
+                    <td {% if(currentHour==key) %} class="current-hour" {% endif %} class="hours">
+                        {% if key < 10 %}
+                            {{ '0' ~ key ~ ':45' }}
+                        {% else %}
+                            {{ key ~ ':45' }}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+                <td>{{ 'keyword.total' | trans }}
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: white">{{ 'hour_bu_hour_employee.ca_brut_ttc' | trans }}</td>
+                {% for data in row.ca_brut_ttc %}
+                {% for j in 0 .. 3 %}
+                    <td>
+                        {{ data[j] }}
+                    </td>
+                    {% set ca_brut_ttc_total = ca_brut_ttc_total + data[j] %}
+                    {% set ca_brut_ttc_total_user = ca_brut_ttc_total_user + data[j] %}
+                {% endfor %}
+                {% endfor %}
+                <td style="font-weight: bold;">{{ ca_brut_ttc_total_user }}</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: white">{{ 'hour_bu_hour_employee.ca_net_htva' | trans }}</td>
+                {% for data in row.ca_net_htva %}
+                {% for j in 0 .. 3 %}
+                    <td>
+                        {{ data[j] }}
+                    </td>
+                    {% set ca_net_htva_total = ca_net_htva_total + data[j] %}
+                    {% set ca_net_htva_total_user = ca_net_htva_total_user + data[j] %}
+                    {% endfor %}
+                {% endfor %}
+                <td style="font-weight: bold;">{{ ca_net_htva_total_user }}</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: white">{{ 'hour_bu_hour_employee.ticket_count' | trans }}</td>
+                {% for data in row.ticket_count %}
+                {% for j in 0 .. 3 %}
+                    <td>
+                        {{ data[j] }}
+                    </td>
+                    {% set ticket_count_total = ticket_count_total + data[j] %}
+                    {% set ticket_count_total_user = ticket_count_total_user + data[j] %}
+                    {% endfor %}
+                {% endfor %}
+                <td style="font-weight: bold;">{{ ticket_count_total_user }}</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: white">{{ 'hour_bu_hour_employee.item_qty' | trans }}</td>
+                {% for data in row.item_qty %}
+                {% for j in 0 .. 3 %}
+                    <td>
+                        {{ data[j] }}
+                    </td>
+                    {% set item_qty_total = item_qty_total + data[j] %}
+                    {% set item_qty_total_user = item_qty_total_user + data[j] %}
+                    {% endfor %}
+                {% endfor %}
+                <td style="font-weight: bold;">{{ item_qty_total_user }}</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: white">{{ 'hour_bu_hour_employee.tm_brut' | trans }}</td>
+                {% for data in row.tm_brut %}
+                {% for j in 0 .. 3 %}
+                    <td>
+                        {{ data[j] }}
+                    </td>
+              {% endfor %}
+                {% endfor %}
+                <td style="font-weight: bold;"> {{ (ca_brut_ttc_total_user / ticket_count_total_user )|number_format(2, '.', ',') }}</td>
+            </tr>
+
+        {% endfor %}
+
+        <tr class="report-table-head mainHeader highlight-hours">
+            <td class="totals_label">{{ 'hour_bu_hour_employee.totals' | trans }}</td>
+            {% for key,h in result.totals_results.ca_brut_ttc %}
+                <td class="hours">
+                    {% if key < 10 %}
+                        {{ '0' ~ key ~ ':00' }}
+                    {% else %}
+                        {{ key ~ ':00' }}
+                    {% endif %}
+                </td>
+                <td class="hours">
+                    {% if key < 10 %}
+                        {{ '0' ~ key ~ ':15' }}
+                    {% else %}
+                        {{ key ~ ':15' }}
+                    {% endif %}
+                </td>
+                <td class="hours">
+                    {% if key < 10 %}
+                        {{ '0' ~ key ~ ':30' }}
+                    {% else %}
+                        {{ key ~ ':30' }}
+                    {% endif %}
+                </td>
+                <td class="hours">
+                    {% if key < 10 %}
+                        {{ '0' ~ key ~ ':45' }}
+                    {% else %}
+                        {{ key ~ ':45' }}
+                    {% endif %}
+                </td>
+            {% endfor %}
+            <td style="font-weight: bold;">{{ 'keyword.total' | trans }}
+        </tr>
+        <tr>
+            <td style="width: 10%;background-color: white">{{ 'hour_bu_hour_employee.ca_brut_ttc' | trans }}</td>
+            {% for data in result.totals_results.ca_brut_ttc %}
+            {% for j in 0 .. 3 %}
+                <td class="totals">
+                    {{ data[j] }}
+                </td>
+                {% endfor %}
+            {% endfor %}
+            <td style="font-weight: bold;">{{ ca_brut_ttc_total }}</td>
+        </tr>
+        <tr>
+            <td style="width: 10%;background-color: white">{{ 'hour_bu_hour_employee.ca_net_htva' | trans }}</td>
+            {% for data in result.totals_results.ca_net_htva %}
+            {% for j in 0 .. 3 %}
+                <td class="totals">
+                    {{ data[j] }}
+                </td>
+             {% endfor %}
+            {% endfor %}
+            <td style="font-weight: bold;">{{ ca_net_htva_total }}</td>
+        </tr>
+        <tr>
+            <td style="width: 10%;background-color: white">{{ 'hour_bu_hour_employee.ticket_count' | trans }}</td>
+            {% for data in result.totals_results.ticket_count %}
+            {% for j in 0 .. 3 %}
+                <td class="totals">
+                    {{ data[j] }}
+                </td>
+            {% endfor %}
+            {% endfor %}
+            <td style="font-weight: bold;">{{ ticket_count_total }}</td>
+        </tr>
+        <tr>
+            <td style="width: 10%;background-color: white">{{ 'hour_bu_hour_employee.item_qty' | trans }}</td>
+            {% for data in result.totals_results.item_qty %}
+            {% for j in 0 .. 3 %}
+                <td class="totals">
+                    {{ data[j] }}
+                </td>
+            {% endfor %}
+            {% endfor %}
+            <td style="font-weight: bold;">{{ item_qty_total }}</td>
+        </tr>
+        <tr>
+            <td style="width: 10%;background-color: white">{{ 'hour_bu_hour_employee.tm_brut' | trans }}</td>
+            {% for  data in result.totals_results.tm_brut %}
+            {% for j in 0 .. 3 %}
+                <td class="totals">
+                    {{ data[j] }}
+                </td>
+            {% endfor %}
+            {% endfor %}
+            <td style="font-weight: bold;"> {{ (ca_brut_ttc_total / ticket_count_total)|number_format(2, '.', ',') }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>

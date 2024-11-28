@@ -1,0 +1,100 @@
+{% block loss_line_form_widget %}
+    {% spaceless %}
+        {% if form.vars.value != null %}
+            <tr class="line"
+                    {% if form.vars.value.product is productPurchased %}
+                        data-inventory-qty="{{ form.vars.value.product.inventoryQty }}"
+                        data-usage-qty="{{ form.vars.value.product.usageQty }}"
+
+                        data-inventory-unit-label="{{ form.vars.value.product.labelUnitInventory }}"
+                        data-usage-unit-label="{{ form.vars.value.product.labelUnitUsage }}"
+                        data-expedition-unit-label="{{ form.vars.value.product.labelUnitExped }}"
+                    {% endif %} >
+                <td>
+                    {{ form_widget(form.id) }}
+
+                    {% if form.vars.data.product.externalId is defined %}
+                        <span class="product_id"> {{ form.vars.data.product.externalId }}</span>
+                    {% else %}
+                        <span class="product_id"> {{ form.vars.data.product.codePlu }}</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {{ form_widget(form.product) }}
+                    <span class="product_name">{{ form.vars.data.product.name }}</span>
+                </td>
+                <td>
+                    <div class="col-xs-12 input-group">
+                        {{ form_widget(form.totalLoss, { "attr": { "class": 'form-control qty-input readOnlyInput', 'disabled':'disabled', "readonly": 'readonly',
+                            'value': form.vars.data.totalloss} }) }}
+                        {% if form.vars.value.product is productPurchased %}
+                            <span class="text-muted input-group-addon"
+                                  style="margin-right: 5px;">{{ form.vars.value.product.labelUnitInventory|trans }}</span>
+                        {% endif %}
+                    </div>
+                </td>
+                <td>
+                    <div class="col-xs-12 input-group">
+                        {{ form_widget(form.firstEntry, { "attr": { "class": 'form-control splitted_input qty-input' }}) }}
+                        {% if form.vars.value.product is productPurchased %}
+                            <span class="text-muted input-group-addon"
+                                  style="margin-right: 5px;">{{ form.vars.value.product.labelUnitInventory|trans }}</span>
+                        {% endif %}
+                        {% if form.vars.value.product is productPurchased %}
+                            <span class="text-muted input-group-addon setUnitsInDetails btn_open_qtys_modal"
+                                  style="float: left; color:#000; background: #fff; padding-right: 2px; padding-left: 2px;">
+                                <i class='glyphicon glyphicon-option-vertical'></i>
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    {{ form_errors(form.firstEntry) }}
+                </td>
+                <td>
+                    <div class="col-xs-12 input-group">
+                        {{ form_widget(form.secondEntry, { "attr": { "class": 'form-control splitted_input qty-input' }}) }}
+                        {% if form.vars.value.product is productPurchased %}
+                            <span class="text-muted input-group-addon"
+                                  style="margin-right: 5px;">{{ form.vars.value.product.labelUnitInventory|trans }}</span>
+                        {% endif %}
+                        {% if form.vars.value.product is productPurchased %}
+                            <span class="text-muted input-group-addon setUnitsInDetails btn_open_qtys_modal"
+                                  style="float: left; color:#000; background: #fff; padding-right: 2px; padding-left: 2px;">
+                                <i class='glyphicon glyphicon-option-vertical'></i></span>
+                        {% endif %}
+                    </div>
+                </td>
+                <td>
+                    <div class="col-xs-12 input-group">
+                        {{ form_widget(form.thirdEntry, { "attr": { "class": 'form-control splitted_input qty-input' }}) }}
+                        {% if form.vars.value.product is productPurchased %}
+                            <span class="text-muted input-group-addon"
+                                  style="margin-right: 5px;">{{ form.vars.value.product.labelUnitInventory|trans }}</span>
+                        {% endif %}
+                        {% if form.vars.value.product is productPurchased %}
+                            <span class="text-muted input-group-addon setUnitsInDetails btn_open_qtys_modal"
+                                  style="float: left; color:#000; background: #fff; padding-right: 2px; padding-left: 2px;">
+                                <i class='glyphicon glyphicon-option-vertical'></i></span>
+                        {% endif %}
+                    </div>
+                    {{ form_errors(form.thirdEntry) }}
+                </td>
+                {% if form.vars.value.product is productSold %}
+                    <td class="solding_canals"
+                        data-allowed-solding-canals="{{ form.vars.value.product.soldingCanalsIds }}">
+                        {% if form.vars.value.product.isTransformedProduct %}
+                            {{ form_widget(form.soldingCanal, { "attr": { "class": 'form-control solding_canal_input' }}) }}
+                        {% endif %}
+                    </td>
+                {% endif %}
+                <td class="actions-btn">
+                    <button
+                            type='button'
+                            class='btnRemoveSheetLossLine btn btn-delete waves-effect waves-light'>
+                        <span style="color: white;" class='glyphicon glyphicon-remove'></span>
+                    </button>
+                </td>
+            </tr>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}

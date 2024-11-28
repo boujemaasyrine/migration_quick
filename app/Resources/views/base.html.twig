@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|split('_')[0] }}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BO {% if version =='quick' %}Quick{% else %}BK{% endif %}  ({{ restaurant_service.currentRestaurantCode|slice(1,3) }}){% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('src/css/libs.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('src/css/main.css') }}">
+        <style>
+            .workflow-pending {
+                float: right;
+                font-size: 0.7em;
+                text-align: right;
+                margin-left: 50px;
+                padding: 5px 10px;
+                border: solid 2px #ADB6E6;
+                border-radius: 10px;
+                background-color: rgba(47, 128, 251, 0.15);
+                color: black;
+            }
+        </style>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('src/images/favicon.png') }}"/>
+</head>
+<body style="background-color: #F5F7FA;">
+
+<div id="loader" class="loader" style="width: 100%; height: 100%;
+    background: -webkit-linear-gradient(left top, rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom left,rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* Standard syntax */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;">
+    <div class="loader_background" style="position: absolute;height: 17em;left: 44%; overflow: hidden; width: 0;
+    top: 35%;">
+        <img src="{{ asset('src/images/background_loader.png') }}" style=" height:17em;">
+    </div>
+
+    <img class="loader_front" src="{{ asset('src/images/loader.png') }}" style="position: absolute;height: 17em;left: 44%;
+    top: 35%;">
+</div>
+
+<div id="api-loader" style="width: 100%; height: 100%;
+    background: -webkit-linear-gradient(left top, rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom left,rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* Standard syntax */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: none">
+    <div id="api_loader_background" style="position: absolute;height: 17em;left: 44%; overflow: hidden; width: 0;
+    top: 35%;">
+        <img src="{{ asset('src/images/background_loader.png') }}" style=" height:17em;">
+    </div>
+
+    <img id="api_loader_front" src="{{ asset('src/images/loader.png') }}" style="position: absolute;height: 17em;left: 44%;
+    top: 35%;">
+    <h4 id="loading-text" data-text="{{'api_loader_msg' | trans }}...">{{'api_loader_msg' | trans }}...</h4>
+</div>
+
+<div class="wrapper nav-bar-fixed">
+    {% block header %}
+        <header class="topnavbar-wrapper">
+            <nav id="mainNav" role="navigation" class="navbar topnavbar">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="{{ path('index') }}" class="navbar-brand" style="padding-top: 0;">
+                        <div class="brand-logo">
+                            <img src="{{ asset('src/images/logo.png') }}" alt="App Logo" class="img-responsive">
+                        </div>
+                        <div class="brand-logo-collapsed">
+                            <img src="{{ asset('src/images/logo.png') }}" alt="App Logo" class="img-responsive">
+                        </div>
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse" aria-expanded="true">
+                    {% block nav_bar %}
+                        <ul class="nav navbar-nav">
+                            {% include 'parts/horizontal_nav_bar.html.twig' %}
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% block lang_btn_zone %}
+                            {% endblock %}
+
+                            {% block notification_zone %}
+                                {% set notifications = not_seen_notification() %}
+                                <li class="dropdown dropdown-list">
+                                    <a href="#" data-toggle="dropdown">
+                                        <em class="icon-bell"></em>
+                                        {% if ((notifications | length) > 0) %}
+                                            <div class="label label-danger"
+                                                 style="font-size: 75% !important; color: #c8102e !important; background: #fff;">
+                                                {{ notifications | length }}
+                                            </div>
+                                        {% endif %}
+                                    </a>
+                                    <ul class="dropdown-menu animated flipInX" style="width: 250px;">
+                                        <li>
+                                            <div class="list-group notifications">
+                                                {% for notification in notifications | slice(0, 3) %}
+                                                    {% include('parts/notification_prototype.html.twig') %}
+                                                {% endfor %}
+                                                <a href="{{ path('notification_list') }}" class="list-group-item">
+                                                    <small>{{ 'keyword.see_more' | trans({}, 'notifications') }}</small>
+                                                    {% if ( notifications | length ) > 3 %}
+                                                        <span class="label label-danger pull-right"
+                                                              style="font-size: 75% !important; color:#fff !important;">{{ ( notifications | length ) - 3 }}</span>
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endblock %}
+                            <li class="dropdown">
+                                <a href="#!" data-toggle='dropdown'>
+                                    <em class="icon-settings"></em>
+                                </a>
+                                <ul class="dropdown-menu animated fadeIn" style="">
+                                    {% block logout %}
+                                    {% endblock %}
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#aide-box-content" class="modal-trigger">
+                                            <em class="icon-question"></em> &nbsp; {{ 'keyword.help'|trans }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    {% endblock %}
+                </div>
+            </nav>
+        </header>
+    {% endblock %}
+
+    <div class="container content-wrapper" style=" width: 100%; max-width: inherit;">
+        {% block base_heading %}
+            <div class="content-heading">
+
+                {% if  workflow_service.inCurrentStep == false %}
+                    {% if workflow_service.currentProcedure is not null %}
+                        <a href="{{ path('go_to_current_step') }}" class="workflow-pending">
+                            {{ 'procedure_pending_complete'|trans({ '%1%' : '<b>' ~ workflow_service.currentProcedure.name|title ~'</b>' })|raw }}
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+                {% set pendingProcedures = workflow_service.pendingProceduresByUsers %}
+                {% if pendingProcedures|length > 0 %}
+                    <div style="float: right; font-size: 0.7em; text-align: left; margin-top: -10px; max-height: 70px; overflow-x: auto;  width: 300px; ">
+                        <strong> {{ 'pending_procedures'|trans() }} :</strong>
+                        <ul>
+                            {% for p in pendingProcedures %}
+                                <li><b>{{ p.procedure.name|title }}</b>
+                                    par {{ p.user.firstName|title }} {{ p.user.lastName|title }}
+                                    {% if workflow_service.currentProcedure is null and workflow_service.verifyRole(p.procedure) %}
+                                        <br><a href="{{ path('go_to_current_step', {'procedure' : p.id}) }}">
+                                        {{ 'procedure_pending_complete_2'|trans({ '%1%' : '<b>' ~ p.procedure.name|title ~'</b>' })|raw }}
+                                    </a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {% block base_title %}
+                    {% if version =='quick' %}Quick{% else %}BK{% endif %}
+                {% endblock %}
+                <small>
+                    {% block base_subtitle %}
+
+                    {% endblock %}
+                </small>
+            </div>
+        {% endblock %}
+
+        {% block base_body %}
+        {% endblock %}
+    </div>
+
+    {% block footer %}
+        {{ include(':parts:footer.html.twig') }}
+    {% endblock %}
+</div>
+
+{% include ':parts:modals.html.twig' %}
+
+{% block javascripts %}
+    <script>
+        "use strict";
+        // Global images path
+        var pdfIcon = '{{ asset('src/images/export/pdf-512.png') }}';
+        var xlsIcon = '{{ asset('src/images/export/xls-512.png') }}';
+    </script>
+    <script src="{{ asset('src/js/app.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    <script src="{{ path('bazinga_jstranslation_js') }}?locales={{ app_locales|replace('|', ',') }}"></script>
+    <script src="{{ asset('src/js/common.js') }}"></script>
+{% endblock %}
+
+<script>
+    $(function () {
+        function disabledLoader() {
+            if (loader !== undefined && loader != null) {
+                loader.unblock();
+            } else {
+                setTimeout(disabledLoader, 100);
+            }
+        }
+
+        disabledLoader();
+
+        $('#mainNav').on('click', 'a.link', function () {
+            loader.block();
+        });
+
+        $('.block_link').on('click', function () {
+            loader.block();
+        });
+    });
+    //refreshStatus();
+   // setInterval(refreshStatus, 60000);
+    function refreshStatus() {
+        ajaxCall({
+            url: Routing.generate('connection_status'),
+            dataType: 'html'
+        }, function (data) {
+            $('#bo-status').html(data);
+        }, null, null, true);
+    }
+</script>
+
+</body>
+</html>

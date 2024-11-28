@@ -1,0 +1,3 @@
+{
+    "translations": {"fr":{"order_status":{"draft":"Pr\u00e9par\u00e9e","sending":"En cours d'envoi","sended":"Envoy\u00e9e","rejected":"Rejet\u00e9e","canceled":"Annul\u00e9e","unsended":"Non envoy\u00e9e","modified":"Modifi\u00e9e apr\u00e8s envoi"}}}
+}

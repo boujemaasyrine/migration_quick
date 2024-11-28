@@ -1,0 +1,1 @@
+$(function(){function e(){var e=moment(startDate,"DD/MM/YYYY"),t=new Date(new Date);ticketDatePicker=initDatePicker("#recipe_ticket_date",{disable:[!0,{from:new Date(e.format("YYYY/MM/DD")),to:t}]})}e(),$("form[name=recipe_ticket]").on("submit",function(){loader.block()})});

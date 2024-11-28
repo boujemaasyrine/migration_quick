@@ -1,0 +1,147 @@
+imports:
+     - { resource: sync_services.yml }
+     - { resource: bi_api_services.yml }
+#    - { resource: security.yml }
+     - { resource: reports_service.yml}
+#    - { resource: twig.yml }
+
+services:
+    supervision.product.service:
+        class: AppBundle\Supervision\Service\ProductService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "%report_sql_queries_dir%"
+    supervision.product.purchased.mvmt.service:
+        class: AppBundle\Supervision\Service\Reports\ProductPurchasedMvmtService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "@phpexcel"
+    supplier.service:
+        class: AppBundle\Supervision\Service\SupplierService
+        arguments: ["@doctrine.orm.entity_manager"]
+    supervision.restaurant.service:
+        class: AppBundle\Supervision\Service\RestaurantService
+        arguments: ["@doctrine.orm.entity_manager",  "@sync.create.entry.service","@toolbox.command.launcher"]
+    category.service:
+        class: AppBundle\Supervision\Service\CategoryService
+        arguments: ["@doctrine.orm.entity_manager", "@sync.create.entry.service"]
+    group.service:
+        class: AppBundle\Supervision\Service\GroupService
+        arguments: ["@doctrine.orm.entity_manager"]
+    items.service:
+        class: AppBundle\Supervision\Service\ItemsService
+        arguments: ["@doctrine.orm.entity_manager", "@translator.default","@sync.create.entry.service", '@supervision.historic.entities.service',"@logger","@inventory.service","@historic.entities.service"]
+    supervision.product.sold.service:
+        class:  AppBundle\Supervision\Service\ProductSoldService
+        arguments: ["@doctrine.orm.entity_manager", "@security.token_storage","@sync.create.entry.service", '@supervision.historic.entities.service']
+    recipe.line.form:
+        class: AppBundle\Supervision\Form\Items\RecipeLineType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: recipe_line_type }
+    product.sold.form:
+        class: AppBundle\Supervision\Form\Items\ProductSoldType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: product_sold_type }
+    inventory.item.form:
+        class: AppBundle\Supervision\Form\Items\InventoryItemType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: inventory_item_type }
+    category.form:
+        class: AppBundle\Supervision\Form\CategoryType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: category_type }
+    restaurant.form:
+        class: AppBundle\Supervision\Form\Restaurant\RestaurantType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: restaurant_type }
+    restaurant.filter.form:
+        class: AppBundle\Supervision\Form\Restaurant\RestaurantFilterType
+        tags:
+             - { name: form.type, alias: filter_type }
+#    supplier_unique_code.validator:
+#        class: AppBundle\Validator\UniqueCodeSupplierConstraintValidator
+#        arguments: ["@doctrine.orm.entity_manager", "@translator.default"]
+#        tags:
+#            - { name: validator.constraint_validator , alias : supplier_unique_code_validator }
+#    restaurant_unique_code.validator:
+#        class: AppBundle\Validator\UniqueCodeRestaurantConstraintValidator
+#        arguments: ["@doctrine.orm.entity_manager", "@translator.default"]
+#        tags:
+#            - { name: validator.constraint_validator , alias : restaurant_unique_code_validator }
+#    app.locale_listener:
+#        class: AppBundle\EventListener\LocaleListener
+#        arguments: ['%kernel.default_locale%']
+#        tags:
+#            - { name: kernel.event_subscriber }
+    parameter.form:
+        class: AppBundle\Supervision\Form\Restaurant\ParametersRestaurantType
+        arguments: ["@doctrine.orm.entity_manager", "@parameter.service"]
+        tags:
+            - { name: form.type, alias: parameter_type }
+    parameter.service:
+        class: AppBundle\Supervision\Service\ParameterService
+        arguments: ["@doctrine.orm.entity_manager", "@translator.default", "@sync.create.entry.service"]
+    supervision.historic.entities.service:
+        class: AppBundle\Supervision\Service\HistoricEntitiesService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+#    my.flush.listener:
+#        class: AppBundle\Listener\OnUpdateListener
+#        arguments:
+#              - "@service_container"
+##        tags:
+##            -  {name: doctrine.event_listener, event: onFlush}
+#    toolbox.supervision_command.launcher:
+#        class: AppBundle\Supervision\Service\ToolBox\CommandLauncher
+#        arguments: ["%php_cli%","%kernel.root_dir%","%asynch_postfix%","@kernel"]
+    users.service:
+        class: AppBundle\Supervision\Service\UsersManagement\UsersService
+        arguments: ["@doctrine.orm.entity_manager", "@translator.default"]
+    right.config.form:
+        class: AppBundle\Supervision\Form\UsersManagement\RightConfigType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: right_config_type }
+    rights.roles.service:
+        class: AppBundle\Supervision\Service\UsersManagement\RightsRolesService
+        arguments: ["@doctrine.orm.entity_manager", "@translator.default"]
+    supervision.ca.prev.service:
+        class: AppBundle\Supervision\Service\CaPrevService
+        arguments: ["@doctrine.orm.entity_manager"]
+    remote.historic.service:
+        class: AppBundle\Supervision\Service\RemoteHistoricService
+        arguments: ["@doctrine.orm.entity_manager"]
+    supervision.document.generator:
+        class: AppBundle\Supervision\Service\ToolBox\SupervisionDocumentGeneratorService
+        arguments: ["@service_container"]
+    export.bi.excel:
+        class: AppBundle\Supervision\Service\Talan2Easi\ExportBiExcelService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@phpexcel"
+            - "%version%"
+    duplicate.item.report.service:
+        class: AppBundle\Supervision\Service\Reports\DuplicateItemReportService
+        arguments: ["@doctrine.orm.entity_manager", '@phpexcel']
+
+
+#    is_numeric_extension:
+#        class: AppBundle\Twig\IsNumericExtension
+#        arguments: ["@service_container"]
+#        tags:
+#            - { name: twig.extension }
+
+#    notification.service:
+#        class: AppBundle\Service\General\NotificationService
+#        arguments:
+#            - "@doctrine.orm.entity_manager"
+#            - "@templating"
+#            - "@mailer"
+#            - "%sender_adress%"
+#            - "@translator.default"

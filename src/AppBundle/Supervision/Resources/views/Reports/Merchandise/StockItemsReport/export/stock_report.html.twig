@@ -1,0 +1,15 @@
+{% extends('@Supervision/Reports/Merchandise/StockItemsReport/export/base_export.html.twig') %}
+
+{% block reportTitle %}
+    <h4>{{ 'control_stock.title'|trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-2 input-field">
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    {{ include('@Supervision/Reports/Merchandise/StockItemsReport/export/stock_report_body.html.twig') }}
+{% endblock body %}

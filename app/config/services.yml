@@ -1,0 +1,22 @@
+# Learn more about services, parameters, and containers at
+# http://symfony.com/doc/current/book/service_container.html
+services: 
+    # KernelRequest listener
+    extension.listener:
+        class: AppBundle\General\Listener\DoctrineExtensionListener
+        calls:
+            - [setContainer, ["@service_container"]] # Removed extra spaces
+        tags:
+            # translatable sets the locale after router processing
+            - { name: kernel.event_listener, event: kernel.request, method: onLateKernelRequest, priority: -10 }
+            # translatable sets the locale such as the default application locale before command execution
+            - { name: kernel.event_listener, event: console.command, method: onConsoleCommand, priority: -10 }
+    gedmo.listener.translatable:
+        class: Gedmo\Translatable\TranslatableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [setAnnotationReader, ["@annotation_reader"]] # Removed extra spaces
+            - [setDefaultLocale, ["%fallback_locale%"]] # Removed extra spaces
+            - [setTranslationFallback, [true]]
+            - [setPersistDefaultLocaleTranslation, [true]]

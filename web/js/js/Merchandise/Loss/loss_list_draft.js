@@ -1,0 +1,1 @@
+$(function(){lossListDraftTable=initSimpleDataTable("#loss_liste_draft_table",{lengthChange:!1,searching:!1,processing:!0,paginate:!0})});

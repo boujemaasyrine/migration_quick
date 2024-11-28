@@ -1,0 +1,20 @@
+title:
+    not_sent_order: bestelling klaar #Commande préparée
+    rejected_order: bestelling verworpen #Commande rejetée
+    not_delivered_order: Bestelling niet geleverd #Commande non Livrée
+    missing_pluS: Ontbrekende PLU's# Plu'S manquants.
+    schedule_delivery_changed: Leveringsplanning #Planning livraison
+    previous_inventory_loss: verliezen inventaris niet ingegeven #Pertes inventaire non encodées
+    previous_sold_loss: verliezen verkopen niet ingegeven #Pertes vente non encodéés
+    money_booking_missed: Bestelling kleingeld #Commande de monnaie
+body:
+   prepared: "De bestelling nr #%numero% is klaar maar nog niet doorgestuurd" #"La commande N° #%numero% est préparée mais elle n'est pas encore envoyée"
+   rejected: "De bestelling raadplegen van %date% die niet werd verstuurd wegens een probleem" #"La commande du %date% est rejetée suite à un problème lors de l'envoi au portail fournisseur"
+   not_delivered: "De levering van de bestelling nr #%numero% is niet ingegeven"
+   schedule: "%user% a modifié le planning livraison de %supplier%"
+   pluS:  Lijst PLU's #Liste des PLUs:
+   previous_ loss: "Verlies van %date% niet ingegeven" #"Perte du %date% non encodée "
+keyword:
+   see_more: Meer notificaties #Plus de notifications
+money_booking_missed_creation: "U heeft geen bestelling gemaakt voor: %date%"  #"Vous avez oublié de créer une commande pour la date: %date%"
+money_booking_missed_declaration: "U heeft deze levering(en) niet ingegeven : %bookings%" #"Vous avez oublié de déclarer la réception des commandes: %bookings%"

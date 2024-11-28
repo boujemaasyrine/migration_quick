@@ -1,0 +1,136 @@
+{{ form_start(form, {'attr' : {'id' : 'parameter-restaurant-form' }}) }}
+<div class="row">
+    <div class="col col-xs-3">
+        {{ form_label(form.eft) }}
+        {{ form_widget(form.eft, {'attr': {'class' : 'form-control', "disabled": "true"}}) }}
+        {{ form_errors(form.eft) }}
+        <input id="hidden-eft" type="hidden" name="{{ form.eft.vars.full_name }}" value="{% if form.eft.vars.data == false %}false{% else %}true{% endif %}" />
+    </div>
+</div>
+<div class="row">
+    <div class="col col-xs-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                    {% if form.paymentMethod.children[0].vars.checked == true %}
+                        <input  id="cash-value" type="checkbox" checked  readonly/>
+                        <label style="cursor: auto; margin-bottom: -5px" for="#cash-value"></label>
+                        {{ form_label(form.paymentMethod.children[0]) }}
+                    {% else %}
+                        {{ form_widget(form.paymentMethod.children[0]) }}
+                        {{ form_label(form.paymentMethod.children[0]) }}
+                    {% endif %}
+                {{ form_errors(form.paymentMethod.children[0]) }}
+            </div>
+        </div>
+    </div>
+    <div class="col col-xs-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ form_widget(form.paymentMethod.children[1]) }}
+                {{ form_label(form.paymentMethod.children[1]) }}
+
+                <div class="row check-quick-children"
+                     {% if form.paymentMethod.children[1].vars.checked == false %}style="display: none;" {% endif %}>
+                    <div class="col col-xs-12">
+                        {% for check in form.checkQuick.children %}
+                            <div class="row">
+                                <div class="col col-xs-10 col-xs-offset-1">
+                                    {{ form_widget(check) }}
+                                    {{ form_label(check) }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-xs-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ form_widget(form.paymentMethod.children[2]) }}
+                {{ form_label(form.paymentMethod.children[2]) }}
+            </div>
+        </div>
+
+    </div>
+    <div class="col col-xs-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        {{ form_widget(form.paymentMethod.children[3]) }}
+                        {{ form_label(form.paymentMethod.children[3]) }}
+                    </div>
+                </div>
+                <div class="row bank-card-children"
+                     {% if form.paymentMethod.children[3].vars.checked == false %}style="display: none;" {% endif %}>
+                    <div class="col col-xs-12">
+                        {% for card in form.bankCard.children %}
+                            <div class="row">
+                                <div class="col col-xs-10 col-xs-offset-1">
+                                    {{ form_widget(card) }}
+                                    {{ form_label(card) }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-xs-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        {{ form_widget(form.paymentMethod.children[4]) }}
+                        {{ form_label(form.paymentMethod.children[4]) }}
+                    </div>
+                </div>
+                <div class="row ticket-paper-children"
+                     {% if form.paymentMethod.children[4].vars.checked == false %}style="display: none;" {% endif %}>
+                    <div class="col col-xs-12">
+                        {% for ticket in form.ticketRestaurant.children %}
+                            <div class="row">
+                                <div class="col col-xs-10 col-xs-offset-1">
+                                    {{ form_widget(ticket) }}
+                                    {{ form_label(ticket) }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-xs-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        {{ form_widget(form.paymentMethod.children[5]) }}
+                        {{ form_label(form.paymentMethod.children[5]) }}
+                    </div>
+                </div>
+                <div class="row ticket-electronic-children"
+                     {% if form.paymentMethod.children[5].vars.checked == false %}style="display: none;" {% endif %}>
+                    <div class="col col-xs-12">
+                        {% for electroniTicket in form.electronicTicketRestaurant.children %}
+                            <div class="row">
+                                <div class="col col-xs-10 col-xs-offset-1">
+                                    {{ form_widget(electroniTicket, {"attr": {"class": "electronic-ticket"}}) }}
+                                    {{ form_label(electroniTicket) }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hidden">
+    {{ form_rest(form) }}
+</div>
+{{ form_end(form) }}

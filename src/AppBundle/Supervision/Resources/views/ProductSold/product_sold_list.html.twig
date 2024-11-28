@@ -1,0 +1,122 @@
+{% extends "@Supervision/ProductSold/index_product_sold.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #product_sold_venteAnnexe{
+        left: 1px; !important;
+        display: block;!important;
+        visibility: visible;!important;
+        position: relative; !important;
+        height: 25px;
+        width: 25px;
+         }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var TRANSFORMED_PRODUCT = '{{ constant('AppBundle\\Merchandise\\Entity\\ProductSold::TRANSFORMED_PRODUCT') }}';
+    </script>
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset('src/js/Supervision/ProductSold/listing.js') }}"></script>
+    <script type="application/javascript"
+            src="{{ asset('src/js/Supervision/ProductSold/product_sold_form.js') }}"></script>
+    <script>
+        $(document).on('click', '#collapse-zone .panel-heading.main-panel', function () {
+            $('#collapse-main').toggleClass('in');
+        });
+        $(function () {
+            $('.dataTable').closest('div').css('overflow-y', 'auto');
+        });
+    </script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'product_sold.title'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+{% endblock %}
+
+{% block subBody %}
+    <div id="collapse-zone">
+        <div class="panel panel-default" style="">
+            <div class="panel-heading main-panel" style="cursor: pointer;">
+                {% if productSoldForm.vars.value.id is null %}
+                    + {% set old = "" %}
+                    {{ 'product_sold.sub_titles.new_product'|trans }}
+                {% else %}
+                    {% set old = "existingProduct" %}
+                    + {{ 'product_sold.sub_titles.old_product'|trans }}
+                {% endif %}
+            </div>
+            <div id="collapse-main" class="panel-collapse collapse " aria-labelledby="heading">
+                <div class="panel-body">
+                    {{ include('@Supervision/ProductSold/parts/form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-zone" id="filter-zone-search">
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><span
+                        class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans([],'supervision') }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px;">
+                {{ form_start(formSearch,{ 'method' : 'POST', 'attr': {'id': 'productSoldFilterForm'} }) }}
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="col-xs-12 col-sm-4">
+                        {{ form_row(formSearch.codeSearch) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        {{ form_row(formSearch.nameSearch) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        {{ form_row(formSearch.typeSearch) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        {{ form_row(formSearch.statusSearch) }}
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        {{ form_label(formSearch.dateSynchro) }}
+                        <div class="input-group">
+                            {{ form_widget(formSearch.dateSynchro) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(formSearch.dateSynchro) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        {{ form_label(formSearch.lastDateSynchro) }}
+                        <div class="input-group">
+                            {{ form_widget(formSearch.lastDateSynchro) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(formSearch.lastDateSynchro) }}
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(formSearch) }}
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align:right; padding-top: 15px">
+                        <button type="button" id="reset-filter" class="btn btn-cancel">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "filter.delete_filter"|trans([],'supervision') }}
+                        </button>
+                        <button onclick="productSoldDatatable.ajax.reload();" type="button"
+                                class="btn btn-filter btn-icon">
+                            {{ 'filter.btn' | trans([],'supervision') }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(formSearch) }}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        {{ include('@Supervision/ProductSold/parts/product_sold_list.html.twig') }}
+    </div>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% form_theme sheetModelForm.lines "@Merchandise/SheetModel/form_parts/sheet_model_line_widget.html.twig" %}
+
+<div class="">
+    <div class="">
+        <div class="col-xs-12">
+            <h4>
+                {% if sheetModelForm.vars.value.id is null %}
+                    {% set old = "" %}
+                    {{ 'sheet_model.new_sheet.title'|trans }}
+                {% else %}
+                    {% set old = "oldSheetModel" %}
+                    {{ 'sheet_model.old_sheet.title'|trans }}
+                {% endif %}
+            </h4>
+        </div>
+
+        {{ form_start(sheetModelForm,{'method' : 'POST' ,'action' : path('api_save_sheet') , 'attr' : { 'id' : 'sheet_model_form', 'class': old } }) }}
+        {{ form_widget(sheetModelForm.id) }}
+        <div class="panel-body" style="padding-top:0; padding-bottom:0; ">
+            <div class="row">
+                <div class="col-xs-3">
+                    {{ form_label(sheetModelForm.label, 'sheet_model.new_sheet.labels.label' ) }} <br/>
+                    {{ form_widget(sheetModelForm.label, { "attr": { "class": 'form-control' }}) }}
+                    {{ form_errors(sheetModelForm.label) }}
+                </div>
+                <div class="col-xs-3">
+                    {{ form_label(sheetModelForm.linesType, 'sheet_model.new_sheet.labels.sheet_type' ) }}
+                    <br/>
+                    {% if sheetModelForm.vars.value.id is null %}
+                        {{ form_widget(sheetModelForm.linesType, { "attr": { "class": 'form-control' }}) }}
+                    {% else %}
+                        {{ form_widget(sheetModelForm.linesType, { "attr": { "class": 'form-control', 'disabled': 'disabled' }}) }}
+                    {% endif %}
+                    {{ form_errors(sheetModelForm.linesType) }}
+                </div>
+                <div class="col-xs-3">
+                    {{ form_label(sheetModelForm.category, 'sheet_model.new_sheet.labels.category_filter' ) }}
+                    <br/>
+                    {{ form_widget(sheetModelForm.category, { "attr": { "class": 'form-control' }}) }}
+                    {{ form_errors(sheetModelForm.category) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container-fluid">
+                    {{ form_label(sheetModelForm.lines, 'sheet_model.new_sheet.list_title' ) }}
+                    {{ form_errors(sheetModelForm.lines) }}
+
+                    <table id="sheetModelFormTable" class="table table-striped " width="100%">
+                        <thead>
+                        <tr>
+                            <th style="width: 10%;;">{{ 'sheet_model.new_sheet.labels.code' }}</th>
+                            <th style="width: 50%;">{{ 'sheet_model.new_sheet.labels.article' }}</th>
+                            <th style="width: 40%;">{{ 'sheet_model.new_sheet.labels.action' }}</th>
+                        </tr>
+                        </thead>
+                        <tbody id="containerSheetModelLines"
+                               data-count="{{ sheetModelForm.lines| length }}"
+                               data-prototype="
+						         {% filter escape %}
+						             {{ include('@Merchandise/SheetModel/form_parts/prototype_sheet_model_line_widget.html.twig', { 'form': sheetModelForm.lines.vars.prototype }) }}
+						         {% endfilter %}">
+
+                        {% for line in sheetModelForm.lines %}
+                            {{ form_widget(line) }}
+                        {% endfor %}
+                        </tbody>
+                        <tr class="new-line">
+                            <td>
+                                <input id="productId" class="" type="hidden"/>
+                                <input id="productReference" class="form-control" type="text"
+                                       placeholder="{{ 'keyword.code'|trans() }}"/>
+                            </td>
+                            <td>
+                                <input id="productName" class="article form-control" type="text"
+                                       placeholder="{{ 'keyword.label'|trans() }}"/>
+                            </td>
+                            <td class="actions-btn ">
+								<span id="btnAddNewSheetModelLine"
+                                      class="btn btn-add waves-effect waves"
+                                      style="text-align: center;">
+		                            <i class="material-icons">add</i>
+								</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-3 col-xs-offset-9">
+                    <button type="button" id="closeFormSheetModel" onclick="$('#sheetModelBlock').fadeOut();"
+                            class="btn red lighten-1 white-text waves-effect waves-light">
+                        {{ 'btn.cancel'|trans }}
+                    </button>
+
+                    <button id="validateFormSheetModel" href="#generated_sheet" type="button"
+                            class="modal-trigger btn green lighten-1 white-text waves-effect waves-light">
+                        <i style="color: white;"
+                           class="glyphicon glyphicon-ok"></i> {{ 'btn.validate'|trans }}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hidden">
+            {{ form_rest(sheetModelForm) }}
+        </div>
+        {{ form_end(sheetModelForm) }}
+
+    </div>
+</div>

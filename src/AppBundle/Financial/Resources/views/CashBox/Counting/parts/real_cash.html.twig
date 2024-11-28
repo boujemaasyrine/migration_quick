@@ -1,0 +1,180 @@
+<div id="realCashContainer" class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    {% if not list %}
+        <div style="text-align: center">
+            <div id="mySwitch" class="switch">
+                <label for="cashbox_count_cashContainer_allAmount">
+                    {{ 'cashbox.detailed_cash_entry'|trans() }}
+                    {{ form_widget(form.cashContainer.allAmount) }}
+                    <span class="lever"></span>
+                    {{ 'cashbox.total_cash_amount_entry'|trans() }}
+                </label>
+            </div>
+        </div>
+    {% endif %}
+    <div class="col-xs-12 col-sm-5">
+        <div id="detailsRealCash" class="col-xs-12" {% if form.cashContainer.vars.value.isAllAmount %}style="display: none"{% endif %}>
+            <div class="panel panel-default row">
+                <div class="panel-body">
+                    <div class="col-xs-12">
+                        {% if not list %}
+                            <div class="">
+                                <div class="row">
+                                    <div class="input-group">
+                                        {{ form_widget(form.cashContainer.billOf100, { 'attr': {'class': 'real_cash_input form-control splitted_input', 'data-unit-value': 100} }) }}
+                                        <span class="input-group-addon" id="basic-addon2"
+                                              style="font-size: 13px;padding-left: 8px;padding-right: 8px;">x 100 <i
+                                                    class="glyphicon glyphicon-euro"></i></span>
+                                    </div>
+                                    {{ form_errors(form.cashContainer.billOf100) }}
+                                </div>
+                                <div class="row">
+                                    <div class="input-group">
+                                        {{ form_widget(form.cashContainer.billOf50, { 'attr': {'class': 'real_cash_input form-control splitted_input', 'data-unit-value': 50} }) }}
+                                        <span class="input-group-addon" id="basic-addon2" style="font-size: 13px;">x 50 <i
+                                                    class="glyphicon glyphicon-euro"></i></span>
+                                    </div>
+                                    {{ form_errors(form.cashContainer.billOf50) }}
+                                </div>
+                                <div class="row">
+                                    <div class="input-group">
+                                        {{ form_widget(form.cashContainer.billOf20, { 'attr': {'class': 'real_cash_input form-control splitted_input', 'data-unit-value': 20} }) }}
+                                        <span class="input-group-addon" id="basic-addon2" style="font-size: 13px;">x 20 <i
+                                                    class="glyphicon glyphicon-euro"></i></span>
+                                    </div>
+                                    {{ form_errors(form.cashContainer.billOf20) }}
+                                </div>
+                                <div class="row">
+                                    <div class="input-group">
+                                        {{ form_widget(form.cashContainer.billOf10, { 'attr': {'class': 'real_cash_input form-control splitted_input', 'data-unit-value': 10} }) }}
+                                        <span class="input-group-addon" id="basic-addon2" style="font-size: 13px;">x 10 <i
+                                                    class="glyphicon glyphicon-euro"></i></span>
+                                    </div>
+                                    {{ form_errors(form.cashContainer.billOf10) }}
+                                </div>
+                                <div class="row">
+                                    <div class="input-group">
+                                        {{ form_widget(form.cashContainer.billOf5, { 'attr': {'class': 'nextOnEnter real_cash_input form-control splitted_input', 'data-unit-value': 5} }) }}
+                                        <span class="input-group-addon" id="basic-addon2"
+                                              style="font-size: 13px;padding-left: 15px;padding-right: 15px;">x 5 <i
+                                                    class="glyphicon glyphicon-euro"></i></span>
+                                    </div>
+                                    {{ form_errors(form.cashContainer.billOf5) }}
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="row bankCardRow">
+                                <div class="col-xs-6">
+                                    <span class="text-muted">{{ form.cashContainer.billOf100.vars.value|number_format() }}</span>
+                                </div>
+                                <div class="col-xs-6" style="text-align: right">
+                                        <span class="text-muted bold bank_card_amount"> x100
+                                            <span><i class="glyphicon glyphicon-euro"></i></span>
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row bankCardRow">
+                                <div class="col-xs-6">
+                                    <span class="text-muted">{{ form.cashContainer.billOf50.vars.value|number_format() }}</span>
+                                </div>
+                                <div class="col-xs-6" style="text-align: right">
+                                        <span class="text-muted bold bank_card_amount"> x50
+                                            <span><i class="glyphicon glyphicon-euro"></i></span>
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row bankCardRow">
+                                <div class="col-xs-6">
+                                    <span class="text-muted">{{ form.cashContainer.billOf20.vars.value|number_format() }}</span>
+                                </div>
+                                <div class="col-xs-6" style="text-align: right">
+                                        <span class="text-muted bold bank_card_amount"> x20
+                                            <span><i class="glyphicon glyphicon-euro"></i></span>
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row bankCardRow">
+                                <div class="col-xs-6">
+                                    <span class="text-muted">{{ form.cashContainer.billOf10.vars.value|number_format() }}</span>
+                                </div>
+                                <div class="col-xs-6" style="text-align: right">
+                                        <span class="text-muted bold bank_card_amount"> x10
+                                            <span><i class="glyphicon glyphicon-euro"></i></span>
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row bankCardRow">
+                                <div class="col-xs-6">
+                                    <span class="text-muted">{{ form.cashContainer.billOf5.vars.value|number_format() }}</span>
+                                </div>
+                                <div class="col-xs-6" style="text-align: right">
+                                        <span class="text-muted bold bank_card_amount"> x5
+                                            <span><i class="glyphicon glyphicon-euro"></i></span>
+                                        </span>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="row">
+                            {{ form_label(form.cashContainer.change, 'cashbox.counting.change'|trans) }}
+                            {% if not list %}
+                                <div class="input-group">
+                                    {{ form_widget(form.cashContainer.change, { 'attr': { 'class': 'nextOnEnter real_cash_input splitted_input form-control' }}) }}
+                                    <span class="input-group-addon" id="basic-addon2"
+                                          style="padding-left: 25px; padding-right: 25px;">
+                                <i class="glyphicon glyphicon-euro"></i>
+                            </span>
+                                </div>
+                            {% else %}
+                                <div class="row bankCardRow">
+                                    <div class="col-xs-6">
+                                        <span class="text-muted">{{ form.vars.value.cashContainer.change|number_format() }}</span>
+                                    </div>
+                                    <div class="col-xs-6" style="text-align: right">
+                                        <span class="text-muted bold bank_card_amount">
+                                            <span><i class="glyphicon glyphicon-euro"></i></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 panel-footer" style="text-align: right;">
+                <span class="text-muted">
+                    <span class="total_real_cash">{{ form.vars.value.cashContainer.total|number_format(2, ',', '.') }}</span>
+                    <i class="glyphicon glyphicon-euro"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-2" style="text-align: center;">
+    </div>
+    <div class="col-xs-12 col-sm-5">
+        <div id="allAmountRealCash" class="col-xs-12"
+             {% if not form.cashContainer.vars.value.isAllAmount %}style="display: none"{% endif %}>
+            <div class="panel panel-default row">
+
+                <div class="col-xs-12 panel-body">
+                    {{ form_label(form.cashContainer.totalAmount, 'cashbox.counting.total_amount'|trans) }}
+                    {% if not list %}
+                        <div class="input-group">
+                            {{ form_widget(form.cashContainer.totalAmount, { 'attr': { 'class': 'total_amount_input real_cash_input splitted_input form-control' }}) }}
+                            <span class="input-group-addon" id="basic-addon2">
+                                <i class="glyphicon glyphicon-euro"></i>
+                            </span>
+                        </div>
+                    {% else %}
+                        <div>
+                            <span class="total_real_cash">{{ form.vars.value.cashContainer.total|number_format(2, ',', '.') }}</span>
+                            <span class="text-muted bold bank_card_amount">
+                                <span><i class="glyphicon glyphicon-euro"></i></span>
+                            </span>
+                        </div>
+                    {% endif %}
+                    {{ form_errors(form.cashContainer.totalAmount) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

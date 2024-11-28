@@ -1,0 +1,62 @@
+#time
+*/30 * * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && echo "$(date)") >> /var/log/cron/prod/date_$(date +\%Y-\%m-\%d).log 2>&1
+
+# delete old logs every 15 days
+0 0 */15 * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && find /var/log -mtime +10 -type f -delete) >> /var/log/cron/prod/clean_log_$(date +\%Y-\%m-\%d).log 2>&1
+
+#Generate Ecart Three Week Portion Control Command
+0 1 * * MON (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console saas:report:stock:ecart $(date -d "-7 days" +\%Y-\%m-\%d) --env=prod) >> /var/log/prod/log_threeweek_$(date +\%Y-\%m-\%d).log
+
+#Order
+0 21 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console order:prepared:notify --env=prod) >> /var/log/cron/prod/order_prepared_notify_$(date +\%Y-\%m-\%d).log 2>&1
+30 23 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console order:sending:launch --env=prod) >> /var/log/cron/prod/order_sending_launch_$(date +\%Y-\%m-\%d).log 2>&1
+45 23 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console order:resend:launch --env=prod) >> /var/log/cron/prod/order_resend_launch_$(date +\%Y-\%m-\%d).log 2>&1
+25 6 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && /home/solo.pl -port=6002 php /var/www/html/app/console quick:financial:revenue:import --env=prod) >> /var/log/cron/prod/financial_revenue_import_$(date +\%Y-\%m-\%d).log
+
+ 
+#ticket import
+*/20 * * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && /home/solo.pl -port=6001 php /var/www/html/app/console quick:wynd:rest:import --env=prod) >> /var/log/cron/prod/wynd_rest_import_$(date +\%Y-\%m-\%d).log 2>&1
+*/30 * * * * /var/www/html/scripts/super_import_ticket.sh 6001
+
+#user import
+0 7 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console quick:user:wynd:rest:import --env=prod) >> /var/log/cron/prod/user_wynd_rest_import_$(date +\%Y-\%m-\%d).log 2>&1
+ 
+#clear files
+30 3 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && sh /var/www/html/scripts/clear_tmp_file.sh) >> /var/log/cron/prod/clear_tmp_file_$(date +\%Y-\%m-\%d).log 2>&1
+ 
+#clear databases tmp table
+35 3 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console quick:clear:tmp:tables --env=prod) >> /var/log/cron/prod/clear_tmp_tables_$(date +\%Y-\%m-\%d).log 2>&1
+
+#update fiscal date
+30 5 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console quick:fiscal:date:refresh --env=prod) >> /var/log/cron/prod/fiscal_date_refresh_$(date +\%Y-\%m-\%d).log 2>&1
+ 
+#Notifications
+#Notify manager by unsended orders ( c  d les commandes cr  ee dont leurs status est envoy   ou modifi    et qui ne sont pas livr  . ==>  juste enregistrement de  no>
+35 6 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console order:not:delivered:notify --env=prod) >> /var/log/cron/prod/order_not_delivered_notify_$(date +\%Y-\%m-\%d).log 2>&1
+#35 6 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console previous:loss:missing --env=prod) >> /var/log/cron/prod/previous_loss_missing_$(date +\%Y-\%m-\%d).log 2>&1  
+ 
+#mvmt aggregation purchased products
+0 0 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console quick_dev:aggregate:mvmt --env=prod) >> /var/log/cron/prod/quick_dev_aggregate_mvmt_$(date +\%Y-\%m-\%d).log 2>&1  
+
+#download
+* * * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console quick:sync:execute --env=prod) >> /var/log/cron/prod/sync_execute_$(date +\%Y-\%m-\%d).log 2>&1
+
+#generate missing plu notification
+0 6 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console saas:generate:notifications --env=prod) >> /var/log/cron/prod/generate_notifications_$(date +\%Y-\%m-\%d).log 2>&1
+
+#purge notifications weekly
+0 0 * * 0 (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console saas:purge:notifications --env=prod) >> /var/log/cron/prod/purge_notifications_$(date +\%Y-\%m-\%d).log 2>&1
+ 
+#deactivate purchased items
+35 6 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console update:products:purchased:status --env=prod) >> /var/log/cron/prod/update_products_purchased_status_$(date +\%Y-\%m-\%d).log 2>&1
+ 
+#Create default sheetModel for all restaurant one time per month
+1 4 1 * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console create:default:sheetmodel --env=prod) >> /var/log/cron/prod/create_default_sheetmodel_$(date +\%Y-\%m-\%d).log 2>&1
+ 
+#food cost reports generation
+0 1 * * 1 (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console saas:report:synthetic:foodcost --env=prod) >> /var/log/cron/prod/report_synthetic_foodcost_$(date +\%Y-\%m-\%d).log 2>&1
+#0 3 * * 1 (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console saas:report:marge:foodcost --env=prod) >> /var/log/cron/prod/report_marge_foodcost_$(date +\%Y-\%m-\%d).log 2>&1
+
+#Optikitchen
+05 0 * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && php /var/www/html/app/console quick:optikitchen:sending --env=prod) >> /var/log/cron/prod/optikitchen_sending_$(date +\%Y-\%m-\%d).log 2>&1
+# Don't remove this line

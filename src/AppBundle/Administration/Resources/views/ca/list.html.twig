@@ -1,0 +1,149 @@
+{% extends '@Financial/default.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/fullcalendar/dist/fullcalendar.min.css') }}">
+    <style>
+        td.fc-event-container {
+            padding-top: 10px !important;
+            border: solid 1px #DDDDDD !important;
+            background-color: transparent !important;
+        }
+
+        .fc-event-container .detail-btn {
+            width: 40px;
+            height: 40px;
+        }
+
+        .fc-content-skeleton table {
+            background-color: transparent !important;
+        }
+
+        .fc-event-container .save-ca-btn {
+            width: 40px;
+            height: 40px;
+        }
+
+        input[type=text].ca_inputs {
+            width: 50% !important;
+            display: inline-block !important;
+            margin: 10px;
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+        }
+
+        .fc-event-container .ca-details {
+            display: none;
+        }
+
+        .inputs-btns-container {
+            width: 100%;
+            padding: 5px;
+            margin: auto;
+            background-color: transparent;
+        }
+
+        /*.fc-event-container .detail-btn:hover .ca-details {*/
+        /*display: inline;*/
+        /*}*/
+
+        .fc-event-container .ca-save-label {
+            display: none;
+        }
+
+        /*.fc-event-container .save-ca-btn:hover .ca-save-label {*/
+        /*display: inline;*/
+        /*}*/
+
+        .fc-other-month .fc-day-number {
+            display: none;
+        }
+
+        .fc-ltr .fc-basic-view .fc-day-number {
+            background-color: #2727AB;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .ca-table-line {
+            border-bottom: solid #B5B5B5 1px
+        }
+
+        .sum {
+            text-align: center;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .ca-value {
+            text-align: center;
+        }
+
+        .ca-typed {
+            height: 100% !important;
+            margin: 0px !important;
+            font-size: 2.0em !important;
+        }
+
+        .ca_inputs {
+            text-align: center;
+        }
+
+        .fc-toolbar .fc-center {
+            text-transform: capitalize;
+        }
+
+        .small-btn-x {
+            width: 18% !important;
+        }
+
+        .large-btn-x {
+            width: 67% !important;
+        }
+
+        .confirmation-toast {
+            background-color: rgba(201, 224, 184, 0.65);
+            color: #008C00;
+        }
+
+        .no-comprable-day {
+            background-color: #7900D4 !important;
+            color: white !important;
+            font-weight: bold !important;
+        }
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('plugins/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar/dist/lang/nl.js') }}"></script>
+    <script src="{{ asset('src/js/Administration/ca_config.js') }}"></script>
+    <script>
+        //        $(document).on('mouseenter', '.save-ca-btn, .detail-btn', function () {
+        //            $(this).addClass('large-btn-x');
+        //            $(this).siblings('.save-ca-btn, .detail-btn').addClass('small-btn-x');
+        //        });
+        //        $(document).on('mouseleave', '.save-ca-btn, .detail-btn', function () {
+        //            $(this).removeClass('large-btn-x');
+        //            $(this).siblings('.save-ca-btn, .detail-btn').removeClass('small-btn-x');
+        //        });
+    </script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'ca_prev_list_title'|trans }}
+{% endblock %}
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div id="calendar"></div>
+            <br>
+
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+{% endblock %}

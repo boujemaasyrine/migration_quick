@@ -1,0 +1,582 @@
+title:
+  main: Financieel beheer #Gestion financière
+  cashbox_management: Kassabeheer #Gestion des caisses
+  daily_income: Dagelijkse inkomsten #Recette journalière
+  levy_entry: Voorafnames ingeven #Saisir les prélèvements
+  cashbox_counting: kassatelling  #Comptage des caisses
+  cashbox_differences: Analyse van kassaverschillen #Analyse des différences de caisse
+  expense_entry: Uitgaven invoeren #Saisir les dépenses
+  recipe_ticket_entry: ontvangstbon invoeren #Saisir les bons de recette
+  create_envelope_cash: Contant enveloppen invoeren #Saisir enveloppe espèce
+  chest_management: kofferbeheer #Gestion du coffre
+  expenses_list: Uitgaven bonnen bekijken #Consultation des bons de dépenses
+  popup_confirm_password: Gelieve uw wachtwoord in te geven om deze actie te bevestigen
+  wrong_password: Foute wachtwoord
+  consultations:
+    title: Diversen bekijken #Consultation diverses
+    envelope: Contanten enveloppen bekijken #Consultation des enveloppes espèces
+    deleted_envelopes: Raadpleging van verwijderde contantenveloppen #Consultation des enveloppes espèces supprimées
+    recipe_ticket: ontvangsten bekijken #Consultation des bons recette
+money_booking:
+  title: Bestelling Kleingeld #Commande de monnaie
+  list:  Lijst bestellingen kleingeld #Liste des commandes de monnaie
+  nCmd: Bestlenummer #Numéro de commande
+  dateStart: Besteldatum #Date de la commande
+  dateEnd: leveringsdatum #Date de la livraison
+  value: Totale waarde #Valeur totale
+  action: Acties #Actions
+  error: Er is een fout opgetreden bij het opslagen van uw bestelling #Une erreur s'est produite lors du sauvegarde de votre commande
+  success: Uw bestelling werd met succes opgeslagen #Votre commande a été enregistrée
+  sendMail: De email werd met succes doorgestuurd #L'email de la commande a été envoyé avec succés
+  send_mail_error: Er wordt geen Email adres vermeld #Aucune addresse Email n'est spécifiée
+  booking_details: Details van de bestelling #Détails de la commande
+  booking_info: Informatie over de bestelling #Informations de la commande
+  booking_date: Bestel datum #Date de la commande
+  delivery_date: Leveringsdatum #Date de la livraison
+  booking_total: Totaalbedrag van de bestelling #Montant total de la commande
+  submit: De bestelling valideren #Valider la commande
+  see: Zien #Voir
+  rol_list: Lijst van de rollen #Liste des rouleaux
+  bag_list: Lijst van de zakken #Liste des sacs
+  bill_list: Lijst van de briefjes #Liste des billets
+  search:
+    booking_date_start: Datum van de bestelling van  #Date de la commande du
+    date_end: Tot #jusqu'au
+    delivery_date_start: Leveringsdatum van #Date de la livraison du
+    find_cmd: De bestelling N°  zoeken #Chercher la commande N°:
+  details:
+    order: Bestelling #Commande
+    export: Exporteren #Exporter
+    send_mail: Per mail verzenden#Envoyer par email
+    informations: Algemene informatie #Informations générales
+    bank: Bank  #Banque
+    booking_date: Besteldatum #Date de la commande
+    delivery_date: Leveringsdatum #Date de la livraison
+    address: Adres #Adresse
+    contact_mails: Contact Emails #Emails de contact
+    order_details: Details bestelling #Détails de la commande
+    code: Code #Code
+    item: Element #Element
+    qty: Hoeveelheid #Quantité
+    uv: Eenheidswaarde #Valeur unitaire
+    tv: Totale waarde #Valeur totale
+    employee: bediende #Employé
+  days:
+    monday: maandag #Lundi
+    tuesday: Dinsdag #Mardi
+    wednesday: Woensdag #Mercredi
+    thursday: Donderdag #Jeudi
+    friday: Vrijdag #Vendredi
+  errors:
+    date_error: De leveringsdatum moet hoger zijn dan de besteldatum #La date de livraison doit être supérieure à la date de commande
+    total_error: Het totaal bedrag van de bestelling moet postitief zijn #Le montant total de la commande doit être une valeur positive
+    null_error: De bestelling mag niet gelijk zijn aan nul #La commande ne peut pas être nulle !
+    bank_not_found: vóór u kleingled bestelt, dient u de bestelparameters van uw bank instellen #Avant de passer une commande de monnaie, vous devez configurer les paramètres de commande de votre banque (rubrique commande de monnaie)
+
+fund_management:
+  withdrawal:
+    entry:
+      title: Een voorafname invoeren #Saisir un prélèvement
+      responsible: De verantwoordelijke persoon voor deze voorafname is: #Le responsable de ce prélèvement est:
+      add: Een voorafname toevoegen #Ajouter un prélèvement
+      team_member: Teamlid #Equipier
+      team_member_id: Gebruikers-id teamlid #Identifiant de l'équipier
+      previous_amount: Lijst van huidige voorafnames #Liste des prélèvements en cours
+      previous_amount_waiting: Lijst van huidige voorafnames #Liste des prélèvements en attente
+      this_amount: Bedrag #Montant
+      modal_withdrawal_set_title: voorafname met succes uitgevoerd #Prélèvement effectué avec succès
+      modal_withdrawal_validated_success: #Prélèvement validé avec succès.
+      modal_withdrawal_validated_error: #Problème lors de validation de prélèvement.
+      modal_withdrawal_edit_title: voorafname met succes gewijzigd #Prélèvement modifié avec succès
+      new_envelope: <h2>Wilt u een envelop aanmaken voor deze voorafname</h2> #<h2>Voulez-vous créer une enveloppe pour ce prélèvement</h2>
+      title_envelope: Een enveloppe aanmaken #Création d'une enveloppe
+      add_success: voorafname en envelop met succes aangemaakt #Prélèvement et enveloppe ajoutés avec succès
+      edit_success: voorafname met succes gewijzigd #Prélèvement modifié avec succès
+      add_success_without_envelope: voorafname toegevoegd zonder envelop #Prélèvement ajouté sans enveloppe
+      num_envelope: Nummer enveloppe #Numéro enveloppe
+      validation_amount_failed: Het ingevoerde bedrag overschrijdt het toegestane bedrag #Le montant saisi dépasse le montant autorisé
+      update_error: #Problème lors de mise à jour des prélèvements
+      latest_update: #Dernière mise à jour
+    list:
+      title: Lijst Voorafnames #Liste des prélèvements
+      manager: Verantwoordelijke #Responsable
+      choose_member: Een teamlid kiezen #Choisir l'équipier
+      choose_owner: Een Verantwoordelijke kiezen #Choisir le responsable
+      choose_status: Een status kiezen #Choisir le statut
+      choose_envelope: Met envelop? #Avec enveloppe?
+      without_envelope: Zonder Envelop #Sans enveloppe
+      envelope_details: Specificaties envelop #Détails sur l'enveloppe
+      notOwner: Geen toestemming om te wijzigen #Pas de permission de modification
+      choose_member_search: Alle teamleden #Tous équipiers
+      report_title: Lijst Voorafnames #Liste des prélèvements
+      elements_found: "%filtred% gevonden elementen gefilterd %total% in totaal " #"%filtred% éléments trouvé filtré de %total% au total "
+cashbox:
+  validation_confirmation: Wilt u de kastelling bevestigen ? #Confirmez vous la validation du comptage caisse ?
+  validation_confirmation_body: De kastelling laat een verschil van %gap% zien #Le comptage caisse présente un écart de %gap%.
+  day_income_download: dagelijkse inkomsten
+  preview:
+    real_counted_title: Reëel geteld #Réel compté
+    theorical: Theoretisch #Théorique
+    gap: Verschil #Ecart
+    number: Aantal #Nombre
+    amount: Bedrag #Montant
+  gap:
+    title: Theoretisch verschil/Werkelijk #Différence Théorique/Réel
+    owner: Veranwoordelijke telling #Responsable comptage
+    gap_validated_with_success: "De kassa van %operator% %operator_name% is bevestigd" #"La caisse de %operator% %operator_name% a bien été validé"
+  listing:
+    title: Lijst kastelling #Liste des comptages caisses
+    title_download: kassatelling  #Comptage caisse
+    details: Specificaties kastelling #Détails du comptage caisse
+    header:
+      date: Datum #Date
+      createdAt: datum creatie #Date création
+      owner: Verantwoordelijke #Elaborée par
+      cashier: Kassier #Caissier
+      real: Reëel geteld #Réel compté
+      theorical: Theoretisch bedrag #Montant Théorique
+      eft: EFT #EFT
+      counted: Geteld #Compté
+      diff: Kasverschil #Différence de caisse
+      action: Actie #Action
+    search:
+      choose_owner: Selecteer een verantwoordelijke #Selectionner un responsable
+      choose_cashier: Selecteer een kassier #Selectionner un caissier
+  counting:
+    title: kassatelling  #Comptage d'une Caisse
+    date: Datum #Date
+    cashbox_number: Kassa nr. #Caisse N°
+    cashier: Teamlid #Equipier
+    cash_box_starting_fund: Inhoud kassafond #Fond caisse départ
+    theorical_count: Theoretisch bedrag #Montant Théorique
+    gap: Verschil #Ecart
+    total_cash: Totaal contanten #Total espèces
+    total_check: Totaal  BK cheque € #Total chèques Quick
+    total_check_quick: Totaal Quick cheque #Total chèque Quick
+    total_check_bk: Totaal BK cheque #Total chèque BK
+    total_bank_card: Totaal bankkaart #Total Carte Bancaire
+    total_foreign_currency: Totaal vreemd geld #Total argent étranger
+    total_check_restaurant: Totaal resterende waardecheques #Total titres rest.
+    total_check_restaurant_electronic: Totaal electr. rest. waardecheques #Total titres rest. électronique
+    total_cashbox: Reëel geteld #Réel compté
+    total_discount: Totale korting #Total Discount
+    total_bon_repas: Totaal maaltijdbonnen #Total bons repas
+    total_withdrawls: Totaal voorafname #Total prélèvement
+    real_total_cashboax: Totaal kas reëel #Total Caisse Réel
+    discount: Discounts #Discounts
+    total_cancels: Totaal annulaties #Total Annulations
+    total_corrections: Totaal correcties #Total corrections
+    canceling_number: Annulaties #Annulations
+    correction_number: Correcties #Corrections
+    abondons_number: Afgebroken #Abandons
+    abondons_total: Totaal afbrekingen #Total d'Abandons
+    counting_owner: Verantwoordelijke kas #Responsable du comptage
+    exchange_rate: Valuta/Wisselkoers #Devise/Taux d'echange
+    cashbox_count_validated_with_success: Uw kastelling is met succes bevestigd #Votre comptage de caisse est validé avec succès
+    withdrawals_validation:
+      title: #Validation des prélèvements.
+      msg1: #Avant de continuer le comptage de caisse, il faut d'abord valider les prélèvements.
+      msg2: #Merci de cliquer sur ce <a href='%link%'>lien</a> pour valider les prélèvements.
+    realcash:
+      entry_amount_in_details: Gespecificeerd invoeren #Saisir au détail
+      entry_amount_intotal:  Het totale bedrag invoeren #Saisir le montant total
+
+    change: Wisselgeld #Monnaie
+    total_amount: Totaal bedrag #Montant Total
+
+    entries: Invoer #Saisies
+    preview: Overzicht #Récapitulatif
+    counting_information: Informatie over telling #Information Du Comptage
+    ticket_retrive: Terugvinden van verkopen #Récupération des ventes
+    real_cash: Cash #Espèce
+    foreign_currency: Vreemd geld #Argent Étranger
+    ticket_restaurant: Restaurantcheques #Titres restaurants
+    electronic_ticket_restaurant: Waardecheques electronische restaurants #Titres restaurants électronique
+    check_restaurant: Restaurantcheques #Titres restaurants
+    check_quick: Cheques Quick #Chèques Quick
+    check_bk: Cheques BK #Chèques BK
+    bon_repas: maaltijdbonnen #Bons Repas
+    bank_card: Bankkaart #CB
+
+    cash: Wisselgeld #Monnaie
+    billet: Biljet #Billet
+    prelevement: Voorafname  #Prélèvement
+    total: Totaal #Total
+  foreign_currency:
+    add_new_foreign_currency: Een nieuwe waarde vreemd geld toevoegen #Ajouter une nouvelle monnaire d'echange
+  select_a_cashier: Kies een teamlid #Veuillez selectionnez un équipier
+  show_cashbox_difference: Toon het kasverschil #Visualiser la différence de caisse
+  do_you_want_created_an_enveloppe_for_this_count: Wilt u een envelop creëren voor deze kastelling? #Voulez vous créer un enveloppe pour ce comptage de caisse ?
+  cashbox_count_validated: De kastelling is met succes bevestigd #Le comptage de caisse est validé avec succès.
+  error: Kassa error #Erreur caisse
+  detailed_cash_entry: Gedetaileerde invoeren #Saisir au détail
+  total_cash_amount_entry: Het totale bedrag invoeren #Saisir le montant total
+  validate_cashbox_gap: Het kasverschil bevestigen #Valider la différence caisse
+chest:
+  validation_confirmation: Bent u zeker deze koffertelling te willen valideren.  #Confirmez vous la validation du comptage coffre ?
+  validation_confirmation_body: De koffertelling laat een verschil zien van %gap%. #Le comptage coffre présente un écart de %gap%.
+
+  gap:
+    title: Theoretisch verschil/Werkelijk #Différence Théorique/Réel
+    owner: Verantwoordelijke kas #Responsable comptage
+  preview:
+    real_counted_title: Reëel geteld #Réel compté
+    theorical: Theoretisch #Théorique
+    gap: Verschil #Ecart
+  listing:
+    title: Lijst van koffertellingen #Liste des comptages coffres
+    title_download: Comptage coffre
+    details: Details koffertelling #Détails du comptage coffre
+    header:
+      date: Datum #Date
+      owner: Opgemaakt door #Elaborée par
+      cashier: Kassier #Caissier
+      real: Reëel geteld #Réel compté
+      theorical: Theoretisch bedrag #Montant Théorique
+      eft: EFT
+      counted: Geteld #Compté
+      diff: Kofferverschil #Différence du coffre
+      closured: Uitgevoerd bij een dagafsluiting #Effectué lors d'une clôture administrative
+      closured_day: Datum afsluiting #Date de clôture
+      action: Actie #Actions
+    search:
+      choose_owner: Selecteer een verantwoordelijke #Selectionner un responsable
+      choose_cashier: Selecteer een kassier #Selectionner un caissier
+  counting:
+    nb_of_cashboxes: Aantal kassa's #Nombre des caisses
+    initial_cashbox_amount: Kassafonds  #Montant initial d'une caisse
+
+    title: Kluisopmaak #Comptage du coffre
+    date: Datum #Date
+    cash_box_starting_fund: Kassafonds #Fond caisse départ
+    theorical_count: Theoretisch bedrag #Montant Théorique
+    gap: Verschil #Ecart
+
+    small_chest: Kleine koffer #Petit coffre
+    cashbox_fund: Kassafonds  #Fond de caisse
+    exchange_fund: Wisselfonds #Fond de change
+    tirelire: Spaarpot #Tirelire
+    exchange_found_money: valuta # Monnaie
+
+    small_chest_cash: Cash #Espèce
+    small_chest_tr: Ticket Restaurants #Titres restaurants
+    small_chest_tre: Elekt. Ticket Restaurants #Titres restaurant elec.
+    small_chest_cb: Bankkaart #CB
+    small_chest_cq: Quick Cheques #Chèques Quick
+    small_chest_bk: BK Cheques #Chèques BK
+    small_chest_foreign_currency: Vreemd geld #Argent Étranger
+    total_small_chest: Kleine koffer #Petit coffre
+
+    total_cashbox_fund: Kassafonds #Fond de caisse
+    total_exchange_fund: Wisselfonds #Fond de change
+
+    tirelire_cashbox: kassatelling  #Comptage caisse
+    tirelire_withdrawal: Voorafname #Prélèvement
+    tirelire_exchange_fund: Wisselfonds #Fond de change
+    tirelire_small_chest: Kleine koffer #Petit coffre
+    tirelire_enveloppes_tr: Restaurantcheques #Titres restaurant
+    total_tirelire: Spaarpot #Tirelire
+
+    total_cash: Totaal cash #Total espèces
+    total_check: Totaal cheques 5 € #Total chèques Quick
+    total_check_quick: Totaal 5 € cheque #Total chèque Quick
+    total_bank_card: Totaal bankkaart #Total Carte Bancaire
+    total_foreign_currency: Totaal buitenlandse valuta #Total argent étranger
+    total_check_restaurant: Totaal restaurantcheque #Total titres rest.
+    total_check_restaurant_electronic: Totaal Electr. restaurantcheque #Total titres rest. électronique
+    total_chest: Reëel geteld #Réel compté
+    total_withdrawls: Totaal voorafname #Total prélèvement
+    real_total_cashboax: Totaal kas werkelijk #Total Caisse Réel
+    discount: Discounts #Discounts
+    total_cancels: Totaal annulaties #Total Annulations
+    total_corrections: Totaal correcties #Total corrections
+    canceling_number: Aantal annuleringen #Nombre d'annulations
+    correction_number: Aantal correcties #Nombre de correction
+    Abondons_number: Aantal afbrekingen #Nombre d'Abondons
+    Abondons_total: Totaal afbrekingen #Total d'Abondons
+    counting_owner: Verantwoordelijke kas #Responsable du comptage
+    change_container: Beschrijving #Libellé (modified)
+    cashbox_count_validated_with_success: kassatelling met succes gevalideerd #Votre comptage de caisse est validé avec succès
+
+    realcash:
+      entry_amount_in_details: gedetailleerd invoer #Saisir au détail
+      entry_amount_intotal:  Totaal bedrag invoeren #Saisir le montant total
+
+    change: Wisselgeld #Monnaie
+    total_amount: Totaal bedrag #Montant Total
+
+    entries: Invoer #Saisies
+    preview: Overzicht #Récapitulatif
+    counting_information: Informatie over de telling #Information Du Comptage
+    gap: Verschil #Ecart
+    real_cash: Cash #Espèce
+    foreign_currency: Vreemd geld #Argent Étranger
+    ticket_restaurant: Restaurantcheques #Titres restaurants
+    electronic_ticket_restaurant: Electr. Restaurantcheques #Titres restaurants électronique
+    check_restaurant: Restaurantcheques #Titres restaurants
+    check_quick: Quick Cheques #Chèques Quick
+    check_bk: BK Cheques #Chèques BK
+    bon_repas: maaltijdbonnen #Bons Repas
+    bank_card: Bankkaart #CB
+
+    cash: Wisselgeld #Monnaie
+    billet: Biljet #Billet
+    prelevement: Voorafname #Prélèvement
+    total: Totaal #Total
+
+  foreign_currency:
+    add_new_foreign_currency: Een nieuwe waarde vreemd geld toevoegen #Ajouter une nouvelle monnaire d'echange
+  select_a_cashier: Selecteer een medewerker #Veuillez selectionnez un équipier
+  validate_chest_count: Het kofferverschil bevestigen #Valider la différence du coffre
+  do_you_want_created_an_enveloppe_for_this_count: Wilt u een enveloppe aanmaken voor deze kassatelling #Voulez vous créer un enveloppe pour ce comptage de caisse ?
+  chest_count_validated: De koffertelling is met succes bevestigd #Le comptage du coffre est validé avec succès.
+  error: Kassa error #Erreur caisse
+  envelope_not_versed:  Enveloppen cash #Enveloppes espèces
+  envelope_cash_not_versed: Enveloppen cash #Enveloppes espèces
+  envelope_titre_not_versed: Enveloppen restaurantscheques #Enveloppes titres restaurants
+expense:
+  entry:
+    title: Een uitgaven bon invoeren #Saisir un bon de dépense
+    choose_type: Het type kiezen #Choisir le type
+    choose_label: beschrijving kiezen #Choisir le libellé
+    add_success:  Uw uitgaven bon is met succes aangemaakt #Votre bon de dépense a été crée avec succès
+    manager: Verantwoordelijke #Responsable
+  list:
+    title: Lijst uitgavebonnen #Liste des bons de dépenses
+    choose_member: Alle #Tout les Responsables
+    choose_group: Alle #Tout les groupes
+    choose_label: Alle #Tout libellé
+    expense_details: Details uitgavenstuk #Détails du bon de dépense
+    expense_export: Uitgavenstuk #Bon de dépense
+  group:
+    GROUP_BANK_CASH_PAYMENT:  Bankstorting geld #Versement banque espèces
+    GROUP_BANK_RESTAURANT_PAYMENT: Storting restaurantcheque  #Versement banque titres restaurant
+    GROUP_BANK_E_RESTAURANT_PAYMENT: Bankstorting elctr. restaurantcheque  #Versement banque titres restaurant électronique
+    GROUP_BANK_CARD_PAYMENT: Bankstorting bankkaart #Versement banque carte bancaire
+    GROUP_ERROR_COUNT: Telling error #Erreur comptage
+    error_cashBox: Kassatelling error #Erreur compatage caisse
+    GROUP_OTHERS: Anderen #Autres
+  createdAt: Aangemaakt op #Créé le
+deleted_envelope:
+  index_title: lijst van enveloppen cash #Liste des enveloppes espèces
+  index_ticket_title: lijst van enveloppen restaurantcheques  #Liste des enveloppes titres restaurant
+  header:
+    number: Num. #Num.
+    amount: Bedrag #Montant
+    type: Type #Type
+    owner: Verantwoordelijke #Elaborée par
+    hour: Uur #Heure
+    day: Datum #Date
+    status: Status #Statut
+    actions: Acties
+    ref: Ref. #Ref.
+    deletedBy: verwijderd door
+    deletedAt: Verwijderd bij
+  source:
+    title: Type
+    cashbox_counts: Comptage caisse
+    withdrawal: Prélèvement
+    exchange_funds: Fonds de change
+    small_chest: Petit coffre
+    cashbox_funds: Fond de caisse
+    so: Sodexo
+    tr: Ticket restaurant
+    cr: Chèque resto Lux
+envelope:
+  index_title: lijst van enveloppen cash #Liste des enveloppes espèces
+  table_title: Lijst van enveloppen #Liste des enveloppes
+  index_ticket_title: lijst van enveloppen restaurantcheques  #Liste des enveloppes titres restaurant
+  sub_title: Financieel beheer #Gestion financière
+  envelope_creation: Een envelop aanmaken #Création d'un enveloppe
+  deleted_with_success: "Uw envelop is met succes verwijderd."
+  delete_message: "Voer uw wachtwoord in om de verwijdering van de envelop te bevestigen : "
+  wrong_password: Kan niet verwijderen: onjuist wachtwoord! #"Suppression impossible : Mot de passe incorrect!"
+  cant_be_deleted: "Uw envelop kan niet worden verwijderd !" #"Votre enveloppe ne peut pas être supprimé !"
+  header:
+    number: Num. #Num.
+    amount: Bedrag #Montant
+    type: Type #Type
+    owner: Verantwoordelijke #Elaborée par
+    hour: Uur #Heure
+    day: Datum #Date
+    status: Status #Statut
+    actions: Acties
+    ref: Ref. #Ref.
+  source:
+    title: Type #Type
+    cashbox_counts: Kassatelling  #Comptage caisse
+    withdrawal: Voorafname #Prélèvement
+    exchange_funds: Wisselfonds #Fonds de change
+    small_chest: Kleine koffer #Petit coffre
+    cashbox_funds: Kassafonds  #Fond de caisse
+    so: Sodexo #Sodexo
+    tr: Ticket Restaurant #Ticket restaurant
+    cr: Restaurantcheques Lux #Chèque resto Lux
+  status:
+    title: Status #Statut
+    versed: Gestort #Versé
+    not_versed: Niet gestort #Non versé
+  all: Alle #Toutes
+  choose_source: Een type kiezen #Choisir un type
+  choose_cashier: Een teamlid kiezen #Choisir un équipier
+  filter_labels:
+    from: Van #Du
+    to: tot #au
+  source:
+    withdrawal: Voorafname #Prélèvement
+  detail:
+    num_envelope: Nummer Enveloppe #Numéro enveloppe
+    type: Type #Type
+  status:
+    versed: Gestort #Versé
+    not_versed: Niet gestort #Non versé
+  number: Nummer Enveloppe #Numéro de l'enveloppe
+  reference: Referentie #Référence
+  amount: Bedrag #Montant
+  owner: Verantwoordelijke #Responsable
+  cashier: Teamlid #Equipier
+  enveloppe_created_with_success: Uw enveloppe is met succes aangemaakt #Votre Enveloppe a été crée avec succès
+  search:
+    choose_owner: Alle #Tous responsables
+  create_cash: Een contanten envelop invoeren #Saisir un enveloppe espèce
+  create_resto: Enveloppe cheque restaurants ingeven #Saisir un enveloppe titres restaurant
+recipe_ticket:
+  created_with_success: Uw ontvangstbon  is met succes aangemaakt #Votre bon de recette a été crée avec succès
+  creation_title: Een nieuwe ontvangstbon aanmaken #Création d'un nouveau bon de recette
+  index_title: Lijst ontvangstenbonnen #Liste des bons de recette
+  print_title: Ontvangststuk #Bon de recette
+  print_owner: Omzet opgesteld door #Recette Effectuer Par
+  reference: Ref #Réf
+  label: Beschrijving #Libellé
+  date: Datum #Date
+  amount: Bedrag (€) #Montant (€)
+  amount_: Bedrag #Montant
+  owner: Verantwoordelijke #Responsable
+  created_at: Aangemaakt op #Crée le
+  action: Actie #Action
+  change_recipe: Ontvangst wisselgeld #Réception Monnaie
+  various: Toiletgeld #Argent toilette
+  wc_money: Diversen #Divers
+  cashbox_error: Kassa error #Erreur caisse
+  chest_error: Koffer error #Erreur coffre
+  list:
+    choose_member: Alle #Tout les Responsables
+    choose_label: Alle #Tout libellé
+change_recipe: Ontvangst wisselgeld #Réception Monnaie
+various: Toiletgeld #Argent toilette
+wc_money: Diversen #Divers
+cashbox_error: Kassa error #Erreur caisse
+chest_error: Koffer error #Erreur coffre
+chest:
+  error: Koffer error #Erreur coffre
+deposit:
+  envelope_cash:
+    title:    Bankstorting Cash ingeven #Saisie de versement banque Espèces
+    validate:    De ingave van storting cash bevestigen #Valider le saisie de versement banque espèces
+    validate_message: Bent u zeker dat u %nbre% envelop(pen) wilt storten met een totaalbedrag van %amount% ? #Etes vous sûr de verser le(s) %nbre% enveloppe(s) du montant total de %amount% ?
+  envelope_ticket:
+    title:    Bankstorting restaurantcheques  ingeven #Saisie de versement titres restaurants
+    validate:    De ingave van storting restaurantcheques  bevestigen #Valider le saisie de versement titres restaurants
+    validate_message: Bent u zeker dat u %nbre% envelop(pen) wilt storten met een totaalbedrag van %amount% ? #Etes vous sûr de verser le(s) %nbre% enveloppe(s) du montant total de %amount% ?
+  electronic:
+    header: Lijst van bankstortingen #Liste des versements banques
+    ticket: Electr. Restaurantcheques  #Titres restaurants électroniques
+    card: bankkaarten #Cartes bancaires
+    no_ticket: Geen enkele storting voor dit type elektronische restaurantcheque  #Aucun versement de type titre restaurant électronique
+    no_card: Geen enkele storting voor dit type bankkkart #Aucun versement de type carte bancaire
+  type:
+    cash: Cash #Espèces
+  destination:
+    banque: Bank #Banque
+  source:
+    tirelire: Spaarpot #Tirelire
+  number_envelope: Aantal Enveloppen #Nombre d'enveloppes
+  no_envelope: Er is geen niet-gestorte enveloppe cash in de spaarpot #Il n'y a aucune enveloppe espèces non versée dans la tirelire.
+  no_envelope_ticket: Er is geen niet-gestorte enveloppe restaurantcheques in de spaarpot #Il n'y a aucune enveloppe titre restaurant non versée dans la tirelire.
+  report:
+    confirmation: Uw bankstorting is bevestigd  #Votre versement a était efféctué avec succés.
+    title: Stortingen enveloppen #Versements d'enveloppes
+    title_ticket: Stortingen van enveloppen waardecheques restaurants #Versements d'enveloppes titres restaurants
+    labels:
+      date: Stortingsdatum #Date de versement
+      name: Naam en voornaam #Nom et prénom
+      type: Type Enveloppe #Type d'Enveloppe
+      expense_id: Uitgavenstuk #Bons de dépenses
+      total_amount: Totaalbedrag storting #Montant total du versement
+      nbr_envelope: Aantal Enveloppen  #Nombre d'enveloppes
+    headers:
+      reference: "# Referentie" #"# Référence"
+      num: Nr. #N°
+      date: Datum invoer #Date de saisie
+      type: Type #Type
+      name: Naam en voornaam #Nom et prénom
+      amount: Bedrag #Montant
+      total: Totale storting #Total versement
+    download_report: "Rapport stortingen downloaden"   #"Imprimer le rapport du versement"
+  btn_verser: "Alle enveloppen storten" #"Verser tous les enveloppes"
+  type_list: Type enveloppen te storten #Type d’enveloppes  à verser
+  message:
+    choose_owner: U dient een verantwoordelijke te kiezen #Vous devez choisir un responsable.
+    choose_type: U dient een type te kiezen #Vous devez choisir un type.
+    no_envelope: De lijst met enveloppen is leeg. #La liste des enveloppes est vide.
+
+#Clôture Adminstrative
+admin_closing:
+  title: Administratieve afsluiting #Clôture Administrative
+  varify_day_income: Controle dagelijkse omzet #Vérification Recette Journalière
+  kiosk_counting: kiosk kassatelling # comptage caisse kiosk
+  kiosk_counting_warning: Geen kiosk-kisten # Pas de caisses Kiosk à compter
+  kiosk_eordering_counting: kiosk en E-ordering kassatelling # comptage caisse kiosk e-ordering
+  kiosk_eordering_counting_warning: Geen kiosk-kisten en E-ordering-kisten
+  end_works: Controle afsluiting van de vorige dag #Vérification Travaux Fin de Journée de la veille
+  comprable_day: Vergelijkbare dag #Jour Comparable
+  bank_deposit: Bankstortingen #Versements Banque
+  coffre_count: Koffertelling #Comptage Coffre
+  comprable_day_question: Is de dag <b> %1% </b> comparabel? #Le jour <b> %1% </b> est-il un jour comparable ?
+  last_date: Datum laatste Einde van de dag  #Dernière Date de travaux de fin de journée est
+  yes_label: Ja #Oui
+  no_label: Nee #Non
+  comment_label: Commentaar #Commentaire
+  validate_label: Bevestigen #Valider
+  validate_day_income_label: De dagelijkse inkomsten bevestigen #Valider la recette journalière
+  reverify_label: Herverifiëren #Revérifier
+  operators_not_counted: Niet getelde medewerker #Equipiés non comptés
+  go_cash_counting: Ga naar kassa telling #Allez au comptage caisse
+  plz_count_cashbox: Gelieve alle kassa's te tellen om verder te gaan #Veuillez compter l'ensemble des caisses pour continuer
+  ca_brut_ttc: Bruto ZC incl. BTW
+  check_withdrawal_envelope: Check van de enveloppen en voorafnames
+progress.cashbox_counting: Kassatellingen
+min_five: Geef een waarde hoger dan 0 in #Veuillez saisir une valeur supérieure à 0
+modulo_five: Gelieve een veelvoud van 5 te gebruiken  #Veuillez saisir une valeur modulo à 5
+
+# Missed Translation
+admin_closing.electronic_deposit: Stortingen electronische betalingen #Versements flux électroniques
+ROLS: ROUL #Roul
+BAG: Zak #Sac
+BILL: Billet #Billet
+admin_closing.comment: Geef hier de verschillende gebeurtenissen die een invloed hebben gehad op uw ZC #Veuillez indiquer ici les différents évènements ayant impacté votre CA
+admin_closing.prbl_encaissmnt: Het kassasysteem heeft de datum niet kunnen afsluiten #Le système d'encaissement n'as pas pu clôturer fiscalement la date du
+close_day_success: administratieve afsluiting met succes voo %1% #Clôture administrative avec succès pour le %1%
+weather_label: Météo
+weather.snow: Besneeuwd #Neigeux
+weather.rain: Regenachtig  #Pluvieux
+weather.sun: Zonnig #Ensoleillé
+weather.cloud: Bewolkt #Nuageux
+procedure.finish.success: Procedure met succes afgewerkt #Procédure finalisée avec succès
+
+you_must_check_an_option: U dient een optie aan te vinken #Vous devez cochez une option
+you_must_type_st: U dient iets vermelden #Vous devez mentionner quelque chose
+
+comprable_days: Vergelijkbare dagen #Jours comparables
+comparable_day_modified_with_success: De details van de dag %1% worden met succes gewijzigd #Les détails de la journée de %1% ont été modifiés avec succès
+last.four.cashbox.count.gap: Verschil 4 laatste kassa tellingen #Ecart 4 derniers compatages caisses
+takeaway_day: % TO van de dag #% TO du jour
+
+progress.cashbox_counting: Kassatellingen # comptage des caisses
+
+cashbox_success_deleted: Cash count is succesvol verwijderd
+cashbox.delete: Contant geld verwijderen
+cashbox.delete_message: "Voer je wachtwoord in om de verwijdering van het aantal contanten te bevestigen :" #"Saisissez votre mot de passe pour confirmer la suppression du comptage caisse :"
+cashbox.delete_count: Wilt u het contantentelling verwijderen ?
+cashbox.counted: Dit contantentelling wordt al geteld in een kluis
+cashbox.cant_be_deleted: "Uw cash count kan niet worden verwijderd !" #"Votre caisse ne peut pas être supprimé !"

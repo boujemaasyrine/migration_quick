@@ -1,0 +1,49 @@
+ul.nav-tabs li {
+  width: 50%;
+  text-align: center;
+}
+ul.nav-tabs li a {
+  font-size: 1.6rem;
+}
+.status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: -4px;
+  margin-top: -4px;
+}
+.fail {
+  background-color: #ec2626;
+}
+.success {
+  background-color: #1f9c3d;
+}
+.waiting {
+  background-color: #3162b4;
+}
+.pending {
+  background-color: #6558b4;
+}
+.executed {
+  background-color: #37bc9b;
+}
+.executed_success {
+  background-color: #1f9c3d;
+}
+.executed_fail {
+  background-color: #ec2626;
+}
+.connected-status {
+  width: 25px;
+  height: 25px;
+  border-radius: 15px;
+  display: inline-block;
+}
+.connected-status.connected {
+  background-color: darkgreen;
+}
+.connected-status.disconnected {
+  background-color: darkred;
+}

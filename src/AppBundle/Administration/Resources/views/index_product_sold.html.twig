@@ -1,0 +1,20 @@
+{% extends ":default:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'parameters.merchandise_management.title'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    {% block blockTitle %}
+    {% endblock %}
+
+    {% block subBody %}
+    {% endblock %}
+{% endblock %}

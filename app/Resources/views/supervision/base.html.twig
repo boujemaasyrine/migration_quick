@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|split('_')[0] }}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% if version == "quick" %}
+            Quick
+        {% else %}
+            BK
+        {% endif %}!{% endblock %}</title>
+    {% block stylesheets %}
+
+    {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('src/css/libs.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('src/css/main-supervision.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('src/images/favicon.png') }}"/>
+</head>
+<body style="background-color: #F5F7FA;">
+
+<div id="loader" class="loader" style="width: 100%; height: 100%;
+    background: -webkit-linear-gradient(left top, rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom left,rgba(242, 234, 217,0.5), rgba(255, 253, 255,0.8), rgba(228, 217, 195,0.5)); /* Standard syntax */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;">
+    <div class="loader_background" style="position: absolute;height: 17em;left: 44%; overflow: hidden; width: 0;
+    top: 35%;">
+        <img src="{{ asset('src/images/background_loader.png') }}" style=" height:17em;">
+    </div>
+
+    <img class="loader_front" src="{{ asset('src/images/loader.png') }}" style="position: absolute;height: 17em;left: 44%;
+    top: 35%;">
+</div>
+
+<div class="wrapper nav-bar-fixed">
+    {% block header %}
+        <header class="topnavbar-wrapper">
+            <nav id="mainNav" role="navigation" class="navbar topnavbar">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="{{ path('restaurant_list_super') }}" class="navbar-brand" style="padding-top: 0;">
+                        <div class="brand-logo">
+                            <img src="{{ asset('src/images/logo.png') }}" alt="App Logo" class="img-responsive">
+                        </div>
+                        <div class="brand-logo-collapsed">
+                            <img src="{{ asset('src/images/logo.png') }}" alt="App Logo" class="img-responsive">
+                        </div>
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse" aria-expanded="true">
+                    {% block nav_bar %}
+                        <ul class="nav navbar-nav">
+                            {% include ':supervision/parts:horizontal_nav_bar.html.twig' %}
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% block lang_btn_zone %}
+                            {% endblock %}
+
+                            {% block notification_zone %}
+                                {#<li class="dropdown dropdown-list">
+                                    <a href="#" data-toggle="dropdown">
+                                        <em class="icon-bell"></em>
+                                    </a>
+                                    <ul class="dropdown-menu animated flipInX">
+                                        <li>
+                                            <div class="list-group notifications">
+                                                    <a href="#" class="list-group-item">
+                                                    </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>#}
+                            {% endblock %}
+                            <li class="dropdown">
+                                <a href="#!" data-toggle='dropdown'>
+                                    <em class="icon-settings"></em>
+                                </a>
+                                <ul class="dropdown-menu animated fadeIn" style="">
+                                    {% block logout %}
+                                    {% endblock %}
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#aide-box-content" class="modal-trigger">
+                                            <em class="icon-question"></em> &nbsp; {{ 'keyword.help'|trans([], 'supervision') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    {% endblock %}
+                </div>
+            </nav>
+        </header>
+    {% endblock %}
+
+    <div class="container content-wrapper" style=" width: 100%; max-width: inherit;">
+        {% block base_heading %}
+            <div class="content-heading">
+                {% block base_title %}
+                    {% if version =='quick' %}Quick{% else %}BK{% endif %}
+                {% endblock %}
+                <small>
+                    {% block base_subtitle %}
+                    {% endblock %}
+                </small>
+            </div>
+        {% endblock %}
+
+        {% block base_body %}
+        {% endblock %}
+    </div>
+
+    {% block footer %}
+        <div class="footer" style="padding: 10px;">
+            <div class="col-md-12">
+                <a href="http://www.quick.fr/fr" target="_blank" style="color: #fff; font-size: 1.4em;">
+                    &copy; {{ 'now'|date('Y') }} – {% if version == "quick" %}
+                        Quick
+                    {% else %}
+                        BK
+                    {% endif %}
+                    Ver. {{ app_version }}
+                </a>
+            </div>
+        </div>
+    {% endblock %}
+</div>
+
+{% include ':parts:modals.html.twig' %}
+
+{% block javascripts %}
+    <script>
+        "use strict";
+        // Global images path
+        var pdfIcon = '{{ asset('bundles/app/images/export/pdf-512.png') }}';
+        var xlsIcon = '{{ asset('bundles/app/images/export/xls-512.png') }}';
+    </script>
+    <script src="{{ asset('src/js/app.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
+    <script src="{{ path('bazinga_jstranslation_js') }}?locales={{ app_locales|replace('|', ',') }}"></script>
+    <script src="{{ path('bazinga_jstranslation_js', { 'domain': 'supervision' }) }}?locales=fr,nl"></script>
+    <script src="{{ asset('src/js/Supervision/common.js') }}"></script>
+{% endblock %}
+
+<script>
+    $(function () {
+        function disabledLoader() {
+            if (loader !== undefined && loader != null) {
+                loader.unblock();
+            } else {
+                setTimeout(disabledLoader, 100);
+            }
+        }
+
+        disabledLoader();
+
+        $('#mainNav').on('click', 'a.link', function () {
+            loader.block();
+        })
+    });
+</script>
+
+</body>
+</html>

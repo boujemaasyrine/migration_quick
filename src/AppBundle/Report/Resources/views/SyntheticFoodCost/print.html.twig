@@ -1,0 +1,50 @@
+{% extends '@General/exports/base_exports.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .document-header {
+            margin-bottom: 75px !important;
+        }
+
+        .text-nowrap-tr td {
+            white-space: nowrap;
+        }
+
+        .font-reduce {
+            font-size: 11px;
+            width: 55px !important;
+        }
+
+        .font-reduce-th {
+            font-size: 11px;
+            width: 55px !important;
+
+        }
+    </style>
+{% endblock %}
+
+{% block reportTitle %}
+    <br>
+    <h3>Synthétique FoodCost</h3>
+{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-6 col-sm-3 col-lg-2">
+            <b> <label for="startDate">{{ 'keyword.from'|trans }} :</label> </b>
+            {{ data.startDate|date('d/m/Y') }}
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-3 col-lg-2">
+            <b><label for="endDate">{{ 'keyword.to'|trans }} :</label></b>
+            {{ data.endDate|date('d/m/Y') }}
+        </div>
+
+    </div>
+    {% include '@Report/SyntheticFoodCost/body_report_synthetic_foodcost.html.twig' with { 'data' : data , 'print' : true } %}
+
+{% endblock %}

@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="panel-group col-xs-12" id="accordion" role="tablist" aria-multiselectable="false"
+         style="padding:0; ;margin-bottom: 2px;">
+        {% for category in categories %}
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading{{ category.id }}"
+                     style="padding: 3px;cursor: pointer;">
+                                            <span title='{{ 'tooltip.click_to_show_contained_items'|trans }}'
+                                                  data-placement='top'
+                                                  class="panel-title category-title bootstrap_tooltipped"
+                                                  data-category-id="{{ category.id }}">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                                   href="#collapse{{ category.id }}" aria-expanded="false"
+                                                   aria-controls="collapse{{ category.id }}"
+                                                   style="font-size: 0.9em; font-weight: lighter;">
+                                                    {{ category.name }}
+                                                </a>
+                                            </span>
+                    <span data-category-id="{{ category.id }}"
+                          title='{{ 'tooltip.select_all_in_category'|trans }}'
+                          data-placement='right'
+                          class="waves-effect bootstrap_tooltipped waves-light badge small-btn select_this_categorie"
+                          style="font-size: 0.8em; font-weight: 100;">
+                                                {{ 'btn.select_all'|trans }}
+                                            </span>
+                </div>
+
+                <div id="collapse{{ category.id }}" class="panel-collapse collapse" role="tabpanel"
+                     aria-labelledby="heading{{ category.id }}">
+                    <div id="category_content{{ category.id }}" class="panel-body"
+                         style="max-height: 200px; overflow-x: hidden;width: 100%;">
+                        {% for product in  category.products %}
+                            <div class="product-line row product-line{{ product.id }} hoverable bootstrap_tooltipped
+                            {% if sheetModelForm.vars.data.doesProductAlreadyExistInThisSheet(product) %} display_none {% endif %}"
+                                 title='{{ 'tooltip.click_to_add_to_list'|trans }}'
+                                 data-placement='right'
+
+                                 data-product-id="{{ product.id }}"
+                                 data-product-external-id="{{ product.externalId }}"
+                                 data-product-name="{{ product.name }}"
+                                 data-category-name="{{ category.name }}"
+                                 style="padding: 5px; cursor: pointer; font-size: 0.9em;">
+                                {% if product.externalId %}
+                                    <div class="col-xs-4">
+                                        {{ product.externalId }}
+                                    </div>
+                                {% endif %}
+                                <div class="col-xs-8">
+                                    {{ product.name }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% if currentOffset is defined %}
+    <div class="col-xs-12" style="margin-top: 10px;">
+
+        <center>
+            <ul class="pagination">
+
+                <li id="previousGroups" data-offset="{{ currentOffset }}"
+                    class="paginate_button previous {% if currentOffset == 0 %} disabled {% endif %}">
+                    <a href="#" aria-controls="sheet-model-table" data-dt-idx="0" tabindex="0">Précédent</a>
+                </li>
+
+                <li id="nextGroups" data-offset="{{ currentOffset }}"
+                    class="paginate_button next {% if currentOffset >= maxOffset %} disabled {% endif %}">
+                    <a href="#"
+                       aria-controls="sheet-model-table"
+                       data-dt-idx="2" tabindex="0">Suivant</a>
+                </li>
+            </ul>
+        </center>
+    </div>
+{% endif %}

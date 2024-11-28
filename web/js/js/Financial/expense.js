@@ -1,0 +1,1 @@
+$(function(){function e(){var e=moment(startDate,"DD/MM/YYYY"),t=new Date((new Date).setDate((new Date).getDate()+1));initDatePicker("#expense_dateExpense",{disable:[!0,{from:new Date(e.format("YYYY/MM/DD")),to:t}],onOpen:function(){$("#expense_dateExpense_root .picker__today").remove()}})}e(),$("form[name=expense]").on("submit",function(){loader.block()})});

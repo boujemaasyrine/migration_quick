@@ -1,0 +1,1 @@
+$(function(){$(document).on("change","#day_income_form",function(){loader.block(),$("#day_income_form").submit()})});

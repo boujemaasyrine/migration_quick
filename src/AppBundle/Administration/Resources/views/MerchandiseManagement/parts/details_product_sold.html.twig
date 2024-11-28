@@ -1,0 +1,141 @@
+<div class="" style="padding: 5px;">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'label.code_plu' | trans }}: </span>
+            {{ productSold.codePlu }}
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'label.name' | trans }}: </span>
+            {{ productSold.name }}
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'product_sold.labels.type' | trans }}: </span>
+            {{ productSold.type|trans }}
+        </div>
+    </div>
+
+    {% if productSold.type == constant('AppBundle\\Merchandise\\Entity\\ProductSold::NON_TRANSFORMED_PRODUCT') %}
+
+        <div class="row panel panel-default">
+            <div class="col-xs-12 col-modal">
+                <div class="row">
+                    <label> {{ 'product_sold.detail.label.product_purchased'|trans() }} </label>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+                <span class="label">{{ 'label.code' | trans }}: </span>
+                {{ productSold.productPurchased.externalId }}
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+                <span class="label">{{ 'label.name' | trans }}: </span>
+                {{ productSold.productPurchased.name }}
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+                <span class="label">{{ 'label.revenu' | trans }}: </span>
+                {{ productSold.productPurchased.buyingCost }}
+            </div>
+        </div>
+
+    {% else %}
+        {% for recipe in productSold.recipes %}
+            {% if recipe.productSold.originRestaurant.reusable ==  true %}
+                {% if recipe.subSoldingCanal == null or recipe.subSoldingCanal.id == 2  %}
+            <div class="panel panel-default">
+                <div class="col-xs-12 col-modal">
+                    <span class="label">{{ 'product_sold.detail.label.solding_canal' | trans }}: </span>
+
+                    {% if recipe.subSoldingCanal == null  %}
+                        {{ recipe.soldingCanal.label|trans }}
+                    {% elseif recipe.subSoldingCanal.id == 2 %}
+                        {{ recipe.soldingCanal.label|trans }}  :: {{ recipe.subSoldingCanal }}
+                    {% endif %}
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+                    <span class="label">{{ 'label.revenu' | trans }}: </span>
+                    {{ recipe.calculateRevenu|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i>
+                </div>
+                <div class="row">
+                    <table class="recipes table table-striped table-hover"
+                           data-template="">
+                        <thead>
+                        <tr>
+                            <th>{{ 'label.code'|trans }}</th>
+                            <th>{{ 'label.name'|trans }}</th>
+                            <th>{{ 'label.qty'|trans }}</th>
+                        </tr>
+                        </thead>
+                        {% for recipeLine in recipe.recipeLines %}
+                            <tr>
+                                <td>
+                                    {{ recipeLine.productPurchased.externalId }}
+                                </td>
+                                <td>
+                                    {{ recipeLine.productPurchased.name }}
+                                </td>
+                                <td>
+                                    {{ recipeLine.qty }} {{ recipeLine.productPurchased.labelUnitUsage|trans }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+           {% endif %}
+
+            {% else %}
+                {% if   recipe.subSoldingCanal== null or recipe.subSoldingCanal.id == 1  %}
+                        <div class="panel panel-default">
+                            <div class="col-xs-12 col-modal">
+                                <span class="label">{{ 'product_sold.detail.label.solding_canal' | trans }}: </span>
+
+                                {% if recipe.subSoldingCanal == null  %}
+                                    {{ recipe.soldingCanal.label|trans }}
+                                    {% elseif recipe.subSoldingCanal.id == 1 %}
+                                        {{ recipe.soldingCanal.label|trans }}  :: {{ recipe.subSoldingCanal }}
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-modal">
+                                <span class="label">{{ 'label.revenu' | trans }}: </span>
+                                {{ recipe.calculateRevenu|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-euro"></i>
+                            </div>
+                            <div class="row">
+                                <table class="recipes table table-striped table-hover"
+                                       data-template="">
+                                    <thead>
+                                    <tr>
+                                        <th>{{ 'label.code'|trans }}</th>
+                                        <th>{{ 'label.name'|trans }}</th>
+                                        <th>{{ 'label.qty'|trans }}</th>
+                                    </tr>
+                                    </thead>
+                                    {% for recipeLine in recipe.recipeLines %}
+                                        <tr>
+                                            <td>
+                                                {{ recipeLine.productPurchased.externalId }}
+                                            </td>
+                                            <td>
+                                                {{ recipeLine.productPurchased.name }}
+                                            </td>
+                                            <td>
+                                                {{ recipeLine.qty }} {{ recipeLine.productPurchased.labelUnitUsage|trans }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+</div>

@@ -1,0 +1,203 @@
+{% form_theme productSoldForm.recipes "@Supervision/ProductSold/form_custom_widget/recipe_widget.html.twig" %}
+{% form_theme productSoldForm "@Supervision/ProductSold/form_custom_widget/recipe_line_widget.html.twig" %}
+
+{% if productSoldForm.vars.value.id is null %}
+    {{ form_start(productSoldForm,{'method' : 'POST' ,'action' : path('product_sold_save') , 'attr' : { 'id' : 'sheet_model_form', 'class': old, 'novalidate' : 'novalidate' } }) }}
+{% else %}
+    {{ form_start(productSoldForm,{'method' : 'POST' ,'action' : path('product_sold_save', { 'productSold' : productSoldForm.vars.value.id}) , 'attr' : { 'id' : 'sheet_model_form', 'class': old } }) }}
+{% endif %}
+                {{ form_widget(productSoldForm.id) }}
+<div class="row">
+    <div class="col-md-4">
+        {% form_theme productSoldForm.translations ':supervision/form_part:tranlsations.html.twig' %}
+        {{ form(productSoldForm.translations) }}
+    </div>
+    <div class="col-md-4">
+        {{ form_label(productSoldForm.codePlu, 'product_sold.labels.code_plu'|trans({}, "supervision") ) }} <br/>
+        {{ form_widget(productSoldForm.codePlu, { "attr": { "class": 'form-control' }}) }}
+        {{ form_errors(productSoldForm.codePlu) }}
+
+        {{ form_label(productSoldForm.venteAnnexe, 'product_sold.vente_annexe'|trans({}, "supervision") ) }} <br/>
+        {{ form_widget(productSoldForm.venteAnnexe) }}
+        {{ form_errors(productSoldForm.venteAnnexe) }}
+    </div>
+    <div class="col-md-4">
+        {{ form_label(productSoldForm.dateSynchro) }}
+        <div class="input-group">
+            {{ form_widget(productSoldForm.dateSynchro, {'attr': {'class': 'form-control datepicker'}}) }}
+            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+        </div>
+        {{ form_errors(productSoldForm.dateSynchro) }}
+
+        {{ form_label(productSoldForm.active, 'product_sold.labels.active'|trans({}, "supervision") ) }} <br/>
+        {{ form_widget(productSoldForm.active, { "attr": { "class": '' }}) }}
+        {{ form_errors(productSoldForm.active) }}
+    </div>
+</div>
+<div class="row">
+    <hr style="border-top: 1px ridge #e4e4e4;margin: 5px 0;">
+    <div class="col-md-12">
+        {{ form_label(productSoldForm.restaurants) }}
+        {{ form_widget(productSoldForm.restaurants, {'attr': {'class': 'multiselect'}}) }}
+        {{ form_errors(productSoldForm.restaurants) }}
+    </div>
+
+</div>
+<div class="row">
+    <hr style="border-top: 1px ridge #e4e4e4;margin: 5px 0;">
+    {% if productSoldForm.vars.value.id is null %}
+        <div class="col-md-12">
+            {{ form_label(productSoldForm.type, 'product_sold.labels.type'|trans({}, "supervision") ) }} <br/>
+            {{ form_widget(productSoldForm.type, { "attr": { "class": '' }}) }}
+            {{ form_errors(productSoldForm.type) }}
+        </div>
+    {% else %}
+        <div class="col-md-12">
+            {{ form_label(productSoldForm.type, 'product_sold.labels.type'|trans({}, "supervision") ) }} <br/>
+            <span class="text-muted" style="font-size: 1em;">
+                            {% if productSoldForm.vars.data.type == constant('AppBundle\\Merchandise\\Entity\\ProductSold::TRANSFORMED_PRODUCT') %}
+                                {{ 'transformed_product'|trans({}, "supervision") }}
+                            {% else %}
+                                {{ 'non_transformed_product'|trans({}, "supervision") }}
+                            {% endif %}
+                        </span>
+            {{ form_errors(productSoldForm.type) }}
+        </div>
+    {% endif %}
+
+</div>
+{% if productSoldForm.vars.value.type is null %}
+    {% set hideTransformed = "display_none" %}
+    {% set hideNonTransformed = "display_none" %}
+{% elseif productSoldForm.vars.data.type == constant('AppBundle\\Merchandise\\Entity\\ProductSold::TRANSFORMED_PRODUCT') %}
+    {% set hideTransformed = "" %}
+    {% set hideNonTransformed = "display_none" %}
+{% else %}
+    {% set hideTransformed = "display_none" %}
+    {% set hideNonTransformed = "" %}
+{% endif %}
+
+<div id="transformed_product_block" class="row {{ hideTransformed }}">
+    <div class="col-xs-12">
+        {{ form_label(productSoldForm.recipes, 'product_sold.labels.recettes'|trans({}, "supervision") ) }} <br/>
+        {{ form_errors(productSoldForm.recipes) }}
+
+        {#<button id="addNewRecipe" type="button"
+                style="margin-bottom: 15px;"
+                data-count="{{ productSoldForm.recipes|length }}"
+                data-prototype="{{ form_widget(productSoldForm.recipes.vars.prototype) | e }}"
+                class="btn-small btn btn-primary white-text waves-effect waves-light">
+            {{ 'product_sold.btns.add_recipe'|trans }}
+        </button>#}
+        <div id="product_sold_recipes">
+            <ul class="nav nav-tabs" role="tablist">
+                {% for canal in canals %}
+                    <li role="presentation" class="{% if loop.first %}active{% endif %}">
+                        <a href="#{{ canal }}"
+                           aria-controls="home" role="tab"
+                           data-toggle="tab" aria-expanded="true">
+                            {{ canal|trans({}, "supervision") }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div style="border: solid 1px #DDDDDD; padding: 0; border-top: 0;" class="tab-content">
+                {% for canal in canals %}
+                    <div role="tabpanel" class="tab-pane {% if loop.first %}active{% endif %}" id="{{ canal }}">
+                        {% if canal.id == 3 or canal.id == 4  or canal.id == 11 %}
+                            <ul class="nav nav-tabs" role="tablist">
+                                {% for subSoldingCanal in subSoldingCanals %}
+                                    <li class="{% if loop.first %}active{% endif %}">
+                                        <a data-toggle="tab" href="#{{ canal }}-{{ subSoldingCanal.id }}">{{ subSoldingCanal }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <div style="border: solid 1px #DDDDDD; padding: 0; border-top: 0;" class="tab-content">
+                                {% for subSoldingCanal in subSoldingCanals %}
+                                    <div role="tabpanel" class="tab-pane {% if loop.first %}active{% endif %}" id="{{ canal }}-{{ subSoldingCanal.id }}">
+                                        {% for recipe in productSoldForm.recipes %}
+                                            {% if recipe.vars.value.soldingCanal.id == canal.id and recipe.vars.value.subSoldingCanal != null and recipe.vars.value.subSoldingCanal.id == subSoldingCanal.id %}
+
+                                                <div class="col-md-12">{{ form_errors(recipe) }}</div>
+                                                {{ form_widget(recipe) }}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {% for recipe in productSoldForm.recipes %}
+                                {% if recipe.vars.value.soldingCanal.id == canal.id %}
+                                    <div class="col-md-12">{{ form_errors(recipe) }}</div>
+                                    {{ form_widget(recipe) }}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="non_transformed_product_block" class="row {{ hideNonTransformed }}">
+    <div class="col-xs-12">
+        <div class="row non_transformed_product_row">
+            <div class="col-xs-6">
+                {{ form_label(productSoldForm.productPurchased, 'product_sold.labels.purchased_product'|trans({}, "supervision")) }}
+                {{ form_errors(productSoldForm.productPurchased) }}
+                <br/>
+                {{ form_widget(productSoldForm.productPurchased, {
+                    "attr": {
+                        "class": "productIdInput"
+                    }
+                }) }}
+                {{ form_widget(productSoldForm.productPurchasedName, {
+                    "attr": {
+                        "class": "productNameInput form-control"
+                    }
+                }) }}
+            </div>
+            <div class="col-xs-4">
+                <label> {{ 'product_sold.revenu_price'|trans([],'supervision') }} : </label> <br/>
+                <span id="purchasedProductPrice" class="text-muted"
+                      style="font-size: 1.52em;">{{ productSoldForm.vars.data.calculateDefaultRevenu|number_format(2, ',', '.') }}
+                    €
+                            </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="padding-top: 15px">
+    <div class="col-xs-12" style="text-align: right">
+        <a href="{{ path('product_sold_list') }}" type="button"
+           class="">
+            {{ 'btn.cancel'|trans({}, "supervision") }}
+        </a>
+        <button class="btn btn-validate btn-icon dropdown-button"
+                data-activates='dropdown2' type="button">
+            <span class="hide-on-med-and-down"> {{ 'btn.validate'|trans([],'supervision') }} </span>
+        </button>
+        <ul id="dropdown2" class="dropdown-content">
+            <li>
+                <a class="strech_btn text-black" href="#" id="validateForm">
+                    <span style="color: #000; font-weight: bold;">{{ 'btn.validate' | trans([],'supervision') }}</span>
+                </a></li>
+            <li>
+                <a class="strech_btn text-black" href="#" id="validateFormWithSynchro">
+                    <span style="color: #000; font-weight: bold;">{{ ( 'validate_synchronize_immediately' )|trans([],'supervision') }}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    {#DropDown Button#}
+
+</div>
+<div class="hidden">
+    {{ form_rest(productSoldForm) }}
+</div>
+{{ form_end(productSoldForm) }}

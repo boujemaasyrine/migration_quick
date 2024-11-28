@@ -1,0 +1,5 @@
+{
+  "directory": "web/plugins",
+  "analytics": false,
+  "timeout": 120000
+}

@@ -1,0 +1,996 @@
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   src\AppBundle\Administration\Entity\Parameter.php                                                                                                       
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  238    Access to an undefined property AppBundle\Administration\Entity\Parameter::$locale.                                                                     
+  325    Return typehint of method AppBundle\Administration\Entity\Parameter::setUntouchable() has invalid type AppBundle\Administration\Entity\ParameterLabel.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Administration\Entity\Procedure.php                                                                                       
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+  81     Property AppBundle\Administration\Entity\Procedure::$eligibleRoles has unknown class AppBundle\Administration\Entity\Role as its type.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------- 
+  Line   src\AppBundle\Administration\Form\RightsConfig\RightsForRolesType.php  
+ ------ ----------------------------------------------------------------------- 
+  37     Anonymous function has an unused use $options.                         
+ ------ ----------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Administration\Tests\Controller\ConfigControllerTest.php                                                                              
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Tests\Controller\DefaultControllerTest was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Api\Tests\Controller\DefaultControllerTest.php                                                                                        
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Tests\Controller\DefaultControllerTest was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Financial\Entity\PaymentMethod.php                                    
+ ------ ------------------------------------------------------------------------------------ 
+  106    Access to an undefined property AppBundle\Financial\Entity\PaymentMethod::$locale.  
+ ------ ------------------------------------------------------------------------------------ 
+
+ ------ ----------------------------------------------------------- 
+  Line   src\AppBundle\Financial\Form\Cashbox\CashboxCountType.php  
+ ------ ----------------------------------------------------------- 
+  94     Anonymous function has an unused use $builder.             
+ ------ ----------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------ 
+  Line   src\AppBundle\Financial\Form\Expense\ExpenseSearchType.php  
+ ------ ------------------------------------------------------------ 
+  71     Anonymous function has an unused use $options.              
+ ------ ------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------ 
+  Line   src\AppBundle\Financial\Form\Withdrawal\WithdrawalSearchType.php  
+ ------ ------------------------------------------------------------------ 
+  81     Anonymous function has an unused use $options.                    
+ ------ ------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------ 
+  Line   src\AppBundle\Financial\Form\Withdrawal\WithdrawalType.php  
+ ------ ------------------------------------------------------------ 
+  71     Anonymous function has an unused use $options.              
+ ------ ------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Financial\Tests\Controller\DefaultControllerTest.php                                                                                  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Tests\Controller\DefaultControllerTest was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Financial\Validator\MaxAmountWithdrawalConstraintValidator.php                                        
+ ------ -------------------------------------------------------------------------------------------------------------------- 
+  27     Access to an undefined property AppBundle\Financial\Validator\MaxAmountWithdrawalConstraintValidator::$translator.  
+  57     Access to an undefined property AppBundle\Financial\Validator\MaxAmountWithdrawalConstraintValidator::$translator.  
+ ------ -------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Command\DeleteDuplicatePluSoldItemCommand.php                                                                                                         
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  68     Call to method AppBundle\General\Command\DeleteDuplicatePluSoldItemCommand::setNewValuesLossLineForItemToDelete() with incorrect case: setNewValuesLossLineForItemTodelete  
+  76     Call to method AppBundle\General\Command\DeleteDuplicatePluSoldItemCommand::setNewValuesLossLineForItemToDelete() with incorrect case: setNewValuesLossLineForItemTodelete  
+  89     Call to method AppBundle\General\Command\DeleteDuplicatePluSoldItemCommand::setNewValuesLossLineForItemToDelete() with incorrect case: setNewValuesLossLineForItemTodelete  
+  99     Call to method AppBundle\General\Command\DeleteDuplicatePluSoldItemCommand::setNewValuesLossLineForItemToDelete() with incorrect case: setNewValuesLossLineForItemTodelete  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Command\ImportRecipesCommand.php                                                                            
+ ------ ---------------------------------------------------------------------------------------------------------------------------------- 
+  37     Property AppBundle\General\Command\ImportRecipesCommand::$logger has unknown class AppBundle\General\Command\Logger as its type.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Command\ImportUserWyndCommand.php                                     
+ ------ -------------------------------------------------------------------------------------------- 
+  71     Access to an undefined property AppBundle\General\Command\ImportUserWyndCommand::$dataDir.  
+ ------ -------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Download\DownloadActions.php                                               
+ ------ --------------------------------------------------------------------------------------------------------- 
+  46     Call to an undefined method AppBundle\General\Service\Download\DownloadActions::notifyCentralSuccess().  
+ ------ --------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\General\Service\Download\DownloadCategories.php                                               
+ ------ ------------------------------------------------------------------------------------------------------------ 
+  73     Call to an undefined method AppBundle\General\Service\Download\DownloadCategories::notifyCentralSuccess().  
+ ------ ------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Download\DownloadPaymentMethods.php                                               
+ ------ ---------------------------------------------------------------------------------------------------------------- 
+  57     Call to an undefined method AppBundle\General\Service\Download\DownloadPaymentMethods::notifyCentralFail().     
+  61     Call to an undefined method AppBundle\General\Service\Download\DownloadPaymentMethods::notifyCentralSuccess().  
+ ------ ---------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Download\DownloadRestaurantParameters.php                                               
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  62     Call to an undefined method AppBundle\General\Service\Download\DownloadRestaurantParameters::notifyCentralFail().     
+  66     Call to an undefined method AppBundle\General\Service\Download\DownloadRestaurantParameters::notifyCentralSuccess().  
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Download\DownloadRestaurants.php                                               
+ ------ ------------------------------------------------------------------------------------------------------------- 
+  69     Call to an undefined method AppBundle\General\Service\Download\DownloadRestaurants::notifyCentralSuccess().  
+ ------ ------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Download\DownloadRoles.php                                               
+ ------ ------------------------------------------------------------------------------------------------------- 
+  99     Call to an undefined method AppBundle\General\Service\Download\DownloadRoles::notifyCentralSuccess().  
+ ------ ------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Download\DownloadSoldingCanals.php                                               
+ ------ --------------------------------------------------------------------------------------------------------------- 
+  46     Call to an undefined method AppBundle\General\Service\Download\DownloadSoldingCanals::notifyCentralSuccess().  
+ ------ --------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Download\DownloadSupplier.php                                               
+ ------ ---------------------------------------------------------------------------------------------------------- 
+  48     Call to an undefined method AppBundle\General\Service\Download\DownloadSupplier::notifyCentralSuccess().  
+ ------ ---------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\General\Service\Download\DownloadUser.php                                               
+ ------ ------------------------------------------------------------------------------------------------------ 
+  94     Call to an undefined method AppBundle\General\Service\Download\DownloadUser::notifyCentralSuccess().  
+ ------ ------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Download\ExpenseLabels.php                                               
+ ------ ------------------------------------------------------------------------------------------------------- 
+  51     Call to an undefined method AppBundle\General\Service\Download\ExpenseLabels::notifyCentralFail().     
+  55     Call to an undefined method AppBundle\General\Service\Download\ExpenseLabels::notifyCentralSuccess().  
+ ------ ------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Download\Ping.php                                                                             
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  17     Method AppBundle\General\Service\Download\AbstractDownloaderService::startDownload() invoked with 1 parameter, 2 required.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\General\Service\Download\RecipeTicketLabels.php                                               
+ ------ ------------------------------------------------------------------------------------------------------------ 
+  52     Call to an undefined method AppBundle\General\Service\Download\RecipeTicketLabels::notifyCentralFail().     
+  56     Call to an undefined method AppBundle\General\Service\Download\RecipeTicketLabels::notifyCentralSuccess().  
+ ------ ------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Remote\Financial\ChestCounts.php  
+ ------ ---------------------------------------------------------------- 
+  35     Undefined variable: $cashboxCount                               
+  36     Undefined variable: $cashboxCount                               
+ ------ ---------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Remote\Merchandise\RemoveMovement.php                                             
+ ------ ---------------------------------------------------------------------------------------------------------------- 
+  19     Access to constant REMOVE_MOVEMENT on an unknown class Proxies\__CG__\AppBundle\General\Entity\RemoteHistoric.  
+ ------ ---------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Service\Remote\Merchandise\SheetModels.php                                                                
+ ------ -------------------------------------------------------------------------------------------------------------------------------- 
+  8      Class AppBundle\Merchandise\Entity\SheetModelLine referenced with incorrect case: AppBundle\Merchandise\Entity\sheetModelLine.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Tests\Controller\DefaultControllerTest.php                                                                                    
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Tests\Controller\DefaultControllerTest was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\General\Tests\Service\RemoveTicketTest.php                                                                                    
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Tests\Service\RemoveTicketTest was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Command\OrderHelpCalculateResultCommand.php                                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  22     Property AppBundle\Merchandise\Command\OrderHelpCalculateResultCommand::$progression has unknown class AppBundle\Merchandise\Command\ImportProgression as its type.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Command\SendPoCommand.php  
+ ------ ----------------------------------------------------- 
+  88     Function ftp_connect not found.                      
+  95     Function ftp_login not found.                        
+  103    Function ftp_pasv not found.                         
+  111    Function ftp_put not found.                          
+  128    Function ftp_close not found.                        
+ ------ ----------------------------------------------------- 
+
+ ------ --------------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Controller\CoefController.php  
+ ------ --------------------------------------------------------- 
+  64     Function dump not found.                                 
+ ------ --------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------ 
+  Line   src\AppBundle\Merchandise\Controller\SheetModelAPIController.php  
+ ------ ------------------------------------------------------------------ 
+  354    Function dump not found.                                          
+ ------ ------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Entity\Delivery.php                                                                                                          
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  69     Property AppBundle\Merchandise\Entity\Delivery::$employee has unknown class AppBundle\Merchandise\Entity\AppBundle\Staff\Entity\Employee as its type.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Merchandise\Entity\OrderHelpMask.php                                                                                        
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+  111    Return typehint of method AppBundle\Merchandise\Entity\OrderHelpMask::setStartDate() has invalid type AppBundle\Merchandise\Entity\Mask.  
+  159    Return typehint of method AppBundle\Merchandise\Entity\OrderHelpMask::setBudget() has invalid type AppBundle\Merchandise\Entity\Mask.     
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Merchandise\Entity\ProductPurchased.php                                                                                     
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+  148    AppBundle\Merchandise\Entity\ProductPurchased::__construct() does not call parent constructor from AppBundle\Merchandise\Entity\Product.  
+  263    Access to an undefined property AppBundle\Merchandise\Entity\ProductPurchased::$supplier.                                                 
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ --------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Entity\ProductPurchasedHistoric.php                                      
+ ------ --------------------------------------------------------------------------------------------------- 
+  298    Access to an undefined property AppBundle\Merchandise\Entity\ProductPurchasedHistoric::$lossLine.  
+ ------ --------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Entity\ProductPurchasedMvmt.php  
+ ------ ----------------------------------------------------------- 
+  154    Call to sprintf contains 2 placeholders, 1 value given.    
+ ------ ----------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Merchandise\Entity\Returns.php                                                                                                          
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  60     Property AppBundle\Merchandise\Entity\Returns::$employee has unknown class AppBundle\Merchandise\Entity\AppBundle\Staff\Entity\Employee as its type.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Entity\Transfer.php                                                                                   
+ ------ -------------------------------------------------------------------------------------------------------------------------------- 
+  75     Property AppBundle\Merchandise\Entity\Transfer::$employee has unknown class AppBundle\Merchandise\Entity\Employee as its type.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------ 
+  Line   src\AppBundle\Merchandise\Form\LossTypeType.php             
+ ------ ------------------------------------------------------------ 
+  32     Class AppBundle\Merchandise\Entity\LossLineType not found.  
+ ------ ------------------------------------------------------------ 
+
+ ------ ----------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Service\DeliveryIntegrationService.php                                     
+ ------ ----------------------------------------------------------------------------------------------------- 
+  43     Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpHost.  
+  44     Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpPort.  
+  45     Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpUser.  
+  46     Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpPw.    
+  64     Function ftp_connect not found.                                                                      
+  64     Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpHost.  
+  64     Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpPort.  
+  69     Function ftp_login not found.                                                                        
+  69     Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpUser.  
+  69     Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpPw.    
+  75     Function ftp_pasv not found.                                                                         
+  78     Function ftp_nlist not found.                                                                        
+  85     Function ftp_close not found.                                                                        
+  234    Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpHost.  
+  235    Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpHost.  
+  252    Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpHost.  
+  252    Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpPort.  
+  252    Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpUser.  
+  252    Access to an undefined property AppBundle\Merchandise\Service\DeliveryIntegrationService::$ftpPw.    
+ ------ ----------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Service\OrderService.php                                                                                                             
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  535    Parameter $list of method AppBundle\Merchandise\Service\OrderService::serializeDeliveries() has invalid typehint type AppBundle\Merchandise\Service\Delivery.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Merchandise\Tests\Controller\CommandControllerTest.php                                                                                            
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Merchandise\Tests\Controller\DefaultControllerTest was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Report\Controller\SalesReportController.php                                
+ ------ ----------------------------------------------------------------------------------------- 
+  102    Instantiated class AppBundle\Report\Controller\MethodNotAllowedHttpException not found.  
+ ------ ----------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Report\Controller\SyntheticFoodCostController.php                          
+ ------ ----------------------------------------------------------------------------------------- 
+  151    Instantiated class Proxies\__CG__\AppBundle\General\Entity\ImportProgression not found.  
+ ------ ----------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Report\Model\CashBookReport.php                                                                                         
+ ------ -------------------------------------------------------------------------------------------------------------------------------------- 
+  35     Property AppBundle\Report\Model\CashBookReport::$cashBoxService has unknown class AppBundle\Report\Model\CashBoxService as its type.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Report\Service\ReportFoodCostService.php                                           
+ ------ ------------------------------------------------------------------------------------------------- 
+  89     Call to static method getDateFromDate() on an unknown class AppBundle\Report\Service\Utilities.  
+  902    Function dump not found.                                                                         
+  903    Function dump not found.                                                                         
+ ------ ------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Report\Service\ReportSalesService.php                                                                   
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  436    Call to an undefined static method AppBundle\ToolBox\Utils\DateUtilities::getDaysOfWeekInPeriod().                    
+  444    Method AppBundle\Report\Service\ReportSalesService::getOpeningAndClosingHour() invoked with 1 parameter, 2 required.  
+  534    Method AppBundle\Report\Service\ReportSalesService::getCaPrev() invoked with 1 parameter, 2 required.                 
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Report\Tests\Controller\DefaultControllerTest.php                                                                                     
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Tests\Controller\DefaultControllerTest was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------- 
+  Line   src\AppBundle\Staff\Form\Management\AttributeRoleType.php  
+ ------ ----------------------------------------------------------- 
+  54     Anonymous function has an unused use $options.             
+ ------ ----------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Staff\Tests\Controller\DefaultControllerTest.php                                                                                      
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Tests\Controller\DefaultControllerTest was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\DeleteDuplicatePluSoldItemCommand.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\DeleteDuplicatePluSoldItemCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Command\DevCommand\FixDuplicatedTicketsCommand.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Command\DevCommand\FixDuplicatedTicketsCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Command\ImportAllDataCommand.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Command\ImportAllDataCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\ImportCategoriesCommand.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\ImportCategoriesCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\ImportDivisionsCommand.php                                                                                
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\ImportDivisionsCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\ImportInventoryItemsCommand.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\ImportInventoryItemsCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\ImportProductSoldCommand.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\ImportProductSoldCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Command\ImportRecipesCommand.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Command\ImportRecipesCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\ImportRestaurantsCommand.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\ImportRestaurantsCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\ImportRolesCommand.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\ImportRolesCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\ImportSoldingCanalCommand.php                                                                                
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\ImportSoldingCanalCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\ImportStaffSecurityConfigurationCommand.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\ImportStaffSecurityConfigurationCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\ImportSuppliersCommand.php                                                                                
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\ImportSuppliersCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\InitializeProductsSyncCommandForNewBoQuickCommand.php                                                                                
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\InitializeProductsSyncCommandForNewBoQuickCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Command\InitializeProductsSyncEligibleForNewBoQuickCommand.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Command\InitializeProductsSyncEligibleForNewBoQuickCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\InitializeRolesRightsCommand.php                                                                                
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\InitializeRolesRightsCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\InitializeSyncCommandForNewBoQuickCommand.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\InitializeSyncCommandForNewBoQuickCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Command\InitializeSyncNewBoCommand.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Command\InitializeSyncNewBoCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\InitSqlViewsAndIndexesCommand.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\InitSqlViewsAndIndexesCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Command\LoadParametersLabelCommand.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Command\LoadParametersLabelCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\LoadPaymentMethodCommand.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\LoadPaymentMethodCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\Merchandise\UpdateProductsPurchasedStatusCommand.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\Merchandise\UpdateProductsPurchasedStatusCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\Merchandise\UpdateRecipeRevenuePriceCommand.php                                                                                
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\Merchandise\UpdateRecipeRevenuePriceCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Command\NotifyMissingPluCommand.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Command\NotifyMissingPluCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Command\RestaurantSecretKeyCommand.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Command\RestaurantSecretKeyCommand was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ----------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Controller\ConfigRightsController.php  
+ ------ ----------------------------------------------------------------- 
+  39     Function dump not found.                                         
+ ------ ----------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Controller\DefaultController.php                                              
+ ------ -------------------------------------------------------------------------------------------------------- 
+  184    Parameter $a1 of anonymous function has invalid typehint type AppBundle\Supervision\Controller\Action.  
+  184    Parameter $a2 of anonymous function has invalid typehint type AppBundle\Supervision\Controller\Action.  
+ ------ -------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Controller\GroupController.php  
+ ------ ---------------------------------------------------------- 
+  43     Function dump not found.                                  
+ ------ ---------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Controller\ProductController.php  
+ ------ ------------------------------------------------------------ 
+  65     Function dump not found.                                    
+ ------ ------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Controller\ProductSoldController.php  
+ ------ ---------------------------------------------------------------- 
+  191    Function dump not found.                                        
+ ------ ---------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Controller\Reports\SyntheticFoodCostController.php  
+ ------ ------------------------------------------------------------------------------ 
+  208    Function dump not found.                                                      
+ ------ ------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Controller\SupervisionAPIController.php  
+ ------ ------------------------------------------------------------------- 
+  287    Function dump not found.                                           
+  294    Function dump not found.                                           
+ ------ ------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Controller\SyncCmdAPI.php                                        
+ ------ ------------------------------------------------------------------------------------------- 
+  41     Access to constant DOWNLOAD_INV_ITEMS on an unknown class AppBundle\Entity\SyncCmdQueue.   
+  41     Access to constant DOWNLOAD_SOLD_ITEMS on an unknown class AppBundle\Entity\SyncCmdQueue.  
+  50     Access to constant PENDING on an unknown class AppBundle\Entity\SyncCmdQueue.              
+  85     Access to constant EXECUTED_SUCCESS on an unknown class AppBundle\Entity\SyncCmdQueue.     
+  87     Access to constant EXECUTED_FAIL on an unknown class AppBundle\Entity\SyncCmdQueue.        
+ ------ ------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Entity\ProductSupervisionTranslation.php                                     
+ ------ ------------------------------------------------------------------------------------------------------- 
+  39     Access to an undefined property AppBundle\Supervision\Entity\ProductSupervisionTranslation::$objects.  
+ ------ ------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Entity\RecipeLineSupervision.php                                                                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  84     Parameter $productPurchased of method AppBundle\Supervision\Entity\RecipeLineSupervision::setProductPurchased() has invalid typehint type AppBundle\Supervision\Entity\ProductPurchased.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\EventListener\LocaleListener.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\EventListener\LocaleListener was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Filter\ExceptionHandler.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Filter\ExceptionHandler was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Filter\NotAuthorizedException.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Filter\NotAuthorizedException was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Filter\RestaurantParamConverter.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Filter\RestaurantParamConverter was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Filter\WsSecurityCheckerFilter.php                                                                                
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Filter\WsSecurityCheckerFilter was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Form\CategoryType.php  
+ ------ ------------------------------------------------- 
+  103    Anonymous function has an unused use $options.   
+ ------ ------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Form\EventListener\ProductSupervisionListener.php   
+ ------ ------------------------------------------------------------------------------ 
+  55     Instantiated class AppBundle\Merchandise\Entity\ProductRestaurant not found.  
+ ------ ------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Form\Items\InventoryItemType.php  
+ ------ ------------------------------------------------------------ 
+  267    Anonymous function has an unused use $options.              
+  285    Anonymous function has an unused use $options.              
+  306    Anonymous function has an unused use $options.              
+ ------ ------------------------------------------------------------ 
+
+ ------ -------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Form\Restaurant\RestaurantType.php  
+ ------ -------------------------------------------------------------- 
+  139    Anonymous function has an unused use $options.                
+ ------ -------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Form\UsersManagement\AddUserType.php  
+ ------ ---------------------------------------------------------------- 
+  101    Anonymous function has an unused use $options.                  
+ ------ ---------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Form\UsersManagement\RightConfigType.php  
+ ------ -------------------------------------------------------------------- 
+  47     Anonymous function has an unused use $options.                      
+  50     Undefined variable: $actionsType                                    
+ ------ -------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Form\UsersManagement\RightsForRolesType.php  
+ ------ ----------------------------------------------------------------------- 
+  36     Anonymous function has an unused use $options.                         
+ ------ ----------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Handler\AuthenticationHandler.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Handler\AuthenticationHandler was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Handler\SessionIdleHandler.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Handler\SessionIdleHandler was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Interfaces\CompartmentCalculationInterface.php                                                                                
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Interfaces\CompartmentCalculationInterface was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Listener\DoctrineExtensionListener.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Listener\DoctrineExtensionListener was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Listener\OnUpdateListener.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Listener\OnUpdateListener was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Model\DayIncome.php                                                                                
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Model\DayIncome was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\CategoryService.php                                                            
+ ------ ----------------------------------------------------------------------------------------------------------------- 
+  20     Constructor of class AppBundle\Supervision\Service\CategoryService has an unused parameter $syncCmdCreateEntry.  
+ ------ ----------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\DocumentGeneratorService.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\DocumentGeneratorService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\General\NotificationService.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\General\NotificationService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\ProductSoldService.php  
+ ------ ---------------------------------------------------------- 
+  126    Function dump not found.                                  
+ ------ ---------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\RemoteHistoricService.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\RemoteHistoricService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\Reports\HourByHourService.php                                                           
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  90     Access to constant RESTAURANT_OPENING_HOUR_DEFAULT on an unknown class AppBundle\Supervision\Service\Reports\Restaurant.  
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\Security\ResetPasswordService.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\Security\ResetPasswordService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\SyncCmdCreateEntryService.php                                      
+ ------ ----------------------------------------------------------------------------------------------------- 
+  47     Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RESTAURANTS.            
+  67     Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_SUPPLIERS.              
+  121    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RESTAURANT_PARAMETERS.  
+  121    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_ACTIONS.                
+  121    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_ROLES.                  
+  121    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_EXPENSE_LABELS.         
+  121    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RECIPE_TICKET_LABELS.   
+  121    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_CATEGORIES.             
+  121    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_PAYMENT_METHODS.        
+  121    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RESTAURANTS.            
+  121    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_SOLDING_CANALS.         
+  121    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_SUPPLIERS.              
+  239    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RESTAURANT_PARAMETERS.  
+  245    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RESTAURANT_PARAMETERS.  
+  259    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_CATEGORIES.             
+  267    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_CATEGORIES.             
+  267    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_CATEGORIES.             
+  283    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_USERS.                  
+  291    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_USERS.                  
+  291    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_USERS.                  
+  307    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_ROLES.                  
+  315    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_ROLES.                  
+  315    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_ROLES.                  
+  330    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_EXPENSE_LABELS.         
+  338    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_EXPENSE_LABELS.         
+  338    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_EXPENSE_LABELS.         
+  353    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RECIPE_TICKET_LABELS.   
+  361    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RECIPE_TICKET_LABELS.   
+  361    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RECIPE_TICKET_LABELS.   
+  377    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_SUPPLIERS.              
+ ------ ----------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\UsersManagement\VerifyingRoleService.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\UsersManagement\VerifyingRoleService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBiAPI\ExpenseService.php                                                                                
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBiAPI\ExpenseService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBiAPI\FileGenerationService.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBiAPI\FileGenerationService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBiAPI\InventoryService.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBiAPI\InventoryService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBiAPI\LossService.php                                                                                
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBiAPI\LossService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBiAPI\ParameterCheckService.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBiAPI\ParameterCheckService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBiAPI\RecipeService.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBiAPI\RecipeService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBiAPI\TransferService.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBiAPI\TransferService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\AbstractSyncService.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBoAPI\AbstractSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\CashboxCountsSyncService.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Service\WsBoAPI\CashboxCountsSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\ChestCountsSyncService.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBoAPI\ChestCountsSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\DepositsSyncService.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBoAPI\DepositsSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\EnveloppesSyncService.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBoAPI\EnveloppesSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\ExpensesSyncService.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBoAPI\ExpensesSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\InventorySyncService.php                                                                                
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBoAPI\InventorySyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\LossSyncService.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBoAPI\LossSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\RecipeTicketsSyncService.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Service\WsBoAPI\RecipeTicketsSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\SheetModelsSyncService.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBoAPI\SheetModelsSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\TicketsSyncService.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Service\WsBoAPI\TicketsSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Service\WsBoAPI\WithdrawalsSyncService.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Service\WsBoAPI\WithdrawalsSyncService was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Tests\Controller\DefaultControllerTest.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Tests\Controller\DefaultControllerTest was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Tests\Controller\ProductCategoriesControllerTest.php                                                                                
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Tests\Controller\ProductCategoriesControllerTest was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Twig\IsNumericExtension.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Twig\IsNumericExtension was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Twig\ParamsSyncParserService.php                                           
+ ------ ----------------------------------------------------------------------------------------------------- 
+  54     Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_SUPPLIERS.              
+  57     Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RESTAURANTS.            
+  60     Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_CATEGORIES.             
+  87     Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_SOLDING_CANALS.         
+  90     Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RECIPES.                
+  94     Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RIGHTS.                 
+  97     Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_ROLES.                  
+  100    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_ACTIONS.                
+  103    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_USERS.                  
+  106    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_RESTAURANT_PARAMETERS.  
+  109    Access to undefined constant AppBundle\General\Entity\SyncCmdQueue::DOWNLOAD_PAYMENT_METHODS.        
+ ------ ----------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Twig\ParamSyncExtension.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Twig\ParamSyncExtension was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Utils\CryptageHelpers.php                                                                                
+ ------ ----------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Utils\CryptageHelpers was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ----------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\Supervision\Validator\UniqueCodeRestaurantConstraint.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+         Class AppBundle\Validator\UniqueCodeRestaurantConstraint was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Validator\UniqueCodeRestaurantConstraintValidator.php                                                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Validator\UniqueCodeRestaurantConstraintValidator was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Validator\UniqueCodeSupplierConstraint.php                                                                                
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Validator\UniqueCodeSupplierConstraint was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src\AppBundle\Supervision\Validator\UniqueCodeSupplierConstraintValidator.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+         Class AppBundle\Validator\UniqueCodeSupplierConstraintValidator was not found while trying to analyse it - autoloading is probably not configured properly.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\ToolBox\Service\DocumentGeneratorService.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+         Internal error: Return value of PHPStan\PhpDocParser\Parser\TokenIterator::currentTokenValue() must be of the type string, null returned  
+         Run PHPStan with --debug option and post the stack trace to:                                                                              
+         https://github.com/phpstan/phpstan/issues/new                                                                                             
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src\AppBundle\ToolBox\Tests\Service\DocumentGeneratorServiceTest.php                                                                      
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+         Internal error: Return value of PHPStan\PhpDocParser\Parser\TokenIterator::currentTokenValue() must be of the type string, null returned  
+         Run PHPStan with --debug option and post the stack trace to:                                                                              
+         https://github.com/phpstan/phpstan/issues/new                                                                                             
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------- 
+  Line   src\AppBundle\ToolBox\Utils\Utilities.php  
+ ------ ------------------------------------------- 
+  314    Function ftp_connect not found.            
+  319    Function ftp_login not found.              
+  325    Function ftp_pasv not found.               
+  328    Function ftp_nlist not found.              
+  330    Function ftp_get not found.                
+  333    Function ftp_close not found.              
+  343    Function ftp_connect not found.            
+  348    Function ftp_login not found.              
+  354    Function ftp_pasv not found.               
+  356    Function ftp_put not found.                
+  359    Function ftp_close not found.              
+ ------ ------------------------------------------- 
+
+ [ERROR] Found 245 errors                                                                                               
+

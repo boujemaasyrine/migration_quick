@@ -1,0 +1,24 @@
+{% extends ":supervision/default:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .dropdown-content {
+            width: 120px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript"
+            src="{{ asset('src/js/Supervision/Merchandise/products_autocomplete.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    {% block blockTitle %}
+    {% endblock %}
+
+    {% block subBody %}
+    {% endblock %}
+{% endblock %}

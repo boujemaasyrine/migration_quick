@@ -1,0 +1,7 @@
+{{ form_start(form,{ 'action' : path('cancel_order',{'order':order.id}) }) }}
+<center>
+    <button onclick="$('#default-modal-box').modal('hide');" type="reset"
+            class="btn white black-text">{{ "btn.cancel"|trans }}</button>
+    <input type="submit" class="btn red" value="{{ "delete_order_yes_btn"|trans }}">
+</center>
+{{ form_end(form) }}

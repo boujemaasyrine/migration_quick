@@ -1,0 +1,37 @@
+{% extends "@Financial/CashBox/index_day_income.html.twig" %}
+
+{% block base_title %}
+    {{ 'title.daily_income'|trans() }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.cashbox_management'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div id="day_income">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ form_start(form,{'method' : 'POST' , 'attr' : { 'id' : 'day_income_form', 'class': '' } }) }}
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: right; margin-bottom: -68px; margin-top: 65px;">
+                        <a href="" id="view">
+                            <button  type="button" class="btn btn-print btn-icon" id="download-btn">
+                                {{ "btn.print"|trans }}
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        {{ form_label(form.date, 'keyword.date' ) }}
+                        {{ form_widget(form.date, { "attr": { "class": 'form-control datepicker' } }) }}
+                        {{ form_errors(form.date) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+                {% include('@Financial/CashBox/DayIncome/parts/day_income.html.twig') %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

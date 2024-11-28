@@ -1,0 +1,834 @@
+datatable:
+  processing: "Traitement en cours..."
+  search: "Rechercher&nbsp;:"
+  lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments"
+  info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments"
+  infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments"
+  infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)"
+  infoPostFix: ""
+  loadingRecords: "Chargement en cours..."
+  zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher"
+  emptyTable: "Aucune donnée disponible dans le tableau"
+  paginate:
+    first: "Premier"
+    previous: "Pr&eacute;c&eacute;dent"
+    next: "Suivant"
+    last: "Dernier"
+datepicker:
+  labelMonthNext: 'Suivant'
+  labelMonthPrev: 'Précédent'
+  labelMonthSelect: 'Chopisir un mois'
+  labelYearSelect: 'Selectionner une année'
+  monthsFull:
+    1: 'Janvier'
+    2: 'Février'
+    3: 'Mars'
+    4: 'Avril'
+    5: 'Mai'
+    6: 'Juin'
+    7: 'Juillet'
+    8: 'Août'
+    9: 'Septembre'
+    10: 'Octobre'
+    11: 'Novembre'
+    12: 'Décembre'
+  monthsShort:
+    1: 'Jan'
+    2: 'Fev'
+    3: 'Mar'
+    4: 'Avr'
+    5: 'Mai'
+    6: 'Jui'
+    7: 'Jui'
+    8: 'Aoû'
+    9: 'Sep'
+    10: 'Oct'
+    11: 'Nov'
+    12: 'Déc'
+  weekdaysFull:
+    1: 'Dimanche'
+    2: 'Lundi'
+    3: 'Mardi'
+    4: 'Mercredi'
+    5: 'Jeudi'
+    6: 'Vendredi'
+    7: 'Samedi'
+  weekdaysShort:
+    1: 'Dim'
+    2: 'Lun'
+    3: 'Mar'
+    4: 'Mer'
+    5: 'Jeu'
+    6: 'Ven'
+    7: 'Sam'
+  weekdaysLetter:
+    1: 'D'
+    2: 'L'
+    3: 'M'
+    4: 'M'
+    5: 'J'
+    6: 'V'
+    7: 'S'
+  today: "Aujourd'hui"
+  clear: "Effacer"
+  close: 'Fermer'
+Error:
+  general:
+    internal: "Une erreur interne s'est produite."
+form:
+  error: Une erreur s'est produite
+label:
+  action: "Action"
+  code: "Code"
+  code_plu: "Code PLU"
+  status: "Status"
+  name: "Nom"
+  mail: "Adresse email"
+  manager: "Responsable"
+  managerPhone: "Téléphone responsable"
+  managerEmail: "Email responsable"
+  address: "Adresse"
+  phone: "Téléphone"
+  type: "Type"
+  reference: "Référence"
+  group: "Groupe"
+  active: "Actif"
+  order: Ordre
+  orders_url: Url Import tickets
+  users_url: Url Import utilisateurs
+  withdrawal_url: URL Import prélèvements
+  wynd_user: Login
+  secret_key: "Clé d'authentification"
+  wynd_active: "Activation de l'importation"
+  opening_date: "Date de lancement"
+  optikitchen_path: "Optikitchen Path"
+  reusable :  Réutilisable
+btn:
+  validate: "Valider"
+  plus: "Ajouter"
+  close: "Fermer"
+  print: "Imprimer"
+  abort: "Abondonner"
+  add: "Ajouter"
+  modify: "Modifier"
+  edit: "Éditer"
+  cancel:  "Annuler"
+  copy: "Copier"
+  delete: "Supprimer"
+  delete_ligne: "Supprimer cette ligne"
+  save: "Enregistrer"
+  export: "Exporter"
+  export_duplicate_sales_item: "Exporter les items de vente dupliqués"
+  export_duplicate_inventory_item: "Exporter les items d'inventaire dupliqués"
+  deactivate: "Désactiver"
+  activate: "Activer"
+  reload: "Rafraîchir"
+  show: "Afficher"
+  view: Voir
+  download: "Télécharger"
+  download_report: "Télécharger le rapport"
+  download_pdf: "PDF"
+  download_csv: "CSV"
+  download_xls: "XLS"
+  download_excel: "EXCEL"
+  generate_report: "Afficher le rapport"
+  filter: "Filtrer"
+  synchronise: Synchroniser
+
+  select_all: Ajouter tout
+  view_envelope: Voir enveloppe
+  view_details: Voir détails
+
+  save: Sauvegarder
+tooltip:
+  select_all: Selectionner tout
+  click_to_open: Clicker pour ouvrir
+  deactivate_invetory_item_for_restaurants: Désactiver cet item d'inventaire pour un ou plusieurs restaurants
+  deactivate_product_sold_in_restaurants: Désactiver cet item de vente pour un ou plusieurs restaurants
+shortcut:
+  labels:
+    validate: Valider
+    print: Imprimer
+    quit_without_saving: Quitter sans valider
+    edit: Modifier
+    add: Ajouter
+    delete: Supprimer
+    create: Créer
+    quit: Quitter
+    action: Actions
+    cancel: Annuler
+    reference: Référence
+  key:
+    delete: SUPP
+keyword:
+  price: Prix
+  label: Libellé
+  code: Code
+  total: Total
+  yes: Oui
+  no: Non
+  help: Aides
+  article: Article
+  begin: Début
+  end: Fin
+  supplier: Fournisseur
+  suppliers: Fournisseurs
+  active: Actif
+  inactive: Inactif
+  toInactive: En cours de désactivation
+  status: Statut
+  restaurants: Restaurants
+  wynd_informations: Informations d'importation
+keywords:
+  close: Fermer
+  pending: En cours
+  with: Avec
+  without: Sans
+  category: Catégorie
+  categories: Catégories
+  period: Période
+  budget: Budget
+  time: Heure
+  provisional: Provisoire
+  definitive: Définitif
+  tva: TVA
+  comment: Commentaires
+  continue: Continuer
+  foodCost: FoodCost
+  paperCostDirect: PAPERCOST DIRECT
+  paperCostIndirect: PAPERCOST INDIRECT
+  theorical: THEORIQUE
+  gap: Différence
+  real: REEL
+  margin: MARGE
+  portion_control: Portions contrôle
+  in: Entrées
+  out: Sorties
+  loss: Pertes
+  consumption: Consommation
+  details: Détails
+  prefix_return: Retour
+  unspecified: Non spécifié
+  and: et
+  media: Média
+  total_media: Total Media
+  with_media: Par Média
+  exchange_rate: Taux de change
+  cash: Espèces
+  cash_gap: Ecart Caisse
+  chest_gap: Ecart Coffre
+  notification: Notifications
+  message: Message
+  reload: Actualiser
+  logout: Déconnexion
+  help: Aides
+  price: Prix
+  label: Libellé
+  quantite: Quantité
+  code: Code
+  total: Total
+  yes: Oui
+  no: Non
+  article: Item inventaire
+  unit: Unité
+  articles: Items inventaire
+  product_sold: Produit en vente
+  products_sold: Produits en vente
+  begin: Début
+  end: Fin
+  from: Du
+  to: Au
+  status: Statut
+  delivery: Livraison
+  transferIn: Transfert IN
+  transferOut: Transfert OUT
+  return: Retours
+  invoice: Facture
+  date: Date
+  fiscal_date: Date fiscale
+  week: Sem
+  month: Mois
+  date_comp: Date comp
+  amount: Montant
+  amount_ttc: Montant TTC
+  number: Numéro
+  envelope: Enveloppe
+  closing: Clôturé
+  restaurant: Restaurant
+  force_synchronize: Forcer la synchronisation
+  substitute: Substituer
+days:
+  monday: Lundi
+  tuesday: Mardi
+  wednesday: Mercredi
+  thursday: Jeudi
+  friday: Vendredi
+  saturday: Samedi
+  sunday: Dimanche
+units:
+  colis: COLIS
+  piece: PIECE
+  kilo: KILO
+  litre: LITRE
+  sachet: SACHET
+  barquette: BARQUETTE
+  gramme: GRAMME
+  centilitre: CENTILITRE
+  seau: SEAU
+  pile: PILE
+  bidon: BIDON
+  doos: DOOS
+  stuk: STUK
+  zakje: ZAKJE
+  stapel: STAPEL
+  centiliter: CENTILITER
+  portion: PORTION
+
+status:
+  active: Actif
+  inactive: Inactif
+  toInactive: En cours de désactivation
+
+canal:
+  pos: POS
+  website: Site Web
+  drive: Drive
+  borne: Bornes
+  delivery: Delivery
+period_label: Période
+
+# missed translations
+transformed_product: Produit transformé
+non_transformed_product: Produit non transformé
+provider:
+  list:
+    title: Gestion de la Liste des fournisseurs
+    add: Ajouter un fournisseur
+    edit: modifier le fournisseur
+    provider: Fournisseur
+    designation: Désignation
+    validate: Ajouter
+    phone: Téléphone
+    address: Adresse
+    action: Action
+    add_success: Fournisseur ajouté avec succès
+    edit_success: Fournisseur modifié avec succès
+    details: informations du fournisseur
+    delete: Supprimer le fournisseur
+    popUp_delete: Supprimer le Fournisseur
+    delete_success: Fournisseur supprimé avec succès
+    delete_fails: Un problème est survenu lors de la supression
+  planning:
+    title: Planning des fournisseurs
+    label: Choisir le fournisseur
+    category_label: Catégories
+    category_empty: Choisir la liste des catégories
+    supplier_select: Choisir le fournisseur
+    cancel: Annuler la saisie
+    verify_cancel: Vous en êtes sûr de vouloir annuler la saisie de ce planning?
+    delete: Supprimer la ligne
+    js:
+      error: Une erreur s'est produite
+      success: La ligne est supprimée avec succès
+restaurant:
+  type:
+    franchise: Franchisé
+    company: Compagnie
+    choose: Choisir Le type
+  list:
+    title: Gestion de la liste des Restaurants
+    add: Ajouter un restaurant
+    edit: Modifier le restaurant
+    supplier_list: Liste des fournisseurs
+    delete: Supprimer le restaurant
+    details: informations du restaurant
+    delete_success: Restaurant supprimé avec succès
+    add_success: Restaurant ajouté avec succès
+    edit_success: Restaurant modifié avec succès
+  form_error:
+    opening_date: "La date du lancement doit être supérieur ou égale à la date du jour."
+category:
+  list:
+    title: Gestion de la liste des catégories
+    label_help: Eligible à l'aide à la commande
+    group_select: Choisir le groupe
+    tvaBel: Taux TVA Belgique
+    tvaLux: Taux TVA Luxembourg
+    add: Ajouter une catégorie
+    edit: Modifier la catégorie
+    delete: Supprimer la catégorie
+    delete_success: Catégorie supprimée avec succès
+    add_success: Catégorie ajoutée avec succès
+    edit_success: Catégorie modifiée avec succès
+    choose_tva_bel: Choisir le taux de TVA au Belgique
+    choose_tva_lux: Choisir le taux de TVA à Luxembourg
+division:
+  empty_values: Pas de division
+solding_canal:
+  empty_values: Pas de canal de vente
+group:
+  list:
+    title: Gestion de la liste des groupes
+    add: Ajouter un groupe
+    delete: Supprimer le groupe
+    edit: Modifier le groupe
+    delete_success: Groupe supprimé avec succès
+    add_success: Groupe ajouté avec succès
+    edit_success: Groupe modifié avec succès
+  label:
+    is_food_cost: Foodcost
+item:
+  label:
+    unit_expedition: Unité de livraison
+    unit_inventory: Unité inventaire
+    unit_usage: Unité d'utilisation
+    inventory_qty: Unité d'inventaire dans unité de livraison
+    inventory_qty_abbr: Qty inventaire
+    category: Catégorie
+    status: Statut
+    reusable: Réutilisable
+    buying_cost: Prix d'achat
+    usage_qty: Unité d'usage dans unité d'inventaire
+  inventory:
+    title: Gestion des items inventaire
+    add: Ajouter un item inventaire
+    edit: "Modifier l'item inventaire %name%"
+    add_success: Item inventaire ajouté avec succès
+    delete: Changer le statut de l'item
+    delete_success: Item Inventaire supprimé avec succès
+    delete_fails: Un problème est survenu lors de la supression
+    deactivateDate: date de désactivation
+    startDateCmdItem: Date de début de commande de l'item
+    endDateCmdItem: Date de fin de commande de l'item
+    primary: Item primaire
+    secondary: Item Secondaire
+    choose_type: Choisir le type de l'item
+    choose_product: Choisir l'item secondaire
+    choose_category: Choisir la catégorie
+    choose_unit_expedition: Choisir l'unité de livraison
+    choose_unit_inventory: Choisir l'unité d'inventaire
+    choose_unit_usage: Choisir l'unité d'usage
+    choose_supplier: Choisir le fournisseur
+    deactivate: Désactiver l'item
+    activate: Activer l'Item
+    status_change_success: Changement de statut de l'Item Inventaire avec succès
+    status_change_fails: Un problème est survenu lors du changement du statut
+    details: Détails de l'item inventaire
+    substitute: Substituer l'item d'inventaire
+    choose_status: Choisir le statut
+    secondary_product: Produit Secondaire
+    synchro_date: Date de la synchronisation
+    deactivate_description: Veuillez choisir les restaurants dans lesquels l'item d'inventaire %inventory.item% sera désactivé
+    deactivate_success: L'item d'inventaire %inventory.item% a été désactivé avec succès dans le(s) restaurant(s) suivant(s): %restaurant%.
+    deactivate_failed: Opération échouée  pour le(s) restaurant(s) suivant(s): %restaurant%
+    is_not_activated_In_One_Of_The_Restaurants: L'item d'inventaire avec le nom %inventory.item% n'est pas activé dans aucun restaurant.
+
+product_sold:
+  title: Gestion des items de vente #Todo modified
+  vente_annexe: Vente annexe
+  list:
+    tile: Liste des items en vente
+  flashbag:
+    product_created_with_success: Produit mis à jour avec succès !
+  sub_titles:
+    new_product: Création d'un nouveau item de vente #Todo modified
+    old_product: Édition d'un item de vente déjà existant #Todo modified
+  btns:
+    add_recipe: Ajouter une recette/Canal de vente
+    add_recipe_line: Ajouter une ligne
+  labels:
+    name: Nom de l'item de vente
+    purchased_product: Nom de l'item d'inventaire
+    supplier_code: Code fournisseur
+    solding_canal: Canal des ventes
+    sub_solding_canal: Sous canal des ventes
+    division: Division
+    active: Statut
+    size: Taille
+    type: Type du produit en vente
+    recettes: Recettes
+    qty: Quantité d'usage
+    code_plu: Code PLU
+    default_revenu: Revenu par défault
+  deactivate_success: L'item de vente %product.sold% a été désactivé avec succès dans le(s) restaurant(s) suivant(s): %restaurant%.
+  deactivate_description: Veuillez choisir les restaurants dans lesquels l'item de vente %product.sold% sera désactivé.
+  deactivate_failed: Opération échouée  pour le(s) restaurant(s) suivant(s): %restaurant%.
+  is_not_activated_In_One_Of_The_Restaurants:  L'item de vente avec le nom %product.sold% n'est pas activé dans aucun restaurant.
+filter:
+  label: Filtres
+  supplier: Fournisseur
+  btn: Filtrer
+  delete_filter: Effacer le filtre
+validation:
+  unique_code_constraint: Ce code est déjà utilisé
+confirmation:
+  cancel:
+    title: Annuler la saisie
+    content: Vous êtes sur le point d'annuler vos modifications, confirmez vous cette opération?
+
+button:
+  parameters: Paramètres
+  download: "Télécharger"
+  download_report: "Télécharger le rapport"
+  download_pdf: "PDF"
+  download_csv: "CSV"
+  download_xls: "XLS"
+restaurant_parameter:
+  title: "Paramètres du restaurant %restaurant%"
+  payment_method: Modes de paiement
+  real_cash: Espèce
+  foreign_currency: Argent Étranger
+  ticket_restaurant: Titres restaurants
+  electronic_ticket_restaurant: Titres restaurants électronique
+  bank_card: Carte Bancaire
+  check_quick: Chèques Quick #Chèques Quick
+
+  check_bk: Chèques BK
+  update_success: "<h3>Paramètres du restaurant %restaurant%  a été mis à jour avec succès</h3>"
+success: Succès
+dayShort:
+  Mon: Lu
+  Tue: Ma
+  Wed: Me
+  Thu: Je
+  Fri: Ve
+  Sat: Sa
+  Sun: Di
+
+report:
+  period: Période demandée
+  discount: Discount
+  br: BR
+  period_to_compare: Comparabilité
+  loss:
+    inventory_item_title: Rapport des pertes des items inventaire
+    sold_item_title: Rapport des pertes des items de ventes
+  generate: Générer le rapport
+  inventory:
+    title: Pertes items inventaire
+  sold:
+    title: Pertes items de vente
+  sales:
+    hour_by_hour:
+      title: Heure par heure
+      ca_prev: CA Prévisionnel
+      ca_brut: CA Brut TTC
+      escompte_br: Escompte BR inclus
+      cumul_ticket: Cumul Ticket
+      tickets: Tickets
+      ticket: Ticket
+      avg_ticket: Ticket Moyen
+      cumul_ca_brut: Cumul CA Brut TTC
+  food_cost:
+    synthetic:
+      title: Synthétique Foodcost
+      sold_pr_ht: Ventes PR HT
+      fc_mix: FC Mix
+      ideal_fc: FC Idéal
+      loss_inventory: Pertes I.Inv
+      loss_sold: Pertes I.Vts
+      known_loss: Pertes Connues
+      unknown_loss: Pertes Inconnues
+      total_loss: Pertes Totales
+      theorical_fc: FC Théorique
+      theorical_margin: Marge Théorique
+      initial_stock: Stock Inital
+      in: Entrées
+      out: Sorties
+      final_stock: Stock Final
+      real_consomation: Conso Réelle
+      real_fc: FC Réel
+      real_margin: Marge Réelle
+      real_fc_net: FC Réel Net
+      brut_margin: Marge Brute
+    margin:
+      title: Marge FoodCost
+      mix_ca_ttc: Food cost Mix C.A T.T.C.
+      ideal_ht: Food cost Ideal HT
+      total_loss: Pertes totales
+      theorical_foodcost: Food Cost Théorique
+      net_sold: Ventes Nettes H.T.
+      real_foodcost: Food Cost Réel
+      voucher_pub: Food cost - discount
+      voucher_meal_foodcost: Food cost - Bons repas
+      net_real_foodcost: Food cost réel net
+      net_real_margin: Marge réelle net
+      period: Période sélectionnée
+      margin_pf: Marge P.F
+      voucher_meal: Bon repas
+      ca_ht: C.A.H.T.
+      theorical_margin: Marge Theorique
+  ca:
+    ca_brut_ttc: CA Brut TTC
+    ca_net_ht: CA NET HTVA
+    net_ttc: Net TTC
+  daily_result:
+    title: Résultats journaliers
+    chest_error: Err. Coffre
+    avg_net_ticket: TM Net
+    inventory_loss: % Pertes I.Inv
+    sold_loss: % Pertes I.Vts
+    diff_caisse: Diff. de caisse
+  hour_by_hour:
+    title: Heure par heure
+  product_purchase:
+    title: Achat des Produits
+    restaurant_number: Numéro de restaurant
+    order_date: Date de commande
+    delivery_date: Date de livraison
+    delivery_number: Numéro de livraison
+    item_number: Numéro de produit
+    item_description: Description de produit
+    quantity: Quantité
+    transfer_number: Numéro de transfer
+    transfer_date: Date de transfer
+    transfer_in: Transfer IN
+    transfer_out: Transfer OUT
+    delivery: Livraison
+budget_label: Budget
+generate_report: Afficher le rapport
+labels:
+  sold_item: "Item de vente"
+  inventory_item: "Item inventaire"
+  value: "valeur"
+  comparable: Jour Comparable
+  role: Fonction
+  roles: Fonctions
+  old_password: "Ancien mot de passe"
+  confirm_password: Confirmation
+  password: Mot de passe
+  confirm_password: Confirmation
+  rights: Droits
+article: Items Inventaire
+finalProduct: Items ventes
+generated_at: Document généré le
+
+expense:
+  group:
+    GROUP_BANK_CASH_PAYMENT:  Versement banque espèces
+    GROUP_BANK_RESTAURANT_PAYMENT: Versement titres restaurant #TODO modified
+    GROUP_BANK_E_RESTAURANT_PAYMENT: Versement titres rastaurant électronique #TODO modified
+    GROUP_BANK_CARD_PAYMENT: Versement carte bancaire #TODO modified
+    GROUP_ERROR_COUNT: Erreur comptage
+    error_cashBox: Erreur compatage caisse
+    GROUP_OTHERS: Autres
+  label:
+    cashbox_count: Comptage caisse
+recipe_ticket:
+  change_recipe: Réception monnaie
+  various: Argent toilette
+  wc_money: Divers
+  cashbox_error: Comptage caisse  - CA Réel - Erreur caisse #Erreur caisse
+  chest_error: Erreur coffre
+  cachbox_recipe: Comptage caisse  - CA Théorique #Comptage caisse
+users:
+  management: Gestion des Utilisateurs
+  list:
+    title: Liste des utilisateurs
+    add: Ajouter un utilisateur central
+    edit: "Modifier l'utilisateur %name%"
+    choose_role: Choisir une fonction
+    add_success: Liste utilisateurs mise à jour avec succès
+    details: Informations sur l'utilisateur central
+    eligible_restaurant: Resataurants éligibles
+    delete: Supprimer l'utilisateur
+    delete_confirm: <h3>Vous êtes sur le point de supprimer l'utilisateur '%username%', Confirmez vous cette opération?</h3>
+    delete_success: Utilisateur supprimé avec succès
+
+  username: Login
+  first_name: Prénom
+  last_name: Nom
+rights_roles:
+  success: Droits modifiés avec succès
+parameters:
+  title: Paramètres
+  right_role: Gestion Droits
+  restaurant: Restaurant
+  central: Central
+  financial_management:
+    delete: Supprimer le libellé
+    add: Ajouter un nouveau libellé #Todo new
+    edit: Modifier un libellé #Todo new
+    delete_confirm: <h3>Vous êtes sur le point de supprimer le libellé '%label%', Confirmez vous cette opération?</h3>
+    delete_success: Libellé supprimé avec succès
+    add_success: Libellé ajouté avec succès
+    modify_success: Libellé modifié avec succès
+
+roles:
+  title: Gestions des fonctions
+  choose_type: Choisir le type
+  add_success: Fonction ajoutée avec succès
+  edit_success: Fonction modifiée avec succès
+  delete: Supprimer la fonction
+  add: Ajouter une nouvelle fonction #Todo new
+  edit: Modifier une fonction #Todo new
+  delete_confirm: <h3>Vous êtes sur le point de supprimer la fonction '%role%', Confirmez vous cette opération?</h3>
+  delete_success: Fonction supprimée avec succès
+  delete_failed_title: Suppression impossible
+  delete_failed_body: <h3>Veuillez supprimer la liste des droits pour cette fonction et vérifier qu'elle n'est pas affectée à aucun utilisateur pour pouvoir le supprimer</h3>
+  last_name: Nom
+
+#Rapport Contrôle du Stock
+control_stock:
+  title: Controle du Stock
+  start_date: Date début
+  end_date: Date fin
+  sheet_model: Modèle de Feuille
+  total: Total
+  diff: Différence
+  inventory_unit: Unité d'inventaire
+  coef: Coef
+  en_stock: En Stock
+  need: Besoin
+  delivery: Liv
+  stock_liv: Stock + Livraison
+  total_need: Total Besoin
+  ca_prev: CA Prévisionnel
+  cumul_ca: Cumul des CA Prévisionnels
+  dlc_1: DLC 1
+  dlc_2: DLC 2
+  transfers_pending: Transfert en cours
+  base_calcul: Base du Calcul
+  ca: Chiffre d'affaire
+  rapport_title: Rapport Contrôle du Stock
+  document_generated: Document généré le
+progress.calcul_result: Résultat
+months:
+  jan: 'Janvier'
+  feb: 'Février'
+  mar: 'Mars'
+  apr: 'Avril'
+  mai: 'Mai'
+  jun: 'Juin'
+  jul: 'Juillet'
+  aug: 'Août'
+  sep: 'Septembre'
+  oct: 'Octobre'
+  nov: 'Novembre'
+  dec: 'Décembre'
+list:
+  group:
+    message_edit_success: "<h4>Le groupe '%name%' a été modifié avec succès</h4>"
+    message_add_success: "<h4>Le groupe '%name%' a été ajouté avec succès</h4>"
+inventory-item-plus-success: "L'item Inventaire '%name%' a été ajouté avec succès"
+inventory-item-edit-success: "L'item Inventaire '%name%' a été modifié avec succès"
+
+language:
+  frensh: Français
+  dutch: Néerlandais
+  fr: Langue Française
+  nl: Langue Neerlandaise
+  label: Langue par défaut
+  change: Modification de la langue par défaut
+  change_confirm: Langue par défaut modifiée avec succès!
+
+country:
+  label: Pays
+  bel: Belgique
+  lux: Luxembourg
+
+profile:
+  title: Profil
+  details: Votre Informations
+  change_password:
+    title: Modification de mot de passe
+    confirm: Mot de passe modifié avec succès!
+
+cancel:
+  confirmation:
+    title: Annulation de la saisie
+    content: Souhaitez-vous vraiment annuler vos modifications ?
+restaurant-edit-success: "Le restaurant '%name%' a été modifié avec succès"
+restaurant-plus-success: "Le restaurant '%name%' a été ajouté avec succès"
+
+restaurant-list-add: "Ajouter un restaurant"
+restaurant-list-edit: "Modifier le restaurant '%name%'"
+
+choose_unit_expedition: Unité de livraison
+choose_unit_inventory: Unité d'inventaire
+choose_unit_usage: Unité d'usage
+yes_confirm: Oui, annuler mes modifications
+choose_restaurant: Choisir un restaurant
+
+product_sold.revenu_price: Coût de revient
+product.synchronization_message: "Vous êtes sur le point de forcer la synchronisation du produit <strong class='bold'>%product%</strong> vers : <br/> <ul>%restaurants%</ul>"
+product.synchronization_title: Forcer la synchronisation
+synchro_order_launched: "Une demande de synchronisation du produit %product% a été lancé vers les restaurants: %restaurants%"
+
+# TODO
+parameters_financial_management_edit: "Modifier le libellé %name%"
+parameters_financial_management_add_expense: Ajouter un libellé de bon de dépense
+parameters_financial_management_add_recipe: Ajouter un libellé de bon de recette
+manage_rights: Gestion des droits
+roles_list_edit: "Modifier la fonction %label%"
+roles_list_add: Ajouter une fonction
+central_role: Fonction centrale
+access_bo_restaurants: Accès aux BO restaurants
+password_confirmation: Confirmation du mot de passe
+synchro_order_launched: "Une demande de synchronisation du produit %product% a été lancé vers les restaurants: %restaurants%"
+
+allcanals: Tous canaux
+onsite: Sur place
+takeaway: A emporter
+drive: Drive
+walk: Walk
+delivery: Delivery
+edit_synchronize_immediately: Editer et synchroniser immédiatement
+plus_synchronize_immediately: Ajouter et synchroniser immédiatement
+validate_synchronize_immediately: Valider et synchroniser immédiatement
+
+
+synchronisation_date: Date de la prochaine synchronisation
+last_synchronisation_date: Date de la derniére synchronisation
+
+#todo
+pw_label: Mot de passe
+username_label: Non d'utilisateur
+connect: Se connecter
+stay_connected:  Rester connecté
+pw_forgotten: Mot de passe oublié
+mail_adresse: Adresse email
+reset_password: Initialiser mot de passe
+user_not_found: Aucun utilisateur trouvé pour l'email indiqué
+pw_reset_success: Mot de passe réinitialisé avec succès
+pw_reset_send_mail_fail: Echec lors de l'envoi du mail
+
+go_back_restaurant_list: Retourner à la liste des restaurants
+restaurant_supervision: Supervision des restaurants
+rapport_supervision_quick: Rapport de synchronisation du
+connected: Connecté
+disconnected: Déconnecté
+state: Etat
+historic_broadcast_all_restaurants: Historique des broadcasts vers les restaurants
+restaurant_supervision: Supervision des restaurants
+
+documentation_label: Documentation
+changlog_label: Changlog
+
+# TODO
+missing_pluS:
+  subject_mail: Notification des Plu'S manquants
+  title: Plu'S manquants
+  body: les recettes des PLU suivants:
+  prefix: Code Plu:
+  endBody: sont introuvables dans ces restaurants
+recipe_label: LabelBonDeRecette
+expense_label: LabelBonDeDepense
+
+id_inventory_item: ID produit inventaire
+id_recipe: ID recette
+id_sold_item: ID item vente
+code_inventory_item: Code item inventaire
+name_inventory_item: Nom item inventaire
+price_of_line: Prix de la ligne
+price_of_recipe: Prix de la recette
+id_recipe_line: ID ligne de recette
+
+product_substituted_with_success: Produit substituer avec succès!
+product_substitute_now_recipe: Aucune recette ne correspond à ce produit!
+
+# TODO
+keyword_access: Accéder au BO
+
+non_comparable_day: Jour Non Comparable
+avg_tm_brut: TM Brut

@@ -1,0 +1,42 @@
+<style>
+    ul.admin-closing {
+        padding: 0px;
+        list-style: none;
+        width: 100%;
+    }
+
+    ul.admin-closing li {
+        display: inline-block;
+        color: #515253;
+        width: 16%;
+        text-align: center;
+        padding: 10px;
+        font-weight: bold;
+        height: 85px;
+        vertical-align: top;
+        background: #fcfcfc;
+    }
+
+    ul.admin-closing li.active {
+        display: inline-block;
+        color: white;
+        background-color: #5d9cec;
+    }
+</style>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <ul class="admin-closing">
+                    <li {% if admin_closing_1_step is defined %} class="active" {% endif %}>1. {{ 'admin_closing.kiosk_eordering_counting'|trans() }}  {{ administrative_closing_service.getCurrentClosingDate|date('d/m/Y') }} </li>
+                    <li {% if admin_closing_2_step is defined %} class="active" {% endif %}>2. {{ 'admin_closing.varify_day_income'|trans() }}  {{  administrative_closing_service.getCurrentClosingDate|date('d/m/Y')}}  </li>
+                    <li {% if admin_closing_3_step is defined %} class="active" {% endif %}>3. {{ 'admin_closing.bank_deposit'|trans() }}  {{  administrative_closing_service.getCurrentClosingDate|date('d/m/Y') }} </li>
+                    <li {% if admin_closing_4_step is defined %} class="active" {% endif %}>4.  {{ 'admin_closing.check_withdrawal_envelope'|trans() }}  {{ administrative_closing_service.getCurrentClosingDate|date('d/m/Y') }} </li>
+                    <li {% if admin_closing_5_step is defined %} class="active" {% endif %}>5.  {{ 'admin_closing.coffre_count'|trans() }}  {{ administrative_closing_service.getCurrentClosingDate|date('d/m/Y') }} </li>
+                    <li {% if admin_closing_6_step is defined %} class="active" {% endif %}>6.  {{ 'admin_closing.comprable_day'|trans() }} </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

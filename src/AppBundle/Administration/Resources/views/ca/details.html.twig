@@ -1,0 +1,259 @@
+{% set m1 = (values[1] + values[2] + values[3] + values[4])/4 %}
+{% set m2 = (values[5] + values[6] + values[7] + values[8])/4 %}
+
+
+     {% if m2 != 0 %}
+         {% set oldVariance = (m1 - m2)/m2 %}
+     {% else %}
+         {% set oldVariance = 0 %}
+     {% endif %}
+
+
+
+<div>
+    <form id="ca-detailed-form">
+
+        <div class="row">
+            <div class="col-xs-4">
+                <div style="padding-right: 5px">
+                    <div class="row">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <label for="comparable_day">{{ 'label.comparable'|trans }}</label>
+                                        <input name="comparable_date" value="{{ ca.comparableDay|date('d/m/Y') }}"
+                                               type="text"
+                                               class="datepicker form-control" id="comparable_day">
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div style="font-size: 2.2em;" id="ca_comparable_day">
+                                            {{ comparable_day_ca|number_format(2,',','') }} (&euro;)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <label>{{ 'label.variance'|trans }}</label>
+
+                                        <div>
+                                            <span style="font-size: 2.2em;"
+                                                  id="variance">{{ (variance* 100)|number_format(2,',','') }}</span>
+                                            <span style="font-size: 2.2em;">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col-xs-4 -->
+
+            <div class="col-xs-8">
+                <div style="padding-left: 5px">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th><label>{{ 's_1_label'|trans() }} </label></th>
+                                    <th><label>{{ 's_2_label'|trans() }} </label></th>
+                                    <th><label>{{ 's_3_label'|trans() }} </label></th>
+                                    <th><label>{{ 's_4_label'|trans() }} </label></th>
+                                    <th><label> {{ 'moyenne_label'|trans() }} </label></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="ca-table-line">
+                                    <td><label> {{ 'year_n'|trans() }} </label></td>
+                                    <td>
+                                        <input id="date_1" name="date[1]" type="text" class="datepicker form-control"
+                                               value="{{ ca.date1|date('d/m/Y') }}">
+
+                                        <div class="value-1 ca-value">
+                                            <span id="ca-1">{{ values[1]|number_format(2,',','') }}</span> &euro;
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="date_2" name="date[2]" type="text" class="datepicker form-control"
+                                               value="{{ ca.date2|date('d/m/Y') }}">
+
+                                        <div class="value-2 ca-value">
+                                            <span id="ca-2">{{ values[2]|number_format(2,',','') }}</span> &euro;
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="date_3" name="date[3]" type="text" class="datepicker form-control"
+                                               value="{{ ca.date3|date('d/m/Y') }}">
+
+                                        <div class="value-3 ca-value">
+                                            <span id="ca-3">{{ values[3]|number_format(2,',','') }}</span> &euro;
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="date_4" name="date[4]" type="text" class="datepicker form-control"
+                                               value="{{ ca.date4|date('d/m/Y') }}">
+
+                                        <div class="value-4 ca-value">
+                                            <span id="ca-4">{{ values[4]|number_format(2,',','') }}</span> &euro;
+                                        </div>
+                                    </td>
+                                    <td class="sum">
+                                        <span id="m-1">{{ m1|number_format(2,',','') }}</span> (&euro;)
+                                    </td>
+                                </tr>
+                                <tr class="ca-table-line" style="border-bottom: none;">
+                                    <td><label>{{ 'year_n_1'|trans() }}</label></td>
+                                    <td>
+                                        <input id="date_5" name="date[5]" type="text" class="datepicker form-control"
+                                               value="{{ ca.date5|date('d/m/Y') }}">
+
+                                        <div class="value-5 ca-value">
+                                            <span id="ca-5">{{ values[5]|number_format(2,',','') }}</span> &euro;
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="date_6" name="date[6]" type="text" class="datepicker form-control"
+                                               value="{{ ca.date6|date('d/m/Y') }}">
+
+                                        <div class="value-6 ca-value">
+                                            <span id="ca-6">{{ values[6]|number_format(2,',','') }}</span> &euro;
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="date_7" name="date[7]" type="text" class="datepicker form-control"
+                                               value="{{ ca.date7|date('d/m/Y') }}">
+
+                                        <div class="value-7 ca-value">
+                                            <span id="ca-7">{{ values[7]|number_format(2,',','') }}</span> &euro;
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="date_8" name="date[8]" type="text" class="datepicker form-control"
+                                               value="{{ ca.date8|date('d/m/Y') }}">
+
+                                        <div class="value-8 ca-value">
+                                            <span id="ca-8"> {{ values[8]|number_format(2,',','') }}</span> &euro;
+                                        </div>
+                                    </td>
+                                    <td class="sum ">
+                                        <span id="m-2">{{ m2|number_format(2,',','') }}</span> (&euro;)
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-xs-5">
+                            <h5>
+                                {% set nDay = 'datepicker.weekdaysFull.'~(ca.date|date('w')+1) %}
+                                {{ 'ca_prev_for'|trans() }}
+                                <div style="font-weight: bolder">
+                                    {{ nDay|trans }} {{ ca.date|date('d/m/Y') }}
+                                </div>
+                            </h5>
+                        </div>
+                        <div class="col-xs-3">
+                            <label> {{ 'bud_calculated'|trans() }} <span style="display: none;" id="refresh-icon"
+                                                                         class="glyphicon glyphicon-refresh "></span>
+                            </label>
+
+                            <div style="font-size: 2.2em;" id="calculated-ca">
+                                {{ ((comparable_day_ca * oldVariance)+comparable_day_ca)|round }} (&euro;)
+                            </div>
+                        </div>
+                        <div class="col-xs-1" style="padding: 0px;">
+                            <div style="min-width: 75px !important; padding-top: 20px; ">
+                                {% if false == ca.isTyped %}
+                                    {% set calculated_checked = 'checked' %}
+                                    {% set typed_checked = '' %}
+                                {% else %}
+                                    {% set calculated_checked = '' %}
+                                    {% set typed_checked = 'checked' %}
+                                {% endif %}
+
+                                <input id="ca_to_be_sended_calculated" name="ca_to_be_sended" type="radio"
+                                       value="calculated" {{ calculated_checked }}>
+                                <label for="ca_to_be_sended_calculated"> </label>
+                                <input id="ca_to_be_sended_typed" name="ca_to_be_sended" type="radio"
+                                       value="typed" {{ typed_checked }}>
+                                <label for="ca_to_be_sended_typed"></label>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <label for="ca_typed">{{ 'bud_typed'|trans() }}</label>
+
+                            <div class="input-group" style="width: 150px;">
+                                <input name="ca_typed" id="ca_typed" class="form-control ca-typed"
+                                       style="padding: 3px 0px 3px 5px !important;" value="{{ ca.ca|round }} ">
+
+                                <div style="font-size: 2.0em !important;" class="input-group-addon">(&euro;)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+    <br><br>
+
+    <div class="row">
+        <div class="col-xs-7"></div>
+        <div class="col-xs-5" style="text-align: right">
+            <button onclick="$('#default-modal-box').modal('hide')" class="btn btn-cancel">
+                {{ 'btn.cancel'|trans() }}
+            </button>
+            <button {{ securityChecker.disableBtn('bud_prev_edit') }} type="button" ca-id="{{ ca.id }}" id="save-ca"
+                                                                      class="btn green ">
+                <span class="glyphicon glyphicon-ok "></span> {{ "btn.save"|trans }}
+            </button>
+        </div>
+    </div>
+
+</div>
+<script>
+    $('input[type=radio][name=ca_to_be_sended]').on('change', function() {
+        switch($(this).val()) {
+            case 'calculated':
+                var variance= parseFloat("{{ oldVariance}}");
+                variance=variance * 100;
+                $('#variance').text(variance.toFixed(2));
+                break;
+            case 'typed':
+                var caTyped = parseFloat($('#ca_typed').val());
+                var caComparableDay= parseFloat("{{ comparable_day_ca }}");
+                var variance = (caTyped - caComparableDay) / caComparableDay ;
+                variance=variance * 100;
+                $('#variance').text(variance.toFixed(2));
+                break;
+        }
+    });
+
+    $('#ca_typed').keyup(function() {
+        var caTyped = parseFloat($('#ca_typed').val());
+        var caComparableDay= parseFloat("{{ comparable_day_ca }}");
+        var variance = (caTyped - caComparableDay) / caComparableDay ;
+        variance=variance * 100;
+        $('#variance').text(variance.toFixed(2));
+    });
+</script>

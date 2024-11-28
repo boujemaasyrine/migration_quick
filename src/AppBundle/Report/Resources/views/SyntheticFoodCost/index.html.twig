@@ -1,0 +1,98 @@
+{% extends('@Report/MerchandiseManagement/index.html.twig') %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Report/synthetique_food_cost.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block base_title %}
+    {{ 'report.food_cost.synthetic.title'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                <div id="form-container">
+                    {% include '@Report/SyntheticFoodCost/form_filter.html.twig' with { 'form' : form } %}
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: right">
+
+                        <button type="button" class="btn btn-export btn-icon dropdown-button"
+                                data-activates='dropdown2'>
+                            <span class=""> {{ 'btn.export'|trans() }} </span>
+                        </button>
+                        <ul id="dropdown2" class="dropdown-content">
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="export-btn-foodcost">
+                                    <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}" style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="export-excel-btn-foodcost">
+                                    <img src="{{ asset('bundles/app/images/export/xls-512.png') }}" style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_excel'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_excel'|trans() }}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <button data-toggle="tooltip"
+                                data-placement="top"
+                                title="Ce bouton permet de re calculer le rapport sur la période séléctionnée. <br> (Le calcul va prendre un peu du temps)"
+                                data-html="true"
+                                id="generate_foodcost_synthetic_force"
+                                type="button" class="btn orange"
+                                style="margin-left: 20px;">
+                            {{ 'report.force_generation'|trans() }}
+                        </button>
+
+                        <button type="button" class="btn" style="margin-left: 15px;"
+                                id="generate_foodcost_synthetic">
+                            {{ 'btn.generate_report'|trans() }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default" id="progress" style="display: none;">
+        <div class="panel-body">
+            <div class="container-fluid" id="progress-bars-container" style="display: none">
+                <div class="row" id="report-progress">
+                    <div class="col-xs-12 progress-container">
+                        <div class="progress-hint">
+                            {{ 'progress.calcul_result'|trans() }} <span class="progress-hint-per"></span>
+                        </div>
+                        <div class="progress" style="height: 25px; background-color: #f5f5f5 !important">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                 aria-valuenow="45"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 style="width: 0%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="data-zone">
+                {% if data is defined %}
+
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

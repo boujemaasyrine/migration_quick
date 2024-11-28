@@ -1,0 +1,18 @@
+locals {
+  #Container_Registry
+  bk_docker_registry_repository       = ""
+  bk_docker_image_prod_tag            = ""
+  bk_docker_image_dev_tag             = ""
+  
+  #Database_Server
+  bk_db_administrator_login           = ""
+  bk_db_administrator_password        = ""
+  bk_storage_mb                       = ""
+  bk_primary_zone                     = ""
+
+  #DNS
+  bk_dns_name                         = ""  #record_name + dns_zone_name
+
+  #SSL_Certificate
+  bk_cert_secret_id                   = ""
+}

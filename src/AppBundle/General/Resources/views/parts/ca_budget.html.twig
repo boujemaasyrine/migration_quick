@@ -1,0 +1,21 @@
+<script>
+    var data2 = [
+        {
+            "label": Translator.trans('ca_net_htva', 'message'),
+            "color": "#9cd159",
+            "data": [
+                {% for dayResult in dayResults %}
+                ["{{ dayResult.day|date('d/m') }}",{{ dayResult.caNetHt | number_format(2, '.', '') }}],
+                {% endfor %}
+            ]
+        }, {
+            "label": Translator.trans('ca_net_htva_n-1', 'message'),
+            "color": "#2f80e7",
+            "data": [
+                {% for dayResult in dayResults %}
+                ["{{ dayResult.day|date('d/m') }}", {{ dayResult.caNetNOne | number_format(2, '.', '') }}],
+                {% endfor %}
+            ]
+        }
+    ];
+</script>

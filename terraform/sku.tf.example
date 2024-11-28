@@ -1,0 +1,29 @@
+variable "gw_sku" {
+  type    = string
+  default = "WAF_v2"
+}
+
+variable "as_bk_sku_name" {
+  type    = string
+  default = "P1v2"
+}
+
+variable "as_quick_sku_name" {
+  type    = string
+  default = "P1v2"
+}
+
+variable "db_server_quick_sku_name" {
+  type    = string
+  default = "GP_Standard_D4s_v3"
+}
+
+variable "db_server_bk_sku_name" {
+  type    = string
+  default = "GP_Standard_D4s_v3"
+}
+
+variable "db_server_test_sku_name" {
+  type    = string
+  default = "GP_Standard_D4s_v3"
+}

@@ -1,0 +1,100 @@
+{% extends('@Report/MerchandiseManagement/index.html.twig') %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#<script src="{{ asset('src/js/Report/hour_by_hour.js') }}"></script>#}
+{% endblock %}
+
+{% block base_title %}
+    {{ 'report.sales.hour_by_hour_employee.title'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'reports.title'|trans([], 'navbar') }} - {{ 'reports.financial_revenue.title'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                {{ form_start(form, {'method' : 'POST' ,'action' : path('hour_by_hour_employee') }) }}
+                <div class="row">
+                    <div class="col col-lg-1 col-md-1 col-xs-6">
+                         <label class="required">
+                             {{ 'keyword.from' |trans }}
+                         </label>
+                    </div>
+                    <div class="col col-lg-2 col-md-2 col-xs-6">
+                        <div class="input-group">
+                            {{ form_widget(form.from, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.from) }}
+                    </div>
+                    <div class="col col-lg-1 col-md-1 col-xs-6">
+                        <label class="required">
+                            {{ 'keyword.to' |trans }}
+                        </label>
+                    </div>
+                    <div class="col col-lg-2 col-md-2 col-xs-6">
+                        <div class="input-group">
+                            {{ form_widget(form.to, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.to) }}
+                    </div>
+                    <div class="col col-lg-1 col-md-1 col-xs-6">
+                        <label class="required">
+                            {{ 'report.sales.hour_by_hour.calculate_by' |trans }}
+                        </label>
+                    </div>
+                    <div class="col col-lg-2 col-md-2 col-xs-6">
+                        {{ form_widget(form.scheduleType, { "attr": { "class": 'form-control'} } ) }}
+                        {{ form_errors(form.scheduleType) }}
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-md-12 col-xs-12" style="text-align:right;">
+                        {% if(generated is defined) %}
+                            <button class="btn waves-effect btn-export text-black dropdown-button"
+                                    data-activates='dropdown2'>
+                                <span> {{ 'btn.export'|trans() }} </span>
+                            </button>
+                            <ul id="dropdown2" class="dropdown-content" style="">
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="downloadReport">
+                                        <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                    </a></li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-xls">
+                                        <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+
+                        <button type="submit" class="btn waves-effect orange text-black " id="generateReport">
+                            {{ 'btn.generate_report'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    {% if(generated is defined) %}
+    {% if scheduleType == 0 %}
+         {{ include('@Report/SalesManagement/HourByHourEmployee/body_report_hour_by_hour_employee.html.twig', {'currentHour':currentHour}) }}
+    {% else %}
+        {{ include('@Report/SalesManagement/HourByHourEmployee/body_report_hour_by_Quart_hour_employee.html.twig', {'currentHour':currentHour}) }}
+    {% endif %}
+    {% endif %}
+
+{% endblock %}

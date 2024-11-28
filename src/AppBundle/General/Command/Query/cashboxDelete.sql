@@ -1,0 +1,13 @@
+DELETE FROM cashbox_bank_card where bank_card_container_id in (select id from cashbox_bank_card_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate));
+DELETE FROM cashbox_bank_card_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate);
+DELETE FROM cashbox_check_quick where check_quick_container_id in (select id from cashbox_check_quick_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate));
+DELETE FROM cashbox_check_quick_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate);
+delete from cashbox_ticket_restaurant where check_restaurant_container_id in (select id from cashbox_check_restaurant_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate));
+delete from cashbox_check_restaurant_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate);
+delete from cashbox_discount_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate);
+delete from cashbox_foreign_currency where foreign_currency_container_id in (select id from cashbox_foreign_currency_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate));
+delete from cashbox_foreign_currency_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate);
+delete from cashbox_meal_ticket where meal_ticket_container_id in (select id from cashbox_meal_ticket_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate));
+delete from cashbox_meal_ticket_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate);
+delete from cashbox_real_cash_container where cashbox_id in (select id from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate);
+delete from cashbox_count where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate

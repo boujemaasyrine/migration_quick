@@ -1,0 +1,49 @@
+{% extends '@Merchandise/index_stock.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Loss/list.js') }}"></script>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/Merchandise/merchandise.css') }}">
+{% endblock %}
+
+{% block base_title %}
+    {{ 'loss.check.title' | trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'loss_management.title'|trans([], 'navbar') }} - {{ 'reports.merchandise_management.inventory_item'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <div class="loss-list-table">
+        <div class="panel panel-default">
+            <div class="panel-body" style=" padding-top: 0px;     padding-bottom: 0px; ">
+                <div class="row">
+                    {{ form_start(lossTypeForm,{'attr': {'id': 'lossSetForm'} }) }}
+                    <div class="col l4 m4 s12">
+                        {{ form_label(lossTypeForm.type) }}
+                        {{ form_widget(lossTypeForm.type, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_errors(lossTypeForm.type) }}
+
+                    </div>
+                    {{ form_rest(lossTypeForm) }}
+                    {{ form_end(lossTypeForm) }}
+                    <div class="col l8 m8 s12" id="consult_form">
+                    </div>
+                </div>
+                <div id="consult_loss_table">
+                </div>
+
+                <div class="row">
+                    <div class="hidden-xs hidden-sm col-md-8">
+                            <span class="shortcut-lab">
+                                <span class="keybored-key-icon">F7</span> : {{ 'help_order_title'|trans }}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

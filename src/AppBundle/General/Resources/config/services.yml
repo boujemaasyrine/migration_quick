@@ -1,0 +1,61 @@
+imports:
+  #  - { resource: sync_services.yml }
+    - { resource: download_services.yml }
+
+services:
+    general.fisacal_date:
+        class: AppBundle\General\Service\FiscalDateService
+        arguments: ["@doctrine.orm.entity_manager"]
+    general.format:
+        class: AppBundle\General\Service\FormatService
+
+    app.locale_listener:
+        class: AppBundle\General\EventListener\LocaleListener
+        arguments: ['%kernel.default_locale%']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    missing.plu.service:
+            class: AppBundle\General\Service\Remote\General\MissingPluNotification
+            arguments: ["@doctrine.orm.entity_manager"]
+
+    notification.service:
+        class: AppBundle\General\Service\NotificationService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "@mailer"
+            - "@missing.plu.service"
+            - "@templating"
+            - "%sender_adress%"
+
+#    bo_status.service:
+#        class: AppBundle\General\Service\BOStatusService
+#        arguments:
+#            - "@doctrine.orm.entity_manager"
+#            - "@download.ping.service"
+    dashboard.service:
+        class: AppBundle\General\Service\DashboardService
+        arguments: [ "@doctrine.orm.entity_manager","@restaurant.service"]
+
+    # twig filters
+    not.seen.notification.filter:
+        class: AppBundle\General\Twig\NotSeenNotificationExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
+    type.restaurant.extension:
+        class: AppBundle\General\Twig\TypeOfRestaurantExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
+    is_numeric_extension:
+        class: AppBundle\General\Twig\IsNumericExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
+    fix.mvmt.bugs.service:
+            class: AppBundle\General\Service\FixMvmtBugsService
+            arguments:
+                - "@doctrine.orm.entity_manager"
+                - "@translator.default"

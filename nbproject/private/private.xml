@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/www/bo-quick-saas-V3/src/AppBundle/Merchandise/Entity/Supplier.php</file>
+            <file>file:/C:/www/bo-quick-saas-V3/src/AppBundle/Merchandise/Controller/SupplierController.php</file>
+            <file>file:/C:/www/bo-quick-saas-V3/app/config/parameters.yml.dist</file>
+            <file>file:/C:/www/bo-quick-saas-V3/src/AppBundle/Merchandise/Entity/SupplierPlanning.php</file>
+            <file>file:/C:/www/bo-quick-saas-V3/vendor/symfony/symfony/src/Symfony/Component/Intl/Locale/Locale.php</file>
+            <file>file:/C:/www/bo-quick-saas-V3/src/AppBundle/Financial/Repository/TicketRepository.php</file>
+            <file>file:/C:/www/bo-quick-saas-V3/src/AppBundle/ToolBox/Traits/OriginRestaurantTrait.php</file>
+            <file>file:/C:/www/bo-quick-saas-V3/app/config/config.yml</file>
+        </group>
+    </open-files>
+</project-private>

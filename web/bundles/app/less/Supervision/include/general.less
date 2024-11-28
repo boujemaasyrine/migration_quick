@@ -1,0 +1,672 @@
+@import "colors";
+
+/* General Style */
+html {
+  position: relative;
+}
+
+body {
+  position: relative;
+  font-size: 1em;
+  padding: 0;
+  .header {
+    background-color: #F0F0F1;
+    border-bottom: solid #E2E2E2 1px;
+
+    background: -webkit-linear-gradient(to top left, #F2EAD9, #FFFDFF, #E4D9C3); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(to top left, #F2EAD9, #FFFDFF, #E4D9C3); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(to top left, #F2EAD9, #FFFDFF, #E4D9C3); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top left, #F2EAD9, #FFFDFF, #E4D9C3); /* Standard syntax */
+
+    img.logo {
+      height: 80px;
+    }
+    .logout-zone {
+    }
+    .username_msg {
+      font-weight: bold;
+    }
+    .lang_btn_zone {
+    }
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    background-color: @main-red;
+    padding-left: 2%;
+    margin-top: 15px;
+    width: 100%;
+    border-top: solid #E2E2E2 1px;
+    .logo_footer {
+      img {
+        width: 50px;
+        height: 40px;
+      }
+    }
+  }
+  .block-title {
+    margin: 0.5rem 0 0.5rem 0;
+  }
+  .main-content {
+    padding-bottom: 40px;
+  }
+}
+//
+//label, .label {
+//  color: @label-color-blue !important;
+//  font-size: 0.7rem !important;
+//}
+//
+//.label {
+//  font-size: 0.9rem;
+//  padding: 0px;
+//}
+
+label.error {
+  color: @second-red !important;
+}
+
+.display_none {
+  display: none;
+}
+
+/* Effet du miroir css */
+.mirror {
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
+.v-mirror {
+  -moz-transform: scale(1, -1);
+  -webkit-transform: scale(1, -1);
+  -o-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+
+@media only screen and (max-width: 992px) {
+  .header {
+    .strech_btn {
+      padding-right: 5px !important;
+      padding-left: 5px !important;
+    }
+    img.logo {
+      height: 5rem !important;
+    }
+  }
+
+  .square-nav-zone {
+    .thumbnail img {
+      height: 5rem !important;
+    }
+    .home_item {
+      height: 10rem !important;
+    }
+  }
+}
+
+#body {
+  font-size: 1.5em;
+}
+
+input[type=number].form-control {
+  height: inherit !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+
+.inactive {
+  background-color: @hover-red !important;
+  color: white !important;
+}
+
+.form-error {
+  font-size: 0.8em;
+  padding: 5px;
+}
+
+.required:after {
+  content: " *";
+  color: @hover-red;
+}
+
+// autocomplete scroll height
+.ui-autocomplete {
+  max-height: 100px;
+  overflow-y: auto;
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+  /* add padding to account for vertical scrollbar */
+  padding-right: 20px;
+}
+
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+  height: 100px;
+}
+
+//Planning table
+.orderDay, .deliveryDay {
+  display: inline-block;
+  padding: 5px;
+  color: #000000 !important;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.footer-btns-container {
+  margin-bottom: 15px;
+}
+
+.actions-btn {
+  i {
+    margin: 0;
+  }
+  //.btn {
+  //  padding: 0px 15px 0px 10px;
+  //}
+}
+
+.small-btn {
+  padding: 0 5px 0 5px;
+  min-width: inherit !important;
+}
+
+.display_none {
+  display: none;
+}
+
+//  bootbox override
+
+.modal-dialog {
+  margin: 0;
+  width: 100%;
+}
+
+// btns
+.btn-primary {
+  color: white !important;
+  background-color: @viewColor !important;
+  border-color: @viewColor !important;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-view:hover, .btn-view:active, .btn-view:focus {
+  color: white !important;
+  background-color: @lighterViewColor !important;
+  border-color: @lighterViewColor !important;
+}
+
+.btn-add {
+  color: white !important;
+  background-color: @validateColor !important;
+  border-color: @validateColor !important;
+}
+
+.btn-validate {
+  color: white !important;
+  background-color: @validateColor !important;
+  border-color: @validateColor !important;
+}
+
+.btn-delete {
+  color: white !important;
+  background-color: @deleteColor !important;
+  border-color: @deleteColor !important;
+}
+
+.btn-view {
+  color: white !important;
+  background-color: @viewColor !important;
+  border-color: @viewColor !important;
+}
+
+.btn-save {
+  color: white !important;
+  background-color: @viewColor !important;
+  border-color: @viewColor !important;
+}
+
+.btn-search {
+  color: white !important;
+  background-color: @viewColor !important;
+  border-color: @viewColor !important;
+}
+
+.btn-export {
+  color: white !important;
+  background-color: @viewColor !important;
+  border-color: @viewColor !important;
+}
+
+.btn-modify {
+  color: white !important;
+  background-color: @viewColor !important;
+  border-color: @viewColor !important;
+}
+
+.btn-cancel {
+  color: black !important;
+  background-color: @cancelColor !important;
+  border-color: @cancelColor !important;
+  padding: 7px 10px 7px 10px;
+}
+
+.btn-default {
+  color: black !important;
+  background-color: @cancelColor !important;
+  border-color: @cancelColor !important;
+  padding: 7px 10px 7px 10px;
+}
+
+.btn-reload {
+  color: black !important;
+  background-color: @cancelColor !important;
+  border-color: @cancelColor !important;
+  padding: 7px 10px 7px 10px;
+}
+
+.btn-send {
+  color: white !important;
+  background-color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+
+.btn-create {
+  color: white !important;
+  background-color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+
+.btn-print {
+  color: white !important;
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+}
+
+.btn-filter {
+  color: black !important;
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+.btn-config {
+  color: black !important;
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+.btn-icon:before {
+  font: normal normal normal 14px FontAwesome;
+  padding-right: 1px;
+  vertical-align: middle;
+}
+
+.btn{
+  padding: 0 10px;
+  text-transform: none;
+}
+
+.btn.btn-xs{
+  padding: 0 6px;
+  height: 25px;
+  line-height: 25px;
+}
+
+.table .btn{
+    margin: -4px 0;
+}
+
+.btn-validate.btn-icon:before{
+  content: "\f00c";
+}
+
+.btn-delete.btn-icon:before{
+  content: "\f068";
+}
+
+.btn-save.btn-icon:before{
+  content: "\f0c7";
+}
+
+.btn-view.btn-icon:before{
+  content: "\f06e";
+}
+
+.btn-add.btn-icon:before{
+  content: "\f067";
+}
+
+.btn-create.btn-icon:before{
+  content: "\f067";
+}
+
+.btn-search.btn-icon:before{
+  content: "\f002";
+}
+
+.btn-export.btn-icon:before{
+  content: "\f045";
+}
+
+.btn-modify.btn-icon:before{
+  content: "\f040";
+}
+
+.btn-send.btn-icon:before{
+  content: "\f1d9";
+}
+
+.btn-filter.btn-icon:before{
+  content: "\f0b0";
+}
+
+.btn-print.btn-icon:before{
+  content: "\f02f";
+}
+
+.btn-config.btn-icon:before{
+  content: "\f013";
+}
+
+.filter-zone {
+  .panel {
+    .panel-body {
+      display: none;
+    }
+    .panel-heading {
+      cursor: pointer;
+    }
+  }
+}
+
+.collapse-zone {
+  .panel {
+    .panel-body {
+      display: none;
+    }
+    .panel-heading {
+      cursor: pointer;
+    }
+  }
+}
+
+.details-modal {
+  font-size: 1.2em !important;
+  label, .label {
+    font-size: 1.2em !important;
+  }
+}
+#default-modal-box{
+  max-height: 95% !important;
+}
+
+.modal-primary .modal-header {
+  color: #ffffff;
+  background-color: #5d9cec;
+  border-color: #cfdbe2;
+}
+
+.modal-success .modal-header {
+  color: #ffffff;
+  background-color: #27c24c;
+  border-color: #cfdbe2;
+}
+
+.modal-info .modal-header {
+  color: #ffffff;
+  background-color: #23b7e5;
+  border-color: #cfdbe2;
+}
+
+.modal-warning .modal-header {
+  color: #ffffff;
+  background-color: #ff902b;
+  border-color: #cfdbe2;
+}
+
+.modal-danger .modal-header {
+  color: #ffffff;
+  background-color: #f05050;
+  border-color: #cfdbe2;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.splitted_input {
+  margin: 0 !important;
+}
+
+.input-group-addon {
+  padding: 5px 12px;
+  font-size: 1.2em;
+}
+
+.readOnlyInput {
+  border: none !important;
+  background: transparent !important;
+  text-align: center !important;
+}
+.min-loader{
+  background: url('../images/loader-red.gif') no-repeat;
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  position: absolute;
+}
+
+.input-group-2>input, .input-group-2>select {
+  display: inline !important;
+}
+.input-group-2 .input-group-addon{
+  margin-left: -3px !important;
+  padding: 4px 5px !important;
+  top: -1px;
+  position: relative;
+  display: inline !important;
+}
+
+@-moz-keyframes rotatebox /*--for firefox--*/{
+  from{
+    -moz-transform:rotate(0deg);
+  }
+  to{
+    -moz-transform:rotate(360deg);
+  }
+}
+@-webkit-keyframes rotatebox /*--for webkit--*/{
+  from{
+    -webkit-transform:rotate(0deg);
+  }
+  to{
+    -webkit-transform:rotate(360deg);
+  }
+}
+
+.rotation{
+  //for firefox
+-moz-animation-name: rotatebox;
+-moz-animation-duration: 1.5s;
+-moz-animation-iteration-count:infinite;
+-moz-animation-fill-mode:forwards;
+
+  //for safari & chrome
+-webkit-animation-name:rotatebox;
+-webkit-animation-duration:1.5s;
+-webkit-animation-iteration-count: infinite;
+-webkit-animation-fill-mode : forwards
+}
+
+.makeMyFirstCaracterBold::first-letter {
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .aside-float.layout-fs .wrapper > section > .content-wrapper {
+    padding: 0 0 0 20px
+  }
+  .aside-float .wrapper > .aside > .aside-inner {
+    margin-left: 15px
+  }
+}
+
+
+@media print {
+  .content-wrapper, .wrapper, .wrapper > section {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important
+  }
+
+  .content-wrapper {
+    overflow: hidden !important
+  }
+}
+
+.content-wrapper {
+  padding: 15px;
+  padding-bottom: 50px !important;
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, .15);
+  margin-top: -1px
+}
+
+.content-wrapper > .unwrap {
+  margin: -15px
+}
+
+@media only screen and (min-width: 768px) {
+  .content-wrapper > .unwrap {
+    margin: -20px
+  }
+}
+
+.content-wrapper > .content-heading, .content-wrapper > h3 {
+  font-size: 24px;
+  line-height: 1.1;
+  color: #929292;
+  margin: -15px;
+  margin-bottom: 20px;
+  padding: 15px;
+  font-weight: 400;
+  background-color: #fafbfc;
+  border-bottom: 1px solid #cfdbe2
+}
+
+.content-wrapper > .content-heading > small, .content-wrapper > h3 > small {
+  display: block;
+  font-size: 12px;
+  color: #909fa7
+}
+
+.content-wrapper > .btn, .content-wrapper > button {
+  margin: 10px 10px 0 0
+}
+
+.content-wrapper .container, .content-wrapper .container-fluid {
+  padding-left: 0;
+  padding-right: 0
+}
+
+@media only screen and (min-width: 768px) {
+  .content-wrapper {
+    padding: 20px
+  }
+
+  .content-wrapper > .content-heading, .content-wrapper > h3 {
+    margin: -20px;
+    margin-bottom: 20px;
+    padding: 20px
+  }
+
+  .content-wrapper > .btn, .content-wrapper > button {
+    margin: 0
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    min-height: 100%
+  }
+
+  .wrapper > .aside .aside-inner {
+    padding-top: 55px
+  }
+
+  .wrapper > footer, .wrapper > section {
+    margin-left: 220px
+  }
+
+  .wrapper > section.has-sidebar-right {
+    margin-right: 240px
+  }
+
+  .wrapper > section.has-sidebar-right + .offsidebar {
+    z-index: 1
+  }
+}
+
+.aside-float .wrapper .content-wrapper > .content-heading, .aside-float .wrapper .content-wrapper > h3 {
+  padding-top: 30px;
+  border: 0;
+  background-color: transparent
+}
+
+.aside-float .wrapper .content-wrapper > .content-heading, .aside-float .wrapper .content-wrapper > h3 {
+  padding-top: 30px;
+  border: 0;
+  background-color: transparent
+}
+
+.wrapper{
+  min-height: 100% !important;
+  position: relative !important;
+}
+
+.footer{
+  background: @main-red;
+}
+
+
+.progress {
+  height: 25px !important;
+  background-color: #f5f5f5 !important;
+}
+
+.progress-hint {
+  font-weight: bold;
+}
+
+.progress-hint-per {
+  font-weight: bolder;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.detail-modal-body span, .detail-modal-body {
+  font-size: 1.1rem !important;
+}
+
+.nowrap{
+  white-space: nowrap;
+}
+
+strong.bold {
+  font-weight:bold;
+}
+
+.bootbox {
+  max-height: 60%;
+}

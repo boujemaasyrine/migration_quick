@@ -1,0 +1,16 @@
+{% extends ":default:index.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'financial';
+    </script>
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'title.main'|trans }}
+{% endblock %}

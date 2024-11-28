@@ -1,0 +1,77 @@
+{% extends('@Report/MerchandiseManagement/index.html.twig') %}
+
+{% block base_title %}
+    {{ 'ca_per_tva.title' |trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'reports.title'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block body %}
+<div class="filter-zone">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+        </div>
+        <div class="panel-body" style="padding-top: 5px; display: block;">
+            {{ form_start(form, {'attr' : {'action' :  path("ca_per_tva"), 'novalidate' : 'novalidate' }}) }}
+            <div class="row">
+                <div class="col col-lg-6 col-md-6 col-xs-12">
+                    {{ form_label(form.startDate) }}
+                    <div class="input-group">
+                        {{ form_widget(form.startDate, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                    </div>{{ form_errors(form.startDate) }}
+                </div>
+                <div class="col col-lg-6 col-md-6 col-xs-12">
+                    {{ form_label(form.endDate) }}
+                    <div class="input-group">
+                        {{ form_widget(form.endDate, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                    </div>{{ form_errors(form.endDate) }}
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 5px;">
+                <div class="col-md-12 col-xs-12" style="text-align:right;">
+                    {% if(generated is defined) %}
+                        <button class="btn waves-effect btn-export text-black dropdown-button"
+                                data-activates='dropdown2'>
+                            <span> {{ 'btn.export'|trans() }} </span>
+                        </button>
+                        <ul id="dropdown2" class="dropdown-content" style="">
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="downloadReport">
+                                    <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                         style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                </a></li>
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="export-xls">
+                                    <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                         style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    {% endif %}
+
+                    <button type="submit" class="btn waves-effect orange text-black " id="generateReport">
+                        {{ 'btn.generate_report'|trans() }}
+                    </button>
+                </div>
+            </div>
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+{% if(generated is defined) %}
+    {{ include('@Report/CaPerTva/report_ca_per_tva.html.twig') }}
+{% endif %}
+
+{% endblock %}

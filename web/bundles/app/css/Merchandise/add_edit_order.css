@@ -1,0 +1,41 @@
+/* Colors definitions */
+.color-4 {
+  background-color: #F18700 !important;
+}
+.text-color-4 {
+  color: #F18700 !important;
+}
+/* Add Command */
+.add-command-table,
+.add-delivery-table {
+  text-transform: uppercase;
+}
+.add-command-table .row,
+.add-delivery-table .row {
+  padding: 5px;
+}
+.add-command-table .add-command-table-row,
+.add-delivery-table .add-command-table-row {
+  border-bottom: solid #CCCCCC 0.1em;
+}
+.add-command-table .label,
+.add-delivery-table .label,
+.add-command-table .table > thead,
+.add-delivery-table .table > thead {
+  color: #001190;
+  padding: 0px;
+}
+.add-command-table .table > thead,
+.add-delivery-table .table > thead {
+  font-weight: bold;
+  line-height: 2;
+}
+.ui-datepicker-trigger {
+  width: 25px !important;
+  height: 25px !important;
+  cursor: pointer;
+}
+.modal-body {
+  font-size: 2.2em;
+  text-align: center;
+}

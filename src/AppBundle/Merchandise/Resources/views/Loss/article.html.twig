@@ -1,0 +1,14 @@
+{% for lossLine in lossLines %}
+    <tr class="cmd-line" role="row">
+        <td>{{ lossLine.product.reference }}</td>
+        <td>{{ lossLine.product.name }}</td>
+        <td><input id="total-loss-qty-{{ lossLine.product.id }}" class="qty-input" style="height: 1rem;" type="number"/>
+        </td>
+        <td><input id="first-loss-qty-{{ lossLine.product.id }}" class="qty-input" style="height: 1rem;" type="number"/>
+        </td>
+        <td><input id="second-loss-qty-{{ lossLine.product.id }}" class="qty-input" style="height: 1rem;"
+                   type="number"/></td>
+        <td><input id="third-loss-qty-{{ lossLine.product.id }}" class="qty-input" style="height: 1rem;" type="number"/>
+        </td>
+    </tr>
+{% endfor %}

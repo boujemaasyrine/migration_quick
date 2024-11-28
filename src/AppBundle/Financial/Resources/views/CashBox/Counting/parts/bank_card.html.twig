@@ -1,0 +1,51 @@
+<div id="bank_card_container" class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: right;">
+                    <span>
+                        <span class="bank_card_total">
+                            {{ form.vars.value.bankCardContainer.calculateBankCardTotal()|number_format(2, ',', '.') }}
+                        </span>
+                         <i class="glyphicon glyphicon-euro"></i>
+                    </span>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-12">
+                <div class="">
+                    {% if list %}
+                        {% for bankCard in form.bankCardContainer.bankCardCounts %}
+                            <div class="row bankCardRow col-xs-6">
+                                <div class="col-xs-6">
+                                    <span class="text-muted">{{ bankCard.cardName.vars.value }}</span>
+                                </div>
+                                <div class="col-xs-6" style="text-align: right">
+                                        <span class="text-muted bold bank_card_amount"> {{ bankCard.vars.value.amount|number_format(2, ',', '.') }}
+                                            <i class="glyphicon glyphicon-euro"></i>
+                                        </span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% for bankCard in form.bankCardContainer.bankCardCounts %}
+                            {% if paymentMethodStatus.isIdPaymentActive(bankCard.vars.value.idPayment) %}
+                                {% if parameter_service.isEftActivated %}
+                                    <div class="row bankCardRow col-xs-6">
+                                        <div class="col-xs-6">
+                                            <span class="text-muted">{{ bankCard.vars.value.cardName }}</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                        <span class="text-muted bold bank_card_amount"> {{ form.vars.value.bankCardContainer.calculateTheoricalTotal(bankCard.vars.value.idPayment)|number_format(2, ',', '.') }}
+                                            <i class="glyphicon glyphicon-euro"></i>
+                                        </span>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    {{ form_widget(bankCard) }}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

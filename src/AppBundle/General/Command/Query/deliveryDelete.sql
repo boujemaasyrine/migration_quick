@@ -1,0 +1,3 @@
+delete from delivery_line where delivery_id in ( select id from delivery where  origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate);
+delete from delivery_line_tmp where delivery_id in ( select id from delivery where  origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate);
+delete from delivery where origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate;select count(*) from delivery where  origin_restaurant_id=:restaurantId and date>= :startDate and date <= :endDate

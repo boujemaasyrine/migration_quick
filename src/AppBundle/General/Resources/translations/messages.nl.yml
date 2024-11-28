@@ -1,0 +1,33 @@
+table:
+    actions: Actie #Actions
+tooltip_titles:
+    details: Details #Détails
+    bl: Herziening leveringsbon #Régularisation sur BL
+    bl_history: GGeschiedenis regularisaties #Historique sur les régularisations
+filter:
+    label: Filters #Filtres
+    label_filter: Beschrijving #Libellé
+    no_filter: Geen filter #Aucun filtre
+    supplier: Leverancier #Fournisseur
+    article: Inventarisitem #Item inventaire
+    num_order: Bestelling Nr. #N° Commande
+    ca: Verwachte omzet #CA Prévisionnel
+    placeholders:
+        date_order: Datum bestelling #Date de Commande
+        date_delivery: Leveringsdatum #Date de Livraison
+    btn: Filteren #Filtrer
+imprimmer: Printen #Imprimmer
+observation: Observatie #Observation
+
+# Missed Translation
+generated_at: Document opgesteld op #Document généré le
+notification:
+    missing_plus:
+        title: De opbrengsten van de volgende PLU's zijn niet te vinden in uw back office : #les recettes des Plus suivants sont introuvables dans votre back Office :
+
+missing_plus:
+    end_of_message: De coördinatie werd verwittigd #La coordination a été avertie.
+    plu_code: PLU Code #Code Plu
+choose_type_item: Kies de tyoe van item  #Choisir le type de l'item
+switch_restaurant: Changement du restaurant
+switch_restaurant_confirm: Vous êtes sur le point de basculer vers un autre restaurant. Voulez-vous vraiment continuer ?

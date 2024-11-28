@@ -1,0 +1,212 @@
+{% extends('@Report/MerchandiseManagement/index.html.twig') %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var tmp = null;
+        var progressTimeInterval;
+
+        function getResult() {
+            ajaxCall({
+                url: Routing.generate('margin_foodcost_get_result', {tmp: tmp})
+            }, function (receivedData) {
+                if (receivedData.html != undefined) {
+                    //hide porgress bar
+                    $('#progress-bars-container').hide();
+                    $('#progress-bars-container').find('#progress-bar').css('width', '0%');
+                    //inject html
+                    $('#data-zone').html(receivedData.html);
+                    $('#generate_foodcost_marge_force').attr('disabled', false);
+                    $('#generate_foodcost_marge').attr('disabled', false);
+                    $('.btn-export').attr('disabled', false);
+                }
+            });
+        }
+
+        function calculateReport(progressId, tmpId) {
+            $('#data-zone').html('');
+            progressTimeInterval = window.setInterval(function () {
+                progressBarSuivi(
+                    progressId,
+                    progressTimeInterval,
+                    '#report-progress',
+                    function (result) {
+                        return result.progress + "%";
+                    }, function () {
+                        tmp = tmpId;
+                        getResult();
+                    }
+                );
+            }, 1000);
+        }
+
+        function launch(force) {
+            tmp = null;
+            $('#progress').show();
+            ajaxCall({
+                    url: Routing.generate('margin_foodcost_launch_calcul', {force: force}),
+                    data: $('#margeFoodCostForm').serialize(),
+                    method: 'POST'
+                },
+                function (receivedData) {
+
+                    if (receivedData.errors) {
+                        $('#form-container').html(receivedData.html);
+                        initDatePicker();
+                        $('#generate_foodcost_marge_force').attr('disabled', false);
+                        $('#generate_foodcost_marge').attr('disabled', false);
+                        $('.btn-export').attr('disabled', false);
+                        $('#progress').hide();
+                    } else if (receivedData.progressID != null && receivedData.tmpID != null) {
+                        //show progress bar
+                        $('#progress-bars-container').show();
+                        //launch suivi
+                        calculateReport(receivedData.progressID, receivedData.tmpID);
+                    }
+                });
+        }
+
+        $(document).on('click', '#generate_foodcost_marge', function () {
+            $('#generate_foodcost_marge_force').attr('disabled', true);
+            $('#generate_foodcost_marge').attr('disabled', true);
+            $('.btn-export').attr('disabled', true);
+            $('.alert').hide();
+            launch(0);
+        });
+
+        $(document).on('click', '#generate_foodcost_marge_force', function () {
+            $('#generate_foodcost_marge_force').attr('disabled', true);
+            $('#generate_foodcost_marge').attr('disabled', true);
+            $('.btn-export').attr('disabled', true);
+            $('.alert').hide();
+            launch(1);
+        });
+
+        $(document).on('click', '#downloadReportPdf', function () {
+
+            if (tmp != null) {
+                window.location.href = Routing.generate('print_marge_food_cost', {tmp: tmp, type: 'pdf'});
+            }
+
+        });
+
+
+        $(document).on('click', '#downloadReportCsv', function () {
+
+            if (tmp != null) {
+                window.location.href = Routing.generate('print_marge_food_cost', {tmp: tmp, type: 'csv'});
+            }
+
+        });
+        $(document).on('click', '#downloadReportXls', function () {
+            if (tmp != null) {
+                window.location.href = Routing.generate('print_marge_food_cost', {tmp: tmp, type: 'xls'});
+            }
+
+        });
+
+        $(function () {
+            $('#generate_foodcost_marge_force').tootltipBootstrap();
+        });
+
+        $(document).on('change', '#beginDate , #endDate', function () {
+            $('#generate_foodcost_marge_force').attr('disabled', false);
+            $('#generate_foodcost_marge').attr('disabled', false);
+            $('.btn-export').attr('disabled', false);
+        });
+    </script>
+{% endblock %}
+{% block base_title %}
+    {{ 'report.food_cost.margin.title'|trans }}
+{% endblock %}
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                <div id="form-container">
+                    {% include '@Report/FoodCost/Margin/form_margin_food_cost.html.twig' %}
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-md-12 col-xs-12" style="text-align:right;">
+                        <button class="btn waves-effect btn-export text-black dropdown-button"
+                                data-activates='dropdown2'>
+                            <span> {{ 'btn.export'|trans() }} </span>
+                        </button>
+                        <ul id="dropdown2" class="dropdown-content" style="">
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="downloadReportPdf">
+                                    <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                         style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                </a></li>
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="downloadReportCsv">
+                                    <img src="{{ asset('bundles/app/images/export/csv-128.png') }}"
+                                         style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_csv'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_csv'|trans() }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="downloadReportXls">
+                                    <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                         style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <button data-toggle="tooltip"
+                                data-placement="top"
+                                title=" {{ 'report.food_cost.margin.btn_generate_tooltip'|trans() }} "
+                                data-html="true"
+                                id="generate_foodcost_marge_force"
+                                type="button" class="btn green"
+                                style="margin-left: 20px;">
+                            {{ 'report.force_generation'|trans() }}
+                        </button>
+                        <button type="submit" class="btn waves-effect orange text-black " id="generate_foodcost_marge">
+                            {{ 'btn.generate_report'|trans() }}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default" id="progress" style="display: none;">
+        <div class="panel-body">
+            <div class="container-fluid" id="progress-bars-container" style="display: none">
+                <div class="row" id="report-progress">
+                    <div class="col-xs-12 progress-container">
+                        <div class="progress-hint">
+                            {{ 'progress.calcul_result'|trans() }} <span class="progress-hint-per"></span>
+                        </div>
+                        <div class="progress" style="height: 25px; background-color: #f5f5f5 !important">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                 aria-valuenow="45"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 style="width: 0%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="data-zone">
+                {% if data is defined %}
+
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+    {% if(generated is defined) %}
+        {{ include('@Report/FoodCost/Margin/body_report_margin_foodcost.html.twig') }}
+    {% endif %}
+
+{% endblock %}

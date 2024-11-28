@@ -1,0 +1,80 @@
+{% extends "@Merchandise/OrderHelp/index.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var progressTimeInterval = null;
+        $(function () {
+            if ($("#init-product-progress-bar").length > 0) {
+                progressTimeInterval = window.setInterval(function () {
+                    progressBarSuivi($("#init-product-progress-bar").attr('progress-id'),
+                        progressTimeInterval,
+                        "#init-product-progress-bar",
+                        function (result) {
+                            return result.progress + '% (' + result.proceeded + "/" + result.total + " " + Translator.trans('product_label') + ")";
+                        }, function () {
+                            window.location.href = Routing.generate('init')
+                        }
+                    )
+                }, 1000);
+            }
+        })
+
+    </script>
+{% endblock %}
+
+{% set first_panel = true %}
+
+{% block help_order_content %}
+
+    {% if initializing is not defined %}
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th> {{ 'base_calcul'|trans() }} </th>
+                <th> {{ 'coef_ca'|trans() }} </th>
+                <th> {{ 'last_update_date_label'|trans() }} </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ helpOrder.startDateLastWeek|date('d/m/Y') }}
+                    -> {{ helpOrder.endDateLastWeek|date('d/m/Y') }}</td>
+                <td>{{ helpOrder.ca|number_format(0,',','') }} &euro;</td>
+                <td>{{ base.updatedAt|date('d/m/Y H:i:s') }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <a target="_blank" href="{{ path('show_coeff_pp') }}"> {{ 'coef_consult'|trans() }} </a>
+                <a style="margin-left: 20px;" class="btn btn-save pull-right"
+                   href="{{ path('third_step_v2') }}"> {{ 'next.step'|trans() }} <span
+                            class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="row" id="init-product-progress-bar" progress-id="{{ progressID }}">
+            <div class="col-xs-12 progress-container">
+                <div class="progress-hint">
+                    {{ 'progress.initialisation'|trans() }} <span class="progress-hint-per"></span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                         aria-valuenow="45"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         style="width: 0%">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+
+{% endblock %}

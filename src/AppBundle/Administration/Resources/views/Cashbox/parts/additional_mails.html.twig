@@ -1,0 +1,15 @@
+{% for mail in form.additionalMailsContainer.mails %}
+    <div class="col-xs-6 mail-container">
+        <div class="row">
+            {{ form_row(mail.id) }}
+            <div class="col col-xs-10">
+                {{ form_widget(mail.mail, { "attr": { "class": 'form-control' } }) }}
+                {{ form_errors(mail.mail) }}
+            </div>
+            <div class="col col-xs-2">
+                <button type="button" style="line-height: 100%;"
+                        class="btnRemoveMailValue btn btn-delete btn-icon"></button>
+            </div>
+        </div>
+    </div>
+{% endfor %}

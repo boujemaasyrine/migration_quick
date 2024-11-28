@@ -1,0 +1,219 @@
+{% extends "@Administration/index_administration.html.twig" %}
+
+ {% block base_title %}
+     {{ 'optikitchen.calcul_title'|trans({ '%1%' : day|date('d/m/Y') }) }}
+ {% endblock %}
+
+{% block base_subtitle %}
+    {{ 'optikitchen.sub_title'|trans() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var progressTimeInterval = null;
+        var today = moment();
+        var yesterday = today.subtract(1, 'days');
+        $(function () {
+
+            if ($('#progress-bars-container').length > 0) {
+                progressTimeInterval = window.setInterval(function () {
+                    progressBarSuivi(
+                        $('#progress-bars-container').attr('progress-id'),
+                        progressTimeInterval,
+                        '#progress-bars-container',
+                        function (result) {
+                            console.log(result);
+                            return result.progress + '% (' + result.proceeded + "/" + result.total + " " + Translator.trans('product_label') + ")";
+                        }, function () {
+                            window.location.href = Routing.generate('optikitchen_calcul', {success: 1});
+                        }
+                    );
+                }, 1000);
+            }
+
+            var dates = $('.datepicker');
+
+            $.each(dates, function (key, value) {
+
+                var picker = $(value).pickadate('picker');
+                picker.set('max', [yesterday.year(), yesterday.month(), yesterday.date()]);
+
+            });
+
+            dates.on('change', function (event) {
+                var self = $(this);
+                var d = $(this).val();
+                ajaxCall({
+                    url: Routing.generate('ca_optikitchen'),
+                    method: 'POST',
+                    data: {
+                        date: d
+                    }
+                }, function (data) {
+                    if (data.ca != null) {
+                        $(self).siblings('.bud').html(floatToString(data.ca, 0) + " €");
+                    } else {
+                        $(self).siblings('.bud').html('-');
+                    }
+                });
+            });
+
+        })
+    </script>
+{% endblock %}
+
+{% block body %}
+    <style>
+        .tab-1 input {
+            width: 80% !important;
+            margin: auto;
+        }
+
+        .tab-1 .bud {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+    </style>
+
+
+    {% if success is defined and success == 1 %}
+        <div class="alert alert-success">
+            <span class="glyphicon glyphicon-ok"></span> {{ 'optikitchen_calcul_ok'|trans({ '%1%' : path('opti_consultation') })|raw }}
+        </div>
+    {% endif %}
+
+    {% if locked is defined %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="alert alert-info">
+                    {{ 'optikitchen.please_wait'|trans() }}
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        {% if form is defined %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>
+                        <span style="font-size: 1.2em;"
+                              class="glyphicon glyphicon-info-sign"></span> {{ 'optikitchen.ref_days_used_for_bud'|trans()|raw }}
+                        ({{ caPrev.ca|number_format(0,',','') }} &euro; ):
+                    </h3>
+
+                    <table class="tab-1">
+                        <tr>
+                            <td>
+                                <input disabled class="form-control" value="{{ caPrev.date1|date('d/m/Y') }}">
+
+                                <div class="bud">
+                                    {{ cas['budget'][0]|number_format(0,',','') }} &euro;
+                                </div>
+                            </td>
+                            <td>
+                                <input disabled class="form-control" value="{{ caPrev.date2|date('d/m/Y') }}">
+
+                                <div class="bud">
+                                    {{ cas['budget'][1]|number_format(0,',','') }} &euro;
+                                </div>
+                            </td>
+                            <td>
+                                <input disabled class="form-control" value="{{ caPrev.date3|date('d/m/Y') }}">
+
+                                <div class="bud">
+                                    {{ cas['budget'][2]|number_format(0,',','') }} &euro;
+                                </div>
+                            </td>
+                            <td>
+                                <input disabled class="form-control" value="{{ caPrev.date4|date('d/m/Y') }}">
+
+                                <div class="bud">
+                                    {{ cas['budget'][3]|number_format(0,',','') }} &euro;
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3> {{ 'optikitchen.ref_days_used_for_prevision'|trans() }}  </h3>
+                    {{ form_start(form) }}
+                    <table class="tab-1">
+                        <tbody>
+                        <tr>
+                            <td>
+                                {{ form_widget(form.date1,{ 'attr' : { 'class' : 'form-control datepicker' } }) }}
+                                {{ form_errors(form.date1) }}
+                                <div class="bud">
+                                    {{ cas['opti'][0]|number_format(0,',','') }} &euro;
+                                </div>
+                            </td>
+                            <td>
+                                {{ form_widget(form.date2,{ 'attr' : { 'class' : 'form-control datepicker' } }) }}
+                                {{ form_errors(form.date2) }}
+                                <div class="bud">
+                                    {{ cas['opti'][1]|number_format(0,',','') }} &euro;
+                                </div>
+                            </td>
+                            <td>
+                                {{ form_widget(form.date3,{ 'attr' : { 'class' : 'form-control datepicker' } }) }}
+                                {{ form_errors(form.date3) }}
+                                <div class="bud">
+                                    {{ cas['opti'][2]|number_format(0,',','') }} &euro;
+                                </div>
+                            </td>
+                            <td>
+                                {{ form_widget(form.date4,{ 'attr' : { 'class' : 'form-control datepicker' } }) }}
+                                {{ form_errors(form.date4) }}
+                                <div class="bud">
+                                    {{ cas['opti'][3]|number_format(0,',','') }} &euro;
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: right;">
+                                <button class="btn btn-save pull-right" type="submit"
+                                >{{ "optikitchen.calculate_btn"|trans }}</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+        {% elseif progressID is defined %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="container-fluid" id="progress-bars-container" progress-id="{{ progressID }}">
+                        <div class="row" id="coeff-product-progress-bar">
+                            <div class="col-xs-12 progress-container">
+                                <div class="progress-hint">
+                                    {{ 'progress.calcul_coef'|trans() }} <span class="progress-hint-per"></span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                         aria-valuenow="45"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         style="width: 0%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
+
+
+{% endblock %}

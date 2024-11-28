@@ -1,0 +1,1 @@
+$(function(){initSimpleDataTable("#article_list_table",{searching:!1,pageLength:100,lengthMenu:!1,initComplete:function(){$("#pending_commands_table_length").closest(".row").remove()}})});

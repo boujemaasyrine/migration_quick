@@ -1,0 +1,121 @@
+<style>
+    div {
+    {% if download is defined and download == true %} font-size: 1.4rem !important;
+    {% else %} font-size: 1rem !important;
+    {% endif %}
+    }
+
+    .table {
+        border-collapse: collapse;
+    }
+
+    .table thead {
+        border-bottom: 0 !important;
+        border-top: 2px solid #474747;
+    !important;
+    }
+
+    .table,
+    .table tr,
+    .table tr td,
+    .table tr th {
+        border: 0 !important;
+    {% if download is defined and download == true %} font-size: 1.4rem !important;
+    {% else %} font-size: 1rem !important;
+    {% endif %}
+    }
+
+    .table > thead > tr > th {
+        vertical-align: middle;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    .table > tfoot > tr > th.total {
+        border-top: 2px solid #474747 !important;
+    }
+
+    .align-right {
+        text-align: right !important;
+    }
+
+    .align-left {
+        text-align: left !important;
+    }
+</style>
+<div class="row" style="padding-top: 30px">
+    {% if download is not defined or download == false %}
+        <div class="alert alert-success">
+            <span class="glyphicon glyphicon-ok"></span>
+            {{ 'deposit.report.confirmation'|trans }}
+        </div>
+    {% endif %}
+    <div class="col-xs-6">
+        <div class="row" style="padding-top: 15px">
+            <div class="col-xs-5">{{ 'deposit.report.labels.date'|trans }}:</div>
+            <div class="col-xs-7"><b>{{ deposit.createdAt|date('d/m/Y') }}</b></div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+            <div class="col-xs-5">{{ 'deposit.report.labels.name'|trans }}:</div>
+            <div class="col-xs-7"><b>{{ deposit.owner.firstName }} {{ deposit.owner.lastName }}</b></div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+            <div class="col-xs-5">{{ 'deposit.report.labels.type'|trans }}:</div>
+            <div class="col-xs-7"><b>{{ typeLabel }}</b></div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="row" style="padding-top: 15px">
+            <div class="col-xs-7">{{ 'deposit.report.labels.expense_id'|trans }}:</div>
+            <div class="col-xs-5 align-right"><b>{{ deposit.expense.reference }}</b></div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+            <div class="col-xs-7">{{ 'deposit.report.labels.total_amount'|trans }}:</div>
+            <div class="col-xs-5 align-right"><b>{{ deposit.totalAmount|number_format(2, ',', '.') }} &euro;</b>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+            <div class="col-xs-7">{{ 'deposit.report.labels.nbr_envelope'|trans }}:</div>
+            <div class="col-xs-5 align-right"><b>{{ deposit.envelopes|length|number_format }}</b></div>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding-top: 30px">
+    <div class="col-md-12">
+        <table class="table table-responsive" style="border: 1px solid black;">
+            <thead style="">
+            <tr class="top_header">
+                <th class="align-left">{{ 'deposit.report.headers.num'|trans }}</th>
+                <th class="align-right">{{ 'deposit.report.headers.reference'|trans }}</th>
+                <th class="align-right">{{ 'deposit.report.headers.date'|trans }}</th>
+                <th class="align-right">{{ 'deposit.report.headers.type'|trans }}</th>
+                <th class="align-left">{{ 'deposit.report.headers.name'|trans }}</th>
+                <th class="align-right">{{ 'deposit.report.headers.amount'|trans }} (&euro;)</th>
+            </tr>
+            </thead>
+            <tbody class="mainTbody">
+            {% for envelope in envelopes %}
+                <tr>
+                    <td class="align-left">{{ envelope.number }}</td>
+                    <td class="align-right">{{ envelope.reference }}</td>
+                    <td class="align-right">{{ envelope.createdAt }}</td>
+                    <td class="align-right">{{ envelope.sousType }}</td>
+                    <td class="align-left">{{ envelope.owner }}</td>
+                    <td class="align-right">{{ envelope.amount }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="4"></th>
+                <th class="align-right"><b>{{ 'deposit.report.headers.total'|trans }}</b></th>
+                <th class="align-right total"><b>{{ deposit.totalAmount|number_format(2, ',', '.') }}</b></th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+

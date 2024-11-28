@@ -1,0 +1,40 @@
+{% extends('@General/exports/base_exports_2.html.twig') %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .label {
+            color: #000;
+        }
+
+        .panel-heading .label {
+            font-size: 1.6rem !important;
+        }
+
+        .col-modal {
+            margin-bottom: 20px;
+        }
+
+        h6, h5, h4, h3 {
+            font-size: 2.4rem !important;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100% !important;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="row" style="font-size: 2.0rem !important;">
+        <div class="col-xs-12">
+            <br>
+            <div class="row col-modal">
+                <div class="col-xs-12" style="text-align: center">
+                    <b style="font-size: 2.8rem !important;">{{ title|upper }}</b>
+                </div>
+            </div>
+            <br>
+            {{ include('@Financial/Chest/Counting/parts/chest_count_block.html.twig') }}
+        </div>
+    </div>
+{% endblock body %}

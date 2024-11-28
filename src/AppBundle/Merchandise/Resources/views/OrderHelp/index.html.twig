@@ -1,0 +1,73 @@
+{% extends '@Merchandise/index_supplying.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/app/css/Merchandise/OrderHelp/common.css') }}" type="text/css" rel="stylesheet">
+    <style>
+        input[type=checkbox] {
+            visibility: visible !important;
+            position: inherit !important;
+        }
+    </style>
+{% endblock %}
+{% block base_title %}
+    {{ "help_order_title"|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'buying_management.command_management'|trans([], 'navbar') }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        function resetForm() {
+
+        }
+
+        function initForm() {
+
+        }
+
+        $('#supplier').on('change', function (event) {
+
+            if ($(this).val() == '') {
+                resetForm();
+                return;
+            }
+
+            initForm();
+
+        });
+
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul class="steps">
+                <li class="step {% if first_panel is defined %} active {% endif %}">
+                    <span class="step-number">1.</span> Initialisation
+                </li>
+                {#<li class="step {% if second_panel is defined %} active {% endif %}">#}
+                {#<span class="step-number">2.</span> {{ 'steps.second'|trans() }} </li>#}
+                <li class="step {% if third_panel is defined %} active {% endif %}">
+                    <span class="step-number">2.</span> {{ 'steps.third'|trans() }}
+                </li>
+                <li class="step {% if fourth_panel is defined %} active{% endif %}">
+                    <span class="step-number">3.</span> {{ 'steps.fourth'|trans() }}
+                </li>
+            </ul>
+
+            <div class="container-fluid">
+                {% block help_order_content %}
+
+
+                {% endblock %}
+            </div>
+            <div style="clear: both;"></div>
+
+        </div>
+    </div>
+{% endblock %}

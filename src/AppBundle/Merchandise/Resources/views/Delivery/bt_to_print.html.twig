@@ -1,0 +1,9 @@
+{% extends '@Merchandise/gestion_d_achat_base_bon.html.twig' %}
+
+{% block reportTitle %}
+    <h3>{{ 'delivery.report.title'|trans }}</h3>
+{% endblock %}
+
+{% block body %}
+    {% include '@Merchandise/Delivery/modals/details_delivery.html.twig' with { 'no_btns' : true } %}
+{% endblock %}

@@ -1,0 +1,38 @@
+(function (Translator) {
+    // nl
+    Translator.add("parameters.add_new_product_sold", "Nieuwe verkoopsitem toevoegen", "navbar_supervision", "nl");
+    Translator.add("parameters.list_product_sold", "Lijst verkoopsitems", "navbar_supervision", "nl");
+    Translator.add("restaurant.title", "Restaurants", "navbar_supervision", "nl");
+    Translator.add("restaurant.restaurant_list", "Lijst van restaurants", "navbar_supervision", "nl");
+    Translator.add("parameters.title", "Instellingen", "navbar_supervision", "nl");
+    Translator.add("parameters.manage_suppliers", "Beheer lijst van leveranciers", "navbar_supervision", "nl");
+    Translator.add("parameters.manage_restaurants", "Beheer lijst van restaurants", "navbar_supervision", "nl");
+    Translator.add("parameters.manage_categories", "Beheer lijst van categorie\u00ebn", "navbar_supervision", "nl");
+    Translator.add("parameters.manage_groups", "Beheer van groepen", "navbar_supervision", "nl");
+    Translator.add("parameters.manage_inventory_item", "Beheer van inventaris items", "navbar_supervision", "nl");
+    Translator.add("parameters.manage_product_sold", "Beheer van verkoop items", "navbar_supervision", "nl");
+    Translator.add("parameters.merchandise_management", "Beheer van grondstoffen", "navbar_supervision", "nl");
+    Translator.add("reports.title", "Rapportage", "navbar_supervision", "nl");
+    Translator.add("reports.merchandise_management.title", "Beheer van grondstoffen", "navbar_supervision", "nl");
+    Translator.add("reports.merchandise_management.portion_control", "Portion controle", "navbar_supervision", "nl");
+    Translator.add("reports.merchandise_management.foodcost_report", "Foodcost verslag", "navbar_supervision", "nl");
+    Translator.add("reports.sales_management.hour_by_hour", "uur\/uur", "navbar_supervision", "nl");
+    Translator.add("reports.sales_management.daily_results", "Dagelijks resultaten", "navbar_supervision", "nl");
+    Translator.add("reports.food_cost.synthetic", "Overzicht Foodcost", "navbar_supervision", "nl");
+    Translator.add("reports.food_cost.margin", "Marge FoodCost", "navbar_supervision", "nl");
+    Translator.add("reports.financial_revenue.title", "Omzet", "navbar_supervision", "nl");
+    Translator.add("reports.stock_control", "Stockcontrole", "navbar_supervision", "nl");
+    Translator.add("reports.moulinette.title", "Moulinette", "navbar_supervision", "nl");
+    Translator.add("staff.title", "Personeelsmanagement", "navbar_supervision", "nl");
+    Translator.add("staff.list", "Personeelslijst", "navbar_supervision", "nl");
+    Translator.add("staff.role", "Rollen beheren", "navbar_supervision", "nl");
+    Translator.add("language.frensh", "Frans", "navbar_supervision", "nl");
+    Translator.add("language.dutch", "Nederlands", "navbar_supervision", "nl");
+    Translator.add("language.fr", "Franse taal", "navbar_supervision", "nl");
+    Translator.add("language.nl", "Nederlandse taal", "navbar_supervision", "nl");
+    Translator.add("params.rights.title", "Beheer van rechten", "navbar_supervision", "nl");
+    Translator.add("params.rights.central", "Centrale", "navbar_supervision", "nl");
+    Translator.add("params.financial_management.title", "Financieel beheer", "navbar_supervision", "nl");
+    Translator.add("params.financial_management.expense_labels", "Label uitgaven bon", "navbar_supervision", "nl");
+    Translator.add("params.financial_management.recipe_labels", "Label Ontvangst bon", "navbar_supervision", "nl");
+})(Translator);

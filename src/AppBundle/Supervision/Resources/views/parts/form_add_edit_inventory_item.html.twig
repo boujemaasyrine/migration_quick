@@ -1,0 +1,205 @@
+<style>
+    .dropdown-content {
+        width: 120px !important;
+    }
+</style>
+{% if type == 'edit' %}
+    {% set action = path('supervision_inventory_item_list', {'productPurchased' : form.vars.value.id}) %}
+{% else %}
+    {% set action = path('supervision_inventory_item_list') %}
+{% endif %}
+{{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'AddInventoryItemForm', 'novalidate':  'novalidate' },
+    'action' : action  }) }}
+{{ form_errors(form) }}
+<div class="row">
+    <div class="col col-xs-5">
+        {{ form_label(form.dateSynchro) }}
+        <div class="input-group">
+            {{ form_widget(form.dateSynchro, {'attr': {'class': 'form-control'}}) }}
+            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+        </div>
+        {{ form_errors(form.dateSynchro) }}
+    </div>
+    <div class="col col-lg-4 col-sm-6 col-md-4 col-xs-12"
+    {{ form_label(form.startDateCmd) }}
+    <div class="input-group">
+        {{ form_widget(form.startDateCmd, {'attr': {'class': 'form-control datepicker'}}) }}
+        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+    </div>
+    {{ form_errors(form.startDateCmd) }}
+</div>
+<div class="col col-lg-4 col-sm-6 col-md-4 col-xs-12"
+{{ form_label(form.endDateCmd) }}
+<div class="input-group">
+    {{ form_widget(form.endDateCmd, {'attr': {'class': 'form-control datepicker'}}) }}
+    <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+</div>
+{{ form_errors(form.endDateCmd) }}
+</div>
+</div>
+<div class="row">
+    <div class="col col-sm-6 col-md-6 col-xs-12">
+        {% form_theme form.translations ':supervision/form_part:tranlsations.html.twig' %}
+        {{ form(form.translations) }}
+    </div>
+    <div class="col col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.externalId) }}
+        {{ form_widget(form.externalId) }}
+        {{ form_errors(form.externalId) }}
+    </div>
+    <div class="col col-sm-6 col-md-6 col-xs-12 ">
+        <div class="row">
+            <div class="col col-md-12 col-sm-12 col-md-12 col-xs-12" style="margin-top: 0px">
+                {{ form_label(form.buyingCost) }}
+                <div class="input-group" style="width: 100%">
+                    {{ form_widget(form.buyingCost) }}
+                    <span class="text-muted input-group-addon"
+                          style="margin-right: 5px;width : 10% !important;">€</span>
+                </div>
+            </div>
+        </div>
+        {{ form_errors(form.buyingCost) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-lg-12 col-sm-12 col-md-12 col-xs-12 ">
+        {{ form_label(form.suppliers, 'keyword.suppliers', { 'label_attr': {'class': 'active'} }) }}
+        {{ form_widget(form.suppliers, {'attr': {'class': 'selectize'}}) }}
+        {{ form_errors(form.suppliers) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col col-lg-4 col-sm-6 col-md-4 col-xs-12 ">
+        {{ form_label(form.productCategory, 'item.label.category', { 'label_attr': {'class': 'active'} }) }}
+        {{ form_widget(form.productCategory, {'attr': {'class': 'form-control sortable'}}) }}
+        {{ form_errors(form.productCategory) }}
+    </div>
+    <div class="col col-lg-4 col-sm-6 col-md-4 col-xs-12 ">
+        {{ form_label(form.status, 'label.status', { 'label_attr': {'class': 'active'} }) }}
+        {{ form_widget(form.status, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.status) }}
+    </div>
+    <div class="col col-md-2 col-sm-6 col-md-6 col-xs-12" style="margin-top: 30px" >
+        {{ form_widget(form.reusable) }}
+        {{ form_label(form.reusable) }}
+        {{ form_errors(form.reusable) }}
+    </div>
+    <div class="col col-lg-4 col-sm-6 col-md-4 col-xs-12"
+         {% if (form.vars.value.status != ('toInactive')) %}style="display:none" {% endif %}>
+        {{ form_label(form.deactivationDate) }}
+        <div class="input-group">
+            {{ form_widget(form.deactivationDate, {'attr': {'class': 'form-control datepicker'}}) }}
+            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+        </div>
+        {{ form_errors(form.deactivationDate) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.labelUnitExped, 'item.label.unit_expedition') }}
+        {{ form_widget(form.labelUnitExped, {'attr': {'class': 'form-control sortable'}}) }}
+        {{ form_errors(form.labelUnitExped) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.labelUnitInventory, 'item.label.unit_inventory') }}
+        {{ form_widget(form.labelUnitInventory, {'attr': {'class': 'form-control sortable'}}) }}
+        {{ form_errors(form.labelUnitInventory) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-6 col-xs-12 ">
+        {{ form_label(form.labelUnitUsage, 'item.label.unit_usage') }}
+        {{ form_widget(form.labelUnitUsage, {'attr': {'class': 'form-control sortable'}}) }}
+        {{ form_errors(form.labelUnitUsage) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-4 col-sm-6 col-md-4 col-xs-12">
+        <div class="row">
+            <div class="col col-md-12 col-sm-12 col-md-12 col-xs-12">
+                {{ form_label(form.inventoryQty) }}
+                <div class="input-group input-group-label" style="width: 100%">
+                    {{ form_widget(form.inventoryQty) }}
+                    <span class="text-muted input-group-addon" id="conversion_exped_invent"
+                          style="margin-right: 5px;">
+                    {% if (form.vars.value.labelUnitExped != '')
+                        and (form.vars.value.inventoryQty is not null) and (form.vars.value.labelUnitInventory != '') %}
+                        {{ form.vars.value.labelUnitExped | trans }}
+                        = {{ form.vars.value.inventoryQty }} {{ form.vars.value.labelUnitInventory | trans }}
+                </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {{ form_errors(form.inventoryQty) }}
+    </div>
+    <div class="col col-md-4 col-sm-6 col-md-4 col-xs-12">
+        <div class="row">
+            <div class="col col-md-12 col-sm-12 col-md-12 col-xs-12">
+                {{ form_label(form.usageQty) }}
+                <div class="input-group input-group-label" style="width: 100%">
+                    {{ form_widget(form.usageQty) }}
+                    <span class="text-muted input-group-addon" id="conversion_invent_usage"
+                          style="margin-right: 5px;">
+                    {% if (form.vars.value.labelUnitInventory != '')
+                        and (form.vars.value.usageQty is not null) and (form.vars.value.labelUnitUsage != '') %}
+                        {{ form.vars.value.labelUnitInventory | trans }} = {{ form.vars.value.usageQty }} {{ form.vars.value.labelUnitUsage | trans }}
+                    {% endif %}
+                </span>
+                </div>
+            </div>
+        </div>
+        {{ form_errors(form.usageQty) }}
+    </div>
+
+</div>
+<div class="row">
+    <div class="col col-md-4 col-sm-6 col-md-4 col-xs-12 ">
+        {{ form_label(form.secondaryItem, 'item.inventory.secondary', { 'label_attr': {'class': 'active'} }) }}
+        {{ form_widget(form.secondaryItem, {'attr': {'class': 'selectize sortable'}}) }}
+        {{ form_errors(form.secondaryItem) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col col-xs-12">
+        {{ form_label(form.restaurants) }}
+        {{ form_widget(form.restaurants, {'attr': {'class': 'multiselect'}}) }}
+        {{ form_errors(form.restaurants) }}
+    </div>
+</div>
+
+<div class="hidden">
+    {{ form_rest(form) }}
+</div>
+<div class="row">
+    <div class="col-xs-12" style="margin-top: 15px; text-align: right">
+        {% if type == 'edit' %}
+            <button class="btn  btn-cancel btn-icon" type="button" id="btn-cancel-edit">
+                {{ 'btn.cancel' | trans({}, "supervision") }}
+            </button>
+        {% else %}
+            <a class="btn  btn-cancel btn-icon" href="{{ path('inventory_item_list') }}">
+                {{ 'btn.cancel' | trans({}, "supervision") }}
+            </a>
+        {% endif %}
+
+        <button class="btn {% if type == 'edit' %}btn-modify{% else %}btn-add{% endif %} btn-icon dropdown-button"
+                data-activates='dropdown2' type="button">
+            <span class="hide-on-med-and-down"> {{ ( 'btn.' ~ type ) | trans([],'supervision') }} </span>
+        </button>
+        <ul id="dropdown2" class="dropdown-content">
+            <li>
+                <a class="strech_btn text-black" href="#" id="submit-inventory-item-form">
+                    <span style="color: #000; font-weight: bold;">{{ ( 'btn.' ~ type ) | trans([],'supervision') }}</span>
+                </a></li>
+            <li>
+                <a class="strech_btn text-black" href="#" id="submit-inventory-item-form-synchronize">
+                    <span style="color: #000; font-weight: bold;">{{ ( type ~ '_synchronize_immediately' )|trans([],'supervision') }}</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+{{ form_end(form) }}

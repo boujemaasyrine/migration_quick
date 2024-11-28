@@ -1,0 +1,97 @@
+{% extends '@Administration/index_administration.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset('src/js/Administration/administration.js') }}"></script>
+    <script src="{{ asset('src/js/Administration/inventory_items_list.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .selectize-input {
+            padding: 3px 8px;
+        }
+    </style>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'item.inventory.title' | trans }}
+{% endblock %}
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'parameters.merchandise_management.title'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <div class="filter-zone">
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px;">
+                {{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'itemInventoryFilterForm'} }) }}
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="col-sm-4 col-md-4">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name, { "attr": { "class": 'form-control' } }) }}
+                    </div>
+
+                    <div class="col-sm-4 col-md-4">
+                        {{ form_label(form.suppliers, 'filter.supplier') }}
+                        {{ form_widget(form.suppliers, {'attr': {'class': 'selectize'}}) }}
+                    </div>
+
+                    <div class="col-sm-4 col-md-4">
+                        {{ form_label(form.status, 'keyword.status') }}
+                        {{ form_widget(form.status, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(form) }}
+                </div>
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="col s4 pull-right" style="text-align:right;">
+                        <button type="button" id="reset-filter" class="btn btn-cancel">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "delete_filter"|trans }}
+                        </button>
+                        <button onclick="list_inventory_item.ajax.reload();" type="button"
+                                class="btn btn-filter btn-icon">
+                            {{ 'filter.btn'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding-top: 15px;">
+            <div class="row">
+                <div class="col-xs-12" style="text-align: right">
+                    <button class="btn btn-export btn-icon" type="button" id="export-btn">
+                        {{ "btn.export"|trans }}
+                    </button>
+                </div>
+            </div>
+
+            <table id="inventory_item_list_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+                   width="100%">
+                <thead>
+                <tr>
+                    <th>{{ 'label.code' | trans }}</th>
+                    <th>{{ 'label.name' | trans }}</th>
+                    <th>{{ 'item.label.buying_cost' | trans }} (&euro;)</th>
+                    <th>{{ 'filter.supplier' | trans }}</th>
+                    <th>{{ 'item.label.status' | trans }}</th>
+                    <th class="sorting_disabled">{{ 'shortcut.labels.action' | trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-zone"></div>
+    <div id="modal-inventory-item-added" style="display: none">
+    </div>
+{% endblock %}
+

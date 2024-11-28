@@ -1,0 +1,110 @@
+{% if notification.notification.type == constant('AppBundle\\General\\Entity\\Notification::PREPARED_NOT_SEND_ORDER_NOTIFICATION') %}
+    <a href="{{ path('notification_list', {'instance' : notification.id}) }}" class="list-group-item">
+        <div class="media-box">
+            <div class="pull-left">
+                <em class="fa fa-file-text-o fa-2x text-info"></em>
+            </div>
+            <div class="media-box-body clearfix">
+                <p class="m0">{{ 'title.not_sent_order' | trans([], 'notifications') }}</p>
+                <p class="m0 text-muted">
+                    <small>{{ 'body.prepared' | trans({'%numero%': notification.notification.data['orderNum']}, 'notifications') }}</small>
+                </p>
+            </div>
+        </div>
+    </a>
+{% elseif notification.notification.type == constant('AppBundle\\General\\Entity\\Notification::REJECTED_ORDER_NOTIFICATION') %}
+    <a href="{{ path('notification_list', {'instance' : notification.id}) }}" class="list-group-item">
+        <div class="media-box">
+            <div class="pull-left">
+                <em class="fa fa-file-text-o fa-2x text-info"></em>
+            </div>
+            <div class="media-box-body clearfix">
+                <p class="m0">{{ 'title.rejected_order' | trans([], 'notifications') }}</p>
+                <p class="m0 text-muted">
+                    <small>{{ 'body.rejected' | trans({'%date%': notification.notification.data['orderDate']}, 'notifications') }}</small>
+                </p>
+            </div>
+        </div>
+    </a>
+
+{% elseif notification.notification.type == constant('AppBundle\\General\\Entity\\Notification::NONEXISTENT_PLU_CODE_NOTIFICATION') %}
+    <a href="{{ path('notification_list', {'instance' : notification.id}) }}" class="list-group-item">
+        <div class="media-box">
+            <div class="pull-left">
+                <em class="fa fa-shopping-cart fa-2x text-info"></em>
+            </div>
+            <div class="media-box-body clearfix">
+                <p class="m0">{{ 'title.missing_pluS' | trans([], 'notifications') }}</p>
+                <p class="m0 text-muted">
+                    <small>
+                        {{ 'body.pluS' | trans({}, 'notifications') }}
+                        {% for plu in notification.notification.data['pluS'] %}
+                            {{ plu }}
+                        {% endfor %}
+                    </small>
+                </p>
+            </div>
+        </div>
+    </a>
+
+{% elseif notification.notification.type == constant('AppBundle\\General\\Entity\\Notification::SCHEDULE_DELIVERY_CHANGED_NOTIFICATION') %}
+    <a href="{{ path('notification_list', {'instance' : notification.id}) }}" class="list-group-item">
+        <div class="media-box">
+            <div class="pull-left">
+                <em class="fa fa-truck fa-2x text-info"></em>
+            </div>
+            <div class="media-box-body clearfix">
+                <p class="m0">{{ 'title.schedule_delivery_changed' | trans([], 'notifications') }}</p>
+                <p class="m0 text-muted">
+                    <small>{{ 'body.schedule' | trans({'%user%': notification.notification.data['user'],
+                            '%supplier%': notification.notification.data['supplier']}, 'notifications') }}</small>
+                </p>
+            </div>
+        </div>
+    </a>
+
+{% elseif notification.notification.type == constant('AppBundle\\General\\Entity\\Notification::NOT_DELIVERED_ORDER_NOTIFICATION') %}
+    <a href="{{ path('notification_list', {'instance' : notification.id}) }}" class="list-group-item">
+        <div class="media-box">
+            <div class="pull-left">
+                <em class="fa fa-truck fa-2x text-info"></em>
+            </div>
+            <div class="media-box-body clearfix">
+                <p class="m0">{{ 'title.not_delivered_order' | trans([], 'notifications') }}</p>
+                <p class="m0 text-muted">
+                    <small>{{ 'body.not_delivered' | trans({'%numero%': notification.notification.data['orderNum']}, 'notifications') }}</small>
+                </p>
+            </div>
+        </div>
+    </a>
+{% elseif notification.notification.type == constant('AppBundle\\General\\Entity\\Notification::PREVIOUS_INVENTORY_LOSS_NOTIFICATION') %}
+    <a href="{{ path('notification_list', {'instance' : notification.id}) }}" class="list-group-item">
+        <div class="media-box">
+            <div class="pull-left">
+                <em class="fa fa-trash fa-2x text-info"></em>
+            </div>
+            <div class="media-box-body clearfix">
+                <p class="m0">{{ 'title.previous_inventory_loss' | trans([], 'notifications') }}</p>
+                <p class="m0 text-muted">
+                    <small>{{ 'body.previous_ loss' | trans({'%date%': ( notification.notification.data['date'] | date('d-m-Y')) }, 'notifications') }}</small>
+                </p>
+            </div>
+        </div>
+    </a>
+{% elseif notification.notification.type == constant('AppBundle\\General\\Entity\\Notification::PREVIOUS_SOLD_LOSS_NOTIFICATION') %}
+    <a href="{{ path('notification_list', {'instance' : notification.id}) }}" class="list-group-item">
+        <div class="media-box">
+            <div class="pull-left">
+                <em class="fa fa-trash fa-2x text-info"></em>
+            </div>
+            <div class="media-box-body clearfix">
+                <p class="m0">{{ 'title.previous_sold_loss' | trans([], 'notifications') }}</p>
+                <p class="m0 text-muted">
+                    <small>{{ 'body.previous_ loss' | trans({'%date%': (notification.notification.data['date'] | date('d-m-Y'))}, 'notifications') }}</small>
+                </p>
+            </div>
+        </div>
+    </a>
+
+{% endif %}
+

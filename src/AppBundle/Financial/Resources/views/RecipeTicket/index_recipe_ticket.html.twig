@@ -1,0 +1,14 @@
+{% extends "@Financial/default.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'financial';
+    </script>
+    {{ parent() }}
+    <script type="application/javascript"
+            src="{{ asset('bundles/app/lib/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}

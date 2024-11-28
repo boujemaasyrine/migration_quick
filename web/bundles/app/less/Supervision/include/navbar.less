@@ -1,0 +1,100 @@
+@import "colors";
+
+/* Vertical Nav Bar */
+.vertical-nav-bar-global-container {
+
+  .show-nav-bar-btn {
+    height: 32.5px;
+    width: auto;
+    font-weight: 600 !important;
+    margin: 0px 1px;
+    padding-top: 7px;
+    background-color: @second-red !important;
+    color: white;
+    left: 0px;
+    position: absolute;
+    &:hover {
+      background-color: @hover-red !important;
+      cursor: pointer;
+    }
+    display: none;
+    z-index: 10;
+  }
+
+  .nav-bar-container * {
+    z-index: 999;
+  }
+  .nav-bar-container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    position: relative;
+    .hide-nav-bar-btn {
+      height: 32.5px;
+      font-weight: 600 !important;
+      width: auto;
+      margin: 0px 1px;
+      padding-top: 7px;
+      background-color: @second-red !important;
+      color: white;
+      left: 100%;
+      z-index: 9;
+      position: absolute;
+      &:hover {
+        background-color: @hover-red !important;
+        cursor: pointer;
+      }
+    }
+    .sf-vertical {
+      width: 100% !important;
+      li {
+        background-color: @main-red !important;
+        a {
+          color: white !important;
+          font-weight: 600 !important;
+          padding-left: 30px !important;
+          &.header-item {
+            padding-left: 15px !important;
+          }
+          .glyphicon-triangle-right {
+            float: right;
+          }
+        }
+        :hover {
+          background-color: @hover-red !important;
+        }
+        &.header-item {
+          background-color: @second-red !important;
+          :hover {
+            background-color: @second-red !important;
+          }
+          a {
+            padding-left: 35px !important;
+            .icon {
+              margin: 0px 1px !important;
+              position: absolute;
+              top: 3px;
+              left: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Hiding items level 1  */
+.navbar-item-1 {
+  display: none;
+}
+
+.nav-bar-container {
+  .disabled, .disabled:active, .disabled:hover, .sf-vertical li.disabled, .sf-vertical li.disabled:hover {
+    background-color: #5D5D5D !important;
+  }
+}
+
+.notifications p{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,119 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block body %}
+    <style>
+        td, th {
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        body{
+           margin: 10px 5px;
+        }
+    </style>
+
+    <div class="row">
+        <div class="panel panel-default">
+
+            <div class="panel-body" style="padding-top:0; padding-bottom:0; ">
+                <div class="row">
+                    <div class="col-xs-3">
+                        {{ form_label(sheetModelForm.label, 'sheet_model.new_sheet.labels.label' ) }}
+                        : {{ sheetModelForm.vars.data.label }}
+                    </div>
+                    <div class="col-xs-3">
+                        <br/>
+                        {{ sheetModelForm.vars.data.linesType }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    {#{{ form_label(sheetModelForm.lines, 'sheet_model.new_sheet.list_title'|trans ) }}#}
+                    <table id="sheetModelFormTable" class="table table-bordered ">
+                        <thead>
+                        <tr>
+                            <th>{{ 'sheet_model.new_sheet.labels.code'|trans }}</th>
+                            <th>{{ 'sheet_model.new_sheet.labels.article'|trans }}</th>
+                            {% if sheetModelType is defined and sheetModelType == 'inventory_model' %}
+                                <th>{{ 'inventory.labels.quantity'|trans }}</th>
+                                <th>{{ 'inventory.labels.exped_unit'|trans }}</th>
+                                <th>{{ 'inventory.labels.quantity'|trans }}</th>
+                                <th>{{ 'inventory.labels.inventory_unit'|trans }}</th>
+                                <th>{{ 'inventory.labels.quantity'|trans }}</th>
+                                <th>{{ 'inventory.labels.usage_unit'|trans }}</th>
+                            {% elseif sheetModelType is defined and sheetModelType == 'articles_loss_model' %}
+                                <th>{{ 'loss.label.entry'|trans }} 1</th>
+                                <th>{{ 'loss.label.entry'|trans }} 2</th>
+                                <th>{{ 'loss.label.entry'|trans }} 3</th>
+                                <th>{{ 'keyword.total'|trans }}</th>
+                                <th>{{ 'keyword.unit'|trans() }}</th>
+                            {% else %}
+                                <th>{{ 'loss.label.entry'|trans }} 1</th>
+                                <th>{{ 'loss.label.entry'|trans }} 2</th>
+                                <th>{{ 'loss.label.entry'|trans }} 3</th>
+                                <th>{{ 'keyword.total'|trans }}</th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for line in sheetModelForm.lines %}
+                            <tr class="line">
+                                <td>
+                                    {% if line.vars.data.product.externalId is defined %}
+                                        <span class="product_id"> {{ line.vars.data.product.externalId }}</span>
+                                    {% else %}
+                                        <span class="product_id"> {{ line.vars.data.product.codePlu }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="product_id" > {{ line.vars.data.product.name }}</span>
+                                </td>
+
+                                {% if sheetModelType is defined and sheetModelType == 'inventory_model' %}
+                                    <td>
+                                    </td>
+                                    {% if line.vars.data.product.externalId is defined %}
+                                        <td>
+                                            <span class="product_id"> {{ line.vars.data.product.labelUnitExped|trans }}</span>
+                                        </td>
+                                    {% endif %}
+
+                                    <td>
+
+                                    </td>
+
+                                    {% if line.vars.data.product.externalId is defined %}
+                                        <td>
+                                            <span class="product_id"> {{ line.vars.data.product.labelUnitInventory|trans }}</span>
+                                        </td>
+                                    {% endif %}
+
+                                    <td>
+
+                                    </td>
+
+                                    {% if line.vars.data.product.externalId is defined %}
+                                        <td>
+                                            <span class="product_id"> {{ line.vars.data.product.labelUnitUsage|trans }}</span>
+                                        </td>
+                                    {% endif %}
+                                {% elseif sheetModelType is defined and sheetModelType == 'articles_loss_model' %}
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{ line.vars.data.product.labelUnitInventory|trans }}</td>
+                                {% else %}
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

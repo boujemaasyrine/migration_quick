@@ -1,0 +1,146 @@
+<style>
+    .table {
+        border-collapse: collapse;
+    }
+
+    .table td, .table th {
+        border: 1px solid black;
+    }
+
+    .table tr:first-child th {
+        border-top: 0;
+    }
+
+    .table tr:last-child td {
+        border-bottom: 0;
+    }
+
+    .table tr td:first-child,
+    .table tr th:first-child {
+        border-left: 0;
+    }
+
+    .table tr td:last-child,
+    .table tr th:last-child {
+        border-right: 0;
+    }
+
+
+</style>
+
+<style>
+    th {
+        font-weight: bold;
+    }
+
+    .good_ecarts {
+        background: #90EE90 !important;
+    }
+
+    .fail_ecarts {
+        background-color: #FFB6C1 !important;
+    }
+
+    /* Header */
+    .top_header th {
+        text-align: center;
+        background-color: #CA9E67 !important;
+    }
+
+    .sub_header {
+        background-color: #EDE2C9 !important;
+    }
+
+    .category_name {
+        background-color: #FDC300 !important;
+    }
+</style>
+
+{% if download is not defined and reportResult.data.data|length > 0 %}
+    <style>
+        .table thead, .table tbody {
+            /*display: block;*/
+        }
+
+        .table td {
+            padding: 5px 15px 5px 15px !important;
+        }
+
+        th {
+            border: none;
+            padding: 0 !important;
+            text-align: center !important;
+            margin: 0;
+        }
+
+        .table thead {
+            position: relative;
+            z-index: 9;
+        }
+    </style>
+{% endif %}
+
+<div class="">
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding-top:0; padding-bottom:0; ">
+            <div class="row">
+                <div class="container-fluid">
+                    <table id="portionControlTable" class="table" style="border: 1px solid black;">
+                        <thead id="reportHeader" style="">
+                        <tr class="top_header">
+                            <th colspan="1"> {{ 'portion_control.report_labels.items'|trans }}</th>
+{#                            <th colspan="2">{{ 'portion_control.report_labels.items'|trans }}</th>#}
+                            <th colspan="5">{{ 'portion_control.report_labels.stocks'|trans }}</th>
+
+                        </tr>
+                        <tr class="sub_header mainHeader">
+                            <th>{{ 'restaurant.list.name'|trans }}</th>
+{#                            <th>{{ 'portion_control.report_labels.code'|trans }}</th>#}
+{#                            <th>{{ 'portion_control.report_labels.description'|trans }}</th>#}
+{#                            <th>{{ 'portion_control.report_labels.entree'|trans }}</th>#}
+{#                            <th>{{ 'portion_control.report_labels.sortie'|trans }}</th>#}
+                            <th>{{ 'portion_control.report_labels.final'|trans }}</th>
+{#                            <th>{{ 'portion_control.report_labels.quantite'|trans }}</th>#}
+                            <th>{{ 'restaurant.list.format'|trans }}</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody class="mainTbody">
+                        {% for categoryName,row in reportResult.data.data %}
+                            <tr class="category_name">
+                                <td colspan="15">{{ categoryName }}
+
+                            </tr>
+
+                            {% for item in row.data %}
+                                <tr class="mainRow">
+                                    <td>
+
+                                        {{ item.restaurant}} ({{ item.code_restaurant }})
+
+
+                                    </td>
+{#                                    <td>#}
+{#                                        {{ item.code }}#}
+{#                                    </td>#}
+{#                                    <td>#}
+{#                                        {{ item.description }}#}
+{#                                    </td>#}
+                                    <td>
+                                        {{ item.final|number_format(2, ',', '.') }}
+                                    </td>
+                                     <td>
+                                      {{ item.format|trans }}
+                                     </td>
+
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

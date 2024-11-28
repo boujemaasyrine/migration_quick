@@ -1,0 +1,25 @@
+######################################################################
+
+version: '3.7'
+services:
+
+######################################################################
+ 
+  backoffice:
+    container_name: ${WORKSPACE}-backoffice
+    image: "${WORKSPACE}-bo:${BASE_GIT_COMMIT}-${APP_VERSION}-${ENV}-${GIT_COMMIT}"
+    build:
+      dockerfile: docker/images/final/Dockerfile
+      target: bo-${ENV}
+      context: ..
+      args:
+      - APP_VERSION=${APP_VERSION}
+      - WORKSPACE=${WORKSPACE}
+      - BASE_GIT_COMMIT=${BASE_GIT_COMMIT}
+      - ENV=${ENV}
+    ports:
+      - 8000:80
+      - 8001:443
+    restart: unless-stopped
+
+######################################################################

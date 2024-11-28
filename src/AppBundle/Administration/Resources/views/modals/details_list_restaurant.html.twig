@@ -1,0 +1,74 @@
+<div class="" style="padding: 5px;">
+    <div class="row">
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'label.code' | trans }}: </span>
+            {{ restaurant.code }}
+        </div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'label.name' | trans }}: </span>
+            {{ restaurant.name }}
+        </div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'label.mail' | trans }}: </span>
+            {{ restaurant.email }}
+        </div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'label.manager' | trans }}: </span>
+            {{ restaurant.manager }}
+        </div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'label.address' | trans }}: </span>
+            {{ restaurant.address }}
+        </div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'label.phone' | trans }}: </span>
+            {{ restaurant.phone }}
+        </div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'label.type' | trans }}: </span>
+            {{ restaurant.type }}
+        </div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12 col-modal">
+            <span class="label">{{ 'restaurant.list.orderable' | trans }}: </span>
+            {% if restaurant.orderable %} {{ 'keyword.yes' | trans }} {% else %} {{ 'keyword.no' | trans }} {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <span class="label">{{ 'label.reusable' | trans({}, "supervision") }}</span>
+        </div>
+        <div class="col-xs-4">
+            <div class="form-group">
+                <input id="reusable" type="checkbox" {% if restaurant.reusable == 1 %} checked {% endif %}
+                       readonly/>
+                <label style="cursor: auto" for="#reusable"></label>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <h4>{{ 'restaurant.list.supplier_list' | trans }}</h4>
+    <table id="supplier_resto_list_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+           width="100%">
+        <thead>
+        <tr>
+            <th>{{ 'label.code' | trans }}</th>
+            <th>{{ 'provider.list.provider' | trans }}</th>
+            <th>{{ 'provider.list.designation' | trans }}</th>
+            <th>{{ 'provider.list.address' | trans }}</th>
+            <th>{{ 'provider.list.phone' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for supplier in restaurant.suppliers %}
+            <tr id="{{ supplier.id }}">
+                <td>{{ supplier.code }}</td>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.designation }}</td>
+                <td>{{ supplier.address }}</td>
+                <td>{{ supplier.phone }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>

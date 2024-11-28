@@ -1,0 +1,21 @@
+{% extends ":default:index.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'report';
+    </script>
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        td {
+            font-family: 'Arial', sans-serif !important;
+        }
+    </style>
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'reports.title'|trans([], 'navbar') }}
+{% endblock %}

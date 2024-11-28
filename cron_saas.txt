@@ -1,0 +1,32 @@
+#orders
+0 21 * * * php /var/www/html/bk_saas/app/console order:prepared:notify --env=prod
+30 23 * * * php /var/www/html/bk_saas/app/console order:sending:launch --env=prod
+#financial revenue
+* * * * * php /var/www/html/bk_saas/app/console quick:financial:revenue:import --env=prod
+#ticket import
+*/5 * * * * php /var/www/html/bk_saas/app/console quick:wynd:rest:import --env=prod
+#user import
+*/5 * * * * php /var/www/html/bk_saas/app/console quick:user:wynd:rest:import --env=prod
+#clear files
+30 3 * * * sh /var/www/html/bk_saas/scripts/clear_tmp_file.sh
+#clear databases tmp table
+35 3 * * * php /var/www/html/bk_saas/app/console quick:clear:tmp:tables --env=prod
+#database dump
+0 4 * * * sh /var/www/html/bk_saas/scripts/backup_db.sh
+#update fiscal date
+0 6 * * * php /var/www/html/bk_saas/app/console quick:fiscal:date:refresh --env=prod
+#Notifications
+0 6 * * * php /var/www/html/bk_saas/app/console order:not:delivered:notify --env=prod
+0 6 * * * php /var/www/html/bk_saas/app/console previous:loss:missing --env=prod
+#Optikitchen
+0 8 * * * php /var/www/html/bk_saas/app/console quick:optikitchen:sending --env=prod
+#mvmt aggregation purchased products
+0 0 * * * php /var/www/html/bk_saas/app/console quick_dev:aggregate:mvmt --env=prod
+#download
+* * * * * php /var/www/html/bk_saas/app/console quick:sync:execute --env=prod
+
+#generate missing plu notification
+0 6 * * * php /var/www/html/bk_saas/app/console quick:generate:notifications --env=prod
+
+#purge notifications weekly
+0 0 * * 0 php /var/www/html/bk_saas/app/console quick:purge:notifications --env=prod

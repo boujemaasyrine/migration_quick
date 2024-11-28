@@ -1,0 +1,506 @@
+<style>
+    .tab_header {
+        background-color: orange;
+        font-size: 10px !important;
+    }
+
+    .tab_persent {
+        background-color: #00bcd4;
+    }
+
+    .tab_rows {
+        background-color: yellow;
+    }
+
+    .tab_total {
+        background-color: rgba(85, 85, 85, 0.76)!important;
+    }
+
+    .tab_disabled {
+        background-color: rgba(85, 85, 85, 0.76);
+    }
+    th,tr,td{
+        padding: 5px!important;
+    }
+    td.date{
+        font-size: 10px !important;
+        font-weight: bold;
+    }
+
+</style>
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <h3>{{ 'items_per_canals.title' |trans }}</h3>
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%"
+               style="margin-bottom: 20px">
+            <thead>
+            <tr>
+                <th class="tab_header">{{ 'items_per_canals.revenue_center' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.brut_ttc' |trans }}</th>
+                <th class="tab_persent">{{ 'items_per_canals.percentage' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.br' |trans }}</th>
+                <th class="tab_header">{{ 'report.discount' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ttc' |trans }}</th>
+                <th class="tab_persent">{{ 'items_per_canals.percentage' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tax' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ht' |trans }}</th>
+                <th class="tab_persent">{{ 'items_per_canals.percentage' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tickets' |trans }}</th>
+                <th class="tab_persent">{{ 'items_per_canals.percentage' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tm_brut' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tm_net' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tm_ht' |trans }}</th>
+                <th class="tab_header">{{ 'cashbox_counts_anomalies.report_labels.annulations' |trans }}</th>
+                <th class="tab_header">{{ 'cashbox_counts_anomalies.report_labels.corrections' |trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="tab_rows">{{ 'items_per_canals.eat_in' |trans }}</td>
+                <td>{{ data.report['eat_in']['total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['pr_total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['br'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['discount'] | abs | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['pr_total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['total_tva'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['pr_total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['ticket'] }}</td>
+                <td>{{ data.report['eat_in']['pr_ticket'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['tm_brut'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['tm_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['tm_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['annulations'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['eat_in']['corrections'] | number_format('2','.',',') }}</td>
+
+            </tr>
+            <tr>
+                <td class="tab_rows">{{ 'items_per_canals.take_out' |trans }}</td>
+                <td>{{ data.report['take_out']['total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['pr_total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['br'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['discount'] | abs | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['pr_total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['total_tva'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['pr_total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['ticket']}}</td>
+                <td>{{ data.report['take_out']['pr_ticket'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['tm_brut'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['tm_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['tm_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['annulations'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['take_out']['corrections'] | number_format('2','.',',') }}</td>
+
+            </tr>
+            <tr>
+                <td class="tab_rows">{{ 'items_per_canals.kiosk_in' |trans }}</td>
+                <td>{{ data.report['kiosk_in']['total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['pr_total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['br'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['discount'] | abs | number_format('2','.',',')  }}</td>
+                <td>{{ data.report['kiosk_in']['total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['pr_total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['total_tva'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['pr_total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['ticket'] }}</td>
+                <td>{{ data.report['kiosk_in']['pr_ticket'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['tm_brut'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['tm_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['tm_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['annulations'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_in']['corrections'] | number_format('2','.',',') }}</td>
+
+            </tr>
+            <tr>
+                <td class="tab_rows">{{ 'items_per_canals.kiosk_out' |trans }}</td>
+                <td>{{ data.report['kiosk_out']['total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['pr_total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['br'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['discount'] | abs | number_format('2','.',',')  }}</td>
+                <td>{{ data.report['kiosk_out']['total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['pr_total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['total_tva'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['pr_total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['ticket'] }}</td>
+                <td>{{ data.report['kiosk_out']['pr_ticket'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['tm_brut'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['tm_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['tm_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['annulations'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['kiosk_out']['corrections'] | number_format('2','.',',') }}</td>
+
+            </tr>
+            <tr>
+                <td class="tab_rows">{{ 'items_per_canals.drive' |trans }}</td>
+                <td>{{ data.report['drive']['total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['pr_total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['br'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['discount'] | abs | number_format('2','.',',')  }}</td>
+                <td>{{ data.report['drive']['total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['pr_total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['total_tva'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['pr_total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['ticket'] }}</td>
+                <td>{{ data.report['drive']['pr_ticket'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['tm_brut'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['tm_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['tm_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['annulations'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['drive']['corrections'] | number_format('2','.',',') }}</td>
+
+            </tr>
+            <tr>
+                <td class="tab_rows">{{ 'items_per_canals.delivery' |trans }}</td>
+                <td>{{ data.report['delivery']['total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['pr_total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['br'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['discount'] | abs | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['pr_total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['total_tva'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['pr_total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['ticket'] }}</td>
+                <td>{{ data.report['delivery']['pr_ticket'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['tm_brut'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['tm_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['tm_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['annulations'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['delivery']['corrections'] | number_format('2','.',',') }}</td>
+
+            </tr>
+            <tr>
+                <td class="tab_rows">{{ 'items_per_canals.e_ordering_in' |trans }}</td>
+                <td>{{ data.report['e_ordering_in']['total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['pr_total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['br'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['discount'] | abs | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['pr_total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['total_tva'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['pr_total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['ticket'] }}</td>
+                <td>{{ data.report['e_ordering_in']['pr_ticket'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['tm_brut'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['tm_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['tm_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['annulations'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_in']['corrections'] | number_format('2','.',',') }}</td>
+
+            </tr>
+            <tr>
+                <td class="tab_rows">{{ 'items_per_canals.e_ordering_out' |trans }}</td>
+                <td>{{ data.report['e_ordering_out']['total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['pr_total_ttc'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['br'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['discount'] | abs | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['pr_total_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['total_tva'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['pr_total_net_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['ticket'] }}</td>
+                <td>{{ data.report['e_ordering_out']['pr_ticket'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['tm_brut'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['tm_net'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['tm_ht'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['annulations'] | number_format('2','.',',') }}</td>
+                <td>{{ data.report['e_ordering_out']['corrections'] | number_format('2','.',',') }}</td>
+
+            </tr>
+            {% set ticket_total_count = data.report['take_out']['ticket']  + data.report['eat_in']['ticket'] + data.report['kiosk_out']['ticket'] + data.report['kiosk_in']['ticket']+ data.report['drive']['ticket'] + data.report['delivery']['ticket'] + data.report['e_ordering_in']['ticket'] + data.report['e_ordering_out']['ticket'] %}
+            {% set annulations_total_count = data.report['take_out']['annulations']  + data.report['eat_in']['annulations'] + data.report['kiosk_out']['annulations'] + data.report['kiosk_in']['annulations']+ data.report['drive']['annulations'] + data.report['delivery']['annulations']  + data.report['e_ordering_in']['annulations'] + data.report['e_ordering_out']['annulations'] %}
+            {% set corrections_total_count = data.report['take_out']['corrections']  + data.report['eat_in']['corrections'] + data.report['kiosk_out']['corrections'] + data.report['kiosk_in']['corrections']+ data.report['drive']['corrections'] + data.report['delivery']['corrections'] + data.report['e_ordering_in']['corrections'] + data.report['e_ordering_out']['corrections'] %}
+
+            <tr class="tab_total" style="color: #FFFFFF!important;">
+                <td class="tab_total">{{ 'items_per_canals.total' |trans }}</td>
+                <td class="tab_total">{{ (data.report['take_out']['total_ttc']       + data.report['eat_in']['total_ttc']       + data.report['kiosk_out']['total_ttc']       + data.report['kiosk_in']['total_ttc']    + data.report['drive']['total_ttc'] + data.report['delivery']['total_ttc'] + data.report['e_ordering_in']['total_ttc'] + data.report['e_ordering_out']['total_ttc'] )      | number_format('2','.',',') }}</td>
+                <td class="tab_total">{{ (data.report['take_out']['pr_total_ttc']    + data.report['eat_in']['pr_total_ttc']    + data.report['kiosk_out']['pr_total_ttc']    + data.report['kiosk_in']['pr_total_ttc'] + data.report['drive']['pr_total_ttc'] + data.report['delivery']['pr_total_ttc'] + data.report['e_ordering_in']['pr_total_ttc']  + data.report['e_ordering_out']['pr_total_ttc'])     | number_format('2','.',',') }}</td>
+                <td class="tab_total">{{ (data.report['take_out']['br']              + data.report['eat_in']['br']              + data.report['kiosk_out']['br']              + data.report['kiosk_in']['br']           + data.report['drive']['br'] + data.report['delivery']['br'] + data.report['e_ordering_in']['br']  + data.report['e_ordering_out']['br'])     | number_format('2','.',',') }}</td>
+                <td class="tab_total">{{ (data.report['take_out']['discount']        + data.report['eat_in']['discount']        + data.report['kiosk_out']['discount']        + data.report['kiosk_in']['discount']     + data.report['drive']['discount'] + data.report['delivery']['discount']  + data.report['e_ordering_in']['discount'] + data.report['e_ordering_out']['discount'] )       | abs | number_format('2','.',',')  }}</td>
+                <td class="tab_total">{{ (data.report['take_out']['total_net']       + data.report['eat_in']['total_net']       + data.report['kiosk_out']['total_net']       + data.report['kiosk_in']['total_net']    + data.report['drive']['total_net'] + data.report['delivery']['total_net'] + data.report['e_ordering_in']['total_net']   + data.report['e_ordering_out']['total_net'])       | number_format('2','.',',') }}</td>
+                <td class="tab_total">{{ (data.report['take_out']['pr_total_net']    + data.report['eat_in']['pr_total_net']    + data.report['kiosk_out']['pr_total_net']    + data.report['kiosk_in']['pr_total_net'] + data.report['drive']['pr_total_net'] + data.report['delivery']['pr_total_net'] + data.report['e_ordering_in']['pr_total_net'] + data.report['e_ordering_out']['pr_total_net'])    | number_format('2','.',',') }}</td>
+                <td class="tab_total">{{ (data.report['take_out']['total_tva']           + data.report['eat_in']['total_tva']           + data.report['kiosk_out']['total_tva']           + data.report['kiosk_in']['total_tva']        + data.report['drive']['total_tva'] + data.report['delivery']['total_tva']  + data.report['e_ordering_in']['total_tva'] + data.report['e_ordering_out']['total_tva'])         | number_format('2','.',',') }}</td>
+                <td class="tab_total">{{ (data.report['take_out']['total_net_ht']    + data.report['eat_in']['total_net_ht']    + data.report['kiosk_out']['total_net_ht']    + data.report['kiosk_in']['total_net_ht'] + data.report['drive']['total_net_ht'] + data.report['delivery']['total_net_ht']  + data.report['e_ordering_in']['total_net_ht'] + data.report['e_ordering_out']['total_net_ht'])    | number_format('2','.',',') }}</td>
+                <td class="tab_total">{{ (data.report['take_out']['pr_total_net_ht'] + data.report['eat_in']['pr_total_net_ht'] + data.report['kiosk_out']['pr_total_net_ht'] + data.report['kiosk_in']['pr_total_net_ht'] + data.report['drive']['pr_total_net_ht'] + data.report['delivery']['pr_total_net_ht'] + data.report['e_ordering_in']['pr_total_net_ht'] + data.report['e_ordering_out']['pr_total_net_ht'])  | number_format('2','.',',') }}</td>
+                <td class="tab_total">{{ ticket_total_count }}</td>
+                <td class="tab_total">{{ ( data.report['take_out']['pr_ticket']       + data.report['eat_in']['pr_ticket']      + data.report['kiosk_out']['pr_ticket']       + data.report['kiosk_in']['pr_ticket']    + data.report['drive']['pr_ticket'] + data.report['delivery']['pr_ticket'] + data.report['e_ordering_in']['pr_ticket']  + data.report['e_ordering_out']['pr_ticket'] )    | number_format('2','.',',') }}</td>
+                {% if ticket_total_count > 0 %}
+                    <td class="tab_total">{{ ( (data.report['take_out']['total_ttc']      + data.report['eat_in']['total_ttc']      + data.report['kiosk_out']['total_ttc']       + data.report['kiosk_in']['total_ttc']    + data.report['drive']['total_ttc'] + data.report['delivery']['total_ttc'] + data.report['e_ordering_in']['total_ttc'] + data.report['e_ordering_out']['total_ttc']) / ticket_total_count )  | number_format('2','.',',') }}</td>
+                    <td class="tab_total">{{ ( (data.report['take_out']['total_net']      + data.report['eat_in']['total_net']      + data.report['kiosk_out']['total_net']       + data.report['kiosk_in']['total_net']    + data.report['drive']['total_net'] + data.report['delivery']['total_net'] + data.report['e_ordering_in']['total_net']   + data.report['e_ordering_out']['total_net']) / ticket_total_count )  | number_format('2','.',',') }}</td>
+                    <td class="tab_total">{{ ( (data.report['take_out']['total_ht']       + data.report['eat_in']['total_ht']       + data.report['kiosk_out']['total_ht']        + data.report['kiosk_in']['total_ht']     + data.report['drive']['total_ht']  + data.report['delivery']['total_ht']  + data.report['e_ordering_in']['total_ht']  + data.report['e_ordering_out']['total_ht']  ) / ticket_total_count )  | number_format('2','.',',') }}</td>
+                {% else %}
+                    <td class="tab_total">0</td>
+                    <td class="tab_total">0</td>
+                    <td class="tab_total">0</td>
+                {% endif %}
+                <td class="tab_total">{{ annulations_total_count }}</td>
+                <td class="tab_total">{{ corrections_total_count }}</td>
+            </tr>
+            </tbody>
+        </table>
+        {% if data.type==0 %}
+            <h3>{{ 'items_per_canals.details_per_hour' | trans }}</h3>
+        {% else %}
+            <h3>{{ 'items_per_canals.details_per_day' | trans }}</h3>
+        {% endif %}
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%"
+               style="margin-bottom: 20px;">
+            <thead>
+            <tr>
+                <th></th>
+                <th class="tab_rows" colspan="7" style="background-color: #00FF00;">{{ 'items_per_canals.total' |trans }}</th>
+                <th class="tab_rows" colspan="3">{{ 'items_per_canals.kiosk_out' |trans }}</th>
+                <th class="tab_rows" colspan="3">{{ 'items_per_canals.kiosk_in' |trans }}</th>
+                <th class="tab_rows" colspan="3">{{ 'items_per_canals.eat_in' |trans }}</th>
+                <th class="tab_rows" colspan="3">{{ 'items_per_canals.take_out' |trans }}</th>
+                <th class="tab_rows" colspan="3">{{ 'items_per_canals.drive' |trans }}</th>
+                <th class="tab_rows" colspan="3">{{ 'items_per_canals.delivery' |trans }}</th>
+                <th class="tab_rows" colspan="3">{{ 'items_per_canals.e_ordering' |trans }}</th>
+
+            </tr>
+            <tr>
+                {% if data.type==0 %}
+                    <th class="tab_header" style="min-width: 70px;">{{ 'items_per_canals.hour' |trans }}</th>
+                {% else %}
+                    <th class="tab_header" style="min-width: 70px;">{{ 'items_per_canals.day' |trans }}</th>
+                {% endif %}
+                <th class="tab_header">{{ 'items_per_canals.ca_prev_ttc' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.brut_ttc' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.br' |trans }}</th>
+                <th class="tab_header">{{ 'report.discount' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ttc' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tax' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ht' |trans }}</th>
+
+                <th class="tab_header">{{ 'items_per_canals.brut_ttc' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tax' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ht' |trans }}</th>
+
+                <th class="tab_header">{{ 'items_per_canals.brut_ttc' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tax' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ht' |trans }}</th>
+
+                <th class="tab_header">{{ 'items_per_canals.brut_ttc' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tax' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ht' |trans }}</th>
+
+                <th class="tab_header">{{ 'items_per_canals.brut_ttc' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tax' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ht' |trans }}</th>
+
+                <th class="tab_header">{{ 'items_per_canals.brut_ttc' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tax' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ht' |trans }}</th>
+
+                <th class="tab_header">{{ 'items_per_canals.brut_ttc' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tax' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ht' |trans }}</th>
+
+                <th class="tab_header">{{ 'items_per_canals.brut_ttc' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.tax' |trans }}</th>
+                <th class="tab_header">{{ 'items_per_canals.net_ht' |trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set total_ca_prev_ttc=0 %}
+            {% set total_brut_ttc=0 %}
+            {% set total_br=0 %}
+            {% set total_discount=0 %}
+            {% set total_net_ttc=0 %}
+            {% set total_tax=0 %}
+            {% set total_net_ht=0 %}
+
+
+            {% set kioskOut_total_ca=0 %}
+            {% set kioskOut_total_tax=0 %}
+            {% set kioskOut_total_htva=0 %}
+
+            {% set kioskIn_total_ca=0 %}
+            {% set kioskIn_total_tax=0 %}
+            {% set kioskIn_total_htva=0 %}
+
+            {% set eatIn_total_ca=0 %}
+            {% set eatIn_total_tax=0 %}
+            {% set eatIn_total_htva=0 %}
+
+            {% set takeOut_total_ca=0 %}
+            {% set takeOut_total_tax=0 %}
+            {% set takeOut_total_htva=0 %}
+
+            {% set drive_total_ca=0 %}
+            {% set drive_total_tax=0 %}
+            {% set drive_total_htva=0 %}
+
+            {% set delivery_total_ca=0 %}
+            {% set delivery_total_tax=0 %}
+            {% set delivery_total_htva=0 %}
+
+            {% set e_ordering_total_ca=0 %}
+            {% set e_ordering_total_tax=0 %}
+            {% set e_ordering_total_htva=0 %}
+
+            {% for time, stats in data.report_two %}
+                <tr>
+                    {% if data.type==0 %}
+                        <td class="date">{{ time ~":00" }}</td>
+                    {% else %}
+                        <td class="date">{{ time }}</td>
+                    {% endif %}
+                    <td>{{ stats['ca_prev'] | number_format('2','.',',') }}</td>
+                    <td>{{ stats['total']['ca_brut_ttc'] | number_format('2','.',',') }}</td>
+                    <td>{{ stats['total']['br'] | number_format('2','.',',') }}</td>
+                    <td>{{ stats['total']['discount'] | abs | number_format('2','.',',') }}</td>
+
+                    <td>{{ stats['total']['ca_net_ttc'] | number_format('2','.',',') }}</td>
+                    <td>{{ stats['total']['total_tva'] | number_format('2','.',',') }}</td>
+                    <td>{{ stats['total']['ca_net_ht'] | number_format('2','.',',') }}</td>
+
+                    {% set total_ca_prev_ttc= total_ca_prev_ttc + stats['ca_prev'] %}
+                    {% set total_brut_ttc= total_brut_ttc + stats['total']['ca_brut_ttc'] %}
+                    {% set total_br= total_br + stats['total']['br'] %}
+                    {% set total_discount= total_discount + stats['total']['discount'] %}
+                    {% set total_net_ttc= total_net_ttc + stats['total']['ca_net_ttc'] %}
+                    {% set total_tax= total_tax + stats['total']['total_tva'] %}
+                    {% set total_net_ht= total_net_ht + stats['total']['ca_net_ht'] %}
+
+
+                    {% if stats['kiosk_out'] is defined %}
+                        <td>{{ stats['kiosk_out']['ca_brut_ttc'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['kiosk_out']['total_tva'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['kiosk_out']['ht'] | number_format('2','.',',') }}</td>
+                        {% set kioskOut_total_ca= kioskOut_total_ca + stats['kiosk_out']['ca_brut_ttc'] %}
+                        {% set kioskOut_total_tax= kioskOut_total_tax + stats['kiosk_out']['total_tva'] %}
+                        {% set kioskOut_total_htva= kioskOut_total_htva + stats['kiosk_out']['ht'] %}
+                    {% else %}
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    {% endif %}
+
+                    {% if stats['kiosk_in'] is defined %}
+                        <td>{{ stats['kiosk_in']['ca_brut_ttc'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['kiosk_in']['total_tva'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['kiosk_in']['ht'] | number_format('2','.',',') }}</td>
+                        {% set kioskIn_total_ca= kioskIn_total_ca+ stats['kiosk_in']['ca_brut_ttc'] %}
+                        {% set kioskIn_total_tax= kioskIn_total_tax + stats['kiosk_in']['total_tva'] %}
+                        {% set kioskIn_total_htva= kioskIn_total_htva + stats['kiosk_in']['ht'] %}
+                    {% else %}
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    {% endif %}
+
+                    {% if stats['eat_in'] is defined %}
+                        <td>{{ stats['eat_in']['ca_brut_ttc'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['eat_in']['total_tva'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['eat_in']['ht'] | number_format('2','.',',') }}</td>
+                        {% set eatIn_total_ca= eatIn_total_ca + stats['eat_in']['ca_brut_ttc'] %}
+                        {% set eatIn_total_tax= eatIn_total_tax + stats['eat_in']['total_tva'] %}
+                        {% set eatIn_total_htva= eatIn_total_htva + stats['eat_in']['ht'] %}
+                    {% else %}
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    {% endif %}
+
+                    {% if stats['take_out'] is defined %}
+                        <td>{{ stats['take_out']['ca_brut_ttc'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['take_out']['total_tva'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['take_out']['ht'] | number_format('2','.',',') }}</td>
+                        {% set takeOut_total_ca= takeOut_total_ca + stats['take_out']['ca_brut_ttc'] %}
+                        {% set takeOut_total_tax= takeOut_total_tax + stats['take_out']['total_tva'] %}
+                        {% set takeOut_total_htva= takeOut_total_htva + stats['take_out']['ht'] %}
+                    {% else %}
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    {% endif %}
+
+                    {% if stats['drive'] is defined %}
+                        <td>{{ stats['drive']['ca_brut_ttc'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['drive']['total_tva'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['drive']['ht'] | number_format('2','.',',') }}</td>
+                        {% set drive_total_ca= drive_total_ca + stats['drive']['ca_brut_ttc'] %}
+                        {% set drive_total_tax= drive_total_tax + stats['drive']['total_tva'] %}
+                        {% set drive_total_htva= drive_total_htva + stats['drive']['ht'] %}
+                    {% else %}
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    {% endif %}
+
+                    {% if stats['delivery'] is defined %}
+                        <td>{{ stats['delivery']['ca_brut_ttc'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['delivery']['total_tva'] | number_format('2','.',',') }}</td>
+                        <td>{{ stats['delivery']['ht'] | number_format('2','.',',') }}</td>
+                        {% set delivery_total_ca= delivery_total_ca + stats['delivery']['ca_brut_ttc'] %}
+                        {% set delivery_total_tax= delivery_total_tax + stats['delivery']['total_tva'] %}
+                        {% set delivery_total_htva= delivery_total_htva + stats['delivery']['ht'] %}
+                    {% else %}
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    {% endif %}
+
+
+                    {% if stats['e_ordering_in'] is defined or stats['e_ordering_out'] is defined %}
+                        <td>{{ stats['e_ordering_in']['ca_brut_ttc'] ?? 0 +stats['e_ordering_out']['ca_brut_ttc'] ?? 0 | number_format('2','.',',') }}</td>
+                        <td>{{ stats['e_ordering_in']['total_tva'] ?? 0  +stats['e_ordering_out']['total_tva'] ?? 0 | number_format('2','.',',') }}</td>
+                        <td>{{ stats['e_ordering_in']['ht'] ?? 0 + stats['e_ordering_out']['ht']  ?? 0 | number_format('2','.',',') }}</td>
+                        {% set e_ordering_total_ca= e_ordering_total_ca + stats['e_ordering_in']['ca_brut_ttc']  ?? 0 + stats['e_ordering_out']['ca_brut_ttc'] ?? 0 %}
+                        {% set e_ordering_total_tax= e_ordering_total_tax + stats['e_ordering_in']['total_tva'] ?? 0 + stats['e_ordering_out']['total_tva'] ?? 0 %}
+                        {% set e_ordering_total_htva= e_ordering_total_htva + stats['e_ordering_in']['ht'] ?? 0 +  stats['e_ordering_out']['ht'] ?? 0 %}
+                    {% else %}
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    {% endif %}
+
+                </tr>
+            {% endfor %}
+            <tr class="tab_total" style="color: #FFFFFF!important;">
+                <td>{{ "items_per_canals.total" |trans }}</td>
+                <td>{{ total_ca_prev_ttc | number_format('2','.',',') }}</td>
+                <td>{{ total_brut_ttc | number_format('2','.',',') }}</td>
+                <td>{{ total_br | number_format('2','.',',') }}</td>
+                <td>{{ total_discount | abs | number_format('2','.',',') }}</td>
+                <td>{{ total_net_ttc | number_format('2','.',',') }}</td>
+                <td>{{ total_tax | number_format('2','.',',') }}</td>
+                <td>{{ total_net_ht | number_format('2','.',',') }}</td>
+
+                <td>{{ kioskOut_total_ca | number_format('2','.',',') }}</td>
+                <td>{{ kioskOut_total_tax | number_format('2','.',',') }}</td>
+                <td>{{ kioskOut_total_htva | number_format('2','.',',') }}</td>
+                <td>{{ kioskIn_total_ca | number_format('2','.',',') }}</td>
+                <td>{{ kioskIn_total_tax | number_format('2','.',',') }}</td>
+                <td>{{ kioskIn_total_htva | number_format('2','.',',') }}</td>
+                <td>{{ eatIn_total_ca | number_format('2','.',',') }}</td>
+                <td>{{ eatIn_total_tax | number_format('2','.',',') }}</td>
+                <td>{{ eatIn_total_htva | number_format('2','.',',') }}</td>
+                <td>{{ takeOut_total_ca | number_format('2','.',',') }}</td>
+                <td>{{ takeOut_total_tax | number_format('2','.',',') }}</td>
+                <td>{{ takeOut_total_htva | number_format('2','.',',') }}</td>
+                <td>{{ drive_total_ca | number_format('2','.',',') }}</td>
+                <td>{{ drive_total_tax | number_format('2','.',',') }}</td>
+                <td>{{ drive_total_htva | number_format('2','.',',') }}</td>
+                <td>{{ delivery_total_ca | number_format('2','.',',') }}</td>
+                <td>{{ delivery_total_tax | number_format('2','.',',') }}</td>
+                <td>{{ delivery_total_htva | number_format('2','.',',') }}</td>
+                <td>{{ e_ordering_total_ca | number_format('2','.',',') }}</td>
+                <td>{{ e_ordering_total_tax | number_format('2','.',',') }}</td>
+                <td>{{ e_ordering_total_htva | number_format('2','.',',') }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

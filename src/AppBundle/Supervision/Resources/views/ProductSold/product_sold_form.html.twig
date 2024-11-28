@@ -1,0 +1,49 @@
+{% extends "@Supervision/ProductSold/index_product_sold.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #product_sold_venteAnnexe{
+        left: 1px; !important;
+        display: block;!important;
+        visibility: visible;!important;
+        position: relative; !important;
+        height: 25px;
+        width: 25px;
+         }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var TRANSFORMED_PRODUCT = '{{ constant('AppBundle\\Supervision\\Entity\\ProductSoldSupervision::TRANSFORMED_PRODUCT') }}';
+    </script>
+    {{ parent() }}
+    <script type="application/javascript"
+            src="{{ asset('src/js/Supervision/ProductSold/product_sold_form.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'product_sold.title'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'parameters.merchandise_management'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block subBody %}
+    <div class="panel panel-default" style="padding-bottom: 15px;">
+        <div class="panel-heading">
+            {% if productSoldForm.vars.value.id is null %}
+                {% set old = "" %}
+                {{ 'product_sold.sub_titles.new_product'|trans([],'supervision') }}
+            {% else %}
+                {% set old = "existingProduct" %}
+                {{ 'product_sold.sub_titles.old_product'|trans([],'supervision') }}
+            {% endif %}
+        </div>
+        <div class="panel-body">
+            {{ include('@Supervision/ProductSold/parts/form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

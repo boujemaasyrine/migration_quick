@@ -1,0 +1,70 @@
+{% extends "@Administration/index_product_sold.html.twig" %}
+
+{% block base_title %}
+    {{ 'product_sold.title' | trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/Administration/product_sold.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript"
+            src="{{ asset('src/js/Administration/MerchandiseManagement/listing.js') }}"></script>
+{% endblock %}
+
+{% block blockTitle %}
+{% endblock %}
+
+{% block subBody %}
+
+    <div class="filter-zone" id="filter-zone-search">
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px;">
+                {{ form_start(formSearch,{ 'method' : 'POST', 'attr': {'id': 'productSoldFilterForm'} }) }}
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="col-xs-12 col-sm-4">
+                        {{ form_row(formSearch.codeSearch) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        {{ form_row(formSearch.nameSearch) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        {{ form_row(formSearch.typeSearch) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        {{ form_row(formSearch.statusSearch) }}
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(formSearch) }}
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align:right; padding-top: 15px">
+                        <button type="button" id="reset-filter" class="btn btn-cancel">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "delete_filter"|trans }}
+                        </button>
+                        <button onclick="productSoldDatatable.ajax.reload();" type="button"
+                                class="btn btn-filter btn-icon">
+                            {{ 'filter.btn' | trans }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(formSearch) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="panel panel-default">
+            {{ include('@Administration/MerchandiseManagement/parts/product_sold_list.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

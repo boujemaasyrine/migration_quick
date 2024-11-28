@@ -1,0 +1,129 @@
+{% extends '@Financial/default.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Financial/withdrawal_list.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .input-field {
+            margin-bottom: 1rem;
+        }
+
+        .actions-btn .glyphicon {
+            font-size: 1.8em;
+            margin: 0px 5px;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+{% block base_title %}
+    {{ 'fund_management.withdrawal_list'|trans([], 'navbar') }}
+{% endblock %}
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.consultations.title'|trans }}
+{% endblock %}
+{% block body %}
+
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px;">
+                {{ form_start(form,{ 'method' : 'GET', 'attr': {'id': 'filterWithdrawalForm'} }) }}
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="col-xs-12 col-sm-6 col-md-6 input-field">
+                        {{ form_label(form.statusCount, 'keyword.status', { 'label_attr': {'class': 'active'} }) }}
+                        {{ form_widget(form.statusCount,{ 'attr' : { 'class' : 'form-control' } }) }}
+                        {{ form_errors(form.statusCount) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 input-field">
+                        <label class="active">{{ 'keyword.envelope' | trans }}</label>
+                        <div id="withdrawal_search_envelope">
+                            <input type="checkbox" id="withdrawal_search_envelope_0"
+                                   name="withdrawal_search[envelope][0]" value="true">
+                            <label for="withdrawal_search_envelope_0">{{ 'keyword.with' | trans }}</label>
+                            <input type="checkbox" id="withdrawal_search_envelope_1"
+                                   name="withdrawal_search[envelope][1]" value="false">
+                            <label for="withdrawal_search_envelope_1">{{ 'keyword.without' | trans }}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 input-field">
+                        {{ form_label(form.owner, 'label.manager', { 'label_attr': {'class': 'active'} }) }}
+                        {{ form_widget(form.owner,{ 'attr' : { 'class' : 'form-control sortable' } }) }}
+                        {{ form_errors(form.owner) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 input-field">
+                        {{ form_label(form.member, 'fund_management.withdrawal.entry.team_member', { 'label_attr': {'class': 'active'} }) }}
+                        {{ form_widget(form.member,{ 'attr' : { 'class' : 'form-control sortable' } }) }}
+                        {{ form_errors(form.member) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 input-field">
+                        {{ form_label(form.startDate) }}
+                        {{ form_widget(form.startDate,{ 'attr' : { 'class' : 'datepicker form-control', 'value' : ("now"|date("d/m/Y")) } }) }}
+                        {{ form_errors(form.startDate) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 input-field endDate">
+                        {{ form_label(form.endDate) }}
+                        {{ form_widget(form.endDate,{ 'attr' : { 'class' : 'datepicker form-control', 'value' : ("now"|date("d/m/Y")) } }) }}
+                        {{ form_errors(form.endDate) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align:right;">
+                        <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "delete_filter"|trans }}
+                        </button>
+                        <button onclick="withdrawals.ajax.reload();" type="button" class="btn btn-primary">
+                            <span style="color : white"
+                                  class="glyphicon glyphicon-filter"></span> {{ 'filter.btn'|trans }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                {#<div class="col-xs-4 col-md-3 col-lg-2">#}
+                {#<button class="btn btn-block  white black-text btn-refresh" type="button" id="export-btn">#}
+                {#<span class="glyphicon glyphicon-repeat"></span> {{ "btn.reload"|trans }}#}
+                {#</button>#}
+                {#</div>#}
+                <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: right; padding-bottom: 15px">
+                    <button class="btn btn-export btn-icon" type="button" id="export-btn">
+                        {{ "btn.export"|trans }}
+                    </button>
+                    <button class="btn btn-print btn-icon" type="button" id="print-btn">
+                        {{ "btn.print"|trans }}
+                    </button>
+                </div>
+            </div>
+
+            <table id="withdrawals_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+                   width="100%">
+                <thead>
+                <tr>
+                    <th>{{ 'fund_management.withdrawal.list.manager'|trans }}</th>
+                    <th>{{ 'fund_management.withdrawal.entry.team_member'|trans }}</th>
+                    <th>{{ 'keyword.date'|trans }}</th>
+                    <th>{{ 'keyword.amount'|trans }} (&euro;)</th>
+                    <th>{{ 'keyword.status'|trans }}</th>
+                    <th>{{ 'keyword.envelope'|trans }}</th>
+                    {#<th>{{ 'table.actions'|trans }}</th>#}
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

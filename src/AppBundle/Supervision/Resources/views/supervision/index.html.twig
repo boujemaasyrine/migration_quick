@@ -1,0 +1,173 @@
+{% extends ":supervision/default:index.html.twig" %}
+
+ {% block base_title %}
+     Etat des  Back Office restaurants {% if version == "quick" %}
+     Quick
+ {% else %}
+     BK
+ {% endif %}
+ {% endblock %}
+
+{% block base_subtitle %}
+    Supervision des restaurants
+{% endblock %}
+
+
+{% block body %}
+    <div class="filter-zone" id="filter-zone-search">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span
+                        class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans({}, "supervision") }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px;{% if display is defined %} display: block; {% endif %}">
+                {{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'filterForm'} }) }}
+                <div class="row" style="margin-bottom: 0;">
+
+                    <div class="col col-lg-6 col-md-6 col-xs-12">
+                        {{ form_label(form.date) }}
+                        <div class="input-group">
+                            {{ form_widget(form.date, {'attr' : {'class' : 'datepicker form-control'}}) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.date) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align:right; padding-top: 7px">
+                        <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "filter.delete_filter"|trans({}, "supervision") }}
+                        </button>
+                        <button  type="submit" class="btn btn-primary">
+                        <span style="color : white"
+                              class="glyphicon glyphicon-filter"></span> {{ 'filter.btn'|trans({}, "supervision") }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table id="quicks-table" class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    {#TODO Translation Amjed#}
+                    <th>{% if version =='quick' %}Quick{% else %}BK{% endif %}</th>
+                    <th>Manager</th>
+                    <th>Contact</th>
+                    <th>{{ 'last_closured_date'|trans }}</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for q in quicks %}
+                    {% set date_fiscale = administrative_closing_service.getLastWorkingEndDate( q )|date('d/m/Y') %}
+                    {% set lastClosingDate=  administrative_closing_service.lastClosingDate( q.id )|date('d/m/Y') %}
+                    {% set diff_date= date_fiscale-lastClosingDate %}
+                    <tr>
+                        <td>
+                            {{ q.name }} ({{ q.code }})
+                        </td>
+                        <td>
+                            {{ q.manager }}
+                        </td>
+                        <td>
+                            <span class="glyphicon glyphicon-earphone"></span> {{ q.managerPhone }}<br>
+                            <span class=" glyphicon glyphicon-envelope"></span> <a
+                                    href="mailto://{{ q.managerEmail }}">{{ q.managerEmail }}</a><br>
+                        </td>
+                        <td {% if diff_date > 2 %} style="color: #9d0006;" {% endif %}>{% if diff_date > 2 %}<i class="fa fa-question" style="font-size: 15px; margin-right: 5px;"></i>{% endif %}{{ lastClosingDate }} </td>
+                        <td>
+                            <a href="{{ path('supervision_details',{'quick':q.id}) }}" {{ securityChecker.disableBtn('supervision_details') }}
+                               class="btn btn-view btn-icon btn-xs">Détails</a>
+
+                            <!-- to change with the path to bo where we are passing the id as mentionned !-->
+                            <a target="_blank" href="{{ path('redirect_to_restaurant', {'restaurant': q.id}) }}"
+                               class="btn btn-success btn-xs redirect">
+                                {#<img class="loader_front" src="{{ asset('src/images/logo.png') }}" style="height: 2.5em;">#}
+                                {{ 'keyword_access' | trans([], 'supervision') }}</a>
+                            <button {{ securityChecker.disableBtn('supervision_details') }} data-id='{{ q.id }}' class='btn btn-success btn-xs redirect order_revive'>Relancer commande</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('src/css/supervision.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        .connected, .unconnected, .status {
+            color: white;
+            font-weight: bold;
+        }
+
+        .connected {
+            background: darkgreen;
+        }
+
+        .unconnected {
+            background: darkred;
+        }
+
+       .order_revive{
+            background: cornflowerblue !important;
+        }
+
+        /*.dataTables_wrapper {*/
+        /*overflow-y: auto*/
+        /*}*/
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function () {
+            initSimpleDataTable('#quicks-table', {
+                columnDefs: [
+                    {orderable: false, targets: -1}
+                ]
+            });
+        });
+    </script>
+    <script>
+        $('#reset-filter').on('click', function () {
+        resetFilter($('#filter-zone-search'));
+            window.location.href=Routing.generate('restaurant_list_super');
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.order_revive', function(){
+                var restaurantId = $(this).attr('data-id');
+                var url = Routing.generate('resend_order_rejected',{'restaurant' : restaurantId});
+                // var btn="<button type='button' data-url="+url+" id='confirm' class='btn btn-icon btn-xs'>Confirmer </button> <button>Annuler</button>";
+                // showDefaultModal('Relancer les commandes rejectÃ©es','data',btn);
+                ajaxCall({
+                    url: url,
+                    method: POST,
+                }, function (data) {
+                    if ( data.res == '0') {
+                      //pas des commandes rejectÃ©es
+
+                        window.location.href=Routing.generate('restaurant_list_super');
+                    }else if(data.res == '1'){
+                        //reload page index avec succes
+                        window.location.href=Routing.generate('restaurant_list_super');
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

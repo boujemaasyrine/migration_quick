@@ -1,0 +1,168 @@
+{% extends "@Supervision/Reports/Merchandise/index.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+{   <script>
+        $('.selectize').selectize({
+            plugins: ['remove_button']
+        });
+    </script>
+    {% if progressID is defined %}
+
+        <script>
+
+            var progressTimeInterval = null;
+
+            $(function () {
+                if ($("#foodcost-report-progress-bar").length > 0) {
+                    progressTimeInterval = window.setInterval(function () {
+                        progressBarSuivi($("#foodcost-report-progress-bar").attr('progress-id'),
+                            progressTimeInterval,
+                            "#foodcost-report-progress-bar",
+                            function (result) {
+                                return result.progress + '% (' + result.proceeded + "/" + result.total + " " + " restaurants)";
+                            }, function () {
+                                window.location.href = Routing.generate('download_foodcost_report');
+                            }
+                        )
+                    }, 1000);
+                }
+            })
+
+
+        </script>
+    {% endif %}
+
+{% endblock %}
+
+
+
+{% block base_title %}
+    {{ 'reports.merchandise_management.foodcost_report'|trans([], 'navbar_supervision') }}
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span
+                        class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans({}, 'supervision') }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                {{ form_start(form, {'method' : 'POST' ,'action' : path('supervision_foodcost_report'), 'attr' : { 'id' : 'foodCostReportForm'} }) }}
+                <div class="row">
+                    <div class="col-lg-3 col-md-2 col-xs-12">
+                        <label class="required">
+                            {{ 'report.period' |trans({}, 'supervision') }}
+                        </label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-12">
+                        <div class="input-group">
+                            {{ form_widget(form.startDate, { "attr": { "class": 'form-control datepicker' } }) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.startDate) }}
+                    </div>
+                    <div class="col-lg-1 col-md-2 col-xs-12">
+                        <label class="required">
+                            {{ 'keywords.to' |trans({}, 'supervision') }}
+                        </label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-12">
+                        <div class="input-group">
+                            {{ form_widget(form.endDate, { "attr": { "class": 'form-control datepicker' } }) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(form.endDate) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+                        {{ form_label(form.restaurants) }}
+                        {{ form_widget(form.restaurants,{'attr' : {'class' : 'selectize'}}) }}
+                        {{ form_errors(form.restaurants) }}
+                    </div>
+                </div>
+                <div class="hidden">
+                    {{ form_rest(form) }}
+                </div>
+
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-md-12 col-xs-12" style="text-align:right;">
+                      {#  {% if(generated is defined) %}
+                            <button class="btn waves-effect btn-export text-black dropdown-button"
+                                    data-activates='dropdown2'>
+                                <span class="hide-on-med-and-down"> {{ 'btn.export'|trans() }} </span>
+                            </button>
+                            <ul id="dropdown2" class="dropdown-content" style="">
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="downloadReport">
+                                        <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'button.download'|trans({}, 'supervision') }} {{ 'button.download_pdf'|trans({}, 'supervision') }}"/>
+                                        <span style="color: #000;">{{ 'button.download_pdf'|trans({}, 'supervision') }}</span>
+                                    </a></li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-btn">
+                                        <img src="{{ asset('bundles/app/images/export/csv-128.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'button.download'|trans({}, 'supervision') }} {{ 'button.download_csv'|trans({}, 'supervision') }}"/>
+                                        <span style="color: #000;">{{ 'button.download_csv'|trans({}, 'supervision') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="strech_btn text-black" href="#" id="export-xls">
+                                        <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                             style="height: 25px"
+                                             alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans({}, 'supervision') }}"/>
+                                        <span style="color: #000;">{{ 'btn.download_xls'|trans({}, 'supervision') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}#}
+
+                        <button type="submit" class="btn waves-effect orange text-black " id="generateReport">
+                            {{ 'btn.export'|trans({}, 'supervision') }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+
+
+        {% if progressID is defined %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row" id="foodcost-report-progress-bar" progress-id="{{ progressID }}">
+                        <div class="col-xs-12 progress-container">
+                            <div class="progress-hint">
+                                Progress <span class="progress-hint-per"></span>
+                            </div>
+
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                     aria-valuenow="45"
+                                     aria-valuemin="0"
+                                     aria-valuemax="100"
+                                     style="width: 0%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+
+
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,224 @@
+{% extends '@Supervision/Reports/index.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var progressTimeInterval;
+
+        var restaurant = $("#form_restaurant");
+        restaurant.change(function () {
+            var form = restaurant.closest("form");
+            var data = {};
+            data[restaurant.attr("name")] = restaurant.val();
+            loader.show();
+            $.ajax({
+                "url": form.attr("action"),
+                "type": form.attr("method"),
+                "data": data,
+                "success": function (html) {
+                    $('#form_sheetModel').replaceWith(
+                        // ... with the returned one from the AJAX response.
+                        $(html).find('#form_sheetModel')
+                    );
+                    loader.hide();
+                },
+                "error": function () {
+                    loader.hide();
+                }
+            });
+        });
+
+        function calculateReport(progressId, tmpId) {
+            $('#export-rapport-link').attr('href', '#');
+            $('#export-excel-link').attr('href', '#');
+            $("#generate-btn").attr('disabled', 'disabled');
+            progressTimeInterval = window.setInterval(function () {
+                progressBarSuivi(
+                    progressId,
+                    progressTimeInterval,
+                    '#report-progress',
+                    function (result) {
+                        return result.progress + '% (' + result.proceeded + "/" + result.total + " " + 'Product' + ")";
+                    }, function () {
+
+                        ajaxCall({
+                            url: Routing.generate('supervision_get_result', {'tmp': tmpId})
+                        }, function (dataReceived) {
+                            $("#generate-btn").removeAttr('disabled');
+                            $('#data-zone').html(dataReceived.html);
+                            $('#export-rapport-link').attr('href', Routing.generate('supervision_export_control_stock_pdf', {tmp: tmpId}));
+                            $('#export-excel-link').attr('href', Routing.generate('supervision_export_excel', {tmp: tmpId}));
+                            $('#progress-bars-container').hide();
+                            $('#progress-bars-container .progress-bar').css('width', '0%');
+                            fixTableHeaderWidth('#constrol-stock-table');
+                            fixMyHeader('#constrol-stock-table', function (x) {
+                                fixTableHeaderWidth(x);
+                            });
+
+                        });
+                    }
+                );
+            }, 1000);
+        }
+
+        $(function () {
+            $('#generate-btn').on('click', function () {
+                $('#progress').show();
+                if ($('#form_startDate').val().trim() == '' || $('#form_endDate').val().trim() == '') {
+                    return;
+                }
+
+                var startMoement = moment($('#form_startDate').val().trim(), "DD/MM/YYYY");
+                var endMoment = moment($('#form_endDate').val().trim(), "DD/MM/YYYY");
+
+                if (startMoement.diff(endMoment, 'days') > 0) {
+                    return;
+                }
+
+                ajaxCall({
+                    url: Routing.generate("supervision_control_stock_report"),
+                    method: 'POST',
+                    data: $("form[name='form']").serialize(),
+                    dataType: 'json'
+                }, function (receivedData) {
+                    if (receivedData.progressID != undefined) {
+                        $('#progress-bars-container').show();
+                        calculateReport(receivedData.progressID, receivedData.tmpID);
+                    }
+                });
+            })
+
+            var today = moment();
+            var yesterday = today.subtract(1, 'd');
+
+            var startDay = $('#form_startDate').pickadate('picker');
+            var endDay = $('#form_endDate').pickadate('picker');
+            startDay.set('disable', [{
+                from: -3000, to: [yesterday.year(), yesterday.month(), yesterday.date()]
+            }]);
+            endDay.set('disable', [{
+                from: -3000, to: [yesterday.year(), yesterday.month(), yesterday.date()]
+            }]);
+
+            $('#form_startDate').on('change', function () {
+                startDay.close();
+            });
+
+            $('#form_endDate').on('change', function () {
+                endDay.close();
+            });
+
+        });
+
+        $(document).on('click', '.cat-tr', function () {
+            $(this).siblings(".product-tr[cat-id='" + $(this).attr('cat-id') + "']").slideToggle();
+        });
+
+
+    </script>
+{% endblock %}
+{% block base_title %}
+    Contrôle du Stock
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'reports.merchandise_management.title'|trans([], 'navbar_supervision') }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span
+                        class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans({}, 'supervision') }}
+            </div>
+            <div class="panel-body" style="padding-top: 5px; display: block;">
+                {{ form_start(form,{'method' : 'POST'}) }}
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <label for="form_startDate"> {{ 'control_stock.start_date'|trans({}, 'supervision') }} </label>
+                        <div class="input-group">
+                            {{ form_widget(form.startDate,{ 'attr': { 'class' : 'datepicker form-control' } }) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>
+                        {{ form_errors(form.startDate) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <label for="form_endDate">{{ 'control_stock.end_date'|trans({}, 'supervision') }}</label>
+                        <div class="input-group">
+                            {{ form_widget(form.endDate,{ 'attr': { 'class' : 'datepicker form-control' } }) }}
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                        </div>{{ form_errors(form.endDate) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <label for="form_endDate">{{ 'keyword.restaurants'|trans({}, 'supervision') }}</label>
+                        {{ form_widget(form.restaurant,{ 'attr': { 'class' : 'form-control' } }) }}
+                        {{ form_errors(form.restaurant) }}
+                    </div>
+                    {% if form.sheetModel is defined %}
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <label for="form_sheetModel"> {{ 'control_stock.sheet_model'|trans({}, 'supervision') }} </label>
+                            {{ form_widget(form.sheetModel,{ 'attr': { 'class' : 'form-control' } }) }}
+                            {{ form_errors(form.sheetModel) }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: right">
+                        <button class="btn waves-effect btn-export btn-icon text-black dropdown-button"
+                                data-activates='dropdown2'>
+                            <span class=""> {{ 'btn.export'|trans({}, 'supervision') }} </span>
+                        </button>
+                        <ul id="dropdown2" class="dropdown-content" style="">
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="export-excel-link">
+                                    <img src="{{ asset('bundles/app/images/export/xls-512.png') }}" style="height: 25px"
+                                         alt="{{ 'button.download'|trans({}, 'supervision') }} {{ 'button.download_xls'|trans({}, 'supervision') }}"/>
+                                    <span style="color: #000;">{{ 'button.download_xls'|trans({}, 'supervision') }}</span>
+                                </a></li>
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="export-rapport-link">
+                                    <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}" style="height: 25px"
+                                         alt="{{ 'button.download'|trans({}, 'supervision') }} {{ 'button.download_pdf'|trans({}, 'supervision') }}"/>
+                                    <span style="color: #000;">{{ 'button.download_pdf'|trans({}, 'supervision') }}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <button id="generate-btn" class="btn"
+                                type="button"> {{ 'report.generate'|trans({}, 'supervision') }} </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" id="progress" style="display: none;">
+        <div class="panel-body">
+            <div class="container-fluid" id="progress-bars-container" style="display: none">
+                <div class="row" id="report-progress">
+                    <div class="col-xs-12 progress-container">
+                        <div class="progress-hint">
+                            {{ 'progress.calcul_result'|trans({}, 'supervision') }} <span
+                                    class="progress-hint-per"></span>
+                        </div>
+                        <div class="progress" style="height: 25px; background-color: #f5f5f5 !important">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                 aria-valuenow="45"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 style="width: 0%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="data-zone">
+                {% if data is defined %}
+                    {% include '@Supervision/Reports/ControlStockReport/report_result.html.twig' with {'data' : data } %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

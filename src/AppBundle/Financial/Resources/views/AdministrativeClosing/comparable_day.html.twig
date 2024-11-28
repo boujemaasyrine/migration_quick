@@ -1,0 +1,137 @@
+{% extends ":default:index.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+
+            $("form").on('submit', function () {
+                $('#error-msg').hide();
+                $('#error-msg-comment').hide();
+
+                var ok = true;
+                if ($('input[name=radio]:checked').val() == undefined) {
+                    $('#error-msg').show();
+                    ok = false;
+                }
+
+                if ($('#comment').val().trim() == '') {
+                    ok = false;
+                    $('#error-msg-comment').show();
+                }
+
+                if (ok && $('.weather-icon.selected-shadow').length > 0) {
+                    var c = $('#comment').val();
+                    c = c + "\n " + Translator.trans('weather_label') + " : " +
+                        $('.weather-icon.selected-shadow').attr('data-original-title');
+                    $('#comment').val(c)
+                    $('#submit-btn').attr('disabled', 'disabled');
+                }
+
+                return ok;
+            });
+
+            $(".weather-icon").on('click', function () {
+                $(".weather-icon").removeClass('selected-shadow');
+                $(this).addClass('selected-shadow');
+                $('#comment').focus();
+            })
+
+        });
+    </script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'admin_closing.title'|trans() }} du {{ administrative_closing_service.currentClosingDate|date('d/m/Y') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'admin_closing.comprable_day'|trans() }}
+{% endblock %}
+
+{% block body %}
+    <style>
+        .weather-icon {
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-size: 30px 30px;
+        }
+
+        .selected-shadow {
+            -webkit-box-shadow: 0px 0px 15px 1px rgba(163, 163, 163, 1);
+            -moz-box-shadow: 0px 0px 15px 1px rgba(163, 163, 163, 1);
+            box-shadow: 0px 0px 15px 1px rgba(163, 163, 163, 1);
+            width: 40px;
+            height: 40px;
+            background-size: 40px 40px;
+        }
+    </style>
+    {% include '@Financial/AdministrativeClosing/steps.html.twig' with { 'admin_closing_6_step' : true } %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form style="margin-top: 40px;" action="{{ path('comparable_day') }}" method="POST">
+                <div class="row">
+                    <div class="col-xs-6">
+
+                        <span style="font-size: inherit;"
+                              class="required">{{ 'admin_closing.comprable_day_question'|trans({'%1%': today})|raw }}</span>
+
+                        <div style="display: inline-block">
+                            <input id="no" name="radio" type="radio" value="no">
+                            <label for="no">{{ 'admin_closing.no_label'|trans() }}</label>
+                        </div>
+                        <div style="display: inline-block">
+                            <input id="yes" name="radio" type="radio" value="yes">
+                            <label for="yes">{{ 'admin_closing.yes_label'|trans() }}</label>
+                        </div>
+                        <span id="error-msg" style=" display: none; ">
+                            {% set error = [{'message' :'you_must_check_an_option'|trans() }] %}
+                            {% include ':form_part:errors.html.twig' with { 'errors' : error } %}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-1">
+                        <label> {{ 'weather_label'|trans() }} :</label>
+                    </div>
+                    <div class="col-xs-1">
+                        <span class="weather-icon sun"></span>
+                    </div>
+                    <div class="col-xs-1">
+                        <span class="weather-icon rain"></span>
+                    </div>
+                    <div class="col-xs-1">
+                        <span class="weather-icon cloud"></span>
+                    </div>
+                    <div class="col-xs-1">
+                        <span class="weather-icon snow"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label class="required" for="comment">{{ 'admin_closing.comment'|trans() }}: </label>
+                        <textarea style="height: 200px !important;" id="comment" name="comment" required="required"
+                                  class="form-control"></textarea>
+                        <span id="error-msg-comment" style=" display: none; ">
+                            {% set error = [{'message' :'you_must_type_st'|trans() }] %}
+                            {% include ':form_part:errors.html.twig' with { 'errors' : error } %}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6" style="text-align: right">
+                        <button id="submit-btn" type="submit"
+                                class="btn">{{ 'admin_closing.validate_label'|trans() }}</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+{% endblock %}

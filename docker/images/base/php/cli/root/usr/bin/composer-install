@@ -1,0 +1,3 @@
+#!/bin/bash
+echo; echo "  ⏬ Running composer install $@"
+exec composer install $COMPOSER_INSTALL_OPTIONS "$@"

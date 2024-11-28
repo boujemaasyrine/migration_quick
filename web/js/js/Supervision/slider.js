@@ -1,0 +1,1 @@
+$.fn.sliderJquery=$.fn.slider;

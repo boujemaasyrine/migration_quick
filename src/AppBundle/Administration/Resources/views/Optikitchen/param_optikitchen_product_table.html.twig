@@ -1,0 +1,41 @@
+<table class="table table-hover table-striped table-bordered product-table" style="width: 100%;">
+    <thead>
+    <tr>
+        <th> {{ 'product.code'|trans() }} </th>
+        <th>
+            {% if type == 'purchased' %}
+                {{ 'article'|trans }}
+            {% else %}
+                {{ 'label.sold_item'|trans() }}
+            {% endif %}
+        </th>
+        <th>
+            {{ 'eligible'|trans() }}
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for p in products %}
+        <tr>
+            <td>
+                {% if type == 'purchased' %}
+                    {{ p.externalId }}
+                {% else %}
+                    {{ p.codePlu }}
+                {% endif %}
+            </td>
+            <td>
+                {{ p.name }}
+            </td>
+            <td>
+                <input
+                        {% if p.eligibleForOptikitchen %}
+                            checked
+                        {% endif %}
+                        name="eligible[{{ p.id }}]"
+                        type="checkbox"/>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

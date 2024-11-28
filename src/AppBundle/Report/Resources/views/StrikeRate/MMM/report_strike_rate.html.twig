@@ -1,0 +1,111 @@
+<style>
+    {% if download is not defined %}
+    .category {
+        background-color: rgba(255, 255, 0, 0.22);
+    }
+
+    .total {
+        background-color: #6ff26f /*#00FF00*/ !important;
+    }
+
+    .tab_header {
+        background-color: rgba(203, 171, 48, 0.69);
+    }
+
+    .all_total {
+        background-color: rgba(0, 55, 255, 0.58);
+    }
+
+    .ticket_total_box {
+        background-color: rgba(31, 138, 255, 0.58);
+        color: #FFFFFF;
+    }
+
+    {% endif %}
+
+    .total {
+        font-weight: bold;
+    }
+
+    .ticket_total_box {
+        padding: 10px;
+        margin: 15px;
+        max-width: 500px;
+    }
+
+    .total_span {
+        font-weight: bold;
+        margin: 0 20px;
+    }
+
+    table th, table td {
+        width: 80px;
+    !important;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h2>{{ 'strike_rate.title' |trans }}</h2>
+        <div class="ticket_total_box">{{ 'strike_rate.nbr_total_ticket' |trans }} <span
+                    class="total_span">{{ data.report.total_ticket_count }}</span></div>
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%"
+               style="margin-bottom: 20px">
+            <thead>
+            <tr class="tab_header mainHeader">
+                <th>{{ 'strike_rate.items' | trans }}</th>
+                <th>{{ 'strike_rate.qty' |trans }}</th>
+                <th>{{ 'strike_rate.pr_product' |trans }}</th>
+                <th>{{ 'strike_rate.per_100_product' |trans }}</th>
+            </tr>
+            </thead>
+            <tbody class="mainTbody">
+
+            {% set qty_total = 0 %}
+            {% set total_per = 0 %}
+            {% set total_per_per_ticket = 0 %}
+
+            {% for item_name,stats in data.report.report %}
+
+                {% if filter is not defined or filter.itemName is empty %}
+                    <tr class="mainRow">
+                        <td>{{ item_name }}</td>
+
+                        <td>{{ stats['sale_qty'] }}</td>
+
+                        {% set pr = ((stats['sale_qty'])/ data.report.items_qty )*100 %}
+                        <td>{{ pr | number_format('2','.',',') }}</td>
+                        {% set total_per = total_per + pr %}
+
+                        {% set pr = ((stats['sale_qty'])/ data.report.total_ticket_count )*100 %}
+                        <td>{{ pr | number_format('2','.',',') }}</td>
+                        {% set total_per_per_ticket = total_per_per_ticket + pr %}
+                    </tr>
+                    {% set qty_total = qty_total + stats['sale_qty'] %}
+                {% elseif (filter.itemName|trim|lower) in (item_name|trim|lower) %}
+                    <tr class="mainRow">
+                        <td>{{ item_name }}</td>
+
+                        <td>{{ stats['sale_qty'] }}</td>
+
+                        {% set pr = ((stats['sale_qty'])/ data.report.items_qty )*100 %}
+                        <td>{{ pr | number_format('2','.',',') }}</td>
+                        {% set total_per = total_per + pr %}
+                        {% set pr = ((stats['sale_qty'])/ data.report.total_ticket_count )*100 %}
+                        <td>{{ pr | number_format('2','.',',') }}</td>
+                        {% set total_per_per_ticket = total_per_per_ticket + pr %}
+                    </tr>
+                    {% set qty_total = qty_total + stats['sale_qty'] %}
+                {% endif %}
+
+            {% endfor %}
+
+            <tr class="total">
+                <td>{{ 'strike_rate.total' | trans }}</td>
+                <td> {{ qty_total }} </td>
+                <td>{{ total_per | number_format('2','.',',') }}</td>
+                <td>-</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

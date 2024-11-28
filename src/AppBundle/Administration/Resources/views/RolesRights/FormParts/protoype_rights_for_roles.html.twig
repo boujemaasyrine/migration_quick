@@ -1,0 +1,14 @@
+<div style="display: none;" class="lineRole col-sm-12 col-md-12" id="__name__">
+    <div id="rights_for_roles_roles___name__"><input type="hidden" id="rights_for_roles_roles___name___role"
+                                                     name="rights_for_roles[roles][__name__][role]"/>
+        <div><label for="rights_for_roles_roles___name___right" class="required">{{ 'label.rights' | trans }}</label>
+            <select
+                    id="rights_for_roles_roles___name___right" name="rights_for_roles[roles][__name__][right][]"
+                    required="required" class="sortable" multiple="multiple"
+                    size="{{ form.children.rolesLabel.vars.choices | length }}">
+                {% for right in rights %}
+                    <option value="{{ right.id }}">{{ right.name | trans({}, "actions") }}</option>
+                {% endfor %}
+            </select></div>
+    </div>
+</div>

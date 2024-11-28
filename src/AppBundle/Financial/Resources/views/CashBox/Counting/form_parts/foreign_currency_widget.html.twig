@@ -1,0 +1,31 @@
+{% block foreign_currency_widget %}
+    {% spaceless %}
+        <div class="row ">
+            <div class="col-xs-4">
+                {{ form_label(form.amount, 'keyword.amount') }}
+                {{ form_widget(form.amount, { 'attr': { 'class': 'foreign_currency_amount form-control', 'maxlength':"10"}}) }}
+                {{ form_errors(form.amount) }}
+            </div>
+            <div class="col-xs-4">
+                {{ form_label(form.exchangeRate, 'cashbox.counting.exchange_rate') }}
+                {{ form_widget(form.exchangeRate, { 'attr': { 'class': 'form-control exchange_rate_select'}}) }}
+                {{ form_widget(form.exchangeRate) }}
+
+                {{ form_widget(form.foreignCurrencyLabel, { 'attr': { 'class': 'foreign_currency_label_input'}}) }}
+            </div>
+            <div class="col-xs-2">
+                {% if form.vars.value is not null %}
+                    <label>{{ 'keyword.total'|trans }}</label><br/>
+                    <span class="total_span">{{ form.vars.value.total|number_format(2, ',', '.') }} </span>
+                    <i class="glyphicon glyphicon-euro"></i>
+                {% else %}
+                    <label>{{ 'keyword.total'|trans }}</label><br/>
+                    <span class="total_span">__total__</span> <i class="glyphicon glyphicon-euro"></i>
+                {% endif %}
+            </div>
+            <div class="col-xs-2">
+                <span class="delete-row btn btn-delete"> <i class="glyphicon glyphicon-minus"></i> </span>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}

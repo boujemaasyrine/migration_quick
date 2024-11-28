@@ -1,0 +1,26 @@
+{% extends '@General/exports/base_exports.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .document-header {
+            margin-bottom: 50px !important;
+        }
+
+        td {
+            font-size: 10px !important;
+            padding: 4px !important;
+        }
+
+        h3 {
+            font-size: 14px !important;
+        }
+
+        div, h4, th, b {
+            font-size: 12px !important;
+        }
+    </style>
+{% endblock %}
+{% block base_subtitle %}
+    {{ 'stock_management.title'|trans([],'navbar') }}
+{% endblock %}

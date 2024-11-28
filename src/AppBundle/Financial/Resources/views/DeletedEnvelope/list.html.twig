@@ -1,0 +1,109 @@
+{% extends "@Financial/default.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        {{[ 'deleted_envelope.header.number'|trans,
+            'deleted_envelope.header.day'|trans ,
+            'deleted_envelope.header.amount'|trans,
+            'deleted_envelope.header.type'|trans,
+            'label.reference'|trans,
+            'label.manager'|trans,
+            'label.member'|trans,
+            'deleted_envelope.header.status'|trans
+         ]|t_head|raw }}
+        #deleted_envelopes_table tbody #total {
+            background-color: #E4D9C3;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Financial/deleted_envelope_list.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'financial_management.consultations.deleted_envelopes'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.consultations.title'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body">
+                {% form_theme form ':form_layouts:horizontal_layout.html.twig' %}
+                {{ form_start(form,{ 'method' : 'GET', 'attr': {'id': 'filterDeletedEnvelopeForm'} }) }}
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        {{ form_row(form.source) }}
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        {{ form_row(form.status) }}
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        {{ form_row(form.owner) }}
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        {{ form_row(form.startDate,{ 'attr' : { 'class' : 'datepicker form-control' } }) }}
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        {{ form_row(form.endDate,{ 'attr' : { 'class' : 'datepicker form-control' } }) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:right;">
+                        <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "delete_filter"|trans }}
+                        </button>
+                        <button onclick="deleted_envelopes.ajax.reload();" type="button" class="btn btn-filter btn-icon">
+                            {{ 'filter.btn'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding-bottom: 0;">
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-export btn-icon" type="button" id="export-btn" style="float: right">
+                        {{ "btn.export"|trans }}
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="deleted_envelopes_table"
+                           class="table table-striped table-bordered table-hover"
+                           style="width: 100%"
+                           data-template="">
+                        <thead>
+                        <tr>
+                            <th>{{ 'deleted_envelope.header.number'|trans }}</th>
+                            <th>{{ 'deleted_envelope.header.day'|trans }}</th>
+                            <th>{{ 'deleted_envelope.header.amount'|trans }}</th>
+                            <th>{{ 'deleted_envelope.header.type'|trans }}</th>
+                            <th>{{ 'label.reference'|trans }}</th>
+                            <th>{{ 'label.manager'|trans }}</th>
+                            <th>{{ 'label.member'|trans }}</th>
+                            <th>{{ 'deleted_envelope.header.status'|trans }}</th>
+                            <th>{{ 'deleted_envelope.header.deletedAt'|trans }}</th>
+                            <th>{{ 'deleted_envelope.header.deletedBy'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+<div class="" style="padding: 5px;">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-modal" style="font-size: 13px !important">
+            <span class="label" style="font-size: 13px !important">{{ 'envelope.detail.num_envelope' | trans }}: </span>
+            {{ envelope.numEnvelope }}
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-modal" style="font-size: 13px !important">
+            <span class="label" style="font-size: 13px !important">{{ 'keyword.date' | trans }}: </span>
+            {{ envelope.createdAt | date("d/m/Y h:i:s") }}
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-modal" style="font-size: 13px !important">
+            <span class="label" style="font-size: 13px !important">{{ 'keyword.amount' | trans }}: </span>
+            {{ envelope.amount }} €
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-modal" style="font-size: 13px !important">
+            <span class="label" style="font-size: 13px !important">{{ 'envelope.detail.type' | trans }}: </span>
+            {{ ( 'envelope.source.' ~ envelope.source ) | trans }}
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-modal" style="font-size: 13px !important">
+            <span class="label" style="font-size: 13px !important">{{ 'label.manager' | trans }}: </span>
+            {{ envelope.owner }}
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-modal" style="font-size: 13px !important">
+            <span class="label" style="font-size: 13px !important">{{ 'keyword.status' | trans }}: </span>
+            {{ ( 'envelope.status.' ~ envelope.status) | trans }}
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-modal" style="font-size: 13px !important">
+            <span class="label" style="font-size: 13px !important">{{ 'label.reference' | trans }}: </span>
+            {{ envelope.reference }}
+        </div>
+    </div>
+</div>

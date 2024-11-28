@@ -1,0 +1,52 @@
+{
+  "name": "Quick",
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.3.*",
+    "jquery": "2.1.0",
+    "jquery-ui": "1.11.4",
+    "Slidebars": "0.10.3",
+    "superfish": "1.7.6",
+    "datatables-bootstrap3-plugin": "0.4.0",
+    "Materialize": "materialize#0.97.5",
+    "bootstrap-multiselect": "0.9.13",
+    "dcjs": "1.7.5",
+    "moment": "2.11.2",
+    "blockUI": "blockui#*",
+    "noty": "2.3.8",
+    "handlebars": "4.0.5",
+    "selectize": "0.12.1",
+    "bootstrap-calendar": "0.2.4",
+    "fullcalendar": "2.6.1",
+    "bootbox.js": "bootbox#4.4.0",
+    "jquery-validation": "jquery.validation#1.15.0",
+    "jQuery-ui-Slider-Pips": "jquery-ui-slider-pips#1.11.3",
+    "multiselect": "0.9.12",
+    "simple-line-icons": "2.3.0",
+    "highlightjs": "9.2.0",
+    "flot/flot": "0.8.3",
+    "masonry-layout": "masonry#^4.2.1",
+    "isotope-layout": "^3.0.6",
+    "masonry": "3.0.0"
+  },
+  "resolutions": {
+    "jquery": "2.1.0",
+    "moment": "2.11.2",
+    "bootstrap": "3.3.*",
+    "selectize": "~0.12.1",
+    "bootbox.js": "bootbox#^4.4.0"
+  }
+}

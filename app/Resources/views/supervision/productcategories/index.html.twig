@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ProductCategories list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Reference</th>
+                <th>Active</th>
+                <th>Helpcmd</th>
+                <th>Taxletter</th>
+                <th>Tvalux</th>
+                <th>Tvabel</th>
+                <th>Group</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for productCategory in productCategories %}
+            <tr>
+                <td><a href="{{ path('productcategories_show', { 'id': productCategory.id }) }}">{{ productCategory.id }}</a></td>
+                <td>{{ productCategory.name }}</td>
+                <td>{{ productCategory.reference }}</td>
+                <td>{% if productCategory.active %}Yes{% else %}No{% endif %}</td>
+                <td>{% if productCategory.helpCmd %}Yes{% else %}No{% endif %}</td>
+                <td>{{ productCategory.taxLetter }}</td>
+                <td>{{ productCategory.tvaLux }}</td>
+                <td>{{ productCategory.tvaBel }}</td>
+                <td>{{ productCategory.group }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('productcategories_show', { 'id': productCategory.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('productcategories_edit', { 'id': productCategory.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('productcategories_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

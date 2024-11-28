@@ -1,0 +1,12 @@
+{% extends ":default:index.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'config';
+    </script>
+    {{ parent() }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'navbar.parameter.parameter'|trans() }}
+{% endblock %}

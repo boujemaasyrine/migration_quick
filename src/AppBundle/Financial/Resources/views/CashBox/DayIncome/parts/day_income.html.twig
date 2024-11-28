@@ -1,0 +1,319 @@
+<div class="container-fluid">
+
+    {#{% if dayIncome is not defined %}
+        {% set dayIncome = form.vars.value %}
+    {% endif %}#}
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-3"><label> {{ 'keyword.real'|trans() }} </label></div>
+        <div class="col-xs-3"><label> {{ 'keyword.theorical'|trans() }} </label></div>
+        <div class="col-xs-3"><label> {{ 'keyword.gap'|trans() }} </label></div>
+    </div>
+
+    <div class="list">
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_cash'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateRealCashTotal|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateRealCashTheoricalTotal|number_format(2, ',', '.') }}
+                    <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateRealCashGap > 0 %}green-text {% elseif dayIncome.calculateRealCashGap < 0 %} red-text {% endif %}">
+                    {{ dayIncome.calculateRealCashGap|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_withdrawls'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateTotalWithdrawals|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateTotalWithdrawals|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateWithdrawalsGap > 0 %}green-text {% elseif dayIncome.calculateWithdrawalsGap < 0 %} red-text {% endif %}"> {{ dayIncome.calculateWithdrawalsGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {% if version=="quick" %}{{ 'cashbox.counting.total_check_quick'|trans() }} {% else %}{{ 'cashbox.counting.total_check_bk'|trans() }} {% endif %}</label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCheckQuickTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCheckQuickTheoricalTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateCheckQuickGap > 0 %}green-text {% elseif dayIncome.calculateCheckQuickGap < 0 %} red-text {% endif %}"> {{ dayIncome.calculateCheckQuickGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_bank_card'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateBankCardTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateBankCardTheoricalTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateBankCardGap > 0 %}green-text {% elseif dayIncome.calculateBankCardGap < 0 %} red-text {% endif %}"> {{ dayIncome.calculateBankCardGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+        {#Bank card details#}
+        {% for param in bankCardPaymentParams %}
+            <div class="row hoverable">
+                <div class="col-xs-3">
+                    <label style="padding-left: 30px;font-size: 12px !important;"> {{ param.value.code }} </label>:
+                </div>
+
+                <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateBankCardTotal(param.value.id)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+                </div>
+                <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateBankCardTheoricalTotal(param.value.id)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+                </div>
+
+                <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateBankCardGap(param.value.id) > 0 %}green-text {% elseif dayIncome.calculateBankCardGap(param.value.id) < 0 %} red-text {% endif %}"> {{ dayIncome.calculateBankCardGap(param.value.id)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_foreign_currency'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateForeignCurrencyTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateForeignCurrencyThoricalTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateForeignCurrencyGap > 0 %}green-text {% elseif dayIncome.calculateForeignCurrencyGap < 0 %} red-text {% endif %}"> {{ dayIncome.calculateForeignCurrencyGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_check_restaurant'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCheckRestaurantTotal(false)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCheckRestaurantTheoricalTotal(false)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateCheckRestaurantGap(false) > 0 %}green-text {% elseif dayIncome.calculateCheckRestaurantGap(false) < 0 %} red-text {% endif %}"> {{ dayIncome.calculateCheckRestaurantGap(false)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+        {# Check restaut non electronic details#}
+        {% for param in ticketRestaurantParams %}
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                    <label style="padding-left: 30px;font-size: 12px !important;"> {{ param.value.code }} </label>:
+            </div>
+
+             <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCheckRestaurantTotal(false, param.value.id)|number_format(2, ',', '.') }}
+                  <i class="glyphicon glyphicon-euro"></i></span>
+             </div>
+             <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCheckRestaurantTheoricalTotal(false, param.value.id)|number_format(2, ',', '.') }}
+                <i class="glyphicon glyphicon-euro"></i></span>
+             </div>
+             <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateCheckRestaurantGap(false, param.value.id) > 0 %}green-text {% elseif dayIncome.calculateCheckRestaurantGap(false, param.value.id) < 0 %} red-text {% endif %}"> {{ dayIncome.calculateCheckRestaurantGap(false, param.value.id)|number_format(2, ',', '.') }}
+                <i class="glyphicon glyphicon-euro"></i></span>
+             </div>
+        </div>
+        {% endfor %}
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label> {{ 'cashbox.counting.total_check_restaurant_electronic'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCheckRestaurantTotal(true)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCheckRestaurantTheoricalTotal(true)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateCheckRestaurantGap(true) > 0 %}green-text {% elseif dayIncome.calculateCheckRestaurantGap(true) < 0 %} red-text {% endif %}"> {{ dayIncome.calculateCheckRestaurantGap(true)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+        {# Check restaut electronic details#}
+        {% for param in electronicTicketRestaurantParams %}
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                    <label style="padding-left: 30px;font-size: 12px !important;"> {{ param.value.code }} </label>:
+            </div>
+              <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCheckRestaurantTotal(true, param.value.id)|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+              </div>
+            <div class="col-xs-3">
+              <span class="text-muted bold">{{ dayIncome.calculateCheckRestaurantTheoricalTotal(true, param.value.id)|number_format(2, ',', '.') }}
+                 <i class="glyphicon glyphicon-euro"></i></span>
+             </div>
+
+            <div class="col-xs-3">
+               <span class="text-muted bold {% if dayIncome.calculateCheckRestaurantGap(true, param.value.id) > 0 %}green-text {% elseif dayIncome.calculateCheckRestaurantGap(true, param.value.id) < 0 %} red-text {% endif %}"> {{ dayIncome.calculateCheckRestaurantGap(true, param.value.id)|number_format(2, ',', '.') }}
+                 <i class="glyphicon glyphicon-euro"></i></span>
+             </div>
+          </div>
+        {% endfor %}
+
+        <hr style="margin: 0;">
+
+        <div class="row hoverable">
+            <div class="col-xs-3">
+                <label style="font-size: 1em !important;"> {{ 'keyword.total'|trans() }} </label>:
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCashboxTotal|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateCashboxTheoricalTotal|number_format(2, ',', '.') }}
+                    <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateCashboxTotalGap > 0 %}green-text {% elseif dayIncome.calculateCashboxTotalGap < 0 %} red-text {% endif %}"> {{ dayIncome.calculateCashboxTotalGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row hoverable" style="margin-top: 30px;">
+        <div class="col-xs-3">
+            <label> {{ 'cashbox.counting.total_discount'|trans() }} </label>:
+        </div>
+        <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.discountsTotal|number_format(2, ',', '.') }} <i
+                            class="glyphicon glyphicon-euro"></i></span>
+        </div>
+        <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.discountsTheoricalTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+        </div>
+        <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.discountsGap > 0 %}green-text {% elseif dayIncome.discountsGap < 0 %} red-text {% endif %}"> {{ dayIncome.discountsGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+        </div>
+    </div>
+
+    <div class="row hoverable">
+        <div class="col-xs-3">
+            <label> {{ 'cashbox.counting.total_bon_repas'|trans() }} </label>:
+        </div>
+        <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateMealTicketsTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+        </div>
+        <div class="col-xs-3">
+                <span class="text-muted bold">{{ dayIncome.calculateMealTicketsTheoricalTotal|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+        </div>
+        <div class="col-xs-3">
+                <span class="text-muted bold {% if dayIncome.calculateMealTicketsGap > 0 %}green-text {% elseif dayIncome.calculateMealTicketsGap < 0 %} red-text {% endif %}"> {{ dayIncome.calculateMealTicketsGap|number_format(2, ',', '.') }}
+                    <i class="glyphicon glyphicon-euro"></i></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3" style="margin-top: 35px;">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.canceling_number'|trans() }} </label>: <span
+                            class="text-muted">
+                    {{ dayIncome.calculateQuantityCancels }}
+                </span>
+                    <br/>
+                </div>
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.total_cancels'|trans() }} </label>: <span
+                            class="text-muted">
+                     <span>{{ dayIncome.calculateTotalCancels|number_format(2, ',', '.') }}</span>
+                    <i class="glyphicon glyphicon-euro"></i>
+                </span>
+                    <br/>
+                </div>
+            </div>
+            <hr style="margin: 0;">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.correction_number'|trans() }} </label>: <span
+                            class="text-muted">{{ dayIncome.calculateQuantityCorrections }}</span>
+                    <br/>
+                </div>
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.total_corrections'|trans() }} </label>: <span
+                            class="text-muted">
+                     <span>{{ dayIncome.calculateTotalCorrections|number_format(2, ',', '.') }}</span>
+                    <i class="glyphicon glyphicon-euro"></i>
+                </span>
+                    <br/>
+                </div>
+            </div>
+
+            <hr style="margin: 0;">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.abondons_number'|trans() }} </label>: <span
+                            class="text-muted">{{ dayIncome.calculateQuantityAbondons }}</span>
+                    <br/>
+                </div>
+                <div class="col-xs-6">
+                    <label> {{ 'cashbox.counting.abondons_total'|trans() }} </label>: <span
+                            class="text-muted">
+                    <span>{{ dayIncome.calculateTotalAbondons|number_format(2, ',', '.') }}</span>
+                    <i class="glyphicon glyphicon-euro"></i>
+                </span>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

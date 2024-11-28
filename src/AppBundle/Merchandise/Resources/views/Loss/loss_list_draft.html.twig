@@ -1,0 +1,59 @@
+{% extends '@Merchandise/index_stock.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Loss/loss_list_draft.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    Feuille de saisie des pertes
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'loss_management.title'|trans([], 'navbar') }} - {{ 'reports.merchandise_management.inventory_item'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <div class="col-xs-12">
+        <h2>
+            {{ 'loss.list.menu'|trans }}
+        </h2>
+
+        <table id="loss_liste_draft_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+               width="100%">
+            <thead>
+            <tr>
+                <th>{{ 'loss.list.num_loss'|trans }}</th>
+                <th>{{ 'loss.list.type'|trans }}</th>
+                <th>{{ 'loss.list.date'|trans }}</th>
+                <th>{{ 'loss.list.status'|trans }}</th>
+                <th>{{ 'table.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for loss in losses %}
+                <tr>
+                    <td>{{ loss.id }}</td>
+                    <td>{{ loss.type }}</td>
+                    <td>{{ loss.entryDate |date("d/m/Y") }}</td>
+                    <td>{{ loss.status }}</td>
+                    <td class="actions-btn">
+                        {% if (loss.status == 'set') %}
+                            <a href="{{ path('loss_entry', {'lossSheet': loss.id}) }}"
+                               data-tooltip="{{ 'loss.list.details_set'|trans }}" data-position="top"
+                               class="modal-trigger tooltipped glyphicon glyphicon-info-sign detail-btn"></a>
+                        {% endif %}
+                        {% if (loss.status == 'draft') %}
+                            <a href="{{ path('loss_entry', {'lossSheet': loss.id}) }}"
+                               data-tooltip="{{ 'loss.list.set_draft'|trans }}" data-position="top"
+                               class="tooltipped glyphicon glyphicon-edit"></a>
+                        {% endif %}
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}

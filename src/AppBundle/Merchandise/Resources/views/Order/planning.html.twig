@@ -1,0 +1,25 @@
+{% extends '@Merchandise/index_supplying.html.twig' %}
+{% block base_title %}
+    {{ "title"|trans({},'planning') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'buying_management.command_management'|trans([], 'navbar') }}
+{% endblock %}
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {% include '@Merchandise/Order/modals/planning_inner.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/Order/planning.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            initPlanningConsulting();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% form_theme loss.lossLines "@Merchandise/Loss/form_parts/loss_line_form_widget.html.twig" %}
+
+<div class="row add-command-table-row">
+    <input id="sheet_model_linesType" type="hidden" value="{{ loss.vars.data.type }}"/>
+    <div class="col-xs-12">
+        <table id="loss-entry-table" class="table table-striped" style="width: 100%;">
+            <thead>
+            <tr id="loss-entry-table-head">
+                <th style="width: 50px !important;">{{ 'label.code' | trans }}</th>
+                <th style="width: 300px !important;">{{ 'keyword.article' | trans }}</th>
+                <th>{{ 'keyword.total' | trans }}</th>
+                <th>{{ 'loss.label.entry'|trans }}1</th>
+                <th>{{ 'loss.label.entry'|trans }}2</th>
+                <th>{{ 'loss.label.entry'|trans }}3</th>
+                {% if loss.vars.value.type == 'finalProduct' %}
+                    <th>
+                        {{ 'loss.label.solding_canal'|trans }}
+                    </th>
+                {% endif %}
+                <th>{{ 'label.action' | trans }}</th>
+            </tr>
+            </thead>
+            <tbody id="loss_list_article" data-count="{{ loss.lossLines | length }}"
+                   data-prototype="
+						         {% filter escape %}
+						             {{ include('@Merchandise/Loss/form_parts/prototype_loss_line_form_widget.html.twig', { 'form': loss.lossLines.vars.prototype }) }}
+						         {% endfilter %}"
+            >
+
+            {{ form_errors(loss.lossLines ) }}
+            {% for line in loss.lossLines %}
+                {{ form_widget(line) }}
+            {% endfor %}
+
+            </tbody>
+            <tr class="new-line">
+                <td>
+                    <div class="">
+                        <input type="text" id="productReference" class="form-control"
+                               placeholder="{{ 'keyword.code'|trans() }}"/>
+                        <input id="productId" type="hidden" class=""/>
+                    </div>
+                </td>
+                <td>
+                    <div class="">
+                        <input id="productName" class="article form-control" type="text"
+                               placeholder="{{ 'keyword.label'|trans() }}"/>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                {% if loss.vars.value.type == 'finalProduct' %}
+                    <td></td>
+                {% endif %}
+                <td class="actions-btn ">
+								<span id="btnAddNewLossSheetLine"
+                                      class="btn btn-add waves-effect waves"
+                                      style="text-align: center;">
+		                            <i class="material-icons">add</i>
+								</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-xs-12" id="loss-button-form">
+        <div class="pull-right">
+            {% if loss.vars.value.id is not null %}
+                <a type="button" id="exportPdf"
+                   href="{{ path('export_loss_sheet', { 'lossSheet': loss.vars.value.id}) }}"
+                   class="btn btn-print btn-icon">
+                    {{ 'btn.print'|trans }}
+                </a>
+            {% endif %}
+
+            <button id="validate-loss-product" type="button"
+                    class="btn btn-validate btn-icon">
+                {{ 'btn.validate' | trans }}
+            </button>
+        </div>
+    </div>
+
+    <div id="modal_cancel_body" class="modal modal-fixed-footer">
+        <h4>{{ 'loss.entry.verify_cancel' |trans }}</h4>
+    </div>
+    <div id="modal_cancel_footer" class="modal modal-fixed-footer">
+        <div class="row pull-right">
+            <a onclick="goBack()"> {{ 'btn.cancel'|trans() }} </a>
+            <button class="btn red lighten-1 white-text waves-effect waves-light modal-trigger"
+                    id="cancel_yes_button" data-dismiss='modal' style="float:initial;">
+                {{ 'keyword.yes' | trans }}
+            </button>
+
+            <button class="waves-effect waves-light #4a148c purple darken-4 btn white-text" data-dismiss='modal'
+                    style="float:initial;">
+                {{ 'keyword.no' | trans }}
+            </button>
+        </div>
+    </div>
+</div>

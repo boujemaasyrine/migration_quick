@@ -1,0 +1,21 @@
+unique:
+    username: Deze gebruikersnaam bestaat al #Ce nom d'utilisateur existe déja
+    socialId: Deze gebruikersnaam bestaat al #Ce nom d'utilisateur existe déja
+
+pw_label: Paswoord #Mot de passe
+username_label: Gebruikersnaam #Non d'utilisateur
+connect: Verbinden #Se connecter
+stay_connected: Verbonden blijven #Rester connecté
+pw_forgotten: Paswoord vergeten #Mot de passe oublié
+mail_adresse: Email adres #Adresse email
+reset_password: Paswoord initialiseren #Initialiser mot de passe
+user_not_found: Geen gebruiker gevonden voor dit email adres #Aucun utilisateur trouvé pour l'email indiqué
+pw_reset_success: Paswoord met succes geïnitialiseerd #Mot de passe réinitialisé avec succès
+pw_reset_send_mail_fail: Het opsturen van de mail wordt verbroken #Echec lors de l'envoi du mail
+your_pw_in_super_synchronized_success: Uw paswoord met de Central wordt met succes gesynchroniseerd #Votre mot de passe au niveau du central est synchronisé avec succès
+your_pw_in_super_synchronized_fail: De synchronisatie van uw paswoord met de central wordt verbroken #Echec lors de la synchronisation du votre mot de passe avec le central
+restaurant_switch_success : U schakelt gewoon over naar het restaurant #Vous venez de basculer vers le restaurant
+restaurant_switch_failure : Ongeldig verzoek! Kan het restaurant niet wijzigen. #Requête invalide ! Impossible de changer le restaurant.
+restaurant_not_found : Restaurant niet gevonden! #Restaurant introuvable !
+back : Terugkeer #Retour
+select_user: Er zijn meerdere accounts voor deze e-mail. Selecteer de relevante gebruiker: # Plusieurs comptes pour cet email existent, veuillez sélectionner l'utilisateur concerné:

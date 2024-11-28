@@ -1,0 +1,8 @@
+services:
+    param_sync_extension:
+        class: AppBundle\Twig\ParamSyncExtension
+        arguments:
+            - "@translator.default"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name : twig.extension }

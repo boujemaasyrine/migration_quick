@@ -1,0 +1,21 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h4>{{ 'fund_management.withdrawal.list.report_title'|trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <br/>
+    <div class="row">
+        <div class="col col-xs-4">{{ 'label.manager' | trans }}: {{ return.criteria['owner'] }}</div>
+        <div class="col col-xs-4">{{ 'label.member' | trans }}: {{ return.criteria['member'] }}</div>
+        <div class="col col-xs-4">{{ 'keyword.envelope'| trans }}: {{ return.criteria['envelope'] }}</div>
+        <div class="col col-xs-4">{{ 'label.status'| trans }}: {{ return.criteria['statusCount'] }}</div>
+        <div class="col col-xs-4">{{ 'keyword.from' | trans }}: {{ return.criteria['startDate'] }}</div>
+        <div class="col col-xs-4">{{ 'keyword.to' | trans }}: {{ return.criteria['endDate'] }}</div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('@Financial/FundManagement/Withdrawal/exports/body.html.twig') }}
+{% endblock body %}

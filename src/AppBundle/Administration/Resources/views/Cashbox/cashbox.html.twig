@@ -1,0 +1,162 @@
+{% extends ":default:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-timepicker-1.3.5/jquery.timepicker.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Administration/Cashbox/cashbox_parameter.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-timepicker-1.3.5/jquery.timepicker.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('.timepicker').timepicker({
+                timeFormat: 'HH',
+                interval: 15,
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true
+            });
+        });
+    </script>
+{% endblock %}
+{% block base_title %}
+    {{ 'parameters.restaurant_management.title'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'navbar.parameter.parameter'|trans() }}
+{% endblock %}
+{% block body %}
+    {{ form_start(form, {'method' : 'POST', 'attr': {'novalidate' : '', 'id' : 'cashBoxParametersForm'}}) }}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-4">
+                    {{ form_label(form.nbrCashboxes, 'cashbox.nbr_cashbox' ) }}
+                    <br/>
+                    {{ form_widget(form.nbrCashboxes, { "attr": { "class": 'form-control' } }) }}
+                    {{ form_errors(form.nbrCashboxes) }}
+
+                    {{ form_label(form.cashboxStartingDayFunds, 'cashbox.cashbox_start_day_fund' ) }}
+                    <br/>
+                    {{ form_widget(form.cashboxStartingDayFunds, { "attr": { "class": 'form-control' } }) }}
+                    {{ form_errors(form.cashboxStartingDayFunds) }}
+                </div>
+                <div class="col-xs-4">
+                    {{ form_label(form.closingHour ) }}
+                    <br/>
+                    {{ form_widget(form.closingHour, { "attr": { "class": 'form-control timepicker' } }) }}
+                    {{ form_errors(form.closingHour) }}
+
+                    {{ form_label(form.openingHour ) }}
+                    <br/>
+                    {{ form_widget(form.openingHour, { "attr": { "class": 'form-control timepicker' } }) }}
+                    {{ form_errors(form.openingHour) }}
+                </div>
+                <div class="col-xs-4">
+                    {{ form_label(form.eft, 'parameters.eft' ) }}
+                    <br/>
+                    {{ form_widget(form.eft, { "attr": { "class": 'form-control' } }) }}
+                    {{ form_errors(form.eft) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    {{ form_label(form.mail ) }}
+                    <br/>
+                    {{ form_widget(form.mail, { "attr": { "class": 'form-control' } }) }}
+                    {{ form_errors(form.mail) }}
+                </div>
+
+                <div class="col-xs-8">
+                    {{ form_label(form.additionalMailsContainer) }}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row additional-emails">
+                                {% include('@Administration/Cashbox/parts/additional_mails.html.twig') %}
+                            </div>
+                            <button type="button" class="btn btn-add btn-icon addAdditionalMailValue"
+                                    data-prototype='{% include("@Administration/Cashbox/parts/prototype/additional_mail_prototype.html.twig") %}'
+                                    data-count="
+                                              {% if form.vars.value.additionalMailsContainer.mails is defined %}
+                                              {{ form.vars.value.additionalMailsContainer.mails | length }}
+                                              {% else %} 0 {% endif %}">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body" style="padding: 0">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        {% if paymentMethodStatus.isCheckRestaurantdActive() %}
+                            <li role="presentation" class="active">
+                                <a href="#ticket_restaurant" aria-controls="ticket_restaurant" role="tab"
+                                   data-toggle="tab">
+                                    {{ 'cashbox.counting.ticket_restaurant'|trans() }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if paymentMethodStatus.isPaymentMethodActive(constant('AppBundle\\Administration\\Entity\\Parameter::CHECK_QUICK_TYPE')) %}
+                            <li role="presentation" {% if paymentMethodStatus.isCheckRestaurantdActive() == false %} class="active" {% endif %}>
+                                <a href="#check_quick" aria-controls="check_quick" role="tab" data-toggle="tab">
+                                   {% if version=="quick" %} {{ 'cashbox.counting.check_quick'|trans() }} {% else %} {{ 'cashbox.counting.check_bk' |trans()}}  {% endif %}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if paymentMethodStatus.isPaymentMethodActive(constant('AppBundle\\Administration\\Entity\\Parameter::FOREIGN_CURRENCY_TYPE')) %}
+                            <li role="presentation"
+                                    {% if paymentMethodStatus.isCheckRestaurantdActive() == false
+                                    and paymentMethodStatus.isPaymentMethodActive(constant('AppBundle\\Administration\\Entity\\Parameter::CHECK_QUICK_TYPE')) == false %} class="active" {% endif %}>
+                                <a href="#foreign_currency" aria-controls="foreign_currency" role="tab"
+                                   data-toggle="tab">
+                                    {{ 'cashbox.counting.foreign_currency'|trans() }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        {% if paymentMethodStatus.isCheckRestaurantdActive() %}
+                            <div role="tabpanel" class="tab-pane active" id="ticket_restaurant">
+                                {% include('@Administration/Cashbox/parts/ticket_restaurant.html.twig') %}
+                            </div>
+                        {% endif %}
+                        {% if paymentMethodStatus.isPaymentMethodActive(constant('AppBundle\\Administration\\Entity\\Parameter::CHECK_QUICK_TYPE')) %}
+                            <div role="tabpanel" class="tab-pane
+                            {% if paymentMethodStatus.isCheckRestaurantdActive() == false %} active {% endif %}
+                            " id="check_quick">
+                                {% include('@Administration/Cashbox/parts/check_quick.html.twig') %}
+                            </div>
+                        {% endif %}
+                        {% if paymentMethodStatus.isPaymentMethodActive(constant('AppBundle\\Administration\\Entity\\Parameter::FOREIGN_CURRENCY_TYPE')) %}
+                            <div role="tabpanel" class="tab-pane
+                            {% if paymentMethodStatus.isCheckRestaurantdActive() == false
+                            and paymentMethodStatus.isPaymentMethodActive(constant('AppBundle\\Administration\\Entity\\Parameter::CHECK_QUICK_TYPE')) == false %} active {% endif %}
+                            " id="foreign_currency">
+                                {% include('@Administration/Cashbox/parts/foreign_currency.html.twig') %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="text-align:right;">
+                    <button type="button" class="btn btn-validate btn-icon" id="save-parameters">
+                        {{ 'btn.save'|trans() }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

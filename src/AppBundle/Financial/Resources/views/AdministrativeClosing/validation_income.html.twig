@@ -1,0 +1,60 @@
+{% extends ":default:index.html.twig" %}
+
+{% block base_title %}
+    {{ 'admin_closing.title'|trans() }} du {{ administrative_closing_service.currentClosingDate|date('d/m/Y') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'admin_closing.varify_day_income'|trans() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Financial/AdministrativeClosing/validation_income.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+
+    {% include '@Financial/AdministrativeClosing/steps.html.twig' with { 'admin_closing_2_step' : true } %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            {% if  count_complete == false %}
+                <div class="row">
+                    <div class="col-xs-12" style="color: #E80000">
+                        {{ 'validation_icom_please_count_cashbox'|trans() }} <br>
+                        <b> {{ 'admin_closing.operators_not_counted'|trans() }} : </b><br>
+                        {% for o in operators %}
+                            {{ o.firstName|title }}  {{ o.lastName|upper }} <br>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% include('@Financial/CashBox/DayIncome/parts/day_income.html.twig') %}
+
+            {% if count_complete %}
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: right;">
+                        <a class="btn block_link"
+                           href="{{ path('validation_income_validate') }}">{{ 'admin_closing.validate_label'|trans() }}</a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row">
+                    <div style="color : #b30e02;" class="col-xs-12">
+                        <a href="{{ path('validation_income_show') }}"
+                           data-tooltip="{{ "admin_closing.plz_count_cashbox"|trans }}" data-position="top"
+                           class="btn pull-right tooltipped">{{ 'admin_closing.reverify_label'|trans() }}</a>
+
+                        <a class="pull-right" style=" margin-right: 30px;" target="_blank"
+                           href="{{ path('cashbox_counting') }}"> {{ 'admin_closing.go_cash_counting'|trans() }} </a>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

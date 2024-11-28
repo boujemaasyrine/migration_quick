@@ -1,0 +1,475 @@
+<style>
+    #calculation_preview th, #calculation_preview td {
+        padding: 4px;
+    }
+</style>
+
+{% set cashbox = form.vars.value %}
+
+<div class="row" style="">
+    <div class="col-xs-12">
+        <table id="total_cashbox_block" class="table-bordered">
+            <thead>
+            <tr>
+                <th class="">
+                </th>
+                <th class="">
+                        <span style=""> {{ 'cashbox.preview.real_counted_title'|trans() }} <i
+                                    class="glyphicon glyphicon-euro"></i></span>
+                </th>
+                <th class="">
+                        <span style=""> {{ 'cashbox.preview.theorical'|trans() }} <i
+                                    class="glyphicon glyphicon-euro"></i></span>
+                </th>
+                <th class="">
+                    <span style=""> {{ 'cashbox.preview.gap'|trans() }} <i class="glyphicon glyphicon-euro"></i></span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if list or paymentMethodStatus.isPaymentMethodActive('REAL_CASH_VALUE') %}
+                <tr>
+                    <td class="">
+                            <span style="">
+                                {{ 'cashbox.counting.total_cash'|trans() }}
+                            </span>
+                    </td>
+                    <td class="number_cell">
+                            <span style="" class="text-muted bold">
+                                <span class="total_real_cash total">
+                                    {{ form.vars.value.cashContainer.total|number_format(2, ',', '.') }}
+                                </span>
+                            </span>
+                    </td>
+                    <td class="number_cell">
+                            <span class="text-muted bold">
+                                <span class="th_total">
+                                    {{ cashbox.getTheoricalCashTotal|number_format(2, ',', '.') }}
+                                </span>
+                            </span>
+                    </td>
+                    {% set totalGap = cashbox.calculateCashGap() %}
+                    <td class="number_cell">
+                             <span class="text-muted bold">
+                                  <span class="gap
+                                             {% if totalGap > 0 %}
+                                               green-text
+                                            {% elseif totalGap < 0 %}
+                                                red-text
+                                            {% endif %}
+                                            ">
+                                     {% if totalGap != 0 %}
+                                         {{ totalGap|number_format(2, ',', '.') }}
+                                     {% endif %}
+                                 </span>
+                            </span>
+                    </td>
+                </tr>
+            {% endif %}
+            <tr class="">
+                <td class=" cell">
+                            <span>
+                                {{ 'cashbox.counting.total_withdrawls'|trans() }}
+                            </span>
+                </td>
+                <td class=" number_cell">
+                            <span class="text-muted bold">
+                                <span class="total">
+                                    {{ form.vars.value.calculateTotalWithdrawals()|number_format(2, ',', '.') }}
+                                </span>
+                            </span>
+                </td>
+                <td class="number_cell">
+                            <span class="text-muted bold">
+                                <span class="th_total">
+                                    {{ cashbox.calculateTotalWithdrawals|number_format(2, ',', '.') }}
+                                </span>
+                            </span>
+                </td>
+                {% set WithdrawalsGap = cashbox.calculateWithdrawalsGap() %}
+                <td class="number_cell">
+                             <span class="text-muted bold">
+                                  <span class="gap
+                                             {% if WithdrawalsGap > 0 %}
+                                               green-text
+                                            {% elseif  WithdrawalsGap < 0 %}
+                                                red-text
+                                            {% endif %}
+                                 ">
+                                     {% if WithdrawalsGap != 0 %}
+                                         {{ WithdrawalsGap|number_format(2, ',', '.') }}
+                                     {% endif %}
+                                 </span>
+                            </span>
+                </td>
+            </tr>
+
+            {% if list or paymentMethodStatus.isCheckRestaurantdActive(false) %}
+                <tr class="">
+                    <td class=" cell">
+                        <span> {{ 'cashbox.counting.total_check_restaurant'|trans() }} </span>
+                    </td>
+                    <td class=" number_cell">
+                                <span class="text-muted bold">
+                                    <span class="total total_check_restaurant">
+                                        {{ form.vars.value.checkRestaurantContainer.calculateRealTotalAmount(false)|number_format(2, ',', '.') }}
+                                    </span>
+                                </span>
+                    </td>
+                    <td class="number_cell">
+                                <span class="text-muted bold">
+                                    <span class="th_total">
+                                        {{ cashbox.checkRestaurantContainer.theoricalTotal|number_format(2, ',', '.') }}
+                                    </span>
+                                </span>
+                    </td>
+                    {% set checkRestaurantContainer_calculateTotalGap= cashbox.checkRestaurantContainer.calculateTotalGap(false) %}
+                    <td class="number_cell">
+                                 <span class="text-muted bold">
+                                     <span class="gap
+                                                 {% if checkRestaurantContainer_calculateTotalGap > 0 %}
+                                                   green-text
+                                                {% elseif checkRestaurantContainer_calculateTotalGap < 0 %}
+                                                    red-text
+                                                {% endif %}
+                                     ">
+                                         {% if checkRestaurantContainer_calculateTotalGap != 0 %}
+                                             {{ checkRestaurantContainer_calculateTotalGap|number_format(2, ',', '.') }}
+                                         {% endif %}
+                                     </span>
+                                </span>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if list or parameter_service.isEftActivated() %}
+                <tr>
+                    <td class=" cell">
+                        <span> {{ 'cashbox.counting.total_check_restaurant_electronic'|trans() }} </span>
+                    </td>
+                    <td class=" number_cell">
+                            <span class="text-muted bold">
+                                <span class="total_check_restaurant_electronic total">
+                                    {{ form.vars.value.checkRestaurantContainer.calculateRealTotalAmount(true)|number_format(2, ',', '.') }}
+                                </span>
+                            </span>
+                    </td>
+                    <td class="number_cell">
+                            <span class="text-muted bold">
+                                <span class="th_total">
+                                {{ cashbox.checkRestaurantContainer.theoricalTotalElectronic|number_format(2, ',', '.') }}
+                                </span>
+                            </span>
+                    </td>
+                    {% set checkRestaurantContainer_calculateTotalElectronicGap= cashbox.checkRestaurantContainer.calculateTotalGap(true) %}
+                    <td class="number_cell">
+                                <span class="text-muted bold">
+                                    <span
+                                            class="gap
+                                             {% if checkRestaurantContainer_calculateTotalElectronicGap > 0 %}
+                                               green-text
+                                            {% elseif  checkRestaurantContainer_calculateTotalElectronicGap < 0 %}
+                                                red-text
+                                            {% endif %}
+                                            ">
+                                        {% if checkRestaurantContainer_calculateTotalElectronicGap != 0 %}
+                                            {{ checkRestaurantContainer_calculateTotalElectronicGap|number_format(2, ',', '.') }}
+                                        {% endif %}
+                                    </span>
+                                </span>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if list or paymentMethodStatus.isPaymentMethodActive('BANK_CARD_VALUES') %}
+                <tr>
+                    <td class=" cell">
+                        <span> {{ 'cashbox.counting.total_bank_card'|trans() }} </span>
+                    </td>
+                    <td class=" number_cell">
+                        <span class="text-muted bold">
+                            <span class="bank_card_total total">
+                                {{ form.vars.value.bankCardContainer.calculateBankCardTotal()|number_format(2, ',', '.') }}
+                            </span>
+                        </span>
+                    </td>
+                    <td class="number_cell">
+                        <span class="text-muted bold">
+                            <span class="th_total">
+                                {{ cashbox.bankCardContainer.calculateTheoricalTotal|number_format(2, ',', '.') }}
+                            </span>
+                        </span>
+                    </td>
+                    {% set bankCardContainer_totalGap = cashbox.bankCardContainer.calculateTotalGap() %}
+                    <td class="number_cell">
+                            <span class="text-muted bold">
+                                <span
+                                        class="gap
+                                         {% if bankCardContainer_totalGap > 0 %}
+                                           green-text
+                                        {% elseif bankCardContainer_totalGap < 0 %}
+                                            red-text
+                                        {% endif %}
+                                        ">
+                                    {% if bankCardContainer_totalGap != 0 %}
+                                        {{ bankCardContainer_totalGap|number_format(2, ',', '.') }}
+                                    {% endif %}
+                                </span>
+                            </span>
+
+                    </td>
+                </tr>
+            {% endif %}
+            {% if list or paymentMethodStatus.isPaymentMethodActive('CHECK_QUICK_VALUES') %}
+                <tr>
+                    <td class=" cell">
+                        <span> {% if version=="quick" %}{{ 'cashbox.counting.total_check_quick'|trans() }} {% else %} {{ 'cashbox.counting.total_check_bk'|trans() }}{% endif %} </span>
+                    </td>
+                    <td class=" number_cell">
+                        <span class="text-muted bold">
+                            <span class="total_check_quick total">
+                                {{ form.vars.value.checkQuickContainer.calculateCheckQuickTotal()|number_format(2, ',', '.') }}
+                            </span>
+                        </span>
+                    </td>
+                    <td class="number_cell">
+                        <span class="text-muted bold">
+                            <span class="th_total">
+                                {{ cashbox.checkQuickContainer.theoricalTotal|number_format(2, ',', '.') }}
+
+                            </span>
+                        </span>
+                    </td>
+                    {% set checkQuickContainer_totalGap = cashbox.checkQuickContainer.calculateTotalGap() %}
+                    <td class="number_cell">
+                        <span class="text-muted bold">
+                            <span
+                                    class="gap
+                                     {% if checkQuickContainer_totalGap > 0 %}
+                                       green-text
+                                    {% elseif checkQuickContainer_totalGap < 0 %}
+                                        red-text
+                                    {% endif %}
+                                    ">
+                                {% if checkQuickContainer_totalGap != 0 %}
+                                    {{ checkQuickContainer_totalGap|number_format(2, ',', '.') }}
+                                {% endif %}
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if list or paymentMethodStatus.isPaymentMethodActive('FOREIGN_CURRENCY_TYPE') %}
+                <tr>
+                    <td class=" cell">
+                        <span> {{ 'cashbox.counting.total_foreign_currency'|trans() }} </span>
+                    </td>
+                    <td class=" number_cell">
+                            <span class="text-muted bold">
+                                <span class="total total_foreign_currency">
+                                    {{ form.vars.value.foreignCurrencyContainer.calculateTotalForeignCurrencyAmount|number_format(2, ',', '.') }}
+                                </span>
+                            </span>
+                    </td>
+                    <td class="number_cell">
+                            <span class="text-muted bold">
+                                <span class="th_total">
+                                    {{ cashbox.foreignCurrencyContainer.calculateTheoricalTotal|number_format(2, ',', '.') }}
+                                </span>
+                            </span>
+                    </td>
+                    {% set foreignCurrencyContainer_totalGap = cashbox.foreignCurrencyContainer.calculateTotalGap() %}
+                    <td class="number_cell">
+                                <span class="text-muted bold">
+                                    <span
+                                            class="gap
+                                             {% if foreignCurrencyContainer_totalGap > 0 %}
+                                               green-text
+                                            {% elseif foreignCurrencyContainer_totalGap < 0 %}
+                                                red-text
+                                            {% endif %}
+                                            ">
+                                        {% if not foreignCurrencyContainer_totalGap == 0 %}
+                                            {{ foreignCurrencyContainer_totalGap|number_format(2, ',', '.') }}
+                                        {% endif %}
+                                    </span>
+                                </span>
+
+                    </td>
+                </tr>
+            {% endif %}
+
+            <tr class="highlight">
+                <td class=" cell">
+                    <label style="font-size: 1.2em !important;">
+                        {{ 'keyword.total'|trans() }}
+                    </label>:
+                </td>
+                <td class=" number_cell">
+                    <span class="text-muted bold"><span
+                                class="total_cashbox">
+                            {{ form.vars.value.calculateTotalCashbox|number_format(2, ',', '.') }}
+                        </span>
+                    </span>
+                </td>
+                <td class="number_cell">
+                    <span class="text-muted bold">
+                        <span class="th_total_cashbox">
+                            {{ cashbox.calculateTheoricalTotalCashbox|number_format(2, ',', '.') }}
+                        </span>
+                    </span>
+                </td>
+                {% set CashboxGap = cashbox.calculateCashboxGap() %}
+                <td class="number_cell">
+                         <span class="text-muted bold"><span
+                                     class="total_gap
+                                     {% if CashboxGap > 0 %}
+                                       green-text
+                                    {% elseif CashboxGap < 0 %}
+                                        red-text
+                                    {% endif %}
+                                     ">
+                                 {% if not CashboxGap == 0 %}
+                                     {{ CashboxGap|number_format(2, ',', '.') }}
+                                 {% endif %}
+                             </span>
+                        </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class=" cell">
+                    <span> {{ 'cashbox.counting.total_discount'|trans() }} </span>
+                </td>
+                <td class=" number_cell">
+                        <span class="text-muted bold">
+                            <span class="">
+                                {{ form.vars.value.discountContainer.getTotalAmount|number_format(2, ',', '.') }}
+                            </span>
+                        </span>
+                </td>
+                <td class="number_cell">
+                         <span class="text-muted bold">
+                             <span class="">
+                                 {{ cashbox.discountContainer.calculateTheoricalTotal|number_format(2, ',', '.') }}
+                             </span>
+                        </span>
+                </td>
+                {% set cashbox_discountContainer_calculateTotalGap = cashbox.discountContainer.calculateTotalGap %}
+                <td class="number_cell">
+                    <span class="text-muted bold">
+                        <span
+                                class="
+                                 {% if cashbox_discountContainer_calculateTotalGap > 0 %}
+                                   green-text
+                                {% elseif cashbox_discountContainer_calculateTotalGap < 0 %}
+                                    red-text
+                                {% endif %}
+                                ">
+                            {% if not cashbox_discountContainer_calculateTotalGap == 0 %}
+                                {{ cashbox_discountContainer_calculateTotalGap|number_format(2, ',', '.') }}
+                            {% endif %}
+                        </span>
+                    </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class=" cell">
+                        <span>
+                            {{ 'cashbox.counting.total_bon_repas'|trans() }}
+                        </span>
+                </td>
+                <td class=" number_cell">
+                        <span class="text-muted bold"><span
+                                    class="small_chest_sub_total total_foreign_currency">
+                                {{ form.vars.value.mealTicketContainer.totalAmount|number_format(2, ',', '.') }}
+                            </span> </span>
+                </td>
+                <td class="number_cell">
+                        <span class="text-muted bold">
+                            <span class="small_chest_sub_th_total">
+                                {{ cashbox.mealTicketContainer.calculateTheoricalTotal|number_format(2, ',', '.') }}
+                            </span>
+                        </span>
+                </td>
+                <td class="number_cell">
+                    {#<span class="text-muted bold">#}
+                    {#<span#}
+                    {#class="small_chest_gap#}
+                    {#{% if cashbox.mealTicketContainer.calculateTotalGap > 0 %}#}
+                    {#green-text#}
+                    {#{% elseif cashbox.mealTicketContainer.calculateTotalGap < 0 %}#}
+                    {#red-text#}
+                    {#{% endif %}#}
+                    {#">#}
+                    {#{{ cashbox.mealTicketContainer.calculateTotalGap|number_format(2, ',', '.') }}#}
+                    {#</span>#}
+                    {#</span>#}
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <table class="table-bordered" style="margin-top: 27px;">
+            <thead>
+            <tr>
+                <th></th>
+                <th>
+                    <span style=""> {{ 'cashbox.preview.number'|trans() }} </span>
+                </th>
+                <th>
+                    <span style=""> {{ 'cashbox.preview.amount'|trans() }} <i
+                                class="glyphicon glyphicon-euro"></i></span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                        <span>
+                            {{ 'cashbox.counting.correction_number'|trans() }}
+                        </span>
+                </td>
+                <td class="number_cell">
+                        <span class="text-muted">
+                            {{ form.vars.value.numberCorrections|number_format() }}
+                        </span>
+                </td>
+                <td class="number_cell">
+                        <span>
+                            {{ form.vars.value.totalCorrections|number_format(2, ',', '.') }}
+                        </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                        <span>
+                            {{ 'cashbox.counting.canceling_number'|trans() }}
+                        </span>
+                </td>
+                <td class="number_cell">
+                        <span class="text-muted">
+                            {{ form.vars.value.numberCancels|number_format() }}
+                        </span>
+                </td>
+                <td class="number_cell">
+                    <span>{{ form.vars.value.totalCancels|number_format(2, ',', '.') }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                        <span>
+                            {{ 'cashbox.counting.abondons_number'|trans() }}
+                        </span>
+                </td>
+                <td class="number_cell">
+                    <span class="text-muted">{{ form.vars.value.numberAbondons|number_format() }}</span>
+                </td>
+                <td class="number_cell">
+                    <span>{{ form.vars.value.totalAbondons|number_format(2, ',', '.') }}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

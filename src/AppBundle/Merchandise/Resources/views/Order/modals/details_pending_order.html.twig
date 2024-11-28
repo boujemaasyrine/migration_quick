@@ -1,0 +1,165 @@
+<div class="details-modal" style="padding: 5px;">
+    <div class="row" style="padding-top: 15px;padding-right: 15px;">
+        <div class="col-xs-4">
+            <h3>
+                {{ "command.details.command"|trans }} {% if order.numOrder != null and order.numOrder|trim != '' %} #{{ order.numOrder }} {% else %} N/A {% endif %}</h3>
+        </div>
+        <div class="col-xs-6 {{ order.status }}">
+            <span class="status-badge">{{ order.status|trans({},'order_status') }}</span>
+        </div>
+
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close modal-action modal-close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <hr>
+    <h3>{{ "command.details.informations"|trans }}</h3>
+
+    <div class="row">
+        <div class="col-xs-3 col-md-2">
+            <b>{{ "command.details.supplier"|trans }} </b>
+        </div>
+        <div class="col-xs-3 col-md-2">
+            {{ order.supplier.name|upper }}
+        </div>
+        <div class="col-xs-3 col-md-2">
+            <b>{{ "command.details.date_order"|trans }} : </b>
+        </div>
+        <div class="col-xs-3 col-md-2">
+            {{ order.dateOrder|date('d/m/Y') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3 col-md-2">
+            <b>{{ "command.details.responsible"|trans }}: </b>
+        </div>
+        <div class="col-xs-3 col-md-2">
+            {{ order.employee.firstName|title }} {{ order.employee.lastName|upper }}
+        </div>
+        <div class="col-xs-3 col-md-2">
+            <b>{{ "command.details.date_delivery"|trans }} : </b>
+        </div>
+        <div class="col-xs-3 col-md-2">
+            {{ order.dateDelivery|date('d/m/Y') }}</div>
+    </div>
+    <hr>
+    <h3>{{ "command.details.title"|trans }}</h3>
+
+    <div class="row add-command-table-row" style="margin-top: 20px">
+        <div class="container-fluid">
+            <table class="table table-striped ">
+                <thead>
+                <tr>
+                    <th>{{ "command.details.lines.code"|trans }}</th>
+                    <th>{{ "command.details.lines.article"|trans }}</th>
+                    <th>{{ "command.new.lines.stock_qty"|trans }}</th>
+                    <th>{{ 'units_rapport'|trans() }}</th>
+                    <th>{{ "command.details.lines.ordred_qty"|trans }}</th>
+                    <th>{{ 'unit_price'|trans() }} (&euro;)</th>
+                    <th>{{ 'valorization'|trans() }} (&euro;)</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% set total = 0 %}
+                {% for l in order.lines %}
+                    {% if l.qty != '0' %}
+                        {% set total= total+1 %}
+                    <tr>
+                        <td>{{ l.product.externalId }}</td>
+                        <td>{{ l.product.name }}</td>
+                        <td>
+                            {% set qtyData = product_service.getRTStockQty(l.product) %}
+                            {{ (qtyData['qty'] / l.product.inventoryQty)|number_format(2,',','') }} {{ l.product.labelUnitExped|trans }}
+                            {% if qtyData['type'] == 'real' %} (R){% else %} (T){% endif %}
+
+                        </td>
+                        <td>
+                            1 {{ l.product.labelUnitExped|trans }}
+                            = {{ l.product.inventoryQty }} {{ l.product.labelUnitInventory|trans }}<br>
+                            1 {{ l.product.labelUnitInventory|trans }}
+                            = {{ l.product.usageQty }} {{ l.product.labelUnitUsage|trans }}
+                        </td>
+                        <td>{{ l.qty }} {{ l.product.labelUnitExped|trans }}</td>
+                        <td>{{ l.product.buyingCost|number_format(2,',','') }}</td>
+                        <td>{{ l.valorization }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="5"></td>
+                    <th>
+                        {{ "order_valorization"|trans }} (&euro;)
+                    </th>
+                    <th>
+                        {{ order.total|number_format(2,',','') }}
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="5"></td>
+                    <th>
+                        {{ "total_item"|trans }}
+                    </th>
+                    <th>
+                        {{ total }}
+                        {#{{ order.lines|length }}#}
+                    </th>
+                </tr>
+                </tfoot>
+            </table>
+            <div class="row">
+
+                {# Others buttons musn't be cancelled #}
+                {% if order.status != constant('CANCELED',order) and order.status != constant('MODIFIED',order) %}
+
+                    {% if order.status != constant('REJECTED',order) and order.status != constant('MODIFIED',order) %}
+                        {% if order.status == constant('SENDED',order) %}
+                            <div class="col-xs-6 col-sm-5 col-md-4 col-lg-3 pull-left">
+                                <a href="{{ path('force_modification',{'order':order.id}) }}"
+                                   class="btn btn-block green">
+                                    <span class="glyphicon glyphicon-edit"></span> {{ "force_modification"|trans }}
+                                </a>
+                            </div>
+                        {% else %}
+                            <div class="col-xs-4 col-sm-3 col-md-2 pull-left">
+                                <a href="{{ path('edit_order',{'order':order.id}) }}" class="btn btn-block green">
+                                    <span class="glyphicon glyphicon-edit"></span> {{ "btn.modify"|trans }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if order.status == constant('DRAFT',order) and "now"|date('Ymd') <= order.dateOrder|date('Ymd') %}
+                        <div class="col-xs-12 col-sm-5 col-lg-3 pull-right">
+                            <a href="{{ path('send_order',{ 'order' : order.id }) }}"
+                               class="btn btn-block #558b2f light-green darken-3">
+                                <img src="{{ asset('bundles/app/images/camion.png') }}"
+                                     style="width: 30px; height: 20px;"> {{ "send_order_btn"|trans }}
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    {% if order.status == constant('REJECTED',order) or order.status == constant('DRAFT',order) %}
+                        <div class="col-xs-4 col-lg-3 pull-right">
+                            <a href="{{ path('mark_as_sended',{ 'order' : order.id }) }}"
+                               class="btn btn-block #0d47a1 blue darken-4 white-text">
+                                <span class="glyphicon glyphicon-saved"></span> {{ "mark_as_sended"|trans }}
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    {% if order.status != constant('SENDED',order) %}
+                        <div class="col-xs-5 col-sm-4 col-md-3 pull-right">
+                            <button order-id="{{ order.id }}"
+                                    class="cancel-btn btn btn-block #b71c1c red darken-4"><span
+                                        class="glyphicon glyphicon-remove"></span> {{ "delete_order"|trans }}</button>
+                        </div>
+                    {% endif %}
+
+                {% endif %} {# END IF order.status != constant('CANCELED',order) #}
+            </div>
+        </div>
+    </div>
+</div>

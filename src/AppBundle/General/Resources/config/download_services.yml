@@ -1,0 +1,64 @@
+services:
+    download.abstract.service:
+        class: AppBundle\General\Service\Download\AbstractDownloaderService
+        abstract: true
+        arguments:
+            - "@doctrine"
+            - "@monolog.logger.synchro"
+            - "%quick_code%"
+            - "%supervision%"
+            - "@historic.entities.service"
+            - "@paremeter.service"
+        tags:
+            - { name: monolog.logger, channel: synchro }
+#    download.suppliers.service:
+#        class: AppBundle\General\Service\Download\DownloadSupplier
+#        parent: "download.abstract.service"
+#    download.payment_methods.service:
+#        class: AppBundle\General\Service\Download\DownloadPaymentMethods
+#        parent: "download.abstract.service"
+#    download.restaurants.service:
+#        class: AppBundle\General\Service\Download\DownloadRestaurants
+#        parent: "download.abstract.service"
+#    download.restaurant_parameters.service:
+#        class: AppBundle\General\Service\Download\DownloadRestaurantParameters
+#        parent: "download.abstract.service"
+#    download.categories.service:
+#        class: AppBundle\General\Service\Download\DownloadCategories
+#        parent: "download.abstract.service"
+#    download.solding_canals.service:
+#        class: AppBundle\General\Service\Download\DownloadSoldingCanals
+#        parent: "download.abstract.service"
+#    download.actions.service:
+#        class: AppBundle\General\Service\Download\DownloadActions
+#        parent: "download.abstract.service"
+#    download.roles.service:
+#        class: AppBundle\General\Service\Download\DownloadRoles
+#        parent: "download.abstract.service"
+#        calls:
+#            - [setRestaurantService, ["@restaurant.service"]]
+#    download.cmd.service:
+#        class: AppBundle\General\Service\GetCmdService
+#        parent: "download.abstract.service"
+    download.inv_items.service:
+        class: AppBundle\General\Service\Download\DownloadPurchasedProduct
+        parent: "download.abstract.service"
+        arguments:
+            - "@inventory.service"
+    download.sold_items.service:
+        class: AppBundle\General\Service\Download\DownloadSoldProduct
+        parent: "download.abstract.service"
+        calls:
+            - [setProductPurchasedMvmtService, ["@product_purchased_mvmt.service"]]
+#    download.ping.service:
+#        class: AppBundle\General\Service\Download\Ping
+#        parent: "download.abstract.service"
+#    download.users.service:
+#        class: AppBundle\General\Service\Download\DownloadUser
+#        parent: "download.abstract.service"
+#    download.expense_labels.service:
+#        class: AppBundle\General\Service\Download\ExpenseLabels
+#        parent: "download.abstract.service"
+#    download.recipe_ticket_labels.service:
+#        class: AppBundle\General\Service\Download\RecipeTicketLabels
+#        parent: "download.abstract.service"

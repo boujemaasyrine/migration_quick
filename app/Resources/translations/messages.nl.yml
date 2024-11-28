@@ -1,0 +1,443 @@
+datatable:
+    processing: "In behandeling..."  #"traitement en cours..."
+    search: "Zoeken&nbsp;:" #"Rechercher&nbsp;:"
+    lengthMenu: "_MENU_ items tonen" #"Afficher _MENU_ &eacute;l&eacute;ments"
+    info: Item van _START_ to _END_ van _TOTAL_ items tonen #"Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments"
+    infoEmpty: "Item 0 tot 0 van 0 items tonen" #"Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments"
+    infoFiltered: "Item van _START_ to _END_ van _TOTAL_ items tonen" #"(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)"
+    infoPostFix: ""
+    loadingRecords: "Bezig met laden..." #"Chargement en cours..."
+    zeroRecords: "Er zijn geen items te tonen" #"Aucun &eacute;l&eacute;ment &agrave; afficher"
+    emptyTable: "Geen data beschikbaar in de tabel" #"Aucune donnée disponible dans le tableau"
+    paginate:
+        first: "Eerste" #"Premier"
+        previous: "Vorige" #"Pr&eacute;c&eacute;dent"
+        next: "Volgende" #"Suivant"
+        last: "Laatste" #"Dernier"
+datepicker:
+    labelMonthNext: 'Volgende' #'Suivant'
+    labelMonthPrev: 'Vorige' #'Précédent'
+    labelMonthSelect: 'Een maand selecteren' #'Choisir un mois'
+    labelYearSelect: 'Selecteer een jaar' #'Selectionner une année'
+    monthsFull:
+        1: 'januari' #'Janvier'
+        2: 'februari' #'Février'
+        3: 'maart' #'Mars'
+        4: 'april' #'Avril'
+        5: 'mei' #'Mai'
+        6: 'juni' #'Juin'
+        7: 'juli' #'Juillet'
+        8: 'augustus' #'Août'
+        9: 'september' #'Septembre'
+        10: 'oktober' #'Octobre'
+        11: 'november' #'Novembre'
+        12: 'december' #'Décembre'
+    monthsShort:
+        1: 'jan' #'Jan'
+        2: 'feb' #'Fev'
+        3: 'mrt' #'Mar'
+        4: 'apr' #'Avr'
+        5: 'mei' #'Mai'
+        6: 'jun' #'Jui'
+        7: 'jul' #'Jui'
+        8: 'aug' #'Aoû'
+        9: 'sep' #'Sep'
+        10: 'okt' #'Oct'
+        11: 'nov' #'Nov'
+        12: 'dec' #'Déc'
+    weekdaysFull:
+        1: 'zondag' #'Dimanche'
+        2: 'maandag' #'Lundi'
+        3: 'dinsdag' #'Mardi'
+        4: 'woensdag' #'Mercredi'
+        5: 'donderdag' #'Jeudi'
+        6: 'vrijdag' #'Vendredi'
+        7: 'zaterdag' #'Samedi'
+    weekdaysShort:
+        1: 'zo' #'Dim'
+        2: 'ma' #'Lun'
+        3: 'di' #'Mar'
+        4: 'wo' #'Mer'
+        5: 'do' #'Jeu'
+        6: 'vr' #'Ven'
+        7: 'za' #'Sam'
+    weekdaysLetter:
+        1: 'Z' #'D'
+        2: 'M' #'L'
+        3: 'D' #'M'
+        4: 'W' #'M'
+        5: 'D' #'J'
+        6: 'V' #'V'
+        7: 'Z' #'S' ** Dimanche et Samedi ont la meme initiale
+    today: "Vandaag" #"Aujourd'hui"
+    clear: "Wissen" #"Effacer"
+    close: 'Sluiten' #'Fermer'
+Error:
+    general:
+        internal: "Er is een interne fout opgetreden" #"Une erreur interne s'est produite."
+        technique: "Oeps. Sorry.  Er is een technisch probleem !!"
+        error403: "Oeps. U hebt geen toegang tot deze pagina !!"
+        error404: "Oeps. Deze pagina bestaat niet !!"
+title:
+    filters: Filters #Filtres
+label:
+    action: "Actie" #"Action"
+    code: "Code" #"Code"
+    code_plu: "PLU code" #"Code PLU"
+    status: "Status" #"Status"
+    name: "Naam" #"Nom"
+    mail: "E-mailadres" #"Adresse email"
+    manager: "Verantwoordelijke" #"Responsable"
+    managerPhone: "Verantwoordelijke telefoon" #"Téléphone responsable"
+    managerEmail: "Verantwoordelijke E-mail" #"Email responsable"
+    address: "Adres" #"Adresse"
+    phone: "Telefoon" #"Téléphone"
+    type: "Type" #"Type"
+    source: "Bron" #"Source"
+    destination: "Bestemming" #"Destination"
+    affiliate_code: "Lidnummer" #"Numéro d'affiliation"
+    reference: "Referentie" #"Référence"
+    number: "Nummer" #"Numéro"
+    created_at: "Aangemaakt op" #"Créé le"
+    inventory_item: "Inventarisitem" #"Item inventaire"
+    sold_item: "Verkoopsitem" #"Item de vente"
+    value: "Waarde" #"valeur"
+    qty: "Hoeveelheid" #"Qté"
+    active: "Actief" #"Actif"
+    total_period: "Totale periode" # "Totale période"
+    total_amount: "Totaal bedrag" #"Montant total"
+    average: "Gemiddelde" #"Moyenne"
+    revenu: "kostprijs" #"Revenu"
+    recap: "Overzicht" #"Récapitulatif"
+    group: "Groep" #"Groupe"
+    member: "medewerker" #"Equipier"
+    all: "Alle" #"Tous"
+    search: "Zoeken" #"Rechercher"
+    owner: "Verantwoordelijke" #"Responsable"
+    role: "Taak" #"Rôle"
+    roles: "Taken" #"Rôles"
+    rights: "Rechten" #"Droits"
+    old_password: Oud Wachtwoord #"Ancien mot de passe"
+    password: "Wachtwoord" #"Mot de passe"
+placeholder:
+    research: "Zoeken" #"Recherche"
+btn:
+    validate: "Bevestigen" #"Valider"
+    close: "Sluiten" #"Fermer"
+    print: "Printen" #"Imprimer"
+    abort: "Afbreken" #"Abondonner"
+    add: "Toevoegen" #"Ajouter"
+    modify: "Wijzigen" #"Modifier"
+    edit: "Wijzigen" #"Modifier"
+    cancel: "Annuleren" #"Annuler"
+    copy: "Kopieren" #"Copier"
+    delete: "Verwijderen" #"Supprimer"
+    delete_ligne: "Deze regel verwijderen" #"Supprimer cette ligne"
+    save: "Opslaan" #"Enregistrer"
+    export: "Exporteren" #"Exporter"
+    reload: "Vernieuwen" #"Rafraîchir"
+    show: "Tonen" #"Afficher"
+    view: "Bekijken" #"Voir"
+    download: "Downloaden" #"Télécharger"
+    download_report: "Rapport downloaden" #"Télécharger le rapport"
+    download_pdf: "PDF" #"PDF"
+    download_csv: "CSV" #"CSV"
+    download_xls: "XLS"
+    download_excel: "EXCEL" #"EXCEL"
+    generate_report: "Rapport tonen" #"Afficher le rapport"
+    filter: "Filteren" #"Filtrer"
+    synchronise: "Synchroniseren" #"Synchroniser"
+    next: "Volgend" #suivant
+
+    select_all: "Alles toevoegen" #"Ajouter tout"
+    view_envelope: "Enveloppe bekijken" #"Voir enveloppe"
+    view_details: "Details bekijken" #"Voir détails"
+
+    save: "Opslaan" #"Sauvegarder"
+tooltip:
+    select_all: "Alles selecteren" #"Selectionner tout"
+    click_to_open: "Klik om te openen" #"Clicker pour ouvrir"
+shortcut:
+    labels:
+        validate: "Bevestigen" #"Valider"
+        print: "Printen" #"Imprimer"
+        quit_without_saving: "Stoppen zonder te bevestigen" #"Quitter sans valider"
+        edit: "Wijzigen" #"Modifier"
+        add: "Toevoegen" #"Ajouter"
+        delete: "Verwijderen" #"Supprimer"
+        create: "Aanmaken" #"Créer"
+        quit: "Stoppen" #"Quitter"
+        action: "Acties" #"Actions"
+        cancel: "Annuleren" #"Annuler"
+        confirm: Bevestigen #Confirmer
+    key:
+        delete: "DEL" #"SUPP"
+keyword:
+    reload: "Vernieuwen" #"Actualiser"
+    logout: "Uitloggen" #"Déconnexion"
+    help: "Hulp" #"Aides"
+    price: "Prijs" #"Prix"
+    label: "Beschrijving" #"Libellé"
+    quantite: "Hoeveelheid" #"Quantité"
+    code: "Code" #"Code"
+    total: "Totaal" #"Total"
+    yes: "Ja" #"Oui"
+    no: "Nee" #"Non"
+    article: "Inventarisitem" #"Item inventaire"
+    unit: "Eenheid" #Unité
+    articles: "Inventaris items" #"Items inventaire"
+    product_sold: "Product in verkoop" #"Produit en vente"
+    products_sold: "Producten in verkoop" #"Produits en vente"
+    begin: "Start" #"Début"
+    end: "Einde" #"Fin"
+    from: "Van" #"Du"
+    to: "Tot" #"Au"
+    the: op #Le
+    status: "Status" #"Statut"
+    delivery: "Levering" #"Livraison"
+    transferIn: Transfer IN #Transfert IN
+    transferOut: Transfer UIT #Transfert OUT
+    return: "Retour" #"Retours"
+    invoice: "Factuur" #"Facture"
+    date: "Datum" #"Date"
+    day : Dag #Jour
+    fiscal_date: "Fiscale datum" #Date fiscale
+    week: "Week" #"Sem"
+    month: "Maand" #"Mois"
+    date_comp: Verg. Datum #Date comp
+    amount: "Bedrag" #"Montant"
+    amount_ttc: "Bedrag incl. BTW" #"Montant TTC"
+    number: "Nummer" #"Numéro"
+    envelope: "Enveloppe" #Enveloppe
+    closing: Afgesloten #Clôturé
+    close: "Sluiten" #Fermer
+    pending: "In behandeling" #En cours
+    with: "Met" #Avec
+    without: "Zonder" #Sans
+    category: Categorie #Catégorie
+    categories: "Categorieën" #Catégories
+    period: Periode #Période
+    budget: Budget #Budget
+    time: "Uur" #Heure
+    provisional: "Tijdelijk" #Provisoire
+    definitive: "Definitief" #Définitif
+    tva: "BTW" #TVA
+    tva_amount: "Bedrag BTW" #Montant TVA
+    comment: "Commentaren" #Commentaires
+    continue: "Doorgaan" #Continuer
+    foodCost: FoodCost #FoodCost
+    paperCostDirect: DIRECTE PAPERCOST #PAPERCOST DIRECT
+    paperCostIndirect: INDIRECTE PAPERCOST #PAPERCOST INDIRECT
+    theorical: "THEORETISCH" #THEORIQUE
+    gap: "Verschil" #Différence
+    real: "Reëel" #REEL
+    margin: "MARGE" #MARGE
+    portion_control: Portiecontrole #Portions contrôle
+    in: in #Entrées
+    out: out #Sorties
+    loss: Verlies #Pertes
+    consumption: "Verbruik" #Consommation
+    details: "Details" #Détails
+    prefix_return: Retour #Retour
+    unspecified: "Niet gespecificeerd" #Non spécifié
+    and: "en" #et
+    media: Media #Média
+    total_media: Alle media #Total Media
+    with_media: "Per media" #"Par Média"
+    exchange_rate: Wisselkoers #Taux de change
+    cash: Cash Bankoverschrijving #Espèces
+    cash_gap: Kasverschil #Ecart Caisse
+    chest_gap: kofferverschil #Ecart Coffre
+    notification: Notificaties  #Notifications
+    message: Bericht #Message
+days:
+    monday: "maandag" #Lundi
+    tuesday: "dinsdag" #Mardi
+    wednesday: "woensdag" #Mercredi
+    thursday: "donderdag" #Jeudi
+    friday: "vrijdag" #Vendredi
+    saturday: "zaterdag" #Samedi
+    sunday: "zondag" #Dimanche
+months:
+    jan: 'januari' #'Janvier'
+    feb: 'februari' #'Février'
+    mar: 'maart' #'Mars'
+    apr: 'april' #'Avril'
+    mai: 'mei' #'Mai'
+    jun: 'juni' #'Juin'
+    jul: 'juli' #'Juillet'
+    aug: 'augustus' #'Août'
+    sep: 'september' #'Septembre'
+    oct: 'oktober' #'Octobre'
+    nov: 'november' #'Novembre'
+    dec: 'december' #'Décembre'
+navbar:
+    parameter:
+        parameter: "Instellingen" #"Paramètres"
+        menus: "Menu's" #"Menus"
+        ca_prev: "Budget" #Budget Prévisionnel
+    procedures: Beheer procedures #Gestion des procédures
+    restaurant: Restaurant #Restaurant
+    general: Algemeen #Général
+    procedure:
+        title: Procedure #Procédures
+    fiscal_date: Fiscale datum #Date fiscale
+units:
+    colis: DOOS #COLIS
+    piece: STUK #PIECE
+    kilo: KILO #KILO
+    litre: LITER #LITRE
+    sachet: ZAKJE #SACHET
+    barquette: BAKJE #BARQUETTE
+    gramme: GRAM #GRAMME
+    centilitre: CENTILITER #CENTILITRE
+    seau: EMMER #SEAU
+    pile: STAPEL #PILE
+    bidon: BIDON #BIDON
+    portion: DEEL #Portion
+status:
+    active: Actief #Actif
+    inactive: Inactief #Inactif
+    toInactive: Binnekort inactief #En cours de désactivation
+    not_counted: Niet geteld #Non Compté
+    counted: Geteld #Compté
+order_sended: Bestelling verstuurd  #La Commande est envoyée
+order_draft: De bestelling is een draft #La Commande est un brouillon
+order_canceled: Bestelling geannuleerd #La Commande est annulée
+order_delivered: Bestelling afgeleverd #La Commande est livrée
+order_sending: Bestelling wordt nu verzonden #La Commande est en cours d'envoi
+order_rejected: Bestelling is afgewezen #La Commande est rejetée
+order_modified: Bestelling is gewijzigd #La Commande est modifiée
+transformed_product: Verwerkt product #Produit transformé
+non_transformed_product: Niet-verwerkt product #Produit non transformé
+non_transformed_product: Niet-verwerkt product #Produit non transformé
+last_closured_date: Datum laatste afsluiting #Dernière date de clôture
+general_validation:
+    invalid_format: Ongeldig formaat #Format invalide
+popup:
+    do_you_confirm_this_action: Wilt u deze handeling bevestigen? #Confirmez vous cette opération ?
+eft:
+    is_activated: EFT is geactiveerd #EFT est activé
+    is_not_activated: EFT is gedesactiveerd #EFT n'est pas activé
+
+canal:
+    pos: Kassa  #POS
+    website: Website #Site Web
+    drive: Drive #Drive
+    borne: bestelzuil #Bornes
+    e-ordering : E-ordering
+
+user:
+    username: Login
+    first_name: Voornaam en Achternaam #Prénom
+    last_name: Achternaam #Nom
+    social_security: Rijksregisternummer (INSZ) #N° S.social.
+payment:
+    method:
+        sodpas: Sodexopas #Sodexo Pass
+        chqqui: QUICK cheques #Chèques QUICK
+        cash: "Cash" #Espèces
+        cb: Bankkaart #Carte Bancaire
+        chqlux: Restaurantcheques Lux #Chèques resto LUX
+        tr: Ticket Restaurant #Ticket Restaurant
+        br: maaltijdbon #Bon Repas
+        vpay: Vpay #Vpay
+        local: Lokaal #Local
+        master: MASTERCARD #MASTERCARD
+parameter:
+    opening_hour: Openingsuur #Heure d'ouverture
+    closing_hour: Sluitingsuur #Heure de fermeture
+
+# Missed Translation
+confirm_password: bevestiging #Confirmation
+keyword.devise: Vreemd geld #Devise
+eligible: Verkiesbaar #Eligible
+
+form:
+    error: Er is een fout opgetreden #Une erreur s'est produite
+amount-ttc: Bedrag incl. BTW" #Montant TTC
+keywords:
+    signature: handtekening #Signature
+
+last_colsing_date: laatste afgesloten datum #Dernière date cloturée
+last_synchronisation: Laatste synchronisatie #Dernière synchronisation
+current_fiscale_date: Huidige fiscale datum #Date fiscale en cours
+dayly_budget: budget van de dag # Budget du jour
+ca_brut_ttc: Bruto omzet incl. BTW #CA brut TTC
+cancels: annulaties #annulations
+corrections: correcties #corrections
+abandons: afbrekingen #abandons
+not_counted_cash_box: kassa's niet geteld #Caisses non comptées
+last_chest_count: laatste koffertelling #Dernier comptage coffre
+diff_chest: Kofferverschil #Diff. coffre
+diff_cashbox: Kasverschil #Diff. caisses
+nbt_ticket_percent: "%(-1) ticketten" #"%(-1) des tickets"
+ca_vs_ca_n-1: Netto ZC excl BTW vs Netto ZC excl BTW j-1 #CA Net HT vs CA Net HT n-1
+ca_net_htva: Netto ZC excl BTW (€) #CA Net HTVA (€)
+ca_net_htva_n-1: Netto ZC excl BTW (€)j-1 (€)
+today: Vandaag
+day_before: Gisteren
+this_week : Lopende week
+this_month: Lopende maand
+refresh: Verwezenlijken
+takeout_comptoir: TO Kassa #TO Comptoir
+kiosk_out: TO Kiosk
+
+language:
+    frensh: Frans  #Français
+    dutch: Nederlands #Néerlandais
+    fr: Franse taal #Langue Française
+    nl: Nederlandse taal #Langue Neerlandaise
+    label: Standaard taal #Langue par défaut
+    change: Aanpassing van de taal #Modification de la langue par défaut
+    change_confirm: De standaardtaal is succesvol gewijzigd! #La langue par défaut est modifiée avec succèes!
+profile:
+    title: Profile #Profil
+    details: Uw Informatie #Votre Informations
+    change_password:
+        title: Wachtwoord wijzigen #Modification de mot de passe
+        confirm: Wachtwoord met succes gewijzigd #Mot de passe modifié avec succès!
+
+allcanals: alle kanalen #Tous canaux
+onsite: ter plaatse #Sur place
+takeaway: mee te nemen#A emporter
+drive: Drive
+walk: Walk
+delivery: Delivery
+
+next_year: Volgend jaar #Année suivante
+prev_year: Vorig jaar #Année précedente
+deactivation_date_label: Desactivatie datum #Date de désactivation
+date_debut_commande:  Begindatum van de bestelling van het item  #Date de début de commande de l'item
+date_fin_commande: Einddatum van de bestelling van het item  #Date de fin de commande de l'item
+
+notification_deleted_with_success: Notificatie met succes verwijderd #Notification supprimée avec succès!
+
+documentation_label: Documentatie #Documentation
+changlog_label: Changlog
+
+keyword_supplier_liste: Lijst van leveranciers #Liste des fournisseurs
+id_inventory_item: ID inventaris item #ID produit inventaire
+id_recipe: ID recept #ID recette
+id_sold_item: ID verkoopsitem #ID item vente
+code_inventory_item: Code inv item  #Code item inv
+name_inventory_item: Naam inv item  #Nom item inv
+price_of_line: prijs van de regel #Prix de la ligne
+price_of_recipe: prijs van het recept #Prix de la recette
+id_recipe_line: ID recept regel #ID ligne de recette
+keyword_hello: Goeiedag #Bonjour
+keyword_descriptions: Beschrijvingen #Descriptions
+keyword_expenses: Uitgaven #Dépenses
+keyword_recipes: Omzetten #Recettes
+order_delivery_not_match: Er is een verschil tussen de bestelling en de levering #Il y a une différence entre ce qui est commandé et ce qui est livré.
+
+workflow_confirm_title: "De %name% procedure is opgestart" #"Lancement de la procédure %name%"
+workflow_confirm_text: "Wenst U zeker deze procedure op te starten?" #"Êtes-vous certain de vouloir lancer cette procédure?"
+restaurant_access_denied: Vous n'avez pas le droit pour accèder a ce restaurant
+opening_date_restaurant_restriction: De lanceringsdatum is nog niet bekend  #"La date du lancement n'est pas encore arrivée."
+api_loader_msg: Synchronisatie van de verkopen
+api_loader_withdrawal_msg: #Synchronisation des prélèvements
+return_to_home: Ga terug naar de %link_start%homepage%link_end%
+
+ca.confirm_this_action: Voer uw wachtwoord in om ZC zonder btw te valideren #Saisissez votre mot de passe pour valider CA net HTVA:
+validate_ca.wrong_password: "Kan niet valideren: onjuist wachtwoord" #"Validation impossible: mot de passe incorrect!"

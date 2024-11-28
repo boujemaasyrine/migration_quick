@@ -1,0 +1,160 @@
+<li class="dropdown header-item {{ securityChecker.hideLink('restaurant_list_super') }}">
+    <a href="{{ path('restaurant_list_super') }}" class="link">
+        <span class="icon fa fa-sitemap hidden-lg"></span>
+        <span class="hidden-md hidden-sm"> {{ 'restaurant_supervision'|trans([], 'supervision') }} </span>
+    </a>
+</li>
+
+<li class="dropdown header-item {{ securityChecker.hideLink('historic_broadcast_all_restaurants') }}">
+    <a class="link" href="{{ path('historic_broadcast_all_restaurants') }}">
+        <span class="icon fa fa-download hidden-lg"></span>
+        <span class="hidden-md hidden-sm">{{ 'historic_broadcast_all_restaurants'|trans([], 'supervision') }}</span>
+    </a>
+</li>
+
+<li class="dropdown people-item">
+    <a href="#!" data-toggle="dropdown">
+        <span class="icon icon-people hidden-lg"></span>
+        <span class="hidden-md hidden-sm">{{ 'staff.title'|trans([], 'navbar_supervision') }}</span>
+    </a>
+    <ul class="dropdown-menu level-1 animated fadeIn multi-level">
+        <li class="{{ securityChecker.hideLink('users_list') }}">
+            <a class="link" href="{{ path('users_list') }}">
+                {{ 'staff.list'|trans([], 'navbar_supervision') }}
+            </a>
+        </li>
+        <li class="{{ securityChecker.hideLink('add_role') }}">
+            <a class="link" href="{{ path('add_role') }}">{{ 'staff.role'|trans([], 'navbar_supervision') }}</a>
+        </li>
+    </ul>
+
+</li>
+
+<li class="dropdown reporting-item">
+    <a href="#!" data-toggle="dropdown">
+        <span class="icon icon-reporting hidden-lg"></span>
+        <span class="hidden-md hidden-sm">{{ 'reports.title'|trans([], 'navbar_supervision') }}</span></a>
+    <ul class="dropdown-menu level-1 animated fadeIn multi-level ">
+        <li class="dropdown-submenu"><a
+                    href="#!">{{ 'reports.merchandise_management.title'|trans([], 'navbar_supervision') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+              {#  <li class="{{ securityChecker.hideLink('supervision_index_food_cost_synthetic') }}">
+                    <a class="link" href="{{ path('supervision_index_food_cost_synthetic') }}">
+                        {{ 'reports.food_cost.synthetic'|trans([], 'navbar_supervision') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('supervision_margin_food_cost_report') }}">
+                    <a class="link" href="{{ path('supervision_margin_food_cost_report') }}">
+                        {{ 'reports.food_cost.margin'|trans([], 'navbar_supervision') }}
+                    </a>
+                </li>
+                #}
+                <li class="{{ securityChecker.hideLink('supervision_control_stock_report') }}">
+                    <a class="link"
+                       href="{{ path('supervision_control_stock_report') }}"> {{ 'reports.stock_control'|trans([],'navbar_supervision') }} </a>
+                </li>
+
+                <li >
+                    <a class="link" href="{{ path('report_final_stock') }}"> {{ 'reports.stock_control_items'|trans([],'navbar_supervision') }} </a>
+                </li>
+                {#   <li class="{{ securityChecker.hideLink('supervision_foodcost_report') }}">
+                    <a class="link" href="{{ path('supervision_foodcost_report') }}">
+                        {{ 'reports.merchandise_management.foodcost_report'|trans([], 'navbar_supervision') }}
+                    </a>
+                </li>
+                <li class="{{ securityChecker.hideLink('supervision_product_purchase_report') }}">
+                    <a class="link" href="{{ path('supervision_product_purchase_report') }}">
+                        {{ 'reports.product_purchase'|trans([], 'navbar_supervision') }}
+                    </a>
+                </li>
+#}
+
+            </ul>
+        </li>
+        <li class="{{ securityChecker.hideLink('supervision_moulinette') }}" ><a
+                    href="{{ path('supervision_moulinette') }}">{{ 'reports.moulinette.title'|trans([], 'navbar_supervision') }}</a></li>
+
+        {#        <li class="dropdown-submenu"><a
+                          href="#!">{{ 'reports.financial_revenue.title'|trans([], 'navbar_supervision') }}</a>
+                  <ul class="dropdown-menu animated fadeIn">
+                      <li class="{{ securityChecker.hideLink('supervision_hour_by_hour') }}">
+                          <a class="link" href="{{ path('supervision_hour_by_hour') }}">
+                              {{ 'reports.sales_management.hour_by_hour'|trans([], 'navbar_supervision') }}
+                          </a>
+                      </li>
+                      <li class="{{ securityChecker.hideLink('supervision_daily_results_report') }}">
+                          <a class="link" href="{{ path('supervision_daily_results_report') }}">
+                              {{ 'reports.sales_management.daily_results'|trans([], 'navbar_supervision') }}
+                          </a>
+                      </li>
+                  </ul>
+              </li>#}
+
+    </ul>
+</li>
+
+<li class="dropdown financial-item last-child">
+    <a href="#!" data-toggle="dropdown">
+        {#<span class="icon icon-cash hidden-lg"></span>#}
+        <span class="icon icon-config hidden-lg"></span>
+        <span class="hidden-md hidden-sm">{{ 'parameters.title'|trans([], 'navbar_supervision') }}</span>
+    </a>
+
+    <ul class="dropdown-menu level-1 animated fadeIn multi-level">
+        <li class="{{ securityChecker.hideLink('supervision_suppliers_list') }}">
+            <a class="link"
+               href="{{ path('supervision_suppliers_list') }}">{{ 'parameters.manage_suppliers' | trans([], 'navbar_supervision') }}</a>
+        </li>
+        <li class="{{ securityChecker.hideLink('supervision_restaurants_list') }}">
+            <a class="link"
+               href="{{ path('restaurants_list') }}">{{ 'parameters.manage_restaurants' | trans([], 'navbar_supervision') }}</a>
+        </li>
+        <li class="dropdown-submenu">
+            <a class="" href="#!"> {{ 'parameters.merchandise_management'|trans([], 'navbar_supervision') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('groups_list') }}">
+                    <a class="link"
+                       href="{{ path('groups_list') }}">{{ 'parameters.manage_groups'|trans([], 'navbar_supervision') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('categories_list') }}">
+                    <a class="link"
+                       href="{{ path('categories_list') }}">{{ 'parameters.manage_categories' | trans([], 'navbar_supervision') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('supervision_inventory_item_list') }}">
+                    <a class="link"
+                       href="{{ path('supervision_inventory_item_list') }}">{{ 'parameters.manage_inventory_item' | trans([], 'navbar_supervision') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('supervision_product_sold_list') }}">
+                    <a class="link"
+                       href="{{ path('supervision_product_sold_list') }}">{{ 'parameters.manage_product_sold' | trans([], 'navbar_supervision') }}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a class="" href="#!"> {{ 'params.financial_management.title'|trans([], 'navbar_supervision') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('labels_config_expense') }}">
+                    <a class="link"
+                       href="{{ path('labels_config', {'type': constant('AppBundle\\Administration\\Entity\\Parameter::EXPENSE')}) }}">{{ 'params.financial_management.expense_labels'|trans([], 'navbar_supervision') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('labels_config_recipe') }}">
+                    <a class="link"
+                       href="{{ path('labels_config', {'type': constant('AppBundle\\Administration\\Entity\\Parameter::RECIPE')}) }}">{{ 'params.financial_management.recipe_labels' | trans([], 'navbar_supervision') }}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a class="" href="#!">{{ 'params.rights.title'|trans([], 'navbar_supervision') }}</a>
+            <ul class="dropdown-menu animated fadeIn">
+                <li class="{{ securityChecker.hideLink('config_right_central') }}">
+                    <a class="link"
+                       href="{{ path('config_right_central') }}">{{ 'params.rights.central'|trans([], 'navbar_supervision') }}</a>
+                </li>
+                <li class="{{ securityChecker.hideLink('config_right_restaurant') }}">
+                    <a class="link"
+                       href="{{ path('config_right_restaurant') }}">{{ 'keywords.restaurant' | trans([], 'supervision') }}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</li>

@@ -1,0 +1,82 @@
+<div style="padding: 5px;">
+
+    <div class="row">
+        <div class="col-xs-4">
+            <label>{{ "filter.supplier"|trans }}: </label>{{ return.supplier.name }}
+        </div>
+        <div class="col-xs-4">
+            <label>{{ "return_date"|trans }}: </label>{{ return.date|date('d/m/Y') }}
+        </div>
+        <div class="col-xs-4">
+            <label>{{ "return_responsible"|trans }}
+                : </label>{{ return.employee.firstName|title }}  {{ return.employee.lastName|title }}
+        </div>
+    </div>
+
+    <div class="row">
+        <table id="regularization-lines" class="table table-striped ">
+            <thead>
+            <tr>
+                <th>{{ 'delivery.regularisation.table.ref'|trans }}</th>
+                <th>{{ 'delivery.regularisation.table.articles'|trans }}</th>
+                <th> {{ 'u.inv_qty'|trans() }} </th>
+                <th> {{ 'u.use_qty'|trans() }} </th>
+                <th> {{ 'u.exp_qty'|trans() }} </th>
+                <th> {{ 'total.inv_qty'|trans() }} </th>
+                <th>{{ 'delivery.regularisation.table.unit_price'|trans }} (&euro;)</th>
+                <th>{{ 'delivery.regularisation.table.valorisation'|trans }} (&euro;)</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for l in return.lines %}
+                <tr>
+                    <td>{{ l.product.externalId }}</td>
+                    <td>{{ l.product.name }}</td>
+                    <td>{{ l.qty }} {{ l.product.labelUnitInventory|trans }}</td>
+                    <td>{{ l.qtyUse }} {{ l.product.labelUnitInventory|trans }}</td>
+                    <td>{{ l.qtyExp }} {{ l.product.labelUnitInventory|trans }}</td>
+                    <td>{{ l.total|number_format(2,',','') }} {{ l.product.labelUnitInventory|trans }}</td>
+                    <td>{{ l.product.buyingCost|number_format(2,',','') }}</td>
+                    <td>{{ l.valorization|number_format(2,',','') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6"></td>
+                <td>
+                    <label>{{ "delivery.regularisation.table.valorisation"|trans }}</label>
+                </td>
+                <td>
+                    <span style="color : darkred; font-weight: bold;" id="regularization-val">
+                        {{ return.valorization|number_format(2,',','') }} &euro;
+                    </span>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        {% if return.comment|trim != '' %}
+            <label>{{ "motif"|trans }} : </label><br>
+            {{ return.comment }}
+        {% endif %}
+
+        <div class="row">
+            <div class="col-xs-12">
+
+                <button type="button" id="print-btn" class="btn btn-print btn-icon pull-right">
+                    {{ 'btn.print'|trans }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).on('click', '#print-btn', function () {
+
+        var returnId={{ return.id }};
+        console.log(returnId);
+       window.location.href=Routing.generate("print_return",{return: returnId})
+        loader.hide();
+    });
+</script>

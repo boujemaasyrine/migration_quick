@@ -1,0 +1,61 @@
+{% extends('@Supervision/Reports/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h2>
+        {{ 'report.daily_result.title' | trans({}, 'supervision') }}
+    </h2>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="row">
+        <div class="col-xs-2 input-field">
+            {{ 'period_label' | trans({}, 'supervision') }}
+        </div>
+        <div class="col-xs-2 input-field">
+            <label for="startDate">{{ 'keywords.from'|trans({}, 'supervision') }} </label>
+            <span class="text-muted">
+                {{ filter.startDate|date('d/m/Y') }}
+            </span>
+        </div>
+        <div class="col-xs-2 input-field">
+            <label for="endDate">{{ 'keywords.to'|trans({}, 'supervision') }} </label>
+            <span class="text-muted">
+                {{ filter.endDate|date('d/m/Y') }}
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 input-field">
+            {{ 'labels.comparable' | trans({}, 'supervision') }}
+        </div>
+        <div class="col-xs-2 input-field">
+            <label for="startDate">{{ 'keywords.from'|trans({}, 'supervision') }} </label>
+            <span class="text-muted">
+                {{ filter.compareStartDate|date('d/m/Y') }}
+            </span>
+        </div>
+        <div class="col-xs-2 input-field">
+            <label for="endDate">{{ 'keywords.to'|trans({}, 'supervision') }} </label>
+            <span class="text-muted">
+                {{ filter.compareEndDate|date('d/m/Y') }}
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 input-field">
+            {{ 'keywords.restaurant' | trans({}, 'supervision') }}
+        </div>
+        <div class="col-xs-10 input-field">
+            <span class="text-muted">
+                {% for restaurant in filter.restaurants %}
+                    {{ restaurant.name }},
+                {% endfor %}
+
+            </span>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('@Supervision/Reports/Revenue/DailyResults/body.html.twig') }}
+{% endblock %}

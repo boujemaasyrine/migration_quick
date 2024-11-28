@@ -1,0 +1,93 @@
+{% extends "@Merchandise/OrderHelp/index.html.twig" %}
+
+{% set fourth_panel = true %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if displayAll is defined %}
+    <script>
+        var displayAll='{{ displayAll }}';
+    </script>
+     {% endif %}
+    <script src="{{ asset('src/js/Merchandise/OrderHelp/fourth_step.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .confirmation-msg {
+            display: none;
+            color: green;
+        }
+
+        h3 .glyphicon {
+            font-size: 1.1em;
+            margin-right: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block help_order_content %}
+
+    {% if progressId is defined %}
+        {% include '@Merchandise/OrderHelp/steps/parts/result_progress.html.twig' %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12" id="result-zone">
+
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <a href="{{ path('third_step_v2') }}" class="btn white black-text pull-left">
+                <span class="glyphicon glyphicon-chevron-left"></span> {{ 'go_back_previous_step'|trans() }}
+            </a>
+        </div>
+    </div>
+
+    <div id="order_created_pop_up_content" style="display: none;">
+        <div class="col-xs-12">
+            <h3>
+                <span class="glyphicon glyphicon-ok"></span> {{ 'order_created_with_succes'|trans() }}
+            </h3>
+        </div>
+        <div class="col-xs-12">
+            <a href="__order_details_link__" target="_blank" class="btn btn-primary pull-right" type="button">
+                <span class="glyphicon glyphicon-eye-open"></span> {{ 'consult_order'|trans() }}
+            </a>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div id="pop_up_not_free_with_modification" style="display: none;">
+        <div class="col-xs-12">
+            <h3>
+                <span class="glyphicon glyphicon-warning-sign"></span> {{ 'order_exisit_for_supplier'|trans() }}
+            </h3>
+        </div>
+        <div class="col-xs-12">
+            <button id="override-btn" class="btn btn-primary pull-right" type="button">
+                <span class="glyphicon glyphicon-import"></span> {{ 'override_existing_order'|trans() }}
+            </button>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div id="pop_up_not_free_with_no_modification" style="display: none;">
+        <div class="col-xs-12">
+            <h3>
+                <span class="glyphicon glyphicon-remove"></span> {{ 'order_not_editable_exist'|trans() }}
+            </h3>
+        </div>
+        <div class="col-xs-12">
+            <a href="__order_details_link__" target="_blank" class="btn btn-primary pull-right" type="button">
+                <span class="glyphicon glyphicon-eye-open"></span> {{ 'consult_order'|trans() }}
+            </a>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "@Merchandise/OrderHelp/index.html.twig" %}
+
+{% set first_panel = true %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/OrderHelp/first_step.js') }}"></script>
+{% endblock %}
+
+{% block help_order_content %}
+    {% if locked is defined %}
+        <br><br>
+        <div class="alert alert-info" role="alert">
+            {{ 'order_help_processing'|trans }}
+        </div>
+
+    {% else %}
+        {{ form_start(form,{'action' : path('second_step_order_help')}) }}
+        <div class="row">
+            <div class="col-sm-2 col-md-1" style="padding-top: 20px;">
+                <label> {{ 'period_label'|trans() }} : </label>
+            </div>
+            <div class="col-sm-4">
+                <label class="active required"> {{ 'from_label'|trans() }} : </label>
+                {{ form_widget(form.startDateLastWeek,{ 'attr' : { 'class' : 'datepicker form-control'  } }) }}
+                {{ form_errors(form.startDateLastWeek) }}
+            </div>
+            <div class="col-sm-4">
+                <label class="active required"> {{ 'to_label'|trans() }} : </label>
+                {{ form_widget(form.endDateLastWeek,{ 'attr' : { 'class' : 'datepicker form-control'  } }) }}
+                {{ form_errors(form.endDateLastWeek) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6" style="padding-top: 20px;">
+                <label> {{ 'ca_realized_on_period'|trans() }} : </label>
+                <span style=" font-size: 1.4em; margin-left: 30px;" id="ca-zone">
+
+            </span>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-6">
+                {% if new == false %}
+                    <a id="next_step_link" href="{{ path('second_step_order_help') }}">
+                        {{ 'next_step_without_recalculation'|trans() }}
+                    </a>
+                {% endif %}
+                <button type="submit" class="btn btn-save pull-right">
+                    {{ 'save_and_go_to_next_step'|trans() }} <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}

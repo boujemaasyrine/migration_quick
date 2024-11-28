@@ -1,0 +1,158 @@
+financial_management:
+    title: Financieel beheer #Gestion financière
+    cashbox_management: Kassabeheer #Gestion des caisses
+    daily_income: Dagopbrengst #Recette journalière
+    levy_entry: Voorafname ingeven #Saisir les prélèvements
+    cashbox_counting: kassatelling  #Comptage des caisses
+    cashbox_differences: Verschil kastelling analyse #Analyse des différences de caisse
+    expense_entry: Een uitgavenbon invoeren #Saisir un bon de dépense
+    envelope_cash: Envelop cash ingeven #Saisir enveloppe espèce
+    envelope_restau: Envelop restaurantcheques invoeren #Saisir enveloppe titres restaurant
+    chest_management: Kofferbeheer #Gestion du coffre
+    recipe_ticket_entry: Een ontvangstbon invoeren #Saisir un bon de recette
+    expenses_list: Uitgave bonnen bekijken #Consultation des bons de dépenses
+    chest_management: Kofferbeheer #Gestion du coffre
+    chest_count: Koffertelling #Comptage coffre
+    consultations:
+        title: Diversen bekijken #Consultation diverses
+        envelope: Enveloppen geld raadplegen #Consultation des enveloppes espèces
+        deleted_envelopes: Raadpleging van verwijderde contantenveloppen #Consultation des enveloppes espèces supprimées
+        envelope_ticket: Enveloppen met waardecheques restaurant bekijken #Consultation des enveloppes titres restaurant
+        recipe_ticket: Ontvangsten bekijken #Consultation des bons de recette
+        cashbox_listing: Kassatellingen bekijken #Consultation des comptages caisses
+        chest_listing: Koffertellingen raadplegen #Consultation des comptages coffres
+    deposit:
+        cash: Bankstorting geld #Versement banque espèces
+        ticket: Storting restaurantcheque #Versement banque titres restaurants
+    money_booking: Bestelling Kleingeld #Commande de monnaie
+    create_booking: Bestelling aanmaken #Créer une commande de monnaie
+    list_money_booking: Lijst bestellingen kleingeld #Liste des commandes de monnaie
+buying_management:
+    title: Inkoopbeheer #Gestion d'achat
+    command_management: Beheer bestellingen #Gestion des commandes
+    command:
+        create: Bestelling aanmaken #Créer une commande
+        list: Lijst van lopende bestellingen #Liste des commandes en cours
+        plan: Planning bestellingen #Planning des commandes
+        help: Hulp bij bestelling #Aide à la commande
+    transfer_management: Overdracht beheer #Gestion des transferts
+    transfer:
+        new_in: Transfer IN ingeven #Saisir transfert IN
+        new_out: Transfer OUT ingeven #Saisir transfert OUT
+        list: Lijst transfers #Liste des transferts
+    delivery_management: Beheer leveringen #Gestion des livraisons
+    delivery:
+        new: Levering Ingeven #Saisir une livraison
+        list: Lijst leveringen #Liste des livraisons
+    return_management: Retourenbeheer #Gestion des retours
+    return:
+        new: Retour invoeren #Saisir retour
+        list: Lijst met retouren #Liste des retours
+    coef:
+        base: Coëfficiënten berekenen #Calcul des Coefficients
+stock_management:
+    title: Voorraadbeheer #Gestion du stock
+inventory_management:
+    title: Inventarisbeheer #Gestion d'inventaires
+    add_inventory_sheet_model: Nieuw inventarisblad #Nouvelle feuille d'inventaire
+    inventory_sheet_list: Lijst inventarisbladen #Liste des feuilles d'inventaires
+    inventory_management: Inventarisbeheer #Gestion d'inventaire
+    add_new_inventory: Inventaris invoeren #Effectuer un saisie inventaire
+    list_inventories: Lijst inventarissen  #Liste des inventaires
+    consult_stock: Stock raadplegen #Consulter le stock
+loss_management:
+    title: Beheer verliezen #Gestion des pertes
+    add_loss_sheet_model: Nieuw verliesblad #Nouvelle feuille de perte
+    loss_sheet_management: Beheer verliesbladen #Gestion des feuilles de pertes
+    articles: Inventaris items #Items inventaire
+    sold_products: Verkoopsitems #Items ventes
+    loss_entry: Verlies invoeren #Saisir les pertes
+    previous_day: Wijziging verliezen items gisteren #Modifier les pertes de la veille
+    previous_date: De verliezen aanpassen
+parameters:
+    supplier_list: Lijst leveranciers #Liste des fournisseurs
+    restaurant_list: Lijst van restaurants #Liste des restaurants
+    inventory_items_list: Lijst items inventaris #Liste des items inventaire
+    solding_items_list: Lijst items verkoop #Liste des items de vente
+    planing: Beheer planning bezorgingen #Gestion des plannings de livraison
+    merchandise_management:
+        title: Beheer Foodcost #Gestion Foodcost
+    financial_management:
+        title: Financieel beheer #Gestion financière
+        cashbox_counting: kassatelling  #Comptage caisse
+        expense_labels: Beschrijving uitgaven bon #Libellés Bon de dépense
+        recipe_labels: Beschrijving ontvansgt #Libellés Bon de recette
+    restaurant_management:
+        title: Instellingen Restaurant #Paramètres du Restaurant
+reports:
+    title: Reporting #Reporting
+    merchandise_management:
+        title: Foodcost Beheer #Gestion des marchandises
+        portion_control: Portion Controle #Portion contrôle
+        portion_control_three_weeks: 3 weken gap-analyse # Portion contrôle  3 semaines
+        inventory_item: Verlies inventarisitems #Perte items inventaire
+        solde_item: Verlies verkoopsitems #Perte items de vente
+    buying_management:
+        in_out: Controle In en Out #Contrôle des entrées & sorties
+    sales_management:
+        hour_by_hour: U/U #Heure par heure
+        hour_by_hour_employee: Omzet per uur per medewerker  #Heure par heure par collaborateur
+        sold_analyis: Analyse verkopen #Analyse des ventes
+        daily_results: Dagelijks resultaten #Résultats Journaliers
+        cash_book: Kasboek #Livre Caisse
+        ca_by_slice_hour: Zc per tijds blok
+    food_cost:
+        synthetic: Synthetic Foodcost #Synthétique Foodcost
+        margin: Marge FoodCost #Marge FoodCost
+    cashbox_counts:
+        title: Audit Beheer #Gestion Audit
+        per_owner: Per verantwoordelijke van telling #Par responsable comptage
+        per_cashier: Per medewerker #Par équipier
+        anomalies: Afwijkingen/Kassier #Anomalies caissiers
+        annulations: Annulatiee #Annulations
+        corrections: Correcties #Corrections
+        discount: % Discount per Ticket #% Discount par ticket
+    financial_revenue:
+        title: Verkoops Beheer #Chiffre ventes
+        strike_rate: Strike Rate #Strike Rate
+        sale_per_canal: Verdeling per verkoops canaal #Répartition des ventes par canaux
+        ca_per_tva: Verdeling van de omzet per BTW #Chiffre d'affaire par TVA
+    financial_management:
+        title: Financieel Beheer #Gestion financière
+        br: Maaltijdbon #Bons de repas
+        beneficiary: Begunstigde #Bénéficiaire
+        responsible:  per verantwoordelijk  #Badges responsables
+
+fund_management:
+    withdrawal_entry: Voorafnames ingeven #Saisir les prélèvements
+    withdrawal_list: Voorafnames raadplegen #Consultation des prélèvements
+staff:
+    title: Personeelsbeheer #Gestion du personnel
+    list: Personeelslijst #Liste du personnel
+    role: Taken beheren #Gérer les rôles
+delivery_pending_list: Lijst leveringen in afwachting #Liste des livraisons en attente
+simulate_delivery_ticket: Een leveringsbon simuleren #Simuler un bon de livraison
+stock_control: Stockcontrole #Controle du Stock
+coef:
+    title: Coefficienten #Coefficients
+    calcul: Berekening #Calcul
+    consult: Raadpleging #Consultation
+
+# Missed Translation
+language:
+    frensh: Frans  #Français
+    dutch: Nederlands #Néerlandais
+    fr: Franse taal #Langue Française
+    nl: Nederlandse taal #Langue Neerlandaise
+    label: Langue par défaut
+
+parameter.right_management: Rechtenbeheer #Gestion des droits
+dashboard: Dashboard
+
+opti:
+    title: Export Optikitchen
+    calcul: Berekening coefficiënten #Calcul des coefficients
+    consult: Coefficiënten raadplegen #Consultation des coefficients
+    param: Instellingen #Paramétrage
+
+financial_summary: Synthetic Financieel #Synthétique Financier

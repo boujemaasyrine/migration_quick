@@ -1,0 +1,24 @@
+<ul id="vertical-nav-bar" class="sf-menu sf-vertical">
+    <li class="header-item">
+        <a href="#" class="collapse-link disabled" data-target=".restaurants"> Restaurants</a>
+    </li>
+    <li class="restaurants"><a class="disabled" href="
+    {{ path("list") }}
+    ">Supervision des restaurants</a></li>
+    <li class="header-item">
+        <a href="#!" class="collapse-link" data-target=".config-item">
+            <span
+                    class="icon icon-config"></span> Paramètres</a>
+    </li>
+    <li class="config-item navbar-item-1"><a href="{{ path('suppliers_list') }}">{{ 'parameters.manage_suppliers' | trans([], 'navbar') }}</a></li>
+    <li class="config-item navbar-item-1"><a href="{{ path('restaurants_list') }}">{{ 'parameters.manage_restaurants' | trans([], 'navbar') }}</a></li>
+    <li class="config-item navbar-item-1">
+        <a href="#!">{{ 'parameters.merchandise_management'|trans([], 'navbar') }}</a>
+        <ul>
+            <li class=""><a href="{{ path('groups_list') }}">{{ 'parameters.manage_groups'|trans([], 'navbar') }}</a></li>
+            <li class=""><a href="{{ path('categories_list') }}">{{ 'parameters.manage_categories' | trans([], 'navbar') }}</a></li>
+            <li class=""><a href="{{ path('inventory_item_list') }}">{{ 'parameters.manage_inventory_item' | trans([], 'navbar') }}</a></li>
+            <li class=""><a href="{{ path('product_sold_list') }}">{{ 'parameters.manage_product_sold' | trans([], 'navbar') }}</a></li>
+        </ul>
+    </li>
+</ul>

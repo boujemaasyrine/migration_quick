@@ -1,0 +1,117 @@
+<div class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    {#<div id="checkQuickContainer" class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align: right;">
+                <span><span class="total_check_quick">{{ form.vars.value.smallChest.calculateCheckQuickTotal()|number_format(2, ',', '') }}</span> <i
+                            class="glyphicon glyphicon-euro"></i></span>
+            </div>
+            <div class="panel-body">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="check_quick_container">
+                        {% for checkQuick in form.smallChest.checkQuickCounts %}
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="text-align: left;">
+                                    {{ checkQuick.vars.value.checkName }}
+                                </div>
+                                <div class="panel-body">
+                                    {% if list is defined %}
+                                        <div class="bankCardRow col-xs-4">
+                                            <div class="col-xs-6">
+                                                <span class="text-muted">{{ checkQuick.vars.value.qty|number_format() }}</span>
+                                            </div>
+                                            <div class="col-xs-6" style="text-align: right">
+                                        <span class="text-muted bold bank_card_amount"> x{{ checkQuick.vars.value.unitValue|number_format(2, ',', '') }}
+                                            <span><i class="glyphicon glyphicon-euro"></i></span>
+                                        </span>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="row checkQuickRow col-xs-6">
+                                            <div class="input-group">
+                                                {{ form_widget(checkQuick.qty, { 'attr': {'class': 'check_quick_qty_input form-control splitted_input', 'maxlength':"10"}}) }}
+                                                <span class="input-group-addon"
+                                                      id="basic-addon2"> x {{ checkQuick.vars.value.unitValue|number_format(2, ',', '') }}
+                                                    <i
+                                                            class="glyphicon glyphicon-euro"></i></span>
+                                            </div>
+                                            {{ form_errors(checkQuick.qty) }}
+                                            {{ form_widget(checkQuick.unitValue, { 'attr': {'class': 'check_quick_unit_value_input'}}) }}
+                                            {{ form_widget(checkQuick.checkName,{ 'attr': {'class': 'check_quick_check_name_input'}}) }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>#}
+    <div id="check_quick_container"
+         data-prototype="{{ form_widget(form.smallChest.checkQuickCounts.vars.prototype) | e }}" class="col-xs-12"
+         style="padding: 10px 5px">
+        {% for checkName in form.vars.value.smallChest.getCheckQuickNames() %}
+            <div class="checkQuickRow col-md-4" style="padding: 0 5px">
+                <div class="panel panel-default">
+                <div class="panel-heading" style="text-align: left;">
+                    {{ checkName }}
+                </div>
+                <div class="panel-body">
+                    <div id="lines{{ checkName|replace({' ': '_'}) }}">
+                        {% for checkQuickCount in form.smallChest.checkQuickCounts %}
+
+                            {% if checkName== checkQuickCount.vars.value.checkName %}
+
+                                {% if list is defined %}
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-6" style="padding: 0 5px;">
+                                                <span class="text-muted">{{ checkQuickCount.qty.vars.value|number_format() }}</span>
+                                            </div>
+                                            <div class="col-xs-6"
+                                                 style="text-align: right; padding: 0 5px;">
+                                                    <span class="text-muted bold bank_card_amount"> x{{ checkQuickCount.unitValue.vars.value }}
+                                                        <span><i class="glyphicon glyphicon-euro"></i></span>
+                                                    </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                {% else %}
+                                    {{ form_widget(checkQuickCount, { 'attr': {'maxlength':"10"}}) }}
+                                {% endif %}
+
+
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
+
+                    {% if list is not defined %}
+                        <div class="row">
+                            <div class="col-xs-12" style="text-align: right">
+                            <span class="btn btn-add addCheckQuickValue"
+                                  data-check-name="{{ checkName|replace({' ': '_'}) }}">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            </span>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div>
+
+                    <div class="panel-footer" style="text-align: left;">
+                        <div class="row">
+                            <span class="text-muted pull-right" style="margin-right: 5px;">
+                                <span class="total_check_quick_by_type">{{ form.vars.value.smallChest.calculateTotalByCheckName(checkName)|number_format(2, ',', '.') }}</span>
+                                <i class="glyphicon glyphicon-euro"></i></span>
+                        </div>
+                    </div>
+
+
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

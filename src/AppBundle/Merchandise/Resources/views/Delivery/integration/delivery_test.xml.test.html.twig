@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interchange>
+    <Header>
+        <RFF>
+            <DeliveryNoteNumber>{{ delivery.deliveryBordereau }}</DeliveryNoteNumber>
+        </RFF>
+    </Header>
+
+    <SupportDetails>
+        <SupportDetail>
+            <Items>
+                {% for l in delivery.lines %}
+                    <Item>
+                        <BidvestItemNumber>{{ l.product.externalId }}</BidvestItemNumber>
+                        <DeliveredQuantity>
+                            <Qty>{{ l.qty|number_format(2,'.','') }}</Qty>
+                        </DeliveredQuantity>
+                    </Item>
+                {% endfor %}
+            </Items>
+        </SupportDetail>
+    </SupportDetails>
+</Interchange>

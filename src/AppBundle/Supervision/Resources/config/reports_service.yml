@@ -1,0 +1,42 @@
+services:
+    supervision.report.daily.results.service:
+        class: AppBundle\Supervision\Service\Reports\DailyResultsService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "@phpexcel"
+#    supervision.product.service:
+#        class: AppBundle\Supervision\Service\ProductService
+#        arguments:
+#            - "@doctrine.orm.entity_manager"
+#            - "%sql_directory%"
+    supervision.report.foodcost.synthetic.service:
+        class: AppBundle\Supervision\Service\Reports\ReportFoodCostSynthetic
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@supervision.product.service"
+            - "@supervision.report.margin.foodcost.service"
+            - "%report_sql_queries_dir%"
+    report.hour.hour.service:
+        class: AppBundle\Supervision\Service\Reports\HourByHourService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "@phpexcel"
+    supervision.report.margin.foodcost.service:
+        class: AppBundle\Supervision\Service\Reports\MarginFoodCostService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator.default"
+            - "@supervision.product.service"
+            - "%report_sql_queries_dir%"
+            - "@phpexcel"
+    supervision.report.control.stock.service:
+        class: AppBundle\Supervision\Service\Reports\ReportControlStockService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@supervision.ca.prev.service"
+            - "@supervision.product.service"
+            - "@phpexcel"
+            - "@translator.default"
+            - "%tmp_directory%"

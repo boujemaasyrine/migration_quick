@@ -1,0 +1,49 @@
+restaurant:
+    title: Restaurants #Restaurants
+    restaurant_list: Lijst van restaurants #Liste des restaurants
+parameters:
+    title: Instellingen #Paramètres
+    manage_suppliers: Beheer lijst van leveranciers #Gestion de la liste des fournisseurs
+    manage_restaurants: Beheer lijst van restaurants #Gestion de la liste des restaurants
+    manage_categories: Beheer lijst van categorieën #Gestion de la liste des catégories
+    manage_groups: Beheer van groepen #Gestion des groupes
+    manage_inventory_item: Beheer van inventaris items #Gestion des items inventaire
+    manage_product_sold: Beheer van verkoop items #Gestion des items en vente
+    merchandise_management: Beheer van grondstoffen #Gestion des marchandises
+reports:
+    title: Rapportage #Reporting
+    merchandise_management:
+        title: Beheer van grondstoffen #Gestion des marchandises
+        portion_control: Portion controle #Portion contrôle
+        foodcost_report: Foodcost verslag #Rapport FoodCost
+    sales_management:
+        hour_by_hour: uur/uur #Heure par heure
+        daily_results: Dagelijks resultaten #Résultats Journaliers
+    food_cost:
+        synthetic: Overzicht Foodcost #Synthétique Foodcost
+        margin: Marge FoodCost #Marge FoodCost
+    financial_revenue:
+        title: Omzet #Chiffre d'affaires
+    stock_control: Stockcontrole #Controle du Stock
+    stock_control_items: Stockcontrole items #Controle du Stock des items
+    moulinette:
+        title: Moulinette
+staff:
+    title: Personeelsmanagement #Gestion du personnel
+    list: Personeelslijst #Liste du personnel
+    role: Rollen beheren #Gérer les rôles
+language:
+    frensh: Frans #Français
+    dutch: Nederlands #Néerlandais
+    fr: Franse taal #Langue Française
+    nl: Nederlandse taal #Langue Neerlandaise
+params:
+    rights:
+        title: Beheer van rechten #Gestion des droits
+        central: Centrale #Central
+    financial_management:
+        title: Financieel beheer #Gestion financière
+        expense_labels: Label uitgaven bon #Libellés Bon de dépense
+        recipe_labels: Label Ontvangst bon #Libellés Bon de recette
+parameters.add_new_product_sold: Nieuwe verkoopsitem toevoegen #Ajouter un nouveau item en vente
+parameters.list_product_sold: Lijst verkoopsitems #Liste des items en vente

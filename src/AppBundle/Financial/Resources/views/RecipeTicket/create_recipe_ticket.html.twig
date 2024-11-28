@@ -1,0 +1,27 @@
+{% extends('@Financial/RecipeTicket/index_recipe_ticket.html.twig') %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/include/form.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var startDate = "{{ form.date.vars.value }}";
+    </script>
+    <script src="{{ asset('src/js/Financial/RecipeTicket/recipe_ticket_create.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'financial_management.recipe_ticket_entry'|trans([],'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.chest_management'|trans }}
+{% endblock %}
+{% block body %}
+    <div id="recipeTicketContainer">
+        {% include('@Financial/RecipeTicket/parts/create_recipe_ticket_form.html.twig') %}
+    </div>
+{% endblock %}

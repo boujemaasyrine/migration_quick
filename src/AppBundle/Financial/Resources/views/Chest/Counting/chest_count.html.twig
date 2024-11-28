@@ -1,0 +1,19 @@
+{% extends "@Financial/Chest/index.html.twig" %}
+
+{% block base_title %}
+    {{ 'chest.counting.title'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {% if administrative_closing_service.inChestCount and list is not defined %}
+        {{ 'admin_closing.title'|trans() }} du {{ administrative_closing_service.currentClosingDate|date('d/m/Y') }}
+    {% else %}
+        {{ parent() }} - {{ 'title.chest_management'|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div id="chest_count_container">
+        {% include('@Financial/Chest/Counting/parts/chest_count_block.html.twig') %}
+    </div>
+{% endblock %}

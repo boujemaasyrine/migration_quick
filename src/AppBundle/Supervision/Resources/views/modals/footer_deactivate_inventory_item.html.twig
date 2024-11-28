@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col col-xs-12" style="text-align: right">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal"
+                style="margin-right: 10px;">{{ 'btn.close' | trans }}</button>
+        {% if isActivatedInOneOfTheRestaurant==true %}
+            <button id="btn-deactivate-product-for-restaurant" type="submit" class="btn btn-validate"
+                    form="form-deactivate-inventory-item"
+                    style="margin-right: 10px;">{{ 'btn.validate' | trans }}</button>
+        {% endif %}
+    </div>
+</div>

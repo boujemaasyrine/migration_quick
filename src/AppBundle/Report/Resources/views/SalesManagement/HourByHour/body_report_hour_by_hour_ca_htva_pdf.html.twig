@@ -1,0 +1,278 @@
+<style>
+    {% if download is not defined %}
+    .highlight-hours {
+        background-color: #fdc300 !important;
+    }
+
+    .highlight-ca-prev {
+        background-color: #CA9E67 !important;
+    }
+
+    .highlight-impair-cells {
+        background-color: #93D5F6;
+    }
+
+    .highlight-title-cells {
+        background-color: #EDE2C9;
+    }
+
+    {% endif  %}
+
+    .title-bold {
+        font-weight: bold;
+    }
+
+    .table {
+        margin-bottom: 50px;
+    }
+
+</style>
+{% if download is not defined and result|length > 0 %}
+    <style>
+        .table > thead, .table > tbody {
+            display: inline-block;
+        }
+
+        tbody.mainTbody {
+            height: 550px; /* Just for the demo          */
+            width: 100%;
+            overflow-y: auto; /* Trigger vertical scroll    */
+        }
+
+        th {
+            border: none;
+            padding: 0 !important;
+            text-align: center !important;
+            margin: 0;
+        }
+    </style>
+{% else %}
+    <style>
+        .table > thead > tr > th {
+            font-size: 1.1em !important;
+        }
+    </style>
+{% endif %}
+
+
+            {% if ( closing_hour > opening_hour) %}
+                {% set limit_hour = closing_hour %}
+                {% set column_number = closing_hour - opening_hour + 2 %}
+            {% else %}
+                {% set limit_hour = 23 %}
+                {% set column_number = 23 - opening_hour + closing_hour + 3 %}
+            {% endif %}
+
+<table class="table hourByHour table-striped table-bordered table-hover" cellspacing="0"
+       width="100%" style="margin-bottom: 20px" id="table">
+    <thead>
+    <tr class="report-table-head mainHeader highlight-hours">
+        <th style="width: 10%;background-color: white"></th>
+        {% for i in opening_hour .. limit_hour %}
+            <th style="width: {{ 90 / column_number }}%;">
+                {{ i ~ ':00' }}
+            </th>
+        {% endfor %}
+        {% if ( closing_hour < opening_hour) %}
+            {% for i in 0 .. closing_hour %}
+                <th style="width: {{ 90 / column_number }}%;">
+                    {{ i ~ ':00' }}
+                </th>
+            {% endfor %}
+        {% endif %}
+        <th style="width: {{ 90 / column_number }}%">{{ 'keyword.total' | trans }}
+    </tr>
+    </thead>
+
+    <tbody class="mainTbody">
+
+    <tr>
+        <td colspan="{{ column_number + 1 }}">
+        </td>
+    </tr>
+
+    <tr class="mainRow">
+        <td style="width: 10%; white-space: nowrap;" class="highlight-ca-prev title-bold">
+            {{ 'report.sales.hour_by_hour.ca_prev' | trans }} (€)
+        </td>
+        {% for i in opening_hour .. limit_hour %}
+            <td style="width: {{ 90 / column_number }}%" class="highlight-ca-prev">
+                {{ result.ca_prev[i] | number_format(2, '.', '') }}
+            </td>
+        {% endfor %}
+        {% if ( closing_hour < opening_hour) %}
+            {% for i in 0 .. closing_hour %}
+                <td style="width: {{ 90 / column_number }}%" class="highlight-ca-prev">
+                    {{ result.ca_prev[i] | number_format(2, '.', '') }}
+                </td>
+            {% endfor %}
+        {% endif %}
+        <td style="width: {{ 90 / column_number }}%"
+            class="highlight-ca-prev">{{ result.ca_prev['24'] | number_format(2, '.', '') }}</td>
+    </tr>
+    <tr>
+        <td class="title-bold highlight-title-cells" style="white-space: nowrap;">
+            {{ 'report.sales.hour_by_hour.ca_ht' | trans }} (€)
+        </td>
+        {% for i in opening_hour .. limit_hour %}
+            <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>{{ result.caHTva[i] }}</td>
+        {% endfor %}
+        {% if ( closing_hour < opening_hour) %}
+            {% for i in 0 .. closing_hour %}
+                <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>{{ result.caHTva[i] }}</td>
+            {% endfor %}
+        {% endif %}
+        <td style="width: {{ 90 / column_number }}%">{{ result.caHTva['24'] }}</td>
+    </tr>
+
+    <tr>
+        <td colspan="{{ column_number + 1 }}">
+        </td>
+    </tr>
+
+
+    <tr>
+        <td class="title-bold highlight-title-cells" style=" white-space: nowrap;">
+            {{ 'report.sales.hour_by_hour.tickets' | trans }}
+        </td>
+        {% for i in opening_hour .. limit_hour %}
+            <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>{{ result.ticket[i].nbrTicket }}</td>
+        {% endfor %}
+        {% if ( closing_hour < opening_hour) %}
+            {% for i in 0 .. closing_hour %}
+                <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>{{ result.ticket[i].nbrTicket }}</td>
+            {% endfor %}
+        {% endif %}
+        <td style="width: {{ 90 / column_number }}%">{{ result.ticket['24'].nbrTicket }}</td>
+    </tr>
+    <tr>
+        <td class="title-bold highlight-title-cells" style=" white-space: nowrap;">
+            {{ 'report.sales.hour_by_hour.avg_ticket' | trans }} (€)
+        </td>
+        {% for i in opening_hour .. limit_hour %}
+            <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>
+                {% if (result.ticket[i].nbrTicket | is_numeric) == false %}
+                    *
+                {% elseif result.ticket[i].nbrTicket != 0 %}
+                    {{ ( result.caHTva[i] / result.ticket[i].nbrTicket ) | number_format(2, '.', '') }}
+                {% else %}
+                    0.00
+                {% endif %}
+            </td>
+        {% endfor %}
+        {% if ( closing_hour < opening_hour) %}
+            {% for i in 0 .. closing_hour %}
+                <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>
+                    {% if (result.ticket[i].nbrTicket | is_numeric) == false %}
+                        *
+                    {% elseif result.ticket[i].nbrTicket != 0 %}
+                        {{ ( result.caHTva[i] / result.ticket[i].nbrTicket ) | number_format(2, '.', '') }}
+                    {% else %}
+                        0.00
+                    {% endif %}
+                </td>
+            {% endfor %}
+        {% endif %}
+        <td style="width: {{ 90 / column_number }}%">
+            {% if (result.ticket['24'].nbrTicket | is_numeric) == false %}
+                *
+            {% elseif result.ticket['24'].nbrTicket != 0 %}
+                {{ (result.caHTva['24'] / result.ticket['24'].nbrTicket) | number_format(2, '.', '') }}
+            {% else %}
+                0.00
+            {% endif %}
+        </td>
+    </tr>
+
+
+    {% if result.origin is defined %}
+        {% for key, origin in result.origin %}
+
+            <tr>
+                <td colspan="{{ column_number + 1 }}">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title-bold highlight-title-cells" style=" white-space: nowrap;">
+                    {{ 'report.sales.hour_by_hour.ca_ht' | trans }} ({{ ('canal.' ~ key) | trans }}) (€)
+                </td>
+                {% for i in opening_hour .. limit_hour %}
+                    <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>
+                        {% if (origin[i].ca_ht | is_numeric) == false %}
+                            *
+                        {% else %}
+                            {{ origin[i].ca_ht | number_format(2, '.', '') }}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+                {% if ( closing_hour < opening_hour) %}
+                    {% for i in 0 .. closing_hour %}
+                        <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>
+                            {% if (origin[i].ca_ht | is_numeric) == false %}
+                                *
+                            {% else %}
+                                {{ origin[i].ca_ht | number_format(2, '.', '') }}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                {% endif %}
+                <td style="width: {{ 90 / column_number }}%">{{ origin['24'].ca_ht | number_format(2, '.', '') }}</td>
+            </tr>
+            <tr>
+                <td class="title-bold highlight-title-cells" style=" white-space: nowrap;">
+                    % CA ({{ ('canal.' ~key) | trans }})
+                </td>
+                {% for i in opening_hour .. limit_hour %}
+                    <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>
+                        {% if (origin[i].ca_ht | is_numeric) == false %}
+                            *
+                        {% elseif result.caHTva[i] != 0 %}
+                            {{ (origin[i].ca_ht / result.caHTva[i] * 100) | number_format(2, '.', '') }}
+                        {% else %}
+                            0
+                        {% endif %}
+                    </td>
+                {% endfor %}
+                {% if ( closing_hour < opening_hour) %}
+                    {% for i in 0 .. closing_hour %}
+                        <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>
+                            {% if (origin[i].ca_ht | is_numeric) == false %}
+                                *
+                            {% elseif result.caHTva[i] != 0 %}
+                                {{ (origin[i].ca_ht / result.caHTva[i] * 100) | number_format(2, '.', '') }}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                {% endif %}
+                <td style="width: {{ 90 / column_number }}%">
+                    {% if result.caHTva['24'] != 0 %}
+                        {{ (origin['24'].ca_ht / result.caHTva['24'] * 100) | number_format(2, '.', '') }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="title-bold highlight-title-cells" style=" white-space: nowrap;">
+                    {{ 'report.sales.hour_by_hour.ticket' | trans }} ({{ ('canal.' ~ key) | trans }})
+                </td>
+                {% for i in opening_hour .. limit_hour %}
+                    <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>{{ origin[i].tickets }}</td>
+                {% endfor %}
+                {% if ( closing_hour < opening_hour) %}
+                    {% for i in 0 .. closing_hour %}
+                        <td style="width: {{ 90 / column_number }}%" {% if i is not divisible by(2) %} class="highlight-impair-cells" {% endif %}>{{ origin[i].tickets }}</td>
+                    {% endfor %}
+                {% endif %}
+                <td style="width: {{ 90 / column_number }}%">{{ origin['24'].tickets }}</td>
+            </tr>
+
+
+        {% endfor %}
+    {% endif %}
+
+    </tbody>
+</table>

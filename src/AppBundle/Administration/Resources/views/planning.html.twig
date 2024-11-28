@@ -1,0 +1,117 @@
+{% extends '@Administration/index_administration.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .btn-delete-planning-line {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Administration/planning.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'provider.planning.title' | trans }}
+{% endblock %}
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'parameters.merchandise_management.title'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'PlanningSupplierForm', 'class': ''} }) }}
+            <div class="row">
+                <div class="col-xs-12">
+                    {{ form_label(form.supplier, 'provider.list.provider', { 'label_attr': {'style': 'position: initial'} }) }}
+                    {{ form_widget(form.supplier, {'attr': {'class': 'form-control sortable'}}) }}
+                    {{ form_errors(form.supplier) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{ form_label(form.plannings) }}
+                    <table class="table table-stripped" id="planning_table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ "days.monday"|trans }}</th>
+                            <th>{{ "days.tuesday"|trans }}</th>
+                            <th>{{ "days.wednesday"|trans }}</th>
+                            <th>{{ "days.thursday"|trans }}</th>
+                            <th>{{ "days.friday"|trans }}</th>
+                            <th>{{ "days.saturday"|trans }}</th>
+                            <th>{{ "days.sunday"|trans }}</th>
+                            <th>{{ "provider.planning.category_label"|trans }}</th>
+                            <th style="width: 130px;">{{ "shortcut.labels.action"|trans }}</th>
+                        </tr>
+                        </thead>
+                        {% set number = form.plannings | length %}
+                        <tbody class="body-planning-supplier" data-prototype="
+						         {% filter escape %}
+						             {{ include('@Administration/parts/planning_line_prototype.html.twig', { 'number' :  '_id_', 'rank' : '_rank_', 'categories': categories }) }}
+						         {% endfilter %}" data-count="{{ form.plannings | length }}" id="planning_table_body">
+                        {% if form.vars.value.id is not null %}
+                            {{ include('@Administration/parts/planning_initial_content.html.twig') }}
+                        {% endif %}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="11"></th>
+                            <th>
+                                <button type="button" class="btn #0d47a1 blue darken-4" id="add_planning_supplier"
+                                        {% if(form.vars.value.id is null) %} style="display:none;" {% endif %}>
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    {{ "shortcut.labels.add"|trans }}</button>
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <div class="hidden">
+                        {{ form_rest(form) }}
+                    </div>
+                    <div class="row pull-right"
+                         {% if form.vars.value.id is null %}style="display:none;" {% endif %}
+                         id="confirm_button">
+                        <div class="col">
+                            <button type="button"
+                                    class="btn #1b5e20 red lighten-1 waves-effect  white-text waves-light pull-right"
+                                    id="cancel_planning_supplier">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                {{ "shortcut.labels.cancel"|trans }}
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button type="button"
+                                    class="btn #1b5e20 green lighten-1 waves-effect  white-text waves-light pull-right"
+                                    id="validate_planning_supplier">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                {{ "shortcut.labels.validate"|trans }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+            <div id="modal_cancel_body" class="modal modal-fixed-footer">
+                <h4>{{ 'provider.planning.verify_cancel' |trans }}</h4>
+            </div>
+            <div id="modal_cancel_footer" class="modal modal-fixed-footer">
+                <div class="row pull-right">
+                    <button class="btn red lighten-1 white-text waves-effect waves-light modal-trigger"
+                            id="cancel_yes_button" data-dismiss='modal' style="float:initial;">
+                        {{ 'keyword.yes' | trans }}
+                    </button>
+                    <button class="waves-effect waves-light #4a148c purple darken-4 btn white-text" data-dismiss='modal'
+                            style="float:initial;">
+                        {{ 'keyword.no' | trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

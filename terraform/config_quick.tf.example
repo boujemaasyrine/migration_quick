@@ -1,0 +1,18 @@
+locals {
+  #Container_Registry
+  quick_docker_registry_repository = ""
+  quick_docker_image_prod_tag      = ""
+  quick_docker_image_dev_tag       = ""
+
+  #Database_Server
+  quick_db_administrator_login     = ""
+  quick_db_administrator_password  = ""
+  quick_storage_mb                 = ""
+  quick_primary_zone               = ""
+
+  #DNS
+  quick_dns_name                   = ""  #record_name + dns_zone_name
+  
+  #SSL_Certificate
+  quick_cert_secret_id             = ""
+}

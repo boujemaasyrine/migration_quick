@@ -1,0 +1,102 @@
+{% extends '@Merchandise/gestion_d_achat_base_bon.html.twig' %}
+
+{% block reportTitle %}
+    <h3>{{ 'command_reciepe'|trans }}</h3>
+{% endblock %}
+
+{% block body %}
+
+    <div class="" style="padding: 5px;">
+        <div class="row">
+            <div class="col-xs-12">
+                <label>{{ "command.details.supplier"|trans }} : </label>
+                {{ order.supplier.name|upper }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6"><label>{{ "command.details.num_order"|trans }} : </label>
+                {{ order.numOrder }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6"><label>{{ "command.details.date_order"|trans }}
+                    : </label>{{ order.dateOrder|date('d/m/Y') }}</div>
+            <div class="col-xs-6"><label>{{ "command.details.date_delivery"|trans }}
+                    : </label>{{ order.dateDelivery|date('d/m/Y') }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <label>{{ "command.details.responsible"|trans }} : </label>
+                {{ order.employee.firstName|title }} {{ order.employee.lastName|upper }}
+            </div>
+            <div class="col-xs-6">
+                <label>{{ "command.list.table.header.status"|trans }} : </label>
+                {{ order.status|trans({},'order_status') }}
+            </div>
+        </div>
+        <div class="row add-command-table-row" style="margin-top: 20px">
+            <div class="container-fluid">
+                <table class="table table-striped ">
+                    <thead>
+                    <tr>
+                        <th>{{ "command.details.lines.code"|trans }}</th>
+                        <th>{{ "command.details.lines.article"|trans }}</th>
+                        <th>{{ "command.new.lines.stock_qty"|trans }}</th>
+                        <th width="200px">{{ 'units_rapport'|trans() }}</th>
+                        <th>{{ "command.details.lines.ordred_qty"|trans }}</th>
+                        <th width="100px">{{ 'unit_price'|trans() }} (&euro;)</th>
+                        <th width="130px">{{ 'valorization'|trans() }} (&euro;)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% set total = 0 %}
+                    {% for l in order.lines %}
+                        {% if l.qty != '0' %}
+                            {% set total= total+1 %}
+                        <tr>
+                            <td>{{ l.product.externalId }}</td>
+                            <td>{{ l.product.name }}</td>
+                            <td>
+                                {% set qtyData = product_service.getRTStockQty(l.product) %}
+                                {{ (qtyData['qty'] / l.product.inventoryQty)|number_format(2,',','') }} {{ l.product.labelUnitExped|trans }}
+                                {% if qtyData['type'] == 'real' %} (R){% else %} (T){% endif %}
+
+                            </td>
+                            <td>
+                                1 {{ l.product.labelUnitExped|trans }}
+                                = {{ l.product.inventoryQty }} {{ l.product.labelUnitInventory|trans }}<br>
+                                1 {{ l.product.labelUnitInventory|trans }}
+                                = {{ l.product.usageQty }} {{ l.product.labelUnitUsage|trans }}
+                            </td>
+                            <td>{{ l.qty }}</td>
+                            <td>{{ l.product.buyingCost }}</td>
+                            <td>{{ l.valorization }}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th colspan="6" style="text-align: right">
+                            {{ "order_valorization"|trans }} (&euro;)
+                        </th>
+                        <th>
+                            {{ order.total|number_format(2,',','') }}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="6" style="text-align: right">
+                            {{ "total_item"|trans }}
+                        </th>
+                        <th>
+                            {{ total }}
+                            {#{{ order.lines|length }}#}
+                        </th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

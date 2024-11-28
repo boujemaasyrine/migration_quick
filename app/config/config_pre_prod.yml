@@ -1,0 +1,68 @@
+imports:
+    - { resource: config_prod.yml }
+
+swiftmailer:
+    delivery_address:
+        - mohamedali.zouai@talan.tn
+        - annie.collignon@quick.be
+        - barbara.geldof@quick.be
+        - gol.oktay@quick.be
+        - frank.perenzin@quick.be
+        - philippe.sarre@quick.be
+        - matthieu.poirier@quick.fr
+        - abdelhak.belboul@quick.fr
+        - amjed.nouira@talan.tn
+
+monolog:
+    handlers:
+        main:
+            type:   stream
+            path:   "%kernel.logs_dir%/%kernel.environment%.log"
+            level:  debug
+        console:
+            type:   console
+            bubble: false
+            verbosity_levels:
+                VERBOSITY_VERBOSE: INFO
+                VERBOSITY_VERY_VERBOSE: DEBUG
+            channels: ["!doctrine"]
+        console_very_verbose:
+            type:   console
+            bubble: false
+            verbosity_levels:
+                VERBOSITY_VERBOSE: NOTICE
+                VERBOSITY_VERY_VERBOSE: NOTICE
+                VERBOSITY_DEBUG: DEBUG
+            channels: ["doctrine"]
+        rotating_file:
+            type: rotating_file
+            max_files: 10
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+
+parameters:
+    router.request_context.scheme: http
+    router.request_context.base_url: "http://197.3.0.226/quick.super.preprod"
+    wynd.url: "http://10.20.1.10/api/orders/get_all/quick" #10.20.1.10
+    wynd.api.user: "quick"
+    wynd.api.secretKey: "2f6d70d20d23e782c8fc4637934090bda49eca80"
+    asynch_postfix: ' > /dev/null &'
+    ftp_host: "ftp.bidvest.be"
+    ftp_user: "quickxmltest"
+    ftp_pw: "@@Quick@6530@"
+    ftp_port: 21
+    database_host: 10.4.1.238
+    database_port: 5432
+    database_name: pre_prod_bo
+    database_user: postgresadmin
+    database_password: p0stgresadm1n
+    supervision.url: "http://10.20.1.10/quick.super.preprod"
+    supervision.key: "NotSecretKey"
+    supervision.alias: ''
+    quick: 'Lallange'
+    quick_code: 6295
+    api_user_code: 1
+    wynd.api.rest.user: "http://10.20.1.10/api/users/list/"
+    wynd_active: true
+    wkhtmltopdf_path: "/var/www/wkhtmltox/wkhtmltopdf "
+    optikitchen_path: "/var/www/html/pre_prod/quick_bo/data/tmp/"

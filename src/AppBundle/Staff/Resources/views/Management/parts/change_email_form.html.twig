@@ -1,0 +1,10 @@
+{{ form_start(form,{ 'method' : 'POST', 'attr': {'id': 'changeEmailForm'} }) }}
+<div class="row">
+    <div class="col col-lg-6 col-sm-12 col-md-6 col-xs-12">
+        {{ form_label(form.email, 'label.mail') }}
+        {{ form_widget(form.email,{ 'attr' : {'class' : 'form-control'} }) }}
+        {{ form_errors(form.email) }}
+    </div>
+</div>
+<div class="hidden">{{ form_rest(form) }}</div>
+{{ form_end(form) }}

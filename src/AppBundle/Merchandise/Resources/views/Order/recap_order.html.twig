@@ -1,0 +1,51 @@
+{% extends '@Merchandise/index_supplying.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Module/shortcut_controller.js') }}"></script>
+{% endblock %}
+{% block base_title %}
+    {% if oldOrder is defined %}
+        {{ "command.edit.recap_title"|trans }}
+    {% else %}
+        {{ "command.new.recap_title"|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="add-command-table">
+        <div class="panel panel-default">
+            <div class="panel-body" style=" padding-top: 0px;     padding-bottom: 0px; ">
+
+                {% include '@Merchandise/Order/parts/part_recap_order.html.twig' with { 'order' : order } %}
+
+            </div>
+        </div>
+    </div>
+
+    {% if oldOrder is defined %}
+        <h4>{{ "command.edit.recap_old_order"|trans }}</h4>
+        <div class="add-command-table">
+            <div class="panel panel-default">
+                <div class="panel-body" style=" padding-top: 0px;     padding-bottom: 0px; ">
+
+                    {% include '@Merchandise/Order/parts/part_recap_order.html.twig' with { 'order' : oldOrder } %}
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12" style="text-align: right;">
+            <a href="{{ path('list_pendings_commands') }}" class="btn btn-default "><span
+                        class="glyphicon glyphicon-share-alt mirror"></span> {{ "pendig_list_btn"|trans }}
+            </a>
+            <a href="{{ path('add_command') }}" class="btn btn-success green"><span
+                        class="glyphicon glyphicon-plus-sign"></span> {{ "new_order_btn"|trans }}
+            </a>
+        </div>
+    </div>
+
+
+{% endblock %}

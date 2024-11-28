@@ -1,0 +1,156 @@
+{% extends '@Financial/default.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/fullcalendar/dist/fullcalendar.min.css') }}">
+    <style>
+        td.fc-event-container {
+            padding-top: 10px !important;
+            border: solid 1px #DDDDDD !important;
+            background-color: transparent !important;
+        }
+
+        .fc-content-skeleton table {
+            background-color: transparent !important;
+        }
+
+        .inputs-btns-container {
+            width: 100%;
+            height: 50px;
+            margin: auto;
+            background-color: transparent;
+            margin-top: 20px;
+        }
+
+        .fc-ltr .fc-basic-view .fc-day-number {
+            background-color: #2727AB;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .fc-toolbar .fc-center {
+            text-transform: capitalize;
+        }
+
+        .details-btn {
+            height: initial !important;
+            width: 80%;
+            margin: auto !important;
+            display: block;
+        }
+
+        .non-comparable-day {
+            background-color: #ffe1e3;
+        }
+
+        .textarea {
+            height: 200px;
+            font-size: 1.5em;
+        }
+
+        .link_cancel {
+            font-size: 1.6em;
+            margin-right: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('plugins/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar/dist/lang/nl.js') }}"></script>
+
+    <script>
+        function hilightDay(day) {
+            console.log("Hilighting date " + day);
+            var dayBg = $(".fc-bg td.fc-day[data-date='" + day + "']");
+            if (dayBg.length > 0) {
+                dayBg.addClass('non-comparable-day');
+            }
+        }
+
+        $(document).on('click', '.btn-details-clikable', function () {
+            var self = $(this);
+            var date = $(self).attr('date');
+            var momentDate = moment(date, "YYYY-MM-DD");
+            ajaxCall({
+                url: Routing.generate('comparable_day_details', {'day': self.attr('day_id')}),
+            }, function (data) {
+                showDefaultModal("Détails de la journée de " + momentDate.format('DD/MM/YYYY'), data.html, '');
+            })
+        });
+
+        var calendar = null;
+        $(function () {
+
+            calendar = $('#calendar').fullCalendar({
+                customButtons: {
+                    nextYear: {
+                        text: Translator.trans('next_year'),
+                        click: function () {
+                            calendar.fullCalendar('nextYear')
+                        }
+                    },
+                    previousYear: {
+                        text: Translator.trans('prev_year'),
+                        click: function () {
+                            calendar.fullCalendar('prevYear')
+                        }
+                    }
+                },
+                weekMode: 'liquid',
+                header: {
+                    left: 'prev,next today ',
+                    center: 'title',
+                    right: 'previousYear,nextYear'
+                },
+                lang: $('html').attr('lang'),
+                height: 800,
+                firstDay: 1,
+                defaultView: 'month',
+                buttonText: {
+                    today: Translator.trans('today')
+                },
+                eventRender: function (event, element, view) {
+
+                    var disabledBtn = '';
+                    var dayId = '';
+                    var btnClass = '';
+                    var btnDate = " date=" + event.date + " ";
+                    if (event.id == null) {
+                        disabledBtn = 'disabled=disabled';
+                    } else {
+                        btnClass = 'btn-details-clikable';
+                        dayId = ' day_id=' + event.id + " ";
+                        if (event.comparable != true) {
+                            hilightDay(event.date);
+                        }
+                    }
+
+                    return "<div class='inputs-btns-container'><button " + disabledBtn + dayId + btnDate
+                        + " type='button' class='btn blue details-btn " + btnClass + " ' ><span class='glyphicon glyphicon-eye-open'></span> " + Translator.trans('keyword.details') + "</button></div>";
+
+                },
+                events: Routing.generate('comparable_days_list')
+            });
+
+        })
+    </script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'comprable_days'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div id="calendar"></div>
+            <br>
+
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+{% endblock %}

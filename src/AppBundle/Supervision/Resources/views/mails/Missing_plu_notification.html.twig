@@ -1,0 +1,18 @@
+{% extends '::base_mail.html.twig' %}
+
+{% block body %}
+    Bonjour,<br>
+    <h3>{{ 'missing_pluS.title' | trans({}, "supervision") }}</h3>
+    {{ 'missing_pluS.body' | trans({}, "supervision") }}
+    <ul>
+        {% for plu in missingPluS %}
+            <li>{{ 'missing_pluS.prefix' | trans({}, "supervision") }} {{ plu.plu }}</li>
+        {% endfor %}
+    </ul>
+    {{ 'missing_pluS.endBody' | trans({}, "supervision") }}
+    <ul>
+        {% for r in restaurants %}
+            <li>{{ r }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

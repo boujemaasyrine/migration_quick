@@ -1,0 +1,3 @@
+delete from transfer_line where transfer_id in ( select id from transfer where origin_restaurant_id=:restaurantId and date_transfer>= :startDate and date_transfer <= :endDate);
+delete from transfer where  origin_restaurant_id=:restaurantId and date_transfer>= :startDate and date_transfer <= :endDate ;
+select count(*) from transfer where  origin_restaurant_id=:restaurantId and date_transfer>= :startDate and date_transfer <= :endDate

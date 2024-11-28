@@ -1,0 +1,27 @@
+{% extends "@Report/index_report.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        td {
+            font-family: 'Arial', sans-serif !important;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'report';
+    </script>
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset('src/js/Report/report.js') }}"></script>
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'reports.cashbox_counts.title'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block body %}
+    {% block subBody %}
+    {% endblock %}
+{% endblock %}

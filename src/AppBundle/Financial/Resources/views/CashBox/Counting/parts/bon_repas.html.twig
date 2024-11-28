@@ -1,0 +1,55 @@
+<div class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        {% for key,item in form.vars.value.mealTicketContainer.listBeneficiariesWyndId %}
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ key }}"
+                       aria-expanded="true" aria-controls="collapse{{ key }}">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label>Badge :</label> <span class="text-muted">{{ item.label }}</span>
+                            </div>
+                            <div class="col-xs-4" style="text-align: right;">
+                                <label>Total quantité :</label>
+                                <span> {{ form.vars.value.mealTicketContainer.quantityByOperator(item.operator) }} </span>
+                            </div>
+                            <div class="col-xs-4" style="text-align: right;">
+                                <label>Montant:</label>
+                                <span> {{ form.vars.value.mealTicketContainer.amountByOperator(item.operator)|number_format(2, ',', '.') }}
+                                    <i
+                                            class="glyphicon glyphicon-euro"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div id="collapse{{ key }}" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading{{ key }}">
+                    <div class="panel-body" role="tabpanel">
+                        <div class="col-xs-12">
+                            <div class="">
+                                <div class="list">
+                                    {% for tp in form.vars.value.mealTicketContainer.ticketPayments %}
+                                        {% if item.operator == tp.firstName  %}
+
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                <span class="text-muted">{{ tp.firstName }} {{ tp.lastName }}</span>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <label>Montant :</label><span
+                                                            class="text-muted bold"> {{ tp.amount|number_format(2, ',', '.') }}
+                                                        <i
+                                                                class="glyphicon glyphicon-euro"></i></span>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

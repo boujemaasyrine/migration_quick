@@ -1,0 +1,17 @@
+/terraform.tfstate.d
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+.terraform
+.terraform.tfstate.lock.info
+
+config_common.tf
+config_quick.tf
+config_test.tf
+config_bk.tf
+sku.tf
+*.plan
+
+modules/*
+mod
+x/

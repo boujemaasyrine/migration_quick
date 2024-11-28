@@ -1,0 +1,7 @@
+#time
+*/30 * * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && echo "$(date)") >> /var/log/cron/dev/date_$(date +\%Y-\%m-\%d)_$(date +\%Y-\%m-\%d).log 2>&1
+
+#ticket import
+*/20 * * * * (echo && echo "["$(date +"\%Y-\%m-\%d \%H:\%M:\%S")"]" && /home/solo.pl -port=6006 php /var/www/html/app/console quick:wynd:rest:import) >> /var/log/cron/dev/wynd_rest_import_$(date +\%Y-\%m-\%d).log 2>&1
+*/30 * * * * /var/www/html/scripts/super_import_ticket.sh 6006
+# Don't remove this line

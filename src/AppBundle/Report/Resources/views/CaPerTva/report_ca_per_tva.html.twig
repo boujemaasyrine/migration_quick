@@ -1,0 +1,224 @@
+<style>
+    .report_container {
+        text-align: center;
+        margin: 0 auto;
+
+
+    }
+    .ticket {
+        width: 650px;
+        background-color: #FFFFFF;
+        margin: 1px;
+        height: 100%;
+        border: 1px solid #0000004d;
+
+    }
+    .ticket-header {
+        width: 100%;
+        background-color: #c9c9c9;
+        color: #FFFFFF;
+        font-weight: bold;
+        text-align: left;
+        padding-left: 10px;
+        padding-top: 1px;
+        height: 25px;
+    }
+    .ticket .ca_global {
+        text-align: center;
+        width: 100%;
+    }
+
+    .ticket .ca_global td {
+        padding: 2px 5px;
+    }
+
+    .ticket .ca_global {
+        color: #000000;
+    }
+
+    .ticket .ca_global  {
+        padding-left: 20px;
+        width: 80%;
+    }
+    .ticket .netttc_row{
+        color: #8b0008;
+    }
+
+    .ticket .ca_global .title_row .amount_label {
+        text-decoration: underline;
+    }
+    .pdf_export .ticket {
+        width: 650px;
+        margin: 1px;
+        height: 700px;
+        border: 1px solid #8E8E8E;
+    }
+
+    .pdf_export td{
+        text-align: left;
+    }
+
+    .pdf_export .ticket-header {
+        padding-top: 6px !important;
+    }
+
+</style>
+
+
+<div class='report_container'>
+    <div class="ticket">
+        <div class="ticket-header">
+            <span style="color: #000000;">{{ 'ca_per_tva.ca_global' |trans }}</span>
+        </div>
+        <table class="ca_global">
+            <tr class="title_row">
+                <td></td>
+                <td class="amount_label">{{ 'ca_per_tva.amount' |trans }}</td>
+                <td class="amount_label">{{ 'ca_per_tva.ticket' |trans }}</td>
+            </tr>
+            <tr class="ttc_row">
+                <td>{{ 'ca_per_tva.all_ttc' |trans }}</td>
+                <td> {{ data.CaNetTTC|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.total }}</td>
+            </tr>
+            <tr class="brutttc_row">
+                <td>Brut TTC</td>
+                <td>{{ data.CaBrutTTc|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.total }}</td>
+            </tr>
+            <tr class="brutttc_row">
+                <td>Ventes Annexes</td>
+                <td>{{ data.VenteAnnexe|number_format('2',',',' ') }}</td>
+                <td></td>
+            </tr>
+            <tr class="discount_row">
+                <td>Discount</td>
+                <td>{{ data.totalDiscount|number_format('2',',',' ') }}</td>
+                <td></td>
+            </tr>
+            <tr class="discount_row">
+                <td>Discount Kiosk</td>
+                <td>{{ data.discountKiosk|number_format('2',',',' ') }}</td>
+                <td></td>
+            </tr>
+            <tr class="discount_row">
+                <td>BR</td>
+                <td>{{ data.br|number_format('2',',',' ') }}</td>
+                <td></td>
+            </tr>
+            <tr class="netttc_row">
+                <td>Net TTC</td>
+                <td>{{ data.CaNetTTC|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.total }}</td>
+            </tr>
+
+        </table>
+        <div class="ticket-header">
+            <span style="color: #000000;">{{ 'ca_per_tva.ca_tva' |trans }}</span>
+        </div>
+        <table class="ca_global">
+            <tr class="title_row">
+                <td class="amount_label">{{ 'ca_per_tva.amount' |trans }}</td>
+                <td ></td>
+            </tr>
+            <tr class="ttc_row">
+                <td style="font-weight: bold">{{ 'ca_per_tva.ca_per_tva' |trans }}</td>
+                <td> {{ data.CaNetTTC|number_format('2',',',' ') }}</td>
+            </tr>
+            {% if data.type == 'bel' %}
+
+            <tr class="brutttc_row">
+                <td>A {{ 'ca_per_tva.tva' |trans }} 21%</td>
+                <td>{{ data.CaNetTTcA|number_format('2',',',' ') }}</td>
+            </tr>
+            <tr class="discount_row">
+                <td>B {{ 'ca_per_tva.tva' |trans }} 12%</td>
+                <td>{{ data.CaNetTTcB|number_format('2',',',' ') }}</td>
+            </tr>
+            <tr class="discount_row">
+                <td>C {{ 'ca_per_tva.tva' |trans }} 6%</td>
+                <td>{{ data.CaNetTTcC|number_format('2',',',' ') }}</td>
+            </tr>
+            <tr class="discount_row">
+                <td>D {{ 'ca_per_tva.tva' |trans }} 0%</td>
+                 <td>{{ data.CaNetTTcD|number_format('2',',',' ') }}</td>
+             </tr>
+            {% elseif data.type == 'lux' %}
+                <tr class="brutttc_row">
+                    <td>A {{ 'ca_per_tva.tva' |trans }} 17%</td>
+                    <td>{{ data.CaNetTTcA|number_format('2',',',' ') }}</td>
+                </tr>
+                <tr class="brutttc_row">
+                    <td>A {{ 'ca_per_tva.tva' |trans }} 16%</td>
+                    <td>{{ data.CaNetTTcAA|number_format('2',',',' ') }}</td>
+                </tr>
+                <tr class="discount_row">
+                    <td>B {{ 'ca_per_tva.tva' |trans }} 6%</td>
+                    <td>{{ data.CaNetTTcB|number_format('2',',',' ') }}</td>
+                </tr>
+                <tr class="discount_row">
+                    <td>C {{ 'ca_per_tva.tva' |trans }} 3%</td>
+                    <td>{{ data.CaNetTTcC|number_format('2',',',' ') }}</td>
+                </tr>
+                <tr class="discount_row">
+                    <td>D {{ 'ca_per_tva.tva' |trans }} 0%</td>
+                    <td>{{ data.CaNetTTcD|number_format('2',',',' ') }}</td>
+                </tr>
+            {% endif %}
+            <tr class="netttc_row">
+                <td>Net TTC</td>
+                <td>{{ data.CaNetTTC|number_format('2',',',' ') }}</td>
+            </tr>
+
+        </table>
+        <div class="ticket-header">
+            <span style="color: #000000;">{{ 'ca_per_tva.ca_per_canal' |trans }}</span>
+        </div>
+        <table class="ca_global">
+            <tr class="title_row">
+                <td></td>
+                <td class="amount_label">{{ 'ca_per_tva.amount' |trans }}</td>
+                <td class="amount_label">{{ 'ca_per_tva.ticket' |trans }}</td>
+            </tr>
+            <tr class="ttc_row">
+                <td>Eat IN</td>
+                <td> {{ data.resultCanal.EatIn|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.EatIn }}</td>
+            </tr>
+            <tr class="brutttc_row">
+                <td>Take Out</td>
+                <td>{{  data.resultCanal.TakeOut|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.TakeOut }}</td>
+            </tr>
+            <tr class="discount_row">
+                <td>Drive</td>
+                <td>{{ data.resultCanal.DriveThru|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.DriveThru }}</td>
+            </tr>
+            <tr class="discount_row">
+                <td>Kiosk Eat In</td>
+                <td>{{ data.resultCanal.KioskIn|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.KioskIn }}</td>
+            </tr>
+            <tr class="discount_row">
+                <td>Kiosk Take out</td>
+                <td>{{ data.resultCanal.KioskOut|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.KioskOut }}</td>
+            </tr>
+            <tr class="discount_row">
+                <td>Delivery</td>
+                <td>{{ data.resultCanal.Delivery|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.Delivery }}</td>
+            </tr>
+            <tr class="brutttc_row">
+                <td>E-ordering IN</td>
+                <td>{{ data.resultCanal.e_ordering_in|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.e_ordering_in }}</td>
+            </tr><tr class="brutttc_row">
+                <td>E-ordering OUT</td>
+                <td>{{ data.resultCanal.e_ordering_out|number_format('2',',',' ') }}</td>
+                <td>{{ data.nbTicket.e_ordering_out }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

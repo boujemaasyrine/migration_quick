@@ -1,0 +1,133 @@
+<tr>
+    <td>{{ rank }}</td>
+    <td>
+        <p>
+            <input type="radio"
+                   id="supplier_planning_plannings_{{ number }}_orderDay_0"
+                   name="supplier_planning[plannings][{{ number }}][orderDay]"
+                   required="required" checked="checked"
+                   value="1"/>
+            <label for="supplier_planning_plannings_{{ number }}_orderDay_0">C</label>
+            <br/>
+            <input type="radio"
+                   id="supplier_planning_planning_{{ number }}_deliveryDay_0"
+                   name="supplier_planning[plannings][{{ number }}][deliveryDay]"
+                   required="required" checked="checked"
+                   value="1"/>
+            <label for="supplier_planning_planning_{{ number }}_deliveryDay_0">L</label>
+        </p>
+    </td>
+    <td>
+        <input
+                type="radio" id="supplier_planning_plannings_{{ number }}_orderDay_1"
+                name="supplier_planning[plannings][{{ number }}][orderDay]" required="required"
+                value="2"/>
+        <label for="supplier_planning_plannings_{{ number }}_orderDay_1">C</label>
+        <br/>
+        <input type="radio"
+               id="supplier_planning_planning_{{ number }}_deliveryDay_1"
+               name="supplier_planning[plannings][{{ number }}][deliveryDay]"
+               required="required"
+               value="2"/>
+        <label for="supplier_planning_planning_{{ number }}_deliveryDay_1">L</label>
+    </td>
+    <td>
+        <p>
+            <input type="radio"
+                   id="supplier_planning_plannings_{{ number }}_orderDay_2"
+                   name="supplier_planning[plannings][{{ number }}][orderDay]"
+                   required="required"
+                   value="3"/>
+            <label for="supplier_planning_plannings_{{ number }}_orderDay_2">C</label>
+            <br/>
+            <input type="radio"
+                   id="supplier_planning_planning_{{ number }}_deliveryDay_2"
+                   name="supplier_planning[plannings][{{ number }}][deliveryDay]"
+                   required="required"
+                   value="3"/>
+            <label for="supplier_planning_planning_{{ number }}_deliveryDay_2">L</label>
+        </p>
+    </td>
+    <td>
+        <p>
+            <input type="radio"
+                   id="supplier_planning_plannings_{{ number }}_orderDay_3"
+                   name="supplier_planning[plannings][{{ number }}][orderDay]"
+                   required="required"
+                   value="4"/>
+            <label for="supplier_planning_plannings_{{ number }}_orderDay_3">C</label>
+            <br/>
+            <input type="radio"
+                   id="supplier_planning_planning_{{ number }}_deliveryDay_3"
+                   name="supplier_planning[plannings][{{ number }}][deliveryDay]"
+                   required="required"
+                   value="4"/>
+            <label for="supplier_planning_planning_{{ number }}_deliveryDay_3">L</label>
+        </p>
+    </td>
+    <td>
+        <p>
+            <input type="radio"
+                   id="supplier_planning_plannings_{{ number }}_orderDay_4"
+                   name="supplier_planning[plannings][{{ number }}][orderDay]"
+                   required="required"
+                   value="5"/>
+            <label for="supplier_planning_plannings_{{ number }}_orderDay_4">C</label>
+            <br/>
+            <input type="radio"
+                   id="supplier_planning_planning_{{ number }}_deliveryDay_4"
+                   name="supplier_planning[plannings][{{ number }}][deliveryDay]"
+                   required="required"
+                   value="5"/>
+            <label for="supplier_planning_planning_{{ number }}_deliveryDay_4">L</label>
+        </p>
+    </td>
+    <td>
+        <p>
+            <input type="radio"
+                   id="supplier_planning_plannings_{{ number }}_orderDay_5"
+                   name="supplier_planning[plannings][{{ number }}][orderDay]"
+                   required="required"
+                   value="6"/>
+            <label for="supplier_planning_plannings_{{ number }}_orderDay_5">C</label>
+            <br/>
+            <input type="radio"
+                   id="supplier_planning_planning_{{ number }}_deliveryDay_5"
+                   name="supplier_planning[plannings][{{ number }}][deliveryDay]"
+                   required="required"
+                   value="6"/>
+            <label for="supplier_planning_planning_{{ number }}_deliveryDay_5">L</label>
+        </p>
+    </td>
+    <td>
+        <p>
+            <input type="radio"
+                   id="supplier_planning_plannings_{{ number }}_orderDay_6"
+                   name="supplier_planning[plannings][{{ number }}][orderDay]"
+                   required="required"
+                   value="0"/>
+            <label for="supplier_planning_plannings_{{ number }}_orderDay_6">C</label>
+            <br/>
+            <input type="radio"
+                   id="supplier_planning_planning_{{ number }}_deliveryDay_6"
+                   name="supplier_planning[plannings][{{ number }}][deliveryDay]"
+                   required="required"
+                   value="0"/>
+            <label for="supplier_planning_planning_{{ number }}_deliveryDay_6">L</label>
+        </p>
+    </td>
+    <td style="vertical-align: middle">
+        <select
+                id="supplier_planning_planning_{{ number }}_categories" class="selectize"
+                name="supplier_planning[plannings][{{ number }}][categories][]" required="required" multiple="multiple">
+            {% for category in categories %}
+                <option value="{{ category.id }}" selected="selected">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </td>
+    <td style="vertical-align: middle" class="delete_button">
+        <span class="tooltipped glyphicon glyphicon-trash btn-delete-planning-line"
+              data-tooltip="{{ "shortcut.deleteText"|trans }}"
+              data-position="top"></span>
+    </td>
+</tr>

@@ -1,0 +1,127 @@
+{% extends ":default:index.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% if list is defined and list == false %}
+
+        <script>
+
+            var progressTimeInterval = null;
+
+            $(function () {
+                if ($("#kiosk-counting-progress-bar").length > 0) {
+                    progressTimeInterval = window.setInterval(function () {
+                        progressBarSuivi($("#kiosk-counting-progress-bar").attr('progress-id'),
+                            progressTimeInterval,
+                            "#kiosk-counting-progress-bar",
+                            function (result) {
+                                return result.progress + '% (' + result.proceeded + "/" + result.total + " " + " Kiosks-Eordering)";
+                            }, function () {
+                                window.location.href = Routing.generate('kiosk_counting', {list: "true"});
+                            }
+                        )
+                    }, 1000);
+                }
+            })
+
+
+        </script>
+
+    {% else %}
+
+        <script>
+            $('#next-link').click(function () {
+                window.location.href = Routing.generate('verify_last_date');
+            })
+
+
+        </script>
+
+
+    {% endif %}
+
+
+
+
+
+{% endblock %}
+
+{% block base_title %}
+    {{ 'admin_closing.title'|trans() }} du {{ closureDate|date('d/m/Y') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ "admin_closing.end_works"|trans }}
+{% endblock %}
+
+{% block body %}
+
+    {% if workflow_service.inAdministrativeClosing %}
+
+        {% include '@Financial/AdministrativeClosing/steps.html.twig' with { 'admin_closing_1_step' : true } %}
+
+    {% endif %}
+
+    {% if list is defined and list == false %}
+        <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row" id="kiosk-counting-progress-bar" progress-id="{{ progressID }}">
+                <div class="col-xs-12 progress-container">
+                    <div class="progress-hint">
+                        {{ 'progress.cashbox_counting'|trans() }} <span class="progress-hint-per"></span>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar"
+                             aria-valuenow="45"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             style="width: 0%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    {% elseif list == true %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {% if cashboxs|length >0 %}
+                    <table class="table-responsive table-bordered">
+                        <thead>
+                        <th> {{ 'cashbox.listing.header.cashier'|trans() }} </th>
+                        <th>{{ 'cashbox.listing.header.real'|trans() }}</th>
+                        <th>{{ 'cashbox.listing.header.theorical'|trans() }}</th>
+                        </thead>
+                        <tbody>
+                        {% for cashbox in cashboxs %}
+                            <tr>
+                                <td>   {{ cashbox.cashier }} </td>
+                                <td>    {{ cashbox.realCaCounted }} </td>
+                                <td>    {{ cashbox.theoricalCa }} </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+
+                    <div class="alert alert-info">
+
+                        <strong>{{ 'admin_closing.kiosk_eordering_counting_warning'|trans() }}</strong>
+
+                    </div>
+
+                {% endif %}
+                <div style="float: right;margin-top: 2%">
+                    <button id="next-link" class="btn btn-icon"> {{ 'btn.next'|trans() }} </button>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+
+{% endblock %}

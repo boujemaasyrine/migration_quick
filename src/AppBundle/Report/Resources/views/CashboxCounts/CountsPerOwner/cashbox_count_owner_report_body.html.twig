@@ -1,0 +1,279 @@
+<style>
+    .table {
+        border-collapse: collapse;
+    }
+
+    .table td, .table th {
+        border: 1px solid black;
+    }
+
+    .table tr:first-child th {
+        border-top: 0;
+    }
+
+    .table tr:last-child td {
+        border-bottom: 0;
+    }
+
+    .table tr td:first-child,
+    .table tr th:first-child {
+        border-left: 0;
+    }
+
+    .table tr td:last-child,
+    .table tr th:last-child {
+        border-right: 0;
+    }
+
+    .table > thead > tr > th {
+        vertical-align: middle;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    /* Header */
+    .top_header th {
+        text-align: center;
+    }
+
+    .sub_header th {
+        text-align: center;
+    }
+
+    .bottom_header th {
+        text-align: center;
+    }
+
+    {% if download is not defined  %}
+    .percent {
+        color: #af3c0d !important;
+    }
+
+    .good_ecarts {
+        background: #4caf50 !important;
+    }
+
+    .fail_ecarts {
+        background-color: #d32f2f !important;
+    }
+
+    /* Header */
+    .top_header th {
+        text-align: center;
+        background-color: #FFF282 /*#caa24d*/ !important;
+    }
+
+    .sub_header {
+        background-color: #EDE2C9 !important;
+    }
+
+    .empty_header {
+        background-color: #57a4ed !important;
+    }
+
+    .category_name {
+        background-color: #FDC300 !important;
+    }
+
+    .bottom_header th {
+        background-color: #FFF282 /*#caa24d*/ !important;
+    }
+
+    tr.error {
+        background-color: #FBACAC !important;
+    }
+
+    {% endif %}
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div {% if download is not defined %}style="overflow-x: scroll;"{% endif %}>
+            <table class="table" style="border: 1px solid black;">
+                <thead style="">
+                <tr class="top_header">
+                    <th colspan="1">{{ 'cashbox_counts_owner.report_labels.responsable'|trans }}</th>
+                    <th colspan="1">{{ 'cashbox_counts_owner.report_labels.nombre_comptage'|trans }}</th>
+                    <th colspan="1">{{ 'cashbox_counts_owner.report_labels.ca_reel'|trans }}</th>
+                    <th colspan="1">{{ 'cashbox_counts_owner.report_labels.ca_theorique'|trans }}</th>
+                    <th colspan="3">{{ 'cashbox_counts_owner.report_labels.especes'|trans }}</th>
+                    <th colspan="3">{{ 'cashbox_counts_owner.report_labels.titres_restaurant'|trans }}</th>
+                    <th colspan="3">{{ 'cashbox_counts_owner.report_labels.cartes_bancaires'|trans }}</th>
+                    <th colspan="3">{{ 'cashbox_counts_owner.report_labels.bon_repas'|trans }}</th>
+                    <th colspan="3">{{ 'cashbox_counts_owner.report_labels.discounts'|trans }}</th>
+                    <th colspan="3">{{ 'cashbox_counts_owner.report_labels.annulations'|trans }}</th>
+                    <th colspan="3">{{ 'cashbox_counts_owner.report_labels.corrections'|trans }}</th>
+                    <th colspan="3">{{ 'cashbox_counts_owner.report_labels.abandons'|trans }}</th>
+                    <th colspan="1">{{ 'cashbox_counts_owner.report_labels.diff_caisse'|trans }}</th>
+                </tr>
+                <tr class="sub_header mainHeader">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                    <th>{{ 'cashbox_counts_owner.report_labels.montant'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.ecart'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.pourcentage'|trans }}</th>
+
+                    <th>{{ 'cashbox_counts_owner.report_labels.montant'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.ecart'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.pourcentage'|trans }}</th>
+
+                    <th>{{ 'cashbox_counts_owner.report_labels.montant'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.ecart'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.pourcentage'|trans }}</th>
+
+                    <th>{{ 'cashbox_counts_owner.report_labels.montant'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.ecart'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.pourcentage'|trans }}</th>
+
+                    <th>{{ 'cashbox_counts_owner.report_labels.montant'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.ecart'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.pourcentage'|trans }}</th>
+
+                    <th>{{ 'cashbox_counts_owner.report_labels.nombre'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.montant'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.pourcentage'|trans }}</th>
+
+                    <th>{{ 'cashbox_counts_owner.report_labels.nombre'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.montant'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.pourcentage'|trans }}</th>
+
+                    <th>{{ 'cashbox_counts_owner.report_labels.nombre'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.montant'|trans }}</th>
+                    <th>{{ 'cashbox_counts_owner.report_labels.pourcentage'|trans }}</th>
+
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody class="mainTbody">
+                {% if reportResult is defined and reportResult.data.lines is defined and reportResult.data.lines|length > 0 %}
+                    {% for line in reportResult.data.lines %}
+                        <tr class="{% if not line.ca_real %}error {% endif %} mainRow">
+                            <td>{{ line.owner_name }}</td>
+                            <td>{{ line.nbre|number_format }}</td>
+
+                            <td>{{ line.ca_real|number_format(2, ',', '.') }}</td>
+                            <td>{{ line.ca_theoretical|number_format(2, ',', '.') }}</td>
+
+                            <td>{{ line.rc_real+line.withdrawals|number_format(2, ',', '.') }}</td>
+                            <td>{{ (line.rc_real+line.withdrawals  - ( line.rc_theoretical - line.cb_canceled))|number_format(2, ',', '.') }}</td>
+                            <td class="percent">{% if line.ca_real %}{{ (line.rc_real * 100 / line.ca_real)|number_format(2, ',', '.') }}{% else %}100{% endif %}</td>
+
+                            <td>{{ line.cr_real|number_format(2, ',', '.') }}</td>
+                            <td>{{ (line.cr_real - line.cr_theoretical)|number_format(2, ',', '.') }}</td>
+                            <td class="percent">{% if line.ca_real %}{{ (line.cr_real * 100 / line.ca_real)|number_format(2, ',', '.') }}{% else %}100{% endif %}</td>
+
+                            <td>{{ line.bc_real|number_format(2, ',', '.') }}</td>
+                            <td>{{ (line.bc_real - line.bc_theoretical)|number_format(2, ',', '.') }}</td>
+                            <td class="percent">{% if line.ca_real %}{{ (line.bc_real * 100 / line.ca_real)|number_format(2, ',', '.') }}{% else %}100{% endif %}</td>
+
+                            <td>{{ line.mt_theoretical|number_format(2, ',', '.') }}</td>
+                            <td>{{ (line.mt_theoretical - line.mt_theoretical)|number_format(2, ',', '.') }}</td>
+                            <td class="percent">{% if line.ca_real %}{{ (line.mt_theoretical * 100 / line.ca_real)|number_format(2, ',', '.') }}{% else %}100{% endif %}</td>
+
+                            <td>{{ line.d_theoretical|number_format(2, ',', '.') }}</td>
+                            <td>{{ (line.d_theoretical - line.d_theoretical)|number_format(2, ',', '.') }}</td>
+                            <td class="percent">{% if line.ca_real %}{{ (line.d_theoretical * 100 / line.ca_real)|number_format(2, ',', '.') }}{% else %}100{% endif %}</td>
+
+                            <td>{{ line.nbr_cancels|number_format }}</td>
+                            <td>{{ line.total_cancels|number_format(2, ',', '.') }}</td>
+                            <td class="percent">{% if line.ca_real %}{{ (line.total_cancels * 100 / line.ca_real)|number_format(2, ',', '.') }}{% else %}100{% endif %}</td>
+
+                            <td>{{ line.nbr_corrections|number_format }}</td>
+                            <td>{{ line.total_corrections|number_format(2, ',', '.') }}</td>
+                            <td class="percent">{% if line.ca_real %}{{ (line.total_corrections * 100 / line.ca_real)|number_format(2, ',', '.') }}{% else %}100{% endif %}</td>
+
+                            <td>{{ line.nbr_abondons|number_format }}</td>
+                            <td>{{ line.total_abondons|number_format(2, ',', '.') }}</td>
+                            <td class="percent">{% if line.ca_real %}{{ (line.total_abondons * 100 / line.ca_real)|number_format(2, ',', '.') }}{% else %}100{% endif %}</td>
+
+                            <td>{{ (line.ca_real - line.ca_theoretical + line.mt_theoretical + line.d_theoretical)|number_format(2, ',', '.') }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr class="bottom_header">
+                        {% set total = reportResult.data.total.0 %}
+                        <th><b>{{ 'cashbox_counts_owner.report_labels.total'|trans }}</b></th>
+                        <th>{{ total.nbre|number_format }}</th>
+
+                        <th>{{ total.ca_real|number_format(2, ',', '.') }}</th>
+
+                        <th>{{ total.ca_theoretical|number_format(2, ',', '.') }}</th>
+
+                        <th>{{ total.rc_real+total.withdrawals|number_format(2, ',', '.') }}</th>
+                        <th>{{ (total.rc_real+total.withdrawals - (total.rc_theoretical - total.cb_canceled))|number_format(2, ',', '.') }}</th>
+                        {% if total.ca_real != 0 %}
+                            <th class="percent">{{ (total.rc_real * 100 / total.ca_real)|number_format(2, ',', '.') }}</th>
+                        {% else %}
+                            <th>0</th>
+                        {% endif %}
+                        <th>{{ total.cr_real|number_format(2, ',', '.') }}</th>
+                        <th>{{ (total.cr_real - total.cr_theoretical)|number_format(2, ',', '.') }}</th>
+                        {% if total.ca_real != 0 %}
+                            <th class="percent">{{ (total.cr_real * 100 / total.ca_real)|number_format(2, ',', '.') }}</th>
+                        {% else %}
+                            <th>0</th>
+                        {% endif %}
+                        <th>{{ total.bc_real|number_format(2, ',', '.') }}</th>
+                        <th>{{ (total.bc_real - total.bc_theoretical)|number_format(2, ',', '.') }}</th>
+                        {% if total.ca_real != 0 %}
+                            <th class="percent">{{ (total.bc_real * 100 / total.ca_real)|number_format(2, ',', '.') }}</th>
+                        {% else %}
+                            <th>0</th>
+                        {% endif %}
+                        <th>{{ total.mt_theoretical|number_format(2, ',', '.') }}</th>
+                        <th>{{ (total.mt_theoretical - total.mt_theoretical)|number_format(2, ',', '.') }}</th>
+                        {% if total.ca_real != 0 %}
+                            <th class="percent">{{ (total.mt_theoretical * 100 / total.ca_real)|number_format(2, ',', '.') }}</th>
+                        {% else %}
+                            <th>0</th>
+                        {% endif %}
+                        <th>{{ total.d_theoretical|number_format(2, ',', '.') }}</th>
+                        <th>{{ (total.d_theoretical - total.d_theoretical)|number_format(2, ',', '.') }}</th>
+                        {% if total.ca_real != 0 %}
+                            <th class="percent">{{ (total.d_theoretical * 100 / total.ca_real)|number_format(2, ',', '.') }}</th>
+                        {% else %}
+                            <th>0</th>
+                        {% endif %}
+                        <th>{{ total.nbr_cancels|number_format }}</th>
+                        <th>{{ total.total_cancels|number_format(2, ',', '.') }}</th>
+                        {% if total.ca_real != 0 %}
+                            <th class="percent">{{ (total.total_cancels * 100 /  total.ca_real)|number_format(2, ',', '.') }}</th>
+                        {% else %}
+                            <th>0</th>
+                        {% endif %}
+                        <th>{{ total.nbr_corrections|number_format }}</th>
+                        <th>{{ total.total_corrections|number_format(2, ',', '.') }}</th>
+                        {% if total.ca_real != 0 %}
+                            <th class="percent">{{ (total.total_corrections * 100 /  total.ca_real)|number_format(2, ',', '.') }}</th>
+                        {% else %}
+                            <th>0</th>
+                        {% endif %}
+                        <th>{{ total.nbr_abondons|number_format }}</th>
+                        <th>{{ total.total_abondons|number_format(2, ',', '.') }}</th>
+                        {% if total.ca_real != 0 %}
+                            <th class="percent">{{ (total.total_abondons * 100 /  total.ca_real)|number_format(2, ',', '.') }}</th>
+                        {% else %}
+                            <th>0</th>
+                        {% endif %}
+                        <th>{{ (total.ca_real - total.ca_theoretical + total.d_theoretical + total.mt_theoretical)|number_format(2, ',', '.') }}</th>
+                    </tr>
+                {% else %}
+                    <tr class="empty_header">
+                        <th colspan="29">
+                            {{ 'no_result'|trans }}
+                        </th>
+                    </tr>
+                {% endif %}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+

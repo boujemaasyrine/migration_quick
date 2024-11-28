@@ -1,0 +1,121 @@
+{% extends "@Financial/default.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bundles/app/css/Financial/Chest/Counting/counting.css') }}">
+
+    <style>
+        {{[  'chest.listing.header.date'|trans,
+             'chest.listing.header.owner'|trans,
+             'chest.listing.header.cashier'|trans,
+             'chest.listing.header.real'|trans,
+             'chest.listing.header.theorical'|trans,
+             'chest.listing.header.diff'|trans,
+             'chest.listing.header.action'|trans
+         ]|t_head|raw }}
+
+        .modal-body {
+            font-size: 1rem !important;
+        }
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Financial/Chest/Listing/listing.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'financial_management.consultations.chest_listing'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.chest_management'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body">
+                {{ form_start(form,{ 'method' : 'GET', 'attr': {'id': 'filterChestCountsForm', 'class' : 'form-horizontal'} }) }}
+                {% form_theme form ':form_layouts:horizontal_layout.html.twig' %}
+                <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                        {{ form_row(form.startDate) }}
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        {{ form_row(form.endDate) }}
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        {{ form_row(form.owner) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:right;">
+                        <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "delete_filter"|trans }}
+                        </button>
+                        <button onclick="chestCounts.ajax.reload();" type="button" class="btn btn-filter btn-icon">
+                            {{ 'btn.filter'|trans }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding-bottom: 0;">
+            <div class="row">
+                <div class="col-md-12" style="text-align:right;">
+                    <button class="btn waves-effect btn-export text-black dropdown-button"
+                            data-activates='dropdown2'>
+                        <span> {{ 'btn.export'|trans() }} </span>
+                    </button>
+                    <ul id="dropdown2" class="dropdown-content" style="">
+                        <li>
+                            <a class="strech_btn text-black" href="#" id="export-xls">
+                                <img src="{{ asset('bundles/app/images/export/xls-512.png') }}"
+                                     style="height: 25px"
+                                     alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                            </a></li>
+                        <li>
+                            <a class="strech_btn text-black" href="#" id="export-btn">
+                                <img src="{{ asset('bundles/app/images/export/csv-128.png') }}"
+                                     style="height: 25px"
+                                     alt="{{ 'btn.download'|trans() }} {{ 'btn.download_csv'|trans() }}"/>
+                                <span style="color: #000;">{{ 'btn.download_csv'|trans() }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="chest_counts_table"
+                           class="table table-striped table-bordered table-hover"
+                           style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>{{ 'chest.listing.header.date'|trans }}</th>
+                            <th>{{ 'chest.listing.header.owner'|trans }}</th>
+                            <th>{{ 'chest.listing.header.real'|trans }}</th>
+                            <th>{{ 'chest.listing.header.diff'|trans }}</th>
+                            <th>{{ 'chest.listing.header.closured'|trans }}</th>
+                            <th>{{ 'chest.listing.header.closured_day'|trans }}</th>
+                            <th>{{ 'chest.listing.header.action'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

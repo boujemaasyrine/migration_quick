@@ -1,0 +1,39 @@
+<div class="footer" style="padding:5px 10px">
+    <div class="row">
+        <div class="col-md-6" style="margin: 5px 0">
+            {% if app.user.eligibleRestaurants|length > 1 %}
+                <form action="{{ path('switch_restaurant') }}" id="switch-restaurant-form" method="POST">
+                    <span style="color: #fff; font-size: 1.4em;">&copy; {{ 'now'|date('Y') }} – Ver. {{ app_version }}</span>
+                    <select name="restaurant-switch" class="form-control restaurant-selector" id="restaurant-switcher">
+                        {% for key,val in app.user.eligibleRestaurants %}
+                            <option value="{{ val.id }}" {{ val.id == restaurant_service.currentRestaurant.id ? ' selected ' : '' }}>
+                                {% if version == "quick" %}
+                                    Quick
+                                {% else %}
+                                    BK
+                                {% endif %}  - {{ val.code }} {{ val.name | capitalize }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            {% else %}
+                <a href="http://www.quick.fr/fr" target="_blank" style="color: #fff; font-size: 1.4em;">
+                    &copy; {{ 'now'|date('Y') }} – Ver. {{ app_version }} {% if version == "quick" %}
+                        Quick
+                    {% else %}
+                        BK
+                    {% endif %}
+                    - {{ restaurant_service.currentRestaurant.code }} {{ restaurant_service.currentRestaurant.name }}
+                </a>
+            {% endif %}
+
+        </div>
+        <div class="col-md-6" style="color: #fff; font-size: 1.4em; text-align: right;margin: 5px 0;">
+            {{ 'last_closured_date'|trans }}: {{ administrative_closing_service.lastClosingDate|date('d/m/Y') }}
+            &nbsp;
+            |
+            &nbsp;
+            {{ 'current_fiscale_date'|trans }}:
+            {{ administrative_closing_service.getLastWorkingEndDate()|date('d/m/Y') }}
+        </div>
+    </div>
+</div>

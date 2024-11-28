@@ -1,0 +1,96 @@
+<style>
+    .table {
+        border-collapse: collapse;
+    }
+
+    .table > thead > tr > th {
+        border: 1px solid black !important;
+        font-weight: bold;
+    }
+
+    .table td, .table th {
+        border: 1px solid black;
+        height: 17px;
+        font-size: 7pt;
+    }
+
+    /* Header */
+    .top_header th {
+        text-align: center;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .description {
+        width: 200px;
+        min-width: 200px;
+    }
+
+
+</style>
+
+<div class="">
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding-top:0; padding-bottom:0; ">
+            <div class="row">
+                <div class="container-fluid">
+                    <table id="portionControlTable" class="table" style="border: 1px solid black;">
+                        <thead id="reportHeader" style="">
+                        <tr class="top_header">
+                            <th colspan="1"   style="background-color: #bf8706"> {{ 'portion_control.report_labels.items'|trans }}</th>
+                            {#                            <th colspan="2">{{ 'portion_control.report_labels.items'|trans }}</th>#}
+                            <th colspan="5"   style="background-color: #bf8706">{{ 'portion_control.report_labels.stocks'|trans }}</th>
+
+                        </tr>
+                        <tr class="sub_header mainHeader">
+                            <th  style="background-color: #EDE2C9">{{ 'restaurant.list.name'|trans }}</th>
+                            {#                            <th>{{ 'portion_control.report_labels.code'|trans }}</th>#}
+                            {#                            <th>{{ 'portion_control.report_labels.description'|trans }}</th>#}
+                            {#                            <th>{{ 'portion_control.report_labels.entree'|trans }}</th>#}
+                            {#                            <th>{{ 'portion_control.report_labels.sortie'|trans }}</th>#}
+                            <th  style="background-color: #EDE2C9" >{{ 'portion_control.report_labels.final'|trans }}</th>
+{#                            <th  style="background-color: #EDE2C9" >{{ 'portion_control.report_labels.quantite'|trans }}</th>#}
+                            <th  style="background-color: #EDE2C9" >{{ 'restaurant.list.format'|trans }}</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody class="mainTbody">
+                        {% for categoryName,row in reportResult.data.data %}
+                            <tr class="category_name" style="background-color: #FDC300">
+                                <td colspan="15">{{ categoryName }}
+
+                            </tr>
+
+                            {% for item in row.data %}
+                                <tr class="mainRow">
+                                    <td>
+
+                                        {{ item.restaurant}} ({{ item.code_restaurant }})
+
+
+                                    </td>
+                                    {#                                    <td>#}
+                                    {#                                        {{ item.code }}#}
+                                    {#                                    </td>#}
+                                    {#                                    <td>#}
+                                    {#                                        {{ item.description }}#}
+                                    {#                                    </td>#}
+                                    <td>
+                                        {{ item.final|number_format(2, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ item.format|trans }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

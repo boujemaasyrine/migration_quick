@@ -1,0 +1,86 @@
+{% extends '@Financial/default.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Financial/expenses_list.js') }}"></script>
+{% endblock %}
+{% block base_title %}
+    {{ 'financial_management.expenses_list'|trans([], 'navbar') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.consultations.title'|trans }}
+{% endblock %}
+{% block body %}
+    <div class="filter-zone">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-filter"></span> {{ 'filter.label'|trans }}
+            </div>
+            <div class="panel-body">
+                {{ form_start(form,{ 'method' : 'GET', 'attr': {'id': 'filterExpenseForm', 'class' : 'form-horizontal' } }) }}
+                {% form_theme form ':form_layouts:horizontal_layout.html.twig' %}
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        {{ form_row(form.startDate) }}
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        {{ form_row(form.endDate) }}
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        {{ form_row(form.responsible) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        {{ form_row(form.group) }}
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        {{ form_row(form.label) }}
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="col-md-12" style="text-align:right;">
+                        <button type="button" id="reset-filter" class="btn waves-effect white black-text ">
+                            <span class="glyphicon glyphicon-remove"></span>{{ "delete_filter"|trans }}
+                        </button>
+                        <button onclick="expenses.ajax.reload();" type="button" class="btn btn-primary">
+                            <span style="color : white" class="glyphicon glyphicon-filter"></span> {{ 'filter.btn'|trans() }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12 col-xs-12 col-md-12" style="text-align: right; padding-bottom: 15px">
+                    <button class="btn btn-export btn-icon" type="button" id="export-btn">
+                        {{ "btn.export"|trans }}
+                    </button>
+                    <button class="btn btn-print btn-icon" type="button" id="download-btn">
+                        {{ "btn.print"|trans }}
+                    </button>
+                </div>
+            </div>
+
+            <table id="expenses_table" class="table table-striped table-bordered table-hover" cellspacing="0"
+                   width="100%">
+                <thead>
+                <tr>
+                    <th>{{ 'label.reference'|trans }}</th>
+                    <th>{{ 'keyword.label'|trans }}</th>
+                    <th>{{ 'label.manager'|trans }}</th>
+                    <th>{{ 'keyword.amount'|trans }} (&euro;)</th>
+                    <th>{{ 'keyword.details'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

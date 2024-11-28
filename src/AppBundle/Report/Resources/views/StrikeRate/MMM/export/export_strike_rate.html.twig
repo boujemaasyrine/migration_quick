@@ -1,0 +1,26 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h4>   {{ 'strike_rate.title' |trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-2 input-field">
+        <label for="startDate">{{ 'keyword.from'|trans }} :</label>
+        <span class="text-muted">
+            {{ data.startDate |date('d-m-Y')}}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="endDate">{{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {{ data.endDate |date('d-m-Y') }}
+        </span>
+    </div>
+
+
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/StrikeRate/MMM/report_strike_rate.html.twig') }}
+{% endblock body %}

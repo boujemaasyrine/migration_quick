@@ -1,0 +1,31 @@
+{% extends ":default:index.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'supplying';
+    </script>
+    {{ parent() }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'buying_management.title'|trans([],'navbar') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/Merchandise/merchandise.css') }}">
+    <style>
+        .regularisation-details {
+            display: none;
+        }
+
+        select {
+            display: block;
+            height: initial;
+        }
+
+        .dataTable button {
+            margin: 0 5px;
+        }
+    </style>
+{% endblock %}

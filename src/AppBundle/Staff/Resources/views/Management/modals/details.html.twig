@@ -1,0 +1,44 @@
+<style>
+    .modal-details {
+        font-size: 1rem !important;
+    }
+</style>
+<div class="modal-details" style="padding: 5px;">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 col-modal">
+            <b>{{ 'user.first_name' | trans }}: </b>
+            {{ staff.firstName }}
+        </div>
+        {#<div class="col-lg-6 col-md-6 col-xs-12 col-modal">
+            <b>{{ 'user.last_name' | trans }}: </b>
+            {{ staff.lastName }}
+        </div>#}
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 col-modal">
+            <b>{{ 'user.username' | trans }}: </b>
+            {{ staff.username }}
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12 col-modal">
+            <b>{{ 'label.mail' | trans }}: </b>
+            {{ staff.email }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 col-modal">
+            <b>{{ 'user.social_security' | trans }}: </b>
+            {{ staff.socialId }}
+        </div>
+        {% if ( staff.employeeRoles | length ) > 0 %}
+            <div class="col-lg-4 col-md-4 col-xs-12 col-modal">
+                <b>{{ 'label.role' | trans }}: </b>
+                {% for role in staff.employeeRoles %}
+                    {% if role.label != constant('AppBundle\\Security\\Entity\\Role::ROLE_EMPLOYEE') %}
+                        {{ role.textLabel }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+</div>

@@ -1,0 +1,80 @@
+<div class="col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-xs-12 col-sm-12">
+                <div id="check_quick_container"
+                     data-prototype="{{ form_widget(form.checkQuickContainer.checkQuickCounts.vars.prototype) | e }}">
+
+                    {% for check in form.vars.value.checkQuickContainer.getCheckQuickNamesAndIdPayment() %}
+                    {% if list or paymentMethodStatus.isIdPaymentActive(check['id']) %}
+                    <div class="checkQuickRow col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="text-align: left;">
+                                {{ check['name'] }}
+                            </div>
+
+                            <div class="panel-body">
+                                <div id="lines{{ check['name']|replace({' ': '_'}) }}">
+                                    {% for checkQuick in form.checkQuickContainer.checkQuickCounts %}
+                                        {% if check['name'] == checkQuick.vars.value.checkName %}
+                                            {% if not list %}
+
+                                                {{ form_widget(checkQuick, { 'attr': {'maxlength':"10"}}) }}
+
+                                               {# <div class="input-group">
+                                                    {{ form_widget(checkQuick.qty, { 'attr': {'class': 'nextOnEnter check_quick_qty_input form-control splitted_input', 'maxlength':"10"}}) }}
+                                                    <span class="input-group-addon"
+                                                          id="basic-addon2"> x {{ checkQuick.vars.value.unitValue|number_format(2, ',', '.') }}
+                                                        <i
+                                                                class="glyphicon glyphicon-euro"></i></span>
+                                                </div>#}
+                                            {% else %}
+
+                                                <div class="col-xs-12">
+                                                    <div class="row">
+                                                        <div class="col-xs-6" style="padding: 0 5px;">
+                                                            <span class="text-muted">{{ checkQuick.qty.vars.value|number_format() }}</span>
+                                                        </div>
+                                                        <div class="col-xs-6"
+                                                             style="text-align: right; padding: 0 5px;">
+                                                    <span class="text-muted bold bank_card_amount"> x{{ checkQuick.unitValue.vars.value }}
+                                                        <span><i class="glyphicon glyphicon-euro"></i></span>
+                                                    </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% if not list %}
+                                    <div class="row">
+                                        <div class="col-xs-12" style="text-align: right">
+                            <span class="btn btn-add addCheckQuickValue"
+                                  data-check-name="{{ check['name']|replace({' ': '_'}) }}">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            </span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="panel-footer" style="text-align: left;">
+                                <div class="row">
+                            <span class="text-muted pull-right" style="margin-right: 5px;">
+                                <span class="total_check_quick_by_type">{{ form.vars.value.checkQuickContainer.calculateTotalByCheckName(check['name'])|number_format(2, ',', '.') }}</span>
+                                <i class="glyphicon glyphicon-euro"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

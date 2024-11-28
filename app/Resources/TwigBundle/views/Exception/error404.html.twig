@@ -1,0 +1,15 @@
+{% extends ':default:index.html.twig' %}
+{% block nav_bar %}{% endblock %}
+
+{% block body %}
+    <div class="row" style=" margin-top: 80px;">
+        <div class="col-xs-6 col-md-3" style=" text-align: right;">
+            <img class="responsive-img" style="height: 300px;" src="{{ asset('bundles/app/images/decu.png') }}">
+        </div>
+        <div class="col-xs-6" style="padding-top: 150px; font-size: 1.5em; text-align: center;">
+            {{ "Error.general.error404" | trans }} <br>
+            {{ "return_to_home" | trans({'%link_start%' : '<a href="'~path('index')~'">', '%link_end%' : '</a>'}) | raw }}
+        </div>
+    </div>
+
+{% endblock %}

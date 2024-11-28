@@ -1,0 +1,29 @@
+{% block form %}
+    {#<ul class="nav nav-tabs" role="tablist" id="tabs">
+        {% for translation in form %}
+            <li role="presentation" class="{% if loop.first %}active{% endif %}">
+                <a href="#{{ translation.vars.value.locale|upper }}"
+                   aria-controls="{{ translation.vars.value.locale|upper }}" role="tab" data-toggle="tab">
+                    {{ translation.vars.value.locale|upper }}</a>
+            </li>
+        {% endfor %}
+    </ul>#}
+    <!-- Tab panes -->
+    {#<div class="tab-content">#}
+        {% for translation in form %}
+            {#<div role="tabpanel" class="tab-pane {% if loop.first %}active{% endif %}"#}
+                 {#id="{{ translation.vars.value.locale|upper }}">#}
+                <label class="required">
+                    <img src="{{ asset('bundles/app/images/blank.png') }}"
+                            {% if translation.vars.value.locale == 'fr' %}
+                                class="flag flag-fr" alt="{{ 'language.fr'|trans([], 'navbar_supervision') }}"
+                            {% elseif translation.vars.value.locale == 'nl' %}
+                                class="flag flag-nl" alt="{{ 'language.nl'|trans([], 'navbar_supervision') }}"
+                            {% endif %}
+                    /> &nbsp;
+                    {{ translation.vars.label|trans }} {{ translation.vars.value.locale|upper }}</label>
+            {{ form_widget(translation) }}
+            {#</div>#}
+        {% endfor %}
+    {#</div>#}
+{% endblock %}

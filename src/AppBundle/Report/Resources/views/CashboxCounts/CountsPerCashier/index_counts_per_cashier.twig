@@ -1,0 +1,88 @@
+{% extends('@Report/CashboxCounts/index.html.twig') %}
+
+{% block base_title %}
+    {{ 'cashbox_counts_cashier.title'|trans }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/fixHeader.js') }}"></script>
+{% endblock %}
+{% block subBody %}
+
+    <div class="panel panel-default">
+        {{ form_start(countPerCashierForm, {'method' : 'POST' ,'action' : path('report_cashbox_counts_cashier') }) }}
+        <div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> {{ 'title.filters'|trans }}
+        </div>
+        <div class="panel-body" style="padding-top:0; padding-bottom:0; ">
+
+            <div class="row" style="margin-bottom: 0;">
+                <div class="col-xs-6  col-md-4">
+                    {{ form_label(countPerCashierForm.startDate, 'cashbox_counts_cashier.filter_labels.from' ) }}
+                    <br/>
+                    <div class="input-group">
+                        {{ form_widget(countPerCashierForm.startDate, { "attr": { "class": 'form-control datepicker' } }) }}
+                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                    </div>
+                    {{ form_errors(countPerCashierForm.startDate) }}
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    {{ form_label(countPerCashierForm.endDate, 'cashbox_counts_cashier.filter_labels.to' ) }}
+                    <br/>
+                    <div class="input-group">
+                        {{ form_widget(countPerCashierForm.endDate, { "attr": { "class": 'form-control datepicker' }} ) }}
+                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                    </div>
+                    {{ form_errors(countPerCashierForm.endDate) }}
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 5px;">
+                <div class="col-md-12 col-xs-12" style="text-align:right;">
+
+                    {% if(generated is defined) %}
+
+                        <button class="btn waves-effect btn-export text-black dropdown-button"
+                                data-activates='dropdown2'>
+                            <span> {{ 'btn.export'|trans() }} </span>
+                        </button>
+                        <ul id="dropdown2" class="dropdown-content" style="">
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="downloadReport">
+                                    <img src="{{ asset('bundles/app/images/export/pdf-512.png') }}" style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_pdf'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_pdf'|trans() }}</span>
+                                </a></li>
+                            <li>
+                                <a class="strech_btn text-black" href="#" id="export-btn">
+                                    <img src="{{ asset('bundles/app/images/export/xls-512.png') }}" style="height: 25px"
+                                         alt="{{ 'btn.download'|trans() }} {{ 'btn.download_xls'|trans() }}"/>
+                                    <span style="color: #000;">{{ 'btn.download_xls'|trans() }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    {% endif %}
+
+                    <button id="generateReport" type="button" class="btn waves-effect orange text-black ">
+                        {{ 'btn.generate_report'|trans() }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="hidden">
+                {{ form_rest(countPerCashierForm) }}
+            </div>
+
+        </div>
+        {{ form_end(countPerCashierForm) }}
+    </div>
+
+
+    {% if(generated is defined) %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ include('@Report/CashboxCounts/CountsPerCashier/cashbox_count_cashier_report_body.html.twig') }}
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

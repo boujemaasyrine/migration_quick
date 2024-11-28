@@ -1,0 +1,43 @@
+{% extends '@Administration/index_administration.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Administration/rights_config.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block base_title %}
+    {{ 'right_role.title'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {{ form_start(form,{ 'method' : 'Post', 'attr': {'id': 'configRoleForm', 'novalidate' : ''} }) }}
+            <div class="row" id="lines"
+                 data-prototype='{% include "@Administration/RolesRights/FormParts/protoype_rights_for_roles.html.twig"
+                     with {'rights': rights} %}'>
+                <div class="col-sm-12 col-md-4" id="listRoles">
+                    {{ form_label(form.rolesLabel) }}
+                    {{ form_widget(form.rolesLabel, { "attr": {'class' : 'browser-default', 'id' : 'roles'
+                        , 'size' : form.children.rolesLabel.vars.choices | length }}) }}
+                    {{ form_errors(form.rolesLabel) }}
+                </div>
+                <div class="col-sm-12 col-md-8" id="listRights">
+                    <div class="row" id="Role">
+
+                    </div>
+                </div>
+            </div>
+            <button class="pull-right btn btn-save" type="submit"><span
+                        class="glyphicon glyphicon-save"></span>{{ 'btn.save'| trans }}
+            </button>
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

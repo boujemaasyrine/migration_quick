@@ -1,0 +1,32 @@
+<div>
+
+    {{ form_start(form,{ 'action': path('comparable_day_details',{'day':form.vars.value.id}) }) }}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <label class="required">
+                {{ 'admin_closing.comprable_day_question'|trans({'%1%': form.vars.value.date|date('d/m/Y')})|raw }}
+            </label>
+            {{ form_widget(form.comparable) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <label class="required">{{ 'admin_closing.comment'|trans() }}</label>
+            {{ form_widget(form.comment,{ 'attr': { 'class' : 'textarea' } }) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12" style="text-align: right">
+            <a class="link_cancel" href="#"
+               onclick="$('#default-modal-box').modal('hide')"> {{ 'btn.cancel'|trans() }} </a>
+            <button {{ securityChecker.disableBtn('comparable_days_modify') }} type="submit"
+                                                                               class="btn btn-save btn-icon"> {{ 'btn.save'|trans() }} </button>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+</div>

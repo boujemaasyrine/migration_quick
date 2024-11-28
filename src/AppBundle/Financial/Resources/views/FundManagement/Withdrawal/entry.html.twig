@@ -1,0 +1,134 @@
+{% extends '@Financial/default.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Financial/withdrawal.js') }}"></script>
+    <script src="{{ asset('src/js/Financial/withdrawalManager.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block base_title %}
+    {{ 'fund_management.withdrawal.entry.title'|trans }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ parent() }} - {{ 'title.cashbox_management'|trans }}
+{% endblock %}
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="hidden validation-alert row">
+                <div class="col-xs-12">
+                    <div class="alert">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4>{{ "fund_management.withdrawal.entry.responsible"|trans }}
+                        <strong>
+                            {{ app.user.firstName }} {{ app.user.lastName }}
+                        </strong>
+                    </h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4 class="pull-right">{{ "fund_management.withdrawal.entry.latest_update"|trans ~': ' }}
+                        <strong>
+                            {{ date |date("d/m/Y H:i:s") }}
+                        </strong>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    {{ 'fund_management.withdrawal.entry.previous_amount_waiting'|trans }}
+                </div>
+                <div class="col-xs-6">
+                    {{ 'fund_management.withdrawal.entry.previous_amount'|trans }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="row">
+                        <div class="col-xs-5 col-xs-offset-7 select-members-withdrawal">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-striped table-bordered"
+                               data-url="{{ path('ajax_withdrawal_validation') }}" id="withdrawals_table_waiting">
+                            <thead>
+                            <tr>
+                                <th>
+                                    {{ "label.member" | trans }}
+                                </th>
+                                <th>
+                                    {{ "keyword.time" | trans }}
+                                </th>
+                                <th>
+                                    {{ "keyword.amount" | trans }} (€)
+                                </th>
+                                <th>
+                                    {{ "label.action" | trans }}
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for iw in invalidWithdrawalsTmp %}
+                                <tr data-w-id="{{ iw.id }}">
+                                    <td>
+                                        {{ iw.member.getFirstName() }}
+                                    </td>
+                                    <td>
+                                        {{ iw.time | date("d/m/Y H:i:s") }}
+                                    </td>
+                                    <td>
+                                        {{ iw.AmountWithdrawal }} €
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button"
+                                                class="btn btn-success btn-xs validation"><i
+                                                    class="hidden fa"></i> {{ "btn.validate" | trans }} </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <div>
+                        <table class="table table-striped table-bordered" id="withdrawals_table">
+                            <thead>
+                            <tr>
+                                <th>
+                                    {{ "keyword.time" | trans }}
+                                </th>
+                                <th>
+                                    {{ "keyword.amount" | trans }} (€)
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for p in previousAmount %}
+                                <tr>
+                                    <td>
+                                        {{ p.date | date("d/m/Y") }}
+                                    </td>
+                                    <td>
+                                        {{ p.AmountWithdrawal }} €
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

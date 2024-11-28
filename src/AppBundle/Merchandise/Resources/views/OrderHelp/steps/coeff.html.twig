@@ -1,0 +1,32 @@
+{% extends "@Merchandise/OrderHelp/index.html.twig" %}
+
+{% set second_panel = true %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Merchandise/OrderHelp/second_step.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #code-product, #name-product {
+            font-weight: initial;
+        }
+    </style>
+{% endblock %}
+
+{% block help_order_content %}
+    {% if doNotCalculate is not defined %}
+
+        {% include '@Merchandise/OrderHelp/steps/parts/calcul_coef_progress.html.twig' %}
+        <div id="data-table">
+
+        </div>
+    {% else %}
+        <div id="data-table">
+            {% include '@Merchandise/OrderHelp/steps/coef_table.html.twig' with { 'categories' : categories } %}
+        </div>
+    {% endif %}
+
+        {% endblock %}

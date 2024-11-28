@@ -1,0 +1,190 @@
+services:
+    loss.service:
+        class: AppBundle\Merchandise\Service\LossService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "%po_directory%"
+            - "@security.token_storage"
+            - "@product.service"
+            - "@product_purchased_mvmt.service"
+            - "@administrative.closing.service"
+    loss.form:
+        class: AppBundle\Merchandise\Form\LossSheetType
+        arguments: ["@doctrine.orm.entity_manager", "@translator.default"]
+        tags:
+            - { name: form.type, alias: loss_type }
+    loss.line.form:
+        class: AppBundle\Merchandise\Form\LossLineFormType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: loss_line_type }
+    planning_order_date.validator:
+        class: AppBundle\Merchandise\Validator\PlanningDateOrderConstraintValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator , alias : planning_order_date_validator }
+    order.service:
+        class: AppBundle\Merchandise\Service\OrderService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@templating"
+            - "%po_directory%"
+            - "@toolbox.command.launcher"
+            - "@knp_snappy.pdf"
+            - "@mailer"
+            - "%sender_adress%"
+            - "@restaurant.service"
+            - "@phpexcel"
+            - "@translator.default"
+            - "@product.service"
+    order.form:
+        class: AppBundle\Merchandise\Form\OrderType
+        arguments: ["@doctrine.orm.entity_manager","@translator.default"]
+        tags:
+            - { name: form.type, alias: order_type }
+    inventory.service:
+        class: AppBundle\Merchandise\Service\InventoryService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@security.token_storage"
+            - "@translator.default"
+            - "@product_purchased_mvmt.service"
+            - "@product.service"
+            - "@logger"
+            - "@toolbox.command.launcher"
+    sheet_model.service:
+        class: AppBundle\Merchandise\Service\SheetModelService
+        arguments: ["@doctrine.orm.entity_manager", "@security.token_storage", "@logger","@restaurant.service"]
+    sheet_model.form:
+        class: AppBundle\Merchandise\Form\ModelSheet\SheetModelType
+        arguments: ["@translator.default"]
+        tags:
+            - { name: form.type }
+    sheet_model_line.form:
+        class: AppBundle\Merchandise\Form\ModelSheet\SheetModelLineType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+    inventory_line.form:
+        class: AppBundle\Merchandise\Form\InventorySheet\InventorySheetLineType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+    order.line.form:
+        class: AppBundle\Merchandise\Form\OrderLineType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: order_line_type }
+    delivery.line.form:
+        class: AppBundle\Merchandise\Form\DeliveryLineType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: delivery_line_type }
+    delivery.form:
+        class: AppBundle\Merchandise\Form\DeliveryType
+        arguments: ["@translator.default"]
+        tags:
+            - { name: form.type, alias: delivery_type }
+    delivery.service:
+        class: AppBundle\Merchandise\Service\DeliveryService
+        arguments: ["@doctrine.orm.entity_manager","@product.service","@templating","@knp_snappy.pdf","%tmp_directory%", "@product_purchased_mvmt.service","@logger", "@toolbox.command.launcher","@restaurant.service"]
+    product.service:
+        class: AppBundle\Merchandise\Service\ProductService
+        arguments: ["@doctrine.orm.entity_manager","@general.fisacal_date","%report_sql_queries_dir%","@monolog.logger","@restaurant.service"]
+    product.sold.service:
+        class:  AppBundle\Merchandise\Service\ProductSoldService
+        arguments: ["@doctrine.orm.entity_manager", "@security.token_storage", "@templating"]
+    product.form.type:
+        class: AppBundle\Merchandise\Form\ProductType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+    return.line.form:
+        class: AppBundle\Merchandise\Form\ReturnLineType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+    transfer.service:
+        class: AppBundle\Merchandise\Service\TransferService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@product.service"
+            - "@mailer"
+            - "%quick_code%"
+            - "@templating"
+            - "@knp_snappy.pdf"
+            - "%tmp_directory%"
+            - "@product_purchased_mvmt.service"
+            - "%sender_adress%"
+            - "@translator.default"
+            - "@phpexcel"
+            - "@toolbox.command.launcher"
+            - "@logger"
+    transfer.line.type:
+        class: AppBundle\Merchandise\Form\TransferLineType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+    transfer.in.line.type:
+        class: AppBundle\Merchandise\Form\TransferInType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+    return.service:
+        class: AppBundle\Merchandise\Service\ReturnService
+        arguments: ["@doctrine.orm.entity_manager","@product.service","@templating","@knp_snappy.pdf","%tmp_directory%", "@product_purchased_mvmt.service","@phpexcel","@translator.default"]
+    test.instance.of.twig_extension:
+        class: AppBundle\Merchandise\Twig\TestInstanceOfExtension
+        tags:
+            - { name: twig.extension }
+    return.type:
+        class: AppBundle\Merchandise\Form\ReturnType
+        arguments: ["@translator.default"]
+        tags:
+            - { name : form.type }
+    transfer.out.type:
+        class: AppBundle\Merchandise\Form\TransferOutType
+        arguments: ["@translator.default"]
+        tags:
+            - { name : form.type }
+    help_order.service:
+        class: AppBundle\Merchandise\Service\HelpOrderService
+        arguments: ["@doctrine.orm.entity_manager","@ca_prev.service","@order.service","@product.service","@restaurant.service"]
+    tva_transfer_extension:
+        class: AppBundle\Merchandise\Twig\TransferTwigExtension
+        tags:
+            - { name: twig.extension }
+    coef.service:
+        class: AppBundle\Merchandise\Service\CoefficientService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@product.service"
+            - "@restaurant.service"
+            - "@phpexcel"
+            - "@translator.default"
+    delivery.integration.service:
+        class: AppBundle\Merchandise\Service\DeliveryIntegrationService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@logger"
+            - "%tmp_directory%"
+            - "%ftp_delivery_host%"
+            - "%ftp_delivery_port%"
+            - "%ftp_delivery_user%"
+            - "%ftp_delivery_pw%"
+    historic.entities.service:
+        class: AppBundle\Merchandise\Service\HistoricEntitiesService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+    restaurant.service:
+        class: AppBundle\Merchandise\Service\RestaurantService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@session"
+    product_purchased_mvmt.service:
+        class: AppBundle\Merchandise\Service\ProductPurchasedMvmtService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@monolog.logger.product_purchased_mvmt"
+        tags:
+            - { name: monolog.logger, channel: product_purchased_mvmt }

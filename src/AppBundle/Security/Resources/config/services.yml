@@ -1,0 +1,32 @@
+services:
+    app.security.authentication_handler:
+        class: AppBundle\Security\Handler\AuthenticationHandler
+        public: false
+        arguments: ["@router","@session","@translator.default","@workflow.service", "@security.authorization_checker"]
+    app.security.checker_filter:
+        class: AppBundle\Security\Filter\SecurityCheckerFilter
+        arguments: ["@security.token_storage", "@router", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: kernel.event_listener , event: kernel.controller, method: onKernelController }
+    app.security.require_password_modification_filter:
+        class: AppBundle\Security\Filter\RequirePasswordModificationFilter
+        arguments: ["@security.token_storage", "@router"]
+        tags:
+            - { name: kernel.event_listener , event: kernel.response, method: onKernelResponse }
+    app.security.checker:
+        class: AppBundle\Security\Service\VerifyingRoleService
+        arguments: ["@security.token_storage","@doctrine.orm.entity_manager"]
+    app.reset.pw.service:
+        class: AppBundle\Security\Service\ResetPasswordService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@security.password_encoder"
+            - "@mailer"
+            - "@templating"
+            - "%sender_adress%"
+
+    loginListener:
+        class: AppBundle\Security\Service\LoginListener
+        arguments: ['@session']
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }

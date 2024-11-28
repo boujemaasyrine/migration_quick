@@ -1,0 +1,80 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h4> {{ 'br_report.report_one_title' |trans }}</h4>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="col-xs-2 input-field">
+        <label for="startDate">{{ 'keyword.from'|trans }} :</label>
+        <span class="text-muted">
+            {{ data.startDate }}
+        </span>
+    </div>
+    <div class="col-xs-2 input-field">
+        <label for="endDate">{{ 'keyword.to'|trans }}: </label>
+        <span class="text-muted">
+            {{ data.endDate }}
+        </span>
+    </div>
+
+    <div class="col-xs-4">
+        <label for="selection">{{ 'keyword.from'|trans }}: </label>
+        <span class="text-muted">
+
+            {%  if data.startHour is defined and not null %}
+                {{ data.startHour }} H
+            {%  else %}
+                00 H
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'br_report.to'|trans }}: </label>
+        <span class="text-muted">
+            {%  if data.endHour is defined and not null %}
+                {{ data.endHour }} H
+            {%  else %}
+                23 H
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'label.member' | trans }}: </label>
+        <span class="text-muted">
+            {%  if data.cashier is defined and not null %}
+                       {{ data.cashier }}
+            {%  else %}
+               {{'br_report.all' |trans }}
+            {% endif %}
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'br_report.amount_br_min' | trans }}: </label>
+        <span class="text-muted">
+            {%  if data.amountMin is defined and not null %}
+                {{ data.amountMin }}
+            {%  else %}
+                --
+            {% endif %}
+
+        </span>
+    </div>
+    <div class="col-xs-4">
+        <label for="selection"> {{ 'br_report.amount_br_max' | trans }}: </label>
+        <span class="text-muted">
+            {%  if data.amountMax is defined and not null %}
+                {{ data.amountMax }}
+            {%  else %}
+                --
+            {% endif %}
+
+        </span>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('@Report/BR/beneficiary/report_br.html.twig') }}
+{% endblock body %}

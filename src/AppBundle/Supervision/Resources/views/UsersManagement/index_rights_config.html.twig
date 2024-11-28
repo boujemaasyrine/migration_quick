@@ -1,0 +1,48 @@
+{% extends ":supervision/default:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .uix-list-container {
+            height: 400px !important;
+        }
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('src/js/Supervision/UsersManagement/rights_restaurant_config.js') }}"></script>
+{% endblock %}
+
+{% block base_title %}{{ ( 'parameters.' ~ type ) | trans({}, "supervision") }}{% endblock %}
+{% block base_subtitle %}{{ 'manage_rights' | trans({}, "supervision") }} {% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {{ form_start(form,{ 'method' : 'Post', 'attr': {'id': 'configRoleForm', 'novalidate' : ''} }) }}
+            <div class="row" id="lines"
+                 data-prototype='{% include "@Supervision/UsersManagement/FormParts/protoype_rights_for_roles.html.twig"
+                 with {'rights': rights} %}'
+            >
+                <div class="col-sm-12 col-md-4" id="listRoles">
+                    {{ form_label(form.rolesLabel) }}
+                    {{ form_widget(form.rolesLabel, { "attr": {'class' : 'browser-default', 'id' : 'roles'
+                        , 'size' : form.children.rolesLabel.vars.choices | length }}) }}
+                    {{ form_errors(form.rolesLabel) }}
+                </div>
+                <div class="col-sm-12 col-md-8" id="listRights">
+                    <div class="row" id="Role">
+
+                    </div>
+                </div>
+            </div>
+            <button class="pull-right btn btn-save" type="submit"><span
+                        class="glyphicon glyphicon-save"></span>{{ 'btn.save'| trans({}, "supervision") }}
+            </button>
+            <div class="hidden">
+                {{ form_rest(form) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,214 @@
+<style>
+    td {
+        font-size: 0.68em;
+    }
+
+    .table > thead > tr > th {
+        font-size: 0.8em !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 0px;
+        line-height: 1.9;
+        vertical-align: top;
+        border: 1px solid #000000;
+        font-family: "avenirpro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 0.75em;
+    }
+
+    td, th {
+        padding: 5px 5px;
+        display: table-cell;
+        text-align: left;
+        border-radius: 2px;
+    }
+
+    .mainTbody td {
+        padding: 5px 15px 5px 15px !important;
+    }
+
+</style>
+
+{% if download is not defined and result|length > 0 %}
+    <style>
+        .table > thead, .table > tbody {
+            display: inline-block;
+        }
+
+        tbody.mainTbody {
+            height: 550px; /* Just for the demo          */
+            width: 100%;
+            overflow-y: auto; /* Trigger vertical scroll    */
+        }
+
+        .mainTbody td {
+            padding: 5px 15px 5px 15px !important;
+        }
+
+        th {
+            border: none;
+            padding: 0 !important;
+            text-align: center !important;
+            margin: 0;
+        }
+
+        .report-table-head {
+            background-color: #f4df42 /*#ca9e67*/ !important;
+        }
+
+        .report-table-second-head {
+            background-color: #ede2c9 !important;
+        }
+
+        .highlight-tr-report {
+            background-color: #fdc300 !important;
+        }
+
+        .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+            border: 1px solid #ddd;
+        }
+
+
+    </style>
+{% else %}
+    <style>
+        .table > thead > tr > th {
+            font-size: 1.1em !important;
+            border: 1px solid #000000 !important;
+        }
+    </style>
+{% endif %}
+
+
+{% set days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %}
+<table id="table" class="table table-stripped" style="margin-top: 50px;">
+    <thead>
+    <tr class="report-table-head mainHeader tabHeader">
+        <th style="vertical-align: bottom;text-align: left;border:none;background-color: white !important;">{{ 'label.inventory_item' | trans }}</th>
+        <th style="vertical-align: bottom;border:none;background-color: white !important;">{{ "item.label.unit_inventory"|trans }}</th>
+        {% set i = 1 %}
+        {% for day in days %}
+            <th>
+                <table class="table-stripped" style="margin-bottom: 0px;" id="report">
+                    <tr class="tabHeader">
+                        <td>{{ ('days.'~day) | lower | trans }}</td>
+                    </tr>
+                    <tr class="report-table-second-head tabHeader">
+                        <td class="nowrap">CA Net HT</td>
+                    </tr>
+                    <tr class="tabHeader">
+                        <td>{{ 'label.qty' | trans }}</td>
+                    </tr>
+                </table>
+            </th>
+            <th>
+                <table class="table-stripped" style="margin-bottom: 0px;">
+                    <tr class="tabHeader">
+                        <td>{{ nbrDayWeek[day] }}</td>
+                    </tr>
+                    <tr class="report-table-second-head tabHeader">
+                        <td>{{ financialRevenue[i] | number_format(0, ',', '') }} €</td>
+                    </tr>
+                    <tr class="tabHeader">
+                        <td>{{ 'label.value' | trans }} (€)</td>
+                    </tr>
+                </table>
+            </th>
+            {% set i = i +  1 %}
+        {% endfor %}
+        <th>
+            <table class="table-stripped" style="margin-bottom: 0px;">
+                <tr class="tabHeader">
+                    <td>{{ 'days.sunday' | trans }}</td>
+                </tr>
+                <tr class="report-table-second-head tabHeader">
+                    <td class="nowrap">CA Net HT</td>
+                </tr>
+                <tr class="tabHeader">
+                    <td>{{ 'label.qty' | trans }}</td>
+                </tr>
+            </table>
+        </th>
+        <th>
+            <table class="table-stripped" style="margin-bottom: 0px;">
+                <tr class="tabHeader">
+                    <td>{{ nbrDayWeek['Sunday'] | trans }}</td>
+                </tr>
+                <tr class="report-table-second-head tabHeader">
+                    <td>{{ financialRevenue['0']  | number_format(0, ',', '') }} €</td>
+                </tr>
+                <tr class="tabHeader">
+                    <td>{{ 'label.value' | trans }} (€)</td>
+                </tr>
+            </table>
+        </th>
+        <th>
+            <table class="table-stripped" style="margin-bottom: 0px;">
+                <tr class="tabHeader">
+                    <td>{{ 'keyword.total' | trans }}</td>
+                </tr>
+                <tr class="report-table-second-head tabHeader">
+                    <td class="nowrap">CA Net HT</td>
+                </tr>
+                <tr class="tabHeader">
+                    <td>{{ 'label.qty' | trans }}</td>
+                </tr>
+            </table>
+        </th>
+        <th>
+            <table class="table-stripped" style="margin-bottom: 0px;">
+                <tr class="tabHeader">
+                    <td>{{ nbrDayWeek['total'] }}</td>
+                </tr>
+                <tr class="report-table-second-head tabHeader">
+                    <td>{{ financialRevenue['total']  | number_format(0, ',', '') }} €</td>
+                </tr>
+                <tr class="tabHeader">
+                    <td>{{ 'label.value' | trans }} (€)</td>
+                </tr>
+            </table>
+        </th>
+    </tr>
+    </thead>
+    <tbody class="mainTbody">
+    {% for line in result %}
+        <tr class="mainRow">
+            <td style="width: 13%;">{{ line.productName }}</td>
+            <td style="width: 8%;">{{ line.unitInventory | trans }}</td>
+            {% for i in 1 .. 6 %}
+                <td>{{ line[i].total | number_format('2', ',', '')}}</td>
+                <td>{{ line[i].lossVal | number_format('2', ',', '') }}</td>
+            {% endfor %}
+            <td>{{ line['0'].total | number_format('2', ',', '') }}</td>
+            <td>{{ line['0'].lossVal | number_format('2', ',', '') }}</td>
+            <td>{{ line.totalLoss| number_format('2', ',', '') }}</td>
+            <td>{{ line.totalLossVal | number_format('2', ',', '') }}</td>
+        </tr>
+    {% endfor %}
+    <tr class="highlight-tr-report tabFooter">
+        <td style="width: 13%;"></td>
+        <td style="width: 8%;">{{ 'label.total_period' | trans }}</td>
+        {% for i in 1 .. 6 %}
+            <td>{{ proportion[i] | number_format('2', ',', '') }} %</td>
+            <td>{{ total[i] | number_format('2', ',', '') }}</td>
+        {% endfor %}
+        <td>{{ proportion[0] | number_format('2', ',', '') }} %</td>
+        <td>{{ total[0] | number_format('2', ',', '') }}</td>
+        <td>{{ proportion['total'] | number_format('2', ',', '') }} %</td>
+        <td>{{ total[7] | number_format('2', ',', '') }}</td>
+    </tr>
+    <tr class="tabFooter">
+        <td style="width: 13%;"></td>
+        <td style="width: 8%;">{{ 'label.average' | trans }}</td>
+        {% for i in 1 .. 6 %}
+            <td></td>
+            <td>{{ avg[i] | number_format('2', ',', '') }}</td>
+        {% endfor %}
+        <td></td>
+        <td>{{ avg[0] | number_format('2', ',', '') }}</td>
+        <td></td>
+        <td>{{ avg[7] | number_format('2', ',', '') }}</td>
+    </tr>
+
+    </tbody>
+</table>

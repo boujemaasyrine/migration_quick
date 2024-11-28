@@ -1,0 +1,5 @@
+{{ form_start(form,{ 'action' : path('delete_line_planning',{'line':line.id}) }) }}
+<button type="button" class="btn red btn-block form_delete_button" id="{{ line.id }}">
+    {{ "provider.planning.delete"|trans }}
+</button>
+{{ form_end(form) }}

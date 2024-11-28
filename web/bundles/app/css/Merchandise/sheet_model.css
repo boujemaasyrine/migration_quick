@@ -1,0 +1,35 @@
+/* Colors definitions */
+.color-4 {
+  background-color: #F18700 !important;
+}
+.text-color-4 {
+  color: #F18700 !important;
+}
+.select_this_categorie {
+  float: right;
+  margin-right: 16px;
+  margin-top: 2px;
+}
+.panel-heading {
+  background: #878381 !important;
+}
+.panel-heading * {
+  color: white;
+}
+.panel-heading .badge {
+  background-color: #c8102e !important;
+}
+.row {
+  margin-right: -15px !important;
+  margin-left: -15px !important;
+}
+td.draggable{
+  cursor: grab;
+}
+/*
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+    background : none;
+    display: none;
+}*/

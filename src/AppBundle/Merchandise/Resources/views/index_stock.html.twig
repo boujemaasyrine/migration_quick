@@ -1,0 +1,11 @@
+{% extends ":default:index.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'stock';
+    </script>
+    {{ parent() }}
+{% endblock %}
+{% block base_subtitle %}
+    {{ 'stock_management.title'|trans([],'navbar') }}
+{% endblock %}

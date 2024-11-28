@@ -1,0 +1,13 @@
+{% extends '::base_mail.html.twig' %}
+
+{% block body %}
+    Bonjour,<br>
+
+    <h3>Modification de la commande</h3>
+
+    Veuillez prendre en considération les modifications apportées pour la <a
+        href="{{ absolute_url(path('list_pendings_commands')) }}#{{ order.id }}">commande
+    #{{ order.numOrder }}</a> du {{ order.dateOrder|date('d/m/Y') }}<br>
+    Vous trouvez ci-joint le bon de commande de la commande modifiée
+
+{% endblock %}

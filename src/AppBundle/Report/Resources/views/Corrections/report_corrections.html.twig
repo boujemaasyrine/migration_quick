@@ -1,0 +1,222 @@
+<style>
+    {% if download is not defined  %}
+    .user {
+        background-color: rgba(255, 255, 0, 0.22);
+    }
+
+    .user_total {
+        background-color: #8fc3f7;
+    }
+
+    .date_total {
+        background-color: aliceblue;
+    }
+
+    .tab_header {
+        background-color: #8fc3f7;
+    }
+
+    .all_total {
+        background-color: #579BDE;
+    }
+
+    {% endif %}
+    table th, table td {
+        width: 80px;
+    !important;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <h2>{{ 'corrections_report.title' |trans }}</h2>
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%"
+               style="margin-bottom: 20px">
+            <thead>
+            <tr class="tab_header mainHeader">
+                <th>{{ 'corrections_report.date' |trans }}</th>
+                <th>{{ 'corrections_report.correction' |trans }}</th>
+                <th>{{ 'corrections_report.hour' |trans }}</th>
+                <th>{{ 'corrections_report.responsible' |trans }}</th>
+                <th>{{ 'corrections_report.cashier' |trans }}</th>
+                <th>{{ 'corrections_report.product' |trans }}</th>
+                <th>{{ 'corrections_report.amount' |trans }}</th>
+            </tr>
+            </thead>
+            <tbody class="mainTbody">
+            {% set total=0 %}
+            {% set moyen=0 %}
+            {% for date ,stats in data.report %}
+                {% set total_date=0 %}
+                {% for type, data in stats %}
+                    {% set total_type=0 %}
+                    <tr class="mainRow">
+                        <td class="user">{{ date }}</td>
+                        <td>{{ ('corrections_report.'~type) |trans }}</td>
+                        <td>
+                            <table>
+                                {% for line in data %}
+                                    <tr>
+                                        <td>{{ line['hour'] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                {% for line in data %}
+                                    <tr>
+                                        <td>{{ line['responsible'] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                {% for line in data %}
+                                    <tr>
+                                        <td>{{ line['cashier'] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    {% for line in data %}
+                                <tr>
+                                    <td>{{ line['product'] }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    {% for line in data %}
+                                    {% set total_type= total_type + line['amount'] %}
+                                <tr>
+                                    <td>{{ line['amount'] | number_format("2",".",",") }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tr>
+                            </table>
+                        </td>
+
+                    </tr>
+                    <!-- sub total type-->
+                    <tr>
+                        <td class="user" style="border-top-style: hidden;"></td>
+                        <td class="user_total" colspan="5">{{ "corrections_report.total" |trans }}</td>
+                        <td class="user_total">{{ total_type | number_format("2",".",",") }}</td>
+                    </tr>
+                    {% set total_date= total_date + total_type %}
+                {% endfor %}
+                <!-- sub total date-->
+                <tr class="date_total">
+                    <td colspan="6">{{ "corrections_report.total" |trans }} {{ date }}</td>
+                    <td>{{ total_date | number_format("2",".",",") }}</td>
+                    {% set total= total + total_date %}
+                </tr>
+            {% endfor %}
+            <!--  total -->
+            <tr class="all_total">
+                <td colspan="6">{{ "corrections_report.total" |trans }}</td>
+                <td>{{ total | number_format("2",".",",") }}</td>
+            </tr>
+            <!--  moyen -->
+            <tr class="all_total">
+                {% if CA == 0 %}{% set moyen = 0 %}{% else %}{% set moyen = total*100/CA %}{% endif %}
+                <td colspan="6">{{ "corrections_report.moyen" |trans }}</td>
+                <td>{{ moyen | number_format("2",".",",") }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%"
+               style="margin-bottom: 20px">
+            <thead>
+            <tr>
+                <th>{{ 'corrections_report.responsible' |trans }}</th>
+                <th>{{ 'corrections_report.number' |trans }}</th>
+                <th>{{ 'corrections_report.percent_number' |trans }}</th>
+                <th>{{ 'corrections_report.percent_amount' |trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set total_nbr=0 %}
+            {% set total_percent_nbr=0 %}
+            {% set total_percent_amount=0 %}
+            {% for user, stats in data.reportTwo %}
+                {% set total_nbr= total_nbr + stats['count'] %}
+                <tr>
+                    <td>{{ user }}</td>
+                    <td>{{ stats['count'] }}</td>
+                    {% if data.totalCount >0 %}
+                        {% set total_percent_nbr= total_percent_nbr +((stats['count']/data.totalCount) *100) %}
+                        <td>{{ ((stats['count']/data.totalCount)*100) | number_format('2','.',',') }}</td>
+                    {% else %}
+                        <td>0</td>
+                    {% endif %}
+                    {% if data.totalAmount >0 %}
+                        {% set total_percent_amount= total_percent_amount + ((stats['amount']/data.totalAmount)*100) %}
+                        <td>{{ ((stats['amount']/data.totalAmount)*100) | number_format('2','.',',') }}</td>
+                    {% else %}
+                        <td>0</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            <tr class="user_total">
+                <td>{{ "corrections_report.total" |trans }}</td>
+                <td>{{ total_nbr }}</td>
+                <td>{{ total_percent_nbr  | number_format('2','.',',') }}</td>
+                <td>{{ total_percent_amount  | number_format('2','.',',') }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%"
+               style="margin-bottom: 20px">
+            <thead>
+            <tr>
+                <th>{{ 'corrections_report.cashier' |trans }}</th>
+                <th>{{ 'corrections_report.number' |trans }}</th>
+                <th>{{ 'corrections_report.percent_number' |trans }}</th>
+                <th>{{ 'corrections_report.percent_amount' |trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set total_nbr=0 %}
+            {% set total_percent_nbr=0 %}
+            {% set total_percent_amount=0 %}
+            {% for user, stats in data.reportThree %}
+                {% set total_nbr= total_nbr + stats['count'] %}
+                <tr>
+                    <td>{{ user }}</td>
+                    <td>{{ stats['count'] }}</td>
+                    {% if data.totalCount >0 %}
+                        {% set total_percent_nbr= total_percent_nbr +((stats['count']/data.totalCount) *100) %}
+                        <td>{{ ((stats['count']/data.totalCount)*100) | number_format('2','.',',') }}</td>
+                    {% else %}
+                        <td>0</td>
+                    {% endif %}
+                    {% if data.totalAmount >0 %}
+                        {% set total_percent_amount= total_percent_amount + ((stats['amount']/data.totalAmount)*100) %}
+                        <td>{{ ((stats['amount']/data.totalAmount)*100) | number_format('2','.',',') }}</td>
+                    {% else %}
+                        <td>0</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            <tr class="user_total">
+                <td>{{ "corrections_report.total" |trans }}</td>
+                <td>{{ total_nbr }}</td>
+                <td>{{ total_percent_nbr  | number_format('2','.',',') }}</td>
+                <td>{{ total_percent_amount  | number_format('2','.',',') }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

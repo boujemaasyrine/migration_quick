@@ -1,0 +1,15 @@
+INSERT INTO public.transfer SELECT * FROM dblink ('dbname =backupdb port =8080 host =localhost user =postgres password =123456', format('SELECT  *  FROM public.transfer where  date_transfer>=%L and date_transfer<=%L and origin_restaurant_id=%L ',:startDate::date,:endDate::date ,:restaurantId::int) ) AS t(id integer,restaurant_id integer, employee_id integer, origin_restaurant_id integer, type character varying(50), date_transfer date, valorization double precision, num_transfer character varying(50), mail_sent boolean, created_at timestamp(0) without time zone, updated_at timestamp(0) without time zone, import_id character varying(255)) WHERE id NOT IN (SELECT id FROM public.transfer WHERE   origin_restaurant_id=:restaurantId and date_transfer>=:startDate and date_transfer<=:endDate);
+INSERT INTO public.transfer_line SELECT * FROM dblink ('dbname =backupdb port =8080 host =localhost user =postgres password =123456',
+format('SELECT  *  FROM public.transfer_line where transfer_id in ( select id from transfer where date_transfer>=%L and date_transfer<=%L and origin_restaurant_id=%L) ',:startDate::date,:endDate::date ,:restaurantId::int) )
+AS t(id integer,transfer_id integer, product_id integer, qty integer, qty_exp integer, qty_use integer, created_at timestamp(0) without time zone,
+ updated_at timestamp(0) without time zone, import_id character varying(255)) WHERE id NOT IN (SELECT id FROM public.transfer_line where transfer_id in ( select id from transfer where date_transfer>=:startDate and date_transfer<=:endDate and origin_restaurant_id=:restaurantId));
+INSERT INTO public.product_purchased_mvmt SELECT * FROM dblink ('dbname =backupdb port =8080 host =localhost user =postgres password =123456',
+format('SELECT  *  FROM public.product_purchased_mvmt where date_time>=%L and date_time<=%L and  type in (''transfer_in'',''transfer_out'') and   origin_restaurant_id=%L  and source_id in
+(select id from transfer_line where transfer_id in ( select id from transfer where   date_transfer>=%L and date_transfer<=%L and origin_restaurant_id=%L))',
+:startDate::date,:endDate::date,:restaurantId::int,:startDate::date,:endDate::date,:restaurantId::int ) )
+AS t(id integer , product_id integer, origin_restaurant_id integer, date_time timestamp(0) without time zone, variation double precision ,
+source_id numeric ,stock_qty double precision , type character varying (50), buying_cost double precision , label_unit_exped character varying(255),
+ label_unit_inventory character varying(255),label_unit_usage character varying(255), inventory_qty double precision , usage_qty double precision,
+ deleted boolean, created_at timestamp(0) without time zone, updated_at timestamp(0) without time zone,synchronized boolean,import_id character varying(255))
+ WHERE id NOT IN (SELECT id FROM public.product_purchased_mvmt  WHERE date_time>=:startDate and date_time<=:endDate and type in ('transfer_in','transfer_out') and  origin_restaurant_id=:restaurantId and source_id
+ in (select id from transfer_line where transfer_id in ( select id from transfer where  origin_restaurant_id=:restaurantId and date_transfer>=:startDate and date_transfer<=:endDate)))

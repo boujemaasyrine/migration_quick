@@ -1,0 +1,83 @@
+{% extends '@Financial/default.html.twig' %}
+{% block base_title %}
+    {{ 'admin_closing.bank_deposit'|trans() }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ 'admin_closing.title'|trans() }}
+{% endblock %}
+
+{% block body %}
+    {% include '@Financial/AdministrativeClosing/steps.html.twig' with { 'admin_closing_3_step' : true } %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {{ 'deposit.electronic.header'|trans }}
+        </div>
+        <div class="panel-body" style="padding-bottom: 0">
+            <div class="row">
+                <div class="col-sm-6">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th colspan="2" style="font-size: .9rem;">{{ 'deposit.electronic.ticket'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if result.ticket is defined and result.ticket|length > 0 %}
+                            <tr>
+                                <th>{{ 'label.type'|trans }}</th>
+                                <th>{{ 'keyword.amount'|trans }} (&euro;)</th>
+                            </tr>
+                            {% for key, value in result.ticket %}
+                                <tr>
+                                    <td>{{ key|ticket_label }}</td>
+                                    <td>{{ value|number_format(2,',',' ') }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <th colspan="2">{{ 'deposit.electronic.no_ticket'|trans }}</th>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-6">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th colspan="2" style="font-size: .9rem;">{{ 'deposit.electronic.card'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if result.card is defined and result.card|length > 0 %}
+                            <tr>
+                                <th>{{ 'label.type'|trans }}</th>
+                                <th>{{ 'keyword.amount'|trans }} (&euro;)</th>
+                            </tr>
+                            {% for key, value in result.card %}
+                                <tr>
+                                    <td>{{ key|b_card_label }}</td>
+                                    <td>{{ value|number_format(2,',',' ') }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <th colspan="2">{{ 'deposit.electronic.no_card'|trans }}</th>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: right">
+                    <a href="{{ path('check_withdrawal_envelope') }}" class="btn btn-validate">
+                        {{ 'procedure.next_label'|trans }}
+                        <span class="fa fa-arrow-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

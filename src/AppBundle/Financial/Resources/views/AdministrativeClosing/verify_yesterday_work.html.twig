@@ -1,0 +1,148 @@
+{% extends ":default:index.html.twig" %}
+
+
+{% block javascripts %}
+    <style>
+        .modal-body > p {
+            padding: 5px;
+        }
+
+    </style>
+    {{ parent() }}
+    <script>
+        caTalan ={{ caHTva }};
+    </script>
+    <script>
+        $(document).ready(function () {
+            var footer = "<span id='validateCA' class='btn btn-validate' style='margin-left: 10px;'>" + Translator.trans('btn.validate') + "</span><span id='cancelCA' class='btn btn-default'>" + Translator.trans('btn.close') + "</span>";
+            $('#ca-brut-ttc').on('keyup', function () {
+                if ($(this).val().trim() == '' || isNaN($(this).val())) {
+                    $('#next-link').attr('disabled', 'disabled');
+                } else {
+                    /*
+                    if(parseFloat($(this).val())==caTalan){
+                        console.log('equal');
+                    }
+                    else {
+                        console.log('thief alert');
+                    }
+                    */
+                    $('#next-link').removeAttr('disabled')
+                }
+
+
+            });
+
+            $('#next-link').click(function (e) {
+                    if (parseFloat($('#ca-brut-ttc').val()) != caTalan) {
+                        e.preventDefault();
+                        console.log(parseFloat($('#ca-brut-ttc').val()));
+                        console.log(caTalan);
+                        modal = showDefaultModal("{{ 'ca_notify.title'|trans() }}", "<b> <FONT size=\"4\">"+"{{ 'ca_notify.modal'|trans() }} "+ caTalan.toString() + " &euro; </FONT> </b>", footer, '98%', '', true);
+                    }
+
+
+                }
+            );
+
+
+            $('body').on('click', '.btn-default', function () {
+                modal.modal("hide")
+            });
+
+            $('body').on('click', '.btn-validate', function (e) {
+                e.preventDefault();
+                $.post(
+                    Routing.generate('notify_ca'),
+
+                    {
+                        caAloha: $('#ca-brut-ttc').val(),
+                        caBO: caTalan
+                    },
+                    function () {
+                        $('#ca').submit();
+                    }
+                );
+
+
+            })
+
+
+            $(document).on('click', '#verif-btn', function () {
+
+                ajaxCall({
+                    url: Routing.generate('verify_last_date')
+                }, function (receivedData) {
+
+                    $('#last-date').html(receivedData.data.lastDate);
+
+                    if (receivedData.data.continue) {
+                        $('#verif-btn').remove();
+                        $('#continue-btn').html("<a class='btn' href='" + Routing.generate('validation_income_show') + "'>" + Translator.trans('admin_closing.validate_day_income_label') + "</a>");
+                    }
+                });
+
+            })
+
+        })
+    </script>
+{% endblock %}
+
+{% block base_title %}
+    {{ 'admin_closing.title'|trans() }} du {{ administrative_closing_service.currentClosingDate|date('d/m/Y') }}
+{% endblock %}
+
+{% block base_subtitle %}
+    {{ "admin_closing.end_works"|trans }}
+{% endblock %}
+
+{% block body %}
+
+
+    {% if workflow_service.inAdministrativeClosing %}
+        {% include '@Financial/AdministrativeClosing/steps.html.twig' with { 'admin_closing_2_step' : true } %}
+    {% endif %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {#{{ 'admin_closing.last_date'|trans() }} : <span id="last-date"> {{ lastDate }} </span>#}
+
+            {#<div id="continue-btn" style="display: inline-block; margin-left: 20px;">#}
+            {#{% if continue %}#}
+            {#<a class="btn"#}
+            {#href='{{ path('validation_income_show') }}'> {{ 'admin_closing.validate_day_income_label'|trans() }} </a>#}
+            {#{% else %}#}
+            {#<button class="btn" id="verif-btn"> {{ 'admin_closing.reverify_label'|trans() }} </button>#}
+            {#{% endif %}#}
+            {#</div>#}
+            {#{% if continue == false %}#}
+            {#<div class="alert alert-danger" style="margin-top: 10px;">#}
+            {#<span class="glyphicon glyphicon-remove"></span>  {{ 'admin_closing.prbl_encaissmnt'|trans() }}  <b>{{ lastDate }}</b>#}
+            {#</div>#}
+            {#{% endif %}#}
+
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="alert alert-info">
+                        {{ 'verififaction_fdj_rapport_z'|trans({'%1%':administrative_closing_service.currentClosingDate|date('d/m/Y'),
+                            '%2%':rapport_z_url})|raw }}
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <form id="ca" method="post" action="{{ path('validation_income_show') }}">
+                        <input name="ca_brut_ttc" id="ca-brut-ttc" class="form-control"
+                               style="width: 150px !important;display: inline-block !important;"
+                               placeholder="CA NET HTVA">
+                        <button id="next-link" type="submit" class="btn btn-save btn-icon"
+                                disabled> {{ 'btn.validate'|trans() }} </button>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

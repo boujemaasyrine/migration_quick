@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="{% if app.request != null %} {{ app.request.locale|split('_')[0] }} {% else %} {% if locale is defined %} {{ locale }} {% else %} fr  {% endif %} {% endif %}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            {% if version == "quick" %}
+                Quick!
+            {% else %}
+                BK!
+            {% endif %}
+        {% endblock %}
+    </title>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css"
+              href="{{ app_dir }}/../web/plugins/bootstrap/dist/css/bootstrap.min.css">
+    {% endblock %}
+    <style>
+        tr {
+            page-break-inside: avoid;
+        }
+
+        thead {
+            display: table-header-group
+        }
+
+        tfoot {
+            display: table-row-group
+        }
+
+        td {
+            font-family: 'Arial', sans-serif !important;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="container">
+    {% block header %}
+        <div class="row document-header">
+            <div class="col-xs-2">
+                <img class="logo" style="height: 50px;"
+                     src="{{ app_dir }}/../web/src/images/logo.png">
+            </div>
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-4" style="text-align: center">
+                {% block reportTitle %}
+                {% endblock %}
+            </div>
+            <div class="col-xs-4" style="text-align: right;">
+                {{ 'generated_at'|trans({}, 'supervision') }} {{ "now"|date("d/m/Y H:i:s") }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {% block filterBlock %}
+                {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block body %}
+    {% endblock %}
+
+    {% block footer %}
+        <div class="footer">
+        </div>
+    {% endblock %}
+</div>
+
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

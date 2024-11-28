@@ -1,0 +1,63 @@
+/* Colors definitions */
+.color-4 {
+  background-color: #F18700 !important;
+}
+.text-color-4 {
+  color: #F18700 !important;
+}
+/* Home Page Style */
+.square-nav-zone {
+  margin-top: 50px;
+}
+.square-nav-zone .thumbnail {
+  padding: 5px;
+  margin: 10px;
+}
+.square-nav-zone .thumbnail img {
+  height: 100px;
+}
+.square-nav-zone .thumbnail .caption {
+  text-align: center;
+  color: #c8102e !important;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.square-nav-zone .thumbnail:hover {
+  border: solid #db323b 1px;
+  cursor: pointer;
+}
+.square-nav-zone .thumbnail a:hover {
+  text-decoration: none;
+}
+.square-nav-zone .home_item {
+  height: 15em;
+  padding: 0;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .square-nav-zone {
+    margin-top: 10px;
+  }
+  .square-nav-zone .thumbnail {
+    padding: 5px;
+    margin: 5px;
+  }
+}
+/* Notification List */
+ul.notifications-list {
+  list-style: none;
+  padding: 0px;
+}
+ul.notifications-list li {
+  line-height: 1.2;
+  font-size: 1.1em;
+  border-bottom: solid #DDDBDB 1px;
+  padding: 3px 0px;
+}
+ul.notifications-list li .glyphicon-exclamation-sign {
+  color: #D11A1A;
+}
+.required {
+  background: url('../images/required.png');
+  background-size: 5px 5px ;
+}

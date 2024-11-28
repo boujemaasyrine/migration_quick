@@ -1,0 +1,15 @@
+{% extends ":default:index.html.twig" %}
+
+{% block javascripts %}
+    <script>
+        var currentModule = 'staff';
+    </script>
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block base_subtitle %}
+    {{ 'staff.title'|trans([],'navbar') }}
+{% endblock %}

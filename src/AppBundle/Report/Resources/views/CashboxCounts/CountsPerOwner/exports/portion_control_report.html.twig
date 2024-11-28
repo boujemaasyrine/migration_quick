@@ -1,0 +1,45 @@
+{% extends('@General/exports/base_exports.html.twig') %}
+
+{% block reportTitle %}
+    <h3><b>{{ 'cashbox_counts_owner.title'|trans }}</b></h3>
+{% endblock %}
+
+{% block filterBlock %}
+    <div class="row" style="margin-top: 15px">
+        <div class="col-xs-2 input-field">
+            <label for="startDate">{{ 'cashbox_counts_owner.filter_labels.from'|trans }} </label>
+            <span class="text-muted">
+            {{ reportResult.startDate|date('d/m/Y') }}
+        </span>
+        </div>
+        <div class="col-xs-2 input-field">
+            <label for="endDate">{{ 'cashbox_counts_owner.filter_labels.to'|trans }} </label>
+            <span class="text-muted">
+            {{ reportResult.endDate|date('d/m/Y') }}
+        </span>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <style>
+        .table {
+            border-collapse: collapse;
+        }
+
+        .table td, .table th {
+            border: 0.5px solid black !important;
+        }
+
+        th {
+            font-weight: normal !important;
+            font-size: 0.5em !important;
+            padding: inherit !important;
+        }
+
+        td {
+            font-size: 0.5em !important;
+        }
+    </style>
+    {{ include('@Report/CashboxCounts/CountsPerOwner/cashbox_count_owner_report_body.html.twig') }}
+{% endblock body %}

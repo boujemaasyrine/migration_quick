@@ -1,0 +1,78 @@
+imports:
+    - { resource: config.yml }
+
+#framework:
+#    validation:
+#        cache: validator.mapping.cache.apc
+#    serializer:
+#        cache: serializer.mapping.cache.apc
+
+#doctrine:
+#    orm:
+#        metadata_cache_driver: apc
+#        result_cache_driver: apc
+#        query_cache_driver: apc
+
+monolog:
+    channels: ['synchro', 'tickets_import', 'product_purchased_mvmt', 'app_commands', 'financial','import_commands','ignored_tickets','generate_report']
+    handlers:
+        import_commands:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/import_commands_%kernel.environment%.log'
+            channels: import_commands
+        financial:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/financial_%kernel.environment%.log'
+            channels: financial
+        app_commands:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/commands_%kernel.environment%.log'
+            channels: app_commands
+        product_purchased_mvmt:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/product_purchased_mvmt_%kernel.environment%.log'
+            channels: product_purchased_mvmt
+        tickets_import:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/tickets_import_%kernel.environment%.log'
+            channels: tickets_import
+        generate_report:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/generate_report_%kernel.environment%.log'
+            channels: generate_report
+        synchro:
+            level:    debug
+            type:     rotating_file
+            max_files: 10
+            path:     '%kernel.logs_dir%/app_log/synchro_%kernel.environment%.log'
+            channels: synchro
+#        doctrine:
+#            level:    debug
+#            type:     rotating_file
+#            max_files: 10
+#            path:     '%kernel.logs_dir%/doctrine_%kernel.environment%.log'
+#            channels: doctrine
+        main:
+            type:  rotating_file
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            max_files: 10
+            channels: ['!doctrine', '!synchro', '!tickets_import', '!product_purchased_mvmt', '!app_commands', '!financial']
+        ignored_tickets:
+            level: debug
+            type: rotating_file
+            path: '%kernel.logs_dir%/app_log/ignored_tickets_%kernel.environment%.log'
+            max_files: 10
+            channels: ignored_tickets

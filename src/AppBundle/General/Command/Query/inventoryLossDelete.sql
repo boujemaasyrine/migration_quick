@@ -1,0 +1,2 @@
+delete from loss_line where loss_sheet_id in (select id from loss_sheet where   origin_restaurant_id =:restaurantId and entry <= :d2 and entry >= :d1 and type='article') ;
+delete  from loss_sheet where   origin_restaurant_id =:restaurantId and entry <= :d2 and entry >= :d1 and type='article'
